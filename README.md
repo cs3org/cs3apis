@@ -8,9 +8,8 @@ CERNBox APIs that support both REST and gRPC protocols. You can also
 use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 
-CERNBox APIs are desgined following Google design guidelines for
-API development, specially on error handling and naming convention.
-You can read more about the desgin guidelines at https://cloud.google.com/apis/design/.
+CERNBox APIs follows Google API design guidelines, specially on error handling and naming convention.
+You can read more about these guidelines at https://cloud.google.com/apis/design/.
 
 This repository structure is very similar to https://github.com/googleapis/googleapis.
 
