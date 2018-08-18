@@ -8,7 +8,9 @@ CERNBox APIs that support both REST and gRPC protocols. You can also
 use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 This repositorty follows the same layout and design principles as
-the Google APIs (https://github.com/googleapis/googleapis)
+the Google APIs (https://github.com/googleapis/googleapis), 
+(https://cloud.google.com/apis/design/), specially on error handling,
+naming convention and gRPC directory structure.
 
 ## Overview
 
