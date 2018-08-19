@@ -44,6 +44,13 @@ service About {
 message ListMembersRequest {} 
 
 message ListMembersResponse {
-  Status status = 1;
+  Status status =           1;
   repeated Member members = 2;
+}
+
+message GetDocumentationRequest {}
+
+message GetDocumentationResponse {
+  Status status =               1;
+  Documentation documentation = 2;
 }
