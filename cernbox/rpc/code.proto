@@ -15,18 +15,15 @@
 
 syntax = "proto3";
 
-package google.rpc;
-package cern.box.rpc;
+package cern.cernbox.rpc;
 
-import "google/protobuf/any.proto";
+//import "google/protobuf/any.proto";
 
-option go_package = "github.com/cernbox/cernboxapisclients/go/cernbox/rpc/code;code";
+option go_package = "codepb";
 option java_multiple_files = true;
 option java_outer_classname = "CodeProto";
-option java_package = "ch.cern.box.rpc";
-option objc_class_prefix = "CBOXRPC
-
-syntax = "proto3";
+option java_package = "ch.cern.cernbox.rpc";
+option objc_class_prefix = "CBOXRPC";
 
 // The canonical error codes for CERNBox APIs.
 //

@@ -16,41 +16,34 @@
 
 syntax = "proto3";
 
-package cern.box.about.v1;
+package cernbox.about.v1;
 
-option csharp_namespace = "CERN.Box.About.V1";
+import "cernbox/rpc/status.proto";
+import "cernbox/about/v1/resources.proto";
+
+option csharp_namespace = "CERNBox.About.V1";
 option java_multiple_files = true;
 option java_outer_classname = "AboutProto";
-option java_package = "ch.cern.box.about.v1";
+option java_package = "ch.cern.cernbox.about.v1";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "Cern\\Box\\About\\V1";
+option php_namespace = "CernBox\\About\\V1";
 
 
 service About {
-
-  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse) {
-    option (google.api.http) = {
-      get: "/v1/members"
-    };
-  }
-
-  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse) {
-    option (google.api.http) = {
-      get: "/v1/documentation"
-    };
-  }
+  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse);
+  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse);
 }
 
 message ListMembersRequest {} 
 
 message ListMembersResponse {
-  Status status =           1;
+  cernbox.rpc.Status status = 1;
   repeated Member members = 2;
 }
 
 message GetDocumentationRequest {}
 
 message GetDocumentationResponse {
-  Status status =               1;
+  cernbox.rpc.Status status = 1;
   Documentation documentation = 2;
 }

@@ -16,14 +16,14 @@
 
 syntax = "proto3";
 
-package cern.box.about.v1;
+package cernbox.about.v1;
 
-option csharp_namespace = "CERN.Box.About.V1";
+option csharp_namespace = "CERNBox.About.V1";
 option java_multiple_files = true;
 option java_outer_classname = "AboutProto";
-option java_package = "ch.cern.box.about.v1";
+option java_package = "ch.cern.cernbox.about.v1";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "Cern\\Box\\About\\V1";
+option php_namespace = "CernBox\\About\\V1";
 
 
 message Member {

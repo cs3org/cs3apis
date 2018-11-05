@@ -15,14 +15,14 @@
 
 syntax = "proto3";
 
-package cern.box.rpc;
+package cern.cernbox.rpc;
 
-import "google/protobuf/duration.proto";
+//import "google/protobuf/duration.proto";
 
-option go_package = "github.com/cernbox/cernboxapisclients/cernbox/rpc/errdetails;errdetails";
+option go_package = "errdetailspb";
 option java_multiple_files = true;
 option java_outer_classname = "ErrorDetailsProto";
-option java_package = "ch.cern.box.rpc";
+option java_package = "ch.cern.cernbox.rpc";
 option objc_class_prefix = "CBOXRPC";
 
 
