@@ -15,22 +15,20 @@
 
 syntax = "proto3";
 
-package cern.cernbox.rpc;
+package cernbox.rpc;
 
-//import "google/protobuf/duration.proto";
-
-option go_package = "errdetailspb";
+option go_package = "rpcpb";
 option java_multiple_files = true;
 option java_outer_classname = "ErrorDetailsProto";
-option java_package = "ch.cern.cernbox.rpc";
+option java_package = "com.cernbox.rpc";
 option objc_class_prefix = "CBOXRPC";
 
+//import "google/protobuf/duration.proto";
 
 // Describes additional debugging info.
 message DebugInfo {
   // The stack trace entries indicating where the error occurred.
   repeated string stack_entries = 1;
-
   // Additional debugging information provided by the server.
   string detail = 2;
 }
@@ -54,7 +52,6 @@ message QuotaFailure {
     // For example, "clientip:<ip address of client>" or "project:<Google
     // developer project id>".
     string subject = 1;
-
     // A description of how the quota check failed. Clients can use this
     // description to find more about the quota configuration in the service's
     // public documentation, or find the relevant quota limit to adjust through
@@ -64,7 +61,6 @@ message QuotaFailure {
     // exceeded".
     string description = 2;
   }
-
   // Describes all quota violations.
   repeated Violation violations = 1;
 }
@@ -81,19 +77,16 @@ message PreconditionFailure {
     // enum type to define the supported precondition violation types. For
     // example, "TOS" for "Terms of Service violation".
     string type = 1;
-
     // The subject, relative to the type, that failed.
     // For example, "google.com/cloud" relative to the "TOS" type would
     // indicate which terms of service is being referenced.
     string subject = 2;
-
     // A description of how the precondition failed. Developers can use this
     // description to understand how to fix the failure.
     //
     // For example: "Terms of service not accepted".
     string description = 3;
   }
-
   // Describes all precondition violations.
   repeated Violation violations = 1;
 }
@@ -107,11 +100,9 @@ message BadRequest {
     // sequence of dot-separated identifiers that identify a protocol buffer
     // field. E.g., "field_violations.field" would identify this field.
     string field = 1;
-
     // A description of why the request element is bad.
     string description = 2;
   }
-
   // Describes all violations in a client request.
   repeated FieldViolation field_violations = 1;
 }
@@ -122,7 +113,6 @@ message RequestInfo {
   // An opaque string that should only be interpreted by the service generating
   // it. For example, it can be used to identify requests in the service's logs.
   string request_id = 1;
-
   // Any data that was used to serve this request. For example, an encrypted
   // stack trace that can be sent back to the service provider for debugging.
   string serving_data = 2;
@@ -134,17 +124,14 @@ message ResourceInfo {
   // "cloud storage bucket", "file", "Google calendar"; or the type URL
   // of the resource: e.g. "type.googleapis.com/google.pubsub.v1.Topic".
   string resource_type = 1;
-
   // The name of the resource being accessed.  For example, a shared calendar
   // name: "example.com_4fghdhgsrgh@group.calendar.google.com", if the current
   // error is [google.rpc.Code.PERMISSION_DENIED][google.rpc.Code.PERMISSION_DENIED].
   string resource_name = 2;
-
   // The owner of the resource (optional).
   // For example, "user:<owner email>" or "project:<Google developer project
   // id>".
   string owner = 3;
-
   // Describes what error is encountered when accessing this resource.
   // For example, updating a cloud project may require the `writer` permission
   // on the developer console project.
@@ -161,11 +148,9 @@ message Help {
   message Link {
     // Describes what the link offers.
     string description = 1;
-
     // The URL of the link.
     string url = 2;
   }
-
   // URL(s) pointing to additional information on handling the current error.
   repeated Link links = 1;
 }
@@ -177,7 +162,6 @@ message LocalizedMessage {
   // http://www.rfc-editor.org/rfc/bcp/bcp47.txt.
   // Examples are: "en-US", "fr-CH", "es-MX"
   string locale = 1;
-
   // The localized error message in the above locale.
   string message = 2;
 }

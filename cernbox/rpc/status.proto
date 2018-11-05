@@ -17,15 +17,14 @@ syntax = "proto3";
 
 package cernbox.rpc;
 
-import "google/protobuf/any.proto";
-
-option go_package = "statuspb";
+option go_package = "rpcpb";
 option java_multiple_files = true;
 option java_outer_classname = "StatusProto";
-option java_package = "ch.cernbox.rpc";
+option java_package = "com.cernbox.rpc";
 option objc_class_prefix = "CBOXRPC";
 option php_namespace = "CernBox\\RPC";
 
+import "google/protobuf/any.proto";
 
 // The `Status` rpc defines a logical error model that is suitable for different
 // programming environments, including REST APIs and RPC APIs. It is used by
@@ -84,12 +83,10 @@ option php_namespace = "CernBox\\RPC";
 message Status {
   // The status code, which should be an enum value of [cern.box.rpc.code][cern.box.rpc.code].
   int32 code = 1;
-
   // A developer-facing error message, which should be in English. Any
   // user-facing error message should be localized and sent in the
   // [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
   string message = 2;
-
   // A list of messages that carry the error details.  There is a common set of
   // message rpcs for APIs to use.
   repeated google.protobuf.Any details = 3;

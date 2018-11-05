@@ -16,22 +16,22 @@
 
 syntax = "proto3";
 
-package cernbox.about.v1;
+package cernbox.aboutv1;
 
-option csharp_namespace = "CERNBox.About.V1";
+option csharp_namespace = "CERNBox.AboutV1";
+option go_package = "aboutv1pb";
 option java_multiple_files = true;
-option java_outer_classname = "AboutProto";
-option java_package = "ch.cern.cernbox.about.v1";
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cernbox.aboutv1";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CernBox\\About\\V1";
-
+option php_namespace = "CernBox\\AboutV1";
 
 message Member {
   string display_name = 1;
-  string email        = 2;
+  string email = 2;
 }
 
 message Documentation {
   string service_url = 1;
-  string github_url  = 2;
+  string github_url = 2;
 }
