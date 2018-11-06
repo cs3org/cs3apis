@@ -46,3 +46,7 @@ languages.
 
 **NOTE:** The major version of an API is used to indicate breaking
 change to the API.
+
+
+## Generate code
+The code genereated in the `gen` folder is generated using `github.com/uber/prototool generate`.
