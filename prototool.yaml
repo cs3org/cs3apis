@@ -49,7 +49,7 @@ generate:
 
     - name: grpc-gateway
       type: go
-      output: ./gen/grpc-gateway/
+      output: ./gen/proto/go
 
     - name: swagger
       output: ./gen/swagger

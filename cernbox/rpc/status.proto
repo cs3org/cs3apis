@@ -25,6 +25,7 @@ option objc_class_prefix = "CBOXRPC";
 option php_namespace = "CernBox\\RPC";
 
 import "google/protobuf/any.proto";
+import "cernbox/rpc/code.proto";
 
 // The `Status` rpc defines a logical error model that is suitable for different
 // programming environments, including REST APIs and RPC APIs. It is used by
@@ -82,7 +83,7 @@ import "google/protobuf/any.proto";
 
 message Status {
   // The status code, which should be an enum value of [cernbox.rpc.code][cernbox.rpc.code].
-  int32 code = 1;
+  Code code = 1;
   // A developer-facing error message, which should be in English. Any
   // user-facing error message should be localized and sent in the
   // [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
