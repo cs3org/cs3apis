@@ -37,7 +37,7 @@ import "google/protobuf/any.proto";
 //
 // The `Status` message contains three pieces of data: error code, error message,
 // and error details. The error code should be an enum value of
-// [cern.box.rpc.code][cern.box.rpc.code], but it may accept additional 
+// [cernbox.rpc.code][cernbox.rpc.code], but it may accept additional 
 // error codes if needed.  The error message should be a developer-facing English
 // message that helps developers *understand* and *resolve* the error.
 // If a localized user-facing error message is needed, put the localized message
@@ -81,7 +81,7 @@ import "google/protobuf/any.proto";
 //     be used directly after any stripping needed for security/privacy reasons.
 
 message Status {
-  // The status code, which should be an enum value of [cern.box.rpc.code][cern.box.rpc.code].
+  // The status code, which should be an enum value of [cernbox.rpc.code][cernbox.rpc.code].
   int32 code = 1;
   // A developer-facing error message, which should be in English. Any
   // user-facing error message should be localized and sent in the

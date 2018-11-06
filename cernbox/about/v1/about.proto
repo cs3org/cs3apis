@@ -28,9 +28,14 @@ option php_namespace = "CernBox\\AboutV1";
 
 import "cernbox/about/v1/resources.proto";
 import "cernbox/rpc/status.proto";
+import "google/api/annotations.proto";
 
 service About {
-  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse);
+  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse) {
+    option (google.api.http) = {
+      get: "/v1/about/members"
+    };
+  };
   rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse);
 }
 

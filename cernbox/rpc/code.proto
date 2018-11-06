@@ -22,6 +22,7 @@ option java_multiple_files = true;
 option java_outer_classname = "CodeProto";
 option java_package = "com.cernbox.rpc";
 option objc_class_prefix = "CBOXRPC";
+option php_namespace = "CernBox\\RPC";
 
 //import "google/protobuf/any.proto";
 
