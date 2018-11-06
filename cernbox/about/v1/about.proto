@@ -35,8 +35,12 @@ service About {
     option (google.api.http) = {
       get: "/v1/about/members"
     };
-  };
-  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse);
+  }
+  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse) {
+    option (google.api.http) = {
+      get: "/v1/about/documentation"
+    };
+  }
 }
 
 message ListMembersRequest {}
