@@ -1,0 +1,88 @@
+// CERNBox Share API
+// Copyright (C) 2018  CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cernbox.sharev1;
+
+option csharp_namespace = "CERNBox.ShareV1";
+option go_package = "sharev1pb";
+option java_multiple_files = true;
+option java_outer_classname = "ShareProto";
+option java_package = "com.cernbox.sharev1";
+option objc_class_prefix = "CBOXAB";
+option php_namespace = "CernBox\\ShareV1";
+
+import "cernbox/rpc/status.proto";
+import "cernbox/share/v1/resources.proto";
+import "google/api/annotations.proto";
+
+service Sharing {
+  rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
+  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
+  rpc ListShares(ListSharesRequest) returns (stream ListSharesResponse);
+  rpc Unshare(UnshareRequest) returns (UnshareResponse);
+  rpc GetShare(GetShareRequest) returns (GetShareResponse);
+}
+
+message CreateShareRequest {
+  string filename = 1;
+  Permissions permissions = 2;
+  string target = 3;
+  TargetType target_type = 4;
+}
+
+message CreateShareResponse {
+  cernbox.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message UpdateShareRequest {
+  string share_id = 1;
+  UpdatePolicy update_policy = 2;
+  Permissions permissions = 3;
+}
+
+message UpdateShareResponse {
+  cernbox.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message ListSharesRequest {
+  string filename = 1;
+}
+
+message ListSharesResponse {
+  cernbox.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message UnshareRequest {
+  string share_id = 1;
+}
+
+message UnshareResponse {
+  cernbox.rpc.Status status = 1;
+}
+
+message GetShareRequest {
+  string share_id = 1;
+}
+
+message GetShareResponse {
+  cernbox.rpc.Status status = 1;
+  Share share = 2;
+}
