@@ -46,6 +46,7 @@ message Share {
   uint64 ctime = 6;
   uint64 mtime = 7;
   string display_name = 8;
+  string owner = 9;
 }
 
 message UpdatePolicy {
