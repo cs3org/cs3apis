@@ -486,6 +486,240 @@ func (m *GetShareResponse) GetShare() *Share {
 	return nil
 }
 
+type ListReceivedSharesRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListReceivedSharesRequest) Reset()         { *m = ListReceivedSharesRequest{} }
+func (m *ListReceivedSharesRequest) String() string { return proto.CompactTextString(m) }
+func (*ListReceivedSharesRequest) ProtoMessage()    {}
+func (*ListReceivedSharesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e718bd29fdffdabb, []int{10}
+}
+
+func (m *ListReceivedSharesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReceivedSharesRequest.Unmarshal(m, b)
+}
+func (m *ListReceivedSharesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReceivedSharesRequest.Marshal(b, m, deterministic)
+}
+func (m *ListReceivedSharesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReceivedSharesRequest.Merge(m, src)
+}
+func (m *ListReceivedSharesRequest) XXX_Size() int {
+	return xxx_messageInfo_ListReceivedSharesRequest.Size(m)
+}
+func (m *ListReceivedSharesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReceivedSharesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListReceivedSharesRequest proto.InternalMessageInfo
+
+type ListReceivedSharesResponse struct {
+	Status               *rpc.Status    `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	ReceivedShare        *ReceivedShare `protobuf:"bytes,2,opt,name=received_share,json=receivedShare,proto3" json:"received_share,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
+}
+
+func (m *ListReceivedSharesResponse) Reset()         { *m = ListReceivedSharesResponse{} }
+func (m *ListReceivedSharesResponse) String() string { return proto.CompactTextString(m) }
+func (*ListReceivedSharesResponse) ProtoMessage()    {}
+func (*ListReceivedSharesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e718bd29fdffdabb, []int{11}
+}
+
+func (m *ListReceivedSharesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListReceivedSharesResponse.Unmarshal(m, b)
+}
+func (m *ListReceivedSharesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListReceivedSharesResponse.Marshal(b, m, deterministic)
+}
+func (m *ListReceivedSharesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListReceivedSharesResponse.Merge(m, src)
+}
+func (m *ListReceivedSharesResponse) XXX_Size() int {
+	return xxx_messageInfo_ListReceivedSharesResponse.Size(m)
+}
+func (m *ListReceivedSharesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListReceivedSharesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListReceivedSharesResponse proto.InternalMessageInfo
+
+func (m *ListReceivedSharesResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *ListReceivedSharesResponse) GetReceivedShare() *ReceivedShare {
+	if m != nil {
+		return m.ReceivedShare
+	}
+	return nil
+}
+
+type AcceptReceivedShareRequest struct {
+	ShareId              string   `protobuf:"bytes,1,opt,name=share_id,json=shareId,proto3" json:"share_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AcceptReceivedShareRequest) Reset()         { *m = AcceptReceivedShareRequest{} }
+func (m *AcceptReceivedShareRequest) String() string { return proto.CompactTextString(m) }
+func (*AcceptReceivedShareRequest) ProtoMessage()    {}
+func (*AcceptReceivedShareRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e718bd29fdffdabb, []int{12}
+}
+
+func (m *AcceptReceivedShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AcceptReceivedShareRequest.Unmarshal(m, b)
+}
+func (m *AcceptReceivedShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AcceptReceivedShareRequest.Marshal(b, m, deterministic)
+}
+func (m *AcceptReceivedShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AcceptReceivedShareRequest.Merge(m, src)
+}
+func (m *AcceptReceivedShareRequest) XXX_Size() int {
+	return xxx_messageInfo_AcceptReceivedShareRequest.Size(m)
+}
+func (m *AcceptReceivedShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AcceptReceivedShareRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AcceptReceivedShareRequest proto.InternalMessageInfo
+
+func (m *AcceptReceivedShareRequest) GetShareId() string {
+	if m != nil {
+		return m.ShareId
+	}
+	return ""
+}
+
+type AcceptReceivedShareResponse struct {
+	Status               *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
+}
+
+func (m *AcceptReceivedShareResponse) Reset()         { *m = AcceptReceivedShareResponse{} }
+func (m *AcceptReceivedShareResponse) String() string { return proto.CompactTextString(m) }
+func (*AcceptReceivedShareResponse) ProtoMessage()    {}
+func (*AcceptReceivedShareResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e718bd29fdffdabb, []int{13}
+}
+
+func (m *AcceptReceivedShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AcceptReceivedShareResponse.Unmarshal(m, b)
+}
+func (m *AcceptReceivedShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AcceptReceivedShareResponse.Marshal(b, m, deterministic)
+}
+func (m *AcceptReceivedShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AcceptReceivedShareResponse.Merge(m, src)
+}
+func (m *AcceptReceivedShareResponse) XXX_Size() int {
+	return xxx_messageInfo_AcceptReceivedShareResponse.Size(m)
+}
+func (m *AcceptReceivedShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AcceptReceivedShareResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AcceptReceivedShareResponse proto.InternalMessageInfo
+
+func (m *AcceptReceivedShareResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+type RejectReceivedShareRequest struct {
+	ShareId              string   `protobuf:"bytes,1,opt,name=share_id,json=shareId,proto3" json:"share_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RejectReceivedShareRequest) Reset()         { *m = RejectReceivedShareRequest{} }
+func (m *RejectReceivedShareRequest) String() string { return proto.CompactTextString(m) }
+func (*RejectReceivedShareRequest) ProtoMessage()    {}
+func (*RejectReceivedShareRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e718bd29fdffdabb, []int{14}
+}
+
+func (m *RejectReceivedShareRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RejectReceivedShareRequest.Unmarshal(m, b)
+}
+func (m *RejectReceivedShareRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RejectReceivedShareRequest.Marshal(b, m, deterministic)
+}
+func (m *RejectReceivedShareRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RejectReceivedShareRequest.Merge(m, src)
+}
+func (m *RejectReceivedShareRequest) XXX_Size() int {
+	return xxx_messageInfo_RejectReceivedShareRequest.Size(m)
+}
+func (m *RejectReceivedShareRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RejectReceivedShareRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RejectReceivedShareRequest proto.InternalMessageInfo
+
+func (m *RejectReceivedShareRequest) GetShareId() string {
+	if m != nil {
+		return m.ShareId
+	}
+	return ""
+}
+
+type RejectReceivedShareResponse struct {
+	Status               *rpc.Status `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
+}
+
+func (m *RejectReceivedShareResponse) Reset()         { *m = RejectReceivedShareResponse{} }
+func (m *RejectReceivedShareResponse) String() string { return proto.CompactTextString(m) }
+func (*RejectReceivedShareResponse) ProtoMessage()    {}
+func (*RejectReceivedShareResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e718bd29fdffdabb, []int{15}
+}
+
+func (m *RejectReceivedShareResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RejectReceivedShareResponse.Unmarshal(m, b)
+}
+func (m *RejectReceivedShareResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RejectReceivedShareResponse.Marshal(b, m, deterministic)
+}
+func (m *RejectReceivedShareResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RejectReceivedShareResponse.Merge(m, src)
+}
+func (m *RejectReceivedShareResponse) XXX_Size() int {
+	return xxx_messageInfo_RejectReceivedShareResponse.Size(m)
+}
+func (m *RejectReceivedShareResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RejectReceivedShareResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RejectReceivedShareResponse proto.InternalMessageInfo
+
+func (m *RejectReceivedShareResponse) GetStatus() *rpc.Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*CreateShareRequest)(nil), "cernbox.sharev1.CreateShareRequest")
 	proto.RegisterType((*CreateShareResponse)(nil), "cernbox.sharev1.CreateShareResponse")
@@ -497,47 +731,61 @@ func init() {
 	proto.RegisterType((*UnshareResponse)(nil), "cernbox.sharev1.UnshareResponse")
 	proto.RegisterType((*GetShareRequest)(nil), "cernbox.sharev1.GetShareRequest")
 	proto.RegisterType((*GetShareResponse)(nil), "cernbox.sharev1.GetShareResponse")
+	proto.RegisterType((*ListReceivedSharesRequest)(nil), "cernbox.sharev1.ListReceivedSharesRequest")
+	proto.RegisterType((*ListReceivedSharesResponse)(nil), "cernbox.sharev1.ListReceivedSharesResponse")
+	proto.RegisterType((*AcceptReceivedShareRequest)(nil), "cernbox.sharev1.AcceptReceivedShareRequest")
+	proto.RegisterType((*AcceptReceivedShareResponse)(nil), "cernbox.sharev1.AcceptReceivedShareResponse")
+	proto.RegisterType((*RejectReceivedShareRequest)(nil), "cernbox.sharev1.RejectReceivedShareRequest")
+	proto.RegisterType((*RejectReceivedShareResponse)(nil), "cernbox.sharev1.RejectReceivedShareResponse")
 }
 
 func init() { proto.RegisterFile("cernbox/share/v1/share.proto", fileDescriptor_e718bd29fdffdabb) }
 
 var fileDescriptor_e718bd29fdffdabb = []byte{
-	// 554 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x95, 0xdf, 0x8e, 0x12, 0x31,
-	0x14, 0xc6, 0x33, 0xa0, 0xc0, 0x9e, 0xd1, 0x45, 0x4b, 0xb2, 0xc1, 0x11, 0x23, 0xce, 0x7a, 0x41,
-	0xb2, 0x1b, 0x46, 0xf0, 0xd6, 0x6c, 0xe2, 0x10, 0x63, 0x4c, 0x36, 0x2e, 0x99, 0xdd, 0x55, 0xa2,
-	0x26, 0x64, 0x18, 0x2a, 0x4e, 0x02, 0xd3, 0xda, 0x96, 0x0d, 0xbc, 0x8e, 0x97, 0xde, 0x1a, 0x5f,
-	0xc1, 0x0b, 0x9f, 0xca, 0xd0, 0x96, 0x7f, 0x53, 0x24, 0x68, 0xc2, 0x5d, 0x7b, 0xfa, 0x3b, 0x5f,
-	0x4f, 0x4f, 0xbf, 0xe9, 0x40, 0x25, 0xc2, 0x2c, 0xe9, 0x91, 0x89, 0xc7, 0xbf, 0x84, 0x0c, 0x7b,
-	0x37, 0x0d, 0x35, 0xa8, 0x53, 0x46, 0x04, 0x41, 0x45, 0xbd, 0x5a, 0x97, 0xc1, 0x9b, 0x86, 0x53,
-	0x9e, 0xe3, 0x8c, 0x46, 0x1e, 0x17, 0xa1, 0x18, 0x73, 0x85, 0x3a, 0x55, 0x43, 0x88, 0x61, 0x4e,
-	0xc6, 0x2c, 0xc2, 0x73, 0xa2, 0x32, 0x20, 0x64, 0x30, 0xc4, 0x5e, 0x48, 0x63, 0x2f, 0x4c, 0x12,
-	0x22, 0x42, 0x11, 0x93, 0x44, 0xaf, 0xba, 0xbf, 0x2c, 0x40, 0x2d, 0x86, 0x43, 0x81, 0x2f, 0x67,
-	0x02, 0x01, 0xfe, 0x3a, 0xc6, 0x5c, 0x20, 0x07, 0x0a, 0x9f, 0xe3, 0x21, 0x4e, 0xc2, 0x11, 0x2e,
-	0x5b, 0x55, 0xab, 0x76, 0x10, 0x2c, 0xe6, 0xe8, 0x0c, 0x6c, 0x8a, 0xd9, 0x28, 0xe6, 0x7c, 0xa6,
-	0x53, 0xce, 0x54, 0xad, 0x9a, 0xdd, 0xac, 0xd4, 0x53, 0x35, 0xd7, 0xdb, 0x4b, 0x26, 0x58, 0x4d,
-	0x40, 0x47, 0x90, 0x13, 0x21, 0x1b, 0x60, 0x51, 0xce, 0x4a, 0x65, 0x3d, 0x43, 0x2f, 0xc0, 0x56,
-	0xa3, 0xae, 0x98, 0x52, 0x5c, 0xbe, 0x55, 0xb5, 0x6a, 0x87, 0xcd, 0x87, 0x86, 0xee, 0x95, 0x64,
-	0xae, 0xa6, 0x14, 0x07, 0x20, 0x16, 0x63, 0x97, 0x42, 0x69, 0xed, 0x1c, 0x9c, 0x92, 0x84, 0x63,
-	0x74, 0x02, 0x39, 0xd5, 0x2f, 0x79, 0x0c, 0xbb, 0x59, 0x5a, 0xe8, 0x31, 0x1a, 0xd5, 0x2f, 0xe5,
-	0x52, 0xa0, 0x11, 0x74, 0x0a, 0xb7, 0xe5, 0x2e, 0xfa, 0x4c, 0x47, 0xc6, 0xde, 0x4a, 0x5b, 0x41,
-	0xee, 0x0f, 0x0b, 0xd0, 0x35, 0xed, 0xa7, 0x5b, 0xf7, 0x00, 0x0a, 0x72, 0xbd, 0x1b, 0xf7, 0x75,
-	0xeb, 0xf2, 0x72, 0xfe, 0xa6, 0x8f, 0x7c, 0xb8, 0x3b, 0x96, 0x09, 0x5d, 0x4a, 0x86, 0x71, 0x34,
-	0xd5, 0xfb, 0x3c, 0x32, 0xf6, 0x51, 0xb2, 0x6d, 0x09, 0x05, 0x77, 0xc6, 0x2b, 0xb3, 0x74, 0xf7,
-	0xb3, 0xff, 0xd8, 0xfd, 0x59, 0x9f, 0xd6, 0x8a, 0xde, 0x7f, 0x9f, 0x3c, 0xb8, 0x7f, 0x1e, 0x73,
-	0x21, 0x63, 0x7c, 0x07, 0x83, 0xb9, 0x04, 0xd0, 0x6a, 0xc2, 0xfe, 0x2b, 0x3c, 0x81, 0xc3, 0xeb,
-	0x84, 0xef, 0x76, 0x89, 0xee, 0x19, 0x14, 0x17, 0xf0, 0x7f, 0x94, 0xe6, 0x9e, 0x42, 0xf1, 0x35,
-	0x16, 0x3b, 0x5a, 0xc6, 0x1d, 0xc1, 0xbd, 0x25, 0xbd, 0xf7, 0x4e, 0x34, 0x7f, 0x66, 0x21, 0x3f,
-	0x0b, 0xc4, 0xc9, 0x00, 0x75, 0xc0, 0x5e, 0xf9, 0xa2, 0xd0, 0xb1, 0x91, 0x69, 0xbe, 0x1b, 0xce,
-	0xd3, 0xed, 0x90, 0x3e, 0x40, 0x07, 0xec, 0x15, 0x0f, 0x6e, 0x50, 0x36, 0x3f, 0xab, 0x0d, 0xca,
-	0x9b, 0x6c, 0xfc, 0x1e, 0x60, 0x69, 0x1d, 0xe4, 0x1a, 0x39, 0x86, 0x11, 0x9d, 0xe3, 0xad, 0x8c,
-	0x92, 0x7d, 0x66, 0xa1, 0x73, 0xc8, 0xeb, 0x5b, 0x47, 0x8f, 0xcd, 0x4a, 0xd6, 0xcc, 0xe3, 0x54,
-	0xff, 0x0e, 0xe8, 0x32, 0x2f, 0xa0, 0x30, 0xbf, 0x55, 0x64, 0xd2, 0x29, 0x7b, 0x38, 0x4f, 0xb6,
-	0x10, 0x4a, 0xd0, 0xff, 0x08, 0xa5, 0x88, 0x8c, 0xd2, 0x9c, 0x0f, 0x92, 0x6a, 0xcf, 0x5e, 0xfa,
-	0xb6, 0xf5, 0xe1, 0x40, 0x87, 0x69, 0xef, 0x5b, 0x26, 0xd7, 0xf2, 0x2f, 0x3a, 0x2f, 0xfd, 0xef,
-	0x99, 0x62, 0xeb, 0x55, 0xf0, 0xd6, 0x27, 0x13, 0xe5, 0x83, 0x77, 0x8d, 0xdf, 0x99, 0x62, 0x0b,
-	0xb3, 0xc4, 0x27, 0x93, 0x4f, 0x3a, 0xd2, 0xcb, 0xc9, 0x5f, 0xc5, 0xf3, 0x3f, 0x01, 0x00, 0x00,
-	0xff, 0xff, 0x2d, 0xe3, 0x62, 0xf3, 0xb5, 0x06, 0x00, 0x00,
+	// 679 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x56, 0x41, 0x4f, 0x13, 0x41,
+	0x14, 0xce, 0x16, 0x2d, 0xf0, 0x2a, 0x54, 0xa7, 0x09, 0x29, 0x0b, 0x6a, 0x5d, 0x3c, 0x10, 0x21,
+	0xad, 0xd4, 0x03, 0x17, 0x43, 0xc2, 0x36, 0xc4, 0x68, 0x88, 0x34, 0x0b, 0x28, 0x51, 0x93, 0x66,
+	0xd9, 0x3e, 0xeb, 0x1a, 0xba, 0x33, 0xce, 0x4e, 0x09, 0xfc, 0x05, 0x4f, 0xfe, 0x06, 0x8f, 0x5e,
+	0xfd, 0x0f, 0x1e, 0xfc, 0x55, 0xa6, 0xb3, 0x43, 0xd9, 0xed, 0x0c, 0xcd, 0xda, 0x84, 0xdb, 0xce,
+	0xcc, 0xf7, 0xbe, 0xf7, 0xbd, 0x6f, 0xe6, 0xbd, 0x2c, 0xac, 0x06, 0xc8, 0xa3, 0x53, 0x7a, 0xd1,
+	0x88, 0xbf, 0xf8, 0x1c, 0x1b, 0xe7, 0x5b, 0xc9, 0x47, 0x9d, 0x71, 0x2a, 0x28, 0x29, 0xab, 0xd3,
+	0xba, 0xdc, 0x3c, 0xdf, 0xb2, 0xab, 0x57, 0x70, 0xce, 0x82, 0x46, 0x2c, 0x7c, 0x31, 0x88, 0x13,
+	0xa8, 0x5d, 0xd3, 0x88, 0x38, 0xc6, 0x74, 0xc0, 0x03, 0xbc, 0x42, 0xac, 0xf6, 0x28, 0xed, 0x9d,
+	0x61, 0xc3, 0x67, 0x61, 0xc3, 0x8f, 0x22, 0x2a, 0x7c, 0x11, 0xd2, 0x48, 0x9d, 0x3a, 0x7f, 0x2c,
+	0x20, 0x2d, 0x8e, 0xbe, 0xc0, 0xc3, 0x21, 0x81, 0x87, 0xdf, 0x06, 0x18, 0x0b, 0x62, 0xc3, 0xdc,
+	0xe7, 0xf0, 0x0c, 0x23, 0xbf, 0x8f, 0x55, 0xab, 0x66, 0xad, 0xcf, 0x7b, 0xa3, 0x35, 0xd9, 0x81,
+	0x12, 0x43, 0xde, 0x0f, 0xe3, 0x78, 0xc8, 0x53, 0x2d, 0xd4, 0xac, 0xf5, 0x52, 0x73, 0xb5, 0x3e,
+	0xa6, 0xb9, 0xde, 0xbe, 0xc6, 0x78, 0xe9, 0x00, 0xb2, 0x04, 0x45, 0xe1, 0xf3, 0x1e, 0x8a, 0xea,
+	0x8c, 0x64, 0x56, 0x2b, 0xf2, 0x12, 0x4a, 0xc9, 0x57, 0x47, 0x5c, 0x32, 0xac, 0xde, 0xa9, 0x59,
+	0xeb, 0x8b, 0xcd, 0x15, 0x8d, 0xf7, 0x48, 0x62, 0x8e, 0x2e, 0x19, 0x7a, 0x20, 0x46, 0xdf, 0x0e,
+	0x83, 0x4a, 0xa6, 0x8e, 0x98, 0xd1, 0x28, 0x46, 0xb2, 0x01, 0xc5, 0xc4, 0x2f, 0x59, 0x46, 0xa9,
+	0x59, 0x19, 0xf1, 0x71, 0x16, 0xd4, 0x0f, 0xe5, 0x91, 0xa7, 0x20, 0x64, 0x13, 0xee, 0xca, 0x2c,
+	0xaa, 0xa6, 0x25, 0x2d, 0x77, 0xc2, 0x9d, 0x80, 0x9c, 0xdf, 0x16, 0x90, 0x63, 0xd6, 0x1d, 0xb7,
+	0x6e, 0x19, 0xe6, 0xe4, 0x79, 0x27, 0xec, 0x2a, 0xeb, 0x66, 0xe5, 0xfa, 0x75, 0x97, 0xb8, 0xb0,
+	0x30, 0x90, 0x01, 0x1d, 0x46, 0xcf, 0xc2, 0xe0, 0x52, 0xe5, 0x79, 0xa8, 0xe5, 0x49, 0x68, 0xdb,
+	0x12, 0xe4, 0xdd, 0x1b, 0xa4, 0x56, 0xe3, 0xee, 0xcf, 0xfc, 0xa7, 0xfb, 0x43, 0x9f, 0x32, 0xa2,
+	0x6f, 0xdf, 0xa7, 0x06, 0x3c, 0xd8, 0x0f, 0x63, 0x21, 0xf7, 0xe2, 0x1c, 0x0f, 0xcc, 0xa1, 0x40,
+	0xd2, 0x01, 0xb7, 0xaf, 0x70, 0x03, 0x16, 0x8f, 0xa3, 0x38, 0xdf, 0x25, 0x3a, 0x3b, 0x50, 0x1e,
+	0x81, 0xa7, 0x90, 0xe6, 0x6c, 0x42, 0xf9, 0x15, 0x8a, 0x9c, 0x4f, 0xc6, 0xe9, 0xc3, 0xfd, 0x6b,
+	0xf4, 0xed, 0x3b, 0xb1, 0x02, 0xcb, 0x43, 0xeb, 0x3d, 0x0c, 0x30, 0x3c, 0xc7, 0x6e, 0xe6, 0xce,
+	0x9c, 0x1f, 0x16, 0xd8, 0xa6, 0xd3, 0x69, 0x64, 0xed, 0xc1, 0x22, 0x57, 0x34, 0x9d, 0xb4, 0xbe,
+	0x47, 0x9a, 0xbe, 0x4c, 0x36, 0x6f, 0x81, 0xa7, 0x97, 0xce, 0x36, 0xd8, 0xbb, 0x41, 0x80, 0x2c,
+	0xab, 0x29, 0x87, 0xaf, 0x6f, 0x60, 0xc5, 0x18, 0x38, 0xcd, 0x8d, 0x6e, 0x83, 0xed, 0xe1, 0x57,
+	0x0c, 0xa6, 0x11, 0x61, 0x0c, 0x9c, 0x42, 0x44, 0xf3, 0x7b, 0x11, 0x66, 0x87, 0xe1, 0x61, 0xd4,
+	0x23, 0x27, 0x50, 0x4a, 0xcd, 0x42, 0xb2, 0xa6, 0x79, 0xaa, 0x4f, 0x7c, 0xfb, 0xe9, 0x64, 0x90,
+	0x92, 0x74, 0x02, 0xa5, 0xd4, 0xf4, 0x30, 0x30, 0xeb, 0x03, 0xd1, 0xc0, 0x6c, 0x1a, 0x40, 0xef,
+	0x01, 0xae, 0x9b, 0x9e, 0x38, 0x5a, 0x8c, 0x36, 0x42, 0xec, 0xb5, 0x89, 0x98, 0x84, 0xf6, 0xb9,
+	0x45, 0xf6, 0x61, 0x56, 0xf5, 0x2b, 0x79, 0xac, 0x2b, 0xc9, 0xb4, 0xbd, 0x5d, 0xbb, 0x19, 0xa0,
+	0x64, 0x1e, 0xc0, 0xdc, 0x55, 0x3f, 0x12, 0x1d, 0x3d, 0xd6, 0xd8, 0xf6, 0x93, 0x09, 0x08, 0x45,
+	0xa8, 0x86, 0x5d, 0xb6, 0xa7, 0xc8, 0x33, 0x63, 0x6d, 0xc6, 0xb6, 0xb4, 0x37, 0x72, 0x61, 0x47,
+	0x7e, 0x30, 0xa8, 0x18, 0x5e, 0x3e, 0xd1, 0x59, 0x6e, 0x6e, 0x2c, 0x7b, 0x33, 0x1f, 0x58, 0x95,
+	0xc8, 0xa0, 0x62, 0x78, 0xe6, 0x86, 0x8c, 0x37, 0x77, 0x91, 0x21, 0xe3, 0x84, 0xce, 0x71, 0x3f,
+	0x42, 0x25, 0xa0, 0xfd, 0xf1, 0x10, 0x17, 0x24, 0xaa, 0x3d, 0xfc, 0xf1, 0x69, 0x5b, 0x1f, 0xe6,
+	0xd5, 0x36, 0x3b, 0xfd, 0x59, 0x28, 0xb6, 0xdc, 0x83, 0x93, 0x5d, 0xf7, 0x57, 0xa1, 0xdc, 0xda,
+	0xf3, 0xde, 0xba, 0xf4, 0x22, 0x19, 0x8b, 0xef, 0xb6, 0xfe, 0x16, 0xca, 0x2d, 0xe4, 0x91, 0x4b,
+	0x2f, 0x3e, 0xa9, 0x9d, 0xd3, 0xa2, 0xfc, 0x73, 0x7a, 0xf1, 0x2f, 0x00, 0x00, 0xff, 0xff, 0xe7,
+	0x17, 0x25, 0xb5, 0xc4, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -557,6 +805,9 @@ type SharingClient interface {
 	ListShares(ctx context.Context, in *ListSharesRequest, opts ...grpc.CallOption) (Sharing_ListSharesClient, error)
 	Unshare(ctx context.Context, in *UnshareRequest, opts ...grpc.CallOption) (*UnshareResponse, error)
 	GetShare(ctx context.Context, in *GetShareRequest, opts ...grpc.CallOption) (*GetShareResponse, error)
+	ListReceivedShares(ctx context.Context, in *ListReceivedSharesRequest, opts ...grpc.CallOption) (Sharing_ListReceivedSharesClient, error)
+	AcceptReceivedShare(ctx context.Context, in *AcceptReceivedShareRequest, opts ...grpc.CallOption) (*AcceptReceivedShareResponse, error)
+	RejectReceivedShare(ctx context.Context, in *RejectReceivedShareRequest, opts ...grpc.CallOption) (*RejectReceivedShareResponse, error)
 }
 
 type sharingClient struct {
@@ -635,6 +886,56 @@ func (c *sharingClient) GetShare(ctx context.Context, in *GetShareRequest, opts 
 	return out, nil
 }
 
+func (c *sharingClient) ListReceivedShares(ctx context.Context, in *ListReceivedSharesRequest, opts ...grpc.CallOption) (Sharing_ListReceivedSharesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Sharing_serviceDesc.Streams[1], "/cernbox.sharev1.Sharing/ListReceivedShares", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &sharingListReceivedSharesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Sharing_ListReceivedSharesClient interface {
+	Recv() (*ListReceivedSharesResponse, error)
+	grpc.ClientStream
+}
+
+type sharingListReceivedSharesClient struct {
+	grpc.ClientStream
+}
+
+func (x *sharingListReceivedSharesClient) Recv() (*ListReceivedSharesResponse, error) {
+	m := new(ListReceivedSharesResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *sharingClient) AcceptReceivedShare(ctx context.Context, in *AcceptReceivedShareRequest, opts ...grpc.CallOption) (*AcceptReceivedShareResponse, error) {
+	out := new(AcceptReceivedShareResponse)
+	err := c.cc.Invoke(ctx, "/cernbox.sharev1.Sharing/AcceptReceivedShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sharingClient) RejectReceivedShare(ctx context.Context, in *RejectReceivedShareRequest, opts ...grpc.CallOption) (*RejectReceivedShareResponse, error) {
+	out := new(RejectReceivedShareResponse)
+	err := c.cc.Invoke(ctx, "/cernbox.sharev1.Sharing/RejectReceivedShare", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SharingServer is the server API for Sharing service.
 type SharingServer interface {
 	CreateShare(context.Context, *CreateShareRequest) (*CreateShareResponse, error)
@@ -642,6 +943,9 @@ type SharingServer interface {
 	ListShares(*ListSharesRequest, Sharing_ListSharesServer) error
 	Unshare(context.Context, *UnshareRequest) (*UnshareResponse, error)
 	GetShare(context.Context, *GetShareRequest) (*GetShareResponse, error)
+	ListReceivedShares(*ListReceivedSharesRequest, Sharing_ListReceivedSharesServer) error
+	AcceptReceivedShare(context.Context, *AcceptReceivedShareRequest) (*AcceptReceivedShareResponse, error)
+	RejectReceivedShare(context.Context, *RejectReceivedShareRequest) (*RejectReceivedShareResponse, error)
 }
 
 func RegisterSharingServer(s *grpc.Server, srv SharingServer) {
@@ -741,6 +1045,63 @@ func _Sharing_GetShare_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Sharing_ListReceivedShares_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ListReceivedSharesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(SharingServer).ListReceivedShares(m, &sharingListReceivedSharesServer{stream})
+}
+
+type Sharing_ListReceivedSharesServer interface {
+	Send(*ListReceivedSharesResponse) error
+	grpc.ServerStream
+}
+
+type sharingListReceivedSharesServer struct {
+	grpc.ServerStream
+}
+
+func (x *sharingListReceivedSharesServer) Send(m *ListReceivedSharesResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Sharing_AcceptReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AcceptReceivedShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SharingServer).AcceptReceivedShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cernbox.sharev1.Sharing/AcceptReceivedShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SharingServer).AcceptReceivedShare(ctx, req.(*AcceptReceivedShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Sharing_RejectReceivedShare_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RejectReceivedShareRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SharingServer).RejectReceivedShare(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cernbox.sharev1.Sharing/RejectReceivedShare",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SharingServer).RejectReceivedShare(ctx, req.(*RejectReceivedShareRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Sharing_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cernbox.sharev1.Sharing",
 	HandlerType: (*SharingServer)(nil),
@@ -761,11 +1122,24 @@ var _Sharing_serviceDesc = grpc.ServiceDesc{
 			MethodName: "GetShare",
 			Handler:    _Sharing_GetShare_Handler,
 		},
+		{
+			MethodName: "AcceptReceivedShare",
+			Handler:    _Sharing_AcceptReceivedShare_Handler,
+		},
+		{
+			MethodName: "RejectReceivedShare",
+			Handler:    _Sharing_RejectReceivedShare_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "ListShares",
 			Handler:       _Sharing_ListShares_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ListReceivedShares",
+			Handler:       _Sharing_ListReceivedShares_Handler,
 			ServerStreams: true,
 		},
 	},

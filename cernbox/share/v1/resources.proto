@@ -51,3 +51,23 @@ message Share {
 message UpdatePolicy {
   bool update_permissions = 1;
 }
+
+message ReceivedShare {
+  string id = 1;
+  string filename = 2;
+  string target = 3;
+  TargetType target_type = 4;
+  Permissions permissions = 5;
+  uint64 ctime = 6;
+  uint64 mtime = 7;
+  string display_name = 8;
+  string owner = 9;
+  ReceivedShareState state = 10;
+}
+
+enum ReceivedShareState {
+  RECEIVED_SHARE_STATE_INVALID = 0;
+  RECEIVED_SHARE_STATE_ACCEPTED = 1;
+  RECEIVED_SHARE_STATE_REJECTED = 2;
+  RECEIVED_SHARE_STATE_PENDING = 3;
+}

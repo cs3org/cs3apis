@@ -76,6 +76,14 @@
         }
       }
     },
+    "sharev1AcceptReceivedShareResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/rpcStatus"
+        }
+      }
+    },
     "sharev1CreateShareResponse": {
       "type": "object",
       "properties": {
@@ -95,6 +103,17 @@
         },
         "share": {
           "$ref": "#/definitions/sharev1Share"
+        }
+      }
+    },
+    "sharev1ListReceivedSharesResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/rpcStatus"
+        },
+        "received_share": {
+          "$ref": "#/definitions/sharev1ReceivedShare"
         }
       }
     },
@@ -119,6 +138,61 @@
         "modify": {
           "type": "boolean",
           "format": "boolean"
+        }
+      }
+    },
+    "sharev1ReceivedShare": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "target_type": {
+          "$ref": "#/definitions/sharev1TargetType"
+        },
+        "permissions": {
+          "$ref": "#/definitions/sharev1Permissions"
+        },
+        "ctime": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "mtime": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/sharev1ReceivedShareState"
+        }
+      }
+    },
+    "sharev1ReceivedShareState": {
+      "type": "string",
+      "enum": [
+        "RECEIVED_SHARE_STATE_INVALID",
+        "RECEIVED_SHARE_STATE_ACCEPTED",
+        "RECEIVED_SHARE_STATE_REJECTED",
+        "RECEIVED_SHARE_STATE_PENDING"
+      ],
+      "default": "RECEIVED_SHARE_STATE_INVALID"
+    },
+    "sharev1RejectReceivedShareResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/rpcStatus"
         }
       }
     },

@@ -36,6 +36,9 @@ service Sharing {
   rpc ListShares(ListSharesRequest) returns (stream ListSharesResponse);
   rpc Unshare(UnshareRequest) returns (UnshareResponse);
   rpc GetShare(GetShareRequest) returns (GetShareResponse);
+  rpc ListReceivedShares(ListReceivedSharesRequest) returns (stream ListReceivedSharesResponse);
+  rpc AcceptReceivedShare(AcceptReceivedShareRequest) returns (AcceptReceivedShareResponse);
+  rpc RejectReceivedShare(RejectReceivedShareRequest) returns (RejectReceivedShareResponse);
 }
 
 message CreateShareRequest {
@@ -85,4 +88,27 @@ message GetShareRequest {
 message GetShareResponse {
   cernbox.rpc.Status status = 1;
   Share share = 2;
+}
+
+message ListReceivedSharesRequest {}
+
+message ListReceivedSharesResponse {
+  cernbox.rpc.Status status = 1;
+  ReceivedShare received_share = 2;
+}
+
+message AcceptReceivedShareRequest {
+  string share_id = 1;
+}
+
+message AcceptReceivedShareResponse {
+  cernbox.rpc.Status status = 1;
+}
+
+message RejectReceivedShareRequest {
+  string share_id = 1;
+}
+
+message RejectReceivedShareResponse {
+  cernbox.rpc.Status status = 1;
 }
