@@ -1,0 +1,52 @@
+// CERNBox Auth API
+// Copyright (C) 2018  CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cernbox.authv1;
+
+option csharp_namespace = "CERNBox.AuthV1";
+option go_package = "authv1pb";
+option java_multiple_files = true;
+option java_outer_classname = "AuthProto";
+option java_package = "com.cernbox.authv1";
+option objc_class_prefix = "CBOXAB";
+option php_namespace = "CernBox\\AuthV1";
+
+import "cernbox/auth/v1/resources.proto";
+import "cernbox/rpc/status.proto";
+import "google/api/annotations.proto";
+
+service Auth {
+  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (GenerateAccessTokenResponse);
+  rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
+}
+
+message GenerateAccessTokenRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message GenerateAccessTokenResponse {
+  string access_token = 1;
+}
+
+message WhoAmIRequest {}
+
+message WhoAmIResponse {
+  cernbox.rpc.Status status = 1;
+  User user = 2;
+}
