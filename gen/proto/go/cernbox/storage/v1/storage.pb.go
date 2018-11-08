@@ -1718,82 +1718,82 @@ func init() {
 func init() { proto.RegisterFile("cernbox/storage/v1/storage.proto", fileDescriptor_22106b962fc6deaf) }
 
 var fileDescriptor_22106b962fc6deaf = []byte{
-	// 1193 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x58, 0xdd, 0x72, 0xdb, 0x44,
-	0x14, 0x1e, 0xbb, 0xc6, 0x89, 0x8f, 0x9d, 0xbf, 0x4d, 0x1b, 0x1c, 0x51, 0x88, 0x51, 0x21, 0x24,
-	0x84, 0x3a, 0x4d, 0x09, 0xc3, 0x30, 0x2d, 0x03, 0xb1, 0xd3, 0x66, 0x02, 0x09, 0xa4, 0x72, 0x1b,
-	0x18, 0x86, 0xa9, 0x67, 0x23, 0x9f, 0x38, 0x9a, 0xd8, 0x5a, 0x67, 0xb5, 0xce, 0xc4, 0x57, 0xbd,
-	0xe2, 0x8e, 0x07, 0x60, 0x86, 0x3b, 0x2e, 0x79, 0x10, 0x2e, 0x78, 0x2a, 0x46, 0xd2, 0x4a, 0xb6,
-	0xec, 0xb5, 0x2d, 0x34, 0xfc, 0xf4, 0xce, 0x3a, 0xfb, 0x9d, 0xdf, 0x3d, 0xd2, 0xf9, 0x8e, 0xa1,
-	0x64, 0x22, 0xb7, 0xcf, 0xd8, 0xcd, 0xb6, 0x23, 0x18, 0xa7, 0x4d, 0xdc, 0xbe, 0xde, 0x09, 0x7e,
-	0x96, 0x3b, 0x9c, 0x09, 0x46, 0x96, 0x24, 0xa2, 0x2c, 0xc5, 0xd7, 0x3b, 0x5a, 0x31, 0x50, 0xe2,
-	0x1d, 0x73, 0xdb, 0x11, 0x54, 0x74, 0x1d, 0x1f, 0xac, 0xe9, 0x0a, 0x73, 0x1c, 0x1d, 0xd6, 0xe5,
-	0x26, 0x06, 0x98, 0xbb, 0x4d, 0xc6, 0x9a, 0x2d, 0xdc, 0xa6, 0x1d, 0x6b, 0x9b, 0xda, 0x36, 0x13,
-	0x54, 0x58, 0xcc, 0x96, 0xa7, 0xfa, 0x2e, 0xac, 0x54, 0x39, 0x52, 0x81, 0xfb, 0x16, 0x47, 0x53,
-	0x30, 0xde, 0x33, 0xf0, 0xaa, 0x8b, 0x8e, 0x20, 0x1a, 0xcc, 0x9e, 0x5b, 0x2d, 0xb4, 0x69, 0x1b,
-	0x8b, 0xa9, 0x52, 0x6a, 0x23, 0x67, 0x84, 0xcf, 0xfa, 0x53, 0x78, 0x73, 0x44, 0xcb, 0xe9, 0x30,
-	0xdb, 0x41, 0xb2, 0x05, 0x59, 0x3f, 0x44, 0x4f, 0x29, 0xff, 0x70, 0xb9, 0x1c, 0x24, 0xc4, 0x3b,
-	0x66, 0xb9, 0xe6, 0x1d, 0x19, 0x12, 0xa2, 0x6f, 0xc1, 0xdc, 0x3e, 0xb6, 0x50, 0x60, 0x1c, 0xa7,
-	0x9f, 0xc3, 0x7c, 0x00, 0x4e, 0xe2, 0x6b, 0x13, 0xf2, 0xc7, 0xec, 0x3a, 0x96, 0xa7, 0x47, 0x50,
-	0xf0, 0xa1, 0x09, 0xfd, 0xb8, 0x92, 0x38, 0x7e, 0x04, 0x14, 0x7c, 0x68, 0x02, 0x3f, 0xe4, 0x53,
-	0x98, 0x6d, 0xa3, 0xa0, 0x0d, 0x2a, 0x68, 0x31, 0xed, 0xc1, 0xdf, 0x2a, 0x8f, 0xf4, 0x4e, 0xf9,
-	0x58, 0x42, 0x8c, 0x10, 0xec, 0x06, 0x78, 0x64, 0x39, 0xb1, 0x02, 0xbc, 0x86, 0x82, 0x0f, 0x4d,
-	0x12, 0xe0, 0x67, 0x90, 0x0b, 0x7c, 0x3a, 0xc5, 0x74, 0xe9, 0xd6, 0xb4, 0x08, 0xfb, 0x68, 0x5d,
-	0x83, 0x62, 0x4d, 0x50, 0x2e, 0xbe, 0xe3, 0x96, 0xc0, 0x1a, 0x3a, 0x8e, 0xc5, 0x6c, 0x19, 0xaf,
-	0xde, 0x84, 0x55, 0xc5, 0x59, 0x92, 0x00, 0xdf, 0x06, 0x70, 0x7c, 0xfd, 0xba, 0xd5, 0xf0, 0x6a,
-	0x98, 0x33, 0x72, 0x52, 0x72, 0xd8, 0xd0, 0xaf, 0xa0, 0xe0, 0xf9, 0x08, 0x0a, 0x15, 0x85, 0xa7,
-	0x86, 0xe0, 0x64, 0x05, 0xb2, 0x2d, 0xb4, 0x9b, 0xe2, 0xc2, 0xb3, 0x94, 0x31, 0xe4, 0x93, 0x2b,
-	0x67, 0xe7, 0xe7, 0x0e, 0x8a, 0xe2, 0x2d, 0x5f, 0xee, 0x3f, 0x11, 0x02, 0x19, 0xef, 0xee, 0x32,
-	0xa5, 0xd4, 0x46, 0xc1, 0xf0, 0x7e, 0xeb, 0x8f, 0x61, 0x4e, 0xba, 0x4c, 0xd2, 0x79, 0x1c, 0x56,
-	0x9f, 0x5a, 0xb6, 0xe5, 0x5c, 0x28, 0xca, 0x36, 0x2d, 0xfa, 0xc1, 0x2e, 0x48, 0x47, 0xbb, 0xc0,
-	0x3d, 0x33, 0x2f, 0xd0, 0xbc, 0x74, 0xba, 0x6d, 0x2f, 0x87, 0x9c, 0x11, 0x3e, 0xeb, 0x87, 0xa0,
-	0xa9, 0x7c, 0x26, 0x7c, 0x71, 0x0c, 0xa4, 0x8d, 0x38, 0x7d, 0x79, 0x03, 0x05, 0x1f, 0x9a, 0xe4,
-	0xda, 0x1f, 0x01, 0xb8, 0xc5, 0xae, 0x9b, 0x17, 0x5d, 0xfb, 0x52, 0xbe, 0x3a, 0x77, 0x15, 0x8d,
-	0xb9, 0x4f, 0x05, 0xad, 0xba, 0x18, 0x23, 0xd7, 0x08, 0x7e, 0xea, 0x3b, 0xb0, 0xec, 0xbe, 0x11,
-	0xa7, 0xc8, 0xdd, 0x44, 0x9d, 0x38, 0xc1, 0xf6, 0xe0, 0x76, 0x54, 0x25, 0x49, 0xd0, 0xbb, 0x30,
-	0x73, 0xed, 0x1b, 0x90, 0x11, 0x6b, 0x8a, 0x88, 0xa5, 0x0b, 0x23, 0x80, 0xea, 0xcf, 0x80, 0xb8,
-	0x75, 0x0a, 0xe4, 0xd3, 0x83, 0x25, 0x6b, 0x90, 0x97, 0xca, 0xf5, 0x4b, 0xec, 0xc9, 0x56, 0x00,
-	0x29, 0xfa, 0x1a, 0x7b, 0xfa, 0x2b, 0x58, 0x8e, 0x98, 0xfc, 0xcf, 0x6f, 0xe0, 0x39, 0xdc, 0x31,
-	0xd0, 0xc5, 0xe0, 0x3f, 0x99, 0xd6, 0x13, 0x58, 0x19, 0xb6, 0x9a, 0xa4, 0x87, 0x1f, 0x00, 0xf1,
-	0x3f, 0x98, 0x66, 0xcf, 0x6c, 0xc5, 0x9a, 0x35, 0x3f, 0xa5, 0xfc, 0x8e, 0x0a, 0x55, 0x92, 0x14,
-	0x74, 0x0f, 0x0a, 0xdc, 0xd7, 0xaf, 0x5b, 0x02, 0xdb, 0xb2, 0xa4, 0xef, 0x28, 0x4a, 0x2a, 0xdd,
-	0x1c, 0x0a, 0x6c, 0x1b, 0x79, 0xde, 0x7f, 0xd0, 0x1f, 0xc3, 0xaa, 0x2c, 0xc0, 0x20, 0x44, 0x26,
-	0xb0, 0x06, 0x79, 0xee, 0x1f, 0x7a, 0xe5, 0xf3, 0x73, 0x00, 0x29, 0x72, 0xcb, 0xf7, 0x73, 0x0a,
-	0x34, 0x95, 0xfa, 0xff, 0x94, 0xcc, 0x0e, 0x2c, 0x9f, 0x74, 0x79, 0x13, 0xff, 0xc6, 0x3d, 0x54,
-	0xe1, 0x76, 0x54, 0x25, 0xc9, 0xf5, 0xff, 0x92, 0x82, 0xb9, 0x1a, 0x8a, 0xbd, 0xea, 0x51, 0x9c,
-	0xa6, 0xdc, 0x85, 0xac, 0xa0, 0xbc, 0x89, 0x62, 0xc2, 0x2b, 0xb0, 0x57, 0x3d, 0x7a, 0xee, 0x61,
-	0x0c, 0x89, 0x25, 0x9f, 0xc0, 0x2c, 0x35, 0x5b, 0xf5, 0x36, 0x6b, 0xa0, 0x37, 0x3b, 0xe6, 0x95,
-	0x9f, 0x82, 0xbd, 0xea, 0xd1, 0x31, 0x6b, 0xa0, 0x31, 0x43, 0xcd, 0x96, 0xfb, 0xc3, 0x65, 0x4f,
-	0x41, 0x64, 0x49, 0x32, 0xfb, 0x35, 0x05, 0x8b, 0x2f, 0x3a, 0x0d, 0x2a, 0xf0, 0x75, 0x4c, 0xee,
-	0x4b, 0x58, 0x1a, 0x08, 0x2e, 0x49, 0x7e, 0x26, 0x2c, 0xbc, 0xb0, 0x9d, 0x7f, 0xf7, 0xea, 0xf4,
-	0x2f, 0x60, 0xb1, 0xef, 0x24, 0x49, 0x94, 0xf7, 0x61, 0xe1, 0x00, 0xc5, 0xb3, 0x2e, 0x13, 0x34,
-	0x4e, 0x4f, 0xbf, 0x82, 0xc5, 0x3e, 0x3c, 0xc9, 0xab, 0xb8, 0x06, 0x79, 0xc1, 0x04, 0x6d, 0xd5,
-	0xcf, 0x7a, 0x02, 0x1d, 0x49, 0x6c, 0xc0, 0x13, 0x55, 0x5c, 0x89, 0xcb, 0x2a, 0x42, 0x80, 0x23,
-	0x09, 0x4e, 0x2e, 0x38, 0x77, 0x1e, 0xfe, 0x31, 0x07, 0x33, 0x35, 0xbf, 0x20, 0xe4, 0x02, 0x16,
-	0x86, 0x76, 0x06, 0xb2, 0xa9, 0xa8, 0x9a, 0x7a, 0x1b, 0xd1, 0x3e, 0x8c, 0x03, 0x95, 0x29, 0x1e,
-	0x43, 0xd6, 0x5f, 0x14, 0x48, 0x49, 0x35, 0x54, 0x06, 0x17, 0x0e, 0xed, 0xdd, 0x09, 0x08, 0x69,
-	0xee, 0x00, 0x32, 0xee, 0x36, 0x40, 0x54, 0x5f, 0xa0, 0x81, 0x8d, 0x42, 0x5b, 0x1b, 0x7b, 0xde,
-	0x37, 0xe4, 0xd6, 0x57, 0x69, 0x68, 0x60, 0x65, 0x50, 0x1a, 0x8a, 0xec, 0x09, 0x07, 0x90, 0x71,
-	0x47, 0x86, 0xd2, 0xd0, 0x00, 0xb5, 0x57, 0x1a, 0x8a, 0xf0, 0x79, 0x1b, 0x96, 0x46, 0xb8, 0x34,
-	0xd9, 0x52, 0xbb, 0x57, 0xb2, 0x71, 0xed, 0xa3, 0x78, 0x60, 0xe9, 0xef, 0x2b, 0x78, 0xc3, 0x93,
-	0x13, 0x55, 0x64, 0x83, 0x64, 0x5b, 0x2b, 0x8d, 0x07, 0x48, 0x5b, 0x57, 0x40, 0x46, 0x99, 0x27,
-	0x51, 0xc5, 0x33, 0x96, 0x14, 0x6b, 0xf7, 0x63, 0xa2, 0xa5, 0xcb, 0x43, 0xc8, 0xb8, 0xdc, 0x87,
-	0xa8, 0x67, 0x51, 0x48, 0x5d, 0x95, 0x75, 0x1f, 0xe4, 0xab, 0x0f, 0x52, 0x84, 0xfa, 0x9b, 0x55,
-	0x40, 0x0a, 0xc9, 0xfa, 0x98, 0xab, 0x1a, 0x22, 0x9a, 0xda, 0x07, 0x53, 0x71, 0xa1, 0x8b, 0x97,
-	0x3e, 0x9f, 0x96, 0x27, 0xe4, 0xfd, 0x31, 0x41, 0x45, 0x59, 0x94, 0xb6, 0x3e, 0x0d, 0x16, 0xda,
-	0x47, 0x98, 0x8f, 0x52, 0x26, 0xb2, 0xa1, 0xd4, 0x55, 0x70, 0x35, 0x6d, 0x33, 0x06, 0x52, 0x16,
-	0xfd, 0x65, 0xb0, 0xae, 0x7a, 0x73, 0x59, 0x99, 0xc6, 0x28, 0xe5, 0xd2, 0xd6, 0xa7, 0xc1, 0xc2,
-	0x34, 0xae, 0x5c, 0x8e, 0x3c, 0xcc, 0x5c, 0x94, 0x7d, 0x34, 0x96, 0x1f, 0x29, 0xfb, 0x68, 0x02,
-	0x1d, 0xaa, 0x43, 0x61, 0x90, 0x6b, 0x28, 0x2f, 0x5f, 0xc1, 0x5f, 0x94, 0x97, 0xaf, 0x24, 0x2d,
-	0xc7, 0x90, 0xf5, 0x87, 0xbd, 0xf2, 0x0b, 0x18, 0x61, 0x28, 0xca, 0x2f, 0xe0, 0x10, 0x53, 0x38,
-	0x85, 0x5c, 0x38, 0x5e, 0xc9, 0x3d, 0x05, 0x7e, 0x98, 0x19, 0x68, 0xef, 0x4d, 0x06, 0x49, 0xbb,
-	0x35, 0x98, 0x0d, 0xe6, 0x21, 0xd1, 0x55, 0x1a, 0xd1, 0x89, 0xac, 0xdd, 0x9b, 0x88, 0xe9, 0x1b,
-	0x0d, 0x86, 0x9e, 0xd2, 0xe8, 0xd0, 0x00, 0x55, 0x1a, 0x1d, 0x9e, 0x9a, 0x15, 0x84, 0x3b, 0x26,
-	0x6b, 0x8f, 0x22, 0x2b, 0x05, 0x39, 0xde, 0x4e, 0x38, 0x13, 0xec, 0x24, 0xf5, 0x43, 0x3e, 0x3c,
-	0xea, 0x9c, 0xfd, 0x96, 0xce, 0x56, 0x2b, 0xdf, 0x7e, 0xbf, 0x57, 0xf9, 0x3d, 0xbd, 0x54, 0x7d,
-	0x62, 0x7c, 0x53, 0x61, 0x37, 0x65, 0x09, 0x3f, 0xdd, 0xf9, 0x33, 0xbd, 0x54, 0x45, 0x6e, 0x57,
-	0xd8, 0xcd, 0x8f, 0xa1, 0xec, 0x2c, 0xeb, 0xfd, 0x29, 0xf7, 0xf1, 0x5f, 0x01, 0x00, 0x00, 0xff,
-	0xff, 0x7c, 0x3b, 0xea, 0xb2, 0x27, 0x14, 0x00, 0x00,
+	// 1199 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x58, 0x5d, 0x73, 0xdb, 0x44,
+	0x17, 0x1e, 0xbb, 0x7e, 0xdd, 0xf8, 0xd8, 0xf9, 0xda, 0xb4, 0x79, 0x1d, 0x51, 0x88, 0x51, 0x21,
+	0x24, 0x84, 0x3a, 0x4d, 0x09, 0xc3, 0x30, 0x2d, 0x03, 0xb1, 0xd3, 0x66, 0x02, 0x09, 0xa4, 0x72,
+	0x1b, 0x18, 0x86, 0xa9, 0x67, 0x23, 0x9f, 0x38, 0x9a, 0xd8, 0x5a, 0x67, 0xb5, 0xf6, 0xc4, 0x57,
+	0xbd, 0xe2, 0x8e, 0x1f, 0xc0, 0x0c, 0x77, 0x5c, 0xf2, 0x53, 0x98, 0xe1, 0x3f, 0x31, 0x92, 0x56,
+	0xb2, 0x65, 0xaf, 0x6d, 0xa1, 0xe1, 0xeb, 0xce, 0x3a, 0xfb, 0x9c, 0xcf, 0x3d, 0xd2, 0x79, 0x8e,
+	0xa1, 0x64, 0x22, 0xb7, 0xcf, 0xd9, 0xcd, 0x8e, 0x23, 0x18, 0xa7, 0x4d, 0xdc, 0xe9, 0xed, 0x06,
+	0x3f, 0xcb, 0x1d, 0xce, 0x04, 0x23, 0xcb, 0x12, 0x51, 0x96, 0xe2, 0xde, 0xae, 0x56, 0x0c, 0x94,
+	0x78, 0xc7, 0xdc, 0x71, 0x04, 0x15, 0x5d, 0xc7, 0x07, 0x6b, 0xba, 0xc2, 0x1c, 0x47, 0x87, 0x75,
+	0xb9, 0x89, 0x01, 0xe6, 0x5e, 0x93, 0xb1, 0x66, 0x0b, 0x77, 0x68, 0xc7, 0xda, 0xa1, 0xb6, 0xcd,
+	0x04, 0x15, 0x16, 0xb3, 0xe5, 0xa9, 0xbe, 0x07, 0xab, 0x55, 0x8e, 0x54, 0xe0, 0x81, 0xc5, 0xd1,
+	0x14, 0x8c, 0xf7, 0x0d, 0xbc, 0xee, 0xa2, 0x23, 0x88, 0x06, 0x73, 0x17, 0x56, 0x0b, 0x6d, 0xda,
+	0xc6, 0x62, 0xaa, 0x94, 0xda, 0xcc, 0x19, 0xe1, 0xb3, 0xfe, 0x0c, 0xfe, 0x3f, 0xa6, 0xe5, 0x74,
+	0x98, 0xed, 0x20, 0xd9, 0x86, 0xac, 0x1f, 0xa2, 0xa7, 0x94, 0x7f, 0xb4, 0x52, 0x0e, 0x12, 0xe2,
+	0x1d, 0xb3, 0x5c, 0xf3, 0x8e, 0x0c, 0x09, 0xd1, 0xb7, 0x61, 0xfe, 0x00, 0x5b, 0x28, 0x30, 0x8e,
+	0xd3, 0x4f, 0x61, 0x21, 0x00, 0x27, 0xf1, 0xb5, 0x05, 0xf9, 0x13, 0xd6, 0x8b, 0xe5, 0xe9, 0x31,
+	0x14, 0x7c, 0x68, 0x42, 0x3f, 0xae, 0x24, 0x8e, 0x1f, 0x01, 0x05, 0x1f, 0x9a, 0xc0, 0x0f, 0xf9,
+	0x18, 0xe6, 0xda, 0x28, 0x68, 0x83, 0x0a, 0x5a, 0x4c, 0x7b, 0xf0, 0x37, 0xca, 0x63, 0xbd, 0x53,
+	0x3e, 0x91, 0x10, 0x23, 0x04, 0xbb, 0x01, 0x1e, 0x5b, 0x4e, 0xac, 0x00, 0x7b, 0x50, 0xf0, 0xa1,
+	0x49, 0x02, 0xfc, 0x04, 0x72, 0x81, 0x4f, 0xa7, 0x98, 0x2e, 0xdd, 0x9a, 0x15, 0xe1, 0x00, 0xad,
+	0x6b, 0x50, 0xac, 0x09, 0xca, 0xc5, 0x37, 0xdc, 0x12, 0x58, 0x43, 0xc7, 0xb1, 0x98, 0x2d, 0xe3,
+	0xd5, 0x9b, 0xb0, 0xa6, 0x38, 0x4b, 0x12, 0xe0, 0x9b, 0x00, 0x8e, 0xaf, 0x5f, 0xb7, 0x1a, 0x5e,
+	0x0d, 0x73, 0x46, 0x4e, 0x4a, 0x8e, 0x1a, 0xfa, 0x35, 0x14, 0x3c, 0x1f, 0x41, 0xa1, 0xa2, 0xf0,
+	0xd4, 0x08, 0x9c, 0xac, 0x42, 0xb6, 0x85, 0x76, 0x53, 0x5c, 0x7a, 0x96, 0x32, 0x86, 0x7c, 0x72,
+	0xe5, 0xec, 0xe2, 0xc2, 0x41, 0x51, 0xbc, 0xe5, 0xcb, 0xfd, 0x27, 0x42, 0x20, 0xe3, 0xdd, 0x5d,
+	0xa6, 0x94, 0xda, 0x2c, 0x18, 0xde, 0x6f, 0xfd, 0x09, 0xcc, 0x4b, 0x97, 0x49, 0x3a, 0x8f, 0xc3,
+	0xda, 0x33, 0xcb, 0xb6, 0x9c, 0x4b, 0x45, 0xd9, 0x66, 0x45, 0x3f, 0xdc, 0x05, 0xe9, 0x68, 0x17,
+	0xb8, 0x67, 0xe6, 0x25, 0x9a, 0x57, 0x4e, 0xb7, 0xed, 0xe5, 0x90, 0x33, 0xc2, 0x67, 0xfd, 0x08,
+	0x34, 0x95, 0xcf, 0x84, 0x2f, 0x8e, 0x81, 0xb4, 0x11, 0xa7, 0x2f, 0x6f, 0xa0, 0xe0, 0x43, 0x93,
+	0x5c, 0xfb, 0x63, 0x00, 0xb7, 0xd8, 0x75, 0xf3, 0xb2, 0x6b, 0x5f, 0xc9, 0x57, 0xe7, 0x9e, 0xa2,
+	0x31, 0x0f, 0xa8, 0xa0, 0x55, 0x17, 0x63, 0xe4, 0x1a, 0xc1, 0x4f, 0x7d, 0x17, 0x56, 0xdc, 0x37,
+	0xe2, 0x0c, 0xb9, 0x9b, 0xa8, 0x13, 0x27, 0xd8, 0x3e, 0xdc, 0x89, 0xaa, 0x24, 0x09, 0x7a, 0x0f,
+	0x6e, 0xf7, 0x7c, 0x03, 0x32, 0x62, 0x4d, 0x11, 0xb1, 0x74, 0x61, 0x04, 0x50, 0xfd, 0x39, 0x10,
+	0xb7, 0x4e, 0x81, 0x7c, 0x76, 0xb0, 0x64, 0x1d, 0xf2, 0x52, 0xb9, 0x7e, 0x85, 0x7d, 0xd9, 0x0a,
+	0x20, 0x45, 0x5f, 0x62, 0x5f, 0x7f, 0x0d, 0x2b, 0x11, 0x93, 0xff, 0xf8, 0x0d, 0xbc, 0x80, 0xbb,
+	0x06, 0xba, 0x18, 0xfc, 0x2b, 0xd3, 0x7a, 0x0a, 0xab, 0xa3, 0x56, 0x93, 0xf4, 0xf0, 0x43, 0x20,
+	0xfe, 0x07, 0xd3, 0xec, 0x9b, 0xad, 0x58, 0xb3, 0xe6, 0x87, 0x94, 0xdf, 0x51, 0xa1, 0x4a, 0x92,
+	0x82, 0xee, 0x43, 0x81, 0xfb, 0xfa, 0x75, 0x4b, 0x60, 0x5b, 0x96, 0xf4, 0x2d, 0x45, 0x49, 0xa5,
+	0x9b, 0x23, 0x81, 0x6d, 0x23, 0xcf, 0x07, 0x0f, 0xfa, 0x13, 0x58, 0x93, 0x05, 0x18, 0x86, 0xc8,
+	0x04, 0xd6, 0x21, 0xcf, 0xfd, 0x43, 0xaf, 0x7c, 0x7e, 0x0e, 0x20, 0x45, 0x6e, 0xf9, 0x7e, 0x4c,
+	0x81, 0xa6, 0x52, 0xff, 0x97, 0x92, 0xd9, 0x85, 0x95, 0xd3, 0x2e, 0x6f, 0xe2, 0x9f, 0xb8, 0x87,
+	0x2a, 0xdc, 0x89, 0xaa, 0x24, 0xb9, 0xfe, 0x9f, 0x52, 0x30, 0x5f, 0x43, 0xb1, 0x5f, 0x3d, 0x8e,
+	0xd3, 0x94, 0x7b, 0x90, 0x15, 0x94, 0x37, 0x51, 0x4c, 0x79, 0x05, 0xf6, 0xab, 0xc7, 0x2f, 0x3c,
+	0x8c, 0x21, 0xb1, 0xe4, 0x23, 0x98, 0xa3, 0x66, 0xab, 0xde, 0x66, 0x0d, 0xf4, 0x66, 0xc7, 0x82,
+	0xf2, 0x53, 0xb0, 0x5f, 0x3d, 0x3e, 0x61, 0x0d, 0x34, 0x6e, 0x53, 0xb3, 0xe5, 0xfe, 0x70, 0xd9,
+	0x53, 0x10, 0x59, 0x92, 0xcc, 0x7e, 0x4e, 0xc1, 0xd2, 0xcb, 0x4e, 0x83, 0x0a, 0xfc, 0x2f, 0x26,
+	0xf7, 0x39, 0x2c, 0x0f, 0x05, 0x97, 0x24, 0x3f, 0x13, 0x16, 0x5f, 0xda, 0xce, 0xdf, 0x7b, 0x75,
+	0xfa, 0x67, 0xb0, 0x34, 0x70, 0x92, 0x24, 0xca, 0x07, 0xb0, 0x78, 0x88, 0xe2, 0x79, 0x97, 0x09,
+	0x1a, 0xa7, 0xa7, 0x5f, 0xc3, 0xd2, 0x00, 0x9e, 0xe4, 0x55, 0x5c, 0x87, 0xbc, 0x60, 0x82, 0xb6,
+	0xea, 0xe7, 0x7d, 0x81, 0x8e, 0x24, 0x36, 0xe0, 0x89, 0x2a, 0xae, 0xc4, 0x65, 0x15, 0x21, 0xc0,
+	0x91, 0x04, 0x27, 0x17, 0x9c, 0x3b, 0x8f, 0x7e, 0x9f, 0x87, 0x85, 0x9a, 0x5f, 0x90, 0x1a, 0xf2,
+	0x9e, 0x65, 0x22, 0xb9, 0x84, 0xc5, 0x91, 0xd5, 0x81, 0x6c, 0x29, 0x8a, 0xa7, 0x5e, 0x4a, 0xb4,
+	0xf7, 0xe3, 0x40, 0x65, 0xa6, 0x27, 0x90, 0xf5, 0xf7, 0x05, 0x52, 0x52, 0xcd, 0x96, 0xe1, 0xbd,
+	0x43, 0x7b, 0x7b, 0x0a, 0x42, 0x9a, 0x3b, 0x84, 0x8c, 0xbb, 0x14, 0x10, 0xd5, 0x87, 0x68, 0x68,
+	0xb1, 0xd0, 0xd6, 0x27, 0x9e, 0x0f, 0x0c, 0xb9, 0x65, 0x56, 0x1a, 0x1a, 0xda, 0x1c, 0x94, 0x86,
+	0x22, 0xeb, 0xc2, 0x21, 0x64, 0xdc, 0xc9, 0xa1, 0x34, 0x34, 0xc4, 0xf0, 0x95, 0x86, 0x22, 0xb4,
+	0xde, 0x86, 0xe5, 0x31, 0x4a, 0x4d, 0xb6, 0xd5, 0xee, 0x95, 0xa4, 0x5c, 0xfb, 0x20, 0x1e, 0x58,
+	0xfa, 0xfb, 0x02, 0xfe, 0xe7, 0xc9, 0x89, 0x2a, 0xb2, 0x61, 0xce, 0xad, 0x95, 0x26, 0x03, 0xa4,
+	0xad, 0x6b, 0x20, 0xe3, 0x04, 0x94, 0xa8, 0xe2, 0x99, 0xc8, 0x8d, 0xb5, 0x07, 0x31, 0xd1, 0xd2,
+	0xe5, 0x11, 0x64, 0x5c, 0x0a, 0x44, 0xd4, 0x23, 0x29, 0x64, 0xb0, 0xca, 0xba, 0x0f, 0xd3, 0xd6,
+	0x87, 0x29, 0x42, 0xfd, 0x05, 0x2b, 0xe0, 0x86, 0x64, 0x63, 0xc2, 0x55, 0x8d, 0xf0, 0x4d, 0xed,
+	0xbd, 0x99, 0xb8, 0xd0, 0xc5, 0x2b, 0x9f, 0x56, 0xcb, 0x13, 0xf2, 0xee, 0x84, 0xa0, 0xa2, 0x64,
+	0x4a, 0xdb, 0x98, 0x05, 0x0b, 0xed, 0x23, 0x2c, 0x44, 0x99, 0x13, 0xd9, 0x54, 0xea, 0x2a, 0x28,
+	0x9b, 0xb6, 0x15, 0x03, 0x29, 0x8b, 0xfe, 0x2a, 0xd8, 0x5a, 0xbd, 0xf1, 0xac, 0x4c, 0x63, 0x9c,
+	0x79, 0x69, 0x1b, 0xb3, 0x60, 0x61, 0x1a, 0xd7, 0x2e, 0x55, 0x1e, 0x25, 0x30, 0xca, 0x3e, 0x9a,
+	0x48, 0x93, 0x94, 0x7d, 0x34, 0x85, 0x15, 0xd5, 0xa1, 0x30, 0x4c, 0x39, 0x94, 0x97, 0xaf, 0xa0,
+	0x31, 0xca, 0xcb, 0x57, 0x72, 0x97, 0x13, 0xc8, 0xfa, 0x33, 0x5f, 0xf9, 0x05, 0x8c, 0x10, 0x15,
+	0xe5, 0x17, 0x70, 0x84, 0x30, 0x9c, 0x41, 0x2e, 0x9c, 0xb2, 0xe4, 0xbe, 0x02, 0x3f, 0x4a, 0x10,
+	0xb4, 0x77, 0xa6, 0x83, 0xa4, 0xdd, 0x1a, 0xcc, 0x05, 0x63, 0x91, 0xe8, 0x2a, 0x8d, 0xe8, 0x60,
+	0xd6, 0xee, 0x4f, 0xc5, 0x0c, 0x8c, 0x06, 0xb3, 0x4f, 0x69, 0x74, 0x64, 0x8e, 0x2a, 0x8d, 0x8e,
+	0x0e, 0xcf, 0x0a, 0xc2, 0x5d, 0x93, 0xb5, 0xc7, 0x91, 0x95, 0x82, 0x9c, 0x72, 0xa7, 0x9c, 0x09,
+	0x76, 0x9a, 0xfa, 0x2e, 0x1f, 0x1e, 0x75, 0xce, 0x7f, 0x49, 0x67, 0xab, 0x95, 0xaf, 0xbf, 0xdd,
+	0xaf, 0xfc, 0x9a, 0x5e, 0xae, 0x3e, 0x35, 0xbe, 0xaa, 0xb0, 0x9b, 0xb2, 0x84, 0x9f, 0xed, 0xfe,
+	0x96, 0x5e, 0xae, 0x22, 0xb7, 0x2b, 0xec, 0xe6, 0xfb, 0x50, 0x76, 0x9e, 0xf5, 0xfe, 0x9b, 0xfb,
+	0xf0, 0x8f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x62, 0x97, 0x0e, 0xee, 0x2e, 0x14, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1804,10 +1804,10 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// StorageClient is the client API for Storage service.
+// StorageServiceClient is the client API for StorageService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type StorageClient interface {
+type StorageServiceClient interface {
 	CreateDirectory(ctx context.Context, in *CreateDirectoryRequest, opts ...grpc.CallOption) (*CreateDirectoryResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error)
@@ -1816,11 +1816,11 @@ type StorageClient interface {
 	StartWriteSession(ctx context.Context, in *StartWriteSessionRequest, opts ...grpc.CallOption) (*StartWriteSessionResponse, error)
 	Write(ctx context.Context, in *WriteRequest, opts ...grpc.CallOption) (*WriteResponse, error)
 	FinishWriteSession(ctx context.Context, in *FinishWriteSessionRequest, opts ...grpc.CallOption) (*FinishWriteSessionResponse, error)
-	Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (Storage_ReadClient, error)
-	ListVersions(ctx context.Context, in *ListVersionsRequest, opts ...grpc.CallOption) (Storage_ListVersionsClient, error)
-	ReadVersion(ctx context.Context, in *ReadVersionRequest, opts ...grpc.CallOption) (Storage_ReadVersionClient, error)
+	Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (StorageService_ReadClient, error)
+	ListVersions(ctx context.Context, in *ListVersionsRequest, opts ...grpc.CallOption) (StorageService_ListVersionsClient, error)
+	ReadVersion(ctx context.Context, in *ReadVersionRequest, opts ...grpc.CallOption) (StorageService_ReadVersionClient, error)
 	RestoreVersion(ctx context.Context, in *RestoreVersionRequest, opts ...grpc.CallOption) (*RestoreVersionResponse, error)
-	ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (Storage_ListRecycleClient, error)
+	ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (StorageService_ListRecycleClient, error)
 	RestoreRecycleItem(ctx context.Context, in *RestoreRecycleItemRequest, opts ...grpc.CallOption) (*RestoreRecycleItemResponse, error)
 	PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*PurgeRecycleResponse, error)
 	SetACL(ctx context.Context, in *SetACLRequest, opts ...grpc.CallOption) (*SetACLResponse, error)
@@ -1829,92 +1829,92 @@ type StorageClient interface {
 	GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error)
 }
 
-type storageClient struct {
+type storageServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewStorageClient(cc *grpc.ClientConn) StorageClient {
-	return &storageClient{cc}
+func NewStorageServiceClient(cc *grpc.ClientConn) StorageServiceClient {
+	return &storageServiceClient{cc}
 }
 
-func (c *storageClient) CreateDirectory(ctx context.Context, in *CreateDirectoryRequest, opts ...grpc.CallOption) (*CreateDirectoryResponse, error) {
+func (c *storageServiceClient) CreateDirectory(ctx context.Context, in *CreateDirectoryRequest, opts ...grpc.CallOption) (*CreateDirectoryResponse, error) {
 	out := new(CreateDirectoryResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/CreateDirectory", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/CreateDirectory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *storageServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error) {
+func (c *storageServiceClient) Move(ctx context.Context, in *MoveRequest, opts ...grpc.CallOption) (*MoveResponse, error) {
 	out := new(MoveResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/Move", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/Move", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) Stat(ctx context.Context, in *StatRequest, opts ...grpc.CallOption) (*StatResponse, error) {
+func (c *storageServiceClient) Stat(ctx context.Context, in *StatRequest, opts ...grpc.CallOption) (*StatResponse, error) {
 	out := new(StatResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/Stat", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/Stat", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+func (c *storageServiceClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
 	out := new(ListResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) StartWriteSession(ctx context.Context, in *StartWriteSessionRequest, opts ...grpc.CallOption) (*StartWriteSessionResponse, error) {
+func (c *storageServiceClient) StartWriteSession(ctx context.Context, in *StartWriteSessionRequest, opts ...grpc.CallOption) (*StartWriteSessionResponse, error) {
 	out := new(StartWriteSessionResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/StartWriteSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/StartWriteSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) Write(ctx context.Context, in *WriteRequest, opts ...grpc.CallOption) (*WriteResponse, error) {
+func (c *storageServiceClient) Write(ctx context.Context, in *WriteRequest, opts ...grpc.CallOption) (*WriteResponse, error) {
 	out := new(WriteResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/Write", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/Write", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) FinishWriteSession(ctx context.Context, in *FinishWriteSessionRequest, opts ...grpc.CallOption) (*FinishWriteSessionResponse, error) {
+func (c *storageServiceClient) FinishWriteSession(ctx context.Context, in *FinishWriteSessionRequest, opts ...grpc.CallOption) (*FinishWriteSessionResponse, error) {
 	out := new(FinishWriteSessionResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/FinishWriteSession", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/FinishWriteSession", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (Storage_ReadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Storage_serviceDesc.Streams[0], "/cernbox.storagev1.Storage/Read", opts...)
+func (c *storageServiceClient) Read(ctx context.Context, in *ReadRequest, opts ...grpc.CallOption) (StorageService_ReadClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StorageService_serviceDesc.Streams[0], "/cernbox.storagev1.StorageService/Read", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &storageReadClient{stream}
+	x := &storageServiceReadClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1924,16 +1924,16 @@ func (c *storageClient) Read(ctx context.Context, in *ReadRequest, opts ...grpc.
 	return x, nil
 }
 
-type Storage_ReadClient interface {
+type StorageService_ReadClient interface {
 	Recv() (*ReadResponse, error)
 	grpc.ClientStream
 }
 
-type storageReadClient struct {
+type storageServiceReadClient struct {
 	grpc.ClientStream
 }
 
-func (x *storageReadClient) Recv() (*ReadResponse, error) {
+func (x *storageServiceReadClient) Recv() (*ReadResponse, error) {
 	m := new(ReadResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -1941,12 +1941,12 @@ func (x *storageReadClient) Recv() (*ReadResponse, error) {
 	return m, nil
 }
 
-func (c *storageClient) ListVersions(ctx context.Context, in *ListVersionsRequest, opts ...grpc.CallOption) (Storage_ListVersionsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Storage_serviceDesc.Streams[1], "/cernbox.storagev1.Storage/ListVersions", opts...)
+func (c *storageServiceClient) ListVersions(ctx context.Context, in *ListVersionsRequest, opts ...grpc.CallOption) (StorageService_ListVersionsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StorageService_serviceDesc.Streams[1], "/cernbox.storagev1.StorageService/ListVersions", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &storageListVersionsClient{stream}
+	x := &storageServiceListVersionsClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1956,16 +1956,16 @@ func (c *storageClient) ListVersions(ctx context.Context, in *ListVersionsReques
 	return x, nil
 }
 
-type Storage_ListVersionsClient interface {
+type StorageService_ListVersionsClient interface {
 	Recv() (*ListVersionsResponse, error)
 	grpc.ClientStream
 }
 
-type storageListVersionsClient struct {
+type storageServiceListVersionsClient struct {
 	grpc.ClientStream
 }
 
-func (x *storageListVersionsClient) Recv() (*ListVersionsResponse, error) {
+func (x *storageServiceListVersionsClient) Recv() (*ListVersionsResponse, error) {
 	m := new(ListVersionsResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -1973,12 +1973,12 @@ func (x *storageListVersionsClient) Recv() (*ListVersionsResponse, error) {
 	return m, nil
 }
 
-func (c *storageClient) ReadVersion(ctx context.Context, in *ReadVersionRequest, opts ...grpc.CallOption) (Storage_ReadVersionClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Storage_serviceDesc.Streams[2], "/cernbox.storagev1.Storage/ReadVersion", opts...)
+func (c *storageServiceClient) ReadVersion(ctx context.Context, in *ReadVersionRequest, opts ...grpc.CallOption) (StorageService_ReadVersionClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StorageService_serviceDesc.Streams[2], "/cernbox.storagev1.StorageService/ReadVersion", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &storageReadVersionClient{stream}
+	x := &storageServiceReadVersionClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1988,16 +1988,16 @@ func (c *storageClient) ReadVersion(ctx context.Context, in *ReadVersionRequest,
 	return x, nil
 }
 
-type Storage_ReadVersionClient interface {
+type StorageService_ReadVersionClient interface {
 	Recv() (*ReadVersionResponse, error)
 	grpc.ClientStream
 }
 
-type storageReadVersionClient struct {
+type storageServiceReadVersionClient struct {
 	grpc.ClientStream
 }
 
-func (x *storageReadVersionClient) Recv() (*ReadVersionResponse, error) {
+func (x *storageServiceReadVersionClient) Recv() (*ReadVersionResponse, error) {
 	m := new(ReadVersionResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -2005,21 +2005,21 @@ func (x *storageReadVersionClient) Recv() (*ReadVersionResponse, error) {
 	return m, nil
 }
 
-func (c *storageClient) RestoreVersion(ctx context.Context, in *RestoreVersionRequest, opts ...grpc.CallOption) (*RestoreVersionResponse, error) {
+func (c *storageServiceClient) RestoreVersion(ctx context.Context, in *RestoreVersionRequest, opts ...grpc.CallOption) (*RestoreVersionResponse, error) {
 	out := new(RestoreVersionResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/RestoreVersion", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/RestoreVersion", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (Storage_ListRecycleClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Storage_serviceDesc.Streams[3], "/cernbox.storagev1.Storage/ListRecycle", opts...)
+func (c *storageServiceClient) ListRecycle(ctx context.Context, in *ListRecycleRequest, opts ...grpc.CallOption) (StorageService_ListRecycleClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_StorageService_serviceDesc.Streams[3], "/cernbox.storagev1.StorageService/ListRecycle", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &storageListRecycleClient{stream}
+	x := &storageServiceListRecycleClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -2029,16 +2029,16 @@ func (c *storageClient) ListRecycle(ctx context.Context, in *ListRecycleRequest,
 	return x, nil
 }
 
-type Storage_ListRecycleClient interface {
+type StorageService_ListRecycleClient interface {
 	Recv() (*ListRecycleResponse, error)
 	grpc.ClientStream
 }
 
-type storageListRecycleClient struct {
+type storageServiceListRecycleClient struct {
 	grpc.ClientStream
 }
 
-func (x *storageListRecycleClient) Recv() (*ListRecycleResponse, error) {
+func (x *storageServiceListRecycleClient) Recv() (*ListRecycleResponse, error) {
 	m := new(ListRecycleResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -2046,62 +2046,62 @@ func (x *storageListRecycleClient) Recv() (*ListRecycleResponse, error) {
 	return m, nil
 }
 
-func (c *storageClient) RestoreRecycleItem(ctx context.Context, in *RestoreRecycleItemRequest, opts ...grpc.CallOption) (*RestoreRecycleItemResponse, error) {
+func (c *storageServiceClient) RestoreRecycleItem(ctx context.Context, in *RestoreRecycleItemRequest, opts ...grpc.CallOption) (*RestoreRecycleItemResponse, error) {
 	out := new(RestoreRecycleItemResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/RestoreRecycleItem", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/RestoreRecycleItem", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*PurgeRecycleResponse, error) {
+func (c *storageServiceClient) PurgeRecycle(ctx context.Context, in *PurgeRecycleRequest, opts ...grpc.CallOption) (*PurgeRecycleResponse, error) {
 	out := new(PurgeRecycleResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/PurgeRecycle", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/PurgeRecycle", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) SetACL(ctx context.Context, in *SetACLRequest, opts ...grpc.CallOption) (*SetACLResponse, error) {
+func (c *storageServiceClient) SetACL(ctx context.Context, in *SetACLRequest, opts ...grpc.CallOption) (*SetACLResponse, error) {
 	out := new(SetACLResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/SetACL", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/SetACL", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) UpdateACL(ctx context.Context, in *UpdateACLRequest, opts ...grpc.CallOption) (*UpdateACLResponse, error) {
+func (c *storageServiceClient) UpdateACL(ctx context.Context, in *UpdateACLRequest, opts ...grpc.CallOption) (*UpdateACLResponse, error) {
 	out := new(UpdateACLResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/UpdateACL", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/UpdateACL", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) UnsetACL(ctx context.Context, in *UnsetACLRequest, opts ...grpc.CallOption) (*UnsetACLResponse, error) {
+func (c *storageServiceClient) UnsetACL(ctx context.Context, in *UnsetACLRequest, opts ...grpc.CallOption) (*UnsetACLResponse, error) {
 	out := new(UnsetACLResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/UnsetACL", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/UnsetACL", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *storageClient) GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error) {
+func (c *storageServiceClient) GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...grpc.CallOption) (*GetQuotaResponse, error) {
 	out := new(GetQuotaResponse)
-	err := c.cc.Invoke(ctx, "/cernbox.storagev1.Storage/GetQuota", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/cernbox.storagev1.StorageService/GetQuota", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// StorageServer is the server API for Storage service.
-type StorageServer interface {
+// StorageServiceServer is the server API for StorageService service.
+type StorageServiceServer interface {
 	CreateDirectory(context.Context, *CreateDirectoryRequest) (*CreateDirectoryResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	Move(context.Context, *MoveRequest) (*MoveResponse, error)
@@ -2110,11 +2110,11 @@ type StorageServer interface {
 	StartWriteSession(context.Context, *StartWriteSessionRequest) (*StartWriteSessionResponse, error)
 	Write(context.Context, *WriteRequest) (*WriteResponse, error)
 	FinishWriteSession(context.Context, *FinishWriteSessionRequest) (*FinishWriteSessionResponse, error)
-	Read(*ReadRequest, Storage_ReadServer) error
-	ListVersions(*ListVersionsRequest, Storage_ListVersionsServer) error
-	ReadVersion(*ReadVersionRequest, Storage_ReadVersionServer) error
+	Read(*ReadRequest, StorageService_ReadServer) error
+	ListVersions(*ListVersionsRequest, StorageService_ListVersionsServer) error
+	ReadVersion(*ReadVersionRequest, StorageService_ReadVersionServer) error
 	RestoreVersion(context.Context, *RestoreVersionRequest) (*RestoreVersionResponse, error)
-	ListRecycle(*ListRecycleRequest, Storage_ListRecycleServer) error
+	ListRecycle(*ListRecycleRequest, StorageService_ListRecycleServer) error
 	RestoreRecycleItem(context.Context, *RestoreRecycleItemRequest) (*RestoreRecycleItemResponse, error)
 	PurgeRecycle(context.Context, *PurgeRecycleRequest) (*PurgeRecycleResponse, error)
 	SetACL(context.Context, *SetACLRequest) (*SetACLResponse, error)
@@ -2123,448 +2123,448 @@ type StorageServer interface {
 	GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error)
 }
 
-func RegisterStorageServer(s *grpc.Server, srv StorageServer) {
-	s.RegisterService(&_Storage_serviceDesc, srv)
+func RegisterStorageServiceServer(s *grpc.Server, srv StorageServiceServer) {
+	s.RegisterService(&_StorageService_serviceDesc, srv)
 }
 
-func _Storage_CreateDirectory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_CreateDirectory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDirectoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).CreateDirectory(ctx, in)
+		return srv.(StorageServiceServer).CreateDirectory(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/CreateDirectory",
+		FullMethod: "/cernbox.storagev1.StorageService/CreateDirectory",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).CreateDirectory(ctx, req.(*CreateDirectoryRequest))
+		return srv.(StorageServiceServer).CreateDirectory(ctx, req.(*CreateDirectoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).Delete(ctx, in)
+		return srv.(StorageServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/Delete",
+		FullMethod: "/cernbox.storagev1.StorageService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(StorageServiceServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_Move_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_Move_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MoveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).Move(ctx, in)
+		return srv.(StorageServiceServer).Move(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/Move",
+		FullMethod: "/cernbox.storagev1.StorageService/Move",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).Move(ctx, req.(*MoveRequest))
+		return srv.(StorageServiceServer).Move(ctx, req.(*MoveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_Stat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StatRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).Stat(ctx, in)
+		return srv.(StorageServiceServer).Stat(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/Stat",
+		FullMethod: "/cernbox.storagev1.StorageService/Stat",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).Stat(ctx, req.(*StatRequest))
+		return srv.(StorageServiceServer).Stat(ctx, req.(*StatRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).List(ctx, in)
+		return srv.(StorageServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/List",
+		FullMethod: "/cernbox.storagev1.StorageService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).List(ctx, req.(*ListRequest))
+		return srv.(StorageServiceServer).List(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_StartWriteSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_StartWriteSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StartWriteSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).StartWriteSession(ctx, in)
+		return srv.(StorageServiceServer).StartWriteSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/StartWriteSession",
+		FullMethod: "/cernbox.storagev1.StorageService/StartWriteSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).StartWriteSession(ctx, req.(*StartWriteSessionRequest))
+		return srv.(StorageServiceServer).StartWriteSession(ctx, req.(*StartWriteSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_Write_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_Write_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WriteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).Write(ctx, in)
+		return srv.(StorageServiceServer).Write(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/Write",
+		FullMethod: "/cernbox.storagev1.StorageService/Write",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).Write(ctx, req.(*WriteRequest))
+		return srv.(StorageServiceServer).Write(ctx, req.(*WriteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_FinishWriteSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_FinishWriteSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FinishWriteSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).FinishWriteSession(ctx, in)
+		return srv.(StorageServiceServer).FinishWriteSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/FinishWriteSession",
+		FullMethod: "/cernbox.storagev1.StorageService/FinishWriteSession",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).FinishWriteSession(ctx, req.(*FinishWriteSessionRequest))
+		return srv.(StorageServiceServer).FinishWriteSession(ctx, req.(*FinishWriteSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_Read_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StorageService_Read_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ReadRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StorageServer).Read(m, &storageReadServer{stream})
+	return srv.(StorageServiceServer).Read(m, &storageServiceReadServer{stream})
 }
 
-type Storage_ReadServer interface {
+type StorageService_ReadServer interface {
 	Send(*ReadResponse) error
 	grpc.ServerStream
 }
 
-type storageReadServer struct {
+type storageServiceReadServer struct {
 	grpc.ServerStream
 }
 
-func (x *storageReadServer) Send(m *ReadResponse) error {
+func (x *storageServiceReadServer) Send(m *ReadResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Storage_ListVersions_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StorageService_ListVersions_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ListVersionsRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StorageServer).ListVersions(m, &storageListVersionsServer{stream})
+	return srv.(StorageServiceServer).ListVersions(m, &storageServiceListVersionsServer{stream})
 }
 
-type Storage_ListVersionsServer interface {
+type StorageService_ListVersionsServer interface {
 	Send(*ListVersionsResponse) error
 	grpc.ServerStream
 }
 
-type storageListVersionsServer struct {
+type storageServiceListVersionsServer struct {
 	grpc.ServerStream
 }
 
-func (x *storageListVersionsServer) Send(m *ListVersionsResponse) error {
+func (x *storageServiceListVersionsServer) Send(m *ListVersionsResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Storage_ReadVersion_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StorageService_ReadVersion_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ReadVersionRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StorageServer).ReadVersion(m, &storageReadVersionServer{stream})
+	return srv.(StorageServiceServer).ReadVersion(m, &storageServiceReadVersionServer{stream})
 }
 
-type Storage_ReadVersionServer interface {
+type StorageService_ReadVersionServer interface {
 	Send(*ReadVersionResponse) error
 	grpc.ServerStream
 }
 
-type storageReadVersionServer struct {
+type storageServiceReadVersionServer struct {
 	grpc.ServerStream
 }
 
-func (x *storageReadVersionServer) Send(m *ReadVersionResponse) error {
+func (x *storageServiceReadVersionServer) Send(m *ReadVersionResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Storage_RestoreVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_RestoreVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RestoreVersionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).RestoreVersion(ctx, in)
+		return srv.(StorageServiceServer).RestoreVersion(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/RestoreVersion",
+		FullMethod: "/cernbox.storagev1.StorageService/RestoreVersion",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).RestoreVersion(ctx, req.(*RestoreVersionRequest))
+		return srv.(StorageServiceServer).RestoreVersion(ctx, req.(*RestoreVersionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_ListRecycle_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _StorageService_ListRecycle_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(ListRecycleRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(StorageServer).ListRecycle(m, &storageListRecycleServer{stream})
+	return srv.(StorageServiceServer).ListRecycle(m, &storageServiceListRecycleServer{stream})
 }
 
-type Storage_ListRecycleServer interface {
+type StorageService_ListRecycleServer interface {
 	Send(*ListRecycleResponse) error
 	grpc.ServerStream
 }
 
-type storageListRecycleServer struct {
+type storageServiceListRecycleServer struct {
 	grpc.ServerStream
 }
 
-func (x *storageListRecycleServer) Send(m *ListRecycleResponse) error {
+func (x *storageServiceListRecycleServer) Send(m *ListRecycleResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Storage_RestoreRecycleItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_RestoreRecycleItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RestoreRecycleItemRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).RestoreRecycleItem(ctx, in)
+		return srv.(StorageServiceServer).RestoreRecycleItem(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/RestoreRecycleItem",
+		FullMethod: "/cernbox.storagev1.StorageService/RestoreRecycleItem",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).RestoreRecycleItem(ctx, req.(*RestoreRecycleItemRequest))
+		return srv.(StorageServiceServer).RestoreRecycleItem(ctx, req.(*RestoreRecycleItemRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_PurgeRecycle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_PurgeRecycle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PurgeRecycleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).PurgeRecycle(ctx, in)
+		return srv.(StorageServiceServer).PurgeRecycle(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/PurgeRecycle",
+		FullMethod: "/cernbox.storagev1.StorageService/PurgeRecycle",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).PurgeRecycle(ctx, req.(*PurgeRecycleRequest))
+		return srv.(StorageServiceServer).PurgeRecycle(ctx, req.(*PurgeRecycleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_SetACL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_SetACL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SetACLRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).SetACL(ctx, in)
+		return srv.(StorageServiceServer).SetACL(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/SetACL",
+		FullMethod: "/cernbox.storagev1.StorageService/SetACL",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).SetACL(ctx, req.(*SetACLRequest))
+		return srv.(StorageServiceServer).SetACL(ctx, req.(*SetACLRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_UpdateACL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_UpdateACL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateACLRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).UpdateACL(ctx, in)
+		return srv.(StorageServiceServer).UpdateACL(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/UpdateACL",
+		FullMethod: "/cernbox.storagev1.StorageService/UpdateACL",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).UpdateACL(ctx, req.(*UpdateACLRequest))
+		return srv.(StorageServiceServer).UpdateACL(ctx, req.(*UpdateACLRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_UnsetACL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_UnsetACL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UnsetACLRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).UnsetACL(ctx, in)
+		return srv.(StorageServiceServer).UnsetACL(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/UnsetACL",
+		FullMethod: "/cernbox.storagev1.StorageService/UnsetACL",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).UnsetACL(ctx, req.(*UnsetACLRequest))
+		return srv.(StorageServiceServer).UnsetACL(ctx, req.(*UnsetACLRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Storage_GetQuota_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StorageService_GetQuota_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetQuotaRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServer).GetQuota(ctx, in)
+		return srv.(StorageServiceServer).GetQuota(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/cernbox.storagev1.Storage/GetQuota",
+		FullMethod: "/cernbox.storagev1.StorageService/GetQuota",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServer).GetQuota(ctx, req.(*GetQuotaRequest))
+		return srv.(StorageServiceServer).GetQuota(ctx, req.(*GetQuotaRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _Storage_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "cernbox.storagev1.Storage",
-	HandlerType: (*StorageServer)(nil),
+var _StorageService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "cernbox.storagev1.StorageService",
+	HandlerType: (*StorageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateDirectory",
-			Handler:    _Storage_CreateDirectory_Handler,
+			Handler:    _StorageService_CreateDirectory_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _Storage_Delete_Handler,
+			Handler:    _StorageService_Delete_Handler,
 		},
 		{
 			MethodName: "Move",
-			Handler:    _Storage_Move_Handler,
+			Handler:    _StorageService_Move_Handler,
 		},
 		{
 			MethodName: "Stat",
-			Handler:    _Storage_Stat_Handler,
+			Handler:    _StorageService_Stat_Handler,
 		},
 		{
 			MethodName: "List",
-			Handler:    _Storage_List_Handler,
+			Handler:    _StorageService_List_Handler,
 		},
 		{
 			MethodName: "StartWriteSession",
-			Handler:    _Storage_StartWriteSession_Handler,
+			Handler:    _StorageService_StartWriteSession_Handler,
 		},
 		{
 			MethodName: "Write",
-			Handler:    _Storage_Write_Handler,
+			Handler:    _StorageService_Write_Handler,
 		},
 		{
 			MethodName: "FinishWriteSession",
-			Handler:    _Storage_FinishWriteSession_Handler,
+			Handler:    _StorageService_FinishWriteSession_Handler,
 		},
 		{
 			MethodName: "RestoreVersion",
-			Handler:    _Storage_RestoreVersion_Handler,
+			Handler:    _StorageService_RestoreVersion_Handler,
 		},
 		{
 			MethodName: "RestoreRecycleItem",
-			Handler:    _Storage_RestoreRecycleItem_Handler,
+			Handler:    _StorageService_RestoreRecycleItem_Handler,
 		},
 		{
 			MethodName: "PurgeRecycle",
-			Handler:    _Storage_PurgeRecycle_Handler,
+			Handler:    _StorageService_PurgeRecycle_Handler,
 		},
 		{
 			MethodName: "SetACL",
-			Handler:    _Storage_SetACL_Handler,
+			Handler:    _StorageService_SetACL_Handler,
 		},
 		{
 			MethodName: "UpdateACL",
-			Handler:    _Storage_UpdateACL_Handler,
+			Handler:    _StorageService_UpdateACL_Handler,
 		},
 		{
 			MethodName: "UnsetACL",
-			Handler:    _Storage_UnsetACL_Handler,
+			Handler:    _StorageService_UnsetACL_Handler,
 		},
 		{
 			MethodName: "GetQuota",
-			Handler:    _Storage_GetQuota_Handler,
+			Handler:    _StorageService_GetQuota_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "Read",
-			Handler:       _Storage_Read_Handler,
+			Handler:       _StorageService_Read_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "ListVersions",
-			Handler:       _Storage_ListVersions_Handler,
+			Handler:       _StorageService_ListVersions_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "ReadVersion",
-			Handler:       _Storage_ReadVersion_Handler,
+			Handler:       _StorageService_ReadVersion_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "ListRecycle",
-			Handler:       _Storage_ListRecycle_Handler,
+			Handler:       _StorageService_ListRecycle_Handler,
 			ServerStreams: true,
 		},
 	},

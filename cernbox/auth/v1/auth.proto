@@ -30,7 +30,7 @@ import "cernbox/auth/v1/resources.proto";
 import "cernbox/rpc/status.proto";
 import "google/api/annotations.proto";
 
-service Auth {
+service AuthService {
   rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (GenerateAccessTokenResponse);
   rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
 }

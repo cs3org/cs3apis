@@ -30,7 +30,7 @@ import "cernbox/rpc/status.proto";
 import "cernbox/tag/v1/resources.proto";
 import "google/api/annotations.proto";
 
-service Tagging {
+service TagService {
   rpc ListTags(ListTagsRequest) returns (stream ListTagsResponse);
   rpc SetTag(SetTagRequest) returns (SetTagResponse);
   rpc UnsetTag(UnsetTagRequest) returns (UnsetTagResponse);

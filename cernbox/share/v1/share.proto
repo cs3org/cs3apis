@@ -30,7 +30,7 @@ import "cernbox/rpc/status.proto";
 import "cernbox/share/v1/resources.proto";
 import "google/api/annotations.proto";
 
-service Sharing {
+service ShareService {
   rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
   rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
   rpc ListShares(ListSharesRequest) returns (stream ListSharesResponse);

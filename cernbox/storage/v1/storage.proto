@@ -30,7 +30,7 @@ import "cernbox/rpc/status.proto";
 import "cernbox/storage/v1/resources.proto";
 import "google/api/annotations.proto";
 
-service Storage {
+service StorageService {
   rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc Move(MoveRequest) returns (MoveResponse);

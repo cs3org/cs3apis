@@ -30,7 +30,7 @@ import "cernbox/about/v1/resources.proto";
 import "cernbox/rpc/status.proto";
 import "google/api/annotations.proto";
 
-service About {
+service AboutService {
   rpc ListMembers(ListMembersRequest) returns (ListMembersResponse) {
     option (google.api.http) = {
       get: "/v1/about/members"

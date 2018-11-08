@@ -30,7 +30,7 @@ import "cernbox/publicshare/v1/resources.proto";
 import "cernbox/rpc/status.proto";
 import "google/api/annotations.proto";
 
-service PublicSharing {
+service PubicShareService {
   rpc CreatePublicShare(CreatePublicShareRequest) returns (CreatePublicShareResponse);
   rpc UpdatePublicShare(UpdatePublicShareRequest) returns (UpdatePublicShareResponse);
   rpc ListPublicShares(ListPublicSharesRequest) returns (stream ListPublicSharesResponse);

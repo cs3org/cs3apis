@@ -28,7 +28,7 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
-func request_About_ListMembers_0(ctx context.Context, marshaler runtime.Marshaler, client AboutClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AboutService_ListMembers_0(ctx context.Context, marshaler runtime.Marshaler, client AboutServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListMembersRequest
 	var metadata runtime.ServerMetadata
 
@@ -37,7 +37,7 @@ func request_About_ListMembers_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_About_GetDocumentation_0(ctx context.Context, marshaler runtime.Marshaler, client AboutClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_AboutService_GetDocumentation_0(ctx context.Context, marshaler runtime.Marshaler, client AboutServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetDocumentationRequest
 	var metadata runtime.ServerMetadata
 
@@ -46,9 +46,9 @@ func request_About_GetDocumentation_0(ctx context.Context, marshaler runtime.Mar
 
 }
 
-// RegisterAboutHandlerFromEndpoint is same as RegisterAboutHandler but
+// RegisterAboutServiceHandlerFromEndpoint is same as RegisterAboutServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterAboutHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterAboutServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -68,23 +68,23 @@ func RegisterAboutHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux
 		}()
 	}()
 
-	return RegisterAboutHandler(ctx, mux, conn)
+	return RegisterAboutServiceHandler(ctx, mux, conn)
 }
 
-// RegisterAboutHandler registers the http handlers for service About to "mux".
+// RegisterAboutServiceHandler registers the http handlers for service AboutService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterAboutHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterAboutHandlerClient(ctx, mux, NewAboutClient(conn))
+func RegisterAboutServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterAboutServiceHandlerClient(ctx, mux, NewAboutServiceClient(conn))
 }
 
-// RegisterAboutHandlerClient registers the http handlers for service About
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AboutClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AboutClient"
+// RegisterAboutServiceHandlerClient registers the http handlers for service AboutService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "AboutServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "AboutServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "AboutClient" to call the correct interceptors.
-func RegisterAboutHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AboutClient) error {
+// "AboutServiceClient" to call the correct interceptors.
+func RegisterAboutServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AboutServiceClient) error {
 
-	mux.Handle("GET", pattern_About_ListMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_AboutService_ListMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -93,18 +93,18 @@ func RegisterAboutHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_About_ListMembers_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AboutService_ListMembers_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_About_ListMembers_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AboutService_ListMembers_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_About_GetDocumentation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_AboutService_GetDocumentation_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -113,14 +113,14 @@ func RegisterAboutHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_About_GetDocumentation_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_AboutService_GetDocumentation_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_About_GetDocumentation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_AboutService_GetDocumentation_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -128,13 +128,13 @@ func RegisterAboutHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_About_ListMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "about", "members"}, ""))
+	pattern_AboutService_ListMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "about", "members"}, ""))
 
-	pattern_About_GetDocumentation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "about", "documentation"}, ""))
+	pattern_AboutService_GetDocumentation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "about", "documentation"}, ""))
 )
 
 var (
-	forward_About_ListMembers_0 = runtime.ForwardResponseMessage
+	forward_AboutService_ListMembers_0 = runtime.ForwardResponseMessage
 
-	forward_About_GetDocumentation_0 = runtime.ForwardResponseMessage
+	forward_AboutService_GetDocumentation_0 = runtime.ForwardResponseMessage
 )
