@@ -1,0 +1,114 @@
+// CS3 Share API
+// Copyright (C) 2018  CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cs3.sharev1;
+
+option csharp_namespace = "CS3.ShareV1";
+option go_package = "sharev1pb";
+option java_multiple_files = true;
+option java_outer_classname = "ShareProto";
+option java_package = "com.cs3.sharev1";
+option objc_class_prefix = "CBOXAB";
+option php_namespace = "CS3\\ShareV1";
+
+import "cs3/rpc/status.proto";
+import "cs3/share/v1/resources.proto";
+import "google/api/annotations.proto";
+
+service ShareService {
+  rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
+  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
+  rpc ListShares(ListSharesRequest) returns (stream ListSharesResponse);
+  rpc Unshare(UnshareRequest) returns (UnshareResponse);
+  rpc GetShare(GetShareRequest) returns (GetShareResponse);
+  rpc ListReceivedShares(ListReceivedSharesRequest) returns (stream ListReceivedSharesResponse);
+  rpc AcceptReceivedShare(AcceptReceivedShareRequest) returns (AcceptReceivedShareResponse);
+  rpc RejectReceivedShare(RejectReceivedShareRequest) returns (RejectReceivedShareResponse);
+}
+
+message CreateShareRequest {
+  string filename = 1;
+  Permissions permissions = 2;
+  string target = 3;
+  TargetType target_type = 4;
+}
+
+message CreateShareResponse {
+  cs3.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message UpdateShareRequest {
+  string share_id = 1;
+  UpdatePolicy update_policy = 2;
+  Permissions permissions = 3;
+}
+
+message UpdateShareResponse {
+  cs3.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message ListSharesRequest {
+  string filename = 1;
+}
+
+message ListSharesResponse {
+  cs3.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message UnshareRequest {
+  string share_id = 1;
+}
+
+message UnshareResponse {
+  cs3.rpc.Status status = 1;
+}
+
+message GetShareRequest {
+  string share_id = 1;
+}
+
+message GetShareResponse {
+  cs3.rpc.Status status = 1;
+  Share share = 2;
+}
+
+message ListReceivedSharesRequest {}
+
+message ListReceivedSharesResponse {
+  cs3.rpc.Status status = 1;
+  ReceivedShare received_share = 2;
+}
+
+message AcceptReceivedShareRequest {
+  string share_id = 1;
+}
+
+message AcceptReceivedShareResponse {
+  cs3.rpc.Status status = 1;
+}
+
+message RejectReceivedShareRequest {
+  string share_id = 1;
+}
+
+message RejectReceivedShareResponse {
+  cs3.rpc.Status status = 1;
+}
