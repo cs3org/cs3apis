@@ -6,7 +6,7 @@ package aboutv1pb
 import (
 	context "context"
 	fmt "fmt"
-	rpc "github.com/cs3/cs3apis/gen/proto/go/cs3/rpc"
+	rpc "github.com/cernbox/cs3apis/gen/proto/go/cs3/rpc"
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
