@@ -45,7 +45,9 @@ message GenerateAccessTokenResponse {
   string access_token = 2;
 }
 
-message WhoAmIRequest {}
+message WhoAmIRequest {
+  string access_token = 1;
+}
 
 message WhoAmIResponse {
   cs3.rpc.Status status = 1;
