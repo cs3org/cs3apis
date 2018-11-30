@@ -1,0 +1,2 @@
+all:
+	prototool generate
