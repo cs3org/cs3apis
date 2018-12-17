@@ -1,0 +1,4 @@
+protoc:
+  includes:
+    # go source code inside GOPATH. Make seds <GOPATH> for $GOPATH
+    - <GOPATH>/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis # go source code inside GOPATH

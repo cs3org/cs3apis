@@ -50,5 +50,48 @@ languages.
 change to the API.
 
 
-## Generate code
-The code genereated in the `gen` folder is generated using `github.com/uber/prototool generate`.
+## Generated code
+
+Go: [go-cs3apis](https://github.com/cernbox/go-cs3apis)
+
+
+
+## Getting started
+
+The following requirements are needed to compile the CS3 apis:
+
+* Protobuf
+* Prototool
+* Go
+* GRPC Gateway
+
+*Installing protobuf:*
+
+```
+mkdir tmp
+cd tmp
+git clone https://github.com/protocolbuffers/protobuf
+cd protobuf
+./autogen.sh
+./configure
+make
+make check
+sudo make install
+```
+
+*Installing prototool:*
+See [Install Prototool](https://github.com/uber/prototool#installation)
+
+*Installing Go:*
+See [Intall Go](https://golang.org/doc/install)
+
+*Installing grpc gateway*
+
+```
+go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+go get -u github.com/golang/protobuf/protoc-gen-go
+```
+*Compile CS3 Apis:*
+
+From the root of the directory (github.com/cernbox/cs3apis/) run `prototool compile`
