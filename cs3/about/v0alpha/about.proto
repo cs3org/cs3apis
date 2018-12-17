@@ -1,4 +1,4 @@
-// CS3 Auth API
+// CS3 About API
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,40 +16,43 @@
 
 syntax = "proto3";
 
-package cs3.authv1;
+package cs3.aboutv0alpha;
 
-option csharp_namespace = "CS3.AuthV1";
-option go_package = "authv1pb";
+option csharp_namespace = "CS3.AboutV0Alpha";
+option go_package = "aboutv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "AuthProto";
-option java_package = "com.cs3.authv1";
+option java_outer_classname = "AboutProto";
+option java_package = "com.cs3.aboutv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\AuthV1";
+option php_namespace = "CS3\\AboutV0Alpha";
 
-import "cs3/auth/v1/resources.proto";
+import "cs3/about/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
 import "google/api/annotations.proto";
 
-service AuthService {
-  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (GenerateAccessTokenResponse);
-  rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
+service AboutService {
+  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse) {
+    option (google.api.http) = {
+      get: "/v0alpha/about/members"
+    };
+  }
+  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse) {
+    option (google.api.http) = {
+      get: "/v0alpha/about/documentation"
+    };
+  }
 }
 
-message GenerateAccessTokenRequest {
-  string username = 1;
-  string password = 2;
-}
+message ListMembersRequest {}
 
-message GenerateAccessTokenResponse {
+message ListMembersResponse {
   cs3.rpc.Status status = 1;
-  string access_token = 2;
+  repeated Member members = 2;
 }
 
-message WhoAmIRequest {
-  string access_token = 1;
-}
+message GetDocumentationRequest {}
 
-message WhoAmIResponse {
+message GetDocumentationResponse {
   cs3.rpc.Status status = 1;
-  User user = 2;
+  Documentation documentation = 2;
 }

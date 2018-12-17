@@ -1,4 +1,4 @@
-// CS3 Tag API
+// CS3 StorageBroker API
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,25 +16,17 @@
 
 syntax = "proto3";
 
-package cs3.tagv1;
+package cs3.storagebrokerv0alpha;
 
-option csharp_namespace = "CS3.TagV1";
-option go_package = "tagv1pb";
+option csharp_namespace = "CS3.StorageBrokerV0Alpha";
+option go_package = "storagebrokerv0alphapb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.tagv1";
+option java_package = "com.cs3.storagebrokerv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\TagV1";
+option php_namespace = "CS3\\StorageBrokerV0Alpha";
 
-message Tag {
-  TagType type = 1;
-  string key = 2;
-  string value = 3;
-  string filename = 4;
-}
-
-enum TagType {
-  TAG_TYPE_INVALID = 0;
-  TAG_TYPE_FILE = 1;
-  TAG_TYPE_FOLDER = 2;
+// TODO(labkode): maybe add capabilities field
+message ProviderInfo {
+  string location = 1;
 }

@@ -1,4 +1,4 @@
-// CS3 StorageProvider API
+// CS3 Storage API
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,21 +16,21 @@
 
 syntax = "proto3";
 
-package cs3.storageproviderv1;
+package cs3.storagev0alpha;
 
-option csharp_namespace = "CS3.StorageProviderV1";
-option go_package = "storageproviderv1pb";
+option csharp_namespace = "CS3.StorageV0Alpha";
+option go_package = "storagev0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "StorageProviderProto";
-option java_package = "com.cs3.storageproviderv1";
+option java_outer_classname = "StorageProto";
+option java_package = "com.cs3.storagev0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\StorageProviderV1";
+option php_namespace = "CS3\\StorageV0Alpha";
 
 import "cs3/rpc/status.proto";
-import "cs3/storageprovider/v1/resources.proto";
+import "cs3/storage/v0alpha/resources.proto";
 import "google/api/annotations.proto";
 
-service StorageProviderService {
+service StorageService {
   rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc Move(MoveRequest) returns (MoveResponse);
@@ -49,7 +49,7 @@ service StorageProviderService {
   rpc SetACL(SetACLRequest) returns (SetACLResponse);
   rpc UpdateACL(UpdateACLRequest) returns (UpdateACLResponse);
   rpc UnsetACL(UnsetACLRequest) returns (UnsetACLResponse);
-  //rpc ListACLs(ListACLsRequest) returns (ListACLsResponse);
+  rpc ListACLs(ListACLsRequest) returns (ListACLsResponse);
   rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse);
 }
 

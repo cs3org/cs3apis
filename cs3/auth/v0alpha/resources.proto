@@ -1,4 +1,4 @@
-// CS3 PublicShare API
+// CS3 Auth API
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,43 +16,19 @@
 
 syntax = "proto3";
 
-package cs3.publicsharev1;
+package cs3.authv0alpha;
 
-option csharp_namespace = "CS3.PublicShareV1";
-option go_package = "publicsharev1pb";
+option csharp_namespace = "CS3.AuthV0Alpha";
+option go_package = "authv0alphapb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.publicsharev1";
+option java_package = "com.cs3.authv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\PublicShareV1";
+option php_namespace = "CS3\\AuthV0Alpha";
 
-message UpdatePolicy {
-  bool set_password = 1;
-  bool set_expiration = 2;
-  bool set_permission = 3;
-}
-
-enum Permission {
-  PERMISSION_INVALID = 0;
-  PERMISSION_VIEW_ONLY = 1;
-  PERMISSION_MODIFY = 2;
-  PERMISSION_DROP_ONLY = 3;
-}
-
-message PublicShare {
-  string id = 1;
-  string token = 2;
-  string filename = 3;
-  FileType file_type = 4;
-  uint64 expiration = 5;
-  bool password_protected = 6;
-  Permission permission = 7;
-  string display_name = 8;
-  string owner = 9;
-}
-
-enum FileType {
-  FILE_TYPE_INVALID = 0;
-  FILE_TYPE_FILE = 1;
-  FILE_TYPE_FOLDER = 2;
+message User {
+  string username = 1;
+  string mail = 2;
+  string display_name = 3;
+  repeated string groups = 4;
 }

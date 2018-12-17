@@ -16,15 +16,15 @@
 
 syntax = "proto3";
 
-package cs3.aboutv1;
+package cs3.aboutv0alpha;
 
-option csharp_namespace = "CS3.AboutV1";
-option go_package = "aboutv1pb";
+option csharp_namespace = "CS3.AboutV0Alpha";
+option go_package = "aboutv0alphapb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.aboutv1";
+option java_package = "com.cs3.aboutv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\AboutV1";
+option php_namespace = "CS3\\AboutV0Alpha";
 
 message Member {
   string display_name = 1;
