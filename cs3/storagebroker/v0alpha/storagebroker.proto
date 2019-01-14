@@ -34,7 +34,7 @@ service StorageBrokerService {
 }
 
 message GetStorageProviderRequest {
-  string filename = 1;
+  string filename_or_fileid  = 1;
   bytes extra = 2;
 }
 
