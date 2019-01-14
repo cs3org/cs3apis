@@ -31,6 +31,7 @@ import "cs3/storageprovider/v0alpha/resources.proto";
 import "google/api/annotations.proto";
 
 service StorageProviderService {
+  rpc GetPathByID(GetPathByIDRequest) returns (GetPathByIDResponse);
   rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc Move(MoveRequest) returns (MoveResponse);
@@ -51,6 +52,15 @@ service StorageProviderService {
   rpc UnsetACL(UnsetACLRequest) returns (UnsetACLResponse);
   //rpc ListACLs(ListACLsRequest) returns (ListACLsResponse);
   rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse);
+}
+
+message GetPathByIDRequest {
+  string id = 1;
+}
+
+message GetPathByIDResponse {
+  cs3.rpc.Status status = 1;
+  string filename = 2;
 }
 
 message CreateDirectoryRequest {
