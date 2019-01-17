@@ -3,6 +3,5 @@ set -x o
 set -e 
 GOPATH=`go env GOPATH`
 echo ${GOPATH}
-cp prototool-template.yaml prototool.yaml
-sed -i "" "s|<GOPATH>|${GOPATH}|g" prototool.yaml
+sed "s|<GOPATH>|${GOPATH}|g" prototool-template.yaml > prototool.yaml
 prototool compile
