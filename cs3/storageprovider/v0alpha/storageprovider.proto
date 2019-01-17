@@ -31,7 +31,7 @@ import "cs3/storageprovider/v0alpha/resources.proto";
 import "google/api/annotations.proto";
 
 service StorageProviderService {
-  rpc GetPathByID(GetPathByIDRequest) returns (GetPathByIDResponse);
+  rpc Deref(DerefRequest) returns (DerefResponse);
   rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc Move(MoveRequest) returns (MoveResponse);
@@ -54,11 +54,11 @@ service StorageProviderService {
   rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse);
 }
 
-message GetPathByIDRequest {
-  string id = 1;
+message DerefRequest {
+  string fid = 1;
 }
 
-message GetPathByIDResponse {
+message DerefResponse {
   cs3.rpc.Status status = 1;
   string filename = 2;
 }
