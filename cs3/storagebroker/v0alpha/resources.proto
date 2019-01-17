@@ -26,7 +26,8 @@ option java_package = "com.cs3.storagebrokerv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\StorageBrokerV0Alpha";
 
-// TODO(labkode): maybe add capabilities field
+// TODO(labkode): maybe add capabilities field here or add another rpc for that.
 message ProviderInfo {
   string location = 1;
+  string proto = 2;
 }

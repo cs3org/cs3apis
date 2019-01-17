@@ -30,15 +30,15 @@ import "cs3/rpc/status.proto";
 import "cs3/storagebroker/v0alpha/resources.proto";
 
 service StorageBrokerService {
-  rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
+  rpc Find(FindRequest) returns (FindResponse);
 }
 
-message GetStorageProviderRequest {
-  string filename_or_fileid  = 1;
+message FindRequest {
+  string filename = 1;
   bytes extra = 2;
 }
 
-message GetStorageProviderResponse {
+message FindResponse {
   cs3.rpc.Status status = 1;
   ProviderInfo provider_info = 2;
 }
