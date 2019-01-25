@@ -28,19 +28,10 @@ option php_namespace = "CS3\\AboutV0Alpha";
 
 import "cs3/about/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
-import "google/api/annotations.proto";
 
 service AboutService {
-  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse) {
-    option (google.api.http) = {
-      get: "/v0alpha/about/members"
-    };
-  }
-  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse) {
-    option (google.api.http) = {
-      get: "/v0alpha/about/documentation"
-    };
-  }
+  rpc ListMembers(ListMembersRequest) returns (ListMembersResponse) {};
+  rpc GetDocumentation(GetDocumentationRequest) returns (GetDocumentationResponse) {};
 }
 
 message ListMembersRequest {}
