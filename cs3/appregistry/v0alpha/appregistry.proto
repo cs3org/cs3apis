@@ -36,7 +36,6 @@ service AppRegistryService {
 message FindRequest {
   string filename_extension = 1;
   string filename_mimetype = 2;
-  bytes extra = 2;
 }
 
 message FindResponse {

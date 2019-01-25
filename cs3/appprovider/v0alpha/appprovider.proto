@@ -27,7 +27,7 @@ option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\AppProviderV0Alpha";
 
 import "cs3/rpc/status.proto";
-import "cs3/appprovider/v0alpha/resources.proto";
+//import "cs3/appprovider/v0alpha/resources.proto";
 
 service AppProviderService {
   rpc GetIFrame(GetIFrameRequest) returns (GetIFrameResponse);
@@ -39,8 +39,8 @@ message GetIFrameRequest {
   string access_token = 3;
 }
 
-message GetIFrameReponse {
+message GetIFrameResponse {
   cs3.rpc.Status status = 1;
-  string iframe_location = 1;
+  string iframe_location = 2;
 }
 
