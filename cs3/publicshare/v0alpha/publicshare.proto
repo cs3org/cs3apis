@@ -28,7 +28,6 @@ option php_namespace = "CS3\\PublicShareV0Alpha";
 
 import "cs3/publicshare/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
-import "google/api/annotations.proto";
 
 service PubicShareService {
   rpc CreatePublicShare(CreatePublicShareRequest) returns (CreatePublicShareResponse);

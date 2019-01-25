@@ -28,7 +28,6 @@ option php_namespace = "CS3\\TagV0Alpha";
 
 import "cs3/rpc/status.proto";
 import "cs3/tag/v0alpha/resources.proto";
-import "google/api/annotations.proto";
 
 service TagService {
   rpc ListTags(ListTagsRequest) returns (stream ListTagsResponse);

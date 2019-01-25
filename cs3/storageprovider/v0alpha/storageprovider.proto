@@ -28,7 +28,6 @@ option php_namespace = "CS3\\StorageProviderV0Alpha";
 
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
-import "google/api/annotations.proto";
 
 service StorageProviderService {
   rpc Deref(DerefRequest) returns (DerefResponse);
