@@ -105,7 +105,9 @@ message ListResponse {
   Metadata metadata = 2;
 }
 
-message StartWriteSessionRequest {}
+message StartWriteSessionRequest {
+  string filename = 1;
+}
 
 message StartWriteSessionResponse {
   cs3.rpc.Status status = 1;
