@@ -31,6 +31,7 @@ import "cs3/storagebroker/v0alpha/resources.proto";
 
 service StorageBrokerService {
   rpc Find(FindRequest) returns (FindResponse);
+  rpc Discover(DiscoverRequest) returns (DiscoverResponse);
 }
 
 message FindRequest {
@@ -40,6 +41,13 @@ message FindRequest {
 
 message FindResponse {
   cs3.rpc.Status status = 1;
-  ProviderInfo provider_info = 2;
+  StorageProviderInfo storage_provider_info = 2;
 }
 
+
+message DiscoverRequest {}
+
+message DiscoverResponse {
+  cs3.rpc.Status status = 1;
+  repeated Node nodes = 2;
+}
