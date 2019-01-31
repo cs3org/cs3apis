@@ -36,12 +36,12 @@ service StorageBrokerService {
 
 message FindRequest {
   string filename = 1;
-  bytes extra = 2;
+  bytes opaque = 2;
 }
 
 message FindResponse {
   cs3.rpc.Status status = 1;
-  StorageProviderInfo storage_provider_info = 2;
+  StorageProvider storage_provider = 2;
 }
 
 
@@ -49,5 +49,5 @@ message DiscoverRequest {}
 
 message DiscoverResponse {
   cs3.rpc.Status status = 1;
-  repeated Node nodes = 2;
+  repeated StorageProvider storage_providers = 2;
 }

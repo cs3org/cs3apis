@@ -26,11 +26,7 @@ option java_package = "com.cs3.storagebrokerv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\StorageBrokerV0Alpha";
 
-message StorageProviderInfo {
+message StorageProvider {
   string endpoint = 1;
-}
-
-message Node {
-  string mount_path = 1;
-  StorageProviderInfo storage_provider_info = 2;
+  string mount_path = 2;
 }
