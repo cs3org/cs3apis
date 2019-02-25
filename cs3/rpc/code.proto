@@ -24,16 +24,21 @@ option java_package = "com.cs3.rpc";
 option objc_class_prefix = "CBOXRPC";
 option php_namespace = "CS3\\RPC";
 
-//import "google/protobuf/any.proto";
-
-// The canonical error codes for CS3 APIs.
+// These are the canonical error codes used by CS3 APIs. 
 //
+// Adapted from Google APIs:
+// https://github.com/googleapis/googleapis/
 //
 // Sometimes multiple error codes may apply.  Services should return
 // the most specific error code that applies.  For example, prefer
 // `OUT_OF_RANGE` over `FAILED_PRECONDITION` if both codes apply.
 // Similarly prefer `NOT_FOUND` or `ALREADY_EXISTS` over `FAILED_PRECONDITION`.
 enum Code {
+  // A programmer would not intentionally set the code to CODE_INVALID.
+  // This code exists to force service implementors to set
+  // a specific code for the API call and to not rely on defaults.
+  // 
+  // HTTP Mapping: 500 Internal Server Error
   CODE_INVALID = 0;
   // Not an error; returned on success
   //

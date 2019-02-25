@@ -26,59 +26,175 @@ option java_package = "com.cs3.storageproviderv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\StorageProviderV0Alpha";
 
-message ACL {
-  string target = 1;
-  ACLType type = 2;
-  ACLMode mode = 3;
+import "cs3/types/types.proto";
+
+// Represents the information (metadata) about
+// a resource.
+message ResourceInfo {
+  // MAY be specified.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // MUST be specified.
+  // The type of the resource (container, file, ...)
+  // See the enum ResourceType for all possible types.
+  ResourceType type = 2;
+  // MAY be specified.
+  // Opaque information.
+  ResourceId id = 3;
+  // MUST be specified.
+  // The checksum for the resource.
+  ResourceChecksum checksum = 4;
+  // MUST be specified.
+  // As decribed in https://tools.ietf.org/html/rfc7232#section-2.3
+  string etag = 5;
+  // MUST be specified.
+  // As described in https://tools.ietf.org/html/rfc2045#page-7
+  string mime = 6;
+  // MUST be specified.
+  // The start time range to query for recycle items.
+  // The value is the Unix Epoch timestamp in seconds.
+  uint64 mtime = 7;
+  // MUST be specified.
+  // The path for the resource.
+  // It MUST start with the slash character (/).
+  string path = 8;
+  // MUST be specified.
+  // The set of permissions for the resource.
+  ResourcePermissionSet permission_set = 9;
+  // MUST be specified.
+  // The size of the resource in bytes.
+  uint64 size = 10;
 }
 
-enum ACLType {
-    ACL_TYPE_INVALID = 0;
-    ACL_TYPE_USER = 1;
-    ACL_TYPE_GROUP = 2;
-}
-enum ACLMode {
-  ACL_MODE_INVALID = 0;
-  ACL_MODE_READONLY = 1;
-  ACL_MODE_READWRITE = 2;
-}
-
-message Metadata {
-  string id = 1;
-  string filename = 2;
-  uint64 size = 3;
-  uint64 mtime = 4;
-  bool is_dir = 5;
-  string etag = 6;
-  string checksum = 7;
-  Permissions permissions = 8;
-  string mime = 9;
-  bytes sys = 12;
+// The available types of resources.
+enum ResourceType {
+  RESOURCE_TYPE_INVALID = 0;
+  // The container type represents a type
+  // that can contain another types.
+  // Service implementors usually map this type
+  // to folders (local filesystem) or buckets
+  // (Amazon S3).
+  RESOURCE_TYPE_CONTAINER = 1;
+  // The file type represents a type
+  // that holds arbitrary data.
+  // Service implementors usually map this type
+  // to files (local filesystem) or objects
+  // (Amazon S3).
+  RESOURCE_TYPE_FILE = 2;
 }
 
-message Permissions {
-  bool read = 1;
-  bool write = 2;
-  bool share = 3;
+// The checksum to use to verify 
+// the integrity of a resource.
+message ResourceChecksum {
+  // The type of checksum to use.
+  enum ChecksumType {
+    CHECKSUM_TYPE_INVALID = 0;
+    // unset means no checksum is set.
+    CHECKSUM_TYPE_UNSET = 1;
+    // Use Adler32 checksum.
+    CHECKSUM_TYPE_ADLER32 = 2;
+    // Use MD5 checksum.
+    CHECKSUM_TYPE_MD5 = 3;
+  }
+  // MUST be specified.
+  // The type of checksum to use.
+  // If no checksum is provided,
+  // type MUST be CHECKSUM_TYPE_UNSET.
+  ChecksumType type = 1;
+  // MUST be specified if type is not
+  // CHECKSUM_TYPE_UNSET or type is not
+  // CHECKSUM_TYPE_INVALID.
+  // MUST be the hexadecimal representation of the cheksum.
+  string sum = 2;
 }
 
-message DataChunk {
-  uint64 length = 1;
-  uint64 offset = 2;
-  bytes data = 3;
+// The mechanism to identify a resource 
+// in the storage provider namespace. 
+message Reference {
+  // One of the specifications MUST be specified.
+  oneof spec {
+    // The path to the resource.
+    // MUST start with the slash character (/).
+    string path = 1;
+    // The id for the resource.
+    // MUST NOT start with the slash character (/).
+    ResourceId id = 2;
+  }
 }
 
-message Version {
-  string key = 1;
-  uint64 size = 2;
-  uint64 mtime = 3;
-  bool is_dir = 4;
+// A resource id identifies uniquely a 
+// resource in the storage provider namespace.
+// A ResourceId MUST be unique in the storage provider. 
+message ResourceId {
+  // MUST be speficied.
+  // The storage id of the storage provider.
+  string storage_id = 1;
+  // MUST be speficied.
+  // The internal id used by service implementor to
+  // uniquely identity the resource in the internal
+  // implementation of the service.
+  string opaque_id = 2;
+}
+
+// The representation of permissions attached to a resource.
+message ResourcePermissionSet {
+  bool list_container = 1;
+  bool create_container = 2;
+  bool delete = 3;
+  // TODO(labkode): add missing methods.
+
+}
+
+// A grant grants permissions
+// to a resource to a grantee.
+message Grant {
+  // MUST be specified.
+  // The grantee of the grant.
+  Grantee grantee = 1;
+  // MUST be speficied.
+  // The permissions for the grant.
+  ResourcePermissionSet resource_permission_set = 2;
+}
+
+// A grantee is the received of grant.
+message Grantee {
+  // MUST be specified.
+  // The type of the grantee.
+  GranteeType type = 1;
+  // The unique id for the grantee.
+  string id = 2;
+}
+
+// The type of the grantee.
+enum GranteeType {
+  GRANTEE_TYPE_INVALID = 0;
+  // This type represents an individual.
+  GRANTEE_TYPE_USER = 1;
+  // This type represents a group of individuals.
+  GRANTEE_TYPE_GROUP = 2;
+}
+
+// The information for a file version.
+// TODO: make size and mtime REQUIRED?
+message FileVersion {
+  // MAY be specified.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // MUST the specified.
+  // The key to identify the version.
+  string key = 3;
+  // MAY be specified.
+  // The size in bytes of the file version.
+  uint64 size = 4;
+  // MAY
+  uint64 mtime = 5;
 }
 
 message RecycleItem {
-  string key = 1;
-  string filename = 2;
-  uint64 size = 3;
-  uint64 deltime = 4;
-  bool is_dir = 5;
+  cs3.types.Opaque opaque = 1;
+  ResourceType type = 2;
+  string key = 3;
+  string path = 4;
+  uint64 size = 5;
+  uint64 deletion_ts = 6;
 }

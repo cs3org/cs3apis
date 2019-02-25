@@ -44,7 +44,6 @@ message FindResponse {
   StorageProvider storage_provider = 2;
 }
 
-
 message DiscoverRequest {}
 
 message DiscoverResponse {

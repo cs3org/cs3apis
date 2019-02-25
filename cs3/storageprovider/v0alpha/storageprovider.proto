@@ -28,221 +28,428 @@ option php_namespace = "CS3\\StorageProviderV0Alpha";
 
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/types/types.proto";
 
+// Storage Provider API
+// 
+// The Storage Provider API is meant to manipulate storage
+// resources in the underlying storage system behind the service.
+// 
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+// 
+// The following are global requirements that apply to all methods:
+// Any method MUST return `OK` on a succesful operation.
+// Any method MAY return `NOT_IMPLEMENTED`.
+// Any method MAY return `INTERNAL`.
+// Any method MAY return `UNKNOWN`.
+// Any method MAY return `UNAUTHENTICATED`.
 service StorageProviderService {
-  rpc Deref(DerefRequest) returns (DerefResponse);
-  rpc CreateDirectory(CreateDirectoryRequest) returns (CreateDirectoryResponse);
+  // Adds a new grant for the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exist
+  rpc AddGrant(AddGrantRequest) returns (AddGrantResponse);
+  // Creates a new resource of type container.
+  // MUST return `PRECONDITION_FAILED` if the container
+  // cannot be created at the specified reference.
+  rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);
+  // Deletes a resource. 
+  // MUST return `NOT_FOUND` if the reference does not exist
   rpc Delete(DeleteRequest) returns (DeleteResponse);
-  rpc Move(MoveRequest) returns (MoveResponse);
-  rpc Stat(StatRequest) returns (StatResponse);
-  rpc List(ListRequest) returns (stream ListResponse);
-  rpc StartWriteSession(StartWriteSessionRequest) returns (StartWriteSessionResponse);
-  rpc Write(stream WriteRequest) returns (WriteResponse);
-  rpc FinishWriteSession(FinishWriteSessionRequest) returns (FinishWriteSessionResponse);
-  rpc Read(ReadRequest) returns (stream ReadResponse);
-  rpc ListVersions(ListVersionsRequest) returns (stream ListVersionsResponse);
-  rpc ReadVersion(ReadVersionRequest) returns (stream ReadVersionResponse);
-  rpc RestoreVersion(RestoreVersionRequest) returns (RestoreVersionResponse);
-  rpc ListRecycle(ListRecycleRequest) returns (stream ListRecycleResponse);
-  rpc RestoreRecycleItem(RestoreRecycleItemRequest) returns (RestoreRecycleItemResponse);
-  rpc PurgeRecycle(PurgeRecycleRequest) returns (PurgeRecycleResponse);
-  rpc SetACL(SetACLRequest) returns (SetACLResponse);
-  rpc UpdateACL(UpdateACLRequest) returns (UpdateACLResponse);
-  rpc UnsetACL(UnsetACLRequest) returns (UnsetACLResponse);
-  //rpc ListACLs(ListACLsRequest) returns (ListACLsResponse);
+  // Returns the path reference for 
+  // the provided resource id reference.
+  // MUST return `NOT_FOUND` if the reference does not exist
+  rpc GetPath(GetPathRequest) returns (GetPathResponse);
+  // Returns the quota available under the provided
+  // reference.
+  // MUST return `NOT_FOUND` if the reference does not exist
+  // MUST return `RESOURCE_EXHAUSTED` on exceeded quota limits.
   rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse);
+  // Returns the list of grants for the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exists.
+  rpc ListGrants(ListGrantsRequest) returns (ListGrantsResponse);
+  // Returns a list of resource information
+  // for the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exists.
+  rpc ListContainer(ListContainerRequest) returns (ListContainerResponse);
+  // Returns a list of the versions for a resource of 
+  // type file at the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exist.
+  // MUST return `OK` and MUST return an empty list if no versions are available.
+  rpc ListFileVersions(ListFileVersionsRequest) returns (ListFileVersionsResponse);
+  // Returns a list of recycle items for this storage provider.
+  // MUST return `OK` and MUST return an empty list if no recycle items are available.
+  rpc ListRecycle(ListRecycleRequest) returns (ListRecycleResponse);
+  // Moves a resource from one reference to another.
+  // MUST return `NOT_FOUND` if any of the references do not exist.
+  // MUST return `PRECONDITION_FAILED` if the source reference
+  // cannot be moved to the destination reference.
+  rpc Move(MoveRequest) returns (MoveResponse);
+  // Removes a grant for the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exist.
+  // MUST return `NOT_FOUND` if grant does not exist.
+  rpc RemoveGrant(RemoveGrantRequest) returns (RemoveGrantResponse);
+  // Permanently removes a recycle item from the recycle.
+  // This operation is irrevocable.
+  // MUST return `NOT_FOUND` if the recycle item id does not exist.
+  rpc PurgeRecycle(PurgeRecycleRequest) returns (PurgeRecycleResponse);
+  // Restores a file version for the provided reference. 
+  // MUST return `NOT_FOUND` if the reference does not exist.
+  // MUST return `NOT_FOUND` if the version does not exist.
+  rpc RestoreFileVersion(RestoreFileVersionRequest) returns (RestoreFileVersionResponse);
+  // Restores a recycle item from the recycle.
+  // MUST return `NOT_FOUND` if the recycle item id does not exist.
+  // MUST return `PRECONDITION_FAILED` if the restore_path is non-empty 
+  // and the recycle item cannot be restored to the restore_path.
+  rpc RestoreRecycleItem(RestoreRecycleItemRequest) returns (RestoreRecycleItemResponse);
+  // Returns the resource information at the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exist.
+  rpc Stat(StatRequest) returns (StatResponse);
+  // Updates an ACL for the provided reference.
+  // MUST return `NOT_FOUND` if the reference does not exist.
+  // MUST return `PRECONDITION_FAILED` if the acl does not exist.
+  rpc UpdateGrant(UpdateGrantRequest) returns (UpdateGrantResponse);
 }
 
-message DerefRequest {
-  string fid = 1;
+message AddGrantRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The grant to be added.
+  Grant grant = 3;
 }
 
-message DerefResponse {
+message AddGrantResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
-  string filename = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
 }
 
-message CreateDirectoryRequest {
-  string filename = 1;
+message CreateContainerRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
 }
 
-message CreateDirectoryResponse {
+message CreateContainerResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
 }
 
 message DeleteRequest {
-  string filename = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
 }
 
 message DeleteResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
 }
 
-message MoveRequest {
-  string source_filename = 1;
-  string target_filename = 2;
+message GetPathRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The resource id of the resource.
+  ResourceId resource_id = 2;
 }
 
-message MoveResponse {
+message GetPathResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
-}
-
-message StatRequest {
-  string filename = 1;
-}
-
-message StatResponse {
-  cs3.rpc.Status status = 1;
-  Metadata metadata = 2;
-}
-
-message ListRequest {
-  string filename = 1;
-}
-
-message ListResponse {
-  cs3.rpc.Status status = 1;
-  Metadata metadata = 2;
-}
-
-message StartWriteSessionRequest {
-  string filename = 1;
-}
-
-message StartWriteSessionResponse {
-  cs3.rpc.Status status = 1;
-  string session_id = 2;
-}
-
-message WriteRequest {
-  string session_id = 1;
-  uint64 length = 2;
-  uint64 offset = 3;
-  bytes data = 4;
-}
-
-message WriteResponse {
-  cs3.rpc.Status status = 1;
-  uint64 written_bytes = 2;
-  uint64 number_chunks = 3;
-}
-
-message FinishWriteSessionRequest {
-  string session_id = 1;
-  string filename = 2;
-  string checksum = 3;
-}
-
-message FinishWriteSessionResponse {
-  cs3.rpc.Status status = 1;
-}
-
-message ReadRequest {
-  string filename = 1;
-}
-
-message ReadResponse {
-  cs3.rpc.Status status = 1;
-  DataChunk data_chunk = 2;
-}
-
-message ListVersionsRequest {
-  string filename = 1;
-}
-
-message ListVersionsResponse {
-  cs3.rpc.Status status = 1;
-  Version version = 2;
-}
-
-message ReadVersionRequest {
-  string filename = 1;
-  string version_key = 2;
-}
-
-message ReadVersionResponse {
-  cs3.rpc.Status status = 1;
-  DataChunk data_chunk = 2;
-}
-
-message RestoreVersionRequest {
-  string filename = 1;
-  string version_key = 2;
-}
-
-message RestoreVersionResponse {
-  cs3.rpc.Status status = 1;
-}
-
-message ListRecycleRequest {
-  string filename = 1;
-}
-
-message ListRecycleResponse {
-  cs3.rpc.Status status = 1;
-  RecycleItem recycle_item = 2;
-}
-
-message RestoreRecycleItemRequest {
-  string filename = 1;
-  string restore_key = 2;
-}
-
-message RestoreRecycleItemResponse {
-  cs3.rpc.Status status = 1;
-  RecycleItem recycle_item = 2;
-}
-
-message PurgeRecycleRequest {
-  string filename = 1;
-}
-
-message PurgeRecycleResponse {
-  cs3.rpc.Status status = 1;
-}
-
-message SetACLRequest {
-  string filename = 1;
-  ACL acl = 2;
-}
-
-message SetACLResponse {
-  cs3.rpc.Status status = 1;
-}
-
-message UpdateACLRequest {
-  string filename = 1;
-  ACL acl = 2;
-}
-
-message UpdateACLResponse {
-  cs3.rpc.Status status = 1;
-}
-
-message UnsetACLRequest {
-  string filename = 1;
-  ACL acl = 3;
-}
-
-message UnsetACLResponse {
-  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
 }
 
 message GetQuotaRequest {
-  string filename = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
 }
 
 message GetQuotaResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
-  uint64 total_bytes = 2;
-  uint64 used_bytes = 3;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The total available bytes.
+  uint64 total_bytes = 3;
+  // REQUIRED.
+  // The number of used bytes.
+  uint64 used_bytes = 4;
 }
 
-message ListACLsRequest {
-  string filename = 1;
+message ListGrantsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
 }
 
-message ListACLsResponse {
-  cs3.rpc.Status stats = 1;
-  repeated ACL acls = 2;
+message ListGrantsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The grants.
+  repeated Grant grants = 3;
+}
+
+message ListContainerRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message ListContainerResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of resource informations.
+  repeated ResourceInfo infos = 3;
+}
+
+message ListFileVersionsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message ListFileVersionsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of file versions.
+  repeated FileVersion versions = 3;
+}
+
+message ListRecycleRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The start time range to query for recycle items.
+  // The value is the Unix Epoch timestamp in seconds.
+  uint64 from_ts = 2;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The end time range to query for recycle items.
+  // The value is Unix Epoch timestamp in seconds.
+  uint64 to_ts = 3;
+}
+
+message ListRecycleResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of recycle items.
+  repeated RecycleItem recycle_items = 3;
+}
+
+message MoveRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The source reference the resource is moved from.
+  Reference source = 2;
+  // REQUIRED.
+  // The destination reference the resource is moved to.
+  Reference destination = 3;
+}
+
+message MoveResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message PurgeRecycleRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message PurgeRecycleResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message RestoreFileVersionRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The key to restore a specific file version. 
+  string key = 3;
+}
+
+message RestoreFileVersionResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+// TODO: restore to original location if not specified as OPTIONAL?
+message RestoreRecycleItemRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The key for the recycle item to be restored.
+  string key = 3;
+  // OPTIONAL.
+  // An optional restore path for the deleted resource.
+  // It can be useful to restore to another location rather than
+  // the original.
+  // If empty, service implementors MUST restore 
+  // to original location if possible. 
+  string restore_path = 4;
+}
+
+message RestoreRecycleItemResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message RemoveGrantRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The grant to add.
+  Grant grant = 3;
+}
+
+message RemoveGrantResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message StatRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message StatResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The resource information.
+  ResourceInfo info = 3;
+}
+
+message UpdateGrantRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The grant to be updated.
+  Grant grant = 3;
+}
+
+message UpdateGrantResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
 }

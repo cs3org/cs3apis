@@ -1,4 +1,3 @@
-// CS3 Tag API
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,25 +15,20 @@
 
 syntax = "proto3";
 
-package cs3.tagv0alpha;
+package cs3.types;
 
-option csharp_namespace = "CS3.TagV0Alpha";
-option go_package = "tagv0alphapb";
+option go_package = "typespb";
 option java_multiple_files = true;
-option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.tagv0alpha";
-option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\TagV0Alpha";
+option java_outer_classname = "TypesProto";
+option java_package = "com.cs3.types";
+option objc_class_prefix = "CBOXTYPES";
+option php_namespace = "CS3\\TYPES";
 
-message Tag {
-  TagType type = 1;
-  string key = 2;
-  string value = 3;
-  string filename = 4;
+message Opaque {
+  map<string, OpaqueEntry> map = 1;
 }
 
-enum TagType {
-  TAG_TYPE_INVALID = 0;
-  TAG_TYPE_FILE = 1;
-  TAG_TYPE_FOLDER = 2;
+message OpaqueEntry {
+  string decoder = 1;
+  bytes value = 2;
 }
