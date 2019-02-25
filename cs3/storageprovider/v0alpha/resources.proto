@@ -31,37 +31,37 @@ import "cs3/types/types.proto";
 // Represents the information (metadata) about
 // a resource.
 message ResourceInfo {
-  // MAY be specified.
+  // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
-  // MUST be specified.
+  // REQUIRED.
   // The type of the resource (container, file, ...)
   // See the enum ResourceType for all possible types.
   ResourceType type = 2;
-  // MAY be specified.
+  // OPTIONAL.
   // Opaque information.
   ResourceId id = 3;
-  // MUST be specified.
+  // REQUIRED.
   // The checksum for the resource.
   ResourceChecksum checksum = 4;
-  // MUST be specified.
+  // REQUIRED.
   // As decribed in https://tools.ietf.org/html/rfc7232#section-2.3
   string etag = 5;
-  // MUST be specified.
+  // REQUIRED.
   // As described in https://tools.ietf.org/html/rfc2045#page-7
   string mime = 6;
-  // MUST be specified.
+  // REQUIRED.
   // The start time range to query for recycle items.
   // The value is the Unix Epoch timestamp in seconds.
   uint64 mtime = 7;
-  // MUST be specified.
+  // REQUIRED.
   // The path for the resource.
   // It MUST start with the slash character (/).
   string path = 8;
-  // MUST be specified.
+  // REQUIRED.
   // The set of permissions for the resource.
   ResourcePermissionSet permission_set = 9;
-  // MUST be specified.
+  // REQUIRED.
   // The size of the resource in bytes.
   uint64 size = 10;
 }
@@ -96,7 +96,7 @@ message ResourceChecksum {
     // Use MD5 checksum.
     CHECKSUM_TYPE_MD5 = 3;
   }
-  // MUST be specified.
+  // REQUIRED.
   // The type of checksum to use.
   // If no checksum is provided,
   // type MUST be CHECKSUM_TYPE_UNSET.
@@ -126,10 +126,10 @@ message Reference {
 // resource in the storage provider namespace.
 // A ResourceId MUST be unique in the storage provider. 
 message ResourceId {
-  // MUST be speficied.
+  // REQUIRED.
   // The storage id of the storage provider.
   string storage_id = 1;
-  // MUST be speficied.
+  // REQUIRED.
   // The internal id used by service implementor to
   // uniquely identity the resource in the internal
   // implementation of the service.
@@ -141,24 +141,22 @@ message ResourcePermissionSet {
   bool list_container = 1;
   bool create_container = 2;
   bool delete = 3;
-  // TODO(labkode): add missing methods.
-
 }
 
 // A grant grants permissions
 // to a resource to a grantee.
 message Grant {
-  // MUST be specified.
+  // REQUIRED.
   // The grantee of the grant.
   Grantee grantee = 1;
-  // MUST be speficied.
+  // REQUIRED.
   // The permissions for the grant.
   ResourcePermissionSet resource_permission_set = 2;
 }
 
 // A grantee is the received of grant.
 message Grantee {
-  // MUST be specified.
+  // REQUIRED.
   // The type of the grantee.
   GranteeType type = 1;
   // The unique id for the grantee.
@@ -175,26 +173,42 @@ enum GranteeType {
 }
 
 // The information for a file version.
-// TODO: make size and mtime REQUIRED?
+// TODO: make size and mtime OPTIONAL?
 message FileVersion {
-  // MAY be specified.
+  // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // MUST the specified.
   // The key to identify the version.
   string key = 3;
-  // MAY be specified.
+  // REQUIRED.
   // The size in bytes of the file version.
   uint64 size = 4;
-  // MAY
+  // REQUIRED.
+  // The Unix Epoch timestamp in seconds.
   uint64 mtime = 5;
 }
 
+// A recycle items represents the information
+// of a deleted resource.
 message RecycleItem {
+  // OPTIONAL.
+  // Opaque information.
   cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The type of the resource.
   ResourceType type = 2;
+  // REQUIRED.
+  // The key to identify the deleted resource.
   string key = 3;
+  // REQUIRED.
+  // The original path of the deleted resource.
   string path = 4;
+  // OPTIONAL.
+  // The size of the deleted resource.
   uint64 size = 5;
+  // REQUIRED.
+  // The deletion time of the resource
+  // in Unix Epoch timestamp in seconds.
   uint64 deletion_ts = 6;
 }
