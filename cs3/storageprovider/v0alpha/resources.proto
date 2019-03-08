@@ -27,30 +27,68 @@ option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\StorageProviderV0Alpha";
 
 import "cs3/types/types.proto";
-import "google/protobuf/timestamp.proto";
+
+message ProviderInfo {
+  // OPTIONAL.
+  // Opaque information (containing storage-specific information).
+  // For example, additional metadata attached to the resource.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The address where the storage provider can be reached.
+  // For example, tcp://localhost:1099.
+  string address = 2;
+  // OPTIONAL.
+  // Information to describe the functionalities
+  // offered by the storage provider. Meant to be read
+  // by humans.
+  string description = 3;
+  // Represents the list of methods available 
+  // on this storage provider.
+  message Methods {
+    bool add_grant = 1;
+    bool create_container = 2;
+    bool delete = 3;
+    bool get_info = 4;
+    bool get_path = 5;
+    bool get_quota = 6;
+    bool initiate_file_download = 7;
+    bool initiate_file_upload = 8;
+    bool list_grants = 9;
+    bool list_container = 10;
+    bool list_file_versions = 11;
+    bool list_recycle = 12;
+    bool move = 13;
+    bool remove_grant = 14;
+    bool remove_all_grants = 15;
+    bool purge_recycle = 16;
+    bool restore_file_version = 17;
+    bool restore_recycle_item = 18;
+    bool stat = 19;
+    bool update_grant = 20;
+  }
+  // REQUIRED.
+  // List of available methods.
+  Methods available_methods = 4;
+}
 
 // Represents the information (metadata) about
 // a storage resource organized in a hierarchical namespace (file, directory/container, reference, symlink, ...).
 message ResourceInfo {
-
   // OPTIONAL.
   // Opaque information (containing storage-specific information).
-  cs3.types.Opaque opaque = 1; 
-  
+  // For example, additional metadata attached to the resource.
+  cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The type of the resource (container, file, ...)
   // See the enum ResourceType for all possible types.
   ResourceType type = 2;
-  
   // REQUIRED.
   // Opaque identifier of the resource.
   ResourceId id = 3;
-  
   // REQUIRED.
   // The data checksum for the file resource.
   // For all other resources, the checksum is unset.
   ResourceChecksum checksum = 4;
-  
   // REQUIRED.
   // As decribed in https://tools.ietf.org/html/rfc7232#section-2.3
   // For file resources, the etag must change if data or metadata changes.
@@ -58,113 +96,103 @@ message ResourceInfo {
   // For reference types, the etag must change if etag of the target changes and the target is on the same storage provider.
   // In all other cases the etag does not change.
   string etag = 5;
-  
   // REQUIRED.
-  // As described in https://tools.ietf.org/html/rfc2045#page-7
-  string mimetype = 6;
-  
+  // As described in [RFC 2015](https://tools.ietf.org/html/rfc2045#page-7)
+  string mime_type = 6;
   // REQUIRED.
   // Last modification time (mtime) of file or directory contents.
   // For reference types this is NOT the mtime of the target.
-  google.protobuf.Timestamp mtime = 7;
-
+  cs3.types.Timestamp mtime = 7;
   // REQUIRED.
   // The path for the resource.
   // It MUST start with the slash character (/).
   string path = 8;
-  
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
   ResourcePermissionSet permission_set = 9;
-  
   // REQUIRED.
   // The size of the resource in bytes (file size)
-  // TODO: This is undefined for directories (is this recursive?, could it be left 0 for directories if recursive not supported? another field?)
-  // TODO: This needs to be defined also for other types (such as a symlink to a directory or file)
+  // TODO(moscicki): This is undefined for container type.
+  // Is the accounting recursive?, could it be set to 0 for directories if recursive not supported? use another field?
+  // TODO(moscicki): This needs to be defined also for other types (such as a symlink to a directory or file)
   uint64 size = 10;
-
-  // REQUIRED.
-  // Set only for RESOURCE_TYPE_REFERENCE.
+  // REQUIRED only if resource type is RESOURCE_TYPE_REFERENCE.
   Reference target = 11;
-
-  // OPTIONAL.
-  // Additional metadata attached to the resource.
-  ExtraMetadata extra_metadata = 12;
-
 }
 
 // The available types of resources.
 enum ResourceType {
-
-// The file type represents a type
+  RESOURCE_TYPE_INVALID = 0;
+  // The file type represents a type
   // that holds arbitrary data.
   // Service implementors usually map this type
   // to files (local filesystem) or objects
   // (Amazon S3).
-  RESOURCE_TYPE_FILE = 0;
-
+  RESOURCE_TYPE_FILE = 1;
   // The container type represents a type
   // that can contain another types.
   // Service implementors usually map this type
   // to folders (local filesystem) or buckets
   // (Amazon S3).
-  RESOURCE_TYPE_CONTAINER = 1;
-  
-  // This represents a reference type which actually points to another resource where client may be redirected. 
-  // Client is expected to use the target reference for a subsequent redirect call.
-  RESOURCE_TYPE_REFERENCE = 2;
-
-  // This represents a symlink type if underlying storage system support that. Clients are not redirected on symlinks. Symlink
-  // target should not be interpreted by the clients. 
-  RESOURCE_TYPE_SYMLINK = 3;
-
-  // Internal object type of a storage implementation which is not readable nor writable by the client (for example device files on Linux filesystem).
-  // Such an entry is a placeholder in a namespace and may only be moved within the same storage provider or deleted by the client. 
-  RESOURCE_TYPE_INTERNAL = 4; 
-
+  RESOURCE_TYPE_CONTAINER = 2;
+  // This represents a reference type which points
+  // to another resource where client MAY be redirected. 
+  // Client SHOULD use the ResourceInfo.target 
+  // reference for a subsequent call.
+  RESOURCE_TYPE_REFERENCE = 3;
+  // This represents a symbolic link type if the underlying
+  // storage system supports it. 
+  // Symlink target SHOULD NOT be interpreted by the clients. 
+  RESOURCE_TYPE_SYMLINK = 4;
+  // Internal resource type for some specific resources inside
+  // a storage implementation.
+  // For example, this type could be used to represent
+  // a device file on a Linux filesystem.
+  // Another example could be to represent an ongoing upload, 
+  // where an hypothetically user interface could show a loading icon
+  // on this type of resources until the upload operation is completed.
+  // Internal resources SHOULD NOT be moved to a different storage
+  // provider.
+  RESOURCE_TYPE_INTERNAL = 5;
 }
 
-// The checksum to use to verify 
+// The checksum to verify 
 // the integrity of a resource.
 message ResourceChecksum {
-
   // The type of checksum to use.
-  enum ChecksumType {
-    CHECKSUM_TYPE_INVALID = 0;
-
+  enum Type {
+    RESOURCE_CHECKSUM_TYPE_INVALID = 0;
     // unset means no checksum is set.
-    CHECKSUM_TYPE_UNSET = 1;
-
+    RESOURCE_CHECKSUM_TYPE_UNSET = 1;
     // Use Adler32 checksum.
-    CHECKSUM_TYPE_ADLER32 = 2;
-
+    RESOURCE_CHECKSUM_TYPE_ADLER32 = 2;
     // Use MD5 checksum.
-    CHECKSUM_TYPE_MD5 = 3;
+    RESOURCE_CHECKSUM_TYPE_MD5 = 3;
+    // Use SHA-1 checksum.
+    RESOURCE_CHECKSUM_TYPE_SHA1 = 4;
   }
-
   // REQUIRED.
   // The type of checksum to use.
   // If no checksum is provided,
   // type MUST be CHECKSUM_TYPE_UNSET.
-  ChecksumType type = 1;
-
+  Type type = 1;
   // MUST be specified if type is not
   // CHECKSUM_TYPE_UNSET or type is not
   // CHECKSUM_TYPE_INVALID.
   // MUST be the hexadecimal representation of the cheksum.
+  // The value is case-insensitive, so
+  // "1E603A8", "1e603a8" or "1e603A8" are the same.
   string sum = 2;
 }
 
 // The mechanism to identify a resource 
 // in the storage provider namespace. 
 message Reference {
-
   // One of the specifications MUST be specified.
   oneof spec {
     // The path to the resource.
     // MUST start with the slash character (/).
     string path = 1;
-
     // The id for the resource.
     // MUST NOT start with the slash character (/).
     ResourceId id = 2;
@@ -175,11 +203,9 @@ message Reference {
 // resource in the storage provider namespace.
 // A ResourceId MUST be unique in the storage provider. 
 message ResourceId {
-  
   // REQUIRED.
   // The storage id of the storage provider.
   string storage_id = 1;
-
   // REQUIRED.
   // The internal id used by service implementor to
   // uniquely identity the resource in the internal
@@ -187,42 +213,46 @@ message ResourceId {
   string opaque_id = 2;
 }
 
-// The extra metadata attached to the resources.
-enum ExtraMetadata {
-  // TODO:
-  //bool executable = 1;
-  //string osx_labels = 2;
-}
-
 // The representation of permissions attached to a resource.
 message ResourcePermissionSet {
-  // Can read files and list directories.
-  bool read = 1;
-  // Can write files and create new directories.
-  bool write = 2;
-  // Can delete files and directories.
+  bool add_grant = 1;
+  bool create_container = 2;
   bool delete = 3;
+  bool get_path = 5;
+  bool get_quota = 6;
+  bool initiate_file_download = 7;
+  bool initiate_file_upload = 8;
+  bool list_grants = 9;
+  bool list_container = 10;
+  bool list_file_versions = 11;
+  bool list_recycle = 12;
+  bool move = 13;
+  bool remove_grant = 14;
+  bool purge_recycle = 15;
+  bool restore_file_version = 16;
+  bool restore_recycle_item = 17;
+  bool stat = 18;
+  bool update_grant = 19;
 }
 
 // A grant grants permissions
 // to a resource to a grantee.
 message Grant {
-
   // REQUIRED.
   // The grantee of the grant.
   Grantee grantee = 1;
-
   // REQUIRED.
   // The permissions for the grant.
-  ResourcePermissionSet resource_permission_set = 2;
+  ResourcePermissionSet permissions = 2;
 }
 
-// A grantee is the received of grant.
+// A grantee is the receiver of grant.
 message Grantee {
   // REQUIRED.
   // The type of the grantee.
   GranteeType type = 1;
-  // The unique id for the grantee such as a group name, user name or uid.
+  // The unique id for the grantee.
+  // For example, a group name, user name or uuid.
   string id = 2;
 }
 
@@ -236,7 +266,7 @@ enum GranteeType {
 }
 
 // The information for a file version.
-// TODO: make size and mtime OPTIONAL?
+// TODO(labkode): make size and mtime OPTIONAL?
 message FileVersion {
   // OPTIONAL.
   // Opaque information.
@@ -252,7 +282,7 @@ message FileVersion {
   uint64 mtime = 5;
 }
 
-// A recycle items represents the information
+// A recycle item represents the information
 // of a deleted resource.
 message RecycleItem {
   // OPTIONAL.

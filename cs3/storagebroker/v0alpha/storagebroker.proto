@@ -21,7 +21,7 @@ package cs3.storagebrokerv0alpha;
 option csharp_namespace = "CS3.StorageBrokerV0Alpha";
 option go_package = "storagebrokerv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "StorageBrokerProto";
+option java_outer_classname = "StoragebrokerProto";
 option java_package = "com.cs3.storagebrokerv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\StorageBrokerV0Alpha";

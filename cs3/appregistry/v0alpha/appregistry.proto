@@ -1,5 +1,5 @@
-// CS3 AppRegistry API
-// Copyright (C) 2019  CERN IT-ST
+// CS3 APIS
+// Copyright (C) 2018-2019 CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -21,7 +21,7 @@ package cs3.appregistryv0alpha;
 option csharp_namespace = "CS3.AppRegistryV0Alpha";
 option go_package = "appregistryv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "AppRegistryProto";
+option java_outer_classname = "AppregistryProto";
 option java_package = "com.cs3.appregistryv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\AppRegistryV0Alpha";
