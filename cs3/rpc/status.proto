@@ -37,8 +37,4 @@ message Status {
   // user-facing error message should be localized and sent in the
   // [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
   string message = 2;
-  // A list of messages that carry the error details.  There is a common set of
-  // message rpcs for APIs to use.
-  // repeated google.protobuf.Any details = 3;
-
 }

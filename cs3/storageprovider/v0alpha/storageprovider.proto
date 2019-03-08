@@ -21,7 +21,7 @@ package cs3.storageproviderv0alpha;
 option csharp_namespace = "CS3.StorageProviderV0Alpha";
 option go_package = "storageproviderv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "StorageProviderProto";
+option java_outer_classname = "StorageproviderProto";
 option java_package = "com.cs3.storageproviderv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\StorageProviderV0Alpha";
@@ -41,108 +41,92 @@ import "cs3/types/types.proto";
 // RFC 2119.
 // 
 // The following are global requirements that apply to all methods:
-// Any method MUST return `OK` on a succesful operation.
-// Any method MAY return `NOT_IMPLEMENTED`.
-// Any method MAY return `INTERNAL`.
-// Any method MAY return `UNKNOWN`.
-// Any method MAY return `UNAUTHENTICATED`.
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
 service StorageProviderService {
-
-  // TODO: HUGO
-  // Time limited token with DataTransferEndoint (such as HTTP URL)
-  rpc InitiateFileUpload(Reference)  returns (DataTransferEndpoint);
-  rpc InitiateFileDownload(Reference) returns (DataTransferEndpoint);
-
   // Adds a new grant for the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exist
+  // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc AddGrant(AddGrantRequest) returns (AddGrantResponse);
-
   // Creates a new resource of type container.
-  // MUST return `PRECONDITION_FAILED` if the container
+  // MUST return CODE_PRECONDITION_FAILED if the container
   // cannot be created at the specified reference.
   rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);
-
   // Deletes a resource. 
-  // If a resource specifies the non-empty container (directory), then the entire directory is deleted (recursively).
+  // If a resource specifies the non-empty container (directory),
+  // then the entire directory is deleted (recursively).
   // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
-  // MUST return `NOT_FOUND` if the reference does not exist.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
-
+  // Returns the information for this provider.
+  rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
   // Returns the path reference for 
   // the provided resource id reference.
-  // MUST return `NOT_FOUND` if the reference does not exist
+  // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc GetPath(GetPathRequest) returns (GetPathResponse);
-
   // Returns the quota available under the provided
   // reference.
-  // MUST return `NOT_FOUND` if the reference does not exist
-  // MUST return `RESOURCE_EXHAUSTED` on exceeded quota limits.
+  // MUST return CODE_NOT_FOUND if the reference does not exist
+  // MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
   rpc GetQuota(GetQuotaRequest) returns (GetQuotaResponse);
-
+  // Initiates the download of a file using an
+  // out-of-band data transfer mechanism.
+  rpc InitiateFileDownload(InitiateFileDownloadRequest) returns (InitiateFileDownloadResponse);
+  // Initiates the upload of a file using an 
+  // out-of-band data transfer mechanism.
+  rpc InitiateFileUpload(InitiateFileUploadRequest) returns (InitiateFileUploadResponse);
   // Returns the list of grants for the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exists.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
   rpc ListGrants(ListGrantsRequest) returns (ListGrantsResponse);
-
+  // Returns a stream of resource informations
+  // for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
+  rpc ListContainerStream(ListContainerStreamRequest) returns (stream ListContainerStreamResponse);
   // Returns a list of resource information
   // for the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exists.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
   rpc ListContainer(ListContainerRequest) returns (ListContainerResponse);
-
-  // TODO: HUGO
-  rpc ListContainerStream(ListContainerRequest) returns (stream ListContainerResponse);
-
   // Returns a list of the versions for a resource of 
   // type file at the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exist.
-  // MUST return `OK` and MUST return an empty list if no versions are available.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_OK and MUST return an empty list if no versions are available.
   rpc ListFileVersions(ListFileVersionsRequest) returns (ListFileVersionsResponse);
-
+  // Returns a stream of recycle items for this storage provider.
+  rpc ListRecycleStream(ListRecycleStreamRequest) returns (stream ListRecycleStreamResponse);
   // Returns a list of recycle items for this storage provider.
-  // MUST return `OK` and MUST return an empty list if no recycle items are available.
+  // MUST return CODE_OK and MUST return an empty list if no recycle items are available.
   rpc ListRecycle(ListRecycleRequest) returns (ListRecycleResponse);
-
-  // TODO: HUGO
-  rpc ListRecycleStream(ListRecycleRequest) returns (stream ListRecycleResponse);
-
   // Moves a resource from one reference to another.
-  // MUST return `NOT_FOUND` if any of the references do not exist.
-  // MUST return `PRECONDITION_FAILED` if the source reference
+  // MUST return CODE_NOT_FOUND if any of the references do not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the source reference
   // cannot be moved to the destination reference.
   rpc Move(MoveRequest) returns (MoveResponse);
-
   // Removes a grant for the provided reference.
   // This is recursive and atomic for directories. Does not follow references.
-  // MUST return `NOT_FOUND` if the reference does not exist.
-  // MUST return `NOT_FOUND` if grant does not exist.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_NOT_FOUND if grant does not exist.
   rpc RemoveGrant(RemoveGrantRequest) returns (RemoveGrantResponse);
-
-  // Removes all grants for the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exist.
-  rpc RemoveAllGrants(RemoveAllGrantsRequest) returns (RemoveAllGrantsResponse);
-
   // Permanently removes a recycle item from the recycle.
   // This operation is irrevocable.
-  // MUST return `NOT_FOUND` if the recycle item id does not exist.
+  // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
   rpc PurgeRecycle(PurgeRecycleRequest) returns (PurgeRecycleResponse);
-
   // Restores a file version for the provided reference. 
-  // MUST return `NOT_FOUND` if the reference does not exist.
-  // MUST return `NOT_FOUND` if the version does not exist.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_NOT_FOUND if the version does not exist.
   rpc RestoreFileVersion(RestoreFileVersionRequest) returns (RestoreFileVersionResponse);
-
   // Restores a recycle item from the recycle.
-  // MUST return `NOT_FOUND` if the recycle item id does not exist.
-  // MUST return `PRECONDITION_FAILED` if the restore_path is non-empty 
+  // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty 
   // and the recycle item cannot be restored to the restore_path.
   rpc RestoreRecycleItem(RestoreRecycleItemRequest) returns (RestoreRecycleItemResponse);
-
   // Returns the resource information at the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exist.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Stat(StatRequest) returns (StatResponse);
-  
   // Updates an ACL for the provided reference.
-  // MUST return `NOT_FOUND` if the reference does not exist.
-  // MUST return `PRECONDITION_FAILED` if the acl does not exist.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
   rpc UpdateGrant(UpdateGrantRequest) returns (UpdateGrantResponse);
 }
 
@@ -203,6 +187,24 @@ message DeleteResponse {
   cs3.types.Opaque opaque = 2;
 }
 
+message GetProviderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+}
+
+message GetProviderResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The information for the storage provider.
+  ProviderInfo info = 3;
+}
+
 message GetPathRequest {
   // OPTIONAL.
   // Opaque information.
@@ -242,6 +244,52 @@ message GetQuotaResponse {
   uint64 used_bytes = 4;
 }
 
+message InitiateFileUploadRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message InitiateFileUploadResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The endpoint where to upload the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string upload_endpoint = 3;
+}
+
+message InitiateFileDownloadRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message InitiateFileDownloadResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The endpoint where to downooad the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string download_endpoint = 3;
+}
+
 message ListGrantsRequest {
   // OPTIONAL.
   // Opaque information.
@@ -261,6 +309,27 @@ message ListGrantsResponse {
   // REQUIRED.
   // The grants.
   repeated Grant grants = 3;
+}
+
+message ListContainerStreamRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message ListContainerStreamResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The resource information.
+  ResourceInfo info = 3;
 }
 
 message ListContainerRequest {
@@ -313,12 +382,12 @@ message ListRecycleRequest {
   // SHOULD be specified.
   // The start time range to query for recycle items.
   // The value is the Unix Epoch timestamp in seconds.
-  uint64 from_ts = 2;
+  cs3.types.Timestamp from_ts = 2;
   // OPTIONAL.
   // SHOULD be specified.
   // The end time range to query for recycle items.
   // The value is Unix Epoch timestamp in seconds.
-  uint64 to_ts = 3;
+  cs3.types.Timestamp to_ts = 3;
 }
 
 message ListRecycleResponse {
@@ -331,6 +400,34 @@ message ListRecycleResponse {
   // REQUIRED.
   // The list of recycle items.
   repeated RecycleItem recycle_items = 3;
+}
+
+message ListRecycleStreamRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The start time range to query for recycle items.
+  // The value is the Unix Epoch timestamp in seconds.
+  cs3.types.Timestamp from_ts = 2;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The end time range to query for recycle items.
+  // The value is Unix Epoch timestamp in seconds.
+  cs3.types.Timestamp to_ts = 3;
+}
+
+message ListRecycleStreamResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The recycle items.
+  RecycleItem recycle_item = 3;
 }
 
 message MoveRequest {
@@ -414,24 +511,6 @@ message RestoreRecycleItemRequest {
 }
 
 message RestoreRecycleItemResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-}
-
-message RemoveAllGrantsRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-}
-
-message RemoveAllGrantsResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
