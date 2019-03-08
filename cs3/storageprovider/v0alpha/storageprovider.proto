@@ -80,6 +80,10 @@ service StorageProviderService {
   // Returns the list of grants for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exists.
   rpc ListGrants(ListGrantsRequest) returns (ListGrantsResponse);
+  // Returns a stream of resource informations
+  // for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
+  rpc ListContainerStream(ListContainerStreamRequest) returns (stream ListContainerStreamResponse);
   // Returns a list of resource information
   // for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exists.
@@ -89,6 +93,8 @@ service StorageProviderService {
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_OK and MUST return an empty list if no versions are available.
   rpc ListFileVersions(ListFileVersionsRequest) returns (ListFileVersionsResponse);
+  // Returns a stream of recycle items for this storage provider.
+  rpc ListRecycleStream(ListRecycleStreamRequest) returns (stream ListRecycleStreamResponse);
   // Returns a list of recycle items for this storage provider.
   // MUST return CODE_OK and MUST return an empty list if no recycle items are available.
   rpc ListRecycle(ListRecycleRequest) returns (ListRecycleResponse);
@@ -304,6 +310,27 @@ message ListGrantsResponse {
   repeated Grant grants = 3;
 }
 
+message ListContainerStreamRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+}
+
+message ListContainerStreamResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The resource information.
+  ResourceInfo info = 3;
+}
+
 message ListContainerRequest {
   // OPTIONAL.
   // Opaque information.
@@ -372,6 +399,34 @@ message ListRecycleResponse {
   // REQUIRED.
   // The list of recycle items.
   repeated RecycleItem recycle_items = 3;
+}
+
+message ListRecycleStreamRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The start time range to query for recycle items.
+  // The value is the Unix Epoch timestamp in seconds.
+  cs3.types.Timestamp from_ts = 2;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The end time range to query for recycle items.
+  // The value is Unix Epoch timestamp in seconds.
+  cs3.types.Timestamp to_ts = 3;
+}
+
+message ListRecycleStreamResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The recycle items.
+  RecycleItem recycle_item = 3;
 }
 
 message MoveRequest {
