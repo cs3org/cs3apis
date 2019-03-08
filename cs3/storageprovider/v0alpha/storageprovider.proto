@@ -111,6 +111,7 @@ service StorageProviderService {
   rpc Move(MoveRequest) returns (MoveResponse);
 
   // Removes a grant for the provided reference.
+  // This is recursive and atomic for directories. Does not follow references.
   // MUST return `NOT_FOUND` if the reference does not exist.
   // MUST return `NOT_FOUND` if grant does not exist.
   rpc RemoveGrant(RemoveGrantRequest) returns (RemoveGrantResponse);

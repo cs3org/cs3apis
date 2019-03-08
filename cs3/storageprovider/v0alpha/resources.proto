@@ -83,13 +83,17 @@ message ResourceInfo {
   // TODO: This needs to be defined also for other types (such as a symlink to a directory or file)
   uint64 size = 10;
 
+  // REQUIRED:
+  // Identifier of the owner of the resource.
+  string owner = 11;
+
   // REQUIRED.
   // Set only for RESOURCE_TYPE_REFERENCE.
-  Reference target = 11;
+  Reference target = 12;
 
   // OPTIONAL.
   // Additional metadata attached to the resource.
-  ExtraMetadata extra_metadata = 12;
+  ExtraMetadata extra_metadata = 13;
 
 }
 
