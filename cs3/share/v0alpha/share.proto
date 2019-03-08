@@ -29,22 +29,50 @@ option php_namespace = "CS3\\ShareV0Alpha";
 import "cs3/rpc/status.proto";
 import "cs3/share/v0alpha/resources.proto";
 
+// Manage shares of the authenticated user.
+// 
 service ShareService {
+  // TODO: specify the response status if a share was already created for the tuple (shared_resource,recipent, owner)
+  // TODO: specify the response status if the authenticated user/owner does not have access permissions to the shared_resource.
+  // New shares are created in the PENDING state.
   rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
-  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
-  rpc ListShares(ListSharesRequest) returns (stream ListSharesResponse);
-  rpc Unshare(UnshareRequest) returns (UnshareResponse);
+
+  // Remove the share.
+  rpc RemoveShare(RemoveShareRequest) returns (RemoveShareResponse);
+
+  // Get share information for a single share.
   rpc GetShare(GetShareRequest) returns (GetShareResponse);
-  rpc ListReceivedShares(ListReceivedSharesRequest) returns (stream ListReceivedSharesResponse);
-  rpc AcceptReceivedShare(AcceptReceivedShareRequest) returns (AcceptReceivedShareResponse);
-  rpc RejectReceivedShare(RejectReceivedShareRequest) returns (RejectReceivedShareResponse);
+
+  // List shares for a given storage resource.
+  // This only lists the shares in the context of the current authenticated user (so for example, if some other user created shares 
+  // for the same resource, these will not be listed).
+  rpc ListShares(ListSharesRequest) returns (ListSharesResponse);
+
+  // List all shares created and owned by the authenticated user.
+  rpc ListAllCreatedShares(ListAllSharesRequest) returns (ListSharesResponse);
+
+  // List all shares received by the authenticated user.
+  rpc ListAllReceivedShares(ListAllSharesRequest) returns (ListSharesResponse);
+
+  // Update share attributes such as granted_permissions or display_name.
+  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
+
+  // Updated by a recipient.
+  // TODO: in case of group shares that means that a new object must be created!
+  rpc AcceptShare(AcceptReceivedShareRequest) returns (AcceptReceivedShareResponse);
+  rpc RejectShare(RejectReceivedShareRequest) returns (RejectReceivedShareResponse);
 }
 
 message CreateShareRequest {
-  string filename = 1;
-  Permissions permissions = 2;
-  string target = 3;
-  TargetType target_type = 4;
+
+   // Unique identifier of the shared resource.
+   ResourceId shared_resource = 1;
+
+   // Permissions for the share_recipent to use the resource (and possibly take further sharing actions).
+   SharePermissionSet granted_permissions = 2;
+
+   // A person or group who receives the share.
+   Grantee recipent = 3;
 }
 
 message CreateShareResponse {
@@ -52,36 +80,39 @@ message CreateShareResponse {
   Share share = 2;
 }
 
-message UpdateShareRequest {
-  string share_id = 1;
-  UpdatePolicy update_policy = 2;
-  Permissions permissions = 3;
+message UpdateShareRequest{
+  ShareRef share_ref = 1;
+  oneof update {
+    Permissions permissions = 1;
+    string display_name = 2;
+    bool accept = 3; // true => SHARE_STATE_ACCEPTED, false => SHARE_STATE_REJECTED
+  }
 }
 
-message UpdateShareResponse {
+message UpdateSharePermissionsResponse {
   cs3.rpc.Status status = 1;
   Share share = 2;
 }
 
 message ListSharesRequest {
-  string filename = 1;
+  ResourceId shared_resource = 1;
 }
 
 message ListSharesResponse {
   cs3.rpc.Status status = 1;
-  Share share = 2;
+  repeated Share share = 2;
 }
 
-message UnshareRequest {
+message RemoveShareRequest {
   string share_id = 1;
 }
 
-message UnshareResponse {
+message RemoveShareResponse {
   cs3.rpc.Status status = 1;
 }
 
 message GetShareRequest {
-  string share_id = 1;
+  ShareRef share_ref = 1;
 }
 
 message GetShareResponse {
@@ -89,25 +120,24 @@ message GetShareResponse {
   Share share = 2;
 }
 
-message ListReceivedSharesRequest {}
+message ListAllSharesRequest {}
 
-message ListReceivedSharesResponse {
-  cs3.rpc.Status status = 1;
-  ReceivedShare received_share = 2;
-}
-
+// TODO: FIXME
 message AcceptReceivedShareRequest {
   string share_id = 1;
 }
 
+// TODO: FIXME
 message AcceptReceivedShareResponse {
   cs3.rpc.Status status = 1;
 }
 
+// TODO: FIXME
 message RejectReceivedShareRequest {
   string share_id = 1;
 }
 
+// TODO: FIXME
 message RejectReceivedShareResponse {
   cs3.rpc.Status status = 1;
 }

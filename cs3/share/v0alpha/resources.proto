@@ -26,49 +26,79 @@ option java_package = "com.cs3.sharev0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\ShareV0Alpha";
 
-enum TargetType {
-  TARGET_TYPE_INVALID = 0;
-  TARGET_TYPE_USER = 1;
-  TARGET_TYPE_GROUP = 2;
+import "cs3/storageprovider/v0alpha/resources.proto";
+
+message SharePermissionSet {
+    ResourcePermissionSet resource_permissions = 1;
+    // additional permissions on the shared object itself may be specified here, such as "reshare"
 }
 
-message Permissions {
-  bool read = 1;
-  bool modify = 2;
+message ShareId {
+     // full, opaque identifier of a share in within one ShareService
+    string id = 1;  
 }
+
+// Shares are relations between resource owner (usually the authenticated user) who grants permissions to a share_recipent (grantee) 
+// on a specified resource.
 
 message Share {
-  string id = 1;
-  string filename = 2;
-  string target = 3;
-  TargetType target_type = 4;
-  Permissions permissions = 5;
-  uint64 ctime = 6;
-  uint64 mtime = 7;
-  string display_name = 8;
-  string owner = 9;
+  // Unique identifier of the share.
+  ShareId id = 1;
+
+  // Unique identifier of the shared resource.
+  ResourceId shared_resource = 2;
+
+  // Permissions for the share_recipent to use the resource (and possibly take further sharing actions)
+  SharePermissionSet granted_permissions = 3;
+
+  // A person or group which receives the share.
+  Grantee recipent = 4;
+
+  // Unique identifier of the owner of the share (the resource owner at the time of creating the share).
+  // In case the ownership of the underlying resource changes the share owner may but does not have to reflect this fact.
+  // A former owner of the share may thus be re
+  string owner = 5;
+
+  // Unique identifier of a user or entity who created the share on behalf of the owner.
+  // Usually this is equivalent to the owner.
+  string creator = 6;
+
+  // Creation time of the share.
+  google.protobuf.Timestamp ctime = 7;
+
+  // Last modification time of the share.
+  google.protobuf.Timestamp mtime = 8;
+
+  // Display name of the shared resource (such as the file or directory basename).
+  // The display name may be different then the actual resource basename.
+  string display_name = 9;
+
+  // State of the share.
+  // New shares are in NEW state and the recipent may subsequently update the status.
+  // TODO: in case of group shares that means that a new object must be created!
+  ShareState state = 10; 
+
 }
 
-message UpdatePolicy {
-  bool update_permissions = 1;
+enum ShareState {
+  SHARE_STATE_INVALID = 0;
+  SHARE_STATE_NEW = 1;
+  SHARE_STATE_ACCEPTED = 2;
+  SHARE_STATE_REJECTED = 3;
 }
 
-message ReceivedShare {
-  string id = 1;
-  string filename = 2;
-  string target = 3;
-  TargetType target_type = 4;
-  Permissions permissions = 5;
-  uint64 ctime = 6;
-  uint64 mtime = 7;
-  string display_name = 8;
-  string owner = 9;
-  ReceivedShareState state = 10;
+// ShareKey uniquely identifies a share object in the context of the authenticated user (share owner).
+// There may not be more than one share object with the same key.
+message ShareKey {
+  string owner = 1;
+  ResourceId resource = 2;
+  Grantee recipient = 3;
 }
 
-enum ReceivedShareState {
-  RECEIVED_SHARE_STATE_INVALID = 0;
-  RECEIVED_SHARE_STATE_ACCEPTED = 1;
-  RECEIVED_SHARE_STATE_REJECTED = 2;
-  RECEIVED_SHARE_STATE_PENDING = 3;
+// ShareRef uniquely identifies a share object by id or by key.
+message ShareRef {
+  oneof ref {
+    string share_id = 1;
+    ShareKey key = 1;
+  }
 }
