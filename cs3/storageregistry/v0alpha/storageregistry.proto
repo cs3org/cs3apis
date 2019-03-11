@@ -1,0 +1,97 @@
+// CS3 StorageRegistry API
+// Copyright (C) 2018  CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cs3.storageregistryv0alpha;
+
+option csharp_namespace = "CS3.StorageRegistryV0Alpha";
+option go_package = "storageregistryv0alphapb";
+option java_multiple_files = true;
+option java_outer_classname = "StorageregistryProto";
+option java_package = "com.cs3.storageregistryv0alpha";
+option objc_class_prefix = "CBOXSTORAGEREGISTRY";
+option php_namespace = "CS3\\StorageRegistryV0Alpha";
+
+import "cs3/rpc/status.proto";
+import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/types/types.proto";
+
+// Storage Registry API
+// 
+// The Storage Registry API is meant to as registry to obtain
+// information of available storage providers.
+// 
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+// 
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service StorageRegistryService {
+  // Returns the storage provider that is reponsible for the given
+  // resource reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
+  // Returns a list of the available storage providers known by this registry.
+  rpc ListStorageProviders(ListStorageProvidersRequest) returns (ListStorageProvidersResponse);
+  // TODO(labkode): missing methods for adding and removing a storage provider
+  // with different visibility levels (system-wide, user-wide, group-wide)...
+
+}
+
+message GetStorageProviderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference for the resource.
+  cs3.storageproviderv0alpha.Reference ref = 2;
+}
+
+message GetStorageProviderResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message ListStorageProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // TODO(labkode): maybe add some filter?
+
+}
+
+message ListStorageProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of storage providers this registry knows about.
+  repeated cs3.storageproviderv0alpha.ProviderInfo storage_providers = 3;
+}
