@@ -28,6 +28,7 @@ option php_namespace = "CS3\\StorageProviderV0Alpha";
 
 import "cs3/types/types.proto";
 
+// Represents the information of the storage provider.
 message ProviderInfo {
   // OPTIONAL.
   // Opaque information (containing storage-specific information).
@@ -83,7 +84,7 @@ message ResourceInfo {
   // See the enum ResourceType for all possible types.
   ResourceType type = 2;
   // REQUIRED.
-  // Opaque identifier of the resource.
+  // Opaque unique identifier of the resource.
   ResourceId id = 3;
   // REQUIRED.
   // The data checksum for the file resource.
@@ -109,25 +110,36 @@ message ResourceInfo {
   string path = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
-  ResourcePermissionSet permission_set = 9;
+  ResourcePermissions permission_set = 9;
   // REQUIRED.
   // The size of the resource in bytes (file size)
   // TODO(moscicki): This is undefined for container type.
   // Is the accounting recursive?, could it be set to 0 for directories if recursive not supported? use another field?
   // TODO(moscicki): This needs to be defined also for other types (such as a symlink to a directory or file)
   uint64 size = 10;
-
   // REQUIRED:
   // Identifier of the owner of the resource.
   string owner = 11;
-
-  // REQUIRED.
-  // Set only for RESOURCE_TYPE_REFERENCE.
-  Reference target = 12;
-
   // OPTIONAL.
   // Additional metadata attached to the resource.
+  // If resource type is RESOURCE_TYPE_REFERENCE it MUST
+  // be specified.
   ExtraMetadata extra_metadata = 13;
+}
+
+// ExtraMetadata contains extra metadata
+// attached to a resource. This message and the Opaque
+// message differ in that Opaque allows service implementors
+// to include any extra metadata in any format and most clients
+// will ignore it. However, the ExtraMetadata message
+// contains well defined fileds that clients MUST understand if 
+// they are specified.
+message ExtraMetadata {
+  // REQUIRED if resource type is RESOURCE_TYPE_REFERENCE.
+  // The target reference the resource points to.
+  Reference target = 1;
+  // TODO(moscicki): what fields can fit here? executable bit?
+  // bool executable = 2;
 
 }
 
@@ -199,6 +211,7 @@ message ResourceChecksum {
 // The mechanism to identify a resource 
 // in the storage provider namespace. 
 message Reference {
+  // REQUIRED.
   // One of the specifications MUST be specified.
   oneof spec {
     // The path to the resource.
@@ -225,7 +238,7 @@ message ResourceId {
 }
 
 // The representation of permissions attached to a resource.
-message ResourcePermissionSet {
+message ResourcePermissions {
   bool add_grant = 1;
   bool create_container = 2;
   bool delete = 3;
@@ -254,7 +267,7 @@ message Grant {
   Grantee grantee = 1;
   // REQUIRED.
   // The permissions for the grant.
-  ResourcePermissionSet permissions = 2;
+  ResourcePermissions permissions = 2;
 }
 
 // A grantee is the receiver of grant.
