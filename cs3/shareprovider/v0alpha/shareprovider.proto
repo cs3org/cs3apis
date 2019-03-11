@@ -1,0 +1,262 @@
+// CS3 APIS
+// Copyright (C) 2018-2019 CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cs3.shareproviderv0alpha;
+
+option csharp_namespace = "CS3.ShareProviderV0Alpha";
+option go_package = "shareproviderv0alphapb";
+option java_multiple_files = true;
+option java_outer_classname = "ShareproviderProto";
+option java_package = "com.cs3.shareproviderv0alpha";
+option objc_class_prefix = "CBOXSHAREPROVIDER";
+option php_namespace = "CS3\\ShareProviderV0Alpha";
+
+import "cs3/rpc/status.proto";
+import "cs3/shareprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/types/types.proto";
+
+// Storage Provider API
+// 
+// The Share Provider API is meant to manipulate share
+// resources for a specific share type (user, group, ocm, ...)
+// from the perspective of the creator or the share and
+// from the perspective of the receiver of the share.
+// 
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+// 
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service ShareProviderService {
+  // Returns the information for this provider.
+  rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
+  // Creates a new share.
+  // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+  // (owner, shared_resource, grantee). 
+  // New shares MUST be created in the state SHARE_STATE_PENDING.
+  rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
+  // Removes a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc RemoveShare(RemoveShareRequest) returns (RemoveShareResponse);
+  // Gets share information for a single share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc GetShare(GetShareRequest) returns (GetShareResponse);
+  // List the shares the authenticated principal has created,
+  // both as owner and creator. If a filter is specified, only 
+  // shares satisfying the filter MUST be returned.
+  rpc ListShares(ListSharesRequest) returns (ListSharesResponse);
+  // Updates a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
+  // List all shares the authenticated principal has received.
+  rpc ListReceivedShares(ListReceivedSharesRequest) returns (ListReceivedSharesResponse);
+  // Update the received share to change the share state or the display name.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateReceivedShare(UpdateReceivedShareRequest) returns (UpdateReceivedShareResponse);
+}
+
+message CreateShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The unique identifier for the shared storage resource.
+  cs3.storageproviderv0alpha.ResourceId resource_id = 2;
+  // REQUIRED.
+  // The share grant for the share.
+  ShareGrant grant = 3;
+}
+
+message CreateShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The created share.
+  Share share = 3;
+}
+
+message UpdateShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+
+  ShareReference ref = 2;
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the permissions.
+      SharePermissions permissions = 2;
+      // Update the display name.
+      string display_name = 3;
+    }
+  }
+  UpdateField field = 3;
+}
+
+message UpdateShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message ListSharesRequest {
+  // REQUIRED.
+  // If true, the response MUST include only 
+  // shares that satisfy the filter.
+  bool apply_filter = 1;
+  // The filter to apply.
+  message FilterBy {
+    cs3.storageproviderv0alpha.ResourceId resource_id = 1;
+    // TODO(labkode): add filter by owner, initiator, ...?
+
+  }
+  // REQUIRED only when apply_filter is set to true.
+  FilterBy filter = 2;
+}
+
+message ListSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of shares.
+  repeated Share share = 3;
+}
+
+message RemoveShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  ShareReference ref = 2;
+}
+
+message RemoveShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message GetShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  ShareReference ref = 2;
+}
+
+message GetShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  Share share = 3;
+}
+
+message ListReceivedSharesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+}
+
+message ListReceivedSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of received shares.
+  repeated ReceivedShare shares = 3;
+}
+
+message UpdateReceivedShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  ShareReference ref = 2;
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the display name.
+      string display_name = 1;
+      // Update the share state
+      ShareState state = 2;
+      // Update the mount path.
+      string mount_path = 3;
+    }
+  }
+  UpdateField field = 3;
+}
+
+message UpdateReceivedShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message GetProviderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+}
+
+message GetProviderResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The information for the share provider.
+  ProviderInfo info = 3;
+}

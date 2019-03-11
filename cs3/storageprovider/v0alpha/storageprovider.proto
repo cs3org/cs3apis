@@ -55,8 +55,8 @@ service StorageProviderService {
   // cannot be created at the specified reference.
   rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);
   // Deletes a resource. 
-  // If a resource specifies the non-empty container (directory),
-  // then the entire directory is deleted (recursively).
+  // If a resource specifies the non-empty container (directory, ...),
+  // then the entire directory is deleted recursively.
   // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
