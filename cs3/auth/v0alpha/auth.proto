@@ -35,8 +35,8 @@ service AuthService {
 }
 
 message GenerateAccessTokenRequest {
-  string username = 1;
-  string password = 2;
+  string client_id = 1;
+  string client_secret = 2;
 }
 
 message GenerateAccessTokenResponse {
