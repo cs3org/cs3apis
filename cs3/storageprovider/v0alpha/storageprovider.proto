@@ -92,6 +92,7 @@ service StorageProviderService {
   // type file at the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_OK and MUST return an empty list if no versions are available.
+  // TODO: What code if resource not of type file?
   rpc ListFileVersions(ListFileVersionsRequest) returns (ListFileVersionsResponse);
   // Returns a stream of recycle items for this storage provider.
   rpc ListRecycleStream(ListRecycleStreamRequest) returns (stream ListRecycleStreamResponse);

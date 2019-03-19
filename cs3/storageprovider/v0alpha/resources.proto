@@ -57,31 +57,13 @@ message ProviderInfo {
   string description = 5;
   // Represents the list of methods available 
   // on this storage provider.
-  message Methods {
-    bool add_grant = 1;
-    bool create_container = 2;
-    bool delete = 3;
-    bool get_info = 4;
-    bool get_path = 5;
-    bool get_quota = 6;
-    bool initiate_file_download = 7;
-    bool initiate_file_upload = 8;
-    bool list_grants = 9;
-    bool list_container = 10;
-    bool list_file_versions = 11;
-    bool list_recycle = 12;
-    bool move = 13;
-    bool remove_grant = 14;
-    bool remove_all_grants = 15;
-    bool purge_recycle = 16;
-    bool restore_file_version = 17;
-    bool restore_recycle_item = 18;
-    bool stat = 19;
-    bool update_grant = 20;
+  message Features {
+    bool recycle_bin = 1; // all recycle methods will return CODE_UNIMPLEMENTED
+    bool file_versions = 2; // ...
   }
   // REQUIRED.
   // List of available methods.
-  Methods available_methods = 6;
+  Features features = 6;
 }
 
 // Represents the information (metadata) about
@@ -338,5 +320,5 @@ message RecycleItem {
   // REQUIRED.
   // The deletion time of the resource
   // in Unix Epoch timestamp in seconds.
-  uint64 deletion_ts = 6;
+  Timestamp deletion_time = 6;
 }

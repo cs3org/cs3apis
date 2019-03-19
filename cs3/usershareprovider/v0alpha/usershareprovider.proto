@@ -136,7 +136,10 @@ message ListSharesRequest {
   // shares that satisfy the filter.
   bool apply_filter = 1;
   // The filter to apply.
-  message FilterBy {
+
+  // TODO: REVIEW? COMPATIBILITY WITH NEWER CLIENTS?
+  oneof FilterBy {
+    bool all_shares = 1;
     cs3.storageproviderv0alpha.ResourceId resource_id = 1;
     // TODO(labkode): add filter by owner, initiator, ...?
 
