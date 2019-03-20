@@ -88,6 +88,9 @@ service StorageProviderService {
   // for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exists.
   rpc ListContainer(ListContainerRequest) returns (ListContainerResponse);
+  // Returns a list of resource information
+  // for the provided search query.
+  rpc SearchContainer(SearchContainerRequest) returns (SearchContainerResponse);
   // Returns a list of the versions for a resource of 
   // type file at the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
@@ -351,6 +354,49 @@ message ListContainerResponse {
   // REQUIRED.
   // The list of resource informations.
   repeated ResourceInfo infos = 3;
+}
+
+message SearchContainerRequest {
+  // based on encrypted cursor based bidirectional paging
+  // with added offset for fast scrolling to the middle of the list
+  // see https://hackernoon.com/guys-were-doing-pagination-wrong-f6c18a91b232
+  int32 limit = 1;
+  // pages either start
+  oneof page {
+    // from a before or after token of a preceeding response
+    // it contains the current sort column, direction and the last value of the previous page
+    string token = 2
+    // at an offset to allow direct jumping
+    int32 offset = 3
+  }
+  // a lucene search query, for a good read see https://www.javacodegeeks.com/2015/09/advanced-lucene-query-examples.html
+  string query = 4;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 5;
+}
+
+message SearchContainerResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // a before and after token for the next request
+  // it contains the current sort column, direction and the last value of the page
+  string before = 2;
+  string after = 3;
+  // OPTIONAL.
+  // total number of results for page stats
+  int32 total = 4;
+  // OPTIONAL.
+  // current offset
+  int32 offset = 5;  
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 6;
+  // REQUIRED.
+  // The list of resource informations.
+  repeated ResourceInfo infos = 7;
 }
 
 message ListFileVersionsRequest {
