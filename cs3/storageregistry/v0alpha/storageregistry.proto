@@ -74,6 +74,9 @@ message GetStorageProviderResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The storage provider for the requested resource reference.
+  cs3.storageproviderv0alpha.ProviderInfo storage_providers = 3;
 }
 
 message ListStorageProvidersRequest {
