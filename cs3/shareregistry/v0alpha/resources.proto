@@ -1,0 +1,61 @@
+// CS3 APIS
+// Copyright (C) 2018-2019 CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cs3.shareregistryv0alpha;
+
+option csharp_namespace = "CS3.ShareRegistryV0Alpha";
+option go_package = "shareregistryv0alphapb";
+option java_multiple_files = true;
+option java_outer_classname = "ShareregistryProto";
+option java_package = "com.cs3.shareregistryv0alpha";
+option objc_class_prefix = "CBOXSTORAGEREGISTRY";
+option php_namespace = "CS3\\ShareRegistryV0Alpha";
+
+import "cs3/types/types.proto";
+
+// Represents the information of the share provider.
+message ProviderInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The share type that will become part of the 
+  // share id.
+  // For example, if the share_type is "user", shares obtained
+  // from this storage provider will have a share id like "user:1234"
+  // or "ocm:1234" or "group:8838".
+  ShareType share_type = 2;
+  // REQUIRED.
+  // The address where the share provider can be reached.
+  // For example, tcp://localhost:1099.
+  string address = 3;
+  // OPTIONAL.
+  // Information to describe the functionalities
+  // offered by the share provider. Meant to be read
+  // by humans.
+  string description = 4;
+}
+
+// The differentes type of share types.
+enum ShareType {
+  SHARE_TYPE_INVALID = 0;
+  SHARE_TYPE_USER = 1;
+  SHARE_TYPE_GROUP = 2;
+  SHARE_TYPE_PUBLIC_LINK = 3;
+  SHARE_TYPE_OCM = 4;
+}

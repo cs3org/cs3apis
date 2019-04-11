@@ -23,7 +23,7 @@ option go_package = "appregistryv0alphapb";
 option java_multiple_files = true;
 option java_outer_classname = "AppregistryProto";
 option java_package = "com.cs3.appregistryv0alpha";
-option objc_class_prefix = "CBOXAB";
+option objc_class_prefix = "CBOXAPPREGISTRY";
 option php_namespace = "CS3\\AppRegistryV0Alpha";
 
 import "cs3/appregistry/v0alpha/resources.proto";

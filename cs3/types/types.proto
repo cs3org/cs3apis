@@ -80,11 +80,3 @@ message UserId {
   string opaque_id = 2;
 }
 
-// The differentes type of share types.
-enum ShareType {
-  SHARE_TYPE_INVALID = 0;
-  SHARE_TYPE_USER = 1;
-  SHARE_TYPE_GROUP = 2;
-  SHARE_TYPE_PUBLIC_LINK = 3;
-  SHARE_TYPE_OCM = 4;
-}

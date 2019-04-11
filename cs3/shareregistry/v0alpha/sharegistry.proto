@@ -1,4 +1,4 @@
-// CS3 StorageRegistry API
+// CS3 APIS
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,24 +16,26 @@
 
 syntax = "proto3";
 
-package cs3.storageregistryv0alpha;
+package cs3.shareregistryv0alpha;
 
-option csharp_namespace = "CS3.StorageRegistryV0Alpha";
-option go_package = "storageregistryv0alphapb";
+option csharp_namespace = "CS3.ShareRegistryV0Alpha";
+option go_package = "shareregistryv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "StorageregistryProto";
-option java_package = "com.cs3.storageregistryv0alpha";
+option java_outer_classname = "ShareregistryProto";
+option java_package = "com.cs3.shareregistryv0alpha";
 option objc_class_prefix = "CBOXSTORAGEREGISTRY";
-option php_namespace = "CS3\\StorageRegistryV0Alpha";
+option php_namespace = "CS3\\ShareRegistryV0Alpha";
 
 import "cs3/rpc/status.proto";
-import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/shareregistry/v0alpha/resources.proto";
 import "cs3/types/types.proto";
 
-// Storage Registry API
+// Share Registry API
 // 
-// The Storage Registry API is meant to as registry to obtain
-// information of available storage providers.
+// The Share Registry API is meant to as registry to obtain
+// information of available share providers. For example,
+// it knows where to send a request for user/group share,
+// a public link share or OCM share.
 // 
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -46,28 +48,25 @@ import "cs3/types/types.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service StorageRegistryService {
-  // Returns the storage provider that is reponsible for the given
+service ShareRegistryService {
+  // Returns the share provider that is reponsible for the given
   // resource reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
-  // Returns a list of the available storage providers known by this registry.
-  rpc ListStorageProviders(ListStorageProvidersRequest) returns (ListStorageProvidersResponse);
-  // TODO(labkode): missing methods for adding and removing a storage provider
-  // with different visibility levels (system-wide, user-wide, group-wide)...
-
+  rpc GetShareProvider(GetShareProviderRequest) returns (GetShareProviderResponse);
+  // Returns a list of the available share providers known by this registry.
+  rpc ListShareProviders(ListShareProvidersRequest) returns (ListShareProvidersResponse);
 }
 
-message GetStorageProviderRequest {
+message GetShareProviderRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The reference for the resource.
-  cs3.storageproviderv0alpha.Reference ref = 2;
+  // The type of share.
+  ShareType share_type  = 2;
 }
 
-message GetStorageProviderResponse {
+message GetShareProviderResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -75,11 +74,11 @@ message GetStorageProviderResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The storage provider handling the requested storage resource.
-  cs3.storageproviderv0alpha.ProviderInfo storage_provider = 3;
+  // The share provider handling the requested share resource.
+  cs3.shareregistryv0alpha.ProviderInfo share_provider = 3;
 }
 
-message ListStorageProvidersRequest {
+message ListShareProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -87,7 +86,7 @@ message ListStorageProvidersRequest {
 
 }
 
-message ListStorageProvidersResponse {
+message ListShareProvidersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -95,6 +94,6 @@ message ListStorageProvidersResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The list of storage providers this registry knows about.
-  repeated cs3.storageproviderv0alpha.ProviderInfo storage_providers = 3;
+  // The list of share providers this registry knows about.
+  repeated cs3.shareregistryv0alpha.ProviderInfo share_providers = 3;
 }
