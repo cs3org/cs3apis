@@ -1,0 +1,70 @@
+// CS3 StorageRegistry API
+// Copyright (C) 2018  CERN IT-ST
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+
+package cs3.storageregistryv0alpha;
+
+option csharp_namespace = "CS3.StorageRegistryV0Alpha";
+option go_package = "storageregistryv0alphapb";
+option java_multiple_files = true;
+option java_outer_classname = "StorageregistryProto";
+option java_package = "com.cs3.storageregistryv0alpha";
+option objc_class_prefix = "CBOXSTORAGEREGISTRY";
+option php_namespace = "CS3\\StorageRegistryV0Alpha";
+
+import "cs3/types/types.proto";
+
+message ProviderInfo {
+  // OPTIONAL.
+  // Opaque information (containing storage-specific information).
+  // For example, additional metadata attached to the resource.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The storage provider id that will become part of the 
+  // resource id.
+  // For example, if the provider_id is "home", resources obtained
+  // from this storage provider will have a resource id like "home:1234".
+  string provider_id = 2;
+  // REQUIRED.
+  // The public path prefix this storage provider handles.
+  // In Unix literature, the mount path.
+  // For example, if the provider_path is "/home", resources obtained
+  // from this storage provier will have a resource path lik "/home/docs".
+  string provider_path = 3;
+  // REQUIRED.
+  // The address where the storage provider can be reached.
+  // For example, tcp://localhost:1099.
+  string address = 4;
+  // OPTIONAL.
+  // Information to describe the functionalities
+  // offered by the storage provider. Meant to be read
+  // by humans.
+  string description = 5;
+  // REQUIRED.
+  // Represents the list of features available 
+  // on this storage provider. If the feature is not supported,
+  // the related service methods MUST return CODE_UNIMPLEMENTED.
+  message Features {
+    bool recycle = 1; 
+    bool file_versions = 2;
+  }
+  // REQUIRED.
+  // List of available methods.
+  Features features = 6;
+}
+
+

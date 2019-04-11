@@ -29,6 +29,7 @@ option php_namespace = "CS3\\StorageRegistryV0Alpha";
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
+import "cs3/storageregistry/v0alpha/resources.proto";
 
 // Storage Registry API
 // 
@@ -76,7 +77,7 @@ message GetStorageProviderResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The storage provider handling the requested storage resource.
-  cs3.storageproviderv0alpha.ProviderInfo provider = 3;
+  ProviderInfo provider = 3;
 }
 
 message ListStorageProvidersRequest {
@@ -96,5 +97,5 @@ message ListStorageProvidersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of storage providers this registry knows about.
-  repeated cs3.storageproviderv0alpha.ProviderInfo providers = 3;
+  repeated ProviderInfo providers = 3;
 }

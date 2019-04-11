@@ -28,46 +28,6 @@ option php_namespace = "CS3\\StorageProviderV0Alpha";
 
 import "cs3/types/types.proto";
 
-// Represents the information of the storage provider.
-message ProviderInfo {
-  // OPTIONAL.
-  // Opaque information (containing storage-specific information).
-  // For example, additional metadata attached to the resource.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The storage provider id that will become part of the 
-  // resource id.
-  // For example, if the provider_id is "home", resources obtained
-  // from this storage provider will have a resource id like "home:1234".
-  string provider_id = 2;
-  // REQUIRED.
-  // The public path prefix this storage provider handles.
-  // In Unix literature, the mount path.
-  // For example, if the provider_path is "/home", resources obtained
-  // from this storage provier will have a resource path lik "/home/docs".
-  string provider_path = 3;
-  // REQUIRED.
-  // The address where the storage provider can be reached.
-  // For example, tcp://localhost:1099.
-  string address = 4;
-  // OPTIONAL.
-  // Information to describe the functionalities
-  // offered by the storage provider. Meant to be read
-  // by humans.
-  string description = 5;
-  // REQUIRED.
-  // Represents the list of features available 
-  // on this storage provider. If the feature is not supported,
-  // the related service methods MUST return CODE_UNIMPLEMENTED.
-  message Features {
-    bool recycle = 1; 
-    bool file_versions = 2;
-  }
-  // REQUIRED.
-  // List of available methods.
-  Features features = 6;
-}
-
 // Represents the information (metadata) about
 // a storage resource organized in a hierarchical namespace (file, directory/container, reference, symlink, ...).
 message ResourceInfo {
