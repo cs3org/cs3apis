@@ -281,14 +281,14 @@ message Grant {
   ResourcePermissions permissions = 2;
 }
 
-// A grantee is the receiver of grant.
+// A grantee is the receiver of a grant.
 message Grantee {
   // REQUIRED.
   // The type of the grantee.
   GranteeType type = 1;
   // The unique id for the grantee.
   // For example, a group name, user name or uuid.
-  string id = 2;
+  cs3.types.UserId id = 2;
 }
 
 // The type of the grantee.

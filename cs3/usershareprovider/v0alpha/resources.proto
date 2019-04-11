@@ -16,15 +16,15 @@
 
 syntax = "proto3";
 
-package cs3.shareproviderv0alpha;
+package cs3.usershareproviderv0alpha;
 
-option csharp_namespace = "CS3.ShareProviderV0Alpha";
-option go_package = "shareproviderv0alphapb";
+option csharp_namespace = "CS3.UserShareProviderV0Alpha";
+option go_package = "usershareproviderv0alphapb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.shareproviderv0alpha";
-option objc_class_prefix = "CBOXSHAREPROVIDER";
-option php_namespace = "CS3\\ShareProviderV0Alpha";
+option java_package = "com.cs3.usershareproviderv0alpha";
+option objc_class_prefix = "CBOXUSERSHAREPROVIDER";
+option php_namespace = "CS3\\UserShareProviderV0Alpha";
 
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
@@ -35,38 +35,26 @@ message ProviderInfo {
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The storage provider id that will become part of the 
-  // resource id.
-  // For example, if the provider_id is "user", shares obtained
-  // from this storage provider will have a share id like "user:1234".
-  string provider_id = 2;
+  // The share type that will become part of the 
+  // share id.
+  // For example, if the share_type is "user", shares obtained
+  // from this storage provider will have a share id like "user:1234"
+  // or "ocm:1234" or "group:8838".
+  cs3.types.ShareType share_type = 2;
   // REQUIRED.
-  // The address where the storage provider can be reached.
+  // The address where the share provider can be reached.
   // For example, tcp://localhost:1099.
   string address = 3;
   // OPTIONAL.
   // Information to describe the functionalities
-  // offered by the storage provider. Meant to be read
+  // offered by the share provider. Meant to be read
   // by humans.
   string description = 4;
-  // Represents the list of methods available 
-  // on this storage provider.
-  message Methods {
-    bool create_share = 1;
-    bool remove_share = 2;
-    bool update_share = 3;
-    bool list_shares = 4;
-    bool update_received_share = 5;
-    bool list_received_shares = 6;
-  }
-  // REQUIRED.
-  // List of available methods.
-  Methods available_methods = 5;
 }
 
 // Shares are relationships between a resource owner 
 // (usually the authenticated user) who grants permissions to a recipient (grantee) 
-// on a specified resource (resource_id).
+// on a specified resource (resource_id). UserShares represents both user and groups.
 message Share {
   // REQUIRED.
   // Opaque unique identifier of the share.
@@ -109,9 +97,8 @@ message Share {
 
 // The permissions for a share.
 message SharePermissions {
-  cs3.storageproviderv0alpha.ResourcePermissions resource_permissions = 1;
+  cs3.storageproviderv0alpha.ResourcePermissions permissions = 1;
   // TODO(labkode): additional permissions for shares like re-sharing
-
 }
 
 // A received share is the share that a grantee will receive.
@@ -140,17 +127,17 @@ message ReceivedShare {
 // The state of the share.
 enum ShareState {
   // The share is no longer valid, for example, the share expired.
-  SHARE_STATE_INVALID = 0;
+  USER_SHARE_STATE_INVALID = 0;
   // New shares MUST be created in the SHARE_STATE_PENDING state.
   // This state means the share is pending to be accepted or rejected
   // by the recipient of the share.
-  SHARE_STATE_PENDING = 1;
+  USER_SHARE_STATE_PENDING = 1;
   // The recipient of the share has accepted the share.
-  SHARE_STATE_ACCEPTED = 2;
+  USER_SHARE_STATE_ACCEPTED = 2;
   // The recipient of the share has rejected the share.
   // Do not means the share is removed, the recipient MAY
   // change the state to accepted or pending.
-  SHARE_STATE_REJECTED = 3;
+  USER_SHARE_STATE_REJECTED = 3;
 }
 
 // Uniquely identifies a share in the share provider.
@@ -168,22 +155,21 @@ enum ShareState {
 // 4) The grantee for the share = Grantee("type" = "user", "" => "Bob")
 message ShareKey {
   // REQUIRED.
-  string share_provider_id = 1;
+  cs3.types.ShareType type = 1;
   // REQUIRED.
-  string owner = 2;
+  cs3.types.UserId owner = 2;
   // REQUIRED.
   cs3.storageproviderv0alpha.ResourceId resource_id = 3;
   // REQUIRED.
   cs3.storageproviderv0alpha.Grantee grantee = 4;
 }
 
-// A share id identifies uniquely a 
-// share in the share provider namespace.
+// A share id identifies uniquely a // share in the share provider namespace.
 // A ShareId MUST be unique inside the share provider.
 message ShareId {
   // REQUIRED.
-  // The id of the share provider (like user, group, ocm, ...)
-  string share_provider_id = 1;
+  // The share type.
+  cs3.types.ShareType type = 1;
   // REQUIRED.
   // The internal id used by service implementor to
   // uniquely identity the share in the internal
