@@ -28,17 +28,73 @@ option php_namespace = "CS3\\AppRegistryV0Alpha";
 
 import "cs3/appregistry/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
+import "cs3/types/types.proto";
 
+// App Registry API
+// 
+// The App Registry API is meant to as registry that 
+// contains mappings between mime types and app providers.
+// 
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+// 
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
 service AppRegistryService {
-  rpc Find(FindRequest) returns (FindResponse);
+  // Returns the app provider that is reponsible for the given
+  // resource reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  rpc GetAppProvider(GetAppProviderRequest) returns (GetAppProviderResponse);
+  // Returns a list of the available app providers known by this registry.
+  rpc ListAppProviders(ListAppProvidersRequest) returns (ListAppProvidersResponse);
 }
 
-message FindRequest {
-  string filename_extension = 1;
-  string filename_mimetype = 2;
+message GetAppProviderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The mimetype of the resource.
+  // For example, application/text or
+  // image/png.
+  string mime_type = 3;
+  
 }
 
-message FindResponse {
+message GetAppProviderResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
-  AppProviderInfo app_provider_info = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The app provider for the given extension and mimetype.
+  ProviderInfo provider = 3;
+}
+
+message ListAppProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // TODO(labkode): maybe add some filter?
+
+}
+
+message ListAppProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of app providers this registry knows about.
+  repeated ProviderInfo providers = 3;
 }

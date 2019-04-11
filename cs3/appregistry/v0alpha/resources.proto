@@ -18,15 +18,31 @@ syntax = "proto3";
 
 package cs3.appregistryv0alpha;
 
+import "cs3/types/types.proto";
+
 option csharp_namespace = "CS3.AppRegistryV0Alpha";
 option go_package = "appregistryv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "ResourcesProto";
+option java_outer_classname = "AppregistryProto";
 option java_package = "com.cs3.appregistryv0alpha";
-option objc_class_prefix = "CBOXAB";
+option objc_class_prefix = "CBOXAPPREGISTRY";
 option php_namespace = "CS3\\AppRegistryV0Alpha";
 
-message AppProviderInfo {
-  string location = 1;
-  string proto = 2;
+// Represents the information of the app provider.
+message ProviderInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The mimetypes handled by this provider.
+  repeated string mime_types = 2;
+  // REQUIRED.
+  // The address where the app provider can be reached.
+  // For example, tcp://localhost:1099.
+  string address = 3;
+  // OPTIONAL.
+  // Information to describe the functionalities
+  // offered by the app provider. Meant to be read
+  // by humans.
+  string description = 4;
 }

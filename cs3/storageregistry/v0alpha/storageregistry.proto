@@ -76,7 +76,7 @@ message GetStorageProviderResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The storage provider handling the requested storage resource.
-  cs3.storageproviderv0alpha.ProviderInfo storage_provider = 3;
+  cs3.storageproviderv0alpha.ProviderInfo provider = 3;
 }
 
 message ListStorageProvidersRequest {
@@ -96,5 +96,5 @@ message ListStorageProvidersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of storage providers this registry knows about.
-  repeated cs3.storageproviderv0alpha.ProviderInfo storage_providers = 3;
+  repeated cs3.storageproviderv0alpha.ProviderInfo providers = 3;
 }

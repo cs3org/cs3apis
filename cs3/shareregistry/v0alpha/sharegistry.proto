@@ -75,7 +75,7 @@ message GetShareProviderResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The share provider handling the requested share resource.
-  cs3.shareregistryv0alpha.ProviderInfo share_provider = 3;
+  cs3.shareregistryv0alpha.ProviderInfo provider = 3;
 }
 
 message ListShareProvidersRequest {
@@ -95,5 +95,5 @@ message ListShareProvidersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of share providers this registry knows about.
-  repeated cs3.shareregistryv0alpha.ProviderInfo share_providers = 3;
+  repeated cs3.shareregistryv0alpha.ProviderInfo providers = 3;
 }
