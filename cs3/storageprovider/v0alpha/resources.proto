@@ -55,11 +55,13 @@ message ProviderInfo {
   // offered by the storage provider. Meant to be read
   // by humans.
   string description = 5;
-  // Represents the list of methods available 
-  // on this storage provider.
+  // REQUIRED.
+  // Represents the list of features available 
+  // on this storage provider. If the feature is not supported,
+  // the related service methods MUST return CODE_UNIMPLEMENTED.
   message Features {
-    bool recycle_bin = 1; // all recycle methods will return CODE_UNIMPLEMENTED
-    bool file_versions = 2; // ...
+    bool recycle = 1; 
+    bool file_versions = 2;
   }
   // REQUIRED.
   // List of available methods.
@@ -320,5 +322,5 @@ message RecycleItem {
   // REQUIRED.
   // The deletion time of the resource
   // in Unix Epoch timestamp in seconds.
-  Timestamp deletion_time = 6;
+  cs3.types.Timestamp deletion_time = 6;
 }
