@@ -1,5 +1,5 @@
 // CS3 APIS
-// Copyright (C) 2018-2019 CERN IT-ST
+// Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,28 @@
 
 syntax = "proto3";
 
-package cs3.shareregistryv0alpha;
+// This package contains common types
+// used for sharing.
+package cs3.sharetypes;
 
-option csharp_namespace = "CS3.ShareRegistryV0Alpha";
-option go_package = "shareregistryv0alphapb";
+option csharp_namespace = "CS3.ShareTypes";
+option go_package = "sharetypespb";
 option java_multiple_files = true;
-option java_outer_classname = "ShareregistryProto";
-option java_package = "com.cs3.shareregistryv0alpha";
-option objc_class_prefix = "CBOXSTORAGEREGISTRY";
-option php_namespace = "CS3\\ShareRegistryV0Alpha";
+option java_outer_classname = "SharetypesProto";
+option java_package = "com.cs3.sharetypes";
+option objc_class_prefix = "CBOXSHARETYPES";
+option php_namespace = "CS3\\ShareTypes";
 
 import "cs3/types/types.proto";
+
+// The differentes type of share types.
+enum ShareType {
+  SHARE_TYPE_INVALID = 0;
+  SHARE_TYPE_USER = 1;
+  SHARE_TYPE_GROUP = 2;
+  SHARE_TYPE_PUBLIC_LINK = 3;
+  SHARE_TYPE_OCM = 4;
+}
 
 // Represents the information of the share provider.
 message ProviderInfo {
@@ -49,13 +60,4 @@ message ProviderInfo {
   // offered by the share provider. Meant to be read
   // by humans.
   string description = 4;
-}
-
-// The differentes type of share types.
-enum ShareType {
-  SHARE_TYPE_INVALID = 0;
-  SHARE_TYPE_USER = 1;
-  SHARE_TYPE_GROUP = 2;
-  SHARE_TYPE_PUBLIC_LINK = 3;
-  SHARE_TYPE_OCM = 4;
 }

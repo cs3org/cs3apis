@@ -29,6 +29,7 @@ option php_namespace = "CS3\\PublicShareV0Alpha";
 import "cs3/publicshare/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
 import "cs3/types/types.proto";
+import "cs3/sharetypes/sharetypes.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 
 // PublicShare Provider API
@@ -89,7 +90,7 @@ message GetProviderResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The information for the share provider.
-  ProviderInfo info = 3;
+  cs3.sharetypes.ProviderInfo info = 3;
 }
 
 message CreatePublicShareRequest {

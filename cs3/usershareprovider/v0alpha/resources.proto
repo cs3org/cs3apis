@@ -28,7 +28,7 @@ option php_namespace = "CS3\\UserShareProviderV0Alpha";
 
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
-import "cs3/shareregistry/v0alpha/resources.proto";
+import "cs3/sharetypes/sharetypes.proto";
 
 // Represents the information of the share provider.
 message ProviderInfo {
@@ -41,7 +41,7 @@ message ProviderInfo {
   // For example, if the share_type is "user", shares obtained
   // from this storage provider will have a share id like "user:1234"
   // or "ocm:1234" or "group:8838".
-  cs3.shareregistryv0alpha.ShareType share_type = 2;
+  cs3.sharetypes.ShareType share_type = 2;
   // REQUIRED.
   // The address where the share provider can be reached.
   // For example, tcp://localhost:1099.
@@ -156,7 +156,7 @@ enum ShareState {
 // 4) The grantee for the share = Grantee("type" = "user", "" => "Bob")
 message ShareKey {
   // REQUIRED.
-  cs3.shareregistryv0alpha.ShareType type = 1;
+  cs3.sharetypes.ShareType type = 1;
   // REQUIRED.
   cs3.types.UserId owner = 2;
   // REQUIRED.
@@ -170,7 +170,7 @@ message ShareKey {
 message ShareId {
   // REQUIRED.
   // The share type.
-  cs3.shareregistryv0alpha.ShareType type = 1;
+  cs3.sharetypes.ShareType type = 1;
   // REQUIRED.
   // The internal id used by service implementor to
   // uniquely identity the share in the internal

@@ -1,4 +1,4 @@
-// CS3 StorageRegistry API
+// CS3 APIS
 // Copyright (C) 2018  CERN IT-ST
 //
 // This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,17 @@
 
 syntax = "proto3";
 
-package cs3.storageregistryv0alpha;
+// This package contains common types
+// used for sharing.
+package cs3.storagetypes;
 
-option csharp_namespace = "CS3.StorageRegistryV0Alpha";
-option go_package = "storageregistryv0alphapb";
+option csharp_namespace = "CS3.ShareTypes";
+option go_package = "storagetypespb";
 option java_multiple_files = true;
-option java_outer_classname = "StorageregistryProto";
-option java_package = "com.cs3.storageregistryv0alpha";
-option objc_class_prefix = "CBOXSTORAGEREGISTRY";
-option php_namespace = "CS3\\StorageRegistryV0Alpha";
+option java_outer_classname = "SharetypesProto";
+option java_package = "com.cs3.storagetypes";
+option objc_class_prefix = "CBOXSHARETYPES";
+option php_namespace = "CS3\\ShareTypes";
 
 import "cs3/types/types.proto";
 

@@ -27,8 +27,8 @@ option objc_class_prefix = "CBOXSTORAGEREGISTRY";
 option php_namespace = "CS3\\ShareRegistryV0Alpha";
 
 import "cs3/rpc/status.proto";
-import "cs3/shareregistry/v0alpha/resources.proto";
 import "cs3/types/types.proto";
+import "cs3/sharetypes/sharetypes.proto";
 
 // Share Registry API
 // 
@@ -63,7 +63,7 @@ message GetShareProviderRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The type of share.
-  ShareType share_type  = 2;
+  cs3.sharetypes.ShareType share_type  = 2;
 }
 
 message GetShareProviderResponse {
@@ -75,7 +75,7 @@ message GetShareProviderResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The share provider handling the requested share resource.
-  cs3.shareregistryv0alpha.ProviderInfo provider = 3;
+  cs3.sharetypes.ProviderInfo provider = 3;
 }
 
 message ListShareProvidersRequest {
@@ -95,5 +95,5 @@ message ListShareProvidersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of share providers this registry knows about.
-  repeated cs3.shareregistryv0alpha.ProviderInfo providers = 3;
+  repeated cs3.sharetypes.ProviderInfo providers = 3;
 }

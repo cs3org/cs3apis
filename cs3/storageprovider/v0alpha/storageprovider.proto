@@ -28,7 +28,7 @@ option php_namespace = "CS3\\StorageProviderV0Alpha";
 
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
-import "cs3/storageregistry/v0alpha/resources.proto";
+import "cs3/storagetypes/storagetypes.proto";
 import "cs3/types/types.proto";
 
 // Storage Provider API
@@ -204,7 +204,7 @@ message GetProviderResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The information for the storage provider.
-  cs3.storageregistryv0alpha.ProviderInfo info = 3;
+  cs3.storagetypes.ProviderInfo info = 3;
 }
 
 message GetPathRequest {
