@@ -27,20 +27,54 @@ option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\AppProviderV0Alpha";
 
 import "cs3/rpc/status.proto";
+import "cs3/types/types.proto";
+import "cs3/storageprovider/v0alpha/resources.proto";
 
 //import "cs3/appprovider/v0alpha/resources.proto";
 
+// App Provider API
+// 
+// The App Provider API is responsible for creating urls that
+// will render a viewer or editor for the given resource.
+// For example, an OnlyOffice or HackMD editor.
+// 
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+// 
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
 service AppProviderService {
-  rpc GetIFrame(GetIFrameRequest) returns (GetIFrameResponse);
+  // Returns the iframe url
+  // MUST return CODE_NOT_FOUND if the resource does not exist.
+  rpc Open(OpenRequest) returns (OpenResponse);
 }
 
-message GetIFrameRequest {
-  string filename = 1;
-  string miemtype = 2;
+message OpenRequest {
+  // REQUIRED.
+  // The id of the resource to be opened.
+  cs3.storageproviderv0alpha.ResourceId resource_id = 1;
+  // REQUIRED.
+  // The access token the application provider will use when contacting
+  // the storage provider storing the resource pointed by resource_id.
+  // Service implementors MUST make sure that the access token only grants
+  // access to the resource the open request is made.
   string access_token = 3;
 }
 
-message GetIFrameResponse {
+message OpenResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.Status status = 1;
-  string iframe_location = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The url to render, usually inside an IFrame in the client.
+  string iframe_url = 3;
 }
