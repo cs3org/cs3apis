@@ -223,6 +223,9 @@ message GetPathResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The path of the resource.
+  string path = 3;
 }
 
 message GetQuotaRequest {
