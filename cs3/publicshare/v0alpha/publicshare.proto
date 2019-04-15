@@ -28,9 +28,9 @@ option php_namespace = "CS3\\PublicShareV0Alpha";
 
 import "cs3/publicshare/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
-import "cs3/types/types.proto";
 import "cs3/sharetypes/sharetypes.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/types/types.proto";
 
 // PublicShare Provider API
 // 
@@ -109,7 +109,6 @@ message CreatePublicShareRequest {
   // OPTIONAL.
   // An expiration date to protect the access to the public share.
   cs3.types.Timestamp expiration = 5;
-
 }
 
 message CreatePublicShareResponse {
@@ -133,7 +132,6 @@ message UpdatePublicShareRequest {
   // REQUIRED.
   // The reference to the public share.
   PublicShareReference ref = 2;
-
   // Available fields to update.
   message UpdateField {
     // One of the update fields MUST be specified.
@@ -164,28 +162,27 @@ message UpdatePublicShareResponse {
 }
 
 message ListPublicSharesRequest {
-	// OPTIONAL.
-	// Opaque information.
-	cs3.types.Opaque opaque = 1;
-
-	// represents a filter to apply to the request.
-	message Filter {
-		enum Type {
-			TYPE_INVALID = 0;
-			TYPE_RESOURCE_ID = 1;
-			TYPE_OWNER = 2;
-			TYPE_CREATOR = 3;
-		}
-                Type type = 2;
-		oneof Term {
-			cs3.storageproviderv0alpha.ResourceId resource_id = 3;
-			cs3.types.UserId owner = 4;
-			cs3.types.UserId creator = 5;
-		}
-	} 
-	// OPTIONAL.
-	// The list of filters to apply if any.
-	repeated Filter filters = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // represents a filter to apply to the request.
+  message Filter {
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_RESOURCE_ID = 1;
+      TYPE_OWNER = 2;
+      TYPE_CREATOR = 3;
+    }
+    Type type = 2;
+    oneof Term {
+      cs3.storageproviderv0alpha.ResourceId resource_id = 3;
+      cs3.types.UserId owner = 4;
+      cs3.types.UserId creator = 5;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
 }
 
 message ListPublicSharesResponse {

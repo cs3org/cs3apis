@@ -61,12 +61,10 @@ message ProviderInfo {
   // on this storage provider. If the feature is not supported,
   // the related service methods MUST return CODE_UNIMPLEMENTED.
   message Features {
-    bool recycle = 1; 
+    bool recycle = 1;
     bool file_versions = 2;
   }
   // REQUIRED.
   // List of available methods.
   Features features = 6;
 }
-
-

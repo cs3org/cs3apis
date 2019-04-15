@@ -64,7 +64,6 @@ message GetAppProviderRequest {
   // For example, application/text or
   // image/png.
   string mime_type = 3;
-  
 }
 
 message GetAppProviderResponse {

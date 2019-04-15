@@ -18,10 +18,6 @@ syntax = "proto3";
 
 package cs3.publicsharev0alpha;
 
-import "cs3/types/types.proto";
-import "cs3/storageprovider/v0alpha/resources.proto";
-import "cs3/sharetypes/sharetypes.proto";
-
 option csharp_namespace = "CS3.PublicShareV0Alpha";
 option go_package = "publicsharev0alphapb";
 option java_multiple_files = true;
@@ -30,19 +26,23 @@ option java_package = "com.cs3.publicsharev0alpha";
 option objc_class_prefix = "CBOXPUBLICSHARE";
 option php_namespace = "CS3\\PublicShareV0Alpha";
 
-/*
-message PublicShare {
-  string id = 1;
-  string token = 2;
-  string filename = 3;
-  FileType file_type = 4;
-  uint64 expiration = 5;
-  bool password_protected = 6;
-  Permission permission = 7;
-  string display_name = 8;
-  string owner = 9;
-}
-*/
+import "cs3/sharetypes/sharetypes.proto";
+import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/types/types.proto";
+
+//
+//message PublicShare {
+//  string id = 1;
+//  string token = 2;
+//  string filename = 3;
+//  FileType file_type = 4;
+//  uint64 expiration = 5;
+//  bool password_protected = 6;
+//  Permission permission = 7;
+//  string display_name = 8;
+//  string owner = 9;
+//}
+//
 
 // Public share are relationships between a resource owner 
 // (usually the authenticated user) who grants permissions to a recipient (grantee) 
@@ -64,7 +64,7 @@ message PublicShare {
   // REQUIRED.
   // Permissions for the grantee to use 
   // the resource.
- PublicSharePermissions permissions = 4;
+  PublicSharePermissions permissions = 4;
   // REQUIRED.
   // Uniquely identifies the owner of the share 
   // (the resource owner at the time of creating the share).
@@ -125,6 +125,7 @@ message ProviderInfo {
 message PublicSharePermissions {
   cs3.storageproviderv0alpha.ResourcePermissions permissions = 1;
   // TODO(labkode): additional permissions for shares like re-sharing
+
 }
 
 // A share id identifies uniquely a // share in the share provider namespace.

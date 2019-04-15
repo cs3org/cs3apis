@@ -79,4 +79,3 @@ message UserId {
   // the identity provider.
   string opaque_id = 2;
 }
-

@@ -18,8 +18,6 @@ syntax = "proto3";
 
 package cs3.appregistryv0alpha;
 
-import "cs3/types/types.proto";
-
 option csharp_namespace = "CS3.AppRegistryV0Alpha";
 option go_package = "appregistryv0alphapb";
 option java_multiple_files = true;
@@ -27,6 +25,8 @@ option java_outer_classname = "AppregistryProto";
 option java_package = "com.cs3.appregistryv0alpha";
 option objc_class_prefix = "CBOXAPPREGISTRY";
 option php_namespace = "CS3\\AppRegistryV0Alpha";
+
+import "cs3/types/types.proto";
 
 // Represents the information of the app provider.
 message ProviderInfo {

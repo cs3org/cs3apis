@@ -26,9 +26,9 @@ option java_package = "com.cs3.usershareproviderv0alpha";
 option objc_class_prefix = "CBOXUSERSHAREPROVIDER";
 option php_namespace = "CS3\\UserShareProviderV0Alpha";
 
+import "cs3/sharetypes/sharetypes.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
-import "cs3/sharetypes/sharetypes.proto";
 
 // Represents the information of the share provider.
 message ProviderInfo {
@@ -100,6 +100,7 @@ message Share {
 message SharePermissions {
   cs3.storageproviderv0alpha.ResourcePermissions permissions = 1;
   // TODO(labkode): additional permissions for shares like re-sharing
+
 }
 
 // A received share is the share that a grantee will receive.

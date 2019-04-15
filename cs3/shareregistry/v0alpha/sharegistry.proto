@@ -27,8 +27,8 @@ option objc_class_prefix = "CBOXSTORAGEREGISTRY";
 option php_namespace = "CS3\\ShareRegistryV0Alpha";
 
 import "cs3/rpc/status.proto";
-import "cs3/types/types.proto";
 import "cs3/sharetypes/sharetypes.proto";
+import "cs3/types/types.proto";
 
 // Share Registry API
 // 
@@ -63,7 +63,7 @@ message GetShareProviderRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The type of share.
-  cs3.sharetypes.ShareType share_type  = 2;
+  cs3.sharetypes.ShareType share_type = 2;
 }
 
 message GetShareProviderResponse {

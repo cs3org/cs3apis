@@ -134,20 +134,18 @@ enum ResourceType {
   RESOURCE_TYPE_INTERNAL = 5;
 }
 
-
-  
 // The type of checksum to use.
-  enum ResourceChecksumType {
-    RESOURCE_CHECKSUM_TYPE_INVALID = 0;
-    // unset means no checksum is set.
-    RESOURCE_CHECKSUM_TYPE_UNSET = 1;
-    // Use Adler32 checksum.
-    RESOURCE_CHECKSUM_TYPE_ADLER32 = 2;
-    // Use MD5 checksum.
-    RESOURCE_CHECKSUM_TYPE_MD5 = 3;
-    // Use SHA-1 checksum.
-    RESOURCE_CHECKSUM_TYPE_SHA1 = 4;
-  }
+enum ResourceChecksumType {
+  RESOURCE_CHECKSUM_TYPE_INVALID = 0;
+  // unset means no checksum is set.
+  RESOURCE_CHECKSUM_TYPE_UNSET = 1;
+  // Use Adler32 checksum.
+  RESOURCE_CHECKSUM_TYPE_ADLER32 = 2;
+  // Use MD5 checksum.
+  RESOURCE_CHECKSUM_TYPE_MD5 = 3;
+  // Use SHA-1 checksum.
+  RESOURCE_CHECKSUM_TYPE_SHA1 = 4;
+}
 
 // The checksum to verify 
 // the integrity of a resource.
