@@ -134,11 +134,10 @@ enum ResourceType {
   RESOURCE_TYPE_INTERNAL = 5;
 }
 
-// The checksum to verify 
-// the integrity of a resource.
-message ResourceChecksum {
-  // The type of checksum to use.
-  enum Type {
+
+  
+// The type of checksum to use.
+  enum ResourceChecksumType {
     RESOURCE_CHECKSUM_TYPE_INVALID = 0;
     // unset means no checksum is set.
     RESOURCE_CHECKSUM_TYPE_UNSET = 1;
@@ -149,14 +148,18 @@ message ResourceChecksum {
     // Use SHA-1 checksum.
     RESOURCE_CHECKSUM_TYPE_SHA1 = 4;
   }
+
+// The checksum to verify 
+// the integrity of a resource.
+message ResourceChecksum {
   // REQUIRED.
   // The type of checksum to use.
   // If no checksum is provided,
-  // type MUST be CHECKSUM_TYPE_UNSET.
-  Type type = 1;
+  // type MUST be RESOURCE_CHECKSUM_TYPE_UNSET.
+  ResourceChecksumType type = 1;
   // MUST be specified if type is not
-  // CHECKSUM_TYPE_UNSET or type is not
-  // CHECKSUM_TYPE_INVALID.
+  // RESOURCE_CHECKSUM_TYPE_UNSET or type is not
+  // RESOURCE_CHECKSUM_TYPE_INVALID.
   // MUST be the hexadecimal representation of the cheksum.
   // The value is case-insensitive, so
   // "1E603A8", "1e603a8" or "1e603A8" are the same.
