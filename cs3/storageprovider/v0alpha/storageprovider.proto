@@ -274,7 +274,7 @@ message InitiateFileUploadResponse {
   // List of available checksums
   // the client can use when sending
   // the file.
-  repeated ResourceChecksumType available_checksums = 4;
+  repeated ResourceChecksumPriority available_checksums = 4;
 }
 
 message InitiateFileDownloadRequest {

@@ -164,6 +164,15 @@ message ResourceChecksum {
   string sum = 2;
 }
 
+// When negotiating the user of checksum types
+// between client and server, this structure
+// defines the priority of the checksum.
+// Priority 0 means highest priority.
+message ResourceChecksumPriority {
+  ResourceChecksumType type = 1;
+  uint32 priority = 2;
+}
+
 // The mechanism to identify a resource 
 // in the storage provider namespace. 
 message Reference {
