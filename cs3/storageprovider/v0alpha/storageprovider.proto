@@ -270,6 +270,11 @@ message InitiateFileUploadResponse {
   // The value MUST be a Uniform Resource Identifier (URI)
   // as specified in RFC 3986.
   string upload_endpoint = 3;
+  // REQUIRED.
+  // List of available checksums
+  // the client can use when sending
+  // the file.
+  repeated ResourceChecksum available_checksums = 4;
 }
 
 message InitiateFileDownloadRequest {
