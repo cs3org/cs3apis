@@ -1,0 +1,5 @@
+generate:
+  plugins:
+    - name : doc
+      flags: html,index.html 
+      output: ../doc
