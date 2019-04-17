@@ -4,7 +4,7 @@ go:
   - 1.11.x
 
 before_install:
-  - ./build.sh 
+  - ./travis-build.sh 
 
 script:
   - prototool compile

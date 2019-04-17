@@ -11,7 +11,7 @@ PROTOTOOL_VERSION=1.6.0
 
 wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
 unzip ${PROTOC_FILENAME}
-cp bin/protoc /usr/local/bin/protoc
+sudo cp bin/protoc /usr/local/bin/protoc
 protoc --version
 
 
