@@ -92,3 +92,7 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 *Compile CS3 Apis:*
 
 From the root of the directory (github.com/cernbox/cs3apis/) run `make`
+
+## License
+
+CS3 APIS are distributed under [Apache 2.0 license](https://github.com/cs3org/cs3apis/blob/master/LICENSE).
