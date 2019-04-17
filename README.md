@@ -59,37 +59,26 @@ The following requirements are needed to compile the CS3 apis:
 
 * Protobuf
 * Prototool
-* Go
-* GRPC Gateway
 
-*Installing protobuf:*
+### Dependencies
 
 ```
-mkdir tmp
-cd tmp
-git clone https://github.com/protocolbuffers/protobuf
-cd protobuf
-./autogen.sh
-./configure
-make
-make check
-sudo make install
+$ PROTOBUF_VERSION=3.3.0
+$ PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
+$ PROTOTOOL_VERSION=1.6.0
+
+$ wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
+$ unzip ${PROTOC_FILENAME}
+$ sudo cp bin/protoc /usr/local/bin/protoc
+$ protoc --version
+
+
+$ curl -sSL \
+  https://github.com/uber/prototool/releases/download/v${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | \
+  sudo tar -C /usr/local --strip-components 1 -xz
 ```
 
-*Installing prototool:*
-See [Install Prototool](https://github.com/uber/prototool#installation)
-
-*Installing Go:*
-See [Intall Go](https://golang.org/doc/install)
-
-*Installing grpc gateway*
-
-```
-go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-go get -u github.com/golang/protobuf/protoc-gen-go
-```
-*Compile CS3 Apis:*
+### Compiling
 
 From the root of the directory (github.com/cernbox/cs3apis/) run `make`
 
