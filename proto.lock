@@ -1,0 +1,3880 @@
+{
+  "definitions": [
+    {
+      "protopath": "cs3:/:appprovider:/:v0alpha:/:appprovider.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "OpenRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "access_token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "OpenResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "iframe_url",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "AppProviderService",
+            "rpcs": [
+              {
+                "name": "Open",
+                "in_type": "OpenRequest",
+                "out_type": "OpenResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.appproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AppProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "appproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "AppproviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.appproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AppProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:appregistry:/:v0alpha:/:appregistry.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetAppProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "mime_type",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetAppProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "ListAppProvidersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListAppProvidersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "providers",
+                "type": "ProviderInfo",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "AppRegistryService",
+            "rpcs": [
+              {
+                "name": "GetAppProvider",
+                "in_type": "GetAppProviderRequest",
+                "out_type": "GetAppProviderResponse"
+              },
+              {
+                "name": "ListAppProviders",
+                "in_type": "ListAppProvidersRequest",
+                "out_type": "ListAppProvidersResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/appregistry/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.appregistryv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AppRegistryV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "appregistryv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "AppregistryProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.appregistryv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAPPREGISTRY"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AppRegistryV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:appregistry:/:v0alpha:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_types",
+                "type": "string",
+                "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "address",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.appregistryv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AppRegistryV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "appregistryv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.appregistryv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAPPREGISTRY"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AppRegistryV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:auth:/:v0alpha:/:auth.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GenerateAccessTokenRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "client_id",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "client_secret",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GenerateAccessTokenResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "access_token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "WhoAmIRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "access_token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "WhoAmIResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "User"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "AuthService",
+            "rpcs": [
+              {
+                "name": "GenerateAccessToken",
+                "in_type": "GenerateAccessTokenRequest",
+                "out_type": "GenerateAccessTokenResponse"
+              },
+              {
+                "name": "WhoAmI",
+                "in_type": "WhoAmIRequest",
+                "out_type": "WhoAmIResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/auth/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.authv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AuthV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "authv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "AuthProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.authv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AuthV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:auth:/:v0alpha:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "User",
+            "fields": [
+              {
+                "id": 1,
+                "name": "username",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "mail",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "display_name",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.authv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AuthV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "authv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.authv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AuthV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:publicshare:/:v0alpha:/:publicshare.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_INVALID"
+              },
+              {
+                "name": "LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
+                "integer": 1
+              },
+              {
+                "name": "LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_OWNER",
+                "integer": 2
+              },
+              {
+                "name": "LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+                "integer": 3
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "GetProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "info",
+                "type": "cs3.sharetypes.ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "CreatePublicShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "permissions",
+                "type": "PublicSharePermissions"
+              },
+              {
+                "id": 4,
+                "name": "password",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "expiration",
+                "type": "cs3.types.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "CreatePublicShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "PublicShare"
+              }
+            ]
+          },
+          {
+            "name": "UpdatePublicShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "PublicShareReference"
+              },
+              {
+                "id": 5,
+                "name": "field",
+                "type": "UpdateField"
+              }
+            ],
+            "messages": [
+              {
+                "name": "UpdateField",
+                "fields": [
+                  {
+                    "id": 2,
+                    "name": "permissions",
+                    "type": "PublicSharePermissions"
+                  },
+                  {
+                    "id": 3,
+                    "name": "password",
+                    "type": "string"
+                  },
+                  {
+                    "id": 4,
+                    "name": "expiration",
+                    "type": "cs3.types.Timestamp"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "UpdatePublicShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "PublicShare"
+              }
+            ]
+          },
+          {
+            "name": "ListPublicSharesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 2,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 3,
+                    "name": "resource_id",
+                    "type": "cs3.storageproviderv0alpha.ResourceId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "owner",
+                    "type": "cs3.types.UserId"
+                  },
+                  {
+                    "id": 5,
+                    "name": "creator",
+                    "type": "cs3.types.UserId"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListPublicSharesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "PublicShare",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "RemovePublicShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "PublicShareReference"
+              }
+            ]
+          },
+          {
+            "name": "RemovePublicShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetPublicShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "PublicShareReference"
+              }
+            ]
+          },
+          {
+            "name": "GetPublicShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "PublicShare"
+              }
+            ]
+          },
+          {
+            "name": "GetPublicShareByTokenRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetPublicShareByTokenResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "PublicShare"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "PublicShareProviderService",
+            "rpcs": [
+              {
+                "name": "GetProvider",
+                "in_type": "GetProviderRequest",
+                "out_type": "GetProviderResponse"
+              },
+              {
+                "name": "CreatePublicShare",
+                "in_type": "CreatePublicShareRequest",
+                "out_type": "CreatePublicShareResponse"
+              },
+              {
+                "name": "RemovePublicShare",
+                "in_type": "RemovePublicShareRequest",
+                "out_type": "RemovePublicShareResponse"
+              },
+              {
+                "name": "GetPublicShare",
+                "in_type": "GetPublicShareRequest",
+                "out_type": "GetPublicShareResponse"
+              },
+              {
+                "name": "GetPublicShareByToken",
+                "in_type": "GetPublicShareByTokenRequest",
+                "out_type": "GetPublicShareByTokenResponse"
+              },
+              {
+                "name": "ListPublicShares",
+                "in_type": "ListPublicSharesRequest",
+                "out_type": "ListPublicSharesResponse"
+              },
+              {
+                "name": "UpdatePublicShare",
+                "in_type": "UpdatePublicShareRequest",
+                "out_type": "UpdatePublicShareResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/publicshare/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/sharetypes/sharetypes.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.publicsharev0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.PublicShareV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "publicsharev0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "PublicshareProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.publicsharev0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\PublicShareV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:publicshare:/:v0alpha:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "PublicShare",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "PublicShareId"
+              },
+              {
+                "id": 2,
+                "name": "token",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 4,
+                "name": "permissions",
+                "type": "PublicSharePermissions"
+              },
+              {
+                "id": 5,
+                "name": "owner",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 6,
+                "name": "creator",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 7,
+                "name": "ctime",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 8,
+                "name": "mtime",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 9,
+                "name": "password_protected",
+                "type": "bool"
+              },
+              {
+                "id": 10,
+                "name": "expiration",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 11,
+                "name": "display_name",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "share_type",
+                "type": "cs3.sharetypes.ShareType"
+              },
+              {
+                "id": 3,
+                "name": "address",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "PublicSharePermissions",
+            "fields": [
+              {
+                "id": 1,
+                "name": "permissions",
+                "type": "cs3.storageproviderv0alpha.ResourcePermissions"
+              }
+            ]
+          },
+          {
+            "name": "PublicShareId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "cs3.sharetypes.ShareType"
+              },
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "PublicShareReference",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "PublicShareId"
+              },
+              {
+                "id": 2,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/sharetypes/sharetypes.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.publicsharev0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.PublicShareV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "publicsharev0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.publicsharev0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXPUBLICSHARE"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\PublicShareV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:rpc:/:code.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Code",
+            "enum_fields": [
+              {
+                "name": "CODE_INVALID"
+              },
+              {
+                "name": "CODE_OK",
+                "integer": 1
+              },
+              {
+                "name": "CODE_CANCELLED",
+                "integer": 2
+              },
+              {
+                "name": "CODE_UNKNOWN",
+                "integer": 3
+              },
+              {
+                "name": "CODE_INVALID_ARGUMENT",
+                "integer": 4
+              },
+              {
+                "name": "CODE_DEADLINE_EXCEEDED",
+                "integer": 5
+              },
+              {
+                "name": "CODE_NOT_FOUND",
+                "integer": 6
+              },
+              {
+                "name": "CODE_ALREADY_EXISTS",
+                "integer": 7
+              },
+              {
+                "name": "CODE_PERMISSION_DENIED",
+                "integer": 8
+              },
+              {
+                "name": "CODE_UNAUTHENTICATED",
+                "integer": 9
+              },
+              {
+                "name": "CODE_RESOURCE_EXHAUSTED",
+                "integer": 10
+              },
+              {
+                "name": "CODE_FAILED_PRECONDITION",
+                "integer": 11
+              },
+              {
+                "name": "CODE_ABORTED",
+                "integer": 12
+              },
+              {
+                "name": "CODE_OUT_OF_RANGE",
+                "integer": 13
+              },
+              {
+                "name": "CODE_UNIMPLEMENTED",
+                "integer": 14
+              },
+              {
+                "name": "CODE_INTERNAL",
+                "integer": 15
+              },
+              {
+                "name": "CODE_UNAVAILABLE",
+                "integer": 16
+              },
+              {
+                "name": "CODE_DATA_LOSS",
+                "integer": 17
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.rpc"
+        },
+        "options": [
+          {
+            "name": "go_package",
+            "value": "rpcpb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "CodeProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.rpc"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXRPC"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\RPC"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:rpc:/:status.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "Status",
+            "fields": [
+              {
+                "id": 1,
+                "name": "code",
+                "type": "Code"
+              },
+              {
+                "id": 2,
+                "name": "message",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/code.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.rpc"
+        },
+        "options": [
+          {
+            "name": "go_package",
+            "value": "rpcpb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "StatusProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.rpc"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXRPC"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\RPC"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:shareregistry:/:v0alpha:/:shareregistry.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetShareProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "share_type",
+                "type": "cs3.sharetypes.ShareType"
+              }
+            ]
+          },
+          {
+            "name": "GetShareProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "cs3.sharetypes.ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "ListShareProvidersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListShareProvidersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "providers",
+                "type": "cs3.sharetypes.ProviderInfo",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "ShareRegistryService",
+            "rpcs": [
+              {
+                "name": "GetShareProvider",
+                "in_type": "GetShareProviderRequest",
+                "out_type": "GetShareProviderResponse"
+              },
+              {
+                "name": "ListShareProviders",
+                "in_type": "ListShareProvidersRequest",
+                "out_type": "ListShareProvidersResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/sharetypes/sharetypes.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.shareregistryv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.ShareRegistryV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "shareregistryv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ShareregistryProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.shareregistryv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXSTORAGEREGISTRY"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\ShareRegistryV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:sharetypes:/:sharetypes.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "ShareType",
+            "enum_fields": [
+              {
+                "name": "SHARE_TYPE_INVALID"
+              },
+              {
+                "name": "SHARE_TYPE_USER",
+                "integer": 1
+              },
+              {
+                "name": "SHARE_TYPE_GROUP",
+                "integer": 2
+              },
+              {
+                "name": "SHARE_TYPE_PUBLIC_LINK",
+                "integer": 3
+              },
+              {
+                "name": "SHARE_TYPE_OCM",
+                "integer": 4
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "share_type",
+                "type": "ShareType"
+              },
+              {
+                "id": 3,
+                "name": "address",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.sharetypes"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.ShareTypes"
+          },
+          {
+            "name": "go_package",
+            "value": "sharetypespb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "SharetypesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.sharetypes"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXSHARETYPES"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\ShareTypes"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:storageprovider:/:v0alpha:/:resources.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "ResourceType",
+            "enum_fields": [
+              {
+                "name": "RESOURCE_TYPE_INVALID"
+              },
+              {
+                "name": "RESOURCE_TYPE_FILE",
+                "integer": 1
+              },
+              {
+                "name": "RESOURCE_TYPE_CONTAINER",
+                "integer": 2
+              },
+              {
+                "name": "RESOURCE_TYPE_REFERENCE",
+                "integer": 3
+              },
+              {
+                "name": "RESOURCE_TYPE_SYMLINK",
+                "integer": 4
+              },
+              {
+                "name": "RESOURCE_TYPE_INTERNAL",
+                "integer": 5
+              }
+            ]
+          },
+          {
+            "name": "ResourceChecksumType",
+            "enum_fields": [
+              {
+                "name": "RESOURCE_CHECKSUM_TYPE_INVALID"
+              },
+              {
+                "name": "RESOURCE_CHECKSUM_TYPE_UNSET",
+                "integer": 1
+              },
+              {
+                "name": "RESOURCE_CHECKSUM_TYPE_ADLER32",
+                "integer": 2
+              },
+              {
+                "name": "RESOURCE_CHECKSUM_TYPE_MD5",
+                "integer": 3
+              },
+              {
+                "name": "RESOURCE_CHECKSUM_TYPE_SHA1",
+                "integer": 4
+              }
+            ]
+          },
+          {
+            "name": "GranteeType",
+            "enum_fields": [
+              {
+                "name": "GRANTEE_TYPE_INVALID"
+              },
+              {
+                "name": "GRANTEE_TYPE_USER",
+                "integer": 1
+              },
+              {
+                "name": "GRANTEE_TYPE_GROUP",
+                "integer": 2
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "ResourceInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "type",
+                "type": "ResourceType"
+              },
+              {
+                "id": 3,
+                "name": "id",
+                "type": "ResourceId"
+              },
+              {
+                "id": 4,
+                "name": "checksum",
+                "type": "ResourceChecksum"
+              },
+              {
+                "id": 5,
+                "name": "etag",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "mime_type",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "mtime",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 8,
+                "name": "path",
+                "type": "string"
+              },
+              {
+                "id": 9,
+                "name": "permission_set",
+                "type": "ResourcePermissions"
+              },
+              {
+                "id": 10,
+                "name": "size",
+                "type": "uint64"
+              },
+              {
+                "id": 11,
+                "name": "owner",
+                "type": "string"
+              },
+              {
+                "id": 13,
+                "name": "extra_metadata",
+                "type": "ExtraMetadata"
+              }
+            ]
+          },
+          {
+            "name": "ExtraMetadata",
+            "fields": [
+              {
+                "id": 1,
+                "name": "target",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "ResourceChecksum",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "ResourceChecksumType"
+              },
+              {
+                "id": 2,
+                "name": "sum",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ResourceChecksumPriority",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "ResourceChecksumType"
+              },
+              {
+                "id": 2,
+                "name": "priority",
+                "type": "uint32"
+              }
+            ]
+          },
+          {
+            "name": "Reference",
+            "fields": [
+              {
+                "id": 1,
+                "name": "path",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "ResourceId"
+              }
+            ]
+          },
+          {
+            "name": "ResourceId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "storage_id",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ResourcePermissions",
+            "fields": [
+              {
+                "id": 1,
+                "name": "add_grant",
+                "type": "bool"
+              },
+              {
+                "id": 2,
+                "name": "create_container",
+                "type": "bool"
+              },
+              {
+                "id": 3,
+                "name": "delete",
+                "type": "bool"
+              },
+              {
+                "id": 5,
+                "name": "get_path",
+                "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "get_quota",
+                "type": "bool"
+              },
+              {
+                "id": 7,
+                "name": "initiate_file_download",
+                "type": "bool"
+              },
+              {
+                "id": 8,
+                "name": "initiate_file_upload",
+                "type": "bool"
+              },
+              {
+                "id": 9,
+                "name": "list_grants",
+                "type": "bool"
+              },
+              {
+                "id": 10,
+                "name": "list_container",
+                "type": "bool"
+              },
+              {
+                "id": 11,
+                "name": "list_file_versions",
+                "type": "bool"
+              },
+              {
+                "id": 12,
+                "name": "list_recycle",
+                "type": "bool"
+              },
+              {
+                "id": 13,
+                "name": "move",
+                "type": "bool"
+              },
+              {
+                "id": 14,
+                "name": "remove_grant",
+                "type": "bool"
+              },
+              {
+                "id": 15,
+                "name": "purge_recycle",
+                "type": "bool"
+              },
+              {
+                "id": 16,
+                "name": "restore_file_version",
+                "type": "bool"
+              },
+              {
+                "id": 17,
+                "name": "restore_recycle_item",
+                "type": "bool"
+              },
+              {
+                "id": 18,
+                "name": "stat",
+                "type": "bool"
+              },
+              {
+                "id": 19,
+                "name": "update_grant",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "Grant",
+            "fields": [
+              {
+                "id": 1,
+                "name": "grantee",
+                "type": "Grantee"
+              },
+              {
+                "id": 2,
+                "name": "permissions",
+                "type": "ResourcePermissions"
+              }
+            ]
+          },
+          {
+            "name": "Grantee",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "GranteeType"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "cs3.types.UserId"
+              }
+            ]
+          },
+          {
+            "name": "FileVersion",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "size",
+                "type": "uint64"
+              },
+              {
+                "id": 5,
+                "name": "mtime",
+                "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "RecycleItem",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "type",
+                "type": "ResourceType"
+              },
+              {
+                "id": 3,
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "path",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "size",
+                "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "deletion_time",
+                "type": "cs3.types.Timestamp"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.storageproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.StorageProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "storageproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.storageproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\StorageProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:storageprovider:/:v0alpha:/:storageprovider.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "AddGrantRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "grant",
+                "type": "Grant"
+              }
+            ]
+          },
+          {
+            "name": "AddGrantResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "CreateContainerRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "CreateContainerResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "DeleteRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "DeleteResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "info",
+                "type": "cs3.storagetypes.ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "GetPathRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "ResourceId"
+              }
+            ]
+          },
+          {
+            "name": "GetPathResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "path",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetQuotaRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetQuotaResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "total_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 4,
+                "name": "used_bytes",
+                "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "InitiateFileUploadRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "InitiateFileUploadResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "upload_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "available_checksums",
+                "type": "ResourceChecksumPriority",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "InitiateFileDownloadRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "InitiateFileDownloadResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "download_endpoint",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ListGrantsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "ListGrantsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "grants",
+                "type": "Grant",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ListContainerStreamRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "ListContainerStreamResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "info",
+                "type": "ResourceInfo"
+              }
+            ]
+          },
+          {
+            "name": "ListContainerRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "ListContainerResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "infos",
+                "type": "ResourceInfo",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ListFileVersionsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "ListFileVersionsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "versions",
+                "type": "FileVersion",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ListRecycleRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "from_ts",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 3,
+                "name": "to_ts",
+                "type": "cs3.types.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "ListRecycleResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "recycle_items",
+                "type": "RecycleItem",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ListRecycleStreamRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "from_ts",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 3,
+                "name": "to_ts",
+                "type": "cs3.types.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "ListRecycleStreamResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "recycle_item",
+                "type": "RecycleItem"
+              }
+            ]
+          },
+          {
+            "name": "MoveRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "source",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "destination",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "MoveResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "PurgeRecycleRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "PurgeRecycleResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RestoreFileVersionRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "key",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "RestoreFileVersionResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RestoreRecycleItemRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "restore_path",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "RestoreRecycleItemResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RemoveGrantRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "grant",
+                "type": "Grant"
+              }
+            ]
+          },
+          {
+            "name": "RemoveGrantResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "StatRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "StatResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "info",
+                "type": "ResourceInfo"
+              }
+            ]
+          },
+          {
+            "name": "UpdateGrantRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "grant",
+                "type": "Grant"
+              }
+            ]
+          },
+          {
+            "name": "UpdateGrantResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "StorageProviderService",
+            "rpcs": [
+              {
+                "name": "AddGrant",
+                "in_type": "AddGrantRequest",
+                "out_type": "AddGrantResponse"
+              },
+              {
+                "name": "CreateContainer",
+                "in_type": "CreateContainerRequest",
+                "out_type": "CreateContainerResponse"
+              },
+              {
+                "name": "Delete",
+                "in_type": "DeleteRequest",
+                "out_type": "DeleteResponse"
+              },
+              {
+                "name": "GetProvider",
+                "in_type": "GetProviderRequest",
+                "out_type": "GetProviderResponse"
+              },
+              {
+                "name": "GetPath",
+                "in_type": "GetPathRequest",
+                "out_type": "GetPathResponse"
+              },
+              {
+                "name": "GetQuota",
+                "in_type": "GetQuotaRequest",
+                "out_type": "GetQuotaResponse"
+              },
+              {
+                "name": "InitiateFileDownload",
+                "in_type": "InitiateFileDownloadRequest",
+                "out_type": "InitiateFileDownloadResponse"
+              },
+              {
+                "name": "InitiateFileUpload",
+                "in_type": "InitiateFileUploadRequest",
+                "out_type": "InitiateFileUploadResponse"
+              },
+              {
+                "name": "ListGrants",
+                "in_type": "ListGrantsRequest",
+                "out_type": "ListGrantsResponse"
+              },
+              {
+                "name": "ListContainerStream",
+                "in_type": "ListContainerStreamRequest",
+                "out_type": "ListContainerStreamResponse",
+                "out_streamed": true
+              },
+              {
+                "name": "ListContainer",
+                "in_type": "ListContainerRequest",
+                "out_type": "ListContainerResponse"
+              },
+              {
+                "name": "ListFileVersions",
+                "in_type": "ListFileVersionsRequest",
+                "out_type": "ListFileVersionsResponse"
+              },
+              {
+                "name": "ListRecycleStream",
+                "in_type": "ListRecycleStreamRequest",
+                "out_type": "ListRecycleStreamResponse",
+                "out_streamed": true
+              },
+              {
+                "name": "ListRecycle",
+                "in_type": "ListRecycleRequest",
+                "out_type": "ListRecycleResponse"
+              },
+              {
+                "name": "Move",
+                "in_type": "MoveRequest",
+                "out_type": "MoveResponse"
+              },
+              {
+                "name": "RemoveGrant",
+                "in_type": "RemoveGrantRequest",
+                "out_type": "RemoveGrantResponse"
+              },
+              {
+                "name": "PurgeRecycle",
+                "in_type": "PurgeRecycleRequest",
+                "out_type": "PurgeRecycleResponse"
+              },
+              {
+                "name": "RestoreFileVersion",
+                "in_type": "RestoreFileVersionRequest",
+                "out_type": "RestoreFileVersionResponse"
+              },
+              {
+                "name": "RestoreRecycleItem",
+                "in_type": "RestoreRecycleItemRequest",
+                "out_type": "RestoreRecycleItemResponse"
+              },
+              {
+                "name": "Stat",
+                "in_type": "StatRequest",
+                "out_type": "StatResponse"
+              },
+              {
+                "name": "UpdateGrant",
+                "in_type": "UpdateGrantRequest",
+                "out_type": "UpdateGrantResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/storagetypes/storagetypes.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.storageproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.StorageProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "storageproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "StorageproviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.storageproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\StorageProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:storageregistry:/:v0alpha:/:storageregistry.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetStorageProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "cs3.storageproviderv0alpha.Reference"
+              }
+            ]
+          },
+          {
+            "name": "GetStorageProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "cs3.storagetypes.ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "ListStorageProvidersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListStorageProvidersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "providers",
+                "type": "cs3.storagetypes.ProviderInfo",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "StorageRegistryService",
+            "rpcs": [
+              {
+                "name": "GetStorageProvider",
+                "in_type": "GetStorageProviderRequest",
+                "out_type": "GetStorageProviderResponse"
+              },
+              {
+                "name": "ListStorageProviders",
+                "in_type": "ListStorageProvidersRequest",
+                "out_type": "ListStorageProvidersResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/storagetypes/storagetypes.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.storageregistryv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.StorageRegistryV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "storageregistryv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "StorageregistryProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.storageregistryv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXSTORAGEREGISTRY"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\StorageRegistryV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:storagetypes:/:storagetypes.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "provider_id",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "provider_path",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "address",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "features",
+                "type": "Features"
+              }
+            ],
+            "messages": [
+              {
+                "name": "Features",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "recycle",
+                    "type": "bool"
+                  },
+                  {
+                    "id": 2,
+                    "name": "file_versions",
+                    "type": "bool"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.storagetypes"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.StorageTypes"
+          },
+          {
+            "name": "go_package",
+            "value": "storagetypespb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "StoragetypesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.storagetypes"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXSHARETYPES"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\StorageTypes"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:types:/:types.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "Opaque",
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 1,
+                  "name": "map",
+                  "type": "OpaqueEntry"
+                }
+              }
+            ]
+          },
+          {
+            "name": "OpaqueEntry",
+            "fields": [
+              {
+                "id": 1,
+                "name": "decoder",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "value",
+                "type": "bytes"
+              }
+            ]
+          },
+          {
+            "name": "Timestamp",
+            "fields": [
+              {
+                "id": 1,
+                "name": "seconds",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "nanos",
+                "type": "uint32"
+              }
+            ]
+          },
+          {
+            "name": "UserId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "idp",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.types"
+        },
+        "options": [
+          {
+            "name": "go_package",
+            "value": "typespb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "TypesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.types"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXTYPES"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\TYPES"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:usershareprovider:/:v0alpha:/:resources.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "ShareState",
+            "enum_fields": [
+              {
+                "name": "SHARE_STATE_INVALID"
+              },
+              {
+                "name": "SHARE_STATE_PENDING",
+                "integer": 1
+              },
+              {
+                "name": "SHARE_STATE_ACCEPTED",
+                "integer": 2
+              },
+              {
+                "name": "SHARE_STATE_REJECTED",
+                "integer": 3
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "share_type",
+                "type": "cs3.sharetypes.ShareType"
+              },
+              {
+                "id": 3,
+                "name": "address",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "Share",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "ShareId"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "permissions",
+                "type": "SharePermissions"
+              },
+              {
+                "id": 4,
+                "name": "grantee",
+                "type": "cs3.storageproviderv0alpha.Grantee"
+              },
+              {
+                "id": 5,
+                "name": "owner",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "creator",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "ctime",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 8,
+                "name": "mtime",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 9,
+                "name": "display_name",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "SharePermissions",
+            "fields": [
+              {
+                "id": 1,
+                "name": "permissions",
+                "type": "cs3.storageproviderv0alpha.ResourcePermissions"
+              }
+            ]
+          },
+          {
+            "name": "ReceivedShare",
+            "fields": [
+              {
+                "id": 1,
+                "name": "share",
+                "type": "Share"
+              },
+              {
+                "id": 2,
+                "name": "state",
+                "type": "ShareState"
+              },
+              {
+                "id": 3,
+                "name": "mount_path",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "display_name",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ShareKey",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "cs3.sharetypes.ShareType"
+              },
+              {
+                "id": 2,
+                "name": "owner",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 3,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 4,
+                "name": "grantee",
+                "type": "cs3.storageproviderv0alpha.Grantee"
+              }
+            ]
+          },
+          {
+            "name": "ShareId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "cs3.sharetypes.ShareType"
+              },
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ShareReference",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "ShareId"
+              },
+              {
+                "id": 2,
+                "name": "key",
+                "type": "ShareKey"
+              }
+            ]
+          },
+          {
+            "name": "ShareGrant",
+            "fields": [
+              {
+                "id": 1,
+                "name": "grantee",
+                "type": "cs3.storageproviderv0alpha.Grantee"
+              },
+              {
+                "id": 2,
+                "name": "permissions",
+                "type": "SharePermissions"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/sharetypes/sharetypes.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.usershareproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.UserShareProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "usershareproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.usershareproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXUSERSHAREPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\UserShareProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:usershareprovider:/:v0alpha:/:usershareprovider.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_INVALID"
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
+                "integer": 1
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER",
+                "integer": 2
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+                "integer": 3
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "CreateShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "grant",
+                "type": "ShareGrant"
+              }
+            ]
+          },
+          {
+            "name": "CreateShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share"
+              }
+            ]
+          },
+          {
+            "name": "UpdateShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              },
+              {
+                "id": 3,
+                "name": "field",
+                "type": "UpdateField"
+              }
+            ],
+            "messages": [
+              {
+                "name": "UpdateField",
+                "fields": [
+                  {
+                    "id": 2,
+                    "name": "permissions",
+                    "type": "SharePermissions"
+                  },
+                  {
+                    "id": 3,
+                    "name": "display_name",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "UpdateShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListSharesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 2,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 3,
+                    "name": "resource_id",
+                    "type": "cs3.storageproviderv0alpha.ResourceId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "owner",
+                    "type": "cs3.types.UserId"
+                  },
+                  {
+                    "id": 5,
+                    "name": "creator",
+                    "type": "cs3.types.UserId"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListSharesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "RemoveShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              }
+            ]
+          },
+          {
+            "name": "RemoveShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              }
+            ]
+          },
+          {
+            "name": "GetShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share"
+              }
+            ]
+          },
+          {
+            "name": "ListReceivedSharesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListReceivedSharesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "shares",
+                "type": "ReceivedShare",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "UpdateReceivedShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              },
+              {
+                "id": 3,
+                "name": "field",
+                "type": "UpdateField"
+              }
+            ],
+            "messages": [
+              {
+                "name": "UpdateField",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "display_name",
+                    "type": "string"
+                  },
+                  {
+                    "id": 2,
+                    "name": "state",
+                    "type": "ShareState"
+                  },
+                  {
+                    "id": 3,
+                    "name": "mount_path",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "UpdateReceivedShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "info",
+                "type": "ProviderInfo"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "UserShareProviderService",
+            "rpcs": [
+              {
+                "name": "GetProvider",
+                "in_type": "GetProviderRequest",
+                "out_type": "GetProviderResponse"
+              },
+              {
+                "name": "CreateShare",
+                "in_type": "CreateShareRequest",
+                "out_type": "CreateShareResponse"
+              },
+              {
+                "name": "RemoveShare",
+                "in_type": "RemoveShareRequest",
+                "out_type": "RemoveShareResponse"
+              },
+              {
+                "name": "GetShare",
+                "in_type": "GetShareRequest",
+                "out_type": "GetShareResponse"
+              },
+              {
+                "name": "ListShares",
+                "in_type": "ListSharesRequest",
+                "out_type": "ListSharesResponse"
+              },
+              {
+                "name": "UpdateShare",
+                "in_type": "UpdateShareRequest",
+                "out_type": "UpdateShareResponse"
+              },
+              {
+                "name": "ListReceivedShares",
+                "in_type": "ListReceivedSharesRequest",
+                "out_type": "ListReceivedSharesResponse"
+              },
+              {
+                "name": "UpdateReceivedShare",
+                "in_type": "UpdateReceivedShareRequest",
+                "out_type": "UpdateReceivedShareResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/usershareprovider/v0alpha/resources.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.usershareproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.UserShareProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "usershareproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "UsershareproviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.usershareproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXUSERSHAREPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\UserShareProviderV0Alpha"
+          }
+        ]
+      }
+    }
+  ]
+}
