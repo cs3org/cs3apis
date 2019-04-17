@@ -1,4 +1,4 @@
-# CS3 APIs
+# [CS3APIS](https://cernbox.github.io/cs3apis/) [![Build Status](https://travis-ci.org/cernbox/cs3apis.svg?branch=master)](https://travis-ci.org/cernbox/cs3apis)
 
 **NOTE:** this repository in under heavy development
 and not ready for public consumption.
@@ -25,16 +25,15 @@ API, which can be accessed over different wire protocols.
 
 There are several ways of accessing CS3 APIs:
 
-1.  JSON over HTTP: You can access all CS3 APIs directly using JSON
-over HTTP, using generated client libraries from the api definitions or 
-or third-party API client libraries.
-
-2.  Protocol Buffers over gRPC: You can access CS3 APIs published
+1.  Protocol Buffers over gRPC: You can access CS3 APIs published
 in this repository through [GRPC](https://github.com/grpc), which is
 a high-performance binary RPC protocol over HTTP/2. It offers many
 useful features, including request/response multiplex and full-duplex
 streaming.
 
+2.  JSON over HTTP: You can access all CS3 APIs directly using JSON
+over HTTP, using generated client libraries from the api definitions or 
+or third-party API client libraries.
 
 ## Repository Structure
 
@@ -50,11 +49,9 @@ languages.
 change to the API.
 
 
-## Generated code
+## Official generated code
 
-Go: [go-cs3apis](https://github.com/cernbox/go-cs3apis)
-
-
+Go: [go-cs3apis](https://github.com/cs3org/go-cs3apis)
 
 ## Getting started
 
@@ -94,4 +91,4 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 ```
 *Compile CS3 Apis:*
 
-From the root of the directory (github.com/cernbox/cs3apis/) run `prototool compile`
+From the root of the directory (github.com/cernbox/cs3apis/) run `make`
