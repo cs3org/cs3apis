@@ -9,3 +9,4 @@ before_install:
 script:
   - prototool compile
   - prototool lint 
+  - protolock status
