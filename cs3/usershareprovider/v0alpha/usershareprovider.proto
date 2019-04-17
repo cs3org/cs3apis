@@ -137,13 +137,13 @@ message ListSharesRequest {
   // represents a filter to apply to the request.
   message Filter {
     enum Type {
-      TYPE_INVALID = 0;
-      TYPE_RESOURCE_ID = 1;
-      TYPE_OWNER = 2;
-      TYPE_CREATOR = 3;
+      LIST_SHARES_REQUEST_FILTER_TYPE_INVALID = 0;
+      LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 1;
+      LIST_SHARES_REQUEST_FILTER_TYPE_OWNER = 2;
+      LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR = 3;
     }
     Type type = 2;
-    oneof Term {
+    oneof term {
       cs3.storageproviderv0alpha.ResourceId resource_id = 3;
       cs3.types.UserId owner = 4;
       cs3.types.UserId creator = 5;

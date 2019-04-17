@@ -20,13 +20,13 @@ syntax = "proto3";
 // used for sharing.
 package cs3.storagetypes;
 
-option csharp_namespace = "CS3.ShareTypes";
+option csharp_namespace = "CS3.StorageTypes";
 option go_package = "storagetypespb";
 option java_multiple_files = true;
-option java_outer_classname = "SharetypesProto";
+option java_outer_classname = "StoragetypesProto";
 option java_package = "com.cs3.storagetypes";
 option objc_class_prefix = "CBOXSHARETYPES";
-option php_namespace = "CS3\\ShareTypes";
+option php_namespace = "CS3\\StorageTypes";
 
 import "cs3/types/types.proto";
 
