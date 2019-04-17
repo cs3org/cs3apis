@@ -15,8 +15,18 @@ sudo cp bin/protoc /usr/local/bin/protoc
 protoc --version
 
 
+# install prototool
 curl -sSL \
   https://github.com/uber/prototool/releases/download/v${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | \
   sudo tar -C /usr/local --strip-components 1 -xz
+
+which prototool
+
+# install protolock
+curl -sSL \
+  https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz | \
+  sudo tar -C /usr/local --strip-components 1 -xz
+
+which protolock
 
 popd
