@@ -1,4 +1,4 @@
-# [CS3APIS](https://cernbox.github.io/cs3apis/) [![Build Status](https://travis-ci.org/cernbox/cs3apis.svg?branch=master)](https://travis-ci.org/cernbox/cs3apis)
+# [CS3APIS](https://cernbox.github.io/cs3apis/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.png)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://travis-ci.org/cernbox/cs3apis.svg?branch=master)](https://travis-ci.org/cernbox/cs3apis)
 
 **NOTE:** this repository in under heavy development
 and not ready for public consumption.
