@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - 1.11.x
+
+before_install:
+  - ./build.sh 
+
+script:
+  - prototool compile
+  - prototool lint 
