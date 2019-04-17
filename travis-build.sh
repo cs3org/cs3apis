@@ -17,6 +17,6 @@ protoc --version
 
 curl -sSL \
   https://github.com/uber/prototool/releases/download/v${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | \
-  tar -C /usr/local --strip-components 1 -xz
+  sudo tar -C /usr/local --strip-components 1 -xz
 
 popd
