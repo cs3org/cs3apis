@@ -1,19 +1,7 @@
 # [CS3APIS](https://cernbox.github.io/cs3apis/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.png)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://travis-ci.org/cernbox/cs3apis.svg?branch=master)](https://travis-ci.org/cernbox/cs3apis)
 
-**NOTE:** this repository in under heavy development
-and not ready for public consumption.
+CS3 APIs is a set of APIs to interconnect storage, sync and share and application providers in a standard and performant way using gRPC and protocol buffers.
 
-CS3 stands for Cloud Storage Synchronisation and Sharing.
-
-This repository contains the interface definitions of public
-CS3 APIs that support both REST and gRPC protocols. You can also
-use these definitions with open source tools to generate client
-libraries, documentation, and other artifacts.
-
-CS3 APIs follows Google API design guidelines, specially on error handling and naming convention.
-You can read more about these guidelines at https://cloud.google.com/apis/design/.
-
-This repository structure is very similar to https://github.com/googleapis/googleapis.
 
 ## Build it yourself
 You need to have [Go](https://golang.org/doc/install), [git](https://git-scm.com/) and [make](https://en.wikipedia.org/wiki/Make_(software)) installed.
@@ -25,6 +13,16 @@ $ make
 ```
 
 ## Overview
+
+This repository contains the interface definitions of public
+CS3 APIs that support both REST and gRPC protocols. You can also
+use these definitions with open source tools to generate client
+libraries, documentation, and other artifacts.
+
+CS3 APIs follows Google API design guidelines, specially on error handling and naming convention.
+You can read more about these guidelines at https://cloud.google.com/apis/design/.
+
+This repository structure is very similar to https://github.com/googleapis/googleapis.
 
 CS3 APIs use [Protocol Buffers](https://github.com/google/protobuf)
 version 3 (proto3) as their Interface Definition Language (IDL) to
@@ -57,53 +55,6 @@ languages.
 **NOTE:** The major version of an API is used to indicate breaking
 change to the API.
 
-
-## Official generated code
-
-Go: [go-cs3apis](https://github.com/cs3org/go-cs3apis)
-
-## Getting started
-
-The following requirements are needed to compile the CS3 apis:
-
-* Protobuf
-* Prototool
-
-### Installation
-
-First we need to install the dependencies:
-
-```
-PROTOBUF_VERSION=3.3.0
-PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
-PROTOTOOL_VERSION=1.6.0
-
-wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
-unzip ${PROTOC_FILENAME}
-sudo cp bin/protoc /usr/local/bin/protoc
-protoc --version
-
-
-# install prototool
-curl -sSL \
-  https://github.com/uber/prototool/releases/download/v${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | \
-  sudo tar -C /usr/local --strip-components 1 -xz
-
-which prototool
-
-# install protolock
-curl -sSL \
-  https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz | \
-  sudo tar -C /usr/local --strip-components 1 -xz
-```
-
-### Compiling
-
-From the root of the directory run:
-
-```
-make
-```
 
 ## License
 
