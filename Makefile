@@ -8,6 +8,7 @@ build:
 lint:
 	prototool format -w
 	prototool lint
+	go run tools/check-license/check-license.go
 
 docs:
 	rm -rf docs && mkdir docs && protoc --doc_out=./docs --doc_opt=html,index.html cs3/*/*.proto cs3/*/*/*.proto 
