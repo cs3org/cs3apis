@@ -1,12 +1,10 @@
 language: go
 
 go:
-  - 1.11.x
+  - 1.12.x
 
 before_install:
   - ./travis-build.sh 
 
 script:
-  - prototool compile
-  - prototool lint 
-  - protolock status
+  - make

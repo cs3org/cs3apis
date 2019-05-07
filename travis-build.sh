@@ -28,5 +28,4 @@ curl -sSL \
   sudo tar -C /usr/local --strip-components 1 -xz
 
 which protolock
-
 popd
