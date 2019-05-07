@@ -23,6 +23,6 @@ curl -sSL \
 # install protolock
 curl -sSL https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz -o protolock.tgz
 tar -xzf protolock.tgz
-cp protolock /usr/local/bin/
+sudo cp protolock /usr/local/bin/
 
 popd
