@@ -60,28 +60,42 @@ The following requirements are needed to compile the CS3 apis:
 * Protobuf
 * Prototool
 
-### Dependencies
+### Installation
+
+First we need to install the dependencies:
 
 ```
-$ PROTOBUF_VERSION=3.3.0
-$ PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
-$ PROTOTOOL_VERSION=1.6.0
+PROTOBUF_VERSION=3.3.0
+PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
+PROTOTOOL_VERSION=1.6.0
 
-$ wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
-$ unzip ${PROTOC_FILENAME}
-$ sudo cp bin/protoc /usr/local/bin/protoc
-$ protoc --version
+wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
+unzip ${PROTOC_FILENAME}
+sudo cp bin/protoc /usr/local/bin/protoc
+protoc --version
 
 
-$ curl -sSL \
+# install prototool
+curl -sSL \
   https://github.com/uber/prototool/releases/download/v${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | \
+  sudo tar -C /usr/local --strip-components 1 -xz
+
+which prototool
+
+# install protolock
+curl -sSL \
+  https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz | \
   sudo tar -C /usr/local --strip-components 1 -xz
 ```
 
 ### Compiling
 
-From the root of the directory (github.com/cernbox/cs3apis/) run `make`
+From the root of the directory run:
+
+```
+make
+```
 
 ## License
 
-CS3 APIS are distributed under [Apache 2.0 license](https://github.com/cs3org/cs3apis/blob/master/LICENSE).
+CS3 APIs are distributed under [Apache 2.0 license](https://github.com/cs3org/cs3apis/blob/master/LICENSE).
