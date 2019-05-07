@@ -23,9 +23,8 @@ curl -sSL \
 which prototool
 
 # install protolock
-curl -sSL \
-  https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz | \
-  sudo tar -C /usr/local --strip-components 1 -xz
+curl -sSL https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz && \ 
+  tar -xzf protolock* && cp protolock /usr/local/bin/
 
 which protolock
 popd
