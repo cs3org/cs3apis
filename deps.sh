@@ -5,7 +5,7 @@ set -o pipefail # Fail a pipe if any sub-command fails.
 
 case "$OSTYPE" in
   darwin*)  OS="darwin" && PROTOOS="osx" ;; 
-  linux*)   OS="linux" ;;
+  linux*)   OS="linux" && PROTOOS="linux" ;;
   *)        echo "unknown os, build yourself: $OSTYPE" && exit 1 ;;
 esac
 
