@@ -34,15 +34,15 @@ import "cs3/storagetypes/storagetypes.proto";
 import "cs3/types/types.proto";
 
 // Storage Provider API
-// 
+//
 // The Storage Provider API is meant to manipulate storage
 // resources in the underlying storage system behind the service.
-// 
+//
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 // "OPTIONAL" in this document are to be interpreted as described in
 // RFC 2119.
-// 
+//
 // The following are global requirements that apply to all methods:
 // Any method MUST return CODE_OK on a succesful operation.
 // Any method MAY return NOT_IMPLEMENTED.
@@ -57,7 +57,7 @@ service StorageProviderService {
   // MUST return CODE_PRECONDITION_FAILED if the container
   // cannot be created at the specified reference.
   rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);
-  // Deletes a resource. 
+  // Deletes a resource.
   // If a resource specifies the non-empty container (directory, ...),
   // then the entire directory is deleted recursively.
   // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
@@ -65,7 +65,7 @@ service StorageProviderService {
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   // Returns the information for this provider.
   rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
-  // Returns the path reference for 
+  // Returns the path reference for
   // the provided resource id reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc GetPath(GetPathRequest) returns (GetPathResponse);
@@ -77,7 +77,7 @@ service StorageProviderService {
   // Initiates the download of a file using an
   // out-of-band data transfer mechanism.
   rpc InitiateFileDownload(InitiateFileDownloadRequest) returns (InitiateFileDownloadResponse);
-  // Initiates the upload of a file using an 
+  // Initiates the upload of a file using an
   // out-of-band data transfer mechanism.
   rpc InitiateFileUpload(InitiateFileUploadRequest) returns (InitiateFileUploadResponse);
   // Returns the list of grants for the provided reference.
@@ -91,7 +91,7 @@ service StorageProviderService {
   // for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exists.
   rpc ListContainer(ListContainerRequest) returns (ListContainerResponse);
-  // Returns a list of the versions for a resource of 
+  // Returns a list of the versions for a resource of
   // type file at the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_OK and MUST return an empty list if no versions are available.
@@ -116,13 +116,13 @@ service StorageProviderService {
   // This operation is irrevocable.
   // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
   rpc PurgeRecycle(PurgeRecycleRequest) returns (PurgeRecycleResponse);
-  // Restores a file version for the provided reference. 
+  // Restores a file version for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_NOT_FOUND if the version does not exist.
   rpc RestoreFileVersion(RestoreFileVersionRequest) returns (RestoreFileVersionResponse);
   // Restores a recycle item from the recycle.
   // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty 
+  // MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
   // and the recycle item cannot be restored to the restore_path.
   rpc RestoreRecycleItem(RestoreRecycleItemRequest) returns (RestoreRecycleItemResponse);
   // Returns the resource information at the provided reference.
@@ -489,7 +489,7 @@ message RestoreFileVersionRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // REQUIRED.
-  // The key to restore a specific file version. 
+  // The key to restore a specific file version.
   string key = 3;
 }
 
@@ -517,8 +517,8 @@ message RestoreRecycleItemRequest {
   // An optional restore path for the deleted resource.
   // It can be useful to restore to another location rather than
   // the original.
-  // If empty, service implementors MUST restore 
-  // to original location if possible. 
+  // If empty, service implementors MUST restore
+  // to original location if possible.
   string restore_path = 4;
 }
 

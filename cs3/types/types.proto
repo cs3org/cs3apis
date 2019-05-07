@@ -41,7 +41,7 @@ message Opaque {
 // opaque value.
 message OpaqueEntry {
   // REQUIRED.
-  // The decoder to use: json, xml, toml, ... 
+  // The decoder to use: json, xml, toml, ...
   // TODO(labkode): make encoder a fixed set using a enum type?
   string decoder = 1;
   // REQUIRED.
@@ -66,7 +66,7 @@ message Timestamp {
   uint64 seconds = 1;
   // Non-negative fractions of a second at nanosecond resolution. Negative
   // second values with fractions must still have non-negative nanos values
-  // that count forward in time. 
+  // that count forward in time.
   // Value MUST be from 0 to 999,999,999
   // inclusive.
   uint32 nanos = 2;

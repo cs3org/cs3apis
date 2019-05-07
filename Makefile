@@ -1,5 +1,5 @@
-.PHONY: build lint docs
-default: build lint
+.PHONY: build lint docs deps
+default: build lint docs
 
 build:
 	prototool compile
@@ -11,3 +11,6 @@ lint:
 
 docs:
 	rm -rf docs && mkdir docs && protoc --doc_out=./docs --doc_opt=html,index.html cs3/*/*.proto cs3/*/*/*.proto 
+
+deps:
+	cp deps.sh /tmp && cd /tmp && ./deps.sh

@@ -38,7 +38,7 @@ message ProviderInfo {
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The share type that will become part of the 
+  // The share type that will become part of the
   // share id.
   // For example, if the share_type is "user", shares obtained
   // from this storage provider will have a share id like "user:1234"
@@ -55,8 +55,8 @@ message ProviderInfo {
   string description = 4;
 }
 
-// Shares are relationships between a resource owner 
-// (usually the authenticated user) who grants permissions to a recipient (grantee) 
+// Shares are relationships between a resource owner
+// (usually the authenticated user) who grants permissions to a recipient (grantee)
 // on a specified resource (resource_id). UserShares represents both user and groups.
 message Share {
   // REQUIRED.
@@ -66,21 +66,21 @@ message Share {
   // Unique identifier of the shared resource.
   cs3.storageproviderv0alpha.ResourceId resource_id = 2;
   // REQUIRED.
-  // Permissions for the grantee to use 
+  // Permissions for the grantee to use
   // the resource.
   SharePermissions permissions = 3;
   // REQUIRED.
   // The receiver of the share, like a user, group ...
   cs3.storageproviderv0alpha.Grantee grantee = 4;
   // REQUIRED.
-  // Uniquely identifies the owner of the share 
+  // Uniquely identifies the owner of the share
   // (the resource owner at the time of creating the share).
   // In case the ownership of the underlying resource changes
   // the share owner field MAY change to reflect the change of ownsership.
   string owner = 5;
   // REQUIRED.
   // Uniquely identifies a principal who initiates the share creation.
-  // A creator can create shares on behalf of the owner (because of re-sharing, 
+  // A creator can create shares on behalf of the owner (because of re-sharing,
   // because belonging to special groups, ...).
   // Creator and owner often result in being the same principal.
   string creator = 6;
@@ -91,7 +91,7 @@ message Share {
   // Last modification time of the share.
   cs3.types.Timestamp mtime = 8;
   // OPTIONAL.
-  // Display name for the shared resource (such as file, directory basename or any 
+  // Display name for the shared resource (such as file, directory basename or any
   // user defined name).
   // The display name MAY be different than the actual resource basename.
   // This field is only useful for informational purposes.
@@ -106,8 +106,8 @@ message SharePermissions {
 }
 
 // A received share is the share that a grantee will receive.
-// It expands the original share by adding state to the share, 
-// a display name from the perspective of the grantee and a 
+// It expands the original share by adding state to the share,
+// a display name from the perspective of the grantee and a
 // resource mount path in case the share will be mounted
 // in a path in a storage provider.
 message ReceivedShare {
@@ -121,7 +121,7 @@ message ReceivedShare {
   // in one of the available storage providers of the user.
   string mount_path = 3;
   // OPTIONAL.
-  // Display name for the shared resource (such as file, directory basename or any 
+  // Display name for the shared resource (such as file, directory basename or any
   // user defined name).
   // The display name MAY be different than the actual resource basename.
   // This field is only useful for informational purposes.
@@ -151,7 +151,7 @@ enum ShareState {
 // 3) The resource id
 // 4) The grantee for the share
 // This 4-tuple MUST be unique.
-// For example, owner Alice shares the resource /home/docs with id 
+// For example, owner Alice shares the resource /home/docs with id
 // home:1234 to an user named Bob. The 4-tuple will consist of
 // 1) The share provider id = "user"
 // 2) The owner of the share = "Alice"
@@ -181,8 +181,8 @@ message ShareId {
   string opaque_id = 2;
 }
 
-// The mechanism to identify a share 
-// in the share provider namespace. 
+// The mechanism to identify a share
+// in the share provider namespace.
 message ShareReference {
   // REQUIRED.
   // One of the specifications MUST be specified.

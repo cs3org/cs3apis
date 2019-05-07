@@ -27,7 +27,7 @@ option java_package = "com.cs3.rpc";
 option objc_class_prefix = "CBOXRPC";
 option php_namespace = "CS3\\RPC";
 
-// These are the canonical error codes used by CS3 APIs. 
+// These are the canonical error codes used by CS3 APIs.
 //
 // Adapted from Google APIs:
 // https://github.com/googleapis/googleapis/
@@ -40,7 +40,7 @@ enum Code {
   // A programmer would not intentionally set the code to CODE_INVALID.
   // This code exists to force service implementors to set
   // a specific code for the API call and to not rely on defaults.
-  // 
+  //
   // HTTP Mapping: 500 Internal Server Error
   CODE_INVALID = 0;
   // Not an error; returned on success

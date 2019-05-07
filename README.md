@@ -1,101 +1,153 @@
-# [CS3APIS](https://cernbox.github.io/cs3apis/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.png)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://travis-ci.org/cernbox/cs3apis.svg?branch=master)](https://travis-ci.org/cernbox/cs3apis)
+# protolock
 
-**NOTE:** this repository in under heavy development
-and not ready for public consumption.
+Track your .proto files and prevent changes to messages and services which impact API compatibility.
 
-CS3 stands for Cloud Storage Synchronisation and Sharing.
+[![CircleCI](https://circleci.com/gh/nilslice/protolock/tree/master.svg?style=svg)](https://circleci.com/gh/nilslice/protolock/tree/master)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/nilslice/protolock)
+[![Docker](https://img.shields.io/docker/cloud/build/nilslice/protolock.svg)](https://hub.docker.com/r/nilslice/protolock)
+## Why
 
-This repository contains the interface definitions of public
-CS3 APIs that support both REST and gRPC protocols. You can also
-use these definitions with open source tools to generate client
-libraries, documentation, and other artifacts.
+Ever _accidentally_ break your API compatibility while you're busy fixing problems? You may have forgotten to reserve the field number of a message or you re-ordered fields after removing a property. Maybe a new team member was not familiar with the backward-compatibility of Protocol Buffers and made an easy mistake.
 
-CS3 APIs follows Google API design guidelines, specially on error handling and naming convention.
-You can read more about these guidelines at https://cloud.google.com/apis/design/.
-
-This repository structure is very similar to https://github.com/googleapis/googleapis.
+`protolock` attempts to help prevent this from happening.
 
 ## Overview
 
-CS3 APIs use [Protocol Buffers](https://github.com/google/protobuf)
-version 3 (proto3) as their Interface Definition Language (IDL) to
-define the API interface and the structure of the payload messages. The
-same interface definition is used for both REST and RPC versions of the
-API, which can be accessed over different wire protocols.
+1. **Initialize** your repository: 
 
-There are several ways of accessing CS3 APIs:
+        $ protolock init
+        # creates a `proto.lock` file
 
-1.  Protocol Buffers over gRPC: You can access CS3 APIs published
-in this repository through [GRPC](https://github.com/grpc), which is
-a high-performance binary RPC protocol over HTTP/2. It offers many
-useful features, including request/response multiplex and full-duplex
-streaming.
+3. **Add changes** to .proto messages or services, verify no breaking changes made: 
 
-2.  JSON over HTTP: You can access all CS3 APIs directly using JSON
-over HTTP, using generated client libraries from the api definitions or 
-or third-party API client libraries.
+        $ protolock status
+        CONFLICT: "Channel" is missing ID: 108, which had been reserved [path/to/file.proto]
+        CONFLICT: "Channel" is missing ID: 109, which had been reserved [path/to/file.proto]
 
-## Repository Structure
+2. **Commit** a new state of your .protos (rewrites `proto.lock` if no warnings): 
 
-This repository uses a directory hierarchy that reflects the CS3
-feature set. In general, every API has its own root
-directory, and each major version of the API has its own subdirectory.
-The proto package names exactly match the directory: this makes it
-easy to locate the proto definitions and ensures that the generated
-client libraries have idiomatic namespaces in most programming
-languages. 
+        $ protolock commit
+        # optionally provide --force flag to disregard warnings
 
-**NOTE:** The major version of an API is used to indicate breaking
-change to the API.
+4. **Integrate** into your protobuf compilation step: 
 
+        $ protolock status && protoc -I ...
 
-## Official generated code
+In all, prevent yourself from compiling your protobufs and generating code if breaking changes have been made.
 
-Go: [go-cs3apis](https://github.com/cs3org/go-cs3apis)
+**Recommended:** commit the output `proto.lock` file into your version control system
 
-## Getting started
-
-The following requirements are needed to compile the CS3 apis:
-
-* Protobuf
-* Prototool
-
-### Installation
-
-First we need to install the dependencies:
-
-```
-PROTOBUF_VERSION=3.3.0
-PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-linux-x86_64.zip
-PROTOTOOL_VERSION=1.6.0
-
-wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
-unzip ${PROTOC_FILENAME}
-sudo cp bin/protoc /usr/local/bin/protoc
-protoc --version
-
-
-# install prototool
-curl -sSL \
-  https://github.com/uber/prototool/releases/download/v${PROTOTOOL_VERSION}/prototool-Linux-x86_64.tar.gz | \
-  sudo tar -C /usr/local --strip-components 1 -xz
-
-which prototool
-
-# install protolock
-curl -sSL \
-  https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.linux-amd64.tgz | \
-  sudo tar -C /usr/local --strip-components 1 -xz
+## Install
+If you have [Go](https://golang.org) installed, you can install `protolock` by
+running:
+```bash
+go get -u github.com/nilslice/protolock/...
 ```
 
-### Compiling
+Otherwise, download a pre-built binary for Windows, macOS, or Linux from the [latest release](https://github.com/nilslice/protolock/releases/latest) page.
 
-From the root of the directory run:
-
+## Usage
 ```
-make
+protolock <command> [options]
+
+Commands:
+	-h, --help, help	display the usage information for protolock
+	init			initialize a proto.lock file from current tree
+	status			check for breaking changes and report conflicts
+	commit			rewrite proto.lock file with current tree if no conflicts (--force to override)
+
+Options:
+	--strict [true]		enable strict mode and enforce all built-in rules
+	--debug	[false]		enable debug mode and output debug messages
+	--ignore 		comma-separated list of filepaths to ignore
+	--force [false]		forces commit to rewrite proto.lock file and disregards warnings
+	--plugins               comma-separated list of executable protolock plugin names
+	--lockdir [.]		directory of proto.lock file
+	--protoroot [.]		root of directory tree containing proto files
 ```
 
-## License
+## Related Projects & Users
 
-CS3 APIs are distributed under [Apache 2.0 license](https://github.com/cs3org/cs3apis/blob/master/LICENSE).
+- [Fanatics](https://github.com/fanatics)
+- [Maven Plugin](https://github.com/salesforce/proto-backwards-compat-maven-plugin) by [Salesforce](https://github.com/salesforce)
+- [Istio](https://github.com/istio/api)
+- [Lyft](https://github.com/lyft)
+- [Envoy](https://github.com/envoyproxy)
+- [Netflix](https://github.com/Netflix)
+
+## Rules Enforced
+
+#### No Using Reserved Fields
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any message's previously reserved fields or IDs are now being used 
+as part of the same message.
+
+#### No Removing Reserved Fields
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any reserved field has been removed. 
+
+**Note:** This rule is not enforced when strict mode is disabled. 
+
+
+#### No Changing Field IDs
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any field ID number has been changed.
+
+
+#### No Changing Field Types
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any field type has been changed.
+
+
+#### No Changing Field Names
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any message's previous fields have been renamed. 
+
+**Note:** This rule is not enforced when strict mode is disabled. 
+
+#### No Removing Fields Without Reserve
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any field has been removed without a corresponding reservation of 
+that field name or ID.
+
+#### No Removing RPCs
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any RPCs provided by a Service have been removed. 
+
+**Note:** This rule is not enforced when strict mode is disabled. 
+
+#### No Changing RPC Signature
+Compares the current vs. updated Protolock definitions and will return a list of 
+warnings if any RPC signature has been changed while using the same name.
+
+---
+
+## Docker 
+
+```sh
+docker pull nilslice/protolock:latest
+docker run -v $(pwd):/protolock -w /protolock nilslice/protolock init
+```
+
+---
+
+## Plugins
+The default rules enforced by `protolock` may not cover everything you want to 
+do. If you have custom checks you'd like run on your .proto files, create a 
+plugin, and have `protolock` run it and report your warnings. Read the wiki to 
+learn more about [creating and using plugins](https://github.com/nilslice/protolock/wiki/Plugins).
+
+---
+
+## Contributing
+Please feel free to make pull requests with better support for various rules, 
+optimized code and overall tests. Filing an issue when you encounter a bug or
+any unexpected behavior is very much appreciated. 
+
+For current issues, see: [open issues](https://github.com/nilslice/protolock/issues)
+
+---
+
+## Acknowledgement
+
+Thank you to Ernest Micklei for his work on the excellent parser heavily relied upon by this tool and many more: [https://github.com/emicklei/proto](https://github.com/emicklei/proto)

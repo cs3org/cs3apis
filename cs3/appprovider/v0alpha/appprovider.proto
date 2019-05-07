@@ -35,16 +35,16 @@ import "cs3/types/types.proto";
 //import "cs3/appprovider/v0alpha/resources.proto";
 
 // App Provider API
-// 
+//
 // The App Provider API is responsible for creating urls that
 // will render a viewer or editor for the given resource.
 // For example, an OnlyOffice or HackMD editor.
-// 
+//
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 // "OPTIONAL" in this document are to be interpreted as described in
 // RFC 2119.
-// 
+//
 // The following are global requirements that apply to all methods:
 // Any method MUST return CODE_OK on a succesful operation.
 // Any method MAY return NOT_IMPLEMENTED.

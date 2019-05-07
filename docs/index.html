@@ -970,7 +970,7 @@
 
       
         <h3 id="cs3.rpc.Code">Code</h3>
-        <p>These are the canonical error codes used by CS3 APIs. </p><p>Adapted from Google APIs:</p><p>https://github.com/googleapis/googleapis/</p><p>Sometimes multiple error codes may apply.  Services should return</p><p>the most specific error code that applies.  For example, prefer</p><p>`OUT_OF_RANGE` over `FAILED_PRECONDITION` if both codes apply.</p><p>Similarly prefer `NOT_FOUND` or `ALREADY_EXISTS` over `FAILED_PRECONDITION`.</p>
+        <p>These are the canonical error codes used by CS3 APIs.</p><p>Adapted from Google APIs:</p><p>https://github.com/googleapis/googleapis/</p><p>Sometimes multiple error codes may apply.  Services should return</p><p>the most specific error code that applies.  For example, prefer</p><p>`OUT_OF_RANGE` over `FAILED_PRECONDITION` if both codes apply.</p><p>Similarly prefer `NOT_FOUND` or `ALREADY_EXISTS` over `FAILED_PRECONDITION`.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1276,7 +1276,7 @@ Opaque information. </p></td>
                   <td><a href="#cs3.sharetypes.ShareType">ShareType</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The share type that will become part of the 
+The share type that will become part of the
 share id.
 For example, if the share_type is &#34;user&#34;, shares obtained
 from this storage provider will have a share id like &#34;user:1234&#34;
@@ -1388,7 +1388,7 @@ For example, additional metadata attached to the resource. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The storage provider id that will become part of the 
+The storage provider id that will become part of the
 resource id.
 For example, if the provider_id is &#34;home&#34;, resources obtained
 from this storage provider will have a resource id like &#34;home:1234&#34;. </p></td>
@@ -1440,7 +1440,7 @@ List of available methods. </p></td>
         
       
         <h3 id="cs3.storagetypes.ProviderInfo.Features">ProviderInfo.Features</h3>
-        <p>REQUIRED.</p><p>Represents the list of features available </p><p>on this storage provider. If the feature is not supported,</p><p>the related service methods MUST return CODE_UNIMPLEMENTED.</p>
+        <p>REQUIRED.</p><p>Represents the list of features available</p><p>on this storage provider. If the feature is not supported,</p><p>the related service methods MUST return CODE_UNIMPLEMENTED.</p>
 
         
           <table class="field-table">
@@ -1554,7 +1554,7 @@ List of available methods. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The decoder to use: json, xml, toml, ... 
+The decoder to use: json, xml, toml, ...
 TODO(labkode): make encoder a fixed set using a enum type? </p></td>
                 </tr>
               
@@ -1598,7 +1598,7 @@ The encoded value. </p></td>
                   <td></td>
                   <td><p>Non-negative fractions of a second at nanosecond resolution. Negative
 second values with fractions must still have non-negative nanos values
-that count forward in time. 
+that count forward in time.
 Value MUST be from 0 to 999,999,999
 inclusive. </p></td>
                 </tr>
@@ -1920,7 +1920,7 @@ The list of app providers this registry knows about. </p></td>
 
       
         <h3 id="cs3.appregistryv0alpha.AppRegistryService">AppRegistryService</h3>
-        <p>App Registry API</p><p>The App Registry API is meant to as registry that </p><p>contains mappings between mime types and app providers.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>App Registry API</p><p>The App Registry API is meant to as registry that</p><p>contains mappings between mime types and app providers.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -2919,7 +2919,7 @@ The updated public share. </p></td>
                 <td><p>Creates a new share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
-(owner, shared_resource, grantee). 
+(owner, shared_resource, grantee).
 New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
               </tr>
             
@@ -2952,7 +2952,7 @@ MUST return CODE_NOT_FOUND if the share does not exist.</p></td>
                 <td><a href="#cs3.publicsharev0alpha.ListPublicSharesRequest">ListPublicSharesRequest</a></td>
                 <td><a href="#cs3.publicsharev0alpha.ListPublicSharesResponse">ListPublicSharesResponse</a></td>
                 <td><p>List the shares the authenticated principal has created,
-both as owner and creator. If a filter is specified, only 
+both as owner and creator. If a filter is specified, only
 shares satisfying the filter MUST be returned.</p></td>
               </tr>
             
@@ -2999,7 +2999,7 @@ Opaque information. </p></td>
                   <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The share type that will become part of the 
+The share type that will become part of the
 share id.
 For example, if the share_type is &#34;user&#34;, shares obtained
 from this storage provider will have a share id like &#34;user:1234&#34;
@@ -3033,7 +3033,7 @@ by humans. </p></td>
         
       
         <h3 id="cs3.publicsharev0alpha.PublicShare">PublicShare</h3>
-        <p>Public share are relationships between a resource owner </p><p>(usually the authenticated user) who grants permissions to a recipient (grantee) </p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p><p>TODO(labkode): do we need to have  resource_type stored on the share?</p><p>This is not needed if when getting the shares a stat operation is launched against the</p><p>the storage provider.</p>
+        <p>Public share are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p><p>TODO(labkode): do we need to have  resource_type stored on the share?</p><p>This is not needed if when getting the shares a stat operation is launched against the</p><p>the storage provider.</p>
 
         
           <table class="field-table">
@@ -3072,7 +3072,7 @@ Unique identifier of the shared resource. </p></td>
                   <td><a href="#cs3.publicsharev0alpha.PublicSharePermissions">PublicSharePermissions</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Permissions for the grantee to use 
+Permissions for the grantee to use
 the resource. </p></td>
                 </tr>
               
@@ -3081,7 +3081,7 @@ the resource. </p></td>
                   <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Uniquely identifies the owner of the share 
+Uniquely identifies the owner of the share
 (the resource owner at the time of creating the share).
 In case the ownership of the underlying resource changes
 the share owner field MAY change to reflect the change of ownsership. </p></td>
@@ -3093,7 +3093,7 @@ the share owner field MAY change to reflect the change of ownsership. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 Uniquely identifies a principal who initiates the share creation.
-A creator can create shares on behalf of the owner (because of re-sharing, 
+A creator can create shares on behalf of the owner (because of re-sharing,
 because belonging to special groups, ...).
 Creator and owner often result in being the same principal. </p></td>
                 </tr>
@@ -3135,7 +3135,7 @@ The expiration time for the public share. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Display name for the shared resource (such as file, directory basename or any 
+Display name for the shared resource (such as file, directory basename or any
 user defined name).
 The display name MAY be different than the actual resource basename.
 This field is only useful for informational purposes, like for example,
@@ -3209,7 +3209,7 @@ implementation of the service. </p></td>
         
       
         <h3 id="cs3.publicsharev0alpha.PublicShareReference">PublicShareReference</h3>
-        <p>The mechanism to identify a share </p><p>in the share provider namespace.</p>
+        <p>The mechanism to identify a share</p><p>in the share provider namespace.</p>
 
         
           <table class="field-table">
@@ -3438,7 +3438,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
 
       
         <h3 id="cs3.storageproviderv0alpha.ExtraMetadata">ExtraMetadata</h3>
-        <p>ExtraMetadata contains extra metadata</p><p>attached to a resource. This message and the Opaque</p><p>message differ in that Opaque allows service implementors</p><p>to include any extra metadata in any format and most clients</p><p>will ignore it. However, the ExtraMetadata message</p><p>contains well defined fileds that clients MUST understand if </p><p>they are specified.</p>
+        <p>ExtraMetadata contains extra metadata</p><p>attached to a resource. This message and the Opaque</p><p>message differ in that Opaque allows service implementors</p><p>to include any extra metadata in any format and most clients</p><p>will ignore it. However, the ExtraMetadata message</p><p>contains well defined fileds that clients MUST understand if</p><p>they are specified.</p>
 
         
           <table class="field-table">
@@ -3647,7 +3647,7 @@ in Unix Epoch timestamp in seconds. </p></td>
         
       
         <h3 id="cs3.storageproviderv0alpha.Reference">Reference</h3>
-        <p>The mechanism to identify a resource </p><p>in the storage provider namespace.</p>
+        <p>The mechanism to identify a resource</p><p>in the storage provider namespace.</p>
 
         
           <table class="field-table">
@@ -3680,7 +3680,7 @@ MUST NOT start with the slash character (/). </p></td>
         
       
         <h3 id="cs3.storageproviderv0alpha.ResourceChecksum">ResourceChecksum</h3>
-        <p>The checksum to verify </p><p>the integrity of a resource.</p>
+        <p>The checksum to verify</p><p>the integrity of a resource.</p>
 
         
           <table class="field-table">
@@ -3750,7 +3750,7 @@ The value is case-insensitive, so
         
       
         <h3 id="cs3.storageproviderv0alpha.ResourceId">ResourceId</h3>
-        <p>A resource id identifies uniquely a </p><p>resource in the storage provider namespace.</p><p>A ResourceId MUST be unique in the storage provider.</p>
+        <p>A resource id identifies uniquely a</p><p>resource in the storage provider namespace.</p><p>A ResourceId MUST be unique in the storage provider.</p>
 
         
           <table class="field-table">
@@ -4163,8 +4163,8 @@ to folders (local filesystem) or buckets
                 <td>RESOURCE_TYPE_REFERENCE</td>
                 <td>3</td>
                 <td><p>This represents a reference type which points
-to another resource where client MAY be redirected. 
-Client SHOULD use the ResourceInfo.target 
+to another resource where client MAY be redirected.
+Client SHOULD use the ResourceInfo.target
 reference for a subsequent call.</p></td>
               </tr>
             
@@ -4172,7 +4172,7 @@ reference for a subsequent call.</p></td>
                 <td>RESOURCE_TYPE_SYMLINK</td>
                 <td>4</td>
                 <td><p>This represents a symbolic link type if the underlying
-storage system supports it. 
+storage system supports it.
 Symlink target SHOULD NOT be interpreted by the clients.</p></td>
               </tr>
             
@@ -4183,7 +4183,7 @@ Symlink target SHOULD NOT be interpreted by the clients.</p></td>
 a storage implementation.
 For example, this type could be used to represent
 a device file on a Linux filesystem.
-Another example could be to represent an ongoing upload, 
+Another example could be to represent an ongoing upload,
 where an hypothetically user interface could show a loading icon
 on this type of resources until the upload operation is completed.
 Internal resources SHOULD NOT be moved to a different storage
@@ -5585,7 +5585,7 @@ The key for the recycle item to be restored. </p></td>
 An optional restore path for the deleted resource.
 It can be useful to restore to another location rather than
 the original.
-If empty, service implementors MUST restore 
+If empty, service implementors MUST restore
 to original location if possible. </p></td>
                 </tr>
               
@@ -5812,7 +5812,7 @@ cannot be created at the specified reference.</p></td>
                 <td>Delete</td>
                 <td><a href="#cs3.storageproviderv0alpha.DeleteRequest">DeleteRequest</a></td>
                 <td><a href="#cs3.storageproviderv0alpha.DeleteResponse">DeleteResponse</a></td>
-                <td><p>Deletes a resource. 
+                <td><p>Deletes a resource.
 If a resource specifies the non-empty container (directory, ...),
 then the entire directory is deleted recursively.
 If a resource specifies a reference or symlink type, only the reference is removed (not the target).
@@ -5830,7 +5830,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td>GetPath</td>
                 <td><a href="#cs3.storageproviderv0alpha.GetPathRequest">GetPathRequest</a></td>
                 <td><a href="#cs3.storageproviderv0alpha.GetPathResponse">GetPathResponse</a></td>
-                <td><p>Returns the path reference for 
+                <td><p>Returns the path reference for
 the provided resource id reference.
 MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
               </tr>
@@ -5857,7 +5857,7 @@ out-of-band data transfer mechanism.</p></td>
                 <td>InitiateFileUpload</td>
                 <td><a href="#cs3.storageproviderv0alpha.InitiateFileUploadRequest">InitiateFileUploadRequest</a></td>
                 <td><a href="#cs3.storageproviderv0alpha.InitiateFileUploadResponse">InitiateFileUploadResponse</a></td>
-                <td><p>Initiates the upload of a file using an 
+                <td><p>Initiates the upload of a file using an
 out-of-band data transfer mechanism.</p></td>
               </tr>
             
@@ -5891,7 +5891,7 @@ MUST return CODE_NOT_FOUND if the reference does not exists.</p></td>
                 <td>ListFileVersions</td>
                 <td><a href="#cs3.storageproviderv0alpha.ListFileVersionsRequest">ListFileVersionsRequest</a></td>
                 <td><a href="#cs3.storageproviderv0alpha.ListFileVersionsResponse">ListFileVersionsResponse</a></td>
-                <td><p>Returns a list of the versions for a resource of 
+                <td><p>Returns a list of the versions for a resource of
 type file at the provided reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_OK and MUST return an empty list if no versions are available.
@@ -5946,7 +5946,7 @@ MUST return CODE_NOT_FOUND if the recycle item id does not exist.</p></td>
                 <td>RestoreFileVersion</td>
                 <td><a href="#cs3.storageproviderv0alpha.RestoreFileVersionRequest">RestoreFileVersionRequest</a></td>
                 <td><a href="#cs3.storageproviderv0alpha.RestoreFileVersionResponse">RestoreFileVersionResponse</a></td>
-                <td><p>Restores a file version for the provided reference. 
+                <td><p>Restores a file version for the provided reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_NOT_FOUND if the version does not exist.</p></td>
               </tr>
@@ -5957,7 +5957,7 @@ MUST return CODE_NOT_FOUND if the version does not exist.</p></td>
                 <td><a href="#cs3.storageproviderv0alpha.RestoreRecycleItemResponse">RestoreRecycleItemResponse</a></td>
                 <td><p>Restores a recycle item from the recycle.
 MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty 
+MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
 and the recycle item cannot be restored to the restore_path.</p></td>
               </tr>
             
@@ -6200,7 +6200,7 @@ Opaque information. </p></td>
                   <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The share type that will become part of the 
+The share type that will become part of the
 share id.
 For example, if the share_type is &#34;user&#34;, shares obtained
 from this storage provider will have a share id like &#34;user:1234&#34;
@@ -6234,7 +6234,7 @@ by humans. </p></td>
         
       
         <h3 id="cs3.usershareproviderv0alpha.ReceivedShare">ReceivedShare</h3>
-        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share, </p><p>a display name from the perspective of the grantee and a </p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
+        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
 
         
           <table class="field-table">
@@ -6272,7 +6272,7 @@ in one of the available storage providers of the user. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Display name for the shared resource (such as file, directory basename or any 
+Display name for the shared resource (such as file, directory basename or any
 user defined name).
 The display name MAY be different than the actual resource basename.
 This field is only useful for informational purposes. </p></td>
@@ -6286,7 +6286,7 @@ This field is only useful for informational purposes. </p></td>
         
       
         <h3 id="cs3.usershareproviderv0alpha.Share">Share</h3>
-        <p>Shares are relationships between a resource owner </p><p>(usually the authenticated user) who grants permissions to a recipient (grantee) </p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p>
+        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p>
 
         
           <table class="field-table">
@@ -6316,7 +6316,7 @@ Unique identifier of the shared resource. </p></td>
                   <td><a href="#cs3.usershareproviderv0alpha.SharePermissions">SharePermissions</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Permissions for the grantee to use 
+Permissions for the grantee to use
 the resource. </p></td>
                 </tr>
               
@@ -6333,7 +6333,7 @@ The receiver of the share, like a user, group ... </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Uniquely identifies the owner of the share 
+Uniquely identifies the owner of the share
 (the resource owner at the time of creating the share).
 In case the ownership of the underlying resource changes
 the share owner field MAY change to reflect the change of ownsership. </p></td>
@@ -6345,7 +6345,7 @@ the share owner field MAY change to reflect the change of ownsership. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 Uniquely identifies a principal who initiates the share creation.
-A creator can create shares on behalf of the owner (because of re-sharing, 
+A creator can create shares on behalf of the owner (because of re-sharing,
 because belonging to special groups, ...).
 Creator and owner often result in being the same principal. </p></td>
                 </tr>
@@ -6371,7 +6371,7 @@ Last modification time of the share. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Display name for the shared resource (such as file, directory basename or any 
+Display name for the shared resource (such as file, directory basename or any
 user defined name).
 The display name MAY be different than the actual resource basename.
 This field is only useful for informational purposes. </p></td>
@@ -6453,7 +6453,7 @@ implementation of the service. </p></td>
         
       
         <h3 id="cs3.usershareproviderv0alpha.ShareKey">ShareKey</h3>
-        <p>Uniquely identifies a share in the share provider.</p><p>A share MUST be uniquely identify by four (4) elements:</p><p>1) The share provider id</p><p>2) The owner of the share</p><p>3) The resource id</p><p>4) The grantee for the share</p><p>This 4-tuple MUST be unique.</p><p>For example, owner Alice shares the resource /home/docs with id </p><p>home:1234 to an user named Bob. The 4-tuple will consist of</p><p>1) The share provider id = "user"</p><p>2) The owner of the share = "Alice"</p><p>3) The resource id = "home:1234"</p><p>4) The grantee for the share = Grantee("type" = "user", "" => "Bob")</p>
+        <p>Uniquely identifies a share in the share provider.</p><p>A share MUST be uniquely identify by four (4) elements:</p><p>1) The share provider id</p><p>2) The owner of the share</p><p>3) The resource id</p><p>4) The grantee for the share</p><p>This 4-tuple MUST be unique.</p><p>For example, owner Alice shares the resource /home/docs with id</p><p>home:1234 to an user named Bob. The 4-tuple will consist of</p><p>1) The share provider id = "user"</p><p>2) The owner of the share = "Alice"</p><p>3) The resource id = "home:1234"</p><p>4) The grantee for the share = Grantee("type" = "user", "" => "Bob")</p>
 
         
           <table class="field-table">
@@ -6522,7 +6522,7 @@ implementation of the service. </p></td>
         
       
         <h3 id="cs3.usershareproviderv0alpha.ShareReference">ShareReference</h3>
-        <p>The mechanism to identify a share </p><p>in the share provider namespace.</p>
+        <p>The mechanism to identify a share</p><p>in the share provider namespace.</p>
 
         
           <table class="field-table">
@@ -7357,7 +7357,7 @@ Opaque information. </p></td>
                 <td><p>Creates a new share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
-(owner, shared_resource, grantee). 
+(owner, shared_resource, grantee).
 New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
               </tr>
             
@@ -7382,7 +7382,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.usershareproviderv0alpha.ListSharesRequest">ListSharesRequest</a></td>
                 <td><a href="#cs3.usershareproviderv0alpha.ListSharesResponse">ListSharesResponse</a></td>
                 <td><p>List the shares the authenticated principal has created,
-both as owner and creator. If a filter is specified, only 
+both as owner and creator. If a filter is specified, only
 shares satisfying the filter MUST be returned.</p></td>
               </tr>
             

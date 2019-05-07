@@ -38,7 +38,7 @@ message ProviderInfo {
   // For example, additional metadata attached to the resource.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The storage provider id that will become part of the 
+  // The storage provider id that will become part of the
   // resource id.
   // For example, if the provider_id is "home", resources obtained
   // from this storage provider will have a resource id like "home:1234".
@@ -59,7 +59,7 @@ message ProviderInfo {
   // by humans.
   string description = 5;
   // REQUIRED.
-  // Represents the list of features available 
+  // Represents the list of features available
   // on this storage provider. If the feature is not supported,
   // the related service methods MUST return CODE_UNIMPLEMENTED.
   message Features {

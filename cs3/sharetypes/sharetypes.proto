@@ -47,7 +47,7 @@ message ProviderInfo {
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The share type that will become part of the 
+  // The share type that will become part of the
   // share id.
   // For example, if the share_type is "user", shares obtained
   // from this storage provider will have a share id like "user:1234"

@@ -89,7 +89,7 @@ message ResourceInfo {
 // message differ in that Opaque allows service implementors
 // to include any extra metadata in any format and most clients
 // will ignore it. However, the ExtraMetadata message
-// contains well defined fileds that clients MUST understand if 
+// contains well defined fileds that clients MUST understand if
 // they are specified.
 message ExtraMetadata {
   // REQUIRED if resource type is RESOURCE_TYPE_REFERENCE.
@@ -116,19 +116,19 @@ enum ResourceType {
   // (Amazon S3).
   RESOURCE_TYPE_CONTAINER = 2;
   // This represents a reference type which points
-  // to another resource where client MAY be redirected. 
-  // Client SHOULD use the ResourceInfo.target 
+  // to another resource where client MAY be redirected.
+  // Client SHOULD use the ResourceInfo.target
   // reference for a subsequent call.
   RESOURCE_TYPE_REFERENCE = 3;
   // This represents a symbolic link type if the underlying
-  // storage system supports it. 
-  // Symlink target SHOULD NOT be interpreted by the clients. 
+  // storage system supports it.
+  // Symlink target SHOULD NOT be interpreted by the clients.
   RESOURCE_TYPE_SYMLINK = 4;
   // Internal resource type for some specific resources inside
   // a storage implementation.
   // For example, this type could be used to represent
   // a device file on a Linux filesystem.
-  // Another example could be to represent an ongoing upload, 
+  // Another example could be to represent an ongoing upload,
   // where an hypothetically user interface could show a loading icon
   // on this type of resources until the upload operation is completed.
   // Internal resources SHOULD NOT be moved to a different storage
@@ -149,7 +149,7 @@ enum ResourceChecksumType {
   RESOURCE_CHECKSUM_TYPE_SHA1 = 4;
 }
 
-// The checksum to verify 
+// The checksum to verify
 // the integrity of a resource.
 message ResourceChecksum {
   // REQUIRED.
@@ -175,8 +175,8 @@ message ResourceChecksumPriority {
   uint32 priority = 2;
 }
 
-// The mechanism to identify a resource 
-// in the storage provider namespace. 
+// The mechanism to identify a resource
+// in the storage provider namespace.
 message Reference {
   // REQUIRED.
   // One of the specifications MUST be specified.
@@ -190,9 +190,9 @@ message Reference {
   }
 }
 
-// A resource id identifies uniquely a 
+// A resource id identifies uniquely a
 // resource in the storage provider namespace.
-// A ResourceId MUST be unique in the storage provider. 
+// A ResourceId MUST be unique in the storage provider.
 message ResourceId {
   // REQUIRED.
   // The storage id of the storage provider.

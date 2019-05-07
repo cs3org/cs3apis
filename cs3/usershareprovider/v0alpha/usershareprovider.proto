@@ -34,17 +34,17 @@ import "cs3/types/types.proto";
 import "cs3/usershareprovider/v0alpha/resources.proto";
 
 // Storage Provider API
-// 
+//
 // The Share Provider API is meant to manipulate share
 // resources for a specific share type (user, group, ocm, ...)
 // from the perspective of the creator or the share and
 // from the perspective of the receiver of the share.
-// 
+//
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 // "OPTIONAL" in this document are to be interpreted as described in
 // RFC 2119.
-// 
+//
 // The following are global requirements that apply to all methods:
 // Any method MUST return CODE_OK on a succesful operation.
 // Any method MAY return NOT_IMPLEMENTED.
@@ -57,7 +57,7 @@ service UserShareProviderService {
   // Creates a new share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
-  // (owner, shared_resource, grantee). 
+  // (owner, shared_resource, grantee).
   // New shares MUST be created in the state SHARE_STATE_PENDING.
   rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
   // Removes a share.
@@ -67,7 +67,7 @@ service UserShareProviderService {
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc GetShare(GetShareRequest) returns (GetShareResponse);
   // List the shares the authenticated principal has created,
-  // both as owner and creator. If a filter is specified, only 
+  // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListShares(ListSharesRequest) returns (ListSharesResponse);
   // Updates a share.
