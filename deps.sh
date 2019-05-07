@@ -4,17 +4,20 @@ set -xe  # Exit on error; debugging enabled.
 set -o pipefail # Fail a pipe if any sub-command fails.
 
 case "$OSTYPE" in
-  darwin*)  OS="osx" ;; 
+  darwin*)  OS="darwin" && PROTOOS="osx" ;; 
   linux*)   OS="linux" ;;
   *)        echo "unknown os, build yourself: $OSTYPE" && exit 1 ;;
 esac
 
+echo "OS = ${OS}"
+echo "PROTOOS= ${PROTOOS}"
+
 PROTOBUF_VERSION=3.7.1
-PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-${OS}-x86_64.zip
+PROTOC_FILENAME=protoc-${PROTOBUF_VERSION}-${PROTOOS}-x86_64.zip
 PROTOTOOL_VERSION=1.6.0
 
-wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
-unzip -f ${PROTOC_FILENAME}
+curl -sSL https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME} -o protoc.zip
+unzip -o protoc.zip
 sudo cp bin/protoc /usr/local/bin/protoc
 protoc --version
 
