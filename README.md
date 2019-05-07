@@ -15,6 +15,15 @@ You can read more about these guidelines at https://cloud.google.com/apis/design
 
 This repository structure is very similar to https://github.com/googleapis/googleapis.
 
+## Build it yourself
+You need to have [Go](https://golang.org/doc/install), [git](https://git-scm.com/) and [make](https://en.wikipedia.org/wiki/Make_(software)) installed.
+
+```
+$ git clone https://github.com/cernbox/cs3apis
+$ make deps # only supported on Darwin and Linux OS.
+$ make
+```
+
 ## Overview
 
 CS3 APIs use [Protocol Buffers](https://github.com/google/protobuf)
