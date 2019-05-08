@@ -4,6 +4,8 @@
 
 CS3 APIs is a set of APIs to interconnect storage, sync and share and application providers in a standard and performant way using gRPC and protocol buffers.
 
+## API Documentation
+https://cernbox.github.io/cs3apis/
 
 ## Build it yourself
 You need to have [Go](https://golang.org/doc/install), [git](https://git-scm.com/) and [make](https://en.wikipedia.org/wiki/Make_(software)) installed.
