@@ -59,10 +59,10 @@ service PreferencesService {
 message SetKeyRequest {
     // REQUIRED.
     // The mime type.
-    string mime_type = 1;
+    string key = 1;
     // REQUIRED.
     // The provider to be associated with the mime type.
-    ProviderInfo provider = 2;
+    string val = 2;
 }
 
 message SetKeyResponse {
@@ -74,14 +74,14 @@ message SetKeyResponse {
 message GetKeyRequest {
     // REQUIRED.
     // The mime type.
-    string mime_type = 1;
+    string key = 1;
 }
 
 message GetKeyResponse {
     // REQUIRED.
     // The response status.
-    cs3.rpc.Status status =1;
+    cs3.rpc.Status status = 1;
     // REQUIRED.
     // The provider associated with the requested mime type.
-    ProviderInfo provider =2;
+    string val = 2;
 }
