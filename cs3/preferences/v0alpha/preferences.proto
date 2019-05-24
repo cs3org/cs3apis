@@ -33,8 +33,7 @@ import "cs3/rpc/status.proto";
 // Preferences API.
 //
 // The Preferences API is responsible for creating
-// a mapping between mime types and app providers 
-// according to user preferences.
+// a key-value map according to user preferences.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -48,19 +47,18 @@ import "cs3/rpc/status.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service PreferencesService {
-    // Maps the mime type with app provider.
+    // Maps the key-value pair.
     rpc SetKey(SetKeyRequest) returns (SetKeyResponse);
-    // Returns the app provider associated with the
-    // requested mime type.
+    // Returns the value associated with the
+    // requested key.
     rpc GetKey(GetKeyRequest) returns (GetKeyResponse);
 }
 
 message SetKeyRequest {
     // REQUIRED.
-    // The mime type.
     string key = 1;
     // REQUIRED.
-    // The provider to be associated with the mime type.
+    // The value associated with the key.
     string val = 2;
 }
 
@@ -72,7 +70,6 @@ message SetKeyResponse {
 
 message GetKeyRequest {
     // REQUIRED.
-    // The mime type.
     string key = 1;
 }
 
@@ -81,6 +78,6 @@ message GetKeyResponse {
     // The response status.
     cs3.rpc.Status status = 1;
     // REQUIRED.
-    // The provider associated with the requested mime type.
+    // The value associated with the key.
     string val = 2;
 }
