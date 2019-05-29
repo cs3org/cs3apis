@@ -52,8 +52,6 @@ import "cs3/usershareprovider/v0alpha/resources.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service UserShareProviderService {
-  // Returns the information for this provider.
-  rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
   // Creates a new share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
@@ -140,9 +138,10 @@ message ListSharesRequest {
   message Filter {
     enum Type {
       LIST_SHARES_REQUEST_FILTER_TYPE_INVALID = 0;
-      LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 1;
-      LIST_SHARES_REQUEST_FILTER_TYPE_OWNER = 2;
-      LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR = 3;
+      LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER = 1;
+      LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 2;
+      LIST_SHARES_REQUEST_FILTER_TYPE_OWNER = 3;
+      LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR = 4;
     }
     Type type = 2;
     oneof term {
@@ -225,6 +224,7 @@ message ListReceivedSharesResponse {
   repeated ReceivedShare shares = 3;
 }
 
+// TODO(labkode): clean up display_name ? we'll use storage links for that.
 message UpdateReceivedShareRequest {
   // OPTIONAL.
   // Opaque information.
@@ -238,8 +238,6 @@ message UpdateReceivedShareRequest {
       string display_name = 1;
       // Update the share state
       ShareState state = 2;
-      // Update the mount path.
-      string mount_path = 3;
     }
   }
   UpdateField field = 3;
@@ -252,22 +250,4 @@ message UpdateReceivedShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 2;
-}
-
-message GetProviderRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-}
-
-message GetProviderResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The information for the share provider.
-  ProviderInfo info = 3;
 }

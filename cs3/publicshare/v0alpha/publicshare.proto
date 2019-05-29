@@ -30,7 +30,6 @@ option php_namespace = "CS3\\PublicShareV0Alpha";
 
 import "cs3/publicshare/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
-import "cs3/sharetypes/sharetypes.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
 
@@ -51,8 +50,6 @@ import "cs3/types/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service PublicShareProviderService {
-  // Returns the information for this provider.
-  rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
   // Creates a new share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
@@ -75,24 +72,6 @@ service PublicShareProviderService {
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdatePublicShare(UpdatePublicShareRequest) returns (UpdatePublicShareResponse);
-}
-
-message GetProviderRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-}
-
-message GetProviderResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The information for the share provider.
-  cs3.sharetypes.ProviderInfo info = 3;
 }
 
 message CreatePublicShareRequest {

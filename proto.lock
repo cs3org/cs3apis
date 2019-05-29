@@ -516,36 +516,6 @@
         ],
         "messages": [
           {
-            "name": "GetProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "GetProviderResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "info",
-                "type": "cs3.sharetypes.ProviderInfo"
-              }
-            ]
-          },
-          {
             "name": "CreatePublicShareRequest",
             "fields": [
               {
@@ -827,11 +797,6 @@
             "name": "PublicShareProviderService",
             "rpcs": [
               {
-                "name": "GetProvider",
-                "in_type": "GetProviderRequest",
-                "out_type": "GetProviderResponse"
-              },
-              {
                 "name": "CreatePublicShare",
                 "in_type": "CreatePublicShareRequest",
                 "out_type": "CreatePublicShareResponse"
@@ -870,9 +835,6 @@
           },
           {
             "path": "cs3/rpc/status.proto"
-          },
-          {
-            "path": "cs3/sharetypes/sharetypes.proto"
           },
           {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
@@ -981,31 +943,6 @@
             ]
           },
           {
-            "name": "ProviderInfo",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "share_type",
-                "type": "cs3.sharetypes.ShareType"
-              },
-              {
-                "id": 3,
-                "name": "address",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "description",
-                "type": "string"
-              }
-            ]
-          },
-          {
             "name": "PublicSharePermissions",
             "fields": [
               {
@@ -1018,11 +955,6 @@
           {
             "name": "PublicShareId",
             "fields": [
-              {
-                "id": 1,
-                "name": "type",
-                "type": "cs3.sharetypes.ShareType"
-              },
               {
                 "id": 2,
                 "name": "opaque_id",
@@ -1047,9 +979,6 @@
           }
         ],
         "imports": [
-          {
-            "path": "cs3/sharetypes/sharetypes.proto"
-          },
           {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
@@ -1256,236 +1185,6 @@
           {
             "name": "php_namespace",
             "value": "CS3\\\\RPC"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "cs3:/:shareregistry:/:v0alpha:/:shareregistry.proto",
-      "def": {
-        "messages": [
-          {
-            "name": "GetShareProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "share_type",
-                "type": "cs3.sharetypes.ShareType"
-              }
-            ]
-          },
-          {
-            "name": "GetShareProviderResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "provider",
-                "type": "cs3.sharetypes.ProviderInfo"
-              }
-            ]
-          },
-          {
-            "name": "ListShareProvidersRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "ListShareProvidersResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "providers",
-                "type": "cs3.sharetypes.ProviderInfo",
-                "is_repeated": true
-              }
-            ]
-          }
-        ],
-        "services": [
-          {
-            "name": "ShareRegistryService",
-            "rpcs": [
-              {
-                "name": "GetShareProvider",
-                "in_type": "GetShareProviderRequest",
-                "out_type": "GetShareProviderResponse"
-              },
-              {
-                "name": "ListShareProviders",
-                "in_type": "ListShareProvidersRequest",
-                "out_type": "ListShareProvidersResponse"
-              }
-            ]
-          }
-        ],
-        "imports": [
-          {
-            "path": "cs3/rpc/status.proto"
-          },
-          {
-            "path": "cs3/sharetypes/sharetypes.proto"
-          },
-          {
-            "path": "cs3/types/types.proto"
-          }
-        ],
-        "package": {
-          "name": "cs3.shareregistryv0alpha"
-        },
-        "options": [
-          {
-            "name": "csharp_namespace",
-            "value": "CS3.ShareRegistryV0Alpha"
-          },
-          {
-            "name": "go_package",
-            "value": "shareregistryv0alphapb"
-          },
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_outer_classname",
-            "value": "ShareregistryProto"
-          },
-          {
-            "name": "java_package",
-            "value": "com.cs3.shareregistryv0alpha"
-          },
-          {
-            "name": "objc_class_prefix",
-            "value": "CBOXSTORAGEREGISTRY"
-          },
-          {
-            "name": "php_namespace",
-            "value": "CS3\\\\ShareRegistryV0Alpha"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "cs3:/:sharetypes:/:sharetypes.proto",
-      "def": {
-        "enums": [
-          {
-            "name": "ShareType",
-            "enum_fields": [
-              {
-                "name": "SHARE_TYPE_INVALID"
-              },
-              {
-                "name": "SHARE_TYPE_USER",
-                "integer": 1
-              },
-              {
-                "name": "SHARE_TYPE_GROUP",
-                "integer": 2
-              },
-              {
-                "name": "SHARE_TYPE_PUBLIC_LINK",
-                "integer": 3
-              },
-              {
-                "name": "SHARE_TYPE_OCM",
-                "integer": 4
-              }
-            ]
-          }
-        ],
-        "messages": [
-          {
-            "name": "ProviderInfo",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "share_type",
-                "type": "ShareType"
-              },
-              {
-                "id": 3,
-                "name": "address",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "description",
-                "type": "string"
-              }
-            ]
-          }
-        ],
-        "imports": [
-          {
-            "path": "cs3/types/types.proto"
-          }
-        ],
-        "package": {
-          "name": "cs3.sharetypes"
-        },
-        "options": [
-          {
-            "name": "csharp_namespace",
-            "value": "CS3.ShareTypes"
-          },
-          {
-            "name": "go_package",
-            "value": "sharetypespb"
-          },
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_outer_classname",
-            "value": "SharetypesProto"
-          },
-          {
-            "name": "java_package",
-            "value": "com.cs3.sharetypes"
-          },
-          {
-            "name": "objc_class_prefix",
-            "value": "CBOXSHARETYPES"
-          },
-          {
-            "name": "php_namespace",
-            "value": "CS3\\\\ShareTypes"
           }
         ]
       }
@@ -3188,31 +2887,6 @@
         ],
         "messages": [
           {
-            "name": "ProviderInfo",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "share_type",
-                "type": "cs3.sharetypes.ShareType"
-              },
-              {
-                "id": 3,
-                "name": "address",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "description",
-                "type": "string"
-              }
-            ]
-          },
-          {
             "name": "Share",
             "fields": [
               {
@@ -3254,11 +2928,6 @@
                 "id": 8,
                 "name": "mtime",
                 "type": "cs3.types.Timestamp"
-              },
-              {
-                "id": 9,
-                "name": "display_name",
-                "type": "string"
               }
             ]
           },
@@ -3284,27 +2953,12 @@
                 "id": 2,
                 "name": "state",
                 "type": "ShareState"
-              },
-              {
-                "id": 3,
-                "name": "mount_path",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "display_name",
-                "type": "string"
               }
             ]
           },
           {
             "name": "ShareKey",
             "fields": [
-              {
-                "id": 1,
-                "name": "type",
-                "type": "cs3.sharetypes.ShareType"
-              },
               {
                 "id": 2,
                 "name": "owner",
@@ -3325,11 +2979,6 @@
           {
             "name": "ShareId",
             "fields": [
-              {
-                "id": 1,
-                "name": "type",
-                "type": "cs3.sharetypes.ShareType"
-              },
               {
                 "id": 2,
                 "name": "opaque_id",
@@ -3369,9 +3018,6 @@
           }
         ],
         "imports": [
-          {
-            "path": "cs3/sharetypes/sharetypes.proto"
-          },
           {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
@@ -3425,16 +3071,20 @@
                 "name": "LIST_SHARES_REQUEST_FILTER_TYPE_INVALID"
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER",
                 "integer": 1
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER",
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
                 "integer": 2
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER",
                 "integer": 3
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+                "integer": 4
               }
             ]
           }
@@ -3724,11 +3374,6 @@
                     "id": 2,
                     "name": "state",
                     "type": "ShareState"
-                  },
-                  {
-                    "id": 3,
-                    "name": "mount_path",
-                    "type": "string"
                   }
                 ]
               }
@@ -3748,47 +3393,12 @@
                 "type": "cs3.types.Opaque"
               }
             ]
-          },
-          {
-            "name": "GetProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "GetProviderResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "info",
-                "type": "ProviderInfo"
-              }
-            ]
           }
         ],
         "services": [
           {
             "name": "UserShareProviderService",
             "rpcs": [
-              {
-                "name": "GetProvider",
-                "in_type": "GetProviderRequest",
-                "out_type": "GetProviderResponse"
-              },
               {
                 "name": "CreateShare",
                 "in_type": "CreateShareRequest",
