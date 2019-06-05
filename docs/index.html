@@ -370,6 +370,37 @@
         
           
           <li>
+            <a href="#cs3%2fpreferences%2fv0alpha%2fpreferences.proto">cs3/preferences/v0alpha/preferences.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.preferencesv0alpha.GetKeyRequest"><span class="badge">M</span>GetKeyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.preferencesv0alpha.GetKeyResponse"><span class="badge">M</span>GetKeyResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.preferencesv0alpha.SetKeyRequest"><span class="badge">M</span>SetKeyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.preferencesv0alpha.SetKeyResponse"><span class="badge">M</span>SetKeyResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.preferencesv0alpha.PreferencesService"><span class="badge">S</span>PreferencesService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fpublicshare%2fv0alpha%2fpublicshare.proto">cs3/publicshare/v0alpha/publicshare.proto</a>
             <ul>
               
@@ -2044,6 +2075,161 @@ by humans. </p></td>
       
 
       
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/preferences/v0alpha/preferences.proto">cs3/preferences/v0alpha/preferences.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.preferencesv0alpha.GetKeyRequest">GetKeyRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.preferencesv0alpha.GetKeyResponse">GetKeyResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>val</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The value associated with the key. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.preferencesv0alpha.SetKeyRequest">SetKeyRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>val</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The value associated with the key. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.preferencesv0alpha.SetKeyResponse">SetKeyResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.preferencesv0alpha.PreferencesService">PreferencesService</h3>
+        <p>Preferences API.</p><p>The Preferences API is responsible for creating</p><p>a key-value map according to user preferences.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SetKey</td>
+                <td><a href="#cs3.preferencesv0alpha.SetKeyRequest">SetKeyRequest</a></td>
+                <td><a href="#cs3.preferencesv0alpha.SetKeyResponse">SetKeyResponse</a></td>
+                <td><p>Maps the key-value pair.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetKey</td>
+                <td><a href="#cs3.preferencesv0alpha.GetKeyRequest">GetKeyRequest</a></td>
+                <td><a href="#cs3.preferencesv0alpha.GetKeyResponse">GetKeyResponse</a></td>
+                <td><p>Returns the value associated with the
+requested key.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">

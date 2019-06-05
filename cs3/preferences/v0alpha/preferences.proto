@@ -47,37 +47,37 @@ import "cs3/rpc/status.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service PreferencesService {
-    // Maps the key-value pair.
-    rpc SetKey(SetKeyRequest) returns (SetKeyResponse);
-    // Returns the value associated with the
-    // requested key.
-    rpc GetKey(GetKeyRequest) returns (GetKeyResponse);
+  // Maps the key-value pair.
+  rpc SetKey(SetKeyRequest) returns (SetKeyResponse);
+  // Returns the value associated with the
+  // requested key.
+  rpc GetKey(GetKeyRequest) returns (GetKeyResponse);
 }
 
 message SetKeyRequest {
-    // REQUIRED.
-    string key = 1;
-    // REQUIRED.
-    // The value associated with the key.
-    string val = 2;
+  // REQUIRED.
+  string key = 1;
+  // REQUIRED.
+  // The value associated with the key.
+  string val = 2;
 }
 
 message SetKeyResponse {
-    // REQUIRED.
-    // The response status.
-    cs3.rpc.Status status = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
 }
 
 message GetKeyRequest {
-    // REQUIRED.
-    string key = 1;
+  // REQUIRED.
+  string key = 1;
 }
 
 message GetKeyResponse {
-    // REQUIRED.
-    // The response status.
-    cs3.rpc.Status status = 1;
-    // REQUIRED.
-    // The value associated with the key.
-    string val = 2;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // REQUIRED.
+  // The value associated with the key.
+  string val = 2;
 }
