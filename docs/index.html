@@ -205,25 +205,6 @@
         
           
           <li>
-            <a href="#cs3%2fsharetypes%2fsharetypes.proto">cs3/sharetypes/sharetypes.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#cs3.sharetypes.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
-                </li>
-              
-              
-                <li>
-                  <a href="#cs3.sharetypes.ShareType"><span class="badge">E</span>ShareType</a>
-                </li>
-              
-              
-              
-            </ul>
-          </li>
-        
-          
-          <li>
             <a href="#cs3%2fstoragetypes%2fstoragetypes.proto">cs3/storagetypes/storagetypes.proto</a>
             <ul>
               
@@ -401,14 +382,6 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.publicsharev0alpha.GetProviderRequest"><span class="badge">M</span>GetProviderRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.publicsharev0alpha.GetProviderResponse"><span class="badge">M</span>GetProviderResponse</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.publicsharev0alpha.GetPublicShareByTokenRequest"><span class="badge">M</span>GetPublicShareByTokenRequest</a>
                 </li>
               
@@ -476,10 +449,6 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.publicsharev0alpha.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.publicsharev0alpha.PublicShare"><span class="badge">M</span>PublicShare</a>
                 </li>
               
@@ -497,37 +466,6 @@
               
               
               
-              
-            </ul>
-          </li>
-        
-          
-          <li>
-            <a href="#cs3%2fshareregistry%2fv0alpha%2fshareregistry.proto">cs3/shareregistry/v0alpha/shareregistry.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#cs3.shareregistryv0alpha.GetShareProviderRequest"><span class="badge">M</span>GetShareProviderRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.shareregistryv0alpha.GetShareProviderResponse"><span class="badge">M</span>GetShareProviderResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.shareregistryv0alpha.ListShareProvidersRequest"><span class="badge">M</span>ListShareProvidersRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.shareregistryv0alpha.ListShareProvidersResponse"><span class="badge">M</span>ListShareProvidersResponse</a>
-                </li>
-              
-              
-              
-              
-                <li>
-                  <a href="#cs3.shareregistryv0alpha.ShareRegistryService"><span class="badge">S</span>ShareRegistryService</a>
-                </li>
               
             </ul>
           </li>
@@ -819,10 +757,6 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.usershareproviderv0alpha.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.usershareproviderv0alpha.ReceivedShare"><span class="badge">M</span>ReceivedShare</a>
                 </li>
               
@@ -871,14 +805,6 @@
               
                 <li>
                   <a href="#cs3.usershareproviderv0alpha.CreateShareResponse"><span class="badge">M</span>CreateShareResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.usershareproviderv0alpha.GetProviderRequest"><span class="badge">M</span>GetProviderRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.usershareproviderv0alpha.GetProviderResponse"><span class="badge">M</span>GetProviderResponse</a>
                 </li>
               
                 <li>
@@ -1240,117 +1166,6 @@ user-facing error message should be localized and sent in the
         
       
 
-      
-
-      
-
-      
-    
-      
-      <div class="file-heading">
-        <h2 id="cs3/sharetypes/sharetypes.proto">cs3/sharetypes/sharetypes.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="cs3.sharetypes.ProviderInfo">ProviderInfo</h3>
-        <p>Represents the information of the share provider.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>share_type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The share type that will become part of the
-share id.
-For example, if the share_type is &#34;user&#34;, shares obtained
-from this storage provider will have a share id like &#34;user:1234&#34;
-or &#34;ocm:1234&#34; or &#34;group:8838&#34;. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The address where the share provider can be reached.
-For example, tcp://localhost:1099. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Information to describe the functionalities
-offered by the share provider. Meant to be read
-by humans. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-        <h3 id="cs3.sharetypes.ShareType">ShareType</h3>
-        <p>The differentes type of share types.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>SHARE_TYPE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SHARE_TYPE_USER</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SHARE_TYPE_GROUP</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SHARE_TYPE_PUBLIC_LINK</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SHARE_TYPE_OCM</td>
-                <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
 
       
@@ -2335,72 +2150,6 @@ The created share. </p></td>
 
         
       
-        <h3 id="cs3.publicsharev0alpha.GetProviderRequest">GetProviderRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.publicsharev0alpha.GetProviderResponse">GetProviderResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>info</td>
-                  <td><a href="#cs3.sharetypes.ProviderInfo">cs3.sharetypes.ProviderInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The information for the share provider. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.publicsharev0alpha.GetPublicShareByTokenRequest">GetPublicShareByTokenRequest</h3>
         <p></p>
 
@@ -2906,13 +2655,6 @@ The updated public share. </p></td>
           <tbody>
             
               <tr>
-                <td>GetProvider</td>
-                <td><a href="#cs3.publicsharev0alpha.GetProviderRequest">GetProviderRequest</a></td>
-                <td><a href="#cs3.publicsharev0alpha.GetProviderResponse">GetProviderResponse</a></td>
-                <td><p>Returns the information for this provider.</p></td>
-              </tr>
-            
-              <tr>
                 <td>CreatePublicShare</td>
                 <td><a href="#cs3.publicsharev0alpha.CreatePublicShareRequest">CreatePublicShareRequest</a></td>
                 <td><a href="#cs3.publicsharev0alpha.CreatePublicShareResponse">CreatePublicShareResponse</a></td>
@@ -2975,62 +2717,6 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
       </div>
       <p></p>
 
-      
-        <h3 id="cs3.publicsharev0alpha.ProviderInfo">ProviderInfo</h3>
-        <p>Represents the information of the share provider.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>share_type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The share type that will become part of the
-share id.
-For example, if the share_type is &#34;user&#34;, shares obtained
-from this storage provider will have a share id like &#34;user:1234&#34;
-or &#34;ocm:1234&#34; or &#34;group:8838&#34;. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The address where the share provider can be reached.
-For example, tcp://localhost:1099. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Information to describe the functionalities
-offered by the share provider. Meant to be read
-by humans. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
       
         <h3 id="cs3.publicsharev0alpha.PublicShare">PublicShare</h3>
         <p>Public share are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p><p>TODO(labkode): do we need to have  resource_type stored on the share?</p><p>This is not needed if when getting the shares a stat operation is launched against the</p><p>the storage provider.</p>
@@ -3160,14 +2846,6 @@ setting the window title in a public share HTML page. </p></td>
             <tbody>
               
                 <tr>
-                  <td>type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The share type. </p></td>
-                </tr>
-              
-                <tr>
                   <td>opaque_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -3245,190 +2923,6 @@ implementation of the service. </p></td>
       
 
       
-    
-      
-      <div class="file-heading">
-        <h2 id="cs3/shareregistry/v0alpha/shareregistry.proto">cs3/shareregistry/v0alpha/shareregistry.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="cs3.shareregistryv0alpha.GetShareProviderRequest">GetShareProviderRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>share_type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The type of share. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.shareregistryv0alpha.GetShareProviderResponse">GetShareProviderResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>provider</td>
-                  <td><a href="#cs3.sharetypes.ProviderInfo">cs3.sharetypes.ProviderInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The share provider handling the requested share resource. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.shareregistryv0alpha.ListShareProvidersRequest">ListShareProvidersRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information.
-
-TODO(labkode): maybe add some filter? </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.shareregistryv0alpha.ListShareProvidersResponse">ListShareProvidersResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>providers</td>
-                  <td><a href="#cs3.sharetypes.ProviderInfo">cs3.sharetypes.ProviderInfo</a></td>
-                  <td>repeated</td>
-                  <td><p>REQUIRED.
-The list of share providers this registry knows about. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
-        <h3 id="cs3.shareregistryv0alpha.ShareRegistryService">ShareRegistryService</h3>
-        <p>Share Registry API</p><p>The Share Registry API is meant to as registry to obtain</p><p>information of available share providers. For example,</p><p>it knows where to send a request for user/group share,</p><p>a public link share or OCM share.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>GetShareProvider</td>
-                <td><a href="#cs3.shareregistryv0alpha.GetShareProviderRequest">GetShareProviderRequest</a></td>
-                <td><a href="#cs3.shareregistryv0alpha.GetShareProviderResponse">GetShareProviderResponse</a></td>
-                <td><p>Returns the share provider that is reponsible for the given
-resource reference.
-MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
-              </tr>
-            
-              <tr>
-                <td>ListShareProviders</td>
-                <td><a href="#cs3.shareregistryv0alpha.ListShareProvidersRequest">ListShareProvidersRequest</a></td>
-                <td><a href="#cs3.shareregistryv0alpha.ListShareProvidersResponse">ListShareProvidersResponse</a></td>
-                <td><p>Returns a list of the available share providers known by this registry.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-
-        
     
       
       <div class="file-heading">
@@ -6177,62 +5671,6 @@ with different visibility levels (system-wide, user-wide, group-wide)...</p></td
       <p></p>
 
       
-        <h3 id="cs3.usershareproviderv0alpha.ProviderInfo">ProviderInfo</h3>
-        <p>Represents the information of the share provider.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>share_type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The share type that will become part of the
-share id.
-For example, if the share_type is &#34;user&#34;, shares obtained
-from this storage provider will have a share id like &#34;user:1234&#34;
-or &#34;ocm:1234&#34; or &#34;group:8838&#34;. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The address where the share provider can be reached.
-For example, tcp://localhost:1099. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Information to describe the functionalities
-offered by the share provider. Meant to be read
-by humans. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.usershareproviderv0alpha.ReceivedShare">ReceivedShare</h3>
         <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
 
@@ -6256,26 +5694,6 @@ by humans. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The state of the share. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>mount_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-The storage provider path for the share to be mounted
-in one of the available storage providers of the user. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>display_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Display name for the shared resource (such as file, directory basename or any
-user defined name).
-The display name MAY be different than the actual resource basename.
-This field is only useful for informational purposes. </p></td>
                 </tr>
               
             </tbody>
@@ -6366,17 +5784,6 @@ Creation time of the share. </p></td>
 Last modification time of the share. </p></td>
                 </tr>
               
-                <tr>
-                  <td>display_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Display name for the shared resource (such as file, directory basename or any
-user defined name).
-The display name MAY be different than the actual resource basename.
-This field is only useful for informational purposes. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -6428,14 +5835,6 @@ The share permissions for the grant. </p></td>
             <tbody>
               
                 <tr>
-                  <td>type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The share type. </p></td>
-                </tr>
-              
-                <tr>
                   <td>opaque_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -6461,13 +5860,6 @@ implementation of the service. </p></td>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#cs3.sharetypes.ShareType">cs3.sharetypes.ShareType</a></td>
-                  <td></td>
-                  <td><p>REQUIRED. </p></td>
-                </tr>
               
                 <tr>
                   <td>owner</td>
@@ -6679,72 +6071,6 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The created share. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.usershareproviderv0alpha.GetProviderRequest">GetProviderRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.usershareproviderv0alpha.GetProviderResponse">GetProviderResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>info</td>
-                  <td><a href="#cs3.usershareproviderv0alpha.ProviderInfo">ProviderInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The information for the share provider. </p></td>
                 </tr>
               
             </tbody>
@@ -7080,7 +6406,7 @@ Opaque information. </p></td>
         
       
         <h3 id="cs3.usershareproviderv0alpha.UpdateReceivedShareRequest">UpdateReceivedShareRequest</h3>
-        <p></p>
+        <p>TODO(labkode): clean up display_name ? we'll use storage links for that.</p>
 
         
           <table class="field-table">
@@ -7140,13 +6466,6 @@ Opaque information. </p></td>
                   <td><a href="#cs3.usershareproviderv0alpha.ShareState">ShareState</a></td>
                   <td></td>
                   <td><p>Update the share state </p></td>
-                </tr>
-              
-                <tr>
-                  <td>mount_path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Update the mount path. </p></td>
                 </tr>
               
             </tbody>
@@ -7311,20 +6630,26 @@ Opaque information. </p></td>
               </tr>
             
               <tr>
-                <td>LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID</td>
+                <td>LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER</td>
                 <td>1</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>LIST_SHARES_REQUEST_FILTER_TYPE_OWNER</td>
+                <td>LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID</td>
                 <td>2</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR</td>
+                <td>LIST_SHARES_REQUEST_FILTER_TYPE_OWNER</td>
                 <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR</td>
+                <td>4</td>
                 <td><p></p></td>
               </tr>
             
@@ -7342,13 +6667,6 @@ Opaque information. </p></td>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
           </thead>
           <tbody>
-            
-              <tr>
-                <td>GetProvider</td>
-                <td><a href="#cs3.usershareproviderv0alpha.GetProviderRequest">GetProviderRequest</a></td>
-                <td><a href="#cs3.usershareproviderv0alpha.GetProviderResponse">GetProviderResponse</a></td>
-                <td><p>Returns the information for this provider.</p></td>
-              </tr>
             
               <tr>
                 <td>CreateShare</td>

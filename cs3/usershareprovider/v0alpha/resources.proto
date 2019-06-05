@@ -28,32 +28,8 @@ option java_package = "com.cs3.usershareproviderv0alpha";
 option objc_class_prefix = "CBOXUSERSHAREPROVIDER";
 option php_namespace = "CS3\\UserShareProviderV0Alpha";
 
-import "cs3/sharetypes/sharetypes.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
-
-// Represents the information of the share provider.
-message ProviderInfo {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The share type that will become part of the
-  // share id.
-  // For example, if the share_type is "user", shares obtained
-  // from this storage provider will have a share id like "user:1234"
-  // or "ocm:1234" or "group:8838".
-  cs3.sharetypes.ShareType share_type = 2;
-  // REQUIRED.
-  // The address where the share provider can be reached.
-  // For example, tcp://localhost:1099.
-  string address = 3;
-  // OPTIONAL.
-  // Information to describe the functionalities
-  // offered by the share provider. Meant to be read
-  // by humans.
-  string description = 4;
-}
 
 // Shares are relationships between a resource owner
 // (usually the authenticated user) who grants permissions to a recipient (grantee)
@@ -90,12 +66,6 @@ message Share {
   // REQUIRED.
   // Last modification time of the share.
   cs3.types.Timestamp mtime = 8;
-  // OPTIONAL.
-  // Display name for the shared resource (such as file, directory basename or any
-  // user defined name).
-  // The display name MAY be different than the actual resource basename.
-  // This field is only useful for informational purposes.
-  string display_name = 9;
 }
 
 // The permissions for a share.
@@ -116,16 +86,6 @@ message ReceivedShare {
   // REQUIRED.
   // The state of the share.
   ShareState state = 2;
-  // OPTIONAL.
-  // The storage provider path for the share to be mounted
-  // in one of the available storage providers of the user.
-  string mount_path = 3;
-  // OPTIONAL.
-  // Display name for the shared resource (such as file, directory basename or any
-  // user defined name).
-  // The display name MAY be different than the actual resource basename.
-  // This field is only useful for informational purposes.
-  string display_name = 4;
 }
 
 // The state of the share.
@@ -159,8 +119,6 @@ enum ShareState {
 // 4) The grantee for the share = Grantee("type" = "user", "" => "Bob")
 message ShareKey {
   // REQUIRED.
-  cs3.sharetypes.ShareType type = 1;
-  // REQUIRED.
   cs3.types.UserId owner = 2;
   // REQUIRED.
   cs3.storageproviderv0alpha.ResourceId resource_id = 3;
@@ -171,9 +129,6 @@ message ShareKey {
 // A share id identifies uniquely a // share in the share provider namespace.
 // A ShareId MUST be unique inside the share provider.
 message ShareId {
-  // REQUIRED.
-  // The share type.
-  cs3.sharetypes.ShareType type = 1;
   // REQUIRED.
   // The internal id used by service implementor to
   // uniquely identity the share in the internal
