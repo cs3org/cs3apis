@@ -3240,7 +3240,7 @@
               },
               {
                 "id": 3,
-                "name": "share",
+                "name": "shares",
                 "type": "Share",
                 "is_repeated": true
               }

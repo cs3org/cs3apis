@@ -164,7 +164,7 @@ message ListSharesResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of shares.
-  repeated Share share = 3;
+  repeated Share shares = 3;
 }
 
 message RemoveShareRequest {
