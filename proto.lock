@@ -432,26 +432,51 @@
             "fields": [
               {
                 "id": 1,
-                "name": "username",
-                "type": "string"
+                "name": "id",
+                "type": "cs3.types.UserId"
               },
               {
                 "id": 2,
-                "name": "mail",
+                "name": "issuer",
                 "type": "string"
               },
               {
                 "id": 3,
-                "name": "display_name",
+                "name": "subject",
                 "type": "string"
               },
               {
                 "id": 4,
+                "name": "username",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "mail",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "display_name",
+                "type": "string"
+              },
+              {
+                "id": 7,
                 "name": "groups",
                 "type": "string",
                 "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
               }
             ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
           }
         ],
         "package": {
@@ -485,6 +510,118 @@
           {
             "name": "php_namespace",
             "value": "CS3\\\\AuthV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:preferences:/:v0alpha:/:preferences.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "SetKeyRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "val",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "SetKeyResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              }
+            ]
+          },
+          {
+            "name": "GetKeyRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "key",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetKeyResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "val",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "PreferencesService",
+            "rpcs": [
+              {
+                "name": "SetKey",
+                "in_type": "SetKeyRequest",
+                "out_type": "SetKeyResponse"
+              },
+              {
+                "name": "GetKey",
+                "in_type": "GetKeyRequest",
+                "out_type": "GetKeyResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.preferencesv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.PreferencesV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "preferencesv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "PreferencesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.preferencesv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXPREFERENCES"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\PreferencesV0Alpha"
           }
         ]
       }
@@ -2912,12 +3049,12 @@
               {
                 "id": 5,
                 "name": "owner",
-                "type": "string"
+                "type": "cs3.types.UserId"
               },
               {
                 "id": 6,
                 "name": "creator",
-                "type": "string"
+                "type": "cs3.types.UserId"
               },
               {
                 "id": 7,
