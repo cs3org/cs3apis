@@ -2035,6 +2035,27 @@ by humans. </p></td>
             <tbody>
               
                 <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>issuer</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subject</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>username</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -2059,6 +2080,13 @@ by humans. </p></td>
                   <td>groups</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -5934,7 +5962,7 @@ The receiver of the share, like a user, group ... </p></td>
               
                 <tr>
                   <td>owner</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 Uniquely identifies the owner of the share
@@ -5945,7 +5973,7 @@ the share owner field MAY change to reflect the change of ownsership. </p></td>
               
                 <tr>
                   <td>creator</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 Uniquely identifies a principal who initiates the share creation.
@@ -6847,7 +6875,7 @@ Opaque information. </p></td>
 
       
         <h3 id="cs3.usershareproviderv0alpha.UserShareProviderService">UserShareProviderService</h3>
-        <p>Storage Provider API</p><p>The Share Provider API is meant to manipulate share</p><p>resources for a specific share type (user, group, ocm, ...)</p><p>from the perspective of the creator or the share and</p><p>from the perspective of the receiver of the share.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>User Share Provider API</p><p>The User Share Provider API is meant to manipulate share</p><p>resources for a specific share type (user, group, ocm, ...)</p><p>from the perspective of the creator or the share and</p><p>from the perspective of the receiver of the share.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>

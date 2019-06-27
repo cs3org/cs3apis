@@ -28,9 +28,15 @@ option java_package = "com.cs3.authv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\AuthV0Alpha";
 
+import "cs3/types/types.proto";
+
 message User {
-  string username = 1;
-  string mail = 2;
-  string display_name = 3;
-  repeated string groups = 4;
+  cs3.types.UserId id = 1;
+  string issuer = 2;
+  string subject = 3;
+  string username = 4;
+  string mail = 5;
+  string display_name = 6;
+  repeated string groups = 7;
+  cs3.types.Opaque opaque = 8;
 }

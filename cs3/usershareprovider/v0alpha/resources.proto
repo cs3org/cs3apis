@@ -53,13 +53,13 @@ message Share {
   // (the resource owner at the time of creating the share).
   // In case the ownership of the underlying resource changes
   // the share owner field MAY change to reflect the change of ownsership.
-  string owner = 5;
+  cs3.types.UserId owner = 5;
   // REQUIRED.
   // Uniquely identifies a principal who initiates the share creation.
   // A creator can create shares on behalf of the owner (because of re-sharing,
   // because belonging to special groups, ...).
   // Creator and owner often result in being the same principal.
-  string creator = 6;
+  cs3.types.UserId creator = 6;
   // REQUIRED.
   // Creation time of the share.
   cs3.types.Timestamp ctime = 7;

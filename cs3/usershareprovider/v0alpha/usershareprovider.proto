@@ -33,9 +33,9 @@ import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
 import "cs3/usershareprovider/v0alpha/resources.proto";
 
-// Storage Provider API
+// User Share Provider API
 //
-// The Share Provider API is meant to manipulate share
+// The User Share Provider API is meant to manipulate share
 // resources for a specific share type (user, group, ocm, ...)
 // from the perspective of the creator or the share and
 // from the perspective of the receiver of the share.
