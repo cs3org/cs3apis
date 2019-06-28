@@ -1456,7 +1456,7 @@
               {
                 "id": 11,
                 "name": "owner",
-                "type": "string"
+                "type": "cs3.types.UserId"
               },
               {
                 "id": 13,

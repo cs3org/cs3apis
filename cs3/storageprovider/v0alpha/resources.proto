@@ -76,7 +76,7 @@ message ResourceInfo {
   uint64 size = 10;
   // REQUIRED:
   // Identifier of the owner of the resource.
-  string owner = 11;
+  cs3.types.UserId owner = 11;
   // OPTIONAL.
   // Additional metadata attached to the resource.
   // If resource type is RESOURCE_TYPE_REFERENCE it MUST
