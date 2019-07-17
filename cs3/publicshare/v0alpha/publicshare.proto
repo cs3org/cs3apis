@@ -82,14 +82,21 @@ message CreatePublicShareRequest {
   // The unique identifier for the shared storage resource.
   cs3.storageproviderv0alpha.ResourceId resource_id = 2;
   // REQUIRED.
+  // The restrictions to apply to the share.
+  Grant grant = 3;
+}
+
+// Defines the restrictions for the public share;
+message Grant {
+  // REQUIRED.
   // The permissions for the share.
-  PublicSharePermissions permissions = 3;
+  PublicSharePermissions permissions = 1;
   // OPTIONAL.
   // A password to protect the access to the public share.
-  string password = 4;
+  string password = 2;
   // OPTIONAL.
   // An expiration date to protect the access to the public share.
-  cs3.types.Timestamp expiration = 5;
+  cs3.types.Timestamp expiration = 3;
 }
 
 message CreatePublicShareResponse {
@@ -114,20 +121,21 @@ message UpdatePublicShareRequest {
   // The reference to the public share.
   PublicShareReference ref = 2;
   // Available fields to update.
-  message UpdateField {
-    // One of the update fields MUST be specified.
-    oneof field {
-      // Update the permissions.
-      PublicSharePermissions permissions = 2;
-      // Update the password.
-      string password = 3;
-      // Update the expiration date.
-      cs3.types.Timestamp expiration = 4;
+
+  message Update {
+    enum Type {
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_INVALID = 0;
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PERMISSIONS = 1;
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PASSWORD = 2;
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_EXPIRATION = 3;
     }
+    // REQUIRED.
+    // Defines the field to update
+    Type type = 3;
+    // REQUIRED.
+    // Contains the field that will be updated.
+    Grant grant = 4;
   }
-  // REQUIRED.
-  // The field to be updated.
-  UpdateField field = 5;
 }
 
 message UpdatePublicShareResponse {

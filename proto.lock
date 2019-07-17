@@ -631,6 +631,26 @@
       "def": {
         "enums": [
           {
+            "name": "Update.Type",
+            "enum_fields": [
+              {
+                "name": "UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_INVALID"
+              },
+              {
+                "name": "UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PERMISSIONS",
+                "integer": 1
+              },
+              {
+                "name": "UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PASSWORD",
+                "integer": 2
+              },
+              {
+                "name": "UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_EXPIRATION",
+                "integer": 3
+              }
+            ]
+          },
+          {
             "name": "Filter.Type",
             "enum_fields": [
               {
@@ -667,16 +687,26 @@
               },
               {
                 "id": 3,
+                "name": "grant",
+                "type": "Grant"
+              }
+            ]
+          },
+          {
+            "name": "Grant",
+            "fields": [
+              {
+                "id": 1,
                 "name": "permissions",
                 "type": "PublicSharePermissions"
               },
               {
-                "id": 4,
+                "id": 2,
                 "name": "password",
                 "type": "string"
               },
               {
-                "id": 5,
+                "id": 3,
                 "name": "expiration",
                 "type": "cs3.types.Timestamp"
               }
@@ -714,31 +744,21 @@
                 "id": 2,
                 "name": "ref",
                 "type": "PublicShareReference"
-              },
-              {
-                "id": 5,
-                "name": "field",
-                "type": "UpdateField"
               }
             ],
             "messages": [
               {
-                "name": "UpdateField",
+                "name": "Update",
                 "fields": [
                   {
-                    "id": 2,
-                    "name": "permissions",
-                    "type": "PublicSharePermissions"
-                  },
-                  {
                     "id": 3,
-                    "name": "password",
-                    "type": "string"
+                    "name": "type",
+                    "type": "Type"
                   },
                   {
                     "id": 4,
-                    "name": "expiration",
-                    "type": "cs3.types.Timestamp"
+                    "name": "grant",
+                    "type": "Grant"
                   }
                 ]
               }

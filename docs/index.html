@@ -429,6 +429,10 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.publicsharev0alpha.Grant"><span class="badge">M</span>Grant</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.publicsharev0alpha.ListPublicSharesRequest"><span class="badge">M</span>ListPublicSharesRequest</a>
                 </li>
               
@@ -453,7 +457,7 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.publicsharev0alpha.UpdatePublicShareRequest.UpdateField"><span class="badge">M</span>UpdatePublicShareRequest.UpdateField</a>
+                  <a href="#cs3.publicsharev0alpha.UpdatePublicShareRequest.Update"><span class="badge">M</span>UpdatePublicShareRequest.Update</a>
                 </li>
               
                 <li>
@@ -463,6 +467,10 @@
               
                 <li>
                   <a href="#cs3.publicsharev0alpha.ListPublicSharesRequest.Filter.Type"><span class="badge">E</span>ListPublicSharesRequest.Filter.Type</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.publicsharev0alpha.UpdatePublicShareRequest.Update.Type"><span class="badge">E</span>UpdatePublicShareRequest.Update.Type</a>
                 </li>
               
               
@@ -2293,27 +2301,11 @@ The unique identifier for the shared storage resource. </p></td>
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#cs3.publicsharev0alpha.PublicSharePermissions">PublicSharePermissions</a></td>
+                  <td>grant</td>
+                  <td><a href="#cs3.publicsharev0alpha.Grant">Grant</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The permissions for the share. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>password</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A password to protect the access to the public share. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expiration</td>
-                  <td><a href="#cs3.types.Timestamp">cs3.types.Timestamp</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-An expiration date to protect the access to the public share. </p></td>
+The restrictions to apply to the share. </p></td>
                 </tr>
               
             </tbody>
@@ -2503,6 +2495,47 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.publicsharev0alpha.Grant">Grant</h3>
+        <p>Defines the restrictions for the public share;</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#cs3.publicsharev0alpha.PublicSharePermissions">PublicSharePermissions</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The permissions for the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A password to protect the access to the public share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.Timestamp">cs3.types.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+An expiration date to protect the access to the public share. </p></td>
                 </tr>
               
             </tbody>
@@ -2722,15 +2755,9 @@ REQUIRED. </p></td>
                   <td><a href="#cs3.publicsharev0alpha.PublicShareReference">PublicShareReference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The reference to the public share. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>field</td>
-                  <td><a href="#cs3.publicsharev0alpha.UpdatePublicShareRequest.UpdateField">UpdatePublicShareRequest.UpdateField</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The field to be updated. </p></td>
+The reference to the public share.
+
+Available fields to update. </p></td>
                 </tr>
               
             </tbody>
@@ -2740,8 +2767,8 @@ The field to be updated. </p></td>
 
         
       
-        <h3 id="cs3.publicsharev0alpha.UpdatePublicShareRequest.UpdateField">UpdatePublicShareRequest.UpdateField</h3>
-        <p>Available fields to update.</p>
+        <h3 id="cs3.publicsharev0alpha.UpdatePublicShareRequest.Update">UpdatePublicShareRequest.Update</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -2751,24 +2778,19 @@ The field to be updated. </p></td>
             <tbody>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#cs3.publicsharev0alpha.PublicSharePermissions">PublicSharePermissions</a></td>
+                  <td>type</td>
+                  <td><a href="#cs3.publicsharev0alpha.UpdatePublicShareRequest.Update.Type">UpdatePublicShareRequest.Update.Type</a></td>
                   <td></td>
-                  <td><p>Update the permissions. </p></td>
+                  <td><p>REQUIRED.
+Defines the field to update </p></td>
                 </tr>
               
                 <tr>
-                  <td>password</td>
-                  <td><a href="#string">string</a></td>
+                  <td>grant</td>
+                  <td><a href="#cs3.publicsharev0alpha.Grant">Grant</a></td>
                   <td></td>
-                  <td><p>Update the password. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expiration</td>
-                  <td><a href="#cs3.types.Timestamp">cs3.types.Timestamp</a></td>
-                  <td></td>
-                  <td><p>Update the expiration date. </p></td>
+                  <td><p>REQUIRED.
+Contains the field that will be updated. </p></td>
                 </tr>
               
             </tbody>
@@ -2849,6 +2871,41 @@ The updated public share. </p></td>
             
               <tr>
                 <td>LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_CREATOR</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="cs3.publicsharev0alpha.UpdatePublicShareRequest.Update.Type">UpdatePublicShareRequest.Update.Type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PERMISSIONS</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PASSWORD</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_EXPIRATION</td>
                 <td>3</td>
                 <td><p></p></td>
               </tr>
