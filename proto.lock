@@ -627,7 +627,7 @@
       }
     },
     {
-      "protopath": "cs3:/:publicshare:/:v0alpha:/:publicshare.proto",
+      "protopath": "cs3:/:publicshareprovider:/:v0alpha:/:publicshareprovider.proto",
       "def": {
         "enums": [
           {
@@ -988,7 +988,7 @@
         ],
         "imports": [
           {
-            "path": "cs3/publicshare/v0alpha/resources.proto"
+            "path": "cs3/publicshareprovider/v0alpha/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"
@@ -1001,16 +1001,16 @@
           }
         ],
         "package": {
-          "name": "cs3.publicsharev0alpha"
+          "name": "cs3.publicshareproviderv0alpha"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.PublicShareV0Alpha"
+            "value": "CS3.PublicShareProviderV0Alpha"
           },
           {
             "name": "go_package",
-            "value": "publicsharev0alphapb"
+            "value": "publicshareproviderv0alphapb"
           },
           {
             "name": "java_multiple_files",
@@ -1018,25 +1018,25 @@
           },
           {
             "name": "java_outer_classname",
-            "value": "PublicshareProto"
+            "value": "PublicshareproviderProto"
           },
           {
             "name": "java_package",
-            "value": "com.cs3.publicsharev0alpha"
+            "value": "com.cs3.publicshareproviderv0alpha"
           },
           {
             "name": "objc_class_prefix",
-            "value": "CBOXAB"
+            "value": "CBOXPSP"
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\PublicShareV0Alpha"
+            "value": "CS3\\\\PublicShareProviderV0Alpha"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:publicshare:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:publicshareprovider:/:v0alpha:/:resources.proto",
       "def": {
         "messages": [
           {
@@ -1144,16 +1144,16 @@
           }
         ],
         "package": {
-          "name": "cs3.publicsharev0alpha"
+          "name": "cs3.publicshareproviderv0alpha"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.PublicShareV0Alpha"
+            "value": "CS3.PublicShareProviderV0Alpha"
           },
           {
             "name": "go_package",
-            "value": "publicsharev0alphapb"
+            "value": "publicshareproviderv0alphapb"
           },
           {
             "name": "java_multiple_files",
@@ -1165,7 +1165,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.publicsharev0alpha"
+            "value": "com.cs3.publicshareproviderv0alpha"
           },
           {
             "name": "objc_class_prefix",
@@ -1173,7 +1173,7 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\PublicShareV0Alpha"
+            "value": "CS3\\\\PublicShareProviderV0Alpha"
           }
         ]
       }

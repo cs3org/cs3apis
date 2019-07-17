@@ -18,17 +18,17 @@
 
 syntax = "proto3";
 
-package cs3.publicsharev0alpha;
+package cs3.publicshareproviderv0alpha;
 
-option csharp_namespace = "CS3.PublicShareV0Alpha";
-option go_package = "publicsharev0alphapb";
+option csharp_namespace = "CS3.PublicShareProviderV0Alpha";
+option go_package = "publicshareproviderv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "PublicshareProto";
-option java_package = "com.cs3.publicsharev0alpha";
-option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\PublicShareV0Alpha";
+option java_outer_classname = "PublicshareproviderProto";
+option java_package = "com.cs3.publicshareproviderv0alpha";
+option objc_class_prefix = "CBOXPSP";
+option php_namespace = "CS3\\PublicShareProviderV0Alpha";
 
-import "cs3/publicshare/v0alpha/resources.proto";
+import "cs3/publicshareprovider/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
