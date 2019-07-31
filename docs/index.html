@@ -282,11 +282,11 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.appregistryv0alpha.GetAppProviderRequest"><span class="badge">M</span>GetAppProviderRequest</a>
+                  <a href="#cs3.appregistryv0alpha.GetAppProvidersRequest"><span class="badge">M</span>GetAppProvidersRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.appregistryv0alpha.GetAppProviderResponse"><span class="badge">M</span>GetAppProviderResponse</a>
+                  <a href="#cs3.appregistryv0alpha.GetAppProvidersResponse"><span class="badge">M</span>GetAppProvidersResponse</a>
                 </li>
               
                 <li>
@@ -1653,11 +1653,19 @@ the identity provider. </p></td>
             <tbody>
               
                 <tr>
-                  <td>resource_id</td>
-                  <td><a href="#cs3.storageproviderv0alpha.ResourceId">cs3.storageproviderv0alpha.ResourceId</a></td>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_info</td>
+                  <td><a href="#cs3.storageproviderv0alpha.ResourceInfo">cs3.storageproviderv0alpha.ResourceInfo</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The id of the resource to be opened. </p></td>
+The resource information. </p></td>
                 </tr>
               
                 <tr>
@@ -1665,10 +1673,14 @@ The id of the resource to be opened. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The access token the application provider will use when contacting
-the storage provider storing the resource pointed by resource_id.
+The access token this application provider will use when contacting
+the storage provider to read and write.
 Service implementors MUST make sure that the access token only grants
-access to the resource the open request is made. </p></td>
+access to the requested resource.
+Service implementors should use a ResourceId rather than a filename to grant access, as
+ResourceIds MUST NOT change when a resource is renamed.
+The access token MUST be short-lived.
+TODO(labkode): investigate token derivation techniques. </p></td>
                 </tr>
               
             </tbody>
@@ -1709,7 +1721,9 @@ Opaque information. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The url to render, usually inside an IFrame in the client. </p></td>
+The url that user agents will render to clients.
+Usually the rendering happens by using HTML iframes,
+at least, Office 365, Collabora, OnlyOffice do like that. </p></td>
                 </tr>
               
             </tbody>
@@ -1753,7 +1767,7 @@ MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
       <p></p>
 
       
-        <h3 id="cs3.appregistryv0alpha.GetAppProviderRequest">GetAppProviderRequest</h3>
+        <h3 id="cs3.appregistryv0alpha.GetAppProvidersRequest">GetAppProvidersRequest</h3>
         <p></p>
 
         
@@ -1772,13 +1786,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>mime_type</td>
-                  <td><a href="#string">string</a></td>
+                  <td>resource_info</td>
+                  <td><a href="#cs3.storageproviderv0alpha.ResourceInfo">cs3.storageproviderv0alpha.ResourceInfo</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The mimetype of the resource.
-For example, application/text or
-image/png. </p></td>
+The resource information. </p></td>
                 </tr>
               
             </tbody>
@@ -1788,7 +1800,7 @@ image/png. </p></td>
 
         
       
-        <h3 id="cs3.appregistryv0alpha.GetAppProviderResponse">GetAppProviderResponse</h3>
+        <h3 id="cs3.appregistryv0alpha.GetAppProvidersResponse">GetAppProvidersResponse</h3>
         <p></p>
 
         
@@ -1815,11 +1827,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>provider</td>
+                  <td>providers</td>
                   <td><a href="#cs3.appregistryv0alpha.ProviderInfo">ProviderInfo</a></td>
-                  <td></td>
+                  <td>repeated</td>
                   <td><p>REQUIRED.
-The app provider for the given extension and mimetype. </p></td>
+The app providers available for the given resource info. </p></td>
                 </tr>
               
             </tbody>
@@ -1912,12 +1924,11 @@ The list of app providers this registry knows about. </p></td>
           <tbody>
             
               <tr>
-                <td>GetAppProvider</td>
-                <td><a href="#cs3.appregistryv0alpha.GetAppProviderRequest">GetAppProviderRequest</a></td>
-                <td><a href="#cs3.appregistryv0alpha.GetAppProviderResponse">GetAppProviderResponse</a></td>
-                <td><p>Returns the app provider that is reponsible for the given
-resource reference.
-MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
+                <td>GetAppProviders</td>
+                <td><a href="#cs3.appregistryv0alpha.GetAppProvidersRequest">GetAppProvidersRequest</a></td>
+                <td><a href="#cs3.appregistryv0alpha.GetAppProvidersResponse">GetAppProvidersResponse</a></td>
+                <td><p>Returns the app providers that are capable of handling this resource info.
+MUST return CODE_NOT_FOUND if no providers are available.</p></td>
               </tr>
             
               <tr>
