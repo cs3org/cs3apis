@@ -9,8 +9,13 @@
             "fields": [
               {
                 "id": 1,
-                "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "resource_info",
+                "type": "cs3.storageproviderv0alpha.ResourceInfo"
               },
               {
                 "id": 3,
@@ -103,7 +108,7 @@
       "def": {
         "messages": [
           {
-            "name": "GetAppProviderRequest",
+            "name": "GetAppProvidersRequest",
             "fields": [
               {
                 "id": 1,
@@ -111,14 +116,14 @@
                 "type": "cs3.types.Opaque"
               },
               {
-                "id": 3,
-                "name": "mime_type",
-                "type": "string"
+                "id": 2,
+                "name": "resource_info",
+                "type": "cs3.storageproviderv0alpha.ResourceInfo"
               }
             ]
           },
           {
-            "name": "GetAppProviderResponse",
+            "name": "GetAppProvidersResponse",
             "fields": [
               {
                 "id": 1,
@@ -132,8 +137,9 @@
               },
               {
                 "id": 3,
-                "name": "provider",
-                "type": "ProviderInfo"
+                "name": "providers",
+                "type": "ProviderInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -174,9 +180,9 @@
             "name": "AppRegistryService",
             "rpcs": [
               {
-                "name": "GetAppProvider",
-                "in_type": "GetAppProviderRequest",
-                "out_type": "GetAppProviderResponse"
+                "name": "GetAppProviders",
+                "in_type": "GetAppProvidersRequest",
+                "out_type": "GetAppProvidersResponse"
               },
               {
                 "name": "ListAppProviders",
@@ -189,6 +195,9 @@
         "imports": [
           {
             "path": "cs3/appregistry/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"

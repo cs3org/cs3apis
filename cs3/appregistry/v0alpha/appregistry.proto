@@ -29,8 +29,8 @@ option objc_class_prefix = "CBOXAPPREGISTRY";
 option php_namespace = "CS3\\AppRegistryV0Alpha";
 
 import "cs3/appregistry/v0alpha/resources.proto";
-import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
+import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/types/types.proto";
 
 // App Registry API
@@ -83,6 +83,7 @@ message ListAppProvidersRequest {
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // TODO(labkode): maybe add some filter?
+
 }
 
 message ListAppProvidersResponse {
