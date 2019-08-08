@@ -197,10 +197,10 @@
             "path": "cs3/appregistry/v0alpha/resources.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/rpc/status.proto"
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
@@ -3266,8 +3266,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "name": "resource_info",
+                "type": "cs3.storageproviderv0alpha.ResourceInfo"
               },
               {
                 "id": 3,
