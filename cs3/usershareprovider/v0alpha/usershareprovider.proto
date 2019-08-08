@@ -83,8 +83,8 @@ message CreateShareRequest {
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The unique identifier for the shared storage resource.
-  cs3.storageproviderv0alpha.ResourceId resource_id = 2;
+  // The information of the resource to be shared.
+  cs3.storageproviderv0alpha.ResourceInfo resource_info = 2;
   // REQUIRED.
   // The share grant for the share.
   ShareGrant grant = 3;
