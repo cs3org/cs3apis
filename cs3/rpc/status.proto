@@ -38,6 +38,7 @@ message Status {
   Code code = 1;
   // A developer-facing error message, which should be in English. Any
   // user-facing error message should be localized and sent in the
-  // [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
   string message = 2;
+  // A trace added to the response for helping support to identify client problems.
+  string trace = 3;
 }
