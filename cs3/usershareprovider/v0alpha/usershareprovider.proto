@@ -76,6 +76,9 @@ service UserShareProviderService {
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateReceivedShare(UpdateReceivedShareRequest) returns (UpdateReceivedShareResponse);
+  // Get the information for the given received share reference.
+  // MUST return CODE_NOT_FOUND if the received share reference does not exist.
+  rpc GetReceivedShare(GetReceivedShareRequest) returns (GetReceivedShareResponse);
 }
 
 message CreateShareRequest {
@@ -250,4 +253,25 @@ message UpdateReceivedShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 2;
+}
+
+message GetReceivedShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference of the received share.
+  ShareReference ref = 2;
+}
+
+message GetReceivedShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  ReceivedShare share = 3;
 }

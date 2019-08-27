@@ -985,6 +985,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.usershareproviderv0alpha.GetReceivedShareRequest"><span class="badge">M</span>GetReceivedShareRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.usershareproviderv0alpha.GetReceivedShareResponse"><span class="badge">M</span>GetReceivedShareResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.usershareproviderv0alpha.GetShareRequest"><span class="badge">M</span>GetShareRequest</a>
                 </li>
               
@@ -7695,6 +7703,80 @@ The created share. </p></td>
 
         
       
+        <h3 id="cs3.usershareproviderv0alpha.GetReceivedShareRequest">GetReceivedShareRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.usershareproviderv0alpha.ShareReference">ShareReference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference of the received share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.usershareproviderv0alpha.GetReceivedShareResponse">GetReceivedShareResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share</td>
+                  <td><a href="#cs3.usershareproviderv0alpha.ReceivedShare">ReceivedShare</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.usershareproviderv0alpha.GetShareRequest">GetShareRequest</h3>
         <p></p>
 
@@ -8340,6 +8422,14 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.usershareproviderv0alpha.UpdateReceivedShareResponse">UpdateReceivedShareResponse</a></td>
                 <td><p>Update the received share to change the share state or the display name.
 MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetReceivedShare</td>
+                <td><a href="#cs3.usershareproviderv0alpha.GetReceivedShareRequest">GetReceivedShareRequest</a></td>
+                <td><a href="#cs3.usershareproviderv0alpha.GetReceivedShareResponse">GetReceivedShareResponse</a></td>
+                <td><p>Get the information for the given received share reference.
+MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></td>
               </tr>
             
           </tbody>
