@@ -728,6 +728,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storageproviderv0alpha.CreateReferenceRequest"><span class="badge">M</span>CreateReferenceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storageproviderv0alpha.CreateReferenceResponse"><span class="badge">M</span>CreateReferenceResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storageproviderv0alpha.DeleteRequest"><span class="badge">M</span>DeleteRequest</a>
                 </li>
               
@@ -5364,6 +5372,72 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storageproviderv0alpha.CreateReferenceRequest">CreateReferenceRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>target_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference resource by RFC3986. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storageproviderv0alpha.CreateReferenceResponse">CreateReferenceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storageproviderv0alpha.DeleteRequest">DeleteRequest</h3>
         <p></p>
 
@@ -6995,6 +7069,14 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td><p>Updates an ACL for the provided reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_PRECONDITION_FAILED if the acl does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateReference</td>
+                <td><a href="#cs3.storageproviderv0alpha.CreateReferenceRequest">CreateReferenceRequest</a></td>
+                <td><a href="#cs3.storageproviderv0alpha.CreateReferenceResponse">CreateReferenceResponse</a></td>
+                <td><p>Creates a reference to another resource in the same cluster or another domain (OCM shares).
+The references resource can be accessed by the protocol specificied in the request message.</p></td>
               </tr>
             
           </tbody>
