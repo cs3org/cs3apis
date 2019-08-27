@@ -179,4 +179,7 @@ enum Code {
   //
   // HTTP Mapping: 500 Internal Server Error
   CODE_DATA_LOSS = 17;
+  // Redirects the operation to another location.
+  // Used in a Status reponse with a reference to the target URI.
+  CODE_REDIRECTION = 18;
 }

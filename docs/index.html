@@ -1286,6 +1286,13 @@ HTTP Mapping: 503 Service Unavailable</p></td>
 HTTP Mapping: 500 Internal Server Error</p></td>
               </tr>
             
+              <tr>
+                <td>CODE_REDIRECTION</td>
+                <td>18</td>
+                <td><p>Redirects the operation to another location.
+Used in a Status reponse with a reference to the target URI.</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -1315,14 +1322,16 @@ HTTP Mapping: 500 Internal Server Error</p></td>
                   <td>code</td>
                   <td><a href="#cs3.rpc.Code">Code</a></td>
                   <td></td>
-                  <td><p>The status code, which should be an enum value of [cs3.rpc.code][cs3.rpc.code]. </p></td>
+                  <td><p>REQUIRED.
+The status code, which should be an enum value of [cs3.rpc.code][cs3.rpc.code]. </p></td>
                 </tr>
               
                 <tr>
                   <td>message</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>A developer-facing error message, which should be in English. Any
+                  <td><p>OPTIONAL.
+A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the </p></td>
                 </tr>
               
@@ -1330,7 +1339,18 @@ user-facing error message should be localized and sent in the </p></td>
                   <td>trace</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>A trace added to the response for helping support to identify client problems. </p></td>
+                  <td><p>OPTIONAL.
+A trace added to the response for helping support to identify client problems. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>target_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A target URI as per RFC3986 to redirect requests to another location.
+A Status message with CODE_REDIRECT MUST always set the target_uri.
+https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></td>
                 </tr>
               
             </tbody>
