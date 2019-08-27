@@ -602,8 +602,11 @@ message CreateReferenceRequest {
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
+  // The location where to store the reference.
+  string path = 2;
+  // REQUIRED.
   // The reference resource by RFC3986.
-  string target_uri = 2;
+  string target_uri = 3;
 }
 
 message CreateReferenceResponse {

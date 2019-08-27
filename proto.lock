@@ -524,6 +524,645 @@
       }
     },
     {
+      "protopath": "cs3:/:ocmshareprovider:/:v0alpha:/:ocmshareprovider.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_INVALID"
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER",
+                "integer": 1
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
+                "integer": 2
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER",
+                "integer": 3
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+                "integer": 4
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER",
+                "integer": 5
+              },
+              {
+                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER",
+                "integer": 6
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "CreateShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "grant",
+                "type": "ShareGrant"
+              }
+            ]
+          },
+          {
+            "name": "CreateShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share"
+              }
+            ]
+          },
+          {
+            "name": "UpdateShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              },
+              {
+                "id": 3,
+                "name": "field",
+                "type": "UpdateField"
+              }
+            ],
+            "messages": [
+              {
+                "name": "UpdateField",
+                "fields": [
+                  {
+                    "id": 2,
+                    "name": "permissions",
+                    "type": "SharePermissions"
+                  },
+                  {
+                    "id": 3,
+                    "name": "display_name",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "UpdateShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListSharesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 2,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 3,
+                    "name": "resource_id",
+                    "type": "cs3.storageproviderv0alpha.ResourceId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "owner",
+                    "type": "cs3.types.UserId"
+                  },
+                  {
+                    "id": 5,
+                    "name": "creator",
+                    "type": "cs3.types.UserId"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListSharesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "shares",
+                "type": "Share",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "RemoveShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              }
+            ]
+          },
+          {
+            "name": "RemoveShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              }
+            ]
+          },
+          {
+            "name": "GetShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share"
+              }
+            ]
+          },
+          {
+            "name": "ListReceivedSharesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListReceivedSharesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "shares",
+                "type": "ReceivedShare",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "UpdateReceivedShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "ShareReference"
+              },
+              {
+                "id": 3,
+                "name": "field",
+                "type": "UpdateField"
+              }
+            ],
+            "messages": [
+              {
+                "name": "UpdateField",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "display_name",
+                    "type": "string"
+                  },
+                  {
+                    "id": 2,
+                    "name": "state",
+                    "type": "ShareState"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "UpdateReceivedShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "OCMShareProviderService",
+            "rpcs": [
+              {
+                "name": "CreateShare",
+                "in_type": "CreateShareRequest",
+                "out_type": "CreateShareResponse"
+              },
+              {
+                "name": "RemoveShare",
+                "in_type": "RemoveShareRequest",
+                "out_type": "RemoveShareResponse"
+              },
+              {
+                "name": "GetShare",
+                "in_type": "GetShareRequest",
+                "out_type": "GetShareResponse"
+              },
+              {
+                "name": "ListShares",
+                "in_type": "ListSharesRequest",
+                "out_type": "ListSharesResponse"
+              },
+              {
+                "name": "UpdateShare",
+                "in_type": "UpdateShareRequest",
+                "out_type": "UpdateShareResponse"
+              },
+              {
+                "name": "ListReceivedShares",
+                "in_type": "ListReceivedSharesRequest",
+                "out_type": "ListReceivedSharesResponse"
+              },
+              {
+                "name": "UpdateReceivedShare",
+                "in_type": "UpdateReceivedShareRequest",
+                "out_type": "UpdateReceivedShareResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/ocmshareprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.ocmshareproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.OCMShareProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "ocmshareproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "OcmshareproviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.ocmshareproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXOCMSHAREPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\OCMShareProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:ocmshareprovider:/:v0alpha:/:resources.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "ShareState",
+            "enum_fields": [
+              {
+                "name": "SHARE_STATE_INVALID"
+              },
+              {
+                "name": "SHARE_STATE_PENDING",
+                "integer": 1
+              },
+              {
+                "name": "SHARE_STATE_ACCEPTED",
+                "integer": 2
+              },
+              {
+                "name": "SHARE_STATE_REJECTED",
+                "integer": 3
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "Share",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "ShareId"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "permissions",
+                "type": "SharePermissions"
+              },
+              {
+                "id": 4,
+                "name": "grantee",
+                "type": "cs3.storageproviderv0alpha.Grantee"
+              },
+              {
+                "id": 5,
+                "name": "owner",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 6,
+                "name": "creator",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 7,
+                "name": "ctime",
+                "type": "cs3.types.Timestamp"
+              },
+              {
+                "id": 8,
+                "name": "mtime",
+                "type": "cs3.types.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "SharePermissions",
+            "fields": [
+              {
+                "id": 1,
+                "name": "permissions",
+                "type": "cs3.storageproviderv0alpha.ResourcePermissions"
+              },
+              {
+                "id": 2,
+                "name": "reshare",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "ReceivedShare",
+            "fields": [
+              {
+                "id": 1,
+                "name": "share",
+                "type": "Share"
+              },
+              {
+                "id": 2,
+                "name": "state",
+                "type": "ShareState"
+              }
+            ]
+          },
+          {
+            "name": "ShareKey",
+            "fields": [
+              {
+                "id": 2,
+                "name": "owner",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 3,
+                "name": "resource_id",
+                "type": "cs3.storageproviderv0alpha.ResourceId"
+              },
+              {
+                "id": 4,
+                "name": "grantee",
+                "type": "cs3.storageproviderv0alpha.Grantee"
+              }
+            ]
+          },
+          {
+            "name": "ShareId",
+            "fields": [
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ShareReference",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "ShareId"
+              },
+              {
+                "id": 2,
+                "name": "key",
+                "type": "ShareKey"
+              }
+            ]
+          },
+          {
+            "name": "ShareGrant",
+            "fields": [
+              {
+                "id": 1,
+                "name": "grantee",
+                "type": "cs3.storageproviderv0alpha.Grantee"
+              },
+              {
+                "id": 2,
+                "name": "permissions",
+                "type": "SharePermissions"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/storageprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.ocmshareproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.ocmshareproviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "ocmshareproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.ocmshareproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXocmshareprovider"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\ocmshareproviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:preferences:/:v0alpha:/:preferences.proto",
       "def": {
         "messages": [
@@ -1264,6 +1903,10 @@
               {
                 "name": "CODE_DATA_LOSS",
                 "integer": 17
+              },
+              {
+                "name": "CODE_REDIRECTION",
+                "integer": 18
               }
             ]
           }
@@ -1314,6 +1957,16 @@
               {
                 "id": 2,
                 "name": "message",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "trace",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "target_uri",
                 "type": "string"
               }
             ]
@@ -2533,6 +3186,41 @@
                 "type": "cs3.types.Opaque"
               }
             ]
+          },
+          {
+            "name": "CreateReferenceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "path",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "target_uri",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "CreateReferenceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -2645,6 +3333,11 @@
                 "name": "UpdateGrant",
                 "in_type": "UpdateGrantRequest",
                 "out_type": "UpdateGrantResponse"
+              },
+              {
+                "name": "CreateReference",
+                "in_type": "CreateReferenceRequest",
+                "out_type": "CreateReferenceResponse"
               }
             ]
           }
