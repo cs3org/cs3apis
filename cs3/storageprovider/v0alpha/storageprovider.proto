@@ -132,6 +132,9 @@ service StorageProviderService {
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
   rpc UpdateGrant(UpdateGrantRequest) returns (UpdateGrantResponse);
+  // Creates a reference to another resource in the same cluster or another domain (OCM shares).
+  // The references resource can be accessed by the protocol specificied in the request message.
+  rpc CreateReference(CreateReferenceRequest) returns (CreateReferenceResponse);
 }
 
 message AddGrantRequest {
@@ -586,6 +589,24 @@ message UpdateGrantRequest {
 }
 
 message UpdateGrantResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+}
+
+message CreateReferenceRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference resource by RFC3986.
+  string target_uri = 2;
+}
+
+message CreateReferenceResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
