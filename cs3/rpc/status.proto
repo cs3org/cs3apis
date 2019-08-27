@@ -34,11 +34,19 @@ import "cs3/rpc/code.proto";
 // The error message should be a developer-facing English
 // message that helps developers *understand* and *resolve* the error.
 message Status {
+  // REQUIRED.
   // The status code, which should be an enum value of [cs3.rpc.code][cs3.rpc.code].
   Code code = 1;
+  // OPTIONAL.
   // A developer-facing error message, which should be in English. Any
   // user-facing error message should be localized and sent in the
   string message = 2;
+  // OPTIONAL.
   // A trace added to the response for helping support to identify client problems.
   string trace = 3;
+  // OPTIONAL.
+  // A target URI as per RFC3986 to redirect requests to another location.
+  // A Status message with CODE_REDIRECT MUST always set the target_uri.
+  // https://golang.org/pkg/net/url/#URL provides a quick view of the format.
+  string target_uri = 4;
 }
