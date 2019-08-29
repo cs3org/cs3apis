@@ -903,6 +903,14 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.storageregistryv0alpha.GetHomeRequest"><span class="badge">M</span>GetHomeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storageregistryv0alpha.GetHomeResponse"><span class="badge">M</span>GetHomeResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storageregistryv0alpha.GetStorageProviderRequest"><span class="badge">M</span>GetStorageProviderRequest</a>
                 </li>
               
@@ -7107,6 +7115,73 @@ The references resource can be accessed by the protocol specificied in the reque
       <p></p>
 
       
+        <h3 id="cs3.storageregistryv0alpha.GetHomeRequest">GetHomeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storageregistryv0alpha.GetHomeResponse">GetHomeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The path to the home in a storage provider.
+For example /eos/user/h/hugo in the storage provider with root path /eos/user/. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storageregistryv0alpha.GetStorageProviderRequest">GetStorageProviderRequest</h3>
         <p></p>
 
@@ -7276,7 +7351,15 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td>ListStorageProviders</td>
                 <td><a href="#cs3.storageregistryv0alpha.ListStorageProvidersRequest">ListStorageProvidersRequest</a></td>
                 <td><a href="#cs3.storageregistryv0alpha.ListStorageProvidersResponse">ListStorageProvidersResponse</a></td>
-                <td><p>Returns a list of the available storage providers known by this registry.
+                <td><p>Returns a list of the available storage providers known by this registry.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetHome</td>
+                <td><a href="#cs3.storageregistryv0alpha.GetHomeRequest">GetHomeRequest</a></td>
+                <td><a href="#cs3.storageregistryv0alpha.GetHomeResponse">GetHomeResponse</a></td>
+                <td><p>Returns the home path for the given authenticated user.
+When a user has access to multiple storage providers, one of them is the home.
 
 TODO(labkode): missing methods for adding and removing a storage provider
 with different visibility levels (system-wide, user-wide, group-wide)...</p></td>
