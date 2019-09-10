@@ -18,25 +18,25 @@
 
 syntax = "proto3";
 
-package cs3.storageproviderv0alpha;
+package cs3.gatewayv0alpha;
 
-option csharp_namespace = "CS3.StorageProviderV0Alpha";
-option go_package = "storageproviderv0alphapb";
+option csharp_namespace = "CS3.GatewayV0Alpha";
+option go_package = "gatewayv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "StorageproviderProto";
-option java_package = "com.cs3.storageproviderv0alpha";
+option java_outer_classname = "GatewayProto";
+option java_package = "com.cs3.gatewayv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\StorageProviderV0Alpha";
+option php_namespace = "CS3\\GatewayV0Alpha";
 
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
-import "cs3/storagetypes/storagetypes.proto";
 import "cs3/types/types.proto";
 
-// Storage Provider API
+// Gateway API
 //
-// The Storage Provider API is meant to manipulate storage
-// resources in the underlying storage system behind the service.
+// The Gateway API is the only API exposed direclty to end-clients.
+// It is a facade API that all clients should connect to.
+// Other APIS like the StorageProviderAPI are internal APIS.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -49,10 +49,7 @@ import "cs3/types/types.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service StorageProviderService {
-  // Adds a new grant for the provided reference.
-  // MUST return CODE_NOT_FOUND if the reference does not exist
-  rpc AddGrant(AddGrantRequest) returns (AddGrantResponse);
+service GatewayService {
   // Creates a new resource of type container.
   // MUST return CODE_PRECONDITION_FAILED if the container
   // cannot be created at the specified reference.
@@ -63,8 +60,6 @@ service StorageProviderService {
   // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
-  // Returns the information for this provider.
-  rpc GetProvider(GetProviderRequest) returns (GetProviderResponse);
   // Returns the path reference for
   // the provided resource id reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist
@@ -80,12 +75,6 @@ service StorageProviderService {
   // Initiates the upload of a file using an
   // out-of-band data transfer mechanism.
   rpc InitiateFileUpload(InitiateFileUploadRequest) returns (InitiateFileUploadResponse);
-  // Returns the list of grants for the provided reference.
-  // MUST return CODE_NOT_FOUND if the reference does not exists.
-  rpc ListGrants(ListGrantsRequest) returns (ListGrantsResponse);
-  // Returns a stream of resource informations
-  // for the provided reference.
-  // MUST return CODE_NOT_FOUND if the reference does not exists.
   rpc ListContainerStream(ListContainerStreamRequest) returns (stream ListContainerStreamResponse);
   // Returns a list of resource information
   // for the provided reference.
@@ -107,11 +96,6 @@ service StorageProviderService {
   // MUST return CODE_PRECONDITION_FAILED if the source reference
   // cannot be moved to the destination reference.
   rpc Move(MoveRequest) returns (MoveResponse);
-  // Removes a grant for the provided reference.
-  // This is recursive and atomic for directories. Does not follow references.
-  // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_NOT_FOUND if grant does not exist.
-  rpc RemoveGrant(RemoveGrantRequest) returns (RemoveGrantResponse);
   // Permanently removes a recycle item from the recycle.
   // This operation is irrevocable.
   // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
@@ -128,40 +112,6 @@ service StorageProviderService {
   // Returns the resource information at the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Stat(StatRequest) returns (StatResponse);
-  // Updates an ACL for the provided reference.
-  // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
-  rpc UpdateGrant(UpdateGrantRequest) returns (UpdateGrantResponse);
-  // Creates a reference to another resource in the same cluster or another domain (OCM shares).
-  // The references resource can be accessed by the protocol specificied in the request message.
-  rpc CreateReference(CreateReferenceRequest) returns (CreateReferenceResponse);
-  // Sets arbitrary metadata into a storage resource.
-  // Arbitrary metadata is returned in a cs3.storageproviderv0alpha.ResourceInfo.
-  rpc SetArbitraryMetadata(SetArbitraryMetadataRequest) returns (SetArbitraryMetadataResponse);
-  // Unsets arbitrary metdata into a storage resource.
-  // Arbitrary metadata is returned in a cs3.storageproviderv0alpha.ResourceInfo.
-  rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
-}
-
-message AddGrantRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-  // REQUIRED.
-  // The grant to be added.
-  Grant grant = 3;
-}
-
-message AddGrantResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
 }
 
 message CreateContainerRequest {
@@ -170,7 +120,7 @@ message CreateContainerRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message CreateContainerResponse {
@@ -188,7 +138,7 @@ message DeleteRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message DeleteResponse {
@@ -200,31 +150,13 @@ message DeleteResponse {
   cs3.types.Opaque opaque = 2;
 }
 
-message GetProviderRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-}
-
-message GetProviderResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The information for the storage provider.
-  cs3.storagetypes.ProviderInfo info = 3;
-}
-
 message GetPathRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The resource id of the resource.
-  ResourceId resource_id = 2;
+  cs3.storageproviderv0alpha.ResourceId resource_id = 2;
 }
 
 message GetPathResponse {
@@ -243,6 +175,9 @@ message GetQuotaRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message GetQuotaResponse {
@@ -266,7 +201,7 @@ message InitiateFileUploadRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message InitiateFileUploadResponse {
@@ -285,7 +220,7 @@ message InitiateFileUploadResponse {
   // List of available checksums
   // the client can use when sending
   // the file.
-  repeated ResourceChecksumPriority available_checksums = 4;
+  repeated cs3.storageproviderv0alpha.ResourceChecksumPriority available_checksums = 4;
 }
 
 message InitiateFileDownloadRequest {
@@ -294,7 +229,7 @@ message InitiateFileDownloadRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message InitiateFileDownloadResponse {
@@ -311,34 +246,13 @@ message InitiateFileDownloadResponse {
   string download_endpoint = 3;
 }
 
-message ListGrantsRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-}
-
-message ListGrantsResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The grants.
-  repeated Grant grants = 3;
-}
-
 message ListContainerStreamRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // OPTIONAL.
   // Arbitrary metadata be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
@@ -354,7 +268,7 @@ message ListContainerStreamResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The resource information.
-  ResourceInfo info = 3;
+  cs3.storageproviderv0alpha.ResourceInfo info = 3;
 }
 
 message ListContainerRequest {
@@ -363,7 +277,7 @@ message ListContainerRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // OPTIONAL.
   // Arbitrary metadata be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
@@ -379,7 +293,7 @@ message ListContainerResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of resource informations.
-  repeated ResourceInfo infos = 3;
+  repeated cs3.storageproviderv0alpha.ResourceInfo infos = 3;
 }
 
 message ListFileVersionsRequest {
@@ -388,7 +302,7 @@ message ListFileVersionsRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message ListFileVersionsResponse {
@@ -400,23 +314,26 @@ message ListFileVersionsResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of file versions.
-  repeated FileVersion versions = 3;
+  repeated cs3.storageproviderv0alpha.FileVersion versions = 3;
 }
 
 message ListRecycleRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // OPTIONAL.
   // SHOULD be specified.
   // The start time range to query for recycle items.
   // The value is the Unix Epoch timestamp in seconds.
-  cs3.types.Timestamp from_ts = 2;
+  cs3.types.Timestamp from_ts = 3;
   // OPTIONAL.
   // SHOULD be specified.
   // The end time range to query for recycle items.
   // The value is Unix Epoch timestamp in seconds.
-  cs3.types.Timestamp to_ts = 3;
+  cs3.types.Timestamp to_ts = 4;
 }
 
 message ListRecycleResponse {
@@ -428,23 +345,26 @@ message ListRecycleResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of recycle items.
-  repeated RecycleItem recycle_items = 3;
+  repeated cs3.storageproviderv0alpha.RecycleItem recycle_items = 3;
 }
 
 message ListRecycleStreamRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // OPTIONAL.
   // SHOULD be specified.
   // The start time range to query for recycle items.
   // The value is the Unix Epoch timestamp in seconds.
-  cs3.types.Timestamp from_ts = 2;
+  cs3.types.Timestamp from_ts = 3;
   // OPTIONAL.
   // SHOULD be specified.
   // The end time range to query for recycle items.
   // The value is Unix Epoch timestamp in seconds.
-  cs3.types.Timestamp to_ts = 3;
+  cs3.types.Timestamp to_ts = 4;
 }
 
 message ListRecycleStreamResponse {
@@ -456,7 +376,7 @@ message ListRecycleStreamResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The recycle items.
-  RecycleItem recycle_item = 3;
+  cs3.storageproviderv0alpha.RecycleItem recycle_item = 3;
 }
 
 message MoveRequest {
@@ -465,10 +385,10 @@ message MoveRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The source reference the resource is moved from.
-  Reference source = 2;
+  cs3.storageproviderv0alpha.Reference source = 2;
   // REQUIRED.
   // The destination reference the resource is moved to.
-  Reference destination = 3;
+  cs3.storageproviderv0alpha.Reference destination = 3;
 }
 
 message MoveResponse {
@@ -486,7 +406,7 @@ message PurgeRecycleRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
 }
 
 message PurgeRecycleResponse {
@@ -504,7 +424,7 @@ message RestoreFileVersionRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // REQUIRED.
   // The key to restore a specific file version.
   string key = 3;
@@ -526,7 +446,7 @@ message RestoreRecycleItemRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // REQUIRED.
   // The key for the recycle item to be restored.
   string key = 3;
@@ -548,34 +468,13 @@ message RestoreRecycleItemResponse {
   cs3.types.Opaque opaque = 2;
 }
 
-message RemoveGrantRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-  // REQUIRED.
-  // The grant to remove.
-  Grant grant = 3;
-}
-
-message RemoveGrantResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-}
-
 message StatRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // OPTIONAL.
   // Arbitrary metadata be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
@@ -591,49 +490,7 @@ message StatResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The resource information.
-  ResourceInfo info = 3;
-}
-
-message UpdateGrantRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-  // REQUIRED.
-  // The grant to be updated.
-  Grant grant = 3;
-}
-
-message UpdateGrantResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-}
-
-message CreateReferenceRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The location where to store the reference.
-  string path = 2;
-  // REQUIRED.
-  // The reference resource by RFC3986.
-  string target_uri = 3;
-}
-
-message CreateReferenceResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
+  cs3.storageproviderv0alpha.ResourceInfo info = 3;
 }
 
 message SetArbitraryMetadataRequest {
@@ -642,10 +499,10 @@ message SetArbitraryMetadataRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // REQUIRED.
   // The arbitrary metadata to add to the resource.
-  ArbitraryMetadata arbitrary_metadata = 3;
+  cs3.storageproviderv0alpha.ArbitraryMetadata arbitrary_metadata = 3;
 }
 
 message SetArbitraryMetadataResponse {
@@ -663,9 +520,9 @@ message UnsetArbitraryMetadataRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  Reference ref = 2;
+  cs3.storageproviderv0alpha.Reference ref = 2;
   // REQUIRED.
-  // The arbitrary metadata to delete.
+  // The arbitrary metadata keys to delete.
   repeated string arbitrary_metadata_keys = 3;
 }
 
