@@ -102,7 +102,7 @@ message CanonicalMetadata {
   // bool executable = 2;
   // TODO(labkode): at some points maybe we could add here
   // acls and other well-known metadata.
-
+break
 }
 
 message ArbitraryMetadata {
