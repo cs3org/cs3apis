@@ -16,3 +16,9 @@ docs:
 
 deps:
 	cp deps.sh /tmp && cd /tmp && ./deps.sh
+
+build-go: build
+	./build-go.sh
+
+clean:
+	rm -rf build
