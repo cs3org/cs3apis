@@ -11,3 +11,16 @@ steps:
 - name: build
   pull: always
   image: cs3org/cs3apis:latest
+
+- name: build-go
+  pull: always
+  image: golang:latest
+  volumes:
+  - name: cache
+    path: /root/cs3apis
+  commands:
+  - ls /root/cs3apis
+
+volumes:
+- name: cache
+  temp: {}`
