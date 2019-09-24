@@ -17,9 +17,10 @@ steps:
 
 - name: build-go
   pull: always
-  image: golang:latest
+  image: cs3org/cs3apis:latest
   commands:
-  - ls /root/cs3apis
+  - make build-go
+  - find build
   volumes:
   - name: cache
     path: /root/cs3apis
