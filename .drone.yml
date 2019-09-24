@@ -1,0 +1,13 @@
+---
+kind: pipeline
+type: docker
+name: build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  pull: always
+  image: cs3org/cs3apis:latest

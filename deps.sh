@@ -19,8 +19,6 @@ PROTOTOOL_VERSION=1.6.0
 curl -sSL https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME} -o protoc.zip
 unzip -o protoc.zip
 sudo cp bin/protoc /usr/local/bin/protoc
-protoc --version
-
 
 # install prototool
 curl -sSL \

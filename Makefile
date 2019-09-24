@@ -1,5 +1,6 @@
 .PHONY: build lint docs deps
 default: build lint docs
+build-all: deps build lint docs
 
 build:
 	prototool compile
