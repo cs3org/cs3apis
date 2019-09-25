@@ -63,7 +63,7 @@ func clone(url, dir string) {
 
 func checkout(branch, dir string) {
 	// See https://stackoverflow.com/questions/26961371/switch-on-another-branch-create-if-not-exists-without-checking-if-already-exi
-	cmd := exec.Command("git", "checkout", "-B", branch)
+	cmd := exec.Command("bash", "-c", fmt.Sprintf("git checkout %s || git checkout -b %s", branch, branch))
 	cmd.Dir = dir
 	run(cmd)
 }
