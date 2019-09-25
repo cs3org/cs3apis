@@ -11,20 +11,5 @@ steps:
 - name: build
   pull: always
   image: cs3org/cs3apis:latest
-  volumes:
-  - name: cache
-    path: /root/cs3apis
-
-- name: build-go
-  pull: always
-  image: cs3org/cs3apis:latest
   commands:
-  - make build-go
-  - find build
-  volumes:
-  - name: cache
-    path: /root/cs3apis
-
-volumes:
-- name: cache
-  temp: {}
+  - make all

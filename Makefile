@@ -1,24 +1,21 @@
 .PHONY: build lint docs deps
-default: build lint docs
-build-all: deps build lint docs
 
-build:
-	prototool compile
-	protolock status
+default: build
 
-lint:
-	prototool format -w
-	prototool lint
-	go run tools/check-license/check-license.go
+build-proto:
+	go run build.go -build-proto
+deps-proto:
+	go run build.go -deps-proto
 
-docs:
-	rm -rf docs && mkdir docs && protoc --doc_out=./docs --doc_opt=html,index.html cs3/*/*.proto cs3/*/*/*.proto 
-
-deps:
-	cp deps.sh /tmp && cd /tmp && ./deps.sh
+deps-go:
+	go run build.go -deps-go
 
 build-go: deps build
-	./build-go.sh
-
-clean:
-	rm -rf build
+	go run build.go -build-go
+	
+	
+all-proto: deps-proto build-proto
+all-go: deps-go build-go
+all: all-proto all-go
+	
+	
