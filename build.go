@@ -29,6 +29,9 @@ var (
 )
 
 var (
+	gitMail = flag.String("git-author-mail", "cs3org-bot@hugo.labkode.com", "Git author mail")
+	gitName = flag.String("git-author-name", "cs3org-bot", "Git author name")
+
 	_depsProto  = flag.Bool("deps-proto", false, "Install proto deps")
 	_buildProto = flag.Bool("build-proto", false, "Compile Protobuf definitions")
 
@@ -95,17 +98,33 @@ func getCommitID(dir string) string {
 }
 
 func commit(repo, msg string) {
+	// set correct author name and mail
+	cmd := exec.Command("git", "config", "user.email", *gitMail)
+	cmd.Dir = repo
+	run(cmd)
+
+	cmd = exec.Command("git", "config", "user.name", *gitName)
+	cmd.Dir = repo
+	run(cmd)
+
 	// check if repo is dirty
 	if !isRepoDirty(repo) {
 		// nothing to do
 		return
 	}
 
-	cmd := exec.Command("git", "add", ".")
+	cmd = exec.Command("git", "add", ".")
 	cmd.Dir = repo
 	run(cmd)
 
 	cmd = exec.Command("git", "commit", "-m", msg)
+	cmd.Dir = repo
+	run(cmd)
+}
+
+func push(repo string) {
+	protoBranch := getGitBranch(".")
+	cmd := exec.Command("git", "push", "--set-upstream", "origin", protoBranch)
 	cmd.Dir = repo
 	run(cmd)
 }
@@ -349,7 +368,7 @@ func buildGo() {
 }
 
 func pushGo() {
-	// push to upstream repo
+	push("build/go-cs3apis")
 }
 
 func main() {
@@ -371,5 +390,10 @@ func main() {
 	if *_buildGo {
 		fmt.Println("Building Go CS3 APIS")
 		buildGo()
+	}
+
+	if *_pushGo {
+		fmt.Println("Pushing Go library to Github")
+		pushGo()
 	}
 }
