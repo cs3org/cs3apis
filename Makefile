@@ -1,6 +1,6 @@
 .PHONY: build lint docs deps
 
-default: build
+default: build-proto
 
 build-proto:
 	go run build.go -build-proto
