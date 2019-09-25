@@ -342,7 +342,7 @@ func buildGo() {
 	os.MkdirAll("build", 0755)
 
 	// Clone Go repo and set branch to current branch
-	clone("https://github.com/cs3org/go-cs3apis", "build")
+	clone("git@github.com:cs3org/go-cs3apis", "build")
 	protoBranch := getGitBranch(".")
 	goBranch := getGitBranch("build/go-cs3apis")
 	fmt.Printf("Proto branch: %s\nGo branch: %s\n", protoBranch, goBranch)
