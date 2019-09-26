@@ -4,3 +4,7 @@ default: build
 
 build:
 	docker run cs3org/cs3apis go run build.go -build-proto
+python:
+	docker run cs3org/cs3apis go run build.go -build-python
+go:
+	docker run cs3org/cs3apis go run build.go -build-go

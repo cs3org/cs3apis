@@ -30,9 +30,6 @@ steps:
 - name: publish-docker
   pull: always
   image: plugins/docker
-  when:
-    branch: master
-    event: push
   settings:
     repo: cs3org/cs3apis
     tags: latest
