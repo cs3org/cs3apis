@@ -37,7 +37,10 @@ var (
 
 	_depsGo  = flag.Bool("deps-go", false, "Install Go deps")
 	_buildGo = flag.Bool("build-go", false, "Build Go library")
-	_pushGo  = flag.Bool("push-go", false, "Push Go library to Github repo")
+	_pushGo  = flag.Bool("push-go", false, "Push Go library to github.com/cs3org/go-cs3apis")
+
+	_buildPython = flag.Bool("build-python", false, "Build Python library")
+	_pushPython  = flag.Bool("push-python", false, "Push Python library to github.com/cs3org/python-cs3apis")
 )
 
 func init() {
@@ -368,33 +371,71 @@ func buildGo() {
 	commit(repo, msg)
 }
 
+func buildPython() {
+
+	// Remove build dir
+	os.RemoveAll("build/python-cs3apis")
+	os.MkdirAll("build", 0755)
+
+	// Clone Go repo and set branch to current branch
+	clone("git@github.com:cs3org/python-cs3apis", "build")
+	protoBranch := getGitBranch(".")
+	buildBranch := getGitBranch("build/python-cs3apis")
+	fmt.Printf("Proto branch: %s\nBuild branch: %s\n", protoBranch, buildBranch)
+
+	if buildBranch != protoBranch {
+		checkout(protoBranch, "build/python-cs3apis")
+	}
+
+	files := find("cs3/*/*.proto", "cs3/*/*/*.proto")
+
+	args := []string{"-m", "grpc_tools.protoc", "--python_out=./build/python-cs3apis", "-I.", "--grpc_python_out=./build/python-cs3apis"}
+	args = append(args, files...)
+	cmd := exec.Command("python", args...)
+	run(cmd)
+}
+
+func pushPython() {
+	push("build/python-cs3apis")
+}
+
 func pushGo() {
 	push("build/go-cs3apis")
 }
 
 func main() {
 	if *_depsProto {
-		fmt.Println("Installing proto dependencies")
+		fmt.Println("Installing proto deps ...")
 		installProtoDeps()
 	}
 
 	if *_buildProto {
-		fmt.Println("Compiling and linting Protobuf definitions")
+		fmt.Println("Compiling and liniting protobufs ...")
 		buildProto()
 	}
 
 	if *_depsGo {
-		fmt.Println("Installing Go dependencies")
+		fmt.Println("Installing Go deps ...")
 		depsGo()
 	}
 
 	if *_buildGo {
-		fmt.Println("Building Go CS3 APIS")
+		fmt.Println("Building Go ...")
 		buildGo()
 	}
 
 	if *_pushGo {
-		fmt.Println("Pushing Go library to Github")
+		fmt.Println("Pushing Go ...")
 		pushGo()
+	}
+
+	if *_buildPython {
+		fmt.Println("Building Python ...")
+		buildPython()
+	}
+
+	if *_pushPython {
+		fmt.Println("Pushing Python ...")
+		pushPython()
 	}
 }
