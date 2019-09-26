@@ -115,7 +115,7 @@ func getCommitID(dir string) string {
 	return commit
 }
 
-func getRepo(org, repo string) string {
+func getRepo(repo string) string {
 	if *gitSSH {
 		return fmt.Sprintf("git@github.com:%s", repo)
 	}
