@@ -44,6 +44,9 @@ var (
 
 	_buildPython = flag.Bool("build-python", false, "Build Python library")
 	_pushPython  = flag.Bool("push-python", false, "Push Python library to github.com/cs3org/python-cs3apis")
+
+	_buildJs = flag.Bool("build-js", false, "Build Js library")
+	_pushJs  = flag.Bool("push-js", false, "Push Js library to github.com/cs3org/js-cs3apis")
 )
 
 func init() {
@@ -52,11 +55,15 @@ func init() {
 	if *_all {
 		*_depsProto = true
 		*_depsGo = true
+
 		*_buildProto = true
 		*_buildGo = true
 		*_buildPython = true
+		*_buildJs = true
+
 		*_pushGo = true
 		*_pushPython = true
+		*_pushJs = true
 	}
 }
 
@@ -422,12 +429,45 @@ func buildPython() {
 	commit(repo, msg)
 }
 
+func buildJS() {
+	// Remove build dir
+	os.RemoveAll("build/js-cs3apis")
+	os.MkdirAll("build", 0755)
+
+	// Clone repo and set branch to current branch
+	clone("cs3org/js-cs3apis", "build")
+	protoBranch := getGitBranch(".")
+	buildBranch := getGitBranch("build/js-cs3apis")
+	fmt.Printf("Proto branch: %s\nBuild branch: %s\n", protoBranch, buildBranch)
+
+	if buildBranch != protoBranch {
+		checkout(protoBranch, "build/js-cs3apis")
+	}
+
+	files := find("cs3/*/*.proto", "cs3/*/*/*.proto")
+
+	args := []string{"--js_out=import_style=commonjs:./build/js-cs3apis", "--grpc-web_out=import_style=commonjs,mode=grpcwebtext:./build/js-cs3apis/", "-I."}
+	args = append(args, files...)
+	cmd := exec.Command("protoc", args...)
+	run(cmd)
+
+	// get proto repo commit id
+	hash := getCommitID(".")
+	repo := "build/js-cs3apis"
+	msg := "Synced to https://github.com/cs3org/cs3apis/tree/" + hash
+	commit(repo, msg)
+}
+
 func pushPython() {
 	push("build/python-cs3apis")
 }
 
 func pushGo() {
 	push("build/go-cs3apis")
+}
+
+func pushJS() {
+	push("bulid/js-cs3apis")
 }
 
 func main() {

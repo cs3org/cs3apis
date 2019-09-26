@@ -9,3 +9,5 @@ python:
 	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis go run build.go -build-python
 go:
 	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis go run build.go -build-go
+js:
+	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis go run build.go -build-js
