@@ -417,7 +417,7 @@ func buildPython() {
 
 	// get proto repo commit id
 	hash := getCommitID(".")
-	repo := "build/go-cs3apis"
+	repo := "build/python-cs3apis"
 	msg := "Synced to https://github.com/cs3org/cs3apis/tree/" + hash
 	commit(repo, msg)
 }
