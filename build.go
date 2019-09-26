@@ -31,6 +31,9 @@ var (
 var (
 	gitMail = flag.String("git-author-mail", "cs3org-bot@hugo.labkode.com", "Git author mail")
 	gitName = flag.String("git-author-name", "cs3org-bot", "Git author name")
+	gitSSH  = flag.Bool("git-ssh", false, "Use git protocol instead of https for cloning repos")
+
+	_all = flag.Bool("all", false, "Compile, build and publish for all available languages, mean to be run in CI platform like Drone")
 
 	_depsProto  = flag.Bool("deps-proto", false, "Install proto deps")
 	_buildProto = flag.Bool("build-proto", false, "Compile Protobuf definitions")
@@ -45,6 +48,16 @@ var (
 
 func init() {
 	flag.Parse()
+
+	if *_all {
+		*_depsProto = true
+		*_depsGo = true
+		*_buildProto = true
+		*_buildGo = true
+		*_buildPython = true
+		*_pushGo = true
+		*_pushPython = true
+	}
 }
 
 func getProtoOS() string {
@@ -58,8 +71,9 @@ func getProtoOS() string {
 	}
 }
 
-func clone(url, dir string) {
-	cmd := exec.Command("git", "clone", "--quiet", url)
+func clone(repo, dir string) {
+	repo = getRepo(repo) // get git or https repo location
+	cmd := exec.Command("git", "clone", "--quiet", repo)
 	cmd.Dir = dir
 	run(cmd)
 }
@@ -99,6 +113,13 @@ func getCommitID(dir string) string {
 	cmd.Dir = dir
 	commit := runAndGet(cmd)
 	return commit
+}
+
+func getRepo(org, repo string) string {
+	if *gitSSH {
+		return fmt.Sprintf("git@github.com:%s", repo)
+	}
+	return fmt.Sprintf("https://github.com/%s", repo)
 }
 
 func commit(repo, msg string) {
@@ -346,7 +367,7 @@ func buildGo() {
 	os.MkdirAll("build", 0755)
 
 	// Clone Go repo and set branch to current branch
-	clone("git@github.com:cs3org/go-cs3apis", "build")
+	clone("cs3org/go-cs3apis", "build")
 	protoBranch := getGitBranch(".")
 	goBranch := getGitBranch("build/go-cs3apis")
 	fmt.Printf("Proto branch: %s\nGo branch: %s\n", protoBranch, goBranch)
@@ -378,7 +399,7 @@ func buildPython() {
 	os.MkdirAll("build", 0755)
 
 	// Clone Go repo and set branch to current branch
-	clone("git@github.com:cs3org/python-cs3apis", "build")
+	clone("cs3org/python-cs3apis", "build")
 	protoBranch := getGitBranch(".")
 	buildBranch := getGitBranch("build/python-cs3apis")
 	fmt.Printf("Proto branch: %s\nBuild branch: %s\n", protoBranch, buildBranch)
