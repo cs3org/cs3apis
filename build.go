@@ -505,4 +505,14 @@ func main() {
 		fmt.Println("Pushing Python ...")
 		pushPython()
 	}
+
+	if *_buildJs {
+		fmt.Println("Building JS ...")
+		buildJS()
+	}
+
+	if *_pushJs {
+		fmt.Println("Pushing Js ...")
+		pushJS()
+	}
 }
