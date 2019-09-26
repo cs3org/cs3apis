@@ -467,7 +467,7 @@ func pushGo() {
 }
 
 func pushJS() {
-	push("bulid/js-cs3apis")
+	push("build/js-cs3apis")
 }
 
 func main() {
