@@ -20,6 +20,7 @@ steps:
     - mkdir /root/.ssh
     - echo -n "$SSH_KEY" > /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
+    - stat /root/.ssh/id_rsa
 
     # add github to known hosts
     - touch /root/.ssh/known_hosts
