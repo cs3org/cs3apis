@@ -36,6 +36,7 @@ steps:
     - ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
     - cs3apis-build -all -git-ssh # compile, build and publish all available languages
 
+---
 kind: pipeline
 type: docker
 name: only-build
