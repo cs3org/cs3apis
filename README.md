@@ -1,7 +1,7 @@
 # [CS3APIS](https://cernbox.github.io/cs3apis/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.svg)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://cloud.drone.io/api/badges/cs3org/cs3apis/status.svg)](https://cloud.drone.io/cs3org/cs3apis)
 
 
-The CS3APIS connect Cloud Storage and Applications Providers.
+The CS3APIS connect Storage and Applications Providers.
 
 ## API Documentation
 https://cs3org.github.io/cs3apis/
@@ -11,8 +11,9 @@ https://cs3org.github.io/cs3apis/
 * Python: https://github.com/cs3org/python-cs3apis
 * Javascript: https://github.com/cs3org/js-cs3apis
 
-## Compile them
-You need to have Docker installed.
+## Local compilation
+
+You need to have Docker installed. The artifacts will be available under the build directory.
 
 ```
 $ git clone https://github.com/cs3org/cs3apis
