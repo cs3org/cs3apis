@@ -8,12 +8,19 @@ platform:
   arch: amd64
 
 steps:
-- name: build
+- name: build-and-push
   pull: always
   image: cs3org/cs3apis:latest
   environment:
     SSH_KEY:
       from_secret: deploy_key
+  trigger:
+    event:
+      exclude:
+      - pull_request
+      - tag
+      - promote
+      - rollback
   commands:
     # See https://github.com/drone/drone/issues/2692
     # write the ssh key to disk
@@ -27,3 +34,30 @@ steps:
     - chmod 600 /root/.ssh/known_hosts
     - ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
     - cs3apis-build -all -git-ssh # compile, build and publish all available languages
+
+- name: only-build
+  pull: always
+  image: cs3org/cs3apis:latest
+  environment:
+    SSH_KEY:
+      from_secret: deploy_key
+  trigger:
+    event:
+      include:
+      - pull_request
+      - tag
+      - promote
+      - rollback
+  commands:
+    # See https://github.com/drone/drone/issues/2692
+    # write the ssh key to disk
+    - mkdir /root/.ssh
+    - echo -n "$SSH_KEY" > /root/.ssh/id_rsa
+    - chmod 600 /root/.ssh/id_rsa
+    - stat /root/.ssh/id_rsa
+
+    # add github to known hosts
+    - touch /root/.ssh/known_hosts
+    - chmod 600 /root/.ssh/known_hosts
+    - ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
+    - cs3apis-build -only-build -git-ssh # compile and only build
