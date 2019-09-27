@@ -35,10 +35,8 @@ var (
 
 	_all = flag.Bool("all", false, "Compile, build and publish for all available languages, mean to be run in CI platform like Drone")
 
-	_depsProto  = flag.Bool("deps-proto", false, "Install proto deps")
 	_buildProto = flag.Bool("build-proto", false, "Compile Protobuf definitions")
 
-	_depsGo  = flag.Bool("deps-go", false, "Install Go deps")
 	_buildGo = flag.Bool("build-go", false, "Build Go library")
 	_pushGo  = flag.Bool("push-go", false, "Push Go library to github.com/cs3org/go-cs3apis")
 
@@ -53,9 +51,6 @@ func init() {
 	flag.Parse()
 
 	if *_all {
-		*_depsProto = true
-		*_depsGo = true
-
 		*_buildProto = true
 		*_buildGo = true
 		*_buildPython = true
@@ -217,68 +212,6 @@ func runAndGet(cmd *exec.Cmd) string {
 	return strings.TrimSpace(string(out))
 }
 
-func installProtoDeps() {
-
-	tmp := os.TempDir()
-
-	// Protoc
-	cmd := exec.Command("curl", "-sSL", fmt.Sprintf("https://github.com/google/protobuf/releases/download/v%s/%s", ProtobufVersion, ProtocFilename), "-o", "protoc.zip")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("unzip", "-o", "protoc.zip")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("sudo", "cp", "bin/protoc", "/usr/local/bin/protoc")
-	cmd.Dir = tmp
-	run(cmd)
-
-	// Prototool
-	cmd = exec.Command("curl", "-sSL", fmt.Sprintf("https://github.com/uber/prototool/releases/download/v%s/prototool-%s-x86_64.tar.gz", PrototoolVersion, runtime.GOOS), "-o", "prototool.tar.gz")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("sudo", "tar", "xvzf", "prototool.tar.gz", "--strip-components", "1", "-C", "/usr/local/")
-	cmd.Dir = tmp
-	run(cmd)
-
-	// Protolock
-	cmd = exec.Command("curl", "-sSL", fmt.Sprintf("https://github.com/nilslice/protolock/releases/download/v0.12.0/protolock.20190327T205335Z.%s-amd64.tgz", runtime.GOOS), "-o", "protolock.tgz")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("sudo", "tar", "xvzf", "protolock.tgz")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("sudo", "cp", "protolock", "/usr/local/bin/")
-	cmd.Dir = tmp
-	run(cmd)
-
-	// Protoc gen doc
-	cmd = exec.Command("curl", "-sSL", fmt.Sprintf("https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.3.0/protoc-gen-doc-1.3.0.%s-amd64.go1.11.2.tar.gz", runtime.GOOS), "-o", "protoc-gen-doc.tar.gz")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("sudo", "tar", "xvzf", "protoc-gen-doc.tar.gz")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("sudo", "cp", fmt.Sprintf("protoc-gen-doc-1.3.0.%s-amd64.go1.11.2/protoc-gen-doc", runtime.GOOS), "/usr/local/bin/")
-	cmd.Dir = tmp
-	run(cmd)
-
-	// Check versions
-	cmd = exec.Command("protoc", "--version")
-	cmd.Dir = tmp
-	run(cmd)
-
-	cmd = exec.Command("prototool", "version")
-	cmd.Dir = tmp
-	run(cmd)
-}
-
 // Works with Go 1.8+
 // https://stackoverflow.com/questions/32649770/how-to-get-current-gopath-from-code
 func getGoPath() string {
@@ -308,17 +241,6 @@ func sed(dir, suffix, old, new string) {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-}
-
-func depsGo() {
-	goPath := getGoPath()
-	path := fmt.Sprintf("%s:%s/bin", os.Getenv("PATH"), goPath)
-	env := append(os.Environ(), path)
-	fmt.Println(os.Getenv("PATH"))
-	cmd := exec.Command("go", "get", "-u", "github.com/golang/protobuf/protoc-gen-go")
-	cmd.Dir = os.TempDir()
-	cmd.Env = env
-	run(cmd)
 }
 
 func find(patterns ...string) []string {
@@ -471,19 +393,9 @@ func pushJS() {
 }
 
 func main() {
-	if *_depsProto {
-		fmt.Println("Installing proto deps ...")
-		installProtoDeps()
-	}
-
 	if *_buildProto {
 		fmt.Println("Compiling and liniting protobufs ...")
 		buildProto()
-	}
-
-	if *_depsGo {
-		fmt.Println("Installing Go deps ...")
-		depsGo()
 	}
 
 	if *_buildGo {
