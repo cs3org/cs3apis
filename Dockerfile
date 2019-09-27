@@ -1,4 +1,8 @@
 # Docker file to build the cs3apis
+# To push locally:
+# docker build .
+# docker tag xxxx cs3org/cs3apis:latest
+# docker push cs3org/cs3apis
 FROM golang
 RUN apt-get update
 RUN apt-get install build-essential curl unzip sudo -y
