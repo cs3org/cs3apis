@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.svg)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://cloud.drone.io/api/badges/cs3org/cs3apis/status.svg)](https://cloud.drone.io/cs3org/cs3apis)
 ================
 
-<img width="200px" src="https://raw.githubusercontent.com/cs3org/logos/master/cs3org/cs3org.png"/>
+<img width="100px" src="https://raw.githubusercontent.com/cs3org/logos/master/cs3org/cs3org.png"/>
 
 The CS3APIS connect Storage and Applications Providers.
 
