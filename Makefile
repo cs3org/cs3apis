@@ -1,17 +1,17 @@
 .PHONY: build lint docs deps
-default: build lint docs
+
+pwd = $(shell pwd)
+default: build
 
 build:
-	prototool compile
-	protolock status
+	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-proto
+python:
+	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-python
+go:
+	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-go
+js:
+	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-js
+clean:
+	rm -rf build/
 
-lint:
-	prototool format -w
-	prototool lint
-	go run tools/check-license/check-license.go
-
-docs:
-	rm -rf docs && mkdir docs && protoc --doc_out=./docs --doc_opt=html,index.html cs3/*/*.proto cs3/*/*/*.proto 
-
-deps:
-	cp deps.sh /tmp && cd /tmp && ./deps.sh
+all: build python go js

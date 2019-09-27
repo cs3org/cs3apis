@@ -81,23 +81,32 @@ message ResourceInfo {
   // Additional metadata attached to the resource.
   // If resource type is RESOURCE_TYPE_REFERENCE it MUST
   // be specified.
-  ExtraMetadata extra_metadata = 13;
+  CanonicalMetadata canonical_metadata = 13;
+  // OPTIONAL.
+  // Arbitrary metadata attached to a resource.
+  ArbitraryMetadata arbitrary_metadata = 14;
 }
 
-// ExtraMetadata contains extra metadata
+// CanonicalMetadata contains extra metadata
 // attached to a resource. This message and the Opaque
 // message differ in that Opaque allows service implementors
 // to include any extra metadata in any format and most clients
-// will ignore it. However, the ExtraMetadata message
+// will ignore it. However, the CanonicalMetadata message
 // contains well defined fileds that clients MUST understand if
 // they are specified.
-message ExtraMetadata {
+message CanonicalMetadata {
   // REQUIRED if resource type is RESOURCE_TYPE_REFERENCE.
   // The target reference the resource points to.
   Reference target = 1;
   // TODO(moscicki): what fields can fit here? executable bit?
   // bool executable = 2;
+  // TODO(labkode): at some points maybe we could add here
+  // acls and other well-known metadata.
 
+}
+
+message ArbitraryMetadata {
+  map<string, string> metadata = 1;
 }
 
 // The available types of resources.
