@@ -6,32 +6,37 @@ The CS3APIS connect Cloud Storage and Applications Providers.
 ## API Documentation
 https://cs3org.github.io/cs3apis/
 
-## Build it yourself
+## Officialy compiled libraries
+* Go: https://github.com/cs3org/go-cs3apis
+* Python: https://github.com/cs3org/python-cs3apis
+* Javascript: https://github.com/cs3org/js-cs3apis
+
+## Compile them
 You need to have Docker installed.
 
 ```
-$ git clone https://github.com/cernbox/cs3apis
+$ git clone https://github.com/cs3org/cs3apis
 $ make build 
 $ make go # generate go code
 ```
 
+See the Makefile to find all the available build options.
+
 ## Overview
 
 This repository contains the interface definitions of public
-CS3 APIs that support the gRPC protocol.
+CS3APIS that support the gRPC protocol.
 You can also use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 
-CS3 APIs follows Google API design guidelines, specially on error handling and naming convention.
+CS3 APIs follows Google and Uber API design guidelines, specially on error handling and naming convention.
 You can read more about these guidelines at https://cloud.google.com/apis/design/.
 
 This repository structure is very similar to https://github.com/googleapis/googleapis.
 
 CS3 APIs use [Protocol Buffers](https://github.com/google/protobuf)
 version 3 (proto3) as their Interface Definition Language (IDL) to
-define the API interface and the structure of the payload messages. The
-same interface definition is used for both REST and RPC versions of the
-API, which can be accessed over different wire protocols.
+define the API interface and the structure of the payload messages.
 
 ## Repository Structure
 
@@ -45,8 +50,3 @@ languages.
 
 **NOTE:** The major version of an API is used to indicate breaking
 change to the API.
-
-
-## License
-
-CS3 APIs are distributed under [Apache 2.0 license](https://github.com/cs3org/cs3apis/blob/master/LICENSE).
