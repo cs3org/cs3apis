@@ -528,101 +528,6 @@
       "def": {
         "messages": [
           {
-            "name": "CreateContainerRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "CreateContainerResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "DeleteRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "DeleteResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "GetPathRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
-              }
-            ]
-          },
-          {
-            "name": "GetPathResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "path",
-                "type": "string"
-              }
-            ]
-          },
-          {
             "name": "GetQuotaRequest",
             "fields": [
               {
@@ -634,226 +539,6 @@
                 "id": 2,
                 "name": "ref",
                 "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "GetQuotaResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "total_bytes",
-                "type": "uint64"
-              },
-              {
-                "id": 4,
-                "name": "used_bytes",
-                "type": "uint64"
-              }
-            ]
-          },
-          {
-            "name": "InitiateFileUploadRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "InitiateFileUploadResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "upload_endpoint",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "available_checksums",
-                "type": "cs3.storageproviderv0alpha.ResourceChecksumPriority",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "InitiateFileDownloadRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "InitiateFileDownloadResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "download_endpoint",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "ListContainerStreamRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "arbitrary_metadata_keys",
-                "type": "string",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "ListContainerStreamResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "info",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo"
-              }
-            ]
-          },
-          {
-            "name": "ListContainerRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "arbitrary_metadata_keys",
-                "type": "string",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "ListContainerResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "infos",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "ListFileVersionsRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "ListFileVersionsResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "versions",
-                "type": "cs3.storageproviderv0alpha.FileVersion",
-                "is_repeated": true
               }
             ]
           },
@@ -883,27 +568,6 @@
             ]
           },
           {
-            "name": "ListRecycleResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "recycle_items",
-                "type": "cs3.storageproviderv0alpha.RecycleItem",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
             "name": "ListRecycleStreamRequest",
             "fields": [
               {
@@ -929,61 +593,6 @@
             ]
           },
           {
-            "name": "ListRecycleStreamResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "recycle_item",
-                "type": "cs3.storageproviderv0alpha.RecycleItem"
-              }
-            ]
-          },
-          {
-            "name": "MoveRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "source",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "destination",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              }
-            ]
-          },
-          {
-            "name": "MoveResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
             "name": "PurgeRecycleRequest",
             "fields": [
               {
@@ -997,208 +606,6 @@
                 "type": "cs3.storageproviderv0alpha.Reference"
               }
             ]
-          },
-          {
-            "name": "PurgeRecycleResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "RestoreFileVersionRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "key",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "RestoreFileVersionResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "RestoreRecycleItemRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "key",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "restore_path",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "RestoreRecycleItemResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "StatRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "arbitrary_metadata_keys",
-                "type": "string",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "StatResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "info",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo"
-              }
-            ]
-          },
-          {
-            "name": "SetArbitraryMetadataRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "arbitrary_metadata",
-                "type": "cs3.storageproviderv0alpha.ArbitraryMetadata"
-              }
-            ]
-          },
-          {
-            "name": "SetArbitraryMetadataResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "UnsetArbitraryMetadataRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
-              },
-              {
-                "id": 3,
-                "name": "arbitrary_metadata_keys",
-                "type": "string",
-                "is_repeated": true
-              }
-            ]
-          },
-          {
-            "name": "UnsetArbitraryMetadataResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
           }
         ],
         "services": [
@@ -1206,99 +613,155 @@
             "name": "GatewayService",
             "rpcs": [
               {
+                "name": "GenerateAccessToken",
+                "in_type": "cs3.authv0alpha.GenerateAccessTokenRequest",
+                "out_type": "cs3.authv0alpha.GenerateAccessTokenResponse"
+              },
+              {
+                "name": "WhoAmI",
+                "in_type": "cs3.authv0alpha.WhoAmIRequest",
+                "out_type": "cs3.authv0alpha.WhoAmIResponse"
+              },
+              {
                 "name": "CreateContainer",
-                "in_type": "CreateContainerRequest",
-                "out_type": "CreateContainerResponse"
+                "in_type": "cs3.storageproviderv0alpha.CreateContainerRequest",
+                "out_type": "cs3.storageproviderv0alpha.CreateContainerResponse"
               },
               {
                 "name": "Delete",
-                "in_type": "DeleteRequest",
-                "out_type": "DeleteResponse"
+                "in_type": "cs3.storageproviderv0alpha.DeleteRequest",
+                "out_type": "cs3.storageproviderv0alpha.DeleteResponse"
               },
               {
                 "name": "GetPath",
-                "in_type": "GetPathRequest",
-                "out_type": "GetPathResponse"
+                "in_type": "cs3.storageproviderv0alpha.GetPathRequest",
+                "out_type": "cs3.storageproviderv0alpha.GetPathResponse"
               },
               {
                 "name": "GetQuota",
-                "in_type": "GetQuotaRequest",
-                "out_type": "GetQuotaResponse"
+                "in_type": "cs3.storageproviderv0alpha.GetQuotaRequest",
+                "out_type": "cs3.storageproviderv0alpha.GetQuotaResponse"
               },
               {
                 "name": "InitiateFileDownload",
-                "in_type": "InitiateFileDownloadRequest",
-                "out_type": "InitiateFileDownloadResponse"
+                "in_type": "cs3.storageproviderv0alpha.InitiateFileDownloadRequest",
+                "out_type": "cs3.storageproviderv0alpha.InitiateFileDownloadResponse"
               },
               {
                 "name": "InitiateFileUpload",
-                "in_type": "InitiateFileUploadRequest",
-                "out_type": "InitiateFileUploadResponse"
+                "in_type": "cs3.storageproviderv0alpha.InitiateFileUploadRequest",
+                "out_type": "cs3.storageproviderv0alpha.InitiateFileUploadResponse"
               },
               {
                 "name": "ListContainerStream",
-                "in_type": "ListContainerStreamRequest",
-                "out_type": "ListContainerStreamResponse",
+                "in_type": "cs3.storageproviderv0alpha.ListContainerStreamRequest",
+                "out_type": "cs3.storageproviderv0alpha.ListContainerStreamResponse",
                 "out_streamed": true
               },
               {
                 "name": "ListContainer",
-                "in_type": "ListContainerRequest",
-                "out_type": "ListContainerResponse"
+                "in_type": "cs3.storageproviderv0alpha.ListContainerRequest",
+                "out_type": "cs3.storageproviderv0alpha.ListContainerResponse"
               },
               {
                 "name": "ListFileVersions",
-                "in_type": "ListFileVersionsRequest",
-                "out_type": "ListFileVersionsResponse"
+                "in_type": "cs3.storageproviderv0alpha.ListFileVersionsRequest",
+                "out_type": "cs3.storageproviderv0alpha.ListFileVersionsResponse"
               },
               {
                 "name": "ListRecycleStream",
                 "in_type": "ListRecycleStreamRequest",
-                "out_type": "ListRecycleStreamResponse",
+                "out_type": "cs3.storageproviderv0alpha.ListRecycleStreamResponse",
                 "out_streamed": true
               },
               {
                 "name": "ListRecycle",
                 "in_type": "ListRecycleRequest",
-                "out_type": "ListRecycleResponse"
+                "out_type": "cs3.storageproviderv0alpha.ListRecycleResponse"
               },
               {
                 "name": "Move",
-                "in_type": "MoveRequest",
-                "out_type": "MoveResponse"
+                "in_type": "cs3.storageproviderv0alpha.MoveRequest",
+                "out_type": "cs3.storageproviderv0alpha.MoveResponse"
               },
               {
                 "name": "PurgeRecycle",
                 "in_type": "PurgeRecycleRequest",
-                "out_type": "PurgeRecycleResponse"
+                "out_type": "cs3.storageproviderv0alpha.PurgeRecycleResponse"
               },
               {
                 "name": "RestoreFileVersion",
-                "in_type": "RestoreFileVersionRequest",
-                "out_type": "RestoreFileVersionResponse"
+                "in_type": "cs3.storageproviderv0alpha.RestoreFileVersionRequest",
+                "out_type": "cs3.storageproviderv0alpha.RestoreFileVersionResponse"
               },
               {
                 "name": "RestoreRecycleItem",
-                "in_type": "RestoreRecycleItemRequest",
-                "out_type": "RestoreRecycleItemResponse"
+                "in_type": "cs3.storageproviderv0alpha.RestoreRecycleItemRequest",
+                "out_type": "cs3.storageproviderv0alpha.RestoreRecycleItemResponse"
               },
               {
                 "name": "Stat",
-                "in_type": "StatRequest",
-                "out_type": "StatResponse"
+                "in_type": "cs3.storageproviderv0alpha.StatRequest",
+                "out_type": "cs3.storageproviderv0alpha.StatResponse"
+              },
+              {
+                "name": "CreateShare",
+                "in_type": "cs3.usershareproviderv0alpha.CreateShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.CreateShareResponse"
+              },
+              {
+                "name": "RemoveShare",
+                "in_type": "cs3.usershareproviderv0alpha.RemoveShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.RemoveShareResponse"
+              },
+              {
+                "name": "GetShare",
+                "in_type": "cs3.usershareproviderv0alpha.GetShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.GetShareResponse"
+              },
+              {
+                "name": "ListShares",
+                "in_type": "cs3.usershareproviderv0alpha.ListSharesRequest",
+                "out_type": "cs3.usershareproviderv0alpha.ListSharesResponse"
+              },
+              {
+                "name": "UpdateShare",
+                "in_type": "cs3.usershareproviderv0alpha.UpdateShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.UpdateShareResponse"
+              },
+              {
+                "name": "ListReceivedShares",
+                "in_type": "cs3.usershareproviderv0alpha.ListReceivedSharesRequest",
+                "out_type": "cs3.usershareproviderv0alpha.ListReceivedSharesResponse"
+              },
+              {
+                "name": "UpdateReceivedShare",
+                "in_type": "cs3.usershareproviderv0alpha.UpdateReceivedShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.UpdateReceivedShareResponse"
+              },
+              {
+                "name": "GetReceivedShare",
+                "in_type": "cs3.usershareproviderv0alpha.GetReceivedShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.GetReceivedShareResponse"
               }
             ]
           }
         ],
         "imports": [
           {
-            "path": "cs3/rpc/status.proto"
+            "path": "cs3/auth/v0alpha/auth.proto"
           },
           {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
           {
+            "path": "cs3/storageprovider/v0alpha/storageprovider.proto"
+          },
+          {
             "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
           }
         ],
         "package": {
