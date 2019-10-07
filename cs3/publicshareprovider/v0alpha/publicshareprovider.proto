@@ -80,7 +80,7 @@ message CreatePublicShareRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The unique identifier for the shared storage resource.
-  cs3.storageproviderv0alpha.ResourceId resource_id = 2;
+  cs3.storageproviderv0alpha.ResourceInfo resource_info = 2;
   // REQUIRED.
   // The restrictions to apply to the share.
   Grant grant = 3;

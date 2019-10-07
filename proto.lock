@@ -750,6 +750,12 @@
                 "id": 2,
                 "name": "ref",
                 "type": "cs3.storageproviderv0alpha.Reference"
+              },
+              {
+                "id": 3,
+                "name": "arbitrary_metadata_keys",
+                "type": "string",
+                "is_repeated": true
               }
             ]
           },
@@ -785,6 +791,12 @@
                 "id": 2,
                 "name": "ref",
                 "type": "cs3.storageproviderv0alpha.Reference"
+              },
+              {
+                "id": 3,
+                "name": "arbitrary_metadata_keys",
+                "type": "string",
+                "is_repeated": true
               }
             ]
           },
@@ -1088,6 +1100,12 @@
                 "id": 2,
                 "name": "ref",
                 "type": "cs3.storageproviderv0alpha.Reference"
+              },
+              {
+                "id": 3,
+                "name": "arbitrary_metadata_keys",
+                "type": "string",
+                "is_repeated": true
               }
             ]
           },
@@ -2125,8 +2143,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "name": "resource_info",
+                "type": "cs3.storageproviderv0alpha.ResourceInfo"
               },
               {
                 "id": 3,
@@ -3954,6 +3972,12 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "arbitrary_metadata_keys",
+                "type": "string",
+                "is_repeated": true
               }
             ]
           },
