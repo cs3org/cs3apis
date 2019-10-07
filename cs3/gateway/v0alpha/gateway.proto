@@ -78,7 +78,7 @@ service GatewayService {
   // reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist
   // MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
-  rpc GetQuota(cs3.storageproviderv0alpha.GetQuotaRequest) returns (cs3.storageproviderv0alpha.GetQuotaResponse);
+  rpc GetQuota(GetQuotaRequest) returns (cs3.storageproviderv0alpha.GetQuotaResponse);
   // Initiates the download of a file using an
   // out-of-band data transfer mechanism.
   rpc InitiateFileDownload(cs3.storageproviderv0alpha.InitiateFileDownloadRequest) returns (cs3.storageproviderv0alpha.InitiateFileDownloadResponse);

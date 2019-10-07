@@ -639,7 +639,7 @@
               },
               {
                 "name": "GetQuota",
-                "in_type": "cs3.storageproviderv0alpha.GetQuotaRequest",
+                "in_type": "GetQuotaRequest",
                 "out_type": "cs3.storageproviderv0alpha.GetQuotaResponse"
               },
               {
