@@ -613,6 +613,16 @@
             "name": "GatewayService",
             "rpcs": [
               {
+                "name": "GenerateAccessToken",
+                "in_type": "cs3.authv0alpha.GenerateAccessTokenRequest",
+                "out_type": "cs3.authv0alpha.GenerateAccessTokenResponse"
+              },
+              {
+                "name": "WhoAmI",
+                "in_type": "cs3.authv0alpha.WhoAmIRequest",
+                "out_type": "cs3.authv0alpha.WhoAmIResponse"
+              },
+              {
                 "name": "CreateContainer",
                 "in_type": "cs3.storageproviderv0alpha.CreateContainerRequest",
                 "out_type": "cs3.storageproviderv0alpha.CreateContainerResponse"
@@ -693,11 +703,54 @@
                 "name": "Stat",
                 "in_type": "cs3.storageproviderv0alpha.StatRequest",
                 "out_type": "cs3.storageproviderv0alpha.StatResponse"
+              },
+              {
+                "name": "CreateShare",
+                "in_type": "cs3.usershareproviderv0alpha.CreateShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.CreateShareResponse"
+              },
+              {
+                "name": "RemoveShare",
+                "in_type": "cs3.usershareproviderv0alpha.RemoveShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.RemoveShareResponse"
+              },
+              {
+                "name": "GetShare",
+                "in_type": "cs3.usershareproviderv0alpha.GetShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.GetShareResponse"
+              },
+              {
+                "name": "ListShares",
+                "in_type": "cs3.usershareproviderv0alpha.ListSharesRequest",
+                "out_type": "cs3.usershareproviderv0alpha.ListSharesResponse"
+              },
+              {
+                "name": "UpdateShare",
+                "in_type": "cs3.usershareproviderv0alpha.UpdateShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.UpdateShareResponse"
+              },
+              {
+                "name": "ListReceivedShares",
+                "in_type": "cs3.usershareproviderv0alpha.ListReceivedSharesRequest",
+                "out_type": "cs3.usershareproviderv0alpha.ListReceivedSharesResponse"
+              },
+              {
+                "name": "UpdateReceivedShare",
+                "in_type": "cs3.usershareproviderv0alpha.UpdateReceivedShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.UpdateReceivedShareResponse"
+              },
+              {
+                "name": "GetReceivedShare",
+                "in_type": "cs3.usershareproviderv0alpha.GetReceivedShareRequest",
+                "out_type": "cs3.usershareproviderv0alpha.GetReceivedShareResponse"
               }
             ]
           }
         ],
         "imports": [
+          {
+            "path": "cs3/auth/v0alpha/auth.proto"
+          },
           {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
@@ -706,6 +759,9 @@
           },
           {
             "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
           }
         ],
         "package": {
@@ -1550,8 +1606,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "name": "resource_info",
+                "type": "cs3.storageproviderv0alpha.ResourceInfo"
               },
               {
                 "id": 3,
