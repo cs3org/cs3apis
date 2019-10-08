@@ -51,7 +51,7 @@ import "cs3/types/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OCMShareProviderService {
-  // Creates a new share.
+  // Creates a new ocm share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
   // (owner, shared_resource, grantee).
@@ -69,7 +69,7 @@ service OCMShareProviderService {
   rpc ListOCMShares(ListOCMSharesRequest) returns (ListOCMSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc UpdateOCMShares(UpdateOCMSharesRequest) returns (UpdateOCMSharesResponse);
+  rpc UpdateOCMShare(UpdateOCMShareRequest) returns (UpdateOCMShareResponse);
   // List all shares the authenticated principal has received.
   rpc ListReceivedOCMShares(ListReceivedOCMSharesRequest) returns (ListReceivedOCMSharesResponse);
   // Update the received share to change the share state or the display name.
@@ -101,7 +101,7 @@ message CreateOCMShareResponse {
   Share share = 3;
 }
 
-message UpdateOCMSharesRequest {
+message UpdateOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -120,7 +120,7 @@ message UpdateOCMSharesRequest {
   UpdateField field = 3;
 }
 
-message UpdateOCMSharesResponse {
+message UpdateOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;

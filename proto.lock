@@ -815,9 +815,9 @@
                 "out_type": "cs3.ocmshareproviderv0alpha.ListOCMSharesResponse"
               },
               {
-                "name": "UpdateOCMShares",
-                "in_type": "cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.UpdateOCMSharesResponse"
+                "name": "UpdateOCMShare",
+                "in_type": "cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse"
               },
               {
                 "name": "ListReceivedOCMShares",
@@ -985,7 +985,7 @@
             ]
           },
           {
-            "name": "UpdateOCMSharesRequest",
+            "name": "UpdateOCMShareRequest",
             "fields": [
               {
                 "id": 1,
@@ -1022,7 +1022,7 @@
             ]
           },
           {
-            "name": "UpdateOCMSharesResponse",
+            "name": "UpdateOCMShareResponse",
             "fields": [
               {
                 "id": 1,
@@ -1274,9 +1274,9 @@
                 "out_type": "ListOCMSharesResponse"
               },
               {
-                "name": "UpdateOCMShares",
-                "in_type": "UpdateOCMSharesRequest",
-                "out_type": "UpdateOCMSharesResponse"
+                "name": "UpdateOCMShare",
+                "in_type": "UpdateOCMShareRequest",
+                "out_type": "UpdateOCMShareResponse"
               },
               {
                 "name": "ListReceivedOCMShares",

@@ -201,7 +201,7 @@ service GatewayService {
   // *****************************************************************/
   // ************************ OCM SHARE PROVIDER *********************/
   // *****************************************************************/
-  // Creates a new share.
+  // Creates a new ocm share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
   // (owner, shared_resource, grantee).

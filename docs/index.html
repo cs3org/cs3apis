@@ -449,15 +449,15 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest"><span class="badge">M</span>UpdateOCMSharesRequest</a>
+                  <a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest"><span class="badge">M</span>UpdateOCMShareRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest.UpdateField"><span class="badge">M</span>UpdateOCMSharesRequest.UpdateField</a>
+                  <a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest.UpdateField"><span class="badge">M</span>UpdateOCMShareRequest.UpdateField</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesResponse"><span class="badge">M</span>UpdateOCMSharesResponse</a>
+                  <a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse"><span class="badge">M</span>UpdateOCMShareResponse</a>
                 </li>
               
                 <li>
@@ -2875,7 +2875,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.CreateOCMShareResponse">.cs3.ocmshareproviderv0alpha.CreateOCMShareResponse</a></td>
                 <td><p>OCM SHARE PROVIDER *********************/
 *****************************************************************/
-Creates a new share.
+Creates a new ocm share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
@@ -2908,9 +2908,9 @@ shares satisfying the filter MUST be returned.</p></td>
               </tr>
             
               <tr>
-                <td>UpdateOCMShares</td>
-                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest">.cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest</a></td>
-                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesResponse">.cs3.ocmshareproviderv0alpha.UpdateOCMSharesResponse</a></td>
+                <td>UpdateOCMShare</td>
+                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest">.cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest</a></td>
+                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse">.cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse</a></td>
                 <td><p>Updates a share.
 MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
               </tr>
@@ -3366,7 +3366,7 @@ Opaque information. </p></td>
 
         
       
-        <h3 id="cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest">UpdateOCMSharesRequest</h3>
+        <h3 id="cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest">UpdateOCMShareRequest</h3>
         <p></p>
 
         
@@ -3395,7 +3395,7 @@ REQUIRED. </p></td>
               
                 <tr>
                   <td>field</td>
-                  <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest.UpdateField">UpdateOCMSharesRequest.UpdateField</a></td>
+                  <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest.UpdateField">UpdateOCMShareRequest.UpdateField</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3407,7 +3407,7 @@ REQUIRED. </p></td>
 
         
       
-        <h3 id="cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest.UpdateField">UpdateOCMSharesRequest.UpdateField</h3>
+        <h3 id="cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest.UpdateField">UpdateOCMShareRequest.UpdateField</h3>
         <p></p>
 
         
@@ -3438,7 +3438,7 @@ REQUIRED. </p></td>
 
         
       
-        <h3 id="cs3.ocmshareproviderv0alpha.UpdateOCMSharesResponse">UpdateOCMSharesResponse</h3>
+        <h3 id="cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse">UpdateOCMShareResponse</h3>
         <p></p>
 
         
@@ -3645,7 +3645,7 @@ Opaque information. </p></td>
                 <td>CreateOCMShare</td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.CreateOCMShareRequest">CreateOCMShareRequest</a></td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.CreateOCMShareResponse">CreateOCMShareResponse</a></td>
-                <td><p>Creates a new share.
+                <td><p>Creates a new ocm share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
@@ -3678,9 +3678,9 @@ shares satisfying the filter MUST be returned.</p></td>
               </tr>
             
               <tr>
-                <td>UpdateOCMShares</td>
-                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesRequest">UpdateOCMSharesRequest</a></td>
-                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMSharesResponse">UpdateOCMSharesResponse</a></td>
+                <td>UpdateOCMShare</td>
+                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest">UpdateOCMShareRequest</a></td>
+                <td><a href="#cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse">UpdateOCMShareResponse</a></td>
                 <td><p>Updates a share.
 MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
               </tr>
