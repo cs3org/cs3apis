@@ -56,28 +56,28 @@ service OCMShareProviderService {
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
   // (owner, shared_resource, grantee).
   // New shares MUST be created in the state SHARE_STATE_PENDING.
-  rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
+  rpc CreateOCMShare(CreateOCMShareRequest) returns (CreateOCMShareResponse);
   // Removes a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc RemoveShare(RemoveShareRequest) returns (RemoveShareResponse);
+  rpc RemoveOCMShare(RemoveOCMShareRequest) returns (RemoveOCMShareResponse);
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc GetShare(GetShareRequest) returns (GetShareResponse);
+  rpc GetOCMShare(GetOCMShareRequest) returns (GetOCMShareResponse);
   // List the shares the authenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
-  rpc ListShares(ListSharesRequest) returns (ListSharesResponse);
+  rpc ListOCMShares(ListOCMSharesRequest) returns (ListOCMSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
+  rpc UpdateOCMShares(UpdateOCMSharesRequest) returns (UpdateOCMSharesResponse);
   // List all shares the authenticated principal has received.
-  rpc ListReceivedShares(ListReceivedSharesRequest) returns (ListReceivedSharesResponse);
+  rpc ListReceivedOCMShares(ListReceivedOCMSharesRequest) returns (ListReceivedOCMSharesResponse);
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc UpdateReceivedShare(UpdateReceivedShareRequest) returns (UpdateReceivedShareResponse);
+  rpc UpdateReceivedOCMShare(UpdateReceivedOCMShareRequest) returns (UpdateReceivedOCMShareResponse);
 }
 
-message CreateShareRequest {
+message CreateOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -89,7 +89,7 @@ message CreateShareRequest {
   ShareGrant grant = 3;
 }
 
-message CreateShareResponse {
+message CreateOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -101,7 +101,7 @@ message CreateShareResponse {
   Share share = 3;
 }
 
-message UpdateShareRequest {
+message UpdateOCMSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -120,7 +120,7 @@ message UpdateShareRequest {
   UpdateField field = 3;
 }
 
-message UpdateShareResponse {
+message UpdateOCMSharesResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -129,20 +129,20 @@ message UpdateShareResponse {
   cs3.types.Opaque opaque = 2;
 }
 
-message ListSharesRequest {
+message ListOCMSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // represents a filter to apply to the request.
   message Filter {
     enum Type {
-      LIST_SHARES_REQUEST_FILTER_TYPE_INVALID = 0;
-      LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER = 1;
-      LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 2;
-      LIST_SHARES_REQUEST_FILTER_TYPE_OWNER = 3;
-      LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR = 4;
-      LIST_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER = 5;
-      LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER = 6;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_INVALID = 0;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_NO_FILTER = 1;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 2;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER = 3;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR = 4;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER = 5;
+      LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER = 6;
     }
     Type type = 2;
     oneof term {
@@ -156,7 +156,7 @@ message ListSharesRequest {
   repeated Filter filters = 2;
 }
 
-message ListSharesResponse {
+message ListOCMSharesResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -168,7 +168,7 @@ message ListSharesResponse {
   repeated Share shares = 3;
 }
 
-message RemoveShareRequest {
+message RemoveOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -177,7 +177,7 @@ message RemoveShareRequest {
   ShareReference ref = 2;
 }
 
-message RemoveShareResponse {
+message RemoveOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -186,7 +186,7 @@ message RemoveShareResponse {
   cs3.types.Opaque opaque = 2;
 }
 
-message GetShareRequest {
+message GetOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -195,7 +195,7 @@ message GetShareRequest {
   ShareReference ref = 2;
 }
 
-message GetShareResponse {
+message GetOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -207,13 +207,13 @@ message GetShareResponse {
   Share share = 3;
 }
 
-message ListReceivedSharesRequest {
+message ListReceivedOCMSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
 }
 
-message ListReceivedSharesResponse {
+message ListReceivedOCMSharesResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -226,7 +226,7 @@ message ListReceivedSharesResponse {
 }
 
 // TODO(labkode): clean up display_name ? we'll use storage links for that.
-message UpdateReceivedShareRequest {
+message UpdateReceivedOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
@@ -244,7 +244,7 @@ message UpdateReceivedShareRequest {
   UpdateField field = 3;
 }
 
-message UpdateReceivedShareResponse {
+message UpdateReceivedOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
