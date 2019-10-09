@@ -286,6 +286,9 @@ message InitiateFileUploadResponse {
   // the client can use when sending
   // the file.
   repeated ResourceChecksumPriority available_checksums = 4;
+  // REQUIRED.
+  // Tells to the gateway if the client should be exposed directly to the upload_endpoint.
+  bool expose = 5;
 }
 
 message InitiateFileDownloadRequest {
@@ -309,6 +312,9 @@ message InitiateFileDownloadResponse {
   // The value MUST be a Uniform Resource Identifier (URI)
   // as specified in RFC 3986.
   string download_endpoint = 3;
+  // REQUIRED.
+  // Tells to the gateway if the client should be exposed directly to the download_endpoint.
+  bool expose = 5;
 }
 
 message ListGrantsRequest {
