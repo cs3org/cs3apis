@@ -66,7 +66,7 @@ message GetUserRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The id of the user.
-  cs3.types.UserId  = 2;
+  cs3.types.UserId  user_id = 2;
 }
 
 message GetUserResponse {
@@ -87,7 +87,7 @@ message GetUserGroupsRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The id of the user.
-  cs3.types.UserId  = 2;
+  cs3.types.UserId user_id = 2;
 }
 
 message GetUserGroupsResponse {
@@ -108,7 +108,7 @@ message IsInGroupRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The id of the user.
-  cs3.types.UserId  = 2;
+  cs3.types.UserId user_id = 2;
   // REQUIRED.
   // The group to check.
   string group = 3;
