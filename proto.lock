@@ -606,6 +606,67 @@
                 "type": "cs3.storageproviderv0alpha.Reference"
               }
             ]
+          },
+          {
+            "name": "InitiateFileDownloadResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "download_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "InitiateFileUploadResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "upload_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "available_checksums",
+                "type": "cs3.storageproviderv0alpha.ResourceChecksumPriority",
+                "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "token",
+                "type": "string"
+              }
+            ]
           }
         ],
         "services": [
@@ -645,12 +706,12 @@
               {
                 "name": "InitiateFileDownload",
                 "in_type": "cs3.storageproviderv0alpha.InitiateFileDownloadRequest",
-                "out_type": "cs3.storageproviderv0alpha.InitiateFileDownloadResponse"
+                "out_type": "InitiateFileDownloadResponse"
               },
               {
                 "name": "InitiateFileUpload",
                 "in_type": "cs3.storageproviderv0alpha.InitiateFileUploadRequest",
-                "out_type": "cs3.storageproviderv0alpha.InitiateFileUploadResponse"
+                "out_type": "InitiateFileUploadResponse"
               },
               {
                 "name": "ListContainerStream",
@@ -869,6 +930,9 @@
           },
           {
             "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
           }
         ],
         "package": {
@@ -3081,6 +3145,11 @@
                 "name": "available_checksums",
                 "type": "ResourceChecksumPriority",
                 "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
               }
             ]
           },
@@ -3116,6 +3185,11 @@
                 "id": 3,
                 "name": "download_endpoint",
                 "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
               }
             ]
           },

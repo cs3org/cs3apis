@@ -33,6 +33,7 @@ import "cs3/auth/v0alpha/auth.proto";
 import "cs3/ocmshareprovider/v0alpha/ocmshareprovider.proto";
 import "cs3/preferences/v0alpha/preferences.proto";
 import "cs3/publicshareprovider/v0alpha/publicshareprovider.proto";
+import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/storageprovider/v0alpha/storageprovider.proto";
 import "cs3/types/types.proto";
@@ -85,10 +86,10 @@ service GatewayService {
   rpc GetQuota(GetQuotaRequest) returns (cs3.storageproviderv0alpha.GetQuotaResponse);
   // Initiates the download of a file using an
   // out-of-band data transfer mechanism.
-  rpc InitiateFileDownload(cs3.storageproviderv0alpha.InitiateFileDownloadRequest) returns (cs3.storageproviderv0alpha.InitiateFileDownloadResponse);
+  rpc InitiateFileDownload(cs3.storageproviderv0alpha.InitiateFileDownloadRequest) returns (InitiateFileDownloadResponse);
   // Initiates the upload of a file using an
   // out-of-band data transfer mechanism.
-  rpc InitiateFileUpload(cs3.storageproviderv0alpha.InitiateFileUploadRequest) returns (cs3.storageproviderv0alpha.InitiateFileUploadResponse);
+  rpc InitiateFileUpload(cs3.storageproviderv0alpha.InitiateFileUploadRequest) returns (InitiateFileUploadResponse);
   // Returns a stream of resource informations
   // for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exists.
@@ -292,4 +293,48 @@ message PurgeRecycleRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   cs3.storageproviderv0alpha.Reference ref = 2;
+}
+
+message InitiateFileDownloadResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The endpoint where to downooad the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string download_endpoint = 3;
+  // REQUIRED.
+  // Tells to the gateway if the client should be exposed directly to the download_endpoint.
+  bool expose = 5;
+  // OPTIONAL.
+  // A token that MUST be validated by the data gateway for the upload.
+  // Only makes sense for uploads passing through the data gateway.
+  string token = 6;
+}
+
+message InitiateFileUploadResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The endpoint where to upload the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string upload_endpoint = 3;
+  // REQUIRED.
+  // List of available checksums
+  // the client can use when sending
+  // the file.
+  repeated cs3.storageproviderv0alpha.ResourceChecksumPriority available_checksums = 4;
+  // OPTIONAL.
+  // A token that MUST be validated by the data gateway for the upload.
+  // Only makes sense for uploads passing through the data gateway.
+  string token = 5;
 }

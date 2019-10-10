@@ -378,6 +378,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.gatewayv0alpha.InitiateFileDownloadResponse"><span class="badge">M</span>InitiateFileDownloadResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gatewayv0alpha.InitiateFileUploadResponse"><span class="badge">M</span>InitiateFileUploadResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.gatewayv0alpha.ListRecycleRequest"><span class="badge">M</span>ListRecycleRequest</a>
                 </li>
               
@@ -2398,6 +2406,128 @@ The reference to which the action should be performed. </p></td>
 
         
       
+        <h3 id="cs3.gatewayv0alpha.InitiateFileDownloadResponse">InitiateFileDownloadResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>download_endpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The endpoint where to downooad the data.
+The value MUST be a Uniform Resource Identifier (URI)
+as specified in RFC 3986. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expose</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Tells to the gateway if the client should be exposed directly to the download_endpoint. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A token that MUST be validated by the data gateway for the upload.
+Only makes sense for uploads passing through the data gateway. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gatewayv0alpha.InitiateFileUploadResponse">InitiateFileUploadResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>upload_endpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The endpoint where to upload the data.
+The value MUST be a Uniform Resource Identifier (URI)
+as specified in RFC 3986. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>available_checksums</td>
+                  <td><a href="#cs3.storageproviderv0alpha.ResourceChecksumPriority">cs3.storageproviderv0alpha.ResourceChecksumPriority</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+List of available checksums
+the client can use when sending
+the file. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A token that MUST be validated by the data gateway for the upload.
+Only makes sense for uploads passing through the data gateway. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.gatewayv0alpha.ListRecycleRequest">ListRecycleRequest</h3>
         <p></p>
 
@@ -2610,7 +2740,7 @@ MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.</p></td>
               <tr>
                 <td>InitiateFileDownload</td>
                 <td><a href="#cs3.storageproviderv0alpha.InitiateFileDownloadRequest">.cs3.storageproviderv0alpha.InitiateFileDownloadRequest</a></td>
-                <td><a href="#cs3.storageproviderv0alpha.InitiateFileDownloadResponse">.cs3.storageproviderv0alpha.InitiateFileDownloadResponse</a></td>
+                <td><a href="#cs3.gatewayv0alpha.InitiateFileDownloadResponse">InitiateFileDownloadResponse</a></td>
                 <td><p>Initiates the download of a file using an
 out-of-band data transfer mechanism.</p></td>
               </tr>
@@ -2618,7 +2748,7 @@ out-of-band data transfer mechanism.</p></td>
               <tr>
                 <td>InitiateFileUpload</td>
                 <td><a href="#cs3.storageproviderv0alpha.InitiateFileUploadRequest">.cs3.storageproviderv0alpha.InitiateFileUploadRequest</a></td>
-                <td><a href="#cs3.storageproviderv0alpha.InitiateFileUploadResponse">.cs3.storageproviderv0alpha.InitiateFileUploadResponse</a></td>
+                <td><a href="#cs3.gatewayv0alpha.InitiateFileUploadResponse">InitiateFileUploadResponse</a></td>
                 <td><p>Initiates the upload of a file using an
 out-of-band data transfer mechanism.</p></td>
               </tr>
