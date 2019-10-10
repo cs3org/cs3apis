@@ -920,6 +920,9 @@
             "path": "cs3/publicshareprovider/v0alpha/publicshareprovider.proto"
           },
           {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
           },
           {
@@ -930,9 +933,6 @@
           },
           {
             "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
-          },
-          {
-            "path": "cs3/rpc/status.proto"
           }
         ],
         "package": {
@@ -4324,6 +4324,232 @@
           {
             "name": "php_namespace",
             "value": "CS3\\\\TYPES"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:userprovider:/:v0alpha:/:userprovider.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.authv0alpha.User"
+              }
+            ]
+          },
+          {
+            "name": "GetUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "cs3.authv0alpha.User"
+              }
+            ]
+          },
+          {
+            "name": "GetUserGroupsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.authv0alpha.User"
+              }
+            ]
+          },
+          {
+            "name": "GetUserGroupsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "IsInGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.authv0alpha.User"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "IsInGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "FindUsersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindUsersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "users",
+                "type": "cs3.authv0alpha.User",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "UserProviderService",
+            "rpcs": [
+              {
+                "name": "GetUser",
+                "in_type": "GetUserRequest",
+                "out_type": "GetUserResponse"
+              },
+              {
+                "name": "GetUserGroups",
+                "in_type": "GetUserGroupsRequest",
+                "out_type": "GetUserGroupsResponse"
+              },
+              {
+                "name": "IsInGroup",
+                "in_type": "IsInGroupRequest",
+                "out_type": "IsInGroupResponse"
+              },
+              {
+                "name": "FindUsers",
+                "in_type": "FindUsersRequest",
+                "out_type": "FindUsersResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/auth/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.userproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.UserProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "userproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "UserProviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.userproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXUSERPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\UserProviderV0Alpha"
           }
         ]
       }

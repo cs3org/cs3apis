@@ -23,11 +23,12 @@ package cs3.userproviderv0alpha;
 option csharp_namespace = "CS3.UserProviderV0Alpha";
 option go_package = "userproviderv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "UserProviderProto";
+option java_outer_classname = "UserproviderProto";
 option java_package = "com.cs3.userproviderv0alpha";
 option objc_class_prefix = "CBOXUSERPROVIDER";
 option php_namespace = "CS3\\UserProviderV0Alpha";
 
+import "cs3/auth/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
 import "cs3/types/types.proto";
 
@@ -52,9 +53,9 @@ service UserProviderService {
   // Gets the information about an user by its user id.
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   // Gets the groups of a user.
-  rpc GetUserGroups(GetUserGroupsRequest) return (GetUserGroupsResponse);
+  rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
   // Tells if the user is in a certain group.
-  rpc IsInGroup(IsInGroupRequest) return (IsInGroupResponse);
+  rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
   // Finds users by any attribute of the user?
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
@@ -66,7 +67,7 @@ message GetUserRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The id of the user.
-  cs3.types.UserId  user_id = 2;
+  cs3.authv0alpha.User user_id = 2;
 }
 
 message GetUserResponse {
@@ -78,7 +79,7 @@ message GetUserResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The user information.
-  cs3.types.User user = 3;
+  cs3.authv0alpha.User user = 3;
 }
 
 message GetUserGroupsRequest {
@@ -87,7 +88,7 @@ message GetUserGroupsRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The id of the user.
-  cs3.types.UserId user_id = 2;
+  cs3.authv0alpha.User user_id = 2;
 }
 
 message GetUserGroupsResponse {
@@ -108,7 +109,7 @@ message IsInGroupRequest {
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The id of the user.
-  cs3.types.UserId user_id = 2;
+  cs3.authv0alpha.User user_id = 2;
   // REQUIRED.
   // The group to check.
   string group = 3;
@@ -144,5 +145,5 @@ message FindUsersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The groups for the user.
-  repeated cs3.types.User users = 3;
+  repeated cs3.authv0alpha.User users = 3;
 }

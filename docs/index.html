@@ -1001,6 +1001,53 @@
         
           
           <li>
+            <a href="#cs3%2fuserprovider%2fv0alpha%2fuserprovider.proto">cs3/userprovider/v0alpha/userprovider.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.FindUsersRequest"><span class="badge">M</span>FindUsersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.FindUsersResponse"><span class="badge">M</span>FindUsersResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.GetUserGroupsRequest"><span class="badge">M</span>GetUserGroupsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.GetUserGroupsResponse"><span class="badge">M</span>GetUserGroupsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.GetUserRequest"><span class="badge">M</span>GetUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.GetUserResponse"><span class="badge">M</span>GetUserResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.IsInGroupRequest"><span class="badge">M</span>IsInGroupRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.IsInGroupResponse"><span class="badge">M</span>IsInGroupResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.UserProviderService"><span class="badge">S</span>UserProviderService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fusershareprovider%2fv0alpha%2fresources.proto">cs3/usershareprovider/v0alpha/resources.proto</a>
             <ul>
               
@@ -8414,6 +8461,365 @@ When a user has access to multiple storage providers, one of them is the home.
 
 TODO(labkode): missing methods for adding and removing a storage provider
 with different visibility levels (system-wide, user-wide, group-wide)...</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/userprovider/v0alpha/userprovider.proto">cs3/userprovider/v0alpha/userprovider.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.userproviderv0alpha.FindUsersRequest">FindUsersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. TODO(labkode): create propper filters for most common searchs.
+The filter to apply. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.FindUsersResponse">FindUsersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>users</td>
+                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The groups for the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.GetUserGroupsRequest">GetUserGroupsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.GetUserGroupsResponse">GetUserGroupsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The groups for the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.GetUserRequest">GetUserRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.GetUserResponse">GetUserResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.IsInGroupRequest">IsInGroupRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The group to check. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.userproviderv0alpha.IsInGroupResponse">IsInGroupResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The groups for the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.userproviderv0alpha.UserProviderService">UserProviderService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetUser</td>
+                <td><a href="#cs3.userproviderv0alpha.GetUserRequest">GetUserRequest</a></td>
+                <td><a href="#cs3.userproviderv0alpha.GetUserResponse">GetUserResponse</a></td>
+                <td><p>Gets the information about an user by its user id.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetUserGroups</td>
+                <td><a href="#cs3.userproviderv0alpha.GetUserGroupsRequest">GetUserGroupsRequest</a></td>
+                <td><a href="#cs3.userproviderv0alpha.GetUserGroupsResponse">GetUserGroupsResponse</a></td>
+                <td><p>Gets the groups of a user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>IsInGroup</td>
+                <td><a href="#cs3.userproviderv0alpha.IsInGroupRequest">IsInGroupRequest</a></td>
+                <td><a href="#cs3.userproviderv0alpha.IsInGroupResponse">IsInGroupResponse</a></td>
+                <td><p>Tells if the user is in a certain group.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FindUsers</td>
+                <td><a href="#cs3.userproviderv0alpha.FindUsersRequest">FindUsersRequest</a></td>
+                <td><a href="#cs3.userproviderv0alpha.FindUsersResponse">FindUsersResponse</a></td>
+                <td><p>Finds users by any attribute of the user?
+TODO(labkode): to define the filters that make more sense.</p></td>
               </tr>
             
           </tbody>
