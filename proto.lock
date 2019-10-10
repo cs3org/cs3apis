@@ -4438,9 +4438,8 @@
               },
               {
                 "id": 3,
-                "name": "groups",
-                "type": "string",
-                "is_repeated": true
+                "name": "ok",
+                "type": "bool"
               }
             ]
           },

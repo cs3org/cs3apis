@@ -123,8 +123,8 @@ message IsInGroupResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The groups for the user.
-  repeated string groups = 3;
+  // Tells if the user belongs to the group.
+  bool ok = 3;
 }
 
 message FindUsersRequest {
