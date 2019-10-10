@@ -4343,7 +4343,7 @@
               {
                 "id": 2,
                 "name": "user_id",
-                "type": "cs3.authv0alpha.User"
+                "type": "cs3.types.UserId"
               }
             ]
           },
@@ -4378,7 +4378,7 @@
               {
                 "id": 2,
                 "name": "user_id",
-                "type": "cs3.authv0alpha.User"
+                "type": "cs3.types.UserId"
               }
             ]
           },
@@ -4414,7 +4414,7 @@
               {
                 "id": 2,
                 "name": "user_id",
-                "type": "cs3.authv0alpha.User"
+                "type": "cs3.types.UserId"
               },
               {
                 "id": 3,
@@ -4537,7 +4537,7 @@
           },
           {
             "name": "java_outer_classname",
-            "value": "UserProviderProto"
+            "value": "UserproviderProto"
           },
           {
             "name": "java_package",
