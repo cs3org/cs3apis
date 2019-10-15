@@ -324,30 +324,30 @@
         
           
           <li>
-            <a href="#cs3%2fauth%2fv0alpha%2fauth.proto">cs3/auth/v0alpha/auth.proto</a>
+            <a href="#cs3%2fauthprovider%2fv0alpha%2fauthprovider.proto">cs3/authprovider/v0alpha/authprovider.proto</a>
             <ul>
               
                 <li>
-                  <a href="#cs3.authv0alpha.GenerateAccessTokenRequest"><span class="badge">M</span>GenerateAccessTokenRequest</a>
+                  <a href="#cs3.authproviderv0alpha.GenerateAccessTokenRequest"><span class="badge">M</span>GenerateAccessTokenRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.authv0alpha.GenerateAccessTokenResponse"><span class="badge">M</span>GenerateAccessTokenResponse</a>
+                  <a href="#cs3.authproviderv0alpha.GenerateAccessTokenResponse"><span class="badge">M</span>GenerateAccessTokenResponse</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.authv0alpha.WhoAmIRequest"><span class="badge">M</span>WhoAmIRequest</a>
+                  <a href="#cs3.authproviderv0alpha.WhoAmIRequest"><span class="badge">M</span>WhoAmIRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.authv0alpha.WhoAmIResponse"><span class="badge">M</span>WhoAmIResponse</a>
+                  <a href="#cs3.authproviderv0alpha.WhoAmIResponse"><span class="badge">M</span>WhoAmIResponse</a>
                 </li>
               
               
               
               
                 <li>
-                  <a href="#cs3.authv0alpha.AuthService"><span class="badge">S</span>AuthService</a>
+                  <a href="#cs3.authproviderv0alpha.AuthProviderService"><span class="badge">S</span>AuthProviderService</a>
                 </li>
               
             </ul>
@@ -355,11 +355,57 @@
         
           
           <li>
-            <a href="#cs3%2fauth%2fv0alpha%2fresources.proto">cs3/auth/v0alpha/resources.proto</a>
+            <a href="#cs3%2fauthprovider%2fv0alpha%2fresources.proto">cs3/authprovider/v0alpha/resources.proto</a>
             <ul>
               
                 <li>
-                  <a href="#cs3.authv0alpha.User"><span class="badge">M</span>User</a>
+                  <a href="#cs3.authproviderv0alpha.User"><span class="badge">M</span>User</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fauthregistry%2fv0alpha%2fauthregistry.proto">cs3/authregistry/v0alpha/authregistry.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.authregistryv0alpha.GetAuthProviderRequest"><span class="badge">M</span>GetAuthProviderRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.authregistryv0alpha.GetAuthProviderResponse"><span class="badge">M</span>GetAuthProviderResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.authregistryv0alpha.ListAuthProvidersRequest"><span class="badge">M</span>ListAuthProvidersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.authregistryv0alpha.ListAuthProvidersResponse"><span class="badge">M</span>ListAuthProvidersResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.authregistryv0alpha.AuthRegistryService"><span class="badge">S</span>AuthRegistryService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fauthregistry%2fv0alpha%2fresources.proto">cs3/authregistry/v0alpha/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.authregistryv0alpha.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
                 </li>
               
               
@@ -374,6 +420,10 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.gatewayv0alpha.GenerateAccessTokenRequest"><span class="badge">M</span>GenerateAccessTokenRequest</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.gatewayv0alpha.GetQuotaRequest"><span class="badge">M</span>GetQuotaRequest</a>
                 </li>
               
@@ -383,6 +433,10 @@
               
                 <li>
                   <a href="#cs3.gatewayv0alpha.InitiateFileUploadResponse"><span class="badge">M</span>InitiateFileUploadResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gatewayv0alpha.ListAuthProvidersResponse"><span class="badge">M</span>ListAuthProvidersResponse</a>
                 </li>
               
                 <li>
@@ -2171,12 +2225,12 @@ by humans. </p></td>
     
       
       <div class="file-heading">
-        <h2 id="cs3/auth/v0alpha/auth.proto">cs3/auth/v0alpha/auth.proto</h2><a href="#title">Top</a>
+        <h2 id="cs3/authprovider/v0alpha/authprovider.proto">cs3/authprovider/v0alpha/authprovider.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="cs3.authv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</h3>
+        <h3 id="cs3.authproviderv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</h3>
         <p></p>
 
         
@@ -2207,7 +2261,7 @@ by humans. </p></td>
 
         
       
-        <h3 id="cs3.authv0alpha.GenerateAccessTokenResponse">GenerateAccessTokenResponse</h3>
+        <h3 id="cs3.authproviderv0alpha.GenerateAccessTokenResponse">GenerateAccessTokenResponse</h3>
         <p></p>
 
         
@@ -2245,7 +2299,7 @@ by humans. </p></td>
 
         
       
-        <h3 id="cs3.authv0alpha.WhoAmIRequest">WhoAmIRequest</h3>
+        <h3 id="cs3.authproviderv0alpha.WhoAmIRequest">WhoAmIRequest</h3>
         <p></p>
 
         
@@ -2269,7 +2323,7 @@ by humans. </p></td>
 
         
       
-        <h3 id="cs3.authv0alpha.WhoAmIResponse">WhoAmIResponse</h3>
+        <h3 id="cs3.authproviderv0alpha.WhoAmIResponse">WhoAmIResponse</h3>
         <p></p>
 
         
@@ -2288,7 +2342,7 @@ by humans. </p></td>
               
                 <tr>
                   <td>user</td>
-                  <td><a href="#cs3.authv0alpha.User">User</a></td>
+                  <td><a href="#cs3.authproviderv0alpha.User">User</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2306,7 +2360,7 @@ by humans. </p></td>
       
 
       
-        <h3 id="cs3.authv0alpha.AuthService">AuthService</h3>
+        <h3 id="cs3.authproviderv0alpha.AuthProviderService">AuthProviderService</h3>
         <p></p>
         <table class="enum-table">
           <thead>
@@ -2316,15 +2370,15 @@ by humans. </p></td>
             
               <tr>
                 <td>GenerateAccessToken</td>
-                <td><a href="#cs3.authv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</a></td>
-                <td><a href="#cs3.authv0alpha.GenerateAccessTokenResponse">GenerateAccessTokenResponse</a></td>
+                <td><a href="#cs3.authproviderv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</a></td>
+                <td><a href="#cs3.authproviderv0alpha.GenerateAccessTokenResponse">GenerateAccessTokenResponse</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>WhoAmI</td>
-                <td><a href="#cs3.authv0alpha.WhoAmIRequest">WhoAmIRequest</a></td>
-                <td><a href="#cs3.authv0alpha.WhoAmIResponse">WhoAmIResponse</a></td>
+                <td><a href="#cs3.authproviderv0alpha.WhoAmIRequest">WhoAmIRequest</a></td>
+                <td><a href="#cs3.authproviderv0alpha.WhoAmIResponse">WhoAmIResponse</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -2335,12 +2389,12 @@ by humans. </p></td>
     
       
       <div class="file-heading">
-        <h2 id="cs3/auth/v0alpha/resources.proto">cs3/auth/v0alpha/resources.proto</h2><a href="#title">Top</a>
+        <h2 id="cs3/authprovider/v0alpha/resources.proto">cs3/authprovider/v0alpha/resources.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="cs3.authv0alpha.User">User</h3>
+        <h3 id="cs3.authproviderv0alpha.User">User</h3>
         <p></p>
 
         
@@ -2422,10 +2476,302 @@ by humans. </p></td>
     
       
       <div class="file-heading">
+        <h2 id="cs3/authregistry/v0alpha/authregistry.proto">cs3/authregistry/v0alpha/authregistry.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.authregistryv0alpha.GetAuthProviderRequest">GetAuthProviderRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The type of authentication provider. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.authregistryv0alpha.GetAuthProviderResponse">GetAuthProviderResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.authregistryv0alpha.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The auth provider handling the requested auth call. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.authregistryv0alpha.ListAuthProvidersRequest">ListAuthProvidersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information.
+
+TODO(labkode): maybe add some filter? </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.authregistryv0alpha.ListAuthProvidersResponse">ListAuthProvidersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>providers</td>
+                  <td><a href="#cs3.authregistryv0alpha.ProviderInfo">ProviderInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of auth providers this registry knows about. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.authregistryv0alpha.AuthRegistryService">AuthRegistryService</h3>
+        <p>Auth Registry API</p><p>The Auth Registry API is meant to as registry to obtain</p><p>information of available auth providers.</p><p>For example, to use OIDC or Kerberos for authentication.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetAuthProvider</td>
+                <td><a href="#cs3.authregistryv0alpha.GetAuthProviderRequest">GetAuthProviderRequest</a></td>
+                <td><a href="#cs3.authregistryv0alpha.GetAuthProviderResponse">GetAuthProviderResponse</a></td>
+                <td><p>Returns the auth provider that is reponsible for the given
+resource reference.
+MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListAuthProviders</td>
+                <td><a href="#cs3.authregistryv0alpha.ListAuthProvidersRequest">ListAuthProvidersRequest</a></td>
+                <td><a href="#cs3.authregistryv0alpha.ListAuthProvidersResponse">ListAuthProvidersResponse</a></td>
+                <td><p>Returns a list of the available auth providers known by this registry.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/authregistry/v0alpha/resources.proto">cs3/authregistry/v0alpha/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.authregistryv0alpha.ProviderInfo">ProviderInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information (containing storage-specific information).
+For example, additional metadata attached to the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The storage provider id that will become part of the
+resource id.
+For example, if the provider_id is &#34;home&#34;, resources obtained
+from this storage provider will have a resource id like &#34;home:1234&#34;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The address where the storage provider can be reached.
+For example, tcp://localhost:1099. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Information to describe the functionalities
+offered by the storage provider. Meant to be read
+by humans. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="cs3/gateway/v0alpha/gateway.proto">cs3/gateway/v0alpha/gateway.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
+      
+        <h3 id="cs3.gatewayv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>client_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>client_secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="cs3.gatewayv0alpha.GetQuotaRequest">GetQuotaRequest</h3>
         <p></p>
@@ -2573,6 +2919,48 @@ the file. </p></td>
                   <td><p>OPTIONAL.
 A token that MUST be validated by the data gateway for the upload.
 Only makes sense for uploads passing through the data gateway. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gatewayv0alpha.ListAuthProvidersResponse">ListAuthProvidersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>types</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of auth types.
+TODO(labkode): maybe add description? </p></td>
                 </tr>
               
             </tbody>
@@ -2737,16 +3125,16 @@ The reference to which the action should be performed. </p></td>
             
               <tr>
                 <td>GenerateAccessToken</td>
-                <td><a href="#cs3.authv0alpha.GenerateAccessTokenRequest">.cs3.authv0alpha.GenerateAccessTokenRequest</a></td>
-                <td><a href="#cs3.authv0alpha.GenerateAccessTokenResponse">.cs3.authv0alpha.GenerateAccessTokenResponse</a></td>
+                <td><a href="#cs3.gatewayv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</a></td>
+                <td><a href="#cs3.authproviderv0alpha.GenerateAccessTokenResponse">.cs3.authproviderv0alpha.GenerateAccessTokenResponse</a></td>
                 <td><p>AUTH ******** **************************/
 *****************************************************************/</p></td>
               </tr>
             
               <tr>
                 <td>WhoAmI</td>
-                <td><a href="#cs3.authv0alpha.WhoAmIRequest">.cs3.authv0alpha.WhoAmIRequest</a></td>
-                <td><a href="#cs3.authv0alpha.WhoAmIResponse">.cs3.authv0alpha.WhoAmIResponse</a></td>
+                <td><a href="#cs3.authproviderv0alpha.WhoAmIRequest">.cs3.authproviderv0alpha.WhoAmIRequest</a></td>
+                <td><a href="#cs3.authproviderv0alpha.WhoAmIResponse">.cs3.authproviderv0alpha.WhoAmIResponse</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -2946,7 +3334,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td>ListShares</td>
                 <td><a href="#cs3.usershareproviderv0alpha.ListSharesRequest">.cs3.usershareproviderv0alpha.ListSharesRequest</a></td>
                 <td><a href="#cs3.usershareproviderv0alpha.ListSharesResponse">.cs3.usershareproviderv0alpha.ListSharesResponse</a></td>
-                <td><p>List the shares the authenticated principal has created,
+                <td><p>List the shares the authproviderenticated principal has created,
 both as owner and creator. If a filter is specified, only
 shares satisfying the filter MUST be returned.</p></td>
               </tr>
@@ -2963,7 +3351,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td>ListReceivedShares</td>
                 <td><a href="#cs3.usershareproviderv0alpha.ListReceivedSharesRequest">.cs3.usershareproviderv0alpha.ListReceivedSharesRequest</a></td>
                 <td><a href="#cs3.usershareproviderv0alpha.ListReceivedSharesResponse">.cs3.usershareproviderv0alpha.ListReceivedSharesResponse</a></td>
-                <td><p>List all shares the authenticated principal has received.</p></td>
+                <td><p>List all shares the authproviderenticated principal has received.</p></td>
               </tr>
             
               <tr>
@@ -3040,7 +3428,7 @@ MUST return CODE_NOT_FOUND if the share does not exist.</p></td>
                 <td>ListPublicShares</td>
                 <td><a href="#cs3.publicshareproviderv0alpha.ListPublicSharesRequest">.cs3.publicshareproviderv0alpha.ListPublicSharesRequest</a></td>
                 <td><a href="#cs3.publicshareproviderv0alpha.ListPublicSharesResponse">.cs3.publicshareproviderv0alpha.ListPublicSharesResponse</a></td>
-                <td><p>List the shares the authenticated principal has created,
+                <td><p>List the shares the authproviderenticated principal has created,
 both as owner and creator. If a filter is specified, only
 shares satisfying the filter MUST be returned.</p></td>
               </tr>
@@ -3086,7 +3474,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td>ListOCMShares</td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.ListOCMSharesRequest">.cs3.ocmshareproviderv0alpha.ListOCMSharesRequest</a></td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.ListOCMSharesResponse">.cs3.ocmshareproviderv0alpha.ListOCMSharesResponse</a></td>
-                <td><p>List the shares the authenticated principal has created,
+                <td><p>List the shares the authproviderenticated principal has created,
 both as owner and creator. If a filter is specified, only
 shares satisfying the filter MUST be returned.</p></td>
               </tr>
@@ -3103,7 +3491,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td>ListReceivedOCMShares</td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesRequest">.cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesRequest</a></td>
                 <td><a href="#cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesResponse">.cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesResponse</a></td>
-                <td><p>List all shares the authenticated principal has received.</p></td>
+                <td><p>List all shares the authproviderenticated principal has received.</p></td>
               </tr>
             
               <tr>
@@ -3160,6 +3548,15 @@ Gets the information about an user by its user id.</p></td>
                 <td><a href="#cs3.userproviderv0alpha.FindUsersResponse">.cs3.userproviderv0alpha.FindUsersResponse</a></td>
                 <td><p>Finds users by any attribute of the user?
 TODO(labkode): to define the filters that make more sense.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListAuthProviders</td>
+                <td><a href="#cs3.authregistryv0alpha.ListAuthProvidersRequest">.cs3.authregistryv0alpha.ListAuthProvidersRequest</a></td>
+                <td><a href="#cs3.gatewayv0alpha.ListAuthProvidersResponse">ListAuthProvidersResponse</a></td>
+                <td><p>AUTH REGISTRY  **************************/
+*****************************************************************/
+Returns a list of the available auth providers known by this registry.</p></td>
               </tr>
             
           </tbody>
@@ -8574,7 +8971,7 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>users</td>
-                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td><a href="#cs3.authproviderv0alpha.User">cs3.authproviderv0alpha.User</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The groups for the user. </p></td>
@@ -8722,7 +9119,7 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>user</td>
-                  <td><a href="#cs3.authv0alpha.User">cs3.authv0alpha.User</a></td>
+                  <td><a href="#cs3.authproviderv0alpha.User">cs3.authproviderv0alpha.User</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The user information. </p></td>

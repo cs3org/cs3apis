@@ -18,15 +18,15 @@
 
 syntax = "proto3";
 
-package cs3.authv0alpha;
+package cs3.authproviderv0alpha;
 
-option csharp_namespace = "CS3.AuthV0Alpha";
-option go_package = "authv0alphapb";
+option csharp_namespace = "CS3.AuthProviderV0Alpha";
+option go_package = "authproviderv0alphapb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.authv0alpha";
+option java_package = "com.cs3.authproviderv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\AuthV0Alpha";
+option php_namespace = "CS3\\AuthProviderV0Alpha";
 
 import "cs3/types/types.proto";
 

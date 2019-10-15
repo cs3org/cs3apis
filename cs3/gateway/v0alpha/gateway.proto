@@ -29,7 +29,8 @@ option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\GatewayV0Alpha";
 
 import "cs3/appregistry/v0alpha/appregistry.proto";
-import "cs3/auth/v0alpha/auth.proto";
+import "cs3/authprovider/v0alpha/authprovider.proto";
+import "cs3/authregistry/v0alpha/authregistry.proto";
 import "cs3/ocmshareprovider/v0alpha/ocmshareprovider.proto";
 import "cs3/preferences/v0alpha/preferences.proto";
 import "cs3/publicshareprovider/v0alpha/publicshareprovider.proto";
@@ -61,8 +62,8 @@ service GatewayService {
   // *****************************************************************/
   // ************************ AUTH ******** **************************/
   // *****************************************************************/
-  rpc GenerateAccessToken(cs3.authv0alpha.GenerateAccessTokenRequest) returns (cs3.authv0alpha.GenerateAccessTokenResponse);
-  rpc WhoAmI(cs3.authv0alpha.WhoAmIRequest) returns (cs3.authv0alpha.WhoAmIResponse);
+  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (cs3.authproviderv0alpha.GenerateAccessTokenResponse);
+  rpc WhoAmI(cs3.authproviderv0alpha.WhoAmIRequest) returns (cs3.authproviderv0alpha.WhoAmIResponse);
   // *****************************************************************/
   // ************************ STORAGE PROVIDER ***********************/
   // *****************************************************************/
@@ -152,14 +153,14 @@ service GatewayService {
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc GetShare(cs3.usershareproviderv0alpha.GetShareRequest) returns (cs3.usershareproviderv0alpha.GetShareResponse);
-  // List the shares the authenticated principal has created,
+  // List the shares the authproviderenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListShares(cs3.usershareproviderv0alpha.ListSharesRequest) returns (cs3.usershareproviderv0alpha.ListSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateShare(cs3.usershareproviderv0alpha.UpdateShareRequest) returns (cs3.usershareproviderv0alpha.UpdateShareResponse);
-  // List all shares the authenticated principal has received.
+  // List all shares the authproviderenticated principal has received.
   rpc ListReceivedShares(cs3.usershareproviderv0alpha.ListReceivedSharesRequest) returns (cs3.usershareproviderv0alpha.ListReceivedSharesResponse);
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
@@ -193,7 +194,7 @@ service GatewayService {
   // Gets share information for a single share by its unlisted token.
   // MUST return CODE_NOT_FOUND if the share does not exist.
   rpc GetPublicShareByToken(cs3.publicshareproviderv0alpha.GetPublicShareByTokenRequest) returns (cs3.publicshareproviderv0alpha.GetPublicShareByTokenResponse);
-  // List the shares the authenticated principal has created,
+  // List the shares the authproviderenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListPublicShares(cs3.publicshareproviderv0alpha.ListPublicSharesRequest) returns (cs3.publicshareproviderv0alpha.ListPublicSharesResponse);
@@ -215,14 +216,14 @@ service GatewayService {
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc GetOCMShare(cs3.ocmshareproviderv0alpha.GetOCMShareRequest) returns (cs3.ocmshareproviderv0alpha.GetOCMShareResponse);
-  // List the shares the authenticated principal has created,
+  // List the shares the authproviderenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListOCMShares(cs3.ocmshareproviderv0alpha.ListOCMSharesRequest) returns (cs3.ocmshareproviderv0alpha.ListOCMSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateOCMShare(cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest) returns (cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse);
-  // List all shares the authenticated principal has received.
+  // List all shares the authproviderenticated principal has received.
   rpc ListReceivedOCMShares(cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesRequest) returns (cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesResponse);
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
@@ -247,10 +248,21 @@ service GatewayService {
   // Finds users by any attribute of the user?
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.userproviderv0alpha.FindUsersRequest) returns (cs3.userproviderv0alpha.FindUsersResponse);
+  // *****************************************************************/
+  // ************************ AUTH REGISTRY  **************************/
+  // *****************************************************************/
+  // Returns a list of the available auth providers known by this registry.
+  rpc ListAuthProviders(cs3.authregistryv0alpha.ListAuthProvidersRequest) returns (ListAuthProvidersResponse);
 }
 
 // CAUTION:
 // The request and responses differ from the non-gateway APIs because they need to be routable.
+
+message GenerateAccessTokenRequest {
+  string type = 1;
+  string client_id = 2;
+  string client_secret = 3;
+}
 
 message GetQuotaRequest {
   // OPTIONAL.
@@ -350,4 +362,17 @@ message InitiateFileUploadResponse {
   // A token that MUST be validated by the data gateway for the upload.
   // Only makes sense for uploads passing through the data gateway.
   string token = 5;
+}
+
+message ListAuthProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of auth types.
+  // TODO(labkode): maybe add description?
+  repeated string types = 3;
 }
