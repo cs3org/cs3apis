@@ -79,7 +79,7 @@ message GetUserResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The user information.
-  cs3.userproviderv0alpha.User user = 3;
+  User user = 3;
 }
 
 message GetUserGroupsRequest {
@@ -145,5 +145,5 @@ message FindUsersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The groups for the user.
-  repeated cs3.userproviderv0alpha.User users = 3;
+  repeated User users = 3;
 }

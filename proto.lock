@@ -1151,10 +1151,10 @@
             "path": "cs3/types/types.proto"
           },
           {
-            "path": "cs3/userprovider/v0alpha/userprovider.proto"
+            "path": "cs3/userprovider/v0alpha/resources.proto"
           },
           {
-            "path": "cs3/userprovider/v0alpha/resources.proto"
+            "path": "cs3/userprovider/v0alpha/userprovider.proto"
           },
           {
             "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
@@ -4679,7 +4679,7 @@
               {
                 "id": 3,
                 "name": "user",
-                "type": "cs3.userproviderv0alpha.User"
+                "type": "User"
               }
             ]
           },
@@ -4790,7 +4790,7 @@
               {
                 "id": 3,
                 "name": "users",
-                "type": "cs3.userproviderv0alpha.User",
+                "type": "User",
                 "is_repeated": true
               }
             ]
@@ -4825,13 +4825,13 @@
         ],
         "imports": [
           {
-            "path": "cs3/userprovider/v0alpha/resources.proto"
-          },
-          {
             "path": "cs3/rpc/status.proto"
           },
           {
             "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0alpha/resources.proto"
           }
         ],
         "package": {
