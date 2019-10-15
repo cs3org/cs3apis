@@ -28,31 +28,20 @@ option java_package = "com.cs3.authproviderv0alpha";
 option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\AuthProviderV0Alpha";
 
-import "cs3/authprovider/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
 import "cs3/types/types.proto";
 
 service AuthProviderService {
-  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (GenerateAccessTokenResponse);
-  rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
 }
 
-message GenerateAccessTokenRequest {
+message AuthenticateRequest {
+  cs3.types.Opaque opaque = 1;
   string client_id = 2;
   string client_secret = 3;
 }
 
-message GenerateAccessTokenResponse {
+message AuthenticateResponse {
   cs3.rpc.Status status = 1;
-  string access_token = 2;
-  cs3.types.UserId user_id = 3;
-}
-
-message WhoAmIRequest {
-  string access_token = 1;
-}
-
-message WhoAmIResponse {
-  cs3.rpc.Status status = 1;
-  User user = 2;
+  cs3.types.UserId user_id = 2;
 }

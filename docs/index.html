@@ -328,19 +328,11 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.authproviderv0alpha.GenerateAccessTokenRequest"><span class="badge">M</span>GenerateAccessTokenRequest</a>
+                  <a href="#cs3.authproviderv0alpha.AuthenticateRequest"><span class="badge">M</span>AuthenticateRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.authproviderv0alpha.GenerateAccessTokenResponse"><span class="badge">M</span>GenerateAccessTokenResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.authproviderv0alpha.WhoAmIRequest"><span class="badge">M</span>WhoAmIRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.authproviderv0alpha.WhoAmIResponse"><span class="badge">M</span>WhoAmIResponse</a>
+                  <a href="#cs3.authproviderv0alpha.AuthenticateResponse"><span class="badge">M</span>AuthenticateResponse</a>
                 </li>
               
               
@@ -349,21 +341,6 @@
                 <li>
                   <a href="#cs3.authproviderv0alpha.AuthProviderService"><span class="badge">S</span>AuthProviderService</a>
                 </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
-            <a href="#cs3%2fauthprovider%2fv0alpha%2fresources.proto">cs3/authprovider/v0alpha/resources.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#cs3.authproviderv0alpha.User"><span class="badge">M</span>User</a>
-                </li>
-              
-              
-              
               
             </ul>
           </li>
@@ -420,7 +397,11 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.gatewayv0alpha.GenerateAccessTokenRequest"><span class="badge">M</span>GenerateAccessTokenRequest</a>
+                  <a href="#cs3.gatewayv0alpha.AuthenticateRequest"><span class="badge">M</span>AuthenticateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gatewayv0alpha.AuthenticateResponse"><span class="badge">M</span>AuthenticateResponse</a>
                 </li>
               
                 <li>
@@ -449,6 +430,14 @@
               
                 <li>
                   <a href="#cs3.gatewayv0alpha.PurgeRecycleRequest"><span class="badge">M</span>PurgeRecycleRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gatewayv0alpha.WhoAmIRequest"><span class="badge">M</span>WhoAmIRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gatewayv0alpha.WhoAmIResponse"><span class="badge">M</span>WhoAmIResponse</a>
                 </li>
               
               
@@ -1049,6 +1038,21 @@
                 <li>
                   <a href="#cs3.storageregistryv0alpha.StorageRegistryService"><span class="badge">S</span>StorageRegistryService</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fuserprovider%2fv0alpha%2fresources.proto">cs3/userprovider/v0alpha/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.userproviderv0alpha.User"><span class="badge">M</span>User</a>
+                </li>
+              
+              
+              
               
             </ul>
           </li>
@@ -2230,7 +2234,7 @@ by humans. </p></td>
       <p></p>
 
       
-        <h3 id="cs3.authproviderv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</h3>
+        <h3 id="cs3.authproviderv0alpha.AuthenticateRequest">AuthenticateRequest</h3>
         <p></p>
 
         
@@ -2239,6 +2243,13 @@ by humans. </p></td>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
               
                 <tr>
                   <td>client_id</td>
@@ -2261,7 +2272,7 @@ by humans. </p></td>
 
         
       
-        <h3 id="cs3.authproviderv0alpha.GenerateAccessTokenResponse">GenerateAccessTokenResponse</h3>
+        <h3 id="cs3.authproviderv0alpha.AuthenticateResponse">AuthenticateResponse</h3>
         <p></p>
 
         
@@ -2274,13 +2285,6 @@ by humans. </p></td>
                 <tr>
                   <td>status</td>
                   <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>access_token</td>
-                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2288,61 +2292,6 @@ by humans. </p></td>
                 <tr>
                   <td>user_id</td>
                   <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.authproviderv0alpha.WhoAmIRequest">WhoAmIRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>access_token</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.authproviderv0alpha.WhoAmIResponse">WhoAmIResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>user</td>
-                  <td><a href="#cs3.authproviderv0alpha.User">User</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2369,16 +2318,9 @@ by humans. </p></td>
           <tbody>
             
               <tr>
-                <td>GenerateAccessToken</td>
-                <td><a href="#cs3.authproviderv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</a></td>
-                <td><a href="#cs3.authproviderv0alpha.GenerateAccessTokenResponse">GenerateAccessTokenResponse</a></td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>WhoAmI</td>
-                <td><a href="#cs3.authproviderv0alpha.WhoAmIRequest">WhoAmIRequest</a></td>
-                <td><a href="#cs3.authproviderv0alpha.WhoAmIResponse">WhoAmIResponse</a></td>
+                <td>Authenticate</td>
+                <td><a href="#cs3.authproviderv0alpha.AuthenticateRequest">AuthenticateRequest</a></td>
+                <td><a href="#cs3.authproviderv0alpha.AuthenticateResponse">AuthenticateResponse</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -2386,93 +2328,6 @@ by humans. </p></td>
         </table>
 
         
-    
-      
-      <div class="file-heading">
-        <h2 id="cs3/authprovider/v0alpha/resources.proto">cs3/authprovider/v0alpha/resources.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="cs3.authproviderv0alpha.User">User</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>id</td>
-                  <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>issuer</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>subject</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>username</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>mail</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>display_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>groups</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
     
       
       <div class="file-heading">
@@ -2735,7 +2590,7 @@ by humans. </p></td>
       <p></p>
 
       
-        <h3 id="cs3.gatewayv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</h3>
+        <h3 id="cs3.gatewayv0alpha.AuthenticateRequest">AuthenticateRequest</h3>
         <p></p>
 
         
@@ -2746,24 +2601,87 @@ by humans. </p></td>
             <tbody>
               
                 <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The type of authentication to use. </p></td>
                 </tr>
               
                 <tr>
                   <td>client_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+The id of the client.
+For basic authentication with username and password
+both client_id and client_secret are expected to be filled.
+However, for example, for OIDC only a token is necessary. </p></td>
                 </tr>
               
                 <tr>
                   <td>client_secret</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+The secret of the client. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gatewayv0alpha.AuthenticateResponse">AuthenticateResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The access token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user id. </p></td>
                 </tr>
               
             </tbody>
@@ -3109,6 +3027,80 @@ The reference to which the action should be performed. </p></td>
 
         
       
+        <h3 id="cs3.gatewayv0alpha.WhoAmIRequest">WhoAmIRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The access token. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gatewayv0alpha.WhoAmIResponse">WhoAmIResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.Status">cs3.rpc.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.userproviderv0alpha.User">cs3.userproviderv0alpha.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -3124,17 +3116,17 @@ The reference to which the action should be performed. </p></td>
           <tbody>
             
               <tr>
-                <td>GenerateAccessToken</td>
-                <td><a href="#cs3.gatewayv0alpha.GenerateAccessTokenRequest">GenerateAccessTokenRequest</a></td>
-                <td><a href="#cs3.authproviderv0alpha.GenerateAccessTokenResponse">.cs3.authproviderv0alpha.GenerateAccessTokenResponse</a></td>
+                <td>Authenticate</td>
+                <td><a href="#cs3.gatewayv0alpha.AuthenticateRequest">AuthenticateRequest</a></td>
+                <td><a href="#cs3.gatewayv0alpha.AuthenticateResponse">AuthenticateResponse</a></td>
                 <td><p>AUTH ******** **************************/
 *****************************************************************/</p></td>
               </tr>
             
               <tr>
                 <td>WhoAmI</td>
-                <td><a href="#cs3.authproviderv0alpha.WhoAmIRequest">.cs3.authproviderv0alpha.WhoAmIRequest</a></td>
-                <td><a href="#cs3.authproviderv0alpha.WhoAmIResponse">.cs3.authproviderv0alpha.WhoAmIResponse</a></td>
+                <td><a href="#cs3.gatewayv0alpha.WhoAmIRequest">WhoAmIRequest</a></td>
+                <td><a href="#cs3.gatewayv0alpha.WhoAmIResponse">WhoAmIResponse</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -8905,6 +8897,93 @@ with different visibility levels (system-wide, user-wide, group-wide)...</p></td
     
       
       <div class="file-heading">
+        <h2 id="cs3/userprovider/v0alpha/resources.proto">cs3/userprovider/v0alpha/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.userproviderv0alpha.User">User</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.types.UserId">cs3.types.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>issuer</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subject</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>username</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mail</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.Opaque">cs3.types.Opaque</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="cs3/userprovider/v0alpha/userprovider.proto">cs3/userprovider/v0alpha/userprovider.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -8971,7 +9050,7 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>users</td>
-                  <td><a href="#cs3.authproviderv0alpha.User">cs3.authproviderv0alpha.User</a></td>
+                  <td><a href="#cs3.userproviderv0alpha.User">User</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The groups for the user. </p></td>
@@ -9119,7 +9198,7 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>user</td>
-                  <td><a href="#cs3.authproviderv0alpha.User">cs3.authproviderv0alpha.User</a></td>
+                  <td><a href="#cs3.userproviderv0alpha.User">User</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The user information. </p></td>

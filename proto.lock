@@ -317,8 +317,13 @@
       "def": {
         "messages": [
           {
-            "name": "GenerateAccessTokenRequest",
+            "name": "AuthenticateRequest",
             "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
               {
                 "id": 2,
                 "name": "client_id",
@@ -332,7 +337,7 @@
             ]
           },
           {
-            "name": "GenerateAccessTokenResponse",
+            "name": "AuthenticateResponse",
             "fields": [
               {
                 "id": 1,
@@ -341,38 +346,8 @@
               },
               {
                 "id": 2,
-                "name": "access_token",
-                "type": "string"
-              },
-              {
-                "id": 3,
                 "name": "user_id",
                 "type": "cs3.types.UserId"
-              }
-            ]
-          },
-          {
-            "name": "WhoAmIRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "access_token",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "WhoAmIResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.Status"
-              },
-              {
-                "id": 2,
-                "name": "user",
-                "type": "User"
               }
             ]
           }
@@ -382,22 +357,14 @@
             "name": "AuthProviderService",
             "rpcs": [
               {
-                "name": "GenerateAccessToken",
-                "in_type": "GenerateAccessTokenRequest",
-                "out_type": "GenerateAccessTokenResponse"
-              },
-              {
-                "name": "WhoAmI",
-                "in_type": "WhoAmIRequest",
-                "out_type": "WhoAmIResponse"
+                "name": "Authenticate",
+                "in_type": "AuthenticateRequest",
+                "out_type": "AuthenticateResponse"
               }
             ]
           }
         ],
         "imports": [
-          {
-            "path": "cs3/authprovider/v0alpha/resources.proto"
-          },
           {
             "path": "cs3/rpc/status.proto"
           },
@@ -424,97 +391,6 @@
           {
             "name": "java_outer_classname",
             "value": "AuthproviderProto"
-          },
-          {
-            "name": "java_package",
-            "value": "com.cs3.authproviderv0alpha"
-          },
-          {
-            "name": "objc_class_prefix",
-            "value": "CBOXAB"
-          },
-          {
-            "name": "php_namespace",
-            "value": "CS3\\\\AuthProviderV0Alpha"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "cs3:/:authprovider:/:v0alpha:/:resources.proto",
-      "def": {
-        "messages": [
-          {
-            "name": "User",
-            "fields": [
-              {
-                "id": 1,
-                "name": "id",
-                "type": "cs3.types.UserId"
-              },
-              {
-                "id": 2,
-                "name": "issuer",
-                "type": "string"
-              },
-              {
-                "id": 3,
-                "name": "subject",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "username",
-                "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "mail",
-                "type": "string"
-              },
-              {
-                "id": 6,
-                "name": "display_name",
-                "type": "string"
-              },
-              {
-                "id": 7,
-                "name": "groups",
-                "type": "string",
-                "is_repeated": true
-              },
-              {
-                "id": 8,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
-              }
-            ]
-          }
-        ],
-        "imports": [
-          {
-            "path": "cs3/types/types.proto"
-          }
-        ],
-        "package": {
-          "name": "cs3.authproviderv0alpha"
-        },
-        "options": [
-          {
-            "name": "csharp_namespace",
-            "value": "CS3.AuthProviderV0Alpha"
-          },
-          {
-            "name": "go_package",
-            "value": "authproviderv0alphapb"
-          },
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_outer_classname",
-            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -740,22 +616,87 @@
       "def": {
         "messages": [
           {
-            "name": "GenerateAccessTokenRequest",
+            "name": "AuthenticateRequest",
             "fields": [
               {
                 "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
                 "name": "type",
                 "type": "string"
               },
               {
-                "id": 2,
+                "id": 3,
                 "name": "client_id",
                 "type": "string"
               },
               {
-                "id": 3,
+                "id": 4,
                 "name": "client_secret",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "AuthenticateResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "token",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "user_id",
+                "type": "cs3.types.UserId"
+              }
+            ]
+          },
+          {
+            "name": "WhoAmIRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "WhoAmIResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "cs3.userproviderv0alpha.User"
               }
             ]
           },
@@ -927,14 +868,14 @@
             "name": "GatewayService",
             "rpcs": [
               {
-                "name": "GenerateAccessToken",
-                "in_type": "GenerateAccessTokenRequest",
-                "out_type": "cs3.authproviderv0alpha.GenerateAccessTokenResponse"
+                "name": "Authenticate",
+                "in_type": "AuthenticateRequest",
+                "out_type": "AuthenticateResponse"
               },
               {
                 "name": "WhoAmI",
-                "in_type": "cs3.authproviderv0alpha.WhoAmIRequest",
-                "out_type": "cs3.authproviderv0alpha.WhoAmIResponse"
+                "in_type": "WhoAmIRequest",
+                "out_type": "WhoAmIResponse"
               },
               {
                 "name": "CreateContainer",
@@ -1186,9 +1127,6 @@
             "path": "cs3/appregistry/v0alpha/appregistry.proto"
           },
           {
-            "path": "cs3/authprovider/v0alpha/authprovider.proto"
-          },
-          {
             "path": "cs3/authregistry/v0alpha/authregistry.proto"
           },
           {
@@ -1214,6 +1152,9 @@
           },
           {
             "path": "cs3/userprovider/v0alpha/userprovider.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0alpha/resources.proto"
           },
           {
             "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
@@ -4613,6 +4554,97 @@
       }
     },
     {
+      "protopath": "cs3:/:userprovider:/:v0alpha:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "User",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 2,
+                "name": "issuer",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "subject",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "username",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "mail",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "display_name",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.userproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.UserProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "userproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.userproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXUSERPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\UserProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:userprovider:/:v0alpha:/:userprovider.proto",
       "def": {
         "messages": [
@@ -4647,7 +4679,7 @@
               {
                 "id": 3,
                 "name": "user",
-                "type": "cs3.authproviderv0alpha.User"
+                "type": "cs3.userproviderv0alpha.User"
               }
             ]
           },
@@ -4758,7 +4790,7 @@
               {
                 "id": 3,
                 "name": "users",
-                "type": "cs3.authproviderv0alpha.User",
+                "type": "cs3.userproviderv0alpha.User",
                 "is_repeated": true
               }
             ]
@@ -4793,7 +4825,7 @@
         ],
         "imports": [
           {
-            "path": "cs3/authprovider/v0alpha/resources.proto"
+            "path": "cs3/userprovider/v0alpha/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"

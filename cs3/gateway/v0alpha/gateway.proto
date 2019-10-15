@@ -29,7 +29,6 @@ option objc_class_prefix = "CBOXAB";
 option php_namespace = "CS3\\GatewayV0Alpha";
 
 import "cs3/appregistry/v0alpha/appregistry.proto";
-import "cs3/authprovider/v0alpha/authprovider.proto";
 import "cs3/authregistry/v0alpha/authregistry.proto";
 import "cs3/ocmshareprovider/v0alpha/ocmshareprovider.proto";
 import "cs3/preferences/v0alpha/preferences.proto";
@@ -38,6 +37,7 @@ import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/storageprovider/v0alpha/storageprovider.proto";
 import "cs3/types/types.proto";
+import "cs3/userprovider/v0alpha/resources.proto";
 import "cs3/userprovider/v0alpha/userprovider.proto";
 import "cs3/usershareprovider/v0alpha/usershareprovider.proto";
 
@@ -62,8 +62,8 @@ service GatewayService {
   // *****************************************************************/
   // ************************ AUTH ******** **************************/
   // *****************************************************************/
-  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (cs3.authproviderv0alpha.GenerateAccessTokenResponse);
-  rpc WhoAmI(cs3.authproviderv0alpha.WhoAmIRequest) returns (cs3.authproviderv0alpha.WhoAmIResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+  rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
   // *****************************************************************/
   // ************************ STORAGE PROVIDER ***********************/
   // *****************************************************************/
@@ -258,10 +258,58 @@ service GatewayService {
 // CAUTION:
 // The request and responses differ from the non-gateway APIs because they need to be routable.
 
-message GenerateAccessTokenRequest {
-  string type = 1;
-  string client_id = 2;
-  string client_secret = 3;
+message AuthenticateRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The type of authentication to use.
+  string type = 2;
+  // OPTIONAL.
+  // The id of the client.
+  // For basic authentication with username and password
+  // both client_id and client_secret are expected to be filled.
+  // However, for example, for OIDC only a token is necessary.
+  string client_id = 3;
+  // OPTIONAL.
+  // The secret of the client.
+  string client_secret = 4;
+}
+
+message AuthenticateResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The access token.
+  string token = 3;
+  // REQUIRED.
+  // The user id.
+  cs3.types.UserId user_id = 4;
+}
+
+message WhoAmIRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // REQUIRED.
+  // The access token.
+  string token = 2;
+}
+
+message WhoAmIResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The user information.
+  cs3.userproviderv0alpha.User user = 3;
 }
 
 message GetQuotaRequest {

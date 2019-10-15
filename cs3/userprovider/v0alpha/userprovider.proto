@@ -28,9 +28,9 @@ option java_package = "com.cs3.userproviderv0alpha";
 option objc_class_prefix = "CBOXUSERPROVIDER";
 option php_namespace = "CS3\\UserProviderV0Alpha";
 
-import "cs3/authprovider/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
 import "cs3/types/types.proto";
+import "cs3/userprovider/v0alpha/resources.proto";
 
 // UserProvider API.
 //
@@ -79,7 +79,7 @@ message GetUserResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The user information.
-  cs3.authproviderv0alpha.User user = 3;
+  cs3.userproviderv0alpha.User user = 3;
 }
 
 message GetUserGroupsRequest {
@@ -145,5 +145,5 @@ message FindUsersResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The groups for the user.
-  repeated cs3.authproviderv0alpha.User users = 3;
+  repeated cs3.userproviderv0alpha.User users = 3;
 }
