@@ -313,26 +313,31 @@
       }
     },
     {
-      "protopath": "cs3:/:auth:/:v0alpha:/:auth.proto",
+      "protopath": "cs3:/:authprovider:/:v0alpha:/:authprovider.proto",
       "def": {
         "messages": [
           {
-            "name": "GenerateAccessTokenRequest",
+            "name": "AuthenticateRequest",
             "fields": [
               {
                 "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
                 "name": "client_id",
                 "type": "string"
               },
               {
-                "id": 2,
+                "id": 3,
                 "name": "client_secret",
                 "type": "string"
               }
             ]
           },
           {
-            "name": "GenerateAccessTokenResponse",
+            "name": "AuthenticateResponse",
             "fields": [
               {
                 "id": 1,
@@ -341,8 +346,322 @@
               },
               {
                 "id": 2,
-                "name": "access_token",
+                "name": "user_id",
+                "type": "cs3.types.UserId"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "AuthProviderService",
+            "rpcs": [
+              {
+                "name": "Authenticate",
+                "in_type": "AuthenticateRequest",
+                "out_type": "AuthenticateResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.authproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AuthProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "authproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "AuthproviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.authproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAB"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AuthProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:authregistry:/:v0alpha:/:authregistry.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetAuthProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "type",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetAuthProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "ListAuthProvidersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListAuthProvidersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "providers",
+                "type": "ProviderInfo",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "AuthRegistryService",
+            "rpcs": [
+              {
+                "name": "GetAuthProvider",
+                "in_type": "GetAuthProviderRequest",
+                "out_type": "GetAuthProviderResponse"
+              },
+              {
+                "name": "ListAuthProviders",
+                "in_type": "ListAuthProvidersRequest",
+                "out_type": "ListAuthProvidersResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/authregistry/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.authregistryv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AuthRegistryV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "authregistryv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "AuthregistryProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.authregistryv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAUTHREGISTRY"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AuthRegistryV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:authregistry:/:v0alpha:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "provider_type",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "address",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "description",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.authregistryv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.AuthRegistryV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "authregistryv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.authregistryv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXAUTHREGISTRY"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\AuthRegistryV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:gateway:/:v0alpha:/:gateway.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "AuthenticateRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "type",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "client_id",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "client_secret",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "AuthenticateResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "token",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "user_id",
+                "type": "cs3.types.UserId"
               }
             ]
           },
@@ -351,7 +670,12 @@
             "fields": [
               {
                 "id": 1,
-                "name": "access_token",
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "token",
                 "type": "string"
               }
             ]
@@ -366,167 +690,16 @@
               },
               {
                 "id": 2,
-                "name": "user",
-                "type": "User"
-              }
-            ]
-          }
-        ],
-        "services": [
-          {
-            "name": "AuthService",
-            "rpcs": [
-              {
-                "name": "GenerateAccessToken",
-                "in_type": "GenerateAccessTokenRequest",
-                "out_type": "GenerateAccessTokenResponse"
-              },
-              {
-                "name": "WhoAmI",
-                "in_type": "WhoAmIRequest",
-                "out_type": "WhoAmIResponse"
-              }
-            ]
-          }
-        ],
-        "imports": [
-          {
-            "path": "cs3/auth/v0alpha/resources.proto"
-          },
-          {
-            "path": "cs3/rpc/status.proto"
-          }
-        ],
-        "package": {
-          "name": "cs3.authv0alpha"
-        },
-        "options": [
-          {
-            "name": "csharp_namespace",
-            "value": "CS3.AuthV0Alpha"
-          },
-          {
-            "name": "go_package",
-            "value": "authv0alphapb"
-          },
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_outer_classname",
-            "value": "AuthProto"
-          },
-          {
-            "name": "java_package",
-            "value": "com.cs3.authv0alpha"
-          },
-          {
-            "name": "objc_class_prefix",
-            "value": "CBOXAB"
-          },
-          {
-            "name": "php_namespace",
-            "value": "CS3\\\\AuthV0Alpha"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "cs3:/:auth:/:v0alpha:/:resources.proto",
-      "def": {
-        "messages": [
-          {
-            "name": "User",
-            "fields": [
-              {
-                "id": 1,
-                "name": "id",
-                "type": "cs3.types.UserId"
-              },
-              {
-                "id": 2,
-                "name": "issuer",
-                "type": "string"
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
               },
               {
                 "id": 3,
-                "name": "subject",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "username",
-                "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "mail",
-                "type": "string"
-              },
-              {
-                "id": 6,
-                "name": "display_name",
-                "type": "string"
-              },
-              {
-                "id": 7,
-                "name": "groups",
-                "type": "string",
-                "is_repeated": true
-              },
-              {
-                "id": 8,
-                "name": "opaque",
-                "type": "cs3.types.Opaque"
+                "name": "user",
+                "type": "cs3.userproviderv0alpha.User"
               }
             ]
-          }
-        ],
-        "imports": [
-          {
-            "path": "cs3/types/types.proto"
-          }
-        ],
-        "package": {
-          "name": "cs3.authv0alpha"
-        },
-        "options": [
-          {
-            "name": "csharp_namespace",
-            "value": "CS3.AuthV0Alpha"
           },
-          {
-            "name": "go_package",
-            "value": "authv0alphapb"
-          },
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_outer_classname",
-            "value": "ResourcesProto"
-          },
-          {
-            "name": "java_package",
-            "value": "com.cs3.authv0alpha"
-          },
-          {
-            "name": "objc_class_prefix",
-            "value": "CBOXAB"
-          },
-          {
-            "name": "php_namespace",
-            "value": "CS3\\\\AuthV0Alpha"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "cs3:/:gateway:/:v0alpha:/:gateway.proto",
-      "def": {
-        "messages": [
           {
             "name": "GetQuotaRequest",
             "fields": [
@@ -606,6 +779,88 @@
                 "type": "cs3.storageproviderv0alpha.Reference"
               }
             ]
+          },
+          {
+            "name": "InitiateFileDownloadResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "download_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "InitiateFileUploadResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "upload_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "available_checksums",
+                "type": "cs3.storageproviderv0alpha.ResourceChecksumPriority",
+                "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ListAuthProvidersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "types",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
           }
         ],
         "services": [
@@ -613,14 +868,14 @@
             "name": "GatewayService",
             "rpcs": [
               {
-                "name": "GenerateAccessToken",
-                "in_type": "cs3.authv0alpha.GenerateAccessTokenRequest",
-                "out_type": "cs3.authv0alpha.GenerateAccessTokenResponse"
+                "name": "Authenticate",
+                "in_type": "AuthenticateRequest",
+                "out_type": "AuthenticateResponse"
               },
               {
                 "name": "WhoAmI",
-                "in_type": "cs3.authv0alpha.WhoAmIRequest",
-                "out_type": "cs3.authv0alpha.WhoAmIResponse"
+                "in_type": "WhoAmIRequest",
+                "out_type": "WhoAmIResponse"
               },
               {
                 "name": "CreateContainer",
@@ -645,12 +900,12 @@
               {
                 "name": "InitiateFileDownload",
                 "in_type": "cs3.storageproviderv0alpha.InitiateFileDownloadRequest",
-                "out_type": "cs3.storageproviderv0alpha.InitiateFileDownloadResponse"
+                "out_type": "InitiateFileDownloadResponse"
               },
               {
                 "name": "InitiateFileUpload",
                 "in_type": "cs3.storageproviderv0alpha.InitiateFileUploadRequest",
-                "out_type": "cs3.storageproviderv0alpha.InitiateFileUploadResponse"
+                "out_type": "InitiateFileUploadResponse"
               },
               {
                 "name": "ListContainerStream",
@@ -705,6 +960,16 @@
                 "out_type": "cs3.storageproviderv0alpha.StatResponse"
               },
               {
+                "name": "SetArbitraryMetadata",
+                "in_type": "cs3.storageproviderv0alpha.SetArbitraryMetadataRequest",
+                "out_type": "cs3.storageproviderv0alpha.SetArbitraryMetadataResponse"
+              },
+              {
+                "name": "UnsetArbitraryMetadata",
+                "in_type": "cs3.storageproviderv0alpha.UnsetArbitraryMetadataRequest",
+                "out_type": "cs3.storageproviderv0alpha.UnsetArbitraryMetadataResponse"
+              },
+              {
                 "name": "CreateShare",
                 "in_type": "cs3.usershareproviderv0alpha.CreateShareRequest",
                 "out_type": "cs3.usershareproviderv0alpha.CreateShareResponse"
@@ -743,13 +1008,138 @@
                 "name": "GetReceivedShare",
                 "in_type": "cs3.usershareproviderv0alpha.GetReceivedShareRequest",
                 "out_type": "cs3.usershareproviderv0alpha.GetReceivedShareResponse"
+              },
+              {
+                "name": "SetKey",
+                "in_type": "cs3.preferencesv0alpha.SetKeyRequest",
+                "out_type": "cs3.preferencesv0alpha.SetKeyResponse"
+              },
+              {
+                "name": "GetKey",
+                "in_type": "cs3.preferencesv0alpha.GetKeyRequest",
+                "out_type": "cs3.preferencesv0alpha.GetKeyResponse"
+              },
+              {
+                "name": "CreatePublicShare",
+                "in_type": "cs3.publicshareproviderv0alpha.CreatePublicShareRequest",
+                "out_type": "cs3.publicshareproviderv0alpha.CreatePublicShareResponse"
+              },
+              {
+                "name": "RemovePublicShare",
+                "in_type": "cs3.publicshareproviderv0alpha.RemovePublicShareRequest",
+                "out_type": "cs3.publicshareproviderv0alpha.RemovePublicShareResponse"
+              },
+              {
+                "name": "GetPublicShare",
+                "in_type": "cs3.publicshareproviderv0alpha.GetPublicShareRequest",
+                "out_type": "cs3.publicshareproviderv0alpha.GetPublicShareResponse"
+              },
+              {
+                "name": "GetPublicShareByToken",
+                "in_type": "cs3.publicshareproviderv0alpha.GetPublicShareByTokenRequest",
+                "out_type": "cs3.publicshareproviderv0alpha.GetPublicShareByTokenResponse"
+              },
+              {
+                "name": "ListPublicShares",
+                "in_type": "cs3.publicshareproviderv0alpha.ListPublicSharesRequest",
+                "out_type": "cs3.publicshareproviderv0alpha.ListPublicSharesResponse"
+              },
+              {
+                "name": "UpdatePublicShare",
+                "in_type": "cs3.publicshareproviderv0alpha.UpdatePublicShareRequest",
+                "out_type": "cs3.publicshareproviderv0alpha.UpdatePublicShareResponse"
+              },
+              {
+                "name": "CreateOCMShare",
+                "in_type": "cs3.ocmshareproviderv0alpha.CreateOCMShareRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.CreateOCMShareResponse"
+              },
+              {
+                "name": "RemoveOCMShare",
+                "in_type": "cs3.ocmshareproviderv0alpha.RemoveOCMShareRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.RemoveOCMShareResponse"
+              },
+              {
+                "name": "GetOCMShare",
+                "in_type": "cs3.ocmshareproviderv0alpha.GetOCMShareRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.GetOCMShareResponse"
+              },
+              {
+                "name": "ListOCMShares",
+                "in_type": "cs3.ocmshareproviderv0alpha.ListOCMSharesRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.ListOCMSharesResponse"
+              },
+              {
+                "name": "UpdateOCMShare",
+                "in_type": "cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse"
+              },
+              {
+                "name": "ListReceivedOCMShares",
+                "in_type": "cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesResponse"
+              },
+              {
+                "name": "UpdateReceivedOCMShare",
+                "in_type": "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareRequest",
+                "out_type": "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareResponse"
+              },
+              {
+                "name": "GetAppProviders",
+                "in_type": "cs3.appregistryv0alpha.GetAppProvidersRequest",
+                "out_type": "cs3.appregistryv0alpha.GetAppProvidersResponse"
+              },
+              {
+                "name": "ListAppProviders",
+                "in_type": "cs3.appregistryv0alpha.ListAppProvidersRequest",
+                "out_type": "cs3.appregistryv0alpha.ListAppProvidersResponse"
+              },
+              {
+                "name": "GetUser",
+                "in_type": "cs3.userproviderv0alpha.GetUserRequest",
+                "out_type": "cs3.userproviderv0alpha.GetUserResponse"
+              },
+              {
+                "name": "GetUserGroups",
+                "in_type": "cs3.userproviderv0alpha.GetUserGroupsRequest",
+                "out_type": "cs3.userproviderv0alpha.GetUserGroupsResponse"
+              },
+              {
+                "name": "IsInGroup",
+                "in_type": "cs3.userproviderv0alpha.IsInGroupRequest",
+                "out_type": "cs3.userproviderv0alpha.IsInGroupResponse"
+              },
+              {
+                "name": "FindUsers",
+                "in_type": "cs3.userproviderv0alpha.FindUsersRequest",
+                "out_type": "cs3.userproviderv0alpha.FindUsersResponse"
+              },
+              {
+                "name": "ListAuthProviders",
+                "in_type": "cs3.authregistryv0alpha.ListAuthProvidersRequest",
+                "out_type": "ListAuthProvidersResponse"
               }
             ]
           }
         ],
         "imports": [
           {
-            "path": "cs3/auth/v0alpha/auth.proto"
+            "path": "cs3/appregistry/v0alpha/appregistry.proto"
+          },
+          {
+            "path": "cs3/authregistry/v0alpha/authregistry.proto"
+          },
+          {
+            "path": "cs3/ocmshareprovider/v0alpha/ocmshareprovider.proto"
+          },
+          {
+            "path": "cs3/preferences/v0alpha/preferences.proto"
+          },
+          {
+            "path": "cs3/publicshareprovider/v0alpha/publicshareprovider.proto"
+          },
+          {
+            "path": "cs3/rpc/status.proto"
           },
           {
             "path": "cs3/storageprovider/v0alpha/resources.proto"
@@ -759,6 +1149,12 @@
           },
           {
             "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0alpha/resources.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0alpha/userprovider.proto"
           },
           {
             "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
@@ -807,30 +1203,30 @@
             "name": "Filter.Type",
             "enum_fields": [
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_INVALID"
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_INVALID"
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER",
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_NO_FILTER",
                 "integer": 1
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID",
                 "integer": 2
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER",
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER",
                 "integer": 3
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR",
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR",
                 "integer": 4
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER",
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_OWNER_PROVIDER",
                 "integer": 5
               },
               {
-                "name": "LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER",
+                "name": "LIST_OCM_SHARES_REQUEST_FILTER_TYPE_CREATOR_PROVIDER",
                 "integer": 6
               }
             ]
@@ -838,7 +1234,7 @@
         ],
         "messages": [
           {
-            "name": "CreateShareRequest",
+            "name": "CreateOCMShareRequest",
             "fields": [
               {
                 "id": 1,
@@ -858,7 +1254,7 @@
             ]
           },
           {
-            "name": "CreateShareResponse",
+            "name": "CreateOCMShareResponse",
             "fields": [
               {
                 "id": 1,
@@ -878,7 +1274,7 @@
             ]
           },
           {
-            "name": "UpdateShareRequest",
+            "name": "UpdateOCMShareRequest",
             "fields": [
               {
                 "id": 1,
@@ -915,7 +1311,7 @@
             ]
           },
           {
-            "name": "UpdateShareResponse",
+            "name": "UpdateOCMShareResponse",
             "fields": [
               {
                 "id": 1,
@@ -930,7 +1326,7 @@
             ]
           },
           {
-            "name": "ListSharesRequest",
+            "name": "ListOCMSharesRequest",
             "fields": [
               {
                 "id": 1,
@@ -973,7 +1369,7 @@
             ]
           },
           {
-            "name": "ListSharesResponse",
+            "name": "ListOCMSharesResponse",
             "fields": [
               {
                 "id": 1,
@@ -994,7 +1390,7 @@
             ]
           },
           {
-            "name": "RemoveShareRequest",
+            "name": "RemoveOCMShareRequest",
             "fields": [
               {
                 "id": 1,
@@ -1009,7 +1405,7 @@
             ]
           },
           {
-            "name": "RemoveShareResponse",
+            "name": "RemoveOCMShareResponse",
             "fields": [
               {
                 "id": 1,
@@ -1024,7 +1420,7 @@
             ]
           },
           {
-            "name": "GetShareRequest",
+            "name": "GetOCMShareRequest",
             "fields": [
               {
                 "id": 1,
@@ -1039,7 +1435,7 @@
             ]
           },
           {
-            "name": "GetShareResponse",
+            "name": "GetOCMShareResponse",
             "fields": [
               {
                 "id": 1,
@@ -1059,7 +1455,7 @@
             ]
           },
           {
-            "name": "ListReceivedSharesRequest",
+            "name": "ListReceivedOCMSharesRequest",
             "fields": [
               {
                 "id": 1,
@@ -1069,7 +1465,7 @@
             ]
           },
           {
-            "name": "ListReceivedSharesResponse",
+            "name": "ListReceivedOCMSharesResponse",
             "fields": [
               {
                 "id": 1,
@@ -1090,7 +1486,7 @@
             ]
           },
           {
-            "name": "UpdateReceivedShareRequest",
+            "name": "UpdateReceivedOCMShareRequest",
             "fields": [
               {
                 "id": 1,
@@ -1127,7 +1523,7 @@
             ]
           },
           {
-            "name": "UpdateReceivedShareResponse",
+            "name": "UpdateReceivedOCMShareResponse",
             "fields": [
               {
                 "id": 1,
@@ -1147,39 +1543,39 @@
             "name": "OCMShareProviderService",
             "rpcs": [
               {
-                "name": "CreateShare",
-                "in_type": "CreateShareRequest",
-                "out_type": "CreateShareResponse"
+                "name": "CreateOCMShare",
+                "in_type": "CreateOCMShareRequest",
+                "out_type": "CreateOCMShareResponse"
               },
               {
-                "name": "RemoveShare",
-                "in_type": "RemoveShareRequest",
-                "out_type": "RemoveShareResponse"
+                "name": "RemoveOCMShare",
+                "in_type": "RemoveOCMShareRequest",
+                "out_type": "RemoveOCMShareResponse"
               },
               {
-                "name": "GetShare",
-                "in_type": "GetShareRequest",
-                "out_type": "GetShareResponse"
+                "name": "GetOCMShare",
+                "in_type": "GetOCMShareRequest",
+                "out_type": "GetOCMShareResponse"
               },
               {
-                "name": "ListShares",
-                "in_type": "ListSharesRequest",
-                "out_type": "ListSharesResponse"
+                "name": "ListOCMShares",
+                "in_type": "ListOCMSharesRequest",
+                "out_type": "ListOCMSharesResponse"
               },
               {
-                "name": "UpdateShare",
-                "in_type": "UpdateShareRequest",
-                "out_type": "UpdateShareResponse"
+                "name": "UpdateOCMShare",
+                "in_type": "UpdateOCMShareRequest",
+                "out_type": "UpdateOCMShareResponse"
               },
               {
-                "name": "ListReceivedShares",
-                "in_type": "ListReceivedSharesRequest",
-                "out_type": "ListReceivedSharesResponse"
+                "name": "ListReceivedOCMShares",
+                "in_type": "ListReceivedOCMSharesRequest",
+                "out_type": "ListReceivedOCMSharesResponse"
               },
               {
-                "name": "UpdateReceivedShare",
-                "in_type": "UpdateReceivedShareRequest",
-                "out_type": "UpdateReceivedShareResponse"
+                "name": "UpdateReceivedOCMShare",
+                "in_type": "UpdateReceivedOCMShareRequest",
+                "out_type": "UpdateReceivedOCMShareResponse"
               }
             ]
           }
@@ -2974,6 +3370,11 @@
                 "name": "available_checksums",
                 "type": "ResourceChecksumPriority",
                 "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
               }
             ]
           },
@@ -3009,6 +3410,11 @@
                 "id": 3,
                 "name": "download_endpoint",
                 "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
               }
             ]
           },
@@ -4143,6 +4549,322 @@
           {
             "name": "php_namespace",
             "value": "CS3\\\\TYPES"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:userprovider:/:v0alpha:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "User",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 2,
+                "name": "issuer",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "subject",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "username",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "mail",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "display_name",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.userproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.UserProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "userproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.userproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXUSERPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\UserProviderV0Alpha"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:userprovider:/:v0alpha:/:userprovider.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.types.UserId"
+              }
+            ]
+          },
+          {
+            "name": "GetUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "User"
+              }
+            ]
+          },
+          {
+            "name": "GetUserGroupsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.types.UserId"
+              }
+            ]
+          },
+          {
+            "name": "GetUserGroupsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "IsInGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.types.UserId"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "IsInGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "ok",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "FindUsersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindUsersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "users",
+                "type": "User",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "UserProviderService",
+            "rpcs": [
+              {
+                "name": "GetUser",
+                "in_type": "GetUserRequest",
+                "out_type": "GetUserResponse"
+              },
+              {
+                "name": "GetUserGroups",
+                "in_type": "GetUserGroupsRequest",
+                "out_type": "GetUserGroupsResponse"
+              },
+              {
+                "name": "IsInGroup",
+                "in_type": "IsInGroupRequest",
+                "out_type": "IsInGroupResponse"
+              },
+              {
+                "name": "FindUsers",
+                "in_type": "FindUsersRequest",
+                "out_type": "FindUsersResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/status.proto"
+          },
+          {
+            "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0alpha/resources.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.userproviderv0alpha"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "CS3.UserProviderV0Alpha"
+          },
+          {
+            "name": "go_package",
+            "value": "userproviderv0alphapb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "UserproviderProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.userproviderv0alpha"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CBOXUSERPROVIDER"
+          },
+          {
+            "name": "php_namespace",
+            "value": "CS3\\\\UserProviderV0Alpha"
           }
         ]
       }

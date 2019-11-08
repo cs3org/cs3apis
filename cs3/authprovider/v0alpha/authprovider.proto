@@ -18,39 +18,30 @@
 
 syntax = "proto3";
 
-package cs3.authv0alpha;
+package cs3.authproviderv0alpha;
 
-option csharp_namespace = "CS3.AuthV0Alpha";
-option go_package = "authv0alphapb";
+option csharp_namespace = "CS3.AuthProviderV0Alpha";
+option go_package = "authproviderv0alphapb";
 option java_multiple_files = true;
-option java_outer_classname = "AuthProto";
-option java_package = "com.cs3.authv0alpha";
+option java_outer_classname = "AuthproviderProto";
+option java_package = "com.cs3.authproviderv0alpha";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\AuthV0Alpha";
+option php_namespace = "CS3\\AuthProviderV0Alpha";
 
-import "cs3/auth/v0alpha/resources.proto";
 import "cs3/rpc/status.proto";
+import "cs3/types/types.proto";
 
-service AuthService {
-  rpc GenerateAccessToken(GenerateAccessTokenRequest) returns (GenerateAccessTokenResponse);
-  rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
+service AuthProviderService {
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
 }
 
-message GenerateAccessTokenRequest {
-  string client_id = 1;
-  string client_secret = 2;
+message AuthenticateRequest {
+  cs3.types.Opaque opaque = 1;
+  string client_id = 2;
+  string client_secret = 3;
 }
 
-message GenerateAccessTokenResponse {
+message AuthenticateResponse {
   cs3.rpc.Status status = 1;
-  string access_token = 2;
-}
-
-message WhoAmIRequest {
-  string access_token = 1;
-}
-
-message WhoAmIResponse {
-  cs3.rpc.Status status = 1;
-  User user = 2;
+  cs3.types.UserId user_id = 2;
 }
