@@ -36,6 +36,7 @@ import "cs3/publicshareprovider/v0alpha/publicshareprovider.proto";
 import "cs3/rpc/status.proto";
 import "cs3/storageprovider/v0alpha/resources.proto";
 import "cs3/storageprovider/v0alpha/storageprovider.proto";
+import "cs3/storageregistry/v0alpha/storageregistry.proto";
 import "cs3/types/types.proto";
 import "cs3/userprovider/v0alpha/resources.proto";
 import "cs3/userprovider/v0alpha/userprovider.proto";
@@ -253,6 +254,11 @@ service GatewayService {
   // *****************************************************************/
   // Returns a list of the available auth providers known by this registry.
   rpc ListAuthProviders(cs3.authregistryv0alpha.ListAuthProvidersRequest) returns (ListAuthProvidersResponse);
+  // ************************ STORAGE REGISTRY ** ********************/
+  // *****************************************************************/
+  // Returns the home path for the given authenticated user.
+  // When a user has access to multiple storage providers, one of them is the home.
+  rpc GetHome(cs3.storageregistryv0alpha.GetHomeRequest) returns (cs3.storageregistryv0alpha.GetHomeResponse);
 }
 
 // CAUTION:
