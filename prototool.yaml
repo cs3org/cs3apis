@@ -18,3 +18,6 @@ generate:
       type: go
       flags: plugins=grpc
       output: build/go-cs3apis
+
+    - name : cpp
+      output: build/cpp-cs3apis
