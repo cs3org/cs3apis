@@ -30,6 +30,7 @@ option php_namespace = "CS3\\AuthProviderV0Alpha";
 
 import "cs3/rpc/status.proto";
 import "cs3/types/types.proto";
+import "cs3/userprovider/v0alpha/resources.proto";
 
 service AuthProviderService {
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
@@ -42,6 +43,8 @@ message AuthenticateRequest {
 }
 
 message AuthenticateResponse {
+  reserved 2;
+  reserved "user_id";
   cs3.rpc.Status status = 1;
-  cs3.types.UserId user_id = 2;
+  cs3.userproviderv0alpha.User user = 3;
 }

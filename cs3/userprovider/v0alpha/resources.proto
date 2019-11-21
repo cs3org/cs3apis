@@ -31,12 +31,13 @@ option php_namespace = "CS3\\UserProviderV0Alpha";
 import "cs3/types/types.proto";
 
 message User {
+  reserved 2, 3;
+  reserved "issuer", "subject";
   cs3.types.UserId id = 1;
-  string issuer = 2;
-  string subject = 3;
   string username = 4;
   string mail = 5;
   string display_name = 6;
   repeated string groups = 7;
   cs3.types.Opaque opaque = 8;
+  bool mail_verified = 9;
 }
