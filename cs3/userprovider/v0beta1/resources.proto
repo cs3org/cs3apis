@@ -18,31 +18,24 @@
 
 syntax = "proto3";
 
-package cs3.authproviderv0alpha;
+package cs3.userprovider.v0beta1;
 
-option csharp_namespace = "CS3.AuthProviderV0Alpha";
-option go_package = "authproviderv0alphapb";
+option csharp_namespace = "CS3.UserProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
-option java_outer_classname = "AuthproviderProto";
-option java_package = "com.cs3.authproviderv0alpha";
-option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\AuthProviderV0Alpha";
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.userprovider.v0beta1";
+option objc_class_prefix = "CBOXUSERPROVIDER";
+option php_namespace = "CS3\\UserProvider\\V0Beta1";
 
-import "cs3/rpc/status.proto";
 import "cs3/types/types.proto";
-import "cs3/userprovider/v0alpha/resources.proto";
 
-service AuthProviderService {
-  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
-}
-
-message AuthenticateRequest {
-  cs3.types.Opaque opaque = 1;
-  string client_id = 2;
-  string client_secret = 3;
-}
-
-message AuthenticateResponse {
-  cs3.rpc.Status status = 1;
-  cs3.userproviderv0alpha.User user = 2;
+message User {
+  cs3.types.UserId id = 1;
+  string username = 2;
+  string mail = 3;
+  bool mail_verified = 4;
+  string display_name = 5;
+  repeated string groups = 6;
+  cs3.types.Opaque opaque = 7;
 }

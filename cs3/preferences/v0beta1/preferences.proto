@@ -18,15 +18,15 @@
 
 syntax = "proto3";
 
-package cs3.preferencesv0alpha;
+package cs3.preferences.v0beta1;
 
-option csharp_namespace = "CS3.PreferencesV0Alpha";
-option go_package = "preferencesv0alphapb";
+option csharp_namespace = "CS3.Preferences.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
 option java_outer_classname = "PreferencesProto";
-option java_package = "com.cs3.preferencesv0alpha";
+option java_package = "com.cs3.preferences.v0beta1";
 option objc_class_prefix = "CBOXPREFERENCES";
-option php_namespace = "CS3\\PreferencesV0Alpha";
+option php_namespace = "CS3\\Preferences\\V0Beta1";
 
 import "cs3/rpc/status.proto";
 

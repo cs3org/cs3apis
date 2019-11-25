@@ -18,17 +18,17 @@
 
 syntax = "proto3";
 
-package cs3.publicshareproviderv0alpha;
+package cs3.publicshareprovider.v0beta1;
 
-option csharp_namespace = "CS3.PublicShareProviderV0Alpha";
-option go_package = "publicshareproviderv0alphapb";
+option csharp_namespace = "CS3.PublicShareProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.publicshareproviderv0alpha";
+option java_package = "com.cs3.publicshareprovider.v0beta1";
 option objc_class_prefix = "CBOXPUBLICSHARE";
-option php_namespace = "CS3\\PublicShareProviderV0Alpha";
+option php_namespace = "CS3\\PublicShareProvider\\V0Beta1";
 
-import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
 import "cs3/types/types.proto";
 
 //
@@ -61,7 +61,7 @@ message PublicShare {
   string token = 2;
   // REQUIRED.
   // Unique identifier of the shared resource.
-  cs3.storageproviderv0alpha.ResourceId resource_id = 3;
+  cs3.storageprovider.v0beta1.ResourceId resource_id = 3;
   // REQUIRED.
   // Permissions for the grantee to use
   // the resource.
@@ -101,7 +101,7 @@ message PublicShare {
 
 // The permissions for a share.
 message PublicSharePermissions {
-  cs3.storageproviderv0alpha.ResourcePermissions permissions = 1;
+  cs3.storageprovider.v0beta1.ResourcePermissions permissions = 1;
   // TODO(labkode): additional permissions for shares like re-sharing
 
 }

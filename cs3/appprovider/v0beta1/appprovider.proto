@@ -18,25 +18,27 @@
 
 syntax = "proto3";
 
-package cs3.authregistryv0alpha;
+package cs3.appprovider.v0beta1;
 
-option csharp_namespace = "CS3.AuthRegistryV0Alpha";
-option go_package = "authregistryv0alphapb";
+option csharp_namespace = "CS3.AppProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
-option java_outer_classname = "AuthregistryProto";
-option java_package = "com.cs3.authregistryv0alpha";
-option objc_class_prefix = "CBOXAUTHREGISTRY";
-option php_namespace = "CS3\\AuthRegistryV0Alpha";
+option java_outer_classname = "AppproviderProto";
+option java_package = "com.cs3.appprovider.v0beta1";
+option objc_class_prefix = "CBOXAB";
+option php_namespace = "CS3\\AppProvider\\V0Beta1";
 
 import "cs3/rpc/status.proto";
-import "cs3/authprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
 import "cs3/types/types.proto";
 
-// Auth Registry API
+//import "cs3/appprovider/v0beta1/resources.proto";
+
+// App Provider API
 //
-// The Auth Registry API is meant to as registry to obtain
-// information of available auth providers.
-// For example, to use OIDC or Kerberos for authentication.
+// The App Provider API is responsible for creating urls that
+// will render a viewer or editor for the given resource.
+// For example, an OnlyOffice or HackMD editor.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -49,25 +51,32 @@ import "cs3/types/types.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service AuthRegistryService {
-  // Returns the auth provider that is reponsible for the given
-  // resource reference.
-  // MUST return CODE_NOT_FOUND if the reference does not exist.
-  rpc GetAuthProvider(GetAuthProviderRequest) returns (GetAuthProviderResponse);
-  // Returns a list of the available auth providers known by this registry.
-  rpc ListAuthProviders(ListAuthProvidersRequest) returns (ListAuthProvidersResponse);
+service AppProviderService {
+  // Returns the iframe url
+  // MUST return CODE_NOT_FOUND if the resource does not exist.
+  rpc Open(OpenRequest) returns (OpenResponse);
 }
 
-message GetAuthProviderRequest {
+message OpenRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The type of authentication provider.
-  string type = 2;
+  // The resource information.
+  cs3.storageprovider.v0beta1.ResourceInfo resource_info = 2;
+  // REQUIRED.
+  // The access token this application provider will use when contacting
+  // the storage provider to read and write.
+  // Service implementors MUST make sure that the access token only grants
+  // access to the requested resource.
+  // Service implementors should use a ResourceId rather than a filename to grant access, as
+  // ResourceIds MUST NOT change when a resource is renamed.
+  // The access token MUST be short-lived.
+  // TODO(labkode): investigate token derivation techniques.
+  string access_token = 3;
 }
 
-message GetAuthProviderResponse {
+message OpenResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -75,27 +84,8 @@ message GetAuthProviderResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The auth provider handling the requested auth call.
-  ProviderInfo provider = 3;
+  // The url that user agents will render to clients.
+  // Usually the rendering happens by using HTML iframes,
+  // at least, Office 365, Collabora, OnlyOffice do like that.
+  string iframe_url = 3;
 }
-
-message ListAuthProvidersRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // TODO(labkode): maybe add some filter?
-
-}
-
-message ListAuthProvidersResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The list of auth providers this registry knows about.
-  repeated ProviderInfo providers = 3;
-}
-

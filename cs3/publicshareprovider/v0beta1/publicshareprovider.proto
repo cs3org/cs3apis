@@ -18,27 +18,25 @@
 
 syntax = "proto3";
 
-package cs3.usershareproviderv0alpha;
+package cs3.publicshareprovider.v0beta1;
 
-option csharp_namespace = "CS3.UserShareProviderV0Alpha";
-option go_package = "usershareproviderv0alphapb";
+option csharp_namespace = "CS3.PublicShareProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
-option java_outer_classname = "UsershareproviderProto";
-option java_package = "com.cs3.usershareproviderv0alpha";
-option objc_class_prefix = "CBOXUSERSHAREPROVIDER";
-option php_namespace = "CS3\\UserShareProviderV0Alpha";
+option java_outer_classname = "PublicshareproviderProto";
+option java_package = "com.cs3.publicshareprovider.v0beta1";
+option objc_class_prefix = "CBOXPSP";
+option php_namespace = "CS3\\PublicShareProvider\\V0Beta1";
 
+import "cs3/publicshareprovider/v0beta1/resources.proto";
 import "cs3/rpc/status.proto";
-import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
 import "cs3/types/types.proto";
-import "cs3/usershareprovider/v0alpha/resources.proto";
 
-// User Share Provider API
+// PublicShare Provider API
 //
-// The User Share Provider API is meant to manipulate share
-// resources for a specific share type (user, group, ocm, ...)
-// from the perspective of the creator or the share and
-// from the perspective of the receiver of the share.
+// The Public Share Provider API is meant to manipulate public shares
+// also called public links.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -51,49 +49,57 @@ import "cs3/usershareprovider/v0alpha/resources.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service UserShareProviderService {
+service PublicShareProviderService {
   // Creates a new share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
   // (owner, shared_resource, grantee).
   // New shares MUST be created in the state SHARE_STATE_PENDING.
-  rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
+  rpc CreatePublicShare(CreatePublicShareRequest) returns (CreatePublicShareResponse);
   // Removes a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc RemoveShare(RemoveShareRequest) returns (RemoveShareResponse);
+  rpc RemovePublicShare(RemovePublicShareRequest) returns (RemovePublicShareResponse);
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc GetShare(GetShareRequest) returns (GetShareResponse);
+  rpc GetPublicShare(GetPublicShareRequest) returns (GetPublicShareResponse);
+  // Gets share information for a single share by its unlisted token.
+  // MUST return CODE_NOT_FOUND if the share does not exist.
+  rpc GetPublicShareByToken(GetPublicShareByTokenRequest) returns (GetPublicShareByTokenResponse);
   // List the shares the authenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
-  rpc ListShares(ListSharesRequest) returns (ListSharesResponse);
+  rpc ListPublicShares(ListPublicSharesRequest) returns (ListPublicSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
-  // List all shares the authenticated principal has received.
-  rpc ListReceivedShares(ListReceivedSharesRequest) returns (ListReceivedSharesResponse);
-  // Update the received share to change the share state or the display name.
-  // MUST return CODE_NOT_FOUND if the share reference does not exist.
-  rpc UpdateReceivedShare(UpdateReceivedShareRequest) returns (UpdateReceivedShareResponse);
-  // Get the information for the given received share reference.
-  // MUST return CODE_NOT_FOUND if the received share reference does not exist.
-  rpc GetReceivedShare(GetReceivedShareRequest) returns (GetReceivedShareResponse);
+  rpc UpdatePublicShare(UpdatePublicShareRequest) returns (UpdatePublicShareResponse);
 }
 
-message CreateShareRequest {
+message CreatePublicShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The information of the resource to be shared.
-  cs3.storageproviderv0alpha.ResourceInfo resource_info = 2;
+  // The unique identifier for the shared storage resource.
+  cs3.storageprovider.v0beta1.ResourceInfo resource_info = 2;
   // REQUIRED.
-  // The share grant for the share.
-  ShareGrant grant = 3;
+  // The restrictions to apply to the share.
+  Grant grant = 3;
 }
 
-message CreateShareResponse {
+// Defines the restrictions for the public share;
+message Grant {
+  // REQUIRED.
+  // The permissions for the share.
+  PublicSharePermissions permissions = 1;
+  // OPTIONAL.
+  // A password to protect the access to the public share.
+  string password = 2;
+  // OPTIONAL.
+  // An expiration date to protect the access to the public share.
+  cs3.types.Timestamp expiration = 3;
+}
+
+message CreatePublicShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -102,53 +108,63 @@ message CreateShareResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The created share.
-  Share share = 3;
+  PublicShare share = 3;
 }
 
-message UpdateShareRequest {
+message UpdatePublicShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
 
-  ShareReference ref = 2;
-  message UpdateField {
-    // One of the update fields MUST be specified.
-    oneof field {
-      // Update the permissions.
-      SharePermissions permissions = 2;
-      // Update the display name.
-      string display_name = 3;
+  // REQUIRED.
+  // The reference to the public share.
+  PublicShareReference ref = 2;
+  // Available fields to update.
+
+  message Update {
+    enum Type {
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_INVALID = 0;
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PERMISSIONS = 1;
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_PASSWORD = 2;
+      UPDATE_PUBLIC_SHARE_REQUEST_UPDATE_TYPE_EXPIRATION = 3;
     }
+    // REQUIRED.
+    // Defines the field to update
+    Type type = 3;
+    // REQUIRED.
+    // Contains the field that will be updated.
+    Grant grant = 4;
   }
-  UpdateField field = 3;
 }
 
-message UpdateShareResponse {
+message UpdatePublicShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The updated public share.
+  PublicShare share = 3;
 }
 
-message ListSharesRequest {
+message ListPublicSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // represents a filter to apply to the request.
   message Filter {
     enum Type {
-      LIST_SHARES_REQUEST_FILTER_TYPE_INVALID = 0;
-      LIST_SHARES_REQUEST_FILTER_TYPE_NO_FILTER = 1;
-      LIST_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 2;
-      LIST_SHARES_REQUEST_FILTER_TYPE_OWNER = 3;
-      LIST_SHARES_REQUEST_FILTER_TYPE_CREATOR = 4;
+      LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_INVALID = 0;
+      LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_RESOURCE_ID = 1;
+      LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_OWNER = 2;
+      LIST_PUBLIC_SHARES_REQUEST_FILTER_TYPE_CREATOR = 3;
     }
     Type type = 2;
     oneof term {
-      cs3.storageproviderv0alpha.ResourceId resource_id = 3;
+      cs3.storageprovider.v0beta1.ResourceId resource_id = 3;
       cs3.types.UserId owner = 4;
       cs3.types.UserId creator = 5;
     }
@@ -158,7 +174,7 @@ message ListSharesRequest {
   repeated Filter filters = 2;
 }
 
-message ListSharesResponse {
+message ListPublicSharesResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -167,19 +183,19 @@ message ListSharesResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The list of shares.
-  repeated Share shares = 3;
+  repeated PublicShare share = 3;
 }
 
-message RemoveShareRequest {
+message RemovePublicShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  ShareReference ref = 2;
+  PublicShareReference ref = 2;
 }
 
-message RemoveShareResponse {
+message RemovePublicShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -188,16 +204,16 @@ message RemoveShareResponse {
   cs3.types.Opaque opaque = 2;
 }
 
-message GetShareRequest {
+message GetPublicShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  ShareReference ref = 2;
+  PublicShareReference ref = 2;
 }
 
-message GetShareResponse {
+message GetPublicShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -206,65 +222,19 @@ message GetShareResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The share.
-  Share share = 3;
+  PublicShare share = 3;
 }
 
-message ListReceivedSharesRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-}
-
-message ListReceivedSharesResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The list of received shares.
-  repeated ReceivedShare shares = 3;
-}
-
-// TODO(labkode): clean up display_name ? we'll use storage links for that.
-message UpdateReceivedShareRequest {
+message GetPublicShareByTokenRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  ShareReference ref = 2;
-  message UpdateField {
-    // One of the update fields MUST be specified.
-    oneof field {
-      // Update the display name.
-      string display_name = 1;
-      // Update the share state
-      ShareState state = 2;
-    }
-  }
-  UpdateField field = 3;
+  // The unlisted token to identify the public share.
+  string token = 2;
 }
 
-message UpdateReceivedShareResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-}
-
-message GetReceivedShareRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference of the received share.
-  ShareReference ref = 2;
-}
-
-message GetReceivedShareResponse {
+message GetPublicShareByTokenResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -273,5 +243,5 @@ message GetReceivedShareResponse {
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
   // The share.
-  ReceivedShare share = 3;
+  PublicShare share = 3;
 }

@@ -18,17 +18,17 @@
 
 syntax = "proto3";
 
-package cs3.usershareproviderv0alpha;
+package cs3.usershareprovider.v0beta1;
 
-option csharp_namespace = "CS3.UserShareProviderV0Alpha";
-option go_package = "usershareproviderv0alphapb";
+option csharp_namespace = "CS3.UserShareProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.usershareproviderv0alpha";
+option java_package = "com.cs3.usershareprovider.v0beta1";
 option objc_class_prefix = "CBOXUSERSHAREPROVIDER";
-option php_namespace = "CS3\\UserShareProviderV0Alpha";
+option php_namespace = "CS3\\UserShareProvider\\V0Beta1";
 
-import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
 import "cs3/types/types.proto";
 
 // Shares are relationships between a resource owner
@@ -40,14 +40,14 @@ message Share {
   ShareId id = 1;
   // REQUIRED.
   // Unique identifier of the shared resource.
-  cs3.storageproviderv0alpha.ResourceId resource_id = 2;
+  cs3.storageprovider.v0beta1.ResourceId resource_id = 2;
   // REQUIRED.
   // Permissions for the grantee to use
   // the resource.
   SharePermissions permissions = 3;
   // REQUIRED.
   // The receiver of the share, like a user, group ...
-  cs3.storageproviderv0alpha.Grantee grantee = 4;
+  cs3.storageprovider.v0beta1.Grantee grantee = 4;
   // REQUIRED.
   // Uniquely identifies the owner of the share
   // (the resource owner at the time of creating the share).
@@ -70,7 +70,7 @@ message Share {
 
 // The permissions for a share.
 message SharePermissions {
-  cs3.storageproviderv0alpha.ResourcePermissions permissions = 1;
+  cs3.storageprovider.v0beta1.ResourcePermissions permissions = 1;
   // TODO(labkode): additional permissions for shares like re-sharing
 
 }
@@ -121,9 +121,9 @@ message ShareKey {
   // REQUIRED.
   cs3.types.UserId owner = 2;
   // REQUIRED.
-  cs3.storageproviderv0alpha.ResourceId resource_id = 3;
+  cs3.storageprovider.v0beta1.ResourceId resource_id = 3;
   // REQUIRED.
-  cs3.storageproviderv0alpha.Grantee grantee = 4;
+  cs3.storageprovider.v0beta1.Grantee grantee = 4;
 }
 
 // A share id identifies uniquely a // share in the share provider namespace.
@@ -155,7 +155,7 @@ message ShareReference {
 message ShareGrant {
   // REQUIRED.
   // The grantee of the grant.
-  cs3.storageproviderv0alpha.Grantee grantee = 1;
+  cs3.storageprovider.v0beta1.Grantee grantee = 1;
   // REQUIRED.
   // The share permissions for the grant.
   SharePermissions permissions = 2;

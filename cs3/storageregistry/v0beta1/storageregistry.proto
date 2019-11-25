@@ -18,24 +18,25 @@
 
 syntax = "proto3";
 
-package cs3.userproviderv0alpha;
+package cs3.storageregistry.v0beta1;
 
-option csharp_namespace = "CS3.UserProviderV0Alpha";
-option go_package = "userproviderv0alphapb";
+option csharp_namespace = "CS3.StorageRegistry.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
-option java_outer_classname = "UserproviderProto";
-option java_package = "com.cs3.userproviderv0alpha";
-option objc_class_prefix = "CBOXUSERPROVIDER";
-option php_namespace = "CS3\\UserProviderV0Alpha";
+option java_outer_classname = "StorageregistryProto";
+option java_package = "com.cs3.storageregistry.v0beta1";
+option objc_class_prefix = "CBOXSTORAGEREGISTRY";
+option php_namespace = "CS3\\StorageRegistry\\V0Beta1";
 
 import "cs3/rpc/status.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
+import "cs3/storagetypes/storagetypes.proto";
 import "cs3/types/types.proto";
-import "cs3/userprovider/v0alpha/resources.proto";
 
-// UserProvider API.
+// Storage Registry API
 //
-// The UserProvider API is responsible for creating
-// a key-value map according to user userprovider.
+// The Storage Registry API is meant to as registry to obtain
+// information of available storage providers.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -48,29 +49,31 @@ import "cs3/userprovider/v0alpha/resources.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
+service StorageRegistryService {
+  // Returns the storage provider that is reponsible for the given
+  // resource reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
+  // Returns a list of the available storage providers known by this registry.
+  rpc ListStorageProviders(ListStorageProvidersRequest) returns (ListStorageProvidersResponse);
+  // Returns the home path for the given authenticated user.
+  // When a user has access to multiple storage providers, one of them is the home.
+  rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
+  // TODO(labkode): missing methods for adding and removing a storage provider
+  // with different visibility levels (system-wide, user-wide, group-wide)...
 
-service UserProviderService {
-  // Gets the information about an user by its user id.
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
-  // Gets the groups of a user.
-  rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
-  // Tells if the user is in a certain group.
-  rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
-  // Finds users by any attribute of the user?
-  // TODO(labkode): to define the filters that make more sense.
-  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
 }
 
-message GetUserRequest {
+message GetStorageProviderRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
-  // The id of the user.
-  cs3.types.UserId user_id = 2;
+  // The reference for the resource.
+  cs3.storageprovider.v0beta1.Reference ref = 2;
 }
 
-message GetUserResponse {
+message GetStorageProviderResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -78,20 +81,19 @@ message GetUserResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The user information.
-  User user = 3;
+  // The storage provider handling the requested storage resource.
+  cs3.storagetypes.ProviderInfo provider = 3;
 }
 
-message GetUserGroupsRequest {
+message ListStorageProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The id of the user.
-  cs3.types.UserId user_id = 2;
+  // TODO(labkode): maybe add some filter?
+
 }
 
-message GetUserGroupsResponse {
+message ListStorageProvidersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -99,23 +101,17 @@ message GetUserGroupsResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The groups for the user.
-  repeated string groups = 3;
+  // The list of storage providers this registry knows about.
+  repeated cs3.storagetypes.ProviderInfo providers = 3;
 }
 
-message IsInGroupRequest {
+message GetHomeRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
-  // REQUIRED.
-  // The id of the user.
-  cs3.types.UserId user_id = 2;
-  // REQUIRED.
-  // The group to check.
-  string group = 3;
 }
 
-message IsInGroupResponse {
+message GetHomeResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -123,27 +119,7 @@ message IsInGroupResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // Tells if the user belongs to the group.
-  bool ok = 3;
-}
-
-message FindUsersRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 1;
-  // REQUIRED. TODO(labkode): create propper filters for most common searchs.
-  // The filter to apply.
-  string filter = 2;
-}
-
-message FindUsersResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.Opaque opaque = 2;
-  // REQUIRED.
-  // The groups for the user.
-  repeated User users = 3;
+  // The path to the home in a storage provider.
+  // For example /eos/user/h/hugo in the storage provider with root path /eos/user/.
+  string path = 3;
 }

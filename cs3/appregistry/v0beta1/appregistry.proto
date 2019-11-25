@@ -18,27 +18,25 @@
 
 syntax = "proto3";
 
-package cs3.appproviderv0alpha;
+package cs3.appregistry.v0beta1;
 
-option csharp_namespace = "CS3.AppProviderV0Alpha";
-option go_package = "appproviderv0alphapb";
+option csharp_namespace = "CS3.AppRegistry.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
-option java_outer_classname = "AppproviderProto";
-option java_package = "com.cs3.appproviderv0alpha";
-option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\AppProviderV0Alpha";
+option java_outer_classname = "AppregistryProto";
+option java_package = "com.cs3.appregistry.v0beta1";
+option objc_class_prefix = "CBOXAPPREGISTRY";
+option php_namespace = "CS3\\AppRegistry\\V0Beta1";
 
+import "cs3/appregistry/v0beta1/resources.proto";
 import "cs3/rpc/status.proto";
-import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
 import "cs3/types/types.proto";
 
-//import "cs3/appprovider/v0alpha/resources.proto";
-
-// App Provider API
+// App Registry API
 //
-// The App Provider API is responsible for creating urls that
-// will render a viewer or editor for the given resource.
-// For example, an OnlyOffice or HackMD editor.
+// The App Registry API is meant to as registry that
+// contains mappings between mime types and app providers.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -51,32 +49,24 @@ import "cs3/types/types.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service AppProviderService {
-  // Returns the iframe url
-  // MUST return CODE_NOT_FOUND if the resource does not exist.
-  rpc Open(OpenRequest) returns (OpenResponse);
+service AppRegistryService {
+  // Returns the app providers that are capable of handling this resource info.
+  // MUST return CODE_NOT_FOUND if no providers are available.
+  rpc GetAppProviders(GetAppProvidersRequest) returns (GetAppProvidersResponse);
+  // Returns a list of the available app providers known by this registry.
+  rpc ListAppProviders(ListAppProvidersRequest) returns (ListAppProvidersResponse);
 }
 
-message OpenRequest {
+message GetAppProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.Opaque opaque = 1;
   // REQUIRED.
   // The resource information.
-  cs3.storageproviderv0alpha.ResourceInfo resource_info = 2;
-  // REQUIRED.
-  // The access token this application provider will use when contacting
-  // the storage provider to read and write.
-  // Service implementors MUST make sure that the access token only grants
-  // access to the requested resource.
-  // Service implementors should use a ResourceId rather than a filename to grant access, as
-  // ResourceIds MUST NOT change when a resource is renamed.
-  // The access token MUST be short-lived.
-  // TODO(labkode): investigate token derivation techniques.
-  string access_token = 3;
+  cs3.storageprovider.v0beta1.ResourceInfo resource_info = 2;
 }
 
-message OpenResponse {
+message GetAppProvidersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -84,8 +74,26 @@ message OpenResponse {
   // Opaque information.
   cs3.types.Opaque opaque = 2;
   // REQUIRED.
-  // The url that user agents will render to clients.
-  // Usually the rendering happens by using HTML iframes,
-  // at least, Office 365, Collabora, OnlyOffice do like that.
-  string iframe_url = 3;
+  // The app providers available for the given resource info.
+  repeated ProviderInfo providers = 3;
+}
+
+message ListAppProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 1;
+  // TODO(labkode): maybe add some filter?
+
+}
+
+message ListAppProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of app providers this registry knows about.
+  repeated ProviderInfo providers = 3;
 }

@@ -18,15 +18,15 @@
 
 syntax = "proto3";
 
-package cs3.authregistryv0alpha;
+package cs3.authregistry.v0beta1;
 
-option csharp_namespace = "CS3.AuthRegistryV0Alpha";
-option go_package = "authregistryv0alphapb";
+option csharp_namespace = "CS3.AuthRegistry.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.authregistryv0alpha";
+option java_package = "com.cs3.authregistry.v0beta1";
 option objc_class_prefix = "CBOXAUTHREGISTRY";
-option php_namespace = "CS3\\AuthRegistryV0Alpha";
+option php_namespace = "CS3\\AuthRegistry\\V0Beta1";
 
 import "cs3/types/types.proto";
 

@@ -18,15 +18,15 @@
 
 syntax = "proto3";
 
-package cs3.storageproviderv0alpha;
+package cs3.storageprovider.v0beta1;
 
-option csharp_namespace = "CS3.StorageProviderV0Alpha";
-option go_package = "storageproviderv0alphapb";
+option csharp_namespace = "CS3.StorageProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.storageproviderv0alpha";
+option java_package = "com.cs3.storageprovider.v0beta1";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\StorageProviderV0Alpha";
+option php_namespace = "CS3\\StorageProvider\\V0Beta1";
 
 import "cs3/types/types.proto";
 

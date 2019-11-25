@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "protopath": "cs3:/:appprovider:/:v0alpha:/:appprovider.proto",
+      "protopath": "cs3:/:appprovider:/:v0beta1:/:appprovider.proto",
       "def": {
         "messages": [
           {
@@ -15,7 +15,7 @@
               {
                 "id": 2,
                 "name": "resource_info",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo"
+                "type": "cs3.storageprovider.v0beta1.ResourceInfo"
               },
               {
                 "id": 3,
@@ -62,23 +62,23 @@
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.appproviderv0alpha"
+          "name": "cs3.appprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.AppProviderV0Alpha"
+            "value": "CS3.AppProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "appproviderv0alphapb"
+            "value": "appproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -90,7 +90,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.appproviderv0alpha"
+            "value": "com.cs3.appprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -98,13 +98,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\AppProviderV0Alpha"
+            "value": "CS3\\\\AppProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:appregistry:/:v0alpha:/:appregistry.proto",
+      "protopath": "cs3:/:appregistry:/:v0beta1:/:appregistry.proto",
       "def": {
         "messages": [
           {
@@ -118,7 +118,7 @@
               {
                 "id": 2,
                 "name": "resource_info",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo"
+                "type": "cs3.storageprovider.v0beta1.ResourceInfo"
               }
             ]
           },
@@ -194,29 +194,29 @@
         ],
         "imports": [
           {
-            "path": "cs3/appregistry/v0alpha/resources.proto"
+            "path": "cs3/appregistry/v0beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.appregistryv0alpha"
+          "name": "cs3.appregistry.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.AppRegistryV0Alpha"
+            "value": "CS3.AppRegistry.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "appregistryv0alphapb"
+            "value": "appregistryv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -228,7 +228,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.appregistryv0alpha"
+            "value": "com.cs3.appregistry.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -236,13 +236,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\AppRegistryV0Alpha"
+            "value": "CS3\\\\AppRegistry\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:appregistry:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:appregistry:/:v0beta1:/:resources.proto",
       "def": {
         "messages": [
           {
@@ -278,16 +278,16 @@
           }
         ],
         "package": {
-          "name": "cs3.appregistryv0alpha"
+          "name": "cs3.appregistry.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.AppRegistryV0Alpha"
+            "value": "CS3.AppRegistry.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "appregistryv0alphapb"
+            "value": "appregistryv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -299,7 +299,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.appregistryv0alpha"
+            "value": "com.cs3.appregistry.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -307,13 +307,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\AppRegistryV0Alpha"
+            "value": "CS3\\\\AppRegistry\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:authprovider:/:v0alpha:/:authprovider.proto",
+      "protopath": "cs3:/:authprovider:/:v0beta1:/:authprovider.proto",
       "def": {
         "messages": [
           {
@@ -346,8 +346,8 @@
               },
               {
                 "id": 2,
-                "name": "user_id",
-                "type": "cs3.types.UserId"
+                "name": "user",
+                "type": "cs3.userprovider.v0beta1.User"
               }
             ]
           }
@@ -370,19 +370,22 @@
           },
           {
             "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0beta1/resources.proto"
           }
         ],
         "package": {
-          "name": "cs3.authproviderv0alpha"
+          "name": "cs3.authprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.AuthProviderV0Alpha"
+            "value": "CS3.AuthProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "authproviderv0alphapb"
+            "value": "authproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -394,7 +397,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.authproviderv0alpha"
+            "value": "com.cs3.authprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -402,13 +405,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\AuthProviderV0Alpha"
+            "value": "CS3\\\\AuthProvider\\\\\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:authregistry:/:v0alpha:/:authregistry.proto",
+      "protopath": "cs3:/:authregistry:/:v0beta1:/:authregistry.proto",
       "def": {
         "messages": [
           {
@@ -497,7 +500,7 @@
         ],
         "imports": [
           {
-            "path": "cs3/authregistry/v0alpha/resources.proto"
+            "path": "cs3/authregistry/v0beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"
@@ -507,16 +510,16 @@
           }
         ],
         "package": {
-          "name": "cs3.authregistryv0alpha"
+          "name": "cs3.authregistry.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.AuthRegistryV0Alpha"
+            "value": "CS3.AuthRegistry.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "authregistryv0alphapb"
+            "value": "authregistryv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -528,7 +531,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.authregistryv0alpha"
+            "value": "com.cs3.authregistry.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -536,13 +539,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\AuthRegistryV0Alpha"
+            "value": "CS3\\\\AuthRegistry\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:authregistry:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:authregistry:/:v0beta1:/:resources.proto",
       "def": {
         "messages": [
           {
@@ -577,16 +580,16 @@
           }
         ],
         "package": {
-          "name": "cs3.authregistryv0alpha"
+          "name": "cs3.authregistry.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.AuthRegistryV0Alpha"
+            "value": "CS3.AuthRegistry.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "authregistryv0alphapb"
+            "value": "authregistryv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -598,7 +601,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.authregistryv0alpha"
+            "value": "com.cs3.authregistry.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -606,13 +609,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\AuthRegistryV0Alpha"
+            "value": "CS3\\\\AuthRegistry\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:gateway:/:v0alpha:/:gateway.proto",
+      "protopath": "cs3:/:gateway:/:v0beta1:/:gateway.proto",
       "def": {
         "messages": [
           {
@@ -660,8 +663,8 @@
               },
               {
                 "id": 4,
-                "name": "user_id",
-                "type": "cs3.types.UserId"
+                "name": "user",
+                "type": "cs3.userprovider.v0beta1.User"
               }
             ]
           },
@@ -696,7 +699,7 @@
               {
                 "id": 3,
                 "name": "user",
-                "type": "cs3.userproviderv0alpha.User"
+                "type": "cs3.userprovider.v0beta1.User"
               }
             ]
           },
@@ -711,7 +714,7 @@
               {
                 "id": 2,
                 "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
+                "type": "cs3.storageprovider.v0beta1.Reference"
               }
             ]
           },
@@ -726,7 +729,7 @@
               {
                 "id": 2,
                 "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
+                "type": "cs3.storageprovider.v0beta1.Reference"
               },
               {
                 "id": 3,
@@ -751,7 +754,7 @@
               {
                 "id": 2,
                 "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
+                "type": "cs3.storageprovider.v0beta1.Reference"
               },
               {
                 "id": 3,
@@ -776,7 +779,7 @@
               {
                 "id": 2,
                 "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
+                "type": "cs3.storageprovider.v0beta1.Reference"
               }
             ]
           },
@@ -831,7 +834,7 @@
               {
                 "id": 4,
                 "name": "available_checksums",
-                "type": "cs3.storageproviderv0alpha.ResourceChecksumPriority",
+                "type": "cs3.storageprovider.v0beta1.ResourceChecksumPriority",
                 "is_repeated": true
               },
               {
@@ -879,298 +882,306 @@
               },
               {
                 "name": "CreateContainer",
-                "in_type": "cs3.storageproviderv0alpha.CreateContainerRequest",
-                "out_type": "cs3.storageproviderv0alpha.CreateContainerResponse"
+                "in_type": "cs3.storageprovider.v0beta1.CreateContainerRequest",
+                "out_type": "cs3.storageprovider.v0beta1.CreateContainerResponse"
               },
               {
                 "name": "Delete",
-                "in_type": "cs3.storageproviderv0alpha.DeleteRequest",
-                "out_type": "cs3.storageproviderv0alpha.DeleteResponse"
+                "in_type": "cs3.storageprovider.v0beta1.DeleteRequest",
+                "out_type": "cs3.storageprovider.v0beta1.DeleteResponse"
               },
               {
                 "name": "GetPath",
-                "in_type": "cs3.storageproviderv0alpha.GetPathRequest",
-                "out_type": "cs3.storageproviderv0alpha.GetPathResponse"
+                "in_type": "cs3.storageprovider.v0beta1.GetPathRequest",
+                "out_type": "cs3.storageprovider.v0beta1.GetPathResponse"
               },
               {
                 "name": "GetQuota",
                 "in_type": "GetQuotaRequest",
-                "out_type": "cs3.storageproviderv0alpha.GetQuotaResponse"
+                "out_type": "cs3.storageprovider.v0beta1.GetQuotaResponse"
               },
               {
                 "name": "InitiateFileDownload",
-                "in_type": "cs3.storageproviderv0alpha.InitiateFileDownloadRequest",
+                "in_type": "cs3.storageprovider.v0beta1.InitiateFileDownloadRequest",
                 "out_type": "InitiateFileDownloadResponse"
               },
               {
                 "name": "InitiateFileUpload",
-                "in_type": "cs3.storageproviderv0alpha.InitiateFileUploadRequest",
+                "in_type": "cs3.storageprovider.v0beta1.InitiateFileUploadRequest",
                 "out_type": "InitiateFileUploadResponse"
               },
               {
                 "name": "ListContainerStream",
-                "in_type": "cs3.storageproviderv0alpha.ListContainerStreamRequest",
-                "out_type": "cs3.storageproviderv0alpha.ListContainerStreamResponse",
+                "in_type": "cs3.storageprovider.v0beta1.ListContainerStreamRequest",
+                "out_type": "cs3.storageprovider.v0beta1.ListContainerStreamResponse",
                 "out_streamed": true
               },
               {
                 "name": "ListContainer",
-                "in_type": "cs3.storageproviderv0alpha.ListContainerRequest",
-                "out_type": "cs3.storageproviderv0alpha.ListContainerResponse"
+                "in_type": "cs3.storageprovider.v0beta1.ListContainerRequest",
+                "out_type": "cs3.storageprovider.v0beta1.ListContainerResponse"
               },
               {
                 "name": "ListFileVersions",
-                "in_type": "cs3.storageproviderv0alpha.ListFileVersionsRequest",
-                "out_type": "cs3.storageproviderv0alpha.ListFileVersionsResponse"
+                "in_type": "cs3.storageprovider.v0beta1.ListFileVersionsRequest",
+                "out_type": "cs3.storageprovider.v0beta1.ListFileVersionsResponse"
               },
               {
                 "name": "ListRecycleStream",
                 "in_type": "ListRecycleStreamRequest",
-                "out_type": "cs3.storageproviderv0alpha.ListRecycleStreamResponse",
+                "out_type": "cs3.storageprovider.v0beta1.ListRecycleStreamResponse",
                 "out_streamed": true
               },
               {
                 "name": "ListRecycle",
                 "in_type": "ListRecycleRequest",
-                "out_type": "cs3.storageproviderv0alpha.ListRecycleResponse"
+                "out_type": "cs3.storageprovider.v0beta1.ListRecycleResponse"
               },
               {
                 "name": "Move",
-                "in_type": "cs3.storageproviderv0alpha.MoveRequest",
-                "out_type": "cs3.storageproviderv0alpha.MoveResponse"
+                "in_type": "cs3.storageprovider.v0beta1.MoveRequest",
+                "out_type": "cs3.storageprovider.v0beta1.MoveResponse"
               },
               {
                 "name": "PurgeRecycle",
                 "in_type": "PurgeRecycleRequest",
-                "out_type": "cs3.storageproviderv0alpha.PurgeRecycleResponse"
+                "out_type": "cs3.storageprovider.v0beta1.PurgeRecycleResponse"
               },
               {
                 "name": "RestoreFileVersion",
-                "in_type": "cs3.storageproviderv0alpha.RestoreFileVersionRequest",
-                "out_type": "cs3.storageproviderv0alpha.RestoreFileVersionResponse"
+                "in_type": "cs3.storageprovider.v0beta1.RestoreFileVersionRequest",
+                "out_type": "cs3.storageprovider.v0beta1.RestoreFileVersionResponse"
               },
               {
                 "name": "RestoreRecycleItem",
-                "in_type": "cs3.storageproviderv0alpha.RestoreRecycleItemRequest",
-                "out_type": "cs3.storageproviderv0alpha.RestoreRecycleItemResponse"
+                "in_type": "cs3.storageprovider.v0beta1.RestoreRecycleItemRequest",
+                "out_type": "cs3.storageprovider.v0beta1.RestoreRecycleItemResponse"
               },
               {
                 "name": "Stat",
-                "in_type": "cs3.storageproviderv0alpha.StatRequest",
-                "out_type": "cs3.storageproviderv0alpha.StatResponse"
+                "in_type": "cs3.storageprovider.v0beta1.StatRequest",
+                "out_type": "cs3.storageprovider.v0beta1.StatResponse"
               },
               {
                 "name": "SetArbitraryMetadata",
-                "in_type": "cs3.storageproviderv0alpha.SetArbitraryMetadataRequest",
-                "out_type": "cs3.storageproviderv0alpha.SetArbitraryMetadataResponse"
+                "in_type": "cs3.storageprovider.v0beta1.SetArbitraryMetadataRequest",
+                "out_type": "cs3.storageprovider.v0beta1.SetArbitraryMetadataResponse"
               },
               {
                 "name": "UnsetArbitraryMetadata",
-                "in_type": "cs3.storageproviderv0alpha.UnsetArbitraryMetadataRequest",
-                "out_type": "cs3.storageproviderv0alpha.UnsetArbitraryMetadataResponse"
+                "in_type": "cs3.storageprovider.v0beta1.UnsetArbitraryMetadataRequest",
+                "out_type": "cs3.storageprovider.v0beta1.UnsetArbitraryMetadataResponse"
               },
               {
                 "name": "CreateShare",
-                "in_type": "cs3.usershareproviderv0alpha.CreateShareRequest",
-                "out_type": "cs3.usershareproviderv0alpha.CreateShareResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.CreateShareRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.CreateShareResponse"
               },
               {
                 "name": "RemoveShare",
-                "in_type": "cs3.usershareproviderv0alpha.RemoveShareRequest",
-                "out_type": "cs3.usershareproviderv0alpha.RemoveShareResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.RemoveShareRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.RemoveShareResponse"
               },
               {
                 "name": "GetShare",
-                "in_type": "cs3.usershareproviderv0alpha.GetShareRequest",
-                "out_type": "cs3.usershareproviderv0alpha.GetShareResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.GetShareRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.GetShareResponse"
               },
               {
                 "name": "ListShares",
-                "in_type": "cs3.usershareproviderv0alpha.ListSharesRequest",
-                "out_type": "cs3.usershareproviderv0alpha.ListSharesResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.ListSharesRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.ListSharesResponse"
               },
               {
                 "name": "UpdateShare",
-                "in_type": "cs3.usershareproviderv0alpha.UpdateShareRequest",
-                "out_type": "cs3.usershareproviderv0alpha.UpdateShareResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.UpdateShareRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.UpdateShareResponse"
               },
               {
                 "name": "ListReceivedShares",
-                "in_type": "cs3.usershareproviderv0alpha.ListReceivedSharesRequest",
-                "out_type": "cs3.usershareproviderv0alpha.ListReceivedSharesResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.ListReceivedSharesRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.ListReceivedSharesResponse"
               },
               {
                 "name": "UpdateReceivedShare",
-                "in_type": "cs3.usershareproviderv0alpha.UpdateReceivedShareRequest",
-                "out_type": "cs3.usershareproviderv0alpha.UpdateReceivedShareResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.UpdateReceivedShareRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.UpdateReceivedShareResponse"
               },
               {
                 "name": "GetReceivedShare",
-                "in_type": "cs3.usershareproviderv0alpha.GetReceivedShareRequest",
-                "out_type": "cs3.usershareproviderv0alpha.GetReceivedShareResponse"
+                "in_type": "cs3.usershareprovider.v0beta1.GetReceivedShareRequest",
+                "out_type": "cs3.usershareprovider.v0beta1.GetReceivedShareResponse"
               },
               {
                 "name": "SetKey",
-                "in_type": "cs3.preferencesv0alpha.SetKeyRequest",
-                "out_type": "cs3.preferencesv0alpha.SetKeyResponse"
+                "in_type": "cs3.preferences.v0beta1.SetKeyRequest",
+                "out_type": "cs3.preferences.v0beta1.SetKeyResponse"
               },
               {
                 "name": "GetKey",
-                "in_type": "cs3.preferencesv0alpha.GetKeyRequest",
-                "out_type": "cs3.preferencesv0alpha.GetKeyResponse"
+                "in_type": "cs3.preferences.v0beta1.GetKeyRequest",
+                "out_type": "cs3.preferences.v0beta1.GetKeyResponse"
               },
               {
                 "name": "CreatePublicShare",
-                "in_type": "cs3.publicshareproviderv0alpha.CreatePublicShareRequest",
-                "out_type": "cs3.publicshareproviderv0alpha.CreatePublicShareResponse"
+                "in_type": "cs3.publicshareprovider.v0beta1.CreatePublicShareRequest",
+                "out_type": "cs3.publicshareprovider.v0beta1.CreatePublicShareResponse"
               },
               {
                 "name": "RemovePublicShare",
-                "in_type": "cs3.publicshareproviderv0alpha.RemovePublicShareRequest",
-                "out_type": "cs3.publicshareproviderv0alpha.RemovePublicShareResponse"
+                "in_type": "cs3.publicshareprovider.v0beta1.RemovePublicShareRequest",
+                "out_type": "cs3.publicshareprovider.v0beta1.RemovePublicShareResponse"
               },
               {
                 "name": "GetPublicShare",
-                "in_type": "cs3.publicshareproviderv0alpha.GetPublicShareRequest",
-                "out_type": "cs3.publicshareproviderv0alpha.GetPublicShareResponse"
+                "in_type": "cs3.publicshareprovider.v0beta1.GetPublicShareRequest",
+                "out_type": "cs3.publicshareprovider.v0beta1.GetPublicShareResponse"
               },
               {
                 "name": "GetPublicShareByToken",
-                "in_type": "cs3.publicshareproviderv0alpha.GetPublicShareByTokenRequest",
-                "out_type": "cs3.publicshareproviderv0alpha.GetPublicShareByTokenResponse"
+                "in_type": "cs3.publicshareprovider.v0beta1.GetPublicShareByTokenRequest",
+                "out_type": "cs3.publicshareprovider.v0beta1.GetPublicShareByTokenResponse"
               },
               {
                 "name": "ListPublicShares",
-                "in_type": "cs3.publicshareproviderv0alpha.ListPublicSharesRequest",
-                "out_type": "cs3.publicshareproviderv0alpha.ListPublicSharesResponse"
+                "in_type": "cs3.publicshareprovider.v0beta1.ListPublicSharesRequest",
+                "out_type": "cs3.publicshareprovider.v0beta1.ListPublicSharesResponse"
               },
               {
                 "name": "UpdatePublicShare",
-                "in_type": "cs3.publicshareproviderv0alpha.UpdatePublicShareRequest",
-                "out_type": "cs3.publicshareproviderv0alpha.UpdatePublicShareResponse"
+                "in_type": "cs3.publicshareprovider.v0beta1.UpdatePublicShareRequest",
+                "out_type": "cs3.publicshareprovider.v0beta1.UpdatePublicShareResponse"
               },
               {
                 "name": "CreateOCMShare",
-                "in_type": "cs3.ocmshareproviderv0alpha.CreateOCMShareRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.CreateOCMShareResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.CreateOCMShareRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.CreateOCMShareResponse"
               },
               {
                 "name": "RemoveOCMShare",
-                "in_type": "cs3.ocmshareproviderv0alpha.RemoveOCMShareRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.RemoveOCMShareResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.RemoveOCMShareRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.RemoveOCMShareResponse"
               },
               {
                 "name": "GetOCMShare",
-                "in_type": "cs3.ocmshareproviderv0alpha.GetOCMShareRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.GetOCMShareResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.GetOCMShareRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.GetOCMShareResponse"
               },
               {
                 "name": "ListOCMShares",
-                "in_type": "cs3.ocmshareproviderv0alpha.ListOCMSharesRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.ListOCMSharesResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.ListOCMSharesRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.ListOCMSharesResponse"
               },
               {
                 "name": "UpdateOCMShare",
-                "in_type": "cs3.ocmshareproviderv0alpha.UpdateOCMShareRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.UpdateOCMShareResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.UpdateOCMShareRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.UpdateOCMShareResponse"
               },
               {
                 "name": "ListReceivedOCMShares",
-                "in_type": "cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.ListReceivedOCMSharesResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.ListReceivedOCMSharesRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.ListReceivedOCMSharesResponse"
               },
               {
                 "name": "UpdateReceivedOCMShare",
-                "in_type": "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareRequest",
-                "out_type": "cs3.ocmshareproviderv0alpha.UpdateReceivedOCMShareResponse"
+                "in_type": "cs3.ocmshareprovider.v0beta1.UpdateReceivedOCMShareRequest",
+                "out_type": "cs3.ocmshareprovider.v0beta1.UpdateReceivedOCMShareResponse"
               },
               {
                 "name": "GetAppProviders",
-                "in_type": "cs3.appregistryv0alpha.GetAppProvidersRequest",
-                "out_type": "cs3.appregistryv0alpha.GetAppProvidersResponse"
+                "in_type": "cs3.appregistry.v0beta1.GetAppProvidersRequest",
+                "out_type": "cs3.appregistry.v0beta1.GetAppProvidersResponse"
               },
               {
                 "name": "ListAppProviders",
-                "in_type": "cs3.appregistryv0alpha.ListAppProvidersRequest",
-                "out_type": "cs3.appregistryv0alpha.ListAppProvidersResponse"
+                "in_type": "cs3.appregistry.v0beta1.ListAppProvidersRequest",
+                "out_type": "cs3.appregistry.v0beta1.ListAppProvidersResponse"
               },
               {
                 "name": "GetUser",
-                "in_type": "cs3.userproviderv0alpha.GetUserRequest",
-                "out_type": "cs3.userproviderv0alpha.GetUserResponse"
+                "in_type": "cs3.userprovider.v0beta1.GetUserRequest",
+                "out_type": "cs3.userprovider.v0beta1.GetUserResponse"
               },
               {
                 "name": "GetUserGroups",
-                "in_type": "cs3.userproviderv0alpha.GetUserGroupsRequest",
-                "out_type": "cs3.userproviderv0alpha.GetUserGroupsResponse"
+                "in_type": "cs3.userprovider.v0beta1.GetUserGroupsRequest",
+                "out_type": "cs3.userprovider.v0beta1.GetUserGroupsResponse"
               },
               {
                 "name": "IsInGroup",
-                "in_type": "cs3.userproviderv0alpha.IsInGroupRequest",
-                "out_type": "cs3.userproviderv0alpha.IsInGroupResponse"
+                "in_type": "cs3.userprovider.v0beta1.IsInGroupRequest",
+                "out_type": "cs3.userprovider.v0beta1.IsInGroupResponse"
               },
               {
                 "name": "FindUsers",
-                "in_type": "cs3.userproviderv0alpha.FindUsersRequest",
-                "out_type": "cs3.userproviderv0alpha.FindUsersResponse"
+                "in_type": "cs3.userprovider.v0beta1.FindUsersRequest",
+                "out_type": "cs3.userprovider.v0beta1.FindUsersResponse"
               },
               {
                 "name": "ListAuthProviders",
-                "in_type": "cs3.authregistryv0alpha.ListAuthProvidersRequest",
+                "in_type": "cs3.authregistry.v0beta1.ListAuthProvidersRequest",
                 "out_type": "ListAuthProvidersResponse"
+              },
+              {
+                "name": "GetHome",
+                "in_type": "cs3.storageregistry.v0beta1.GetHomeRequest",
+                "out_type": "cs3.storageregistry.v0beta1.GetHomeResponse"
               }
             ]
           }
         ],
         "imports": [
           {
-            "path": "cs3/appregistry/v0alpha/appregistry.proto"
+            "path": "cs3/appregistry/v0beta1/appregistry.proto"
           },
           {
-            "path": "cs3/authregistry/v0alpha/authregistry.proto"
+            "path": "cs3/authregistry/v0beta1/authregistry.proto"
           },
           {
-            "path": "cs3/ocmshareprovider/v0alpha/ocmshareprovider.proto"
+            "path": "cs3/ocmshareprovider/v0beta1/ocmshareprovider.proto"
           },
           {
-            "path": "cs3/preferences/v0alpha/preferences.proto"
+            "path": "cs3/preferences/v0beta1/preferences.proto"
           },
           {
-            "path": "cs3/publicshareprovider/v0alpha/publicshareprovider.proto"
+            "path": "cs3/publicshareprovider/v0beta1/publicshareprovider.proto"
           },
           {
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/storageprovider.proto"
+            "path": "cs3/storageprovider/v0beta1/storageprovider.proto"
+          },
+          {
+            "path": "cs3/storageregistry/v0beta1/storageregistry.proto"
           },
           {
             "path": "cs3/types/types.proto"
           },
           {
-            "path": "cs3/userprovider/v0alpha/resources.proto"
+            "path": "cs3/userprovider/v0beta1/resources.proto"
           },
           {
-            "path": "cs3/userprovider/v0alpha/userprovider.proto"
+            "path": "cs3/userprovider/v0beta1/userprovider.proto"
           },
           {
-            "path": "cs3/usershareprovider/v0alpha/usershareprovider.proto"
+            "path": "cs3/usershareprovider/v0beta1/usershareprovider.proto"
           }
         ],
         "package": {
-          "name": "cs3.gatewayv0alpha"
+          "name": "cs3.gateway.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.GatewayV0Alpha"
+            "value": "CS3.Gateway.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "gatewayv0alphapb"
+            "value": "gatewayv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -1182,7 +1193,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.gatewayv0alpha"
+            "value": "com.cs3.gateway.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -1190,13 +1201,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\GatewayV0Alpha"
+            "value": "CS3\\\\Gateway\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:ocmshareprovider:/:v0alpha:/:ocmshareprovider.proto",
+      "protopath": "cs3:/:ocmshareprovider:/:v0beta1:/:ocmshareprovider.proto",
       "def": {
         "enums": [
           {
@@ -1244,7 +1255,7 @@
               {
                 "id": 2,
                 "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "type": "cs3.storageprovider.v0beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -1352,7 +1363,7 @@
                   {
                     "id": 3,
                     "name": "resource_id",
-                    "type": "cs3.storageproviderv0alpha.ResourceId"
+                    "type": "cs3.storageprovider.v0beta1.ResourceId"
                   },
                   {
                     "id": 4,
@@ -1582,29 +1593,29 @@
         ],
         "imports": [
           {
-            "path": "cs3/ocmshareprovider/v0alpha/resources.proto"
+            "path": "cs3/ocmshareprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.ocmshareproviderv0alpha"
+          "name": "cs3.ocmshareprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.OCMShareProviderV0Alpha"
+            "value": "CS3.OCMShareProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "ocmshareproviderv0alphapb"
+            "value": "ocmshareproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -1616,7 +1627,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.ocmshareproviderv0alpha"
+            "value": "com.cs3.ocmshareprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -1624,13 +1635,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\OCMShareProviderV0Alpha"
+            "value": "CS3\\\\OCMShareProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:ocmshareprovider:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:ocmshareprovider:/:v0beta1:/:resources.proto",
       "def": {
         "enums": [
           {
@@ -1666,7 +1677,7 @@
               {
                 "id": 2,
                 "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "type": "cs3.storageprovider.v0beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -1676,7 +1687,7 @@
               {
                 "id": 4,
                 "name": "grantee",
-                "type": "cs3.storageproviderv0alpha.Grantee"
+                "type": "cs3.storageprovider.v0beta1.Grantee"
               },
               {
                 "id": 5,
@@ -1706,7 +1717,7 @@
               {
                 "id": 1,
                 "name": "permissions",
-                "type": "cs3.storageproviderv0alpha.ResourcePermissions"
+                "type": "cs3.storageprovider.v0beta1.ResourcePermissions"
               },
               {
                 "id": 2,
@@ -1741,12 +1752,12 @@
               {
                 "id": 3,
                 "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "type": "cs3.storageprovider.v0beta1.ResourceId"
               },
               {
                 "id": 4,
                 "name": "grantee",
-                "type": "cs3.storageproviderv0alpha.Grantee"
+                "type": "cs3.storageprovider.v0beta1.Grantee"
               }
             ]
           },
@@ -1781,7 +1792,7 @@
               {
                 "id": 1,
                 "name": "grantee",
-                "type": "cs3.storageproviderv0alpha.Grantee"
+                "type": "cs3.storageprovider.v0beta1.Grantee"
               },
               {
                 "id": 2,
@@ -1793,23 +1804,23 @@
         ],
         "imports": [
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.ocmshareproviderv0alpha"
+          "name": "cs3.ocmshareprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.ocmshareproviderV0Alpha"
+            "value": "CS3.ocmshareprovider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "ocmshareproviderv0alphapb"
+            "value": "ocmshareproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -1821,7 +1832,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.ocmshareproviderv0alpha"
+            "value": "com.cs3.ocmshareprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -1829,13 +1840,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\ocmshareproviderV0Alpha"
+            "value": "CS3\\\\ocmshareprovider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:preferences:/:v0alpha:/:preferences.proto",
+      "protopath": "cs3:/:preferences:/:v0beta1:/:preferences.proto",
       "def": {
         "messages": [
           {
@@ -1912,16 +1923,16 @@
           }
         ],
         "package": {
-          "name": "cs3.preferencesv0alpha"
+          "name": "cs3.preferences.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.PreferencesV0Alpha"
+            "value": "CS3.Preferences.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "preferencesv0alphapb"
+            "value": "preferencesv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -1933,7 +1944,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.preferencesv0alpha"
+            "value": "com.cs3.preferences.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -1941,13 +1952,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\PreferencesV0Alpha"
+            "value": "CS3\\\\Preferences\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:publicshareprovider:/:v0alpha:/:publicshareprovider.proto",
+      "protopath": "cs3:/:publicshareprovider:/:v0beta1:/:publicshareprovider.proto",
       "def": {
         "enums": [
           {
@@ -2003,7 +2014,7 @@
               {
                 "id": 2,
                 "name": "resource_info",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo"
+                "type": "cs3.storageprovider.v0beta1.ResourceInfo"
               },
               {
                 "id": 3,
@@ -2131,7 +2142,7 @@
                   {
                     "id": 3,
                     "name": "resource_id",
-                    "type": "cs3.storageproviderv0alpha.ResourceId"
+                    "type": "cs3.storageprovider.v0beta1.ResourceId"
                   },
                   {
                     "id": 4,
@@ -2308,29 +2319,29 @@
         ],
         "imports": [
           {
-            "path": "cs3/publicshareprovider/v0alpha/resources.proto"
+            "path": "cs3/publicshareprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.publicshareproviderv0alpha"
+          "name": "cs3.publicshareprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.PublicShareProviderV0Alpha"
+            "value": "CS3.PublicShareProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "publicshareproviderv0alphapb"
+            "value": "publicshareproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -2342,7 +2353,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.publicshareproviderv0alpha"
+            "value": "com.cs3.publicshareprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -2350,13 +2361,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\PublicShareProviderV0Alpha"
+            "value": "CS3\\\\PublicShareProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:publicshareprovider:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:publicshareprovider:/:v0beta1:/:resources.proto",
       "def": {
         "messages": [
           {
@@ -2375,7 +2386,7 @@
               {
                 "id": 3,
                 "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "type": "cs3.storageprovider.v0beta1.ResourceId"
               },
               {
                 "id": 4,
@@ -2425,7 +2436,7 @@
               {
                 "id": 1,
                 "name": "permissions",
-                "type": "cs3.storageproviderv0alpha.ResourcePermissions"
+                "type": "cs3.storageprovider.v0beta1.ResourcePermissions"
               }
             ]
           },
@@ -2457,23 +2468,23 @@
         ],
         "imports": [
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.publicshareproviderv0alpha"
+          "name": "cs3.publicshareprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.PublicShareProviderV0Alpha"
+            "value": "CS3.PublicShareProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "publicshareproviderv0alphapb"
+            "value": "publicshareproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -2485,7 +2496,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.publicshareproviderv0alpha"
+            "value": "com.cs3.publicshareprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -2493,7 +2504,7 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\PublicShareProviderV0Alpha"
+            "value": "CS3\\\\PublicShareProvider\\\\V0Beta1"
           }
         ]
       }
@@ -2681,7 +2692,7 @@
       }
     },
     {
-      "protopath": "cs3:/:storageprovider:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:storageprovider:/:v0beta1:/:resources.proto",
       "def": {
         "enums": [
           {
@@ -3099,16 +3110,16 @@
           }
         ],
         "package": {
-          "name": "cs3.storageproviderv0alpha"
+          "name": "cs3.storageprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.StorageProviderV0Alpha"
+            "value": "CS3.StorageProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "storageproviderv0alphapb"
+            "value": "storageproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -3120,7 +3131,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.storageproviderv0alpha"
+            "value": "com.cs3.storageprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -3128,13 +3139,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\StorageProviderV0Alpha"
+            "value": "CS3\\\\StorageProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:storageprovider:/:v0alpha:/:storageprovider.proto",
+      "protopath": "cs3:/:storageprovider:/:v0beta1:/:storageprovider.proto",
       "def": {
         "messages": [
           {
@@ -4146,7 +4157,7 @@
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/storagetypes/storagetypes.proto"
@@ -4156,16 +4167,16 @@
           }
         ],
         "package": {
-          "name": "cs3.storageproviderv0alpha"
+          "name": "cs3.storageprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.StorageProviderV0Alpha"
+            "value": "CS3.StorageProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "storageproviderv0alphapb"
+            "value": "storageproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -4177,7 +4188,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.storageproviderv0alpha"
+            "value": "com.cs3.storageprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -4185,13 +4196,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\StorageProviderV0Alpha"
+            "value": "CS3\\\\StorageProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:storageregistry:/:v0alpha:/:storageregistry.proto",
+      "protopath": "cs3:/:storageregistry:/:v0beta1:/:storageregistry.proto",
       "def": {
         "messages": [
           {
@@ -4205,7 +4216,7 @@
               {
                 "id": 2,
                 "name": "ref",
-                "type": "cs3.storageproviderv0alpha.Reference"
+                "type": "cs3.storageprovider.v0beta1.Reference"
               }
             ]
           },
@@ -4318,7 +4329,7 @@
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/storagetypes/storagetypes.proto"
@@ -4328,16 +4339,16 @@
           }
         ],
         "package": {
-          "name": "cs3.storageregistryv0alpha"
+          "name": "cs3.storageregistry.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.StorageRegistryV0Alpha"
+            "value": "CS3.StorageRegistry.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "storageregistryv0alphapb"
+            "value": "storageregistryv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -4349,7 +4360,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.storageregistryv0alpha"
+            "value": "com.cs3.storageregistry.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -4357,7 +4368,7 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\StorageRegistryV0Alpha"
+            "value": "CS3\\\\StorageRegistry\\\\V0Beta1"
           }
         ]
       }
@@ -4554,7 +4565,7 @@
       }
     },
     {
-      "protopath": "cs3:/:userprovider:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:userprovider:/:v0beta1:/:resources.proto",
       "def": {
         "messages": [
           {
@@ -4567,37 +4578,32 @@
               },
               {
                 "id": 2,
-                "name": "issuer",
-                "type": "string"
-              },
-              {
-                "id": 3,
-                "name": "subject",
-                "type": "string"
-              },
-              {
-                "id": 4,
                 "name": "username",
                 "type": "string"
               },
               {
-                "id": 5,
+                "id": 3,
                 "name": "mail",
                 "type": "string"
               },
               {
-                "id": 6,
+                "id": 4,
+                "name": "mail_verified",
+                "type": "bool"
+              },
+              {
+                "id": 5,
                 "name": "display_name",
                 "type": "string"
               },
               {
-                "id": 7,
+                "id": 6,
                 "name": "groups",
                 "type": "string",
                 "is_repeated": true
               },
               {
-                "id": 8,
+                "id": 7,
                 "name": "opaque",
                 "type": "cs3.types.Opaque"
               }
@@ -4610,16 +4616,16 @@
           }
         ],
         "package": {
-          "name": "cs3.userproviderv0alpha"
+          "name": "cs3.userprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.UserProviderV0Alpha"
+            "value": "CS3.UserProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "userproviderv0alphapb"
+            "value": "userproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -4631,7 +4637,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.userproviderv0alpha"
+            "value": "com.cs3.userprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -4639,13 +4645,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\UserProviderV0Alpha"
+            "value": "CS3\\\\UserProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:userprovider:/:v0alpha:/:userprovider.proto",
+      "protopath": "cs3:/:userprovider:/:v0beta1:/:userprovider.proto",
       "def": {
         "messages": [
           {
@@ -4831,20 +4837,20 @@
             "path": "cs3/types/types.proto"
           },
           {
-            "path": "cs3/userprovider/v0alpha/resources.proto"
+            "path": "cs3/userprovider/v0beta1/resources.proto"
           }
         ],
         "package": {
-          "name": "cs3.userproviderv0alpha"
+          "name": "cs3.userprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.UserProviderV0Alpha"
+            "value": "CS3.UserProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "userproviderv0alphapb"
+            "value": "userproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -4856,7 +4862,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.userproviderv0alpha"
+            "value": "com.cs3.userprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -4864,13 +4870,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\UserProviderV0Alpha"
+            "value": "CS3\\\\UserProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:usershareprovider:/:v0alpha:/:resources.proto",
+      "protopath": "cs3:/:usershareprovider:/:v0beta1:/:resources.proto",
       "def": {
         "enums": [
           {
@@ -4906,7 +4912,7 @@
               {
                 "id": 2,
                 "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "type": "cs3.storageprovider.v0beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -4916,7 +4922,7 @@
               {
                 "id": 4,
                 "name": "grantee",
-                "type": "cs3.storageproviderv0alpha.Grantee"
+                "type": "cs3.storageprovider.v0beta1.Grantee"
               },
               {
                 "id": 5,
@@ -4946,7 +4952,7 @@
               {
                 "id": 1,
                 "name": "permissions",
-                "type": "cs3.storageproviderv0alpha.ResourcePermissions"
+                "type": "cs3.storageprovider.v0beta1.ResourcePermissions"
               }
             ]
           },
@@ -4976,12 +4982,12 @@
               {
                 "id": 3,
                 "name": "resource_id",
-                "type": "cs3.storageproviderv0alpha.ResourceId"
+                "type": "cs3.storageprovider.v0beta1.ResourceId"
               },
               {
                 "id": 4,
                 "name": "grantee",
-                "type": "cs3.storageproviderv0alpha.Grantee"
+                "type": "cs3.storageprovider.v0beta1.Grantee"
               }
             ]
           },
@@ -5016,7 +5022,7 @@
               {
                 "id": 1,
                 "name": "grantee",
-                "type": "cs3.storageproviderv0alpha.Grantee"
+                "type": "cs3.storageprovider.v0beta1.Grantee"
               },
               {
                 "id": 2,
@@ -5028,23 +5034,23 @@
         ],
         "imports": [
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           }
         ],
         "package": {
-          "name": "cs3.usershareproviderv0alpha"
+          "name": "cs3.usershareprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.UserShareProviderV0Alpha"
+            "value": "CS3.UserShareProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "usershareproviderv0alphapb"
+            "value": "usershareproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -5056,7 +5062,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.usershareproviderv0alpha"
+            "value": "com.cs3.usershareprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -5064,13 +5070,13 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\UserShareProviderV0Alpha"
+            "value": "CS3\\\\UserShareProvider\\\\V0Beta1"
           }
         ]
       }
     },
     {
-      "protopath": "cs3:/:usershareprovider:/:v0alpha:/:usershareprovider.proto",
+      "protopath": "cs3:/:usershareprovider:/:v0beta1:/:usershareprovider.proto",
       "def": {
         "enums": [
           {
@@ -5110,7 +5116,7 @@
               {
                 "id": 2,
                 "name": "resource_info",
-                "type": "cs3.storageproviderv0alpha.ResourceInfo"
+                "type": "cs3.storageprovider.v0beta1.ResourceInfo"
               },
               {
                 "id": 3,
@@ -5218,7 +5224,7 @@
                   {
                     "id": 3,
                     "name": "resource_id",
-                    "type": "cs3.storageproviderv0alpha.ResourceId"
+                    "type": "cs3.storageprovider.v0beta1.ResourceId"
                   },
                   {
                     "id": 4,
@@ -5491,26 +5497,26 @@
             "path": "cs3/rpc/status.proto"
           },
           {
-            "path": "cs3/storageprovider/v0alpha/resources.proto"
+            "path": "cs3/storageprovider/v0beta1/resources.proto"
           },
           {
             "path": "cs3/types/types.proto"
           },
           {
-            "path": "cs3/usershareprovider/v0alpha/resources.proto"
+            "path": "cs3/usershareprovider/v0beta1/resources.proto"
           }
         ],
         "package": {
-          "name": "cs3.usershareproviderv0alpha"
+          "name": "cs3.usershareprovider.v0beta1"
         },
         "options": [
           {
             "name": "csharp_namespace",
-            "value": "CS3.UserShareProviderV0Alpha"
+            "value": "CS3.UserShareProvider.V0Beta1"
           },
           {
             "name": "go_package",
-            "value": "usershareproviderv0alphapb"
+            "value": "usershareproviderv0beta1pb"
           },
           {
             "name": "java_multiple_files",
@@ -5522,7 +5528,7 @@
           },
           {
             "name": "java_package",
-            "value": "com.cs3.usershareproviderv0alpha"
+            "value": "com.cs3.usershareprovider.v0beta1"
           },
           {
             "name": "objc_class_prefix",
@@ -5530,7 +5536,7 @@
           },
           {
             "name": "php_namespace",
-            "value": "CS3\\\\UserShareProviderV0Alpha"
+            "value": "CS3\\\\UserShareProvider\\\\V0Beta1"
           }
         ]
       }

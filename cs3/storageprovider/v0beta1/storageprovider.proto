@@ -18,18 +18,18 @@
 
 syntax = "proto3";
 
-package cs3.storageproviderv0alpha;
+package cs3.storageprovider.v0beta1;
 
-option csharp_namespace = "CS3.StorageProviderV0Alpha";
-option go_package = "storageproviderv0alphapb";
+option csharp_namespace = "CS3.StorageProvider.V0Beta1";
+option go_package = "v0beta1pb";
 option java_multiple_files = true;
 option java_outer_classname = "StorageproviderProto";
-option java_package = "com.cs3.storageproviderv0alpha";
+option java_package = "com.cs3.storageprovider.v0beta1";
 option objc_class_prefix = "CBOXAB";
-option php_namespace = "CS3\\StorageProviderV0Alpha";
+option php_namespace = "CS3\\StorageProvider\\V0Beta1";
 
 import "cs3/rpc/status.proto";
-import "cs3/storageprovider/v0alpha/resources.proto";
+import "cs3/storageprovider/v0beta1/resources.proto";
 import "cs3/storagetypes/storagetypes.proto";
 import "cs3/types/types.proto";
 
@@ -136,10 +136,10 @@ service StorageProviderService {
   // The references resource can be accessed by the protocol specificied in the request message.
   rpc CreateReference(CreateReferenceRequest) returns (CreateReferenceResponse);
   // Sets arbitrary metadata into a storage resource.
-  // Arbitrary metadata is returned in a cs3.storageproviderv0alpha.ResourceInfo.
+  // Arbitrary metadata is returned in a cs3.storageprovider.v0beta1.ResourceInfo.
   rpc SetArbitraryMetadata(SetArbitraryMetadataRequest) returns (SetArbitraryMetadataResponse);
   // Unsets arbitrary metdata into a storage resource.
-  // Arbitrary metadata is returned in a cs3.storageproviderv0alpha.ResourceInfo.
+  // Arbitrary metadata is returned in a cs3.storageprovider.v0beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
 }
 
