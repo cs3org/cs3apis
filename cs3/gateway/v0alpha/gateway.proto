@@ -283,8 +283,6 @@ message AuthenticateRequest {
 }
 
 message AuthenticateResponse {
-  reserved 4;
-  reserved "user_id";
   // REQUIRED.
   // The response status.
   cs3.rpc.Status status = 1;
@@ -296,7 +294,7 @@ message AuthenticateResponse {
   string token = 3;
   // REQUIRED.
   // The user.
-  cs3.userproviderv0alpha.User user = 5;
+  cs3.userproviderv0alpha.User user = 4;
 }
 
 message WhoAmIRequest {

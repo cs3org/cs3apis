@@ -43,8 +43,6 @@ message AuthenticateRequest {
 }
 
 message AuthenticateResponse {
-  reserved 2;
-  reserved "user_id";
   cs3.rpc.Status status = 1;
-  cs3.userproviderv0alpha.User user = 3;
+  cs3.userproviderv0alpha.User user = 2;
 }
