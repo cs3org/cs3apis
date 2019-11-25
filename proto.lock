@@ -346,8 +346,8 @@
               },
               {
                 "id": 2,
-                "name": "user_id",
-                "type": "cs3.types.UserId"
+                "name": "user",
+                "type": "cs3.userproviderv0alpha.User"
               }
             ]
           }
@@ -370,6 +370,9 @@
           },
           {
             "path": "cs3/types/types.proto"
+          },
+          {
+            "path": "cs3/userprovider/v0alpha/resources.proto"
           }
         ],
         "package": {
@@ -660,8 +663,8 @@
               },
               {
                 "id": 4,
-                "name": "user_id",
-                "type": "cs3.types.UserId"
+                "name": "user",
+                "type": "cs3.userproviderv0alpha.User"
               }
             ]
           },
@@ -1118,6 +1121,11 @@
                 "name": "ListAuthProviders",
                 "in_type": "cs3.authregistryv0alpha.ListAuthProvidersRequest",
                 "out_type": "ListAuthProvidersResponse"
+              },
+              {
+                "name": "GetHome",
+                "in_type": "cs3.storageregistryv0alpha.GetHomeRequest",
+                "out_type": "cs3.storageregistryv0alpha.GetHomeResponse"
               }
             ]
           }
@@ -1146,6 +1154,9 @@
           },
           {
             "path": "cs3/storageprovider/v0alpha/storageprovider.proto"
+          },
+          {
+            "path": "cs3/storageregistry/v0alpha/storageregistry.proto"
           },
           {
             "path": "cs3/types/types.proto"
@@ -4567,37 +4578,32 @@
               },
               {
                 "id": 2,
-                "name": "issuer",
-                "type": "string"
-              },
-              {
-                "id": 3,
-                "name": "subject",
-                "type": "string"
-              },
-              {
-                "id": 4,
                 "name": "username",
                 "type": "string"
               },
               {
-                "id": 5,
+                "id": 3,
                 "name": "mail",
                 "type": "string"
               },
               {
-                "id": 6,
+                "id": 4,
+                "name": "mail_verified",
+                "type": "bool"
+              },
+              {
+                "id": 5,
                 "name": "display_name",
                 "type": "string"
               },
               {
-                "id": 7,
+                "id": 6,
                 "name": "groups",
                 "type": "string",
                 "is_repeated": true
               },
               {
-                "id": 8,
+                "id": 7,
                 "name": "opaque",
                 "type": "cs3.types.Opaque"
               }
