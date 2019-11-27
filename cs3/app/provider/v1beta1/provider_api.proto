@@ -1,0 +1,91 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.app.provider.v1beta1;
+
+option csharp_namespace = "Cs3.App.Provider.V1Beta1";
+option go_package = "providerv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ProviderApiProto";
+option java_package = "com.cs3.app.provider.v1beta1";
+option objc_class_prefix = "CAP";
+option php_namespace = "Cs3\\App\\Provider\\V1Beta1";
+
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+//import "cs3/appprovider/v1beta1/resources.proto";
+
+// App Provider API
+//
+// The App Provider API is responsible for creating urls that
+// will render a viewer or editor for the given resource.
+// For example, an OnlyOffice or HackMD editor.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service ProviderAPI {
+  // Returns the iframe url
+  // MUST return CODE_NOT_FOUND if the resource does not exist.
+  rpc Open(OpenRequest) returns (OpenResponse);
+}
+
+message OpenRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The resource information.
+  storage.provider.v1beta1.ResourceInfo resource_info = 2;
+  // REQUIRED.
+  // The access token this application provider will use when contacting
+  // the storage provider to read and write.
+  // Service implementors MUST make sure that the access token only grants
+  // access to the requested resource.
+  // Service implementors should use a ResourceId rather than a filename to grant access, as
+  // ResourceIds MUST NOT change when a resource is renamed.
+  // The access token MUST be short-lived.
+  // TODO(labkode): investigate token derivation techniques.
+  string access_token = 3;
+}
+
+message OpenResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The url that user agents will render to clients.
+  // Usually the rendering happens by using HTML iframes,
+  // at least, Office 365, Collabora, OnlyOffice do like that.
+  string iframe_url = 3;
+}

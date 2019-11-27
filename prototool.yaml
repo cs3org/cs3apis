@@ -1,10 +1,24 @@
 lint:
-  group: uber1
+  group: uber2
   ignores:
     # the gateway service is a facade that reuses most of the internal api types.
   - id: REQUEST_RESPONSE_TYPES_IN_SAME_FILE
     files:
-    - cs3/gateway/v0beta1/gateway.proto
+    - cs3/gateway/v1beta1/gateway_api.proto
+
+  - id: NAMES_NO_DATA
+    files:
+    - cs3/rpc/v1beta1/code.proto
+    - cs3/storage/provider/v1beta1/provider_api.proto
+    - cs3/storage/provider/v1beta1/resources.proto
+    - cs3/gateway/v1beta1/gateway_api.proto
+
+  - id: REQUEST_RESPONSE_NAMES_MATCH_RPC
+    files:
+    - cs3/gateway/v1beta1/gateway_api.proto
+
+
+
 
 generate:
   go_options:
