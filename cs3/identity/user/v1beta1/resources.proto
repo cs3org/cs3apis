@@ -51,5 +51,3 @@ message User {
   repeated string groups = 6;
   cs3.types.v1beta1.Opaque opaque = 7;
 }
-
-

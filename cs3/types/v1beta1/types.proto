@@ -20,13 +20,13 @@ syntax = "proto3";
 
 package cs3.types.v1beta1;
 
+option csharp_namespace = "Cs3.Types.V1Beta1";
 option go_package = "typesv1beta1";
 option java_multiple_files = true;
 option java_outer_classname = "TypesProto";
 option java_package = "com.cs3.types.v1beta1";
 option objc_class_prefix = "CTX";
 option php_namespace = "Cs3\\Types\\V1Beta1";
-option csharp_namespace = "Cs3.Types.V1Beta1";
 
 // Opaque represents opaque information
 // in a form on a map.

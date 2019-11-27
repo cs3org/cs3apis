@@ -28,10 +28,9 @@ option java_package = "com.cs3.sharing.collaboration.v1beta1";
 option objc_class_prefix = "CSC";
 option php_namespace = "Cs3\\Sharing\\Collaboration\\V1Beta1";
 
+import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
-import "cs3/identity/user/v1beta1/resources.proto";
-
 
 // Shares are relationships between a resource owner
 // (usually the authenticated user) who grants permissions to a recipient (grantee)

@@ -28,12 +28,11 @@ option java_package = "com.cs3.sharing.link.v1beta1";
 option objc_class_prefix = "CSL";
 option php_namespace = "Cs3\\Sharing\\Link\\V1Beta1";
 
-import "cs3/sharing/link/v1beta1/resources.proto";
+import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/link/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
-import "cs3/identity/user/v1beta1/resources.proto";
-
 
 // PublicShare Provider API
 //
@@ -87,7 +86,6 @@ message CreatePublicShareRequest {
   // The restrictions to apply to the share.
   Grant grant = 3;
 }
-
 
 message CreatePublicShareResponse {
   // REQUIRED.

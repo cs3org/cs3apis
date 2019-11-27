@@ -21,12 +21,12 @@ syntax = "proto3";
 package cs3.auth.registry.v1beta1;
 
 option csharp_namespace = "Cs3.Auth.Registry.V1Beta1";
+option go_package = "registryv1beta1";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
 option java_package = "com.cs3.auth.registry.v1beta1";
 option objc_class_prefix = "CAR";
 option php_namespace = "Cs3\\Auth\\Registry\\V1Beta1";
-option go_package = "registryv1beta1";
 
 import "cs3/types/v1beta1/types.proto";
 

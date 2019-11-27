@@ -30,17 +30,17 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 
 import "cs3/app/registry/v1beta1/registry_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
-import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
-import "cs3/preferences/v1beta1/preferences_api.proto";
-import "cs3/sharing/link/v1beta1/link_api.proto";
-import "cs3/rpc/v1beta1/status.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
-import "cs3/storage/provider/v1beta1/provider_api.proto";
-import "cs3/storage/registry/v1beta1/registry_api.proto";
-import "cs3/types/v1beta1/types.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
+import "cs3/preferences/v1beta1/preferences_api.proto";
+import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
+import "cs3/sharing/link/v1beta1/link_api.proto";
+import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
+import "cs3/storage/provider/v1beta1/provider_api.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/storage/registry/v1beta1/registry_api.proto";
+import "cs3/types/v1beta1/types.proto";
 
 // Gateway API
 //
@@ -249,7 +249,7 @@ service GatewayAPI {
   // *****************************************************************/
   // ************************ USER PROVIDER **************************/
   // *****************************************************************/
-  
+
   // Gets the information about an user by its user id.
   rpc GetUser(cs3.identity.user.v1beta1.GetUserRequest) returns (cs3.identity.user.v1beta1.GetUserResponse);
   // Gets the groups of a user.
