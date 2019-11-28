@@ -1,0 +1,71 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.storage.registry.v1beta1;
+
+option csharp_namespace = "Cs3.Storage.Registry.V1Beta1";
+option go_package = "registryv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.storage.registry.v1beta1";
+option objc_class_prefix = "CSR";
+option php_namespace = "Cs3\\Storage\\Registry\\V1Beta1";
+
+import "cs3/types/v1beta1/types.proto";
+
+// The information for the storage provider.
+message ProviderInfo {
+  // OPTIONAL.
+  // Opaque information (containing storage-specific information).
+  // For example, additional metadata attached to the resource.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The storage provider id that will become part of the
+  // resource id.
+  // For example, if the provider_id is "home", resources obtained
+  // from this storage provider will have a resource id like "home:1234".
+  string provider_id = 2;
+  // REQUIRED.
+  // The public path prefix this storage provider handles.
+  // In Unix literature, the mount path.
+  // For example, if the provider_path is "/home", resources obtained
+  // from this storage provier will have a resource path lik "/home/docs".
+  string provider_path = 3;
+  // REQUIRED.
+  // The address where the storage provider can be reached.
+  // For example, tcp://localhost:1099.
+  string address = 4;
+  // OPTIONAL.
+  // Information to describe the functionalities
+  // offered by the storage provider. Meant to be read
+  // by humans.
+  string description = 5;
+  // REQUIRED.
+  // Represents the list of features available
+  // on this storage provider. If the feature is not supported,
+  // the related service methods MUST return CODE_UNIMPLEMENTED.
+  message Features {
+    bool recycle = 1;
+    bool file_versions = 2;
+  }
+  // REQUIRED.
+  // List of available methods.
+  Features features = 6;
+}

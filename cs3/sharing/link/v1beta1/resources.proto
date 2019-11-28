@@ -1,0 +1,144 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.sharing.link.v1beta1;
+
+option csharp_namespace = "Cs3.Sharing.Link.V1Beta1";
+option go_package = "linkv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.sharing.link.v1beta1";
+option objc_class_prefix = "CSL";
+option php_namespace = "Cs3\\Sharing\\Link\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+//
+//message PublicShare {
+//  string id = 1;
+//  string token = 2;
+//  string filename = 3;
+//  FileType file_type = 4;
+//  uint64 expiration = 5;
+//  bool password_protected = 6;
+//  Permission permission = 7;
+//  string display_name = 8;
+//  string owner = 9;
+//}
+//
+
+// Public share are relationships between a resource owner
+// (usually the authenticated user) who grants permissions to a recipient (grantee)
+// on a specified resource (resource_id). UserShares represents both user and groups.
+// TODO(labkode): do we need to have  resource_type stored on the share?
+// This is not needed if when getting the shares a stat operation is launched against the
+// the storage provider.
+message PublicShare {
+  // REQUIRED.
+  // Opaque unique identifier of the share.
+  PublicShareId id = 1;
+  // REQUIRED.
+  // The unlisted token to give public access
+  // to the public share.
+  string token = 2;
+  // REQUIRED.
+  // Unique identifier of the shared resource.
+  storage.provider.v1beta1.ResourceId resource_id = 3;
+  // REQUIRED.
+  // Permissions for the grantee to use
+  // the resource.
+  PublicSharePermissions permissions = 4;
+  // REQUIRED.
+  // Uniquely identifies the owner of the share
+  // (the resource owner at the time of creating the share).
+  // In case the ownership of the underlying resource changes
+  // the share owner field MAY change to reflect the change of ownsership.
+  cs3.identity.user.v1beta1.UserId owner = 5;
+  // REQUIRED.
+  // Uniquely identifies a principal who initiates the share creation.
+  // A creator can create shares on behalf of the owner (because of re-sharing,
+  // because belonging to special groups, ...).
+  // Creator and owner often result in being the same principal.
+  cs3.identity.user.v1beta1.UserId creator = 6;
+  // REQUIRED.
+  // Creation time of the share.
+  cs3.types.v1beta1.Timestamp ctime = 7;
+  // REQUIRED.
+  // Last modification time of the share.
+  cs3.types.v1beta1.Timestamp mtime = 8;
+  // REQUIRED.
+  // Determines if the public share is password protected or not.
+  bool password_protected = 9;
+  // OPTIONAL.
+  // The expiration time for the public share.
+  cs3.types.v1beta1.Timestamp expiration = 10;
+  // OPTIONAL.
+  // Display name for the shared resource (such as file, directory basename or any
+  // user defined name).
+  // The display name MAY be different than the actual resource basename.
+  // This field is only useful for informational purposes, like for example,
+  // setting the window title in a public share HTML page.
+  string display_name = 11;
+}
+
+// The permissions for a share.
+message PublicSharePermissions {
+  storage.provider.v1beta1.ResourcePermissions permissions = 1;
+  // TODO(labkode): additional permissions for shares like re-sharing
+
+}
+
+// A share id identifies uniquely a // share in the share provider namespace.
+// A ShareId MUST be unique inside the share provider.
+message PublicShareId {
+  // REQUIRED.
+  // The internal id used by service implementor to
+  // uniquely identity the share in the internal
+  // implementation of the service.
+  string opaque_id = 2;
+}
+
+// The mechanism to identify a share
+// in the share provider namespace.
+message PublicShareReference {
+  // REQUIRED.
+  // One of the specifications MUST be specified.
+  oneof spec {
+    // The id of the share.
+    PublicShareId id = 1;
+    // The token to identify the public share.
+    string token = 2;
+  }
+}
+
+// Defines the restrictions for the public share.
+message Grant {
+  // REQUIRED.
+  // The permissions for the share.
+  PublicSharePermissions permissions = 1;
+  // OPTIONAL.
+  // A password to protect the access to the public share.
+  string password = 2;
+  // OPTIONAL.
+  // An expiration date to protect the access to the public share.
+  cs3.types.v1beta1.Timestamp expiration = 3;
+}

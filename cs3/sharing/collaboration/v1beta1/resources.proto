@@ -1,0 +1,163 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.sharing.collaboration.v1beta1;
+
+option csharp_namespace = "Cs3.Sharing.Collaboration.V1Beta1";
+option go_package = "collaborationv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.sharing.collaboration.v1beta1";
+option objc_class_prefix = "CSC";
+option php_namespace = "Cs3\\Sharing\\Collaboration\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// Shares are relationships between a resource owner
+// (usually the authenticated user) who grants permissions to a recipient (grantee)
+// on a specified resource (resource_id). UserShares represents both user and groups.
+message Share {
+  // REQUIRED.
+  // Opaque unique identifier of the share.
+  ShareId id = 1;
+  // REQUIRED.
+  // Unique identifier of the shared resource.
+  storage.provider.v1beta1.ResourceId resource_id = 2;
+  // REQUIRED.
+  // Permissions for the grantee to use
+  // the resource.
+  SharePermissions permissions = 3;
+  // REQUIRED.
+  // The receiver of the share, like a user, group ...
+  storage.provider.v1beta1.Grantee grantee = 4;
+  // REQUIRED.
+  // Uniquely identifies the owner of the share
+  // (the resource owner at the time of creating the share).
+  // In case the ownership of the underlying resource changes
+  // the share owner field MAY change to reflect the change of ownsership.
+  cs3.identity.user.v1beta1.UserId owner = 5;
+  // REQUIRED.
+  // Uniquely identifies a principal who initiates the share creation.
+  // A creator can create shares on behalf of the owner (because of re-sharing,
+  // because belonging to special groups, ...).
+  // Creator and owner often result in being the same principal.
+  cs3.identity.user.v1beta1.UserId creator = 6;
+  // REQUIRED.
+  // Creation time of the share.
+  cs3.types.v1beta1.Timestamp ctime = 7;
+  // REQUIRED.
+  // Last modification time of the share.
+  cs3.types.v1beta1.Timestamp mtime = 8;
+}
+
+// The permissions for a share.
+message SharePermissions {
+  storage.provider.v1beta1.ResourcePermissions permissions = 1;
+  // TODO(labkode): additional permissions for shares like re-sharing
+
+}
+
+// A received share is the share that a grantee will receive.
+// It expands the original share by adding state to the share,
+// a display name from the perspective of the grantee and a
+// resource mount path in case the share will be mounted
+// in a path in a storage provider.
+message ReceivedShare {
+  // REQUIRED.
+  Share share = 1;
+  // REQUIRED.
+  // The state of the share.
+  ShareState state = 2;
+}
+
+// The state of the share.
+enum ShareState {
+  // The share is no longer valid, for example, the share expired.
+  SHARE_STATE_INVALID = 0;
+  // New shares MUST be created in the SHARE_STATE_PENDING state.
+  // This state means the share is pending to be accepted or rejected
+  // by the recipient of the share.
+  SHARE_STATE_PENDING = 1;
+  // The recipient of the share has accepted the share.
+  SHARE_STATE_ACCEPTED = 2;
+  // The recipient of the share has rejected the share.
+  // Do not means the share is removed, the recipient MAY
+  // change the state to accepted or pending.
+  SHARE_STATE_REJECTED = 3;
+}
+
+// Uniquely identifies a share in the share provider.
+// A share MUST be uniquely identify by four (4) elements:
+// 1) The share provider id
+// 2) The owner of the share
+// 3) The resource id
+// 4) The grantee for the share
+// This 4-tuple MUST be unique.
+// For example, owner Alice shares the resource /home/docs with id
+// home:1234 to an user named Bob. The 4-tuple will consist of
+// 1) The share provider id = "user"
+// 2) The owner of the share = "Alice"
+// 3) The resource id = "home:1234"
+// 4) The grantee for the share = Grantee("type" = "user", "" => "Bob")
+message ShareKey {
+  // REQUIRED.
+  cs3.identity.user.v1beta1.UserId owner = 2;
+  // REQUIRED.
+  storage.provider.v1beta1.ResourceId resource_id = 3;
+  // REQUIRED.
+  storage.provider.v1beta1.Grantee grantee = 4;
+}
+
+// A share id identifies uniquely a // share in the share provider namespace.
+// A ShareId MUST be unique inside the share provider.
+message ShareId {
+  // REQUIRED.
+  // The internal id used by service implementor to
+  // uniquely Collaboration the share in the internal
+  // implementation of the service.
+  string opaque_id = 2;
+}
+
+// The mechanism to identify a share
+// in the share provider namespace.
+message ShareReference {
+  // REQUIRED.
+  // One of the specifications MUST be specified.
+  oneof spec {
+    // The id of the share.
+    ShareId id = 1;
+    // The combination of fields that
+    // make the share unique.
+    ShareKey key = 2;
+  }
+}
+
+// A share grant specifies the share permissions
+// for a grantee.
+message ShareGrant {
+  // REQUIRED.
+  // The grantee of the grant.
+  storage.provider.v1beta1.Grantee grantee = 1;
+  // REQUIRED.
+  // The share permissions for the grant.
+  SharePermissions permissions = 2;
+}

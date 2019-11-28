@@ -1,0 +1,285 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.sharing.collaboration.v1beta1;
+
+option csharp_namespace = "Cs3.Sharing.Collaboration.V1Beta1";
+option go_package = "collaborationv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "CollaborationApiProto";
+option java_package = "com.cs3.sharing.collaboration.v1beta1";
+option objc_class_prefix = "CSC";
+option php_namespace = "Cs3\\Sharing\\Collaboration\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/collaboration/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// User Share Provider API
+//
+// The User Share Provider API is meant to manipulate share
+// resources for a specific share type (user, group, ocm, ...)
+// from the perspective of the creator or the share and
+// from the perspective of the receiver of the share.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service CollaborationAPI {
+  // Creates a new share.
+  // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+  // (owner, shared_resource, grantee).
+  // New shares MUST be created in the state SHARE_STATE_PENDING.
+  rpc CreateShare(CreateShareRequest) returns (CreateShareResponse);
+  // Removes a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc RemoveShare(RemoveShareRequest) returns (RemoveShareResponse);
+  // Gets share information for a single share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc GetShare(GetShareRequest) returns (GetShareResponse);
+  // List the shares the authenticated principal has created,
+  // both as owner and creator. If a filter is specified, only
+  // shares satisfying the filter MUST be returned.
+  rpc ListShares(ListSharesRequest) returns (ListSharesResponse);
+  // Updates a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateShare(UpdateShareRequest) returns (UpdateShareResponse);
+  // List all shares the authenticated principal has received.
+  rpc ListReceivedShares(ListReceivedSharesRequest) returns (ListReceivedSharesResponse);
+  // Update the received share to change the share state or the display name.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateReceivedShare(UpdateReceivedShareRequest) returns (UpdateReceivedShareResponse);
+  // Get the information for the given received share reference.
+  // MUST return CODE_NOT_FOUND if the received share reference does not exist.
+  rpc GetReceivedShare(GetReceivedShareRequest) returns (GetReceivedShareResponse);
+}
+
+message CreateShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The information of the resource to be shared.
+  storage.provider.v1beta1.ResourceInfo resource_info = 2;
+  // REQUIRED.
+  // The share grant for the share.
+  ShareGrant grant = 3;
+}
+
+message CreateShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The created share.
+  Share share = 3;
+}
+
+message UpdateShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+
+  ShareReference ref = 2;
+  // REQUIRED.
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the permissions.
+      SharePermissions permissions = 2;
+      // Update the display name.
+      string display_name = 3;
+    }
+  }
+  // REQUIRED.
+  UpdateField field = 3;
+}
+
+message UpdateShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message ListSharesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // represents a filter to apply to the request.
+  message Filter {
+    // The filter to apply.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_NO = 1;
+      TYPE_RESOURCE_ID = 2;
+      TYPE_OWNER = 3;
+      TYPE_CREATOR = 4;
+    }
+    // REQUIRED.
+    Type type = 2;
+    oneof term {
+      storage.provider.v1beta1.ResourceId resource_id = 3;
+      cs3.identity.user.v1beta1.UserId owner = 4;
+      cs3.identity.user.v1beta1.UserId creator = 5;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
+}
+
+message ListSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of shares.
+  repeated Share shares = 3;
+}
+
+message RemoveShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  ShareReference ref = 2;
+}
+
+message RemoveShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  ShareReference ref = 2;
+}
+
+message GetShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  Share share = 3;
+}
+
+message ListReceivedSharesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message ListReceivedSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of received shares.
+  repeated ReceivedShare shares = 3;
+}
+
+// TODO(labkode): clean up display_name ? we'll use storage links for that.
+message UpdateReceivedShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  ShareReference ref = 2;
+  // REQUIRED.
+  // The field to update.
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the display name.
+      string display_name = 1;
+      // Update the share state
+      ShareState state = 2;
+    }
+  }
+  UpdateField field = 3;
+}
+
+message UpdateReceivedShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetReceivedShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference of the received share.
+  ShareReference ref = 2;
+}
+
+message GetReceivedShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  ReceivedShare share = 3;
+}

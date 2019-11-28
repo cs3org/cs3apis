@@ -1,0 +1,262 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.sharing.ocm.v1beta1;
+
+option csharp_namespace = "Cs3.Sharing.Ocm.V1Beta1";
+option go_package = "ocmv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "OcmApiProto";
+option java_package = "com.cs3.sharing.ocm.v1beta1";
+option objc_class_prefix = "CSO";
+option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// OCM Share Provider API
+//
+// The OCM Share Provider API is meant to manipulate share
+// resources from the perspective of the creator or the share and
+// from the perspective of the receiver of the share.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service OcmAPI {
+  // Creates a new ocm share.
+  // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+  // (owner, shared_resource, grantee).
+  // New shares MUST be created in the state SHARE_STATE_PENDING.
+  rpc CreateOCMShare(CreateOCMShareRequest) returns (CreateOCMShareResponse);
+  // Removes a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc RemoveOCMShare(RemoveOCMShareRequest) returns (RemoveOCMShareResponse);
+  // Gets share information for a single share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc GetOCMShare(GetOCMShareRequest) returns (GetOCMShareResponse);
+  // List the shares the authenticated principal has created,
+  // both as owner and creator. If a filter is specified, only
+  // shares satisfying the filter MUST be returned.
+  rpc ListOCMShares(ListOCMSharesRequest) returns (ListOCMSharesResponse);
+  // Updates a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateOCMShare(UpdateOCMShareRequest) returns (UpdateOCMShareResponse);
+  // List all shares the authenticated principal has received.
+  rpc ListReceivedOCMShares(ListReceivedOCMSharesRequest) returns (ListReceivedOCMSharesResponse);
+  // Update the received share to change the share state or the display name.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateReceivedOCMShare(UpdateReceivedOCMShareRequest) returns (UpdateReceivedOCMShareResponse);
+}
+
+message CreateOCMShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The unique identifier for the shared storage resource.
+  storage.provider.v1beta1.ResourceId resource_id = 2;
+  // REQUIRED.
+  // The share grant for the share.
+  ShareGrant grant = 3;
+}
+
+message CreateOCMShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The created share.
+  Share share = 3;
+}
+
+message UpdateOCMShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+
+  // REQUIRED.
+  ShareReference ref = 2;
+  // REQUIRED.
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the permissions.
+      SharePermissions permissions = 2;
+      // Update the display name.
+      string display_name = 3;
+    }
+  }
+  UpdateField field = 3;
+}
+
+message UpdateOCMShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message ListOCMSharesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // represents a filter to apply to the request.
+  message Filter {
+    // REQUIRED.
+    // The filter to apply.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_NO = 1;
+      TYPE_RESOURCE_ID = 2;
+      TYPE_OWNER = 3;
+      TYPE_CREATOR = 4;
+      TYPE_OWNER_PROVIDER = 5;
+      TYPE_CREATOR_PROVIDER = 6;
+    }
+    // REQUIRED.
+    Type type = 2;
+    oneof term {
+      storage.provider.v1beta1.ResourceId resource_id = 3;
+      cs3.identity.user.v1beta1.UserId owner = 4;
+      cs3.identity.user.v1beta1.UserId creator = 5;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
+}
+
+message ListOCMSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of shares.
+  repeated Share shares = 3;
+}
+
+message RemoveOCMShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  ShareReference ref = 2;
+}
+
+message RemoveOCMShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetOCMShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  ShareReference ref = 2;
+}
+
+message GetOCMShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  Share share = 3;
+}
+
+message ListReceivedOCMSharesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message ListReceivedOCMSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of received shares.
+  repeated ReceivedShare shares = 3;
+}
+
+// TODO(labkode): clean up display_name ? we'll use storage links for that.
+message UpdateReceivedOCMShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  ShareReference ref = 2;
+  // REQUIRED.
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the display name.
+      string display_name = 1;
+      // Update the share state
+      ShareState state = 2;
+    }
+  }
+  UpdateField field = 3;
+}
+
+message UpdateReceivedOCMShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
