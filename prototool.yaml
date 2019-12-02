@@ -32,3 +32,7 @@ generate:
       type: go
       flags: plugins=grpc
       output: build/go-cs3apis
+    - name : micro
+      type: go
+      flags: plugins=grpc
+      output: build/go-micro
