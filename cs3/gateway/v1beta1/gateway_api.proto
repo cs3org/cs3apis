@@ -1,0 +1,444 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.gateway.v1beta1;
+
+option csharp_namespace = "Cs3.Gateway.V1Beta1";
+option go_package = "gatewayv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "GatewayApiProto";
+option java_package = "com.cs3.gateway.v1beta1";
+option objc_class_prefix = "CGX";
+option php_namespace = "Cs3\\Gateway\\V1Beta1";
+
+import "cs3/app/registry/v1beta1/registry_api.proto";
+import "cs3/auth/registry/v1beta1/registry_api.proto";
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/identity/user/v1beta1/user_api.proto";
+import "cs3/preferences/v1beta1/preferences_api.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
+import "cs3/sharing/link/v1beta1/link_api.proto";
+import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
+import "cs3/storage/provider/v1beta1/provider_api.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/storage/registry/v1beta1/registry_api.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// Gateway API
+//
+// The Gateway API is the only API exposed direclty to end-clients.
+// It is a facade API that all clients should connect to.
+// Other APIS like the StorageProviderAPI are internal APIS.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service GatewayAPI {
+  // *****************************************************************/
+  // ************************ AUTH ******** **************************/
+  // *****************************************************************/
+
+  // Authenticates a user.
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+  // WhoAmI returns the information for a user.
+  rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
+  // *****************************************************************/
+  // ************************ STORAGE PROVIDER ***********************/
+  // *****************************************************************/
+
+  // Creates a new resource of type container.
+  // MUST return CODE_PRECONDITION_FAILED if the container
+  // cannot be created at the specified reference.
+  rpc CreateContainer(cs3.storage.provider.v1beta1.CreateContainerRequest) returns (cs3.storage.provider.v1beta1.CreateContainerResponse);
+  // Deletes a resource.
+  // If a resource specifies the non-empty container (directory, ...),
+  // then the entire directory is deleted recursively.
+  // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  rpc Delete(cs3.storage.provider.v1beta1.DeleteRequest) returns (cs3.storage.provider.v1beta1.DeleteResponse);
+  // Returns the path reference for
+  // the provided resource id reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist
+  rpc GetPath(cs3.storage.provider.v1beta1.GetPathRequest) returns (cs3.storage.provider.v1beta1.GetPathResponse);
+  // Returns the quota available under the provided
+  // reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist
+  // MUST return CODE_RESOURCE_EXHAUSTED on exceeded quota limits.
+  rpc GetQuota(GetQuotaRequest) returns (cs3.storage.provider.v1beta1.GetQuotaResponse);
+  // Initiates the download of a file using an
+  // out-of-band data transfer mechanism.
+  rpc InitiateFileDownload(cs3.storage.provider.v1beta1.InitiateFileDownloadRequest) returns (InitiateFileDownloadResponse);
+  // Initiates the upload of a file using an
+  // out-of-band data transfer mechanism.
+  rpc InitiateFileUpload(cs3.storage.provider.v1beta1.InitiateFileUploadRequest) returns (InitiateFileUploadResponse);
+  // Returns a stream of resource informations
+  // for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
+  rpc ListContainerStream(cs3.storage.provider.v1beta1.ListContainerStreamRequest) returns (stream cs3.storage.provider.v1beta1.ListContainerStreamResponse);
+  // Returns a list of resource information
+  // for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
+  rpc ListContainer(cs3.storage.provider.v1beta1.ListContainerRequest) returns (cs3.storage.provider.v1beta1.ListContainerResponse);
+  // Returns a list of the versions for a resource of
+  // type file at the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_OK and MUST return an empty list if no versions are available.
+  // TODO: What code if resource not of type file?
+  rpc ListFileVersions(cs3.storage.provider.v1beta1.ListFileVersionsRequest) returns (cs3.storage.provider.v1beta1.ListFileVersionsResponse);
+  // Returns a stream of recycle items for this storage provider.
+  rpc ListRecycleStream(ListRecycleStreamRequest) returns (stream cs3.storage.provider.v1beta1.ListRecycleStreamResponse);
+  // Returns a list of recycle items for this storage provider.
+  // MUST return CODE_OK and MUST return an empty list if no recycle items are available.
+  rpc ListRecycle(ListRecycleRequest) returns (cs3.storage.provider.v1beta1.ListRecycleResponse);
+  // Moves a resource from one reference to another.
+  // MUST return CODE_NOT_FOUND if any of the references do not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the source reference
+  // cannot be moved to the destination reference.
+  rpc Move(cs3.storage.provider.v1beta1.MoveRequest) returns (cs3.storage.provider.v1beta1.MoveResponse);
+  // Permanently removes a recycle item from the recycle.
+  // This operation is irrevocable.
+  // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
+  rpc PurgeRecycle(PurgeRecycleRequest) returns (cs3.storage.provider.v1beta1.PurgeRecycleResponse);
+  // Restores a file version for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_NOT_FOUND if the version does not exist.
+  rpc RestoreFileVersion(cs3.storage.provider.v1beta1.RestoreFileVersionRequest) returns (cs3.storage.provider.v1beta1.RestoreFileVersionResponse);
+  // Restores a recycle item from the recycle.
+  // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
+  // and the recycle item cannot be restored to the restore_path.
+  rpc RestoreRecycleItem(cs3.storage.provider.v1beta1.RestoreRecycleItemRequest) returns (cs3.storage.provider.v1beta1.RestoreRecycleItemResponse);
+  // Returns the resource information at the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  rpc Stat(cs3.storage.provider.v1beta1.StatRequest) returns (cs3.storage.provider.v1beta1.StatResponse);
+  // Sets arbitrary metadata into a storage resource.
+  // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
+  rpc SetArbitraryMetadata(cs3.storage.provider.v1beta1.SetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.SetArbitraryMetadataResponse);
+  // Unsets arbitrary metdata into a storage resource.
+  // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
+  rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
+  // *****************************************************************/
+  // ************************ USER SHARE PROVIDER ********************/
+  // *****************************************************************/
+
+  // Creates a new share.
+  // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+  // (owner, shared_resource, grantee).
+  // New shares MUST be created in the state SHARE_STATE_PENDING.
+  rpc CreateShare(cs3.sharing.collaboration.v1beta1.CreateShareRequest) returns (cs3.sharing.collaboration.v1beta1.CreateShareResponse);
+  // Removes a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc RemoveShare(cs3.sharing.collaboration.v1beta1.RemoveShareRequest) returns (cs3.sharing.collaboration.v1beta1.RemoveShareResponse);
+  // Gets share information for a single share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc GetShare(cs3.sharing.collaboration.v1beta1.GetShareRequest) returns (cs3.sharing.collaboration.v1beta1.GetShareResponse);
+  // List the shares the authproviderenticated principal has created,
+  // both as owner and creator. If a filter is specified, only
+  // shares satisfying the filter MUST be returned.
+  rpc ListShares(cs3.sharing.collaboration.v1beta1.ListSharesRequest) returns (cs3.sharing.collaboration.v1beta1.ListSharesResponse);
+  // Updates a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateShare(cs3.sharing.collaboration.v1beta1.UpdateShareRequest) returns (cs3.sharing.collaboration.v1beta1.UpdateShareResponse);
+  // List all shares the authproviderenticated principal has received.
+  rpc ListReceivedShares(cs3.sharing.collaboration.v1beta1.ListReceivedSharesRequest) returns (cs3.sharing.collaboration.v1beta1.ListReceivedSharesResponse);
+  // Update the received share to change the share state or the display name.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateReceivedShare(cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest) returns (cs3.sharing.collaboration.v1beta1.UpdateReceivedShareResponse);
+  // Get the information for the given received share reference.
+  // MUST return CODE_NOT_FOUND if the received share reference does not exist.
+  rpc GetReceivedShare(cs3.sharing.collaboration.v1beta1.GetReceivedShareRequest) returns (cs3.sharing.collaboration.v1beta1.GetReceivedShareResponse);
+  // *****************************************************************/
+  // ************************ PREFERENCES ***************************/
+  // *****************************************************************/
+
+  // Maps the key-value pair.
+  rpc SetKey(cs3.preferences.v1beta1.SetKeyRequest) returns (cs3.preferences.v1beta1.SetKeyResponse);
+  // Returns the value associated with the
+  // requested key.
+  rpc GetKey(cs3.preferences.v1beta1.GetKeyRequest) returns (cs3.preferences.v1beta1.GetKeyResponse);
+  // *****************************************************************/
+  // ************************ PUBLIC SHARE ***************************/
+  // *****************************************************************/
+
+  // Creates a new share.
+  // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+  // (owner, shared_resource, grantee).
+  // New shares MUST be created in the state SHARE_STATE_PENDING.
+  rpc CreatePublicShare(cs3.sharing.link.v1beta1.CreatePublicShareRequest) returns (cs3.sharing.link.v1beta1.CreatePublicShareResponse);
+  // Removes a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc RemovePublicShare(cs3.sharing.link.v1beta1.RemovePublicShareRequest) returns (cs3.sharing.link.v1beta1.RemovePublicShareResponse);
+  // Gets share information for a single share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc GetPublicShare(cs3.sharing.link.v1beta1.GetPublicShareRequest) returns (cs3.sharing.link.v1beta1.GetPublicShareResponse);
+  // Gets share information for a single share by its unlisted token.
+  // MUST return CODE_NOT_FOUND if the share does not exist.
+  rpc GetPublicShareByToken(cs3.sharing.link.v1beta1.GetPublicShareByTokenRequest) returns (cs3.sharing.link.v1beta1.GetPublicShareByTokenResponse);
+  // List the shares the authproviderenticated principal has created,
+  // both as owner and creator. If a filter is specified, only
+  // shares satisfying the filter MUST be returned.
+  rpc ListPublicShares(cs3.sharing.link.v1beta1.ListPublicSharesRequest) returns (cs3.sharing.link.v1beta1.ListPublicSharesResponse);
+  // Updates a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdatePublicShare(cs3.sharing.link.v1beta1.UpdatePublicShareRequest) returns (cs3.sharing.link.v1beta1.UpdatePublicShareResponse);
+  // *****************************************************************/
+  // ************************ OCM SHARE PROVIDER *********************/
+  // *****************************************************************/
+
+  // Creates a new ocm share.
+  // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+  // (owner, shared_resource, grantee).
+  // New shares MUST be created in the state SHARE_STATE_PENDING.
+  rpc CreateOCMShare(cs3.sharing.ocm.v1beta1.CreateOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.CreateOCMShareResponse);
+  // Removes a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc RemoveOCMShare(cs3.sharing.ocm.v1beta1.RemoveOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.RemoveOCMShareResponse);
+  // Gets share information for a single share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc GetOCMShare(cs3.sharing.ocm.v1beta1.GetOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareResponse);
+  // List the shares the authproviderenticated principal has created,
+  // both as owner and creator. If a filter is specified, only
+  // shares satisfying the filter MUST be returned.
+  rpc ListOCMShares(cs3.sharing.ocm.v1beta1.ListOCMSharesRequest) returns (cs3.sharing.ocm.v1beta1.ListOCMSharesResponse);
+  // Updates a share.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateOCMShare(cs3.sharing.ocm.v1beta1.UpdateOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.UpdateOCMShareResponse);
+  // List all shares the authproviderenticated principal has received.
+  rpc ListReceivedOCMShares(cs3.sharing.ocm.v1beta1.ListReceivedOCMSharesRequest) returns (cs3.sharing.ocm.v1beta1.ListReceivedOCMSharesResponse);
+  // Update the received share to change the share state or the display name.
+  // MUST return CODE_NOT_FOUND if the share reference does not exist.
+  rpc UpdateReceivedOCMShare(cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareResponse);
+  // *****************************************************************/
+  // ************************ APP REGISTRY ****************************/
+  // *****************************************************************/
+
+  // Returns the app providers that are capable of handling this resource info.
+  // MUST return CODE_NOT_FOUND if no providers are available.
+  rpc GetAppProviders(cs3.app.registry.v1beta1.GetAppProvidersRequest) returns (cs3.app.registry.v1beta1.GetAppProvidersResponse);
+  // Returns a list of the available app providers known by this registry.
+  rpc ListAppProviders(cs3.app.registry.v1beta1.ListAppProvidersRequest) returns (cs3.app.registry.v1beta1.ListAppProvidersResponse);
+  // *****************************************************************/
+  // ************************ USER PROVIDER **************************/
+  // *****************************************************************/
+
+  // Gets the information about an user by its user id.
+  rpc GetUser(cs3.identity.user.v1beta1.GetUserRequest) returns (cs3.identity.user.v1beta1.GetUserResponse);
+  // Gets the groups of a user.
+  rpc GetUserGroups(cs3.identity.user.v1beta1.GetUserGroupsRequest) returns (cs3.identity.user.v1beta1.GetUserGroupsResponse);
+  // Tells if the user is in a certain group.
+  rpc IsInGroup(cs3.identity.user.v1beta1.IsInGroupRequest) returns (cs3.identity.user.v1beta1.IsInGroupResponse);
+  // Finds users by any attribute of the user?
+  // TODO(labkode): to define the filters that make more sense.
+  rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
+  // *****************************************************************/
+  // ************************ AUTH REGISTRY  **************************/
+  // *****************************************************************/
+
+  // Returns a list of the available auth providers known by this registry.
+  rpc ListAuthProviders(cs3.auth.registry.v1beta1.ListAuthProvidersRequest) returns (ListAuthProvidersResponse);
+  // ************************ STORAGE REGISTRY ** ********************/
+  // *****************************************************************/
+
+  // Returns the home path for the given authenticated user.
+  // When a user has access to multiple storage providers, one of them is the home.
+  rpc GetHome(cs3.storage.registry.v1beta1.GetHomeRequest) returns (cs3.storage.registry.v1beta1.GetHomeResponse);
+}
+
+// CAUTION:
+// The request and responses differ from the non-gateway APIs because they need to be routable.
+
+message AuthenticateRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The type of authentication to use.
+  string type = 2;
+  // OPTIONAL.
+  // The id of the client.
+  // For basic authentication with username and password
+  // both client_id and client_secret are expected to be filled.
+  // However, for example, for OIDC only a token is necessary.
+  string client_id = 3;
+  // OPTIONAL.
+  // The secret of the client.
+  string client_secret = 4;
+}
+
+message AuthenticateResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The access token.
+  string token = 3;
+  // REQUIRED.
+  // The user.
+  cs3.identity.user.v1beta1.User user = 4;
+}
+
+message WhoAmIRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The access token.
+  string token = 2;
+}
+
+message WhoAmIResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The user information.
+  cs3.identity.user.v1beta1.User user = 3;
+}
+
+message GetQuotaRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+}
+
+message ListRecycleRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The start time range to query for recycle items.
+  // The value is the Unix Epoch timestamp in seconds.
+  cs3.types.v1beta1.Timestamp from_ts = 3;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The end time range to query for recycle items.
+  // The value is Unix Epoch timestamp in seconds.
+  cs3.types.v1beta1.Timestamp to_ts = 4;
+}
+
+message ListRecycleStreamRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The start time range to query for recycle items.
+  // The value is the Unix Epoch timestamp in seconds.
+  cs3.types.v1beta1.Timestamp from_ts = 3;
+  // OPTIONAL.
+  // SHOULD be specified.
+  // The end time range to query for recycle items.
+  // The value is Unix Epoch timestamp in seconds.
+  cs3.types.v1beta1.Timestamp to_ts = 4;
+}
+
+message PurgeRecycleRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+}
+
+message InitiateFileDownloadResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The endpoint where to downooad the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string download_endpoint = 3;
+  // REQUIRED.
+  // Tells to the gateway if the client should be exposed directly to the download_endpoint.
+  bool expose = 5;
+  // OPTIONAL.
+  // A token that MUST be validated by the data gateway for the upload.
+  // Only makes sense for uploads passing through the data gateway.
+  string token = 6;
+}
+
+message InitiateFileUploadResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The endpoint where to upload the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string upload_endpoint = 3;
+  // REQUIRED.
+  // List of available checksums
+  // the client can use when sending
+  // the file.
+  repeated cs3.storage.provider.v1beta1.ResourceChecksumPriority available_checksums = 4;
+  // OPTIONAL.
+  // A token that MUST be validated by the data gateway for the upload.
+  // Only makes sense for uploads passing through the data gateway.
+  string token = 5;
+}
+
+message ListAuthProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of auth types.
+  // TODO(labkode): maybe add description?
+  repeated string types = 3;
+}

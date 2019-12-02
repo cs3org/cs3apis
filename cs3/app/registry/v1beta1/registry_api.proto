@@ -1,0 +1,99 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.app.registry.v1beta1;
+
+option csharp_namespace = "Cs3.App.Registry.V1Beta1";
+option go_package = "registryv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "RegistryApiProto";
+option java_package = "com.cs3.app.registry.v1beta1";
+option objc_class_prefix = "CAR";
+option php_namespace = "Cs3\\App\\Registry\\V1Beta1";
+
+import "cs3/app/registry/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// App Registry API
+//
+// The App Registry API is meant to as registry that
+// contains mappings between mime types and app providers.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service RegistryAPI {
+  // Returns the app providers that are capable of handling this resource info.
+  // MUST return CODE_NOT_FOUND if no providers are available.
+  rpc GetAppProviders(GetAppProvidersRequest) returns (GetAppProvidersResponse);
+  // Returns a list of the available app providers known by this registry.
+  rpc ListAppProviders(ListAppProvidersRequest) returns (ListAppProvidersResponse);
+}
+
+message GetAppProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The resource information.
+  storage.provider.v1beta1.ResourceInfo resource_info = 2;
+}
+
+message GetAppProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The app providers available for the given resource info.
+  repeated ProviderInfo providers = 3;
+}
+
+message ListAppProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // TODO(labkode): maybe add some filter?
+
+}
+
+message ListAppProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The list of app providers this registry knows about.
+  repeated ProviderInfo providers = 3;
+}

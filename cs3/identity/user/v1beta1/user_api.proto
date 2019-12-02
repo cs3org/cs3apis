@@ -1,0 +1,150 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.identity.user.v1beta1;
+
+option csharp_namespace = "Cs3.Identity.User.V1Beta1";
+option go_package = "userv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "UserApiProto";
+option java_package = "com.cs3.identity.user.v1beta1";
+option objc_class_prefix = "CIU";
+option php_namespace = "Cs3\\Identity\\User\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// UserProvider API.
+//
+// The UserProvider API is responsible for creating
+// a key-value map according to user userprovider.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+
+// Provides an API for managing users.
+service UserAPI {
+  // Gets the information about an user by its user id.
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  // Gets the groups of a user.
+  rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
+  // Tells if the user is in a certain group.
+  rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
+  // Finds users by any attribute of the user?
+  // TODO(labkode): to define the filters that make more sense.
+  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
+}
+
+message GetUserRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the user.
+  cs3.identity.user.v1beta1.UserId user_id = 2;
+}
+
+message GetUserResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The user information.
+  User user = 3;
+}
+
+message GetUserGroupsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the user.
+  cs3.identity.user.v1beta1.UserId user_id = 2;
+}
+
+message GetUserGroupsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The groups for the user.
+  repeated string groups = 3;
+}
+
+message IsInGroupRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the user.
+  cs3.identity.user.v1beta1.UserId user_id = 2;
+  // REQUIRED.
+  // The group to check.
+  string group = 3;
+}
+
+message IsInGroupResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // Tells if the user belongs to the group.
+  bool ok = 3;
+}
+
+message FindUsersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED. TODO(labkode): create propper filters for most common searchs.
+  // The filter to apply.
+  string filter = 2;
+}
+
+message FindUsersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The groups for the user.
+  repeated User users = 3;
+}

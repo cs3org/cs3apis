@@ -1,0 +1,53 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.identity.user.v1beta1;
+
+option csharp_namespace = "Cs3.Identity.User.V1Beta1";
+option go_package = "userv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.identity.user.v1beta1";
+option objc_class_prefix = "CIU";
+option php_namespace = "Cs3\\Identity\\User\\V1Beta1";
+
+import "cs3/types/v1beta1/types.proto";
+
+// A UserId represents a user.
+message UserId {
+  // REQUIRED.
+  // The identity provider for the user.
+  string idp = 1;
+  // REQUIRED.
+  // the unique identifier for the user in the scope of
+  // the identity provider.
+  string opaque_id = 2;
+}
+
+// Represents an user of the system.
+message User {
+  UserId id = 1;
+  string username = 2;
+  string mail = 3;
+  bool mail_verified = 4;
+  string display_name = 5;
+  repeated string groups = 6;
+  cs3.types.v1beta1.Opaque opaque = 7;
+}
