@@ -143,6 +143,8 @@ service GatewayAPI {
   // Unsets arbitrary metdata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
+  // Creates the home directory for a user.
+  rpc CreateHome(cs3.storage.provider.v1beta1.CreateHomeRequest) returns (cs3.storage.provider.v1beta1.CreateHomeResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
   // *****************************************************************/

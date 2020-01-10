@@ -138,6 +138,8 @@ service ProviderAPI {
   // Unsets arbitrary metdata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
+  // Creates the home directory for a user.
+  rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
 }
 
 message AddGrantRequest {
@@ -655,6 +657,21 @@ message UnsetArbitraryMetadataRequest {
 }
 
 message UnsetArbitraryMetadataResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message CreateHomeRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message CreateHomeResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

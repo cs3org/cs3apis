@@ -924,6 +924,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateHomeRequest"><span class="badge">M</span>CreateHomeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateHomeResponse"><span class="badge">M</span>CreateHomeResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.CreateReferenceRequest"><span class="badge">M</span>CreateReferenceRequest</a>
                 </li>
               
@@ -1947,7 +1955,14 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td><a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest">.cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse">.cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse</a></td>
                 <td><p>Unsets arbitrary metdata into a storage resource.
-Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
+Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateHome</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeRequest">.cs3.storage.provider.v1beta1.CreateHomeRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeResponse">.cs3.storage.provider.v1beta1.CreateHomeResponse</a></td>
+                <td><p>Creates the home directory for a user.
 
 *****************************************************************/
 ************************ USER SHARE PROVIDER ********************/
@@ -7360,6 +7375,64 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.CreateHomeRequest">CreateHomeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.CreateHomeResponse">CreateHomeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.CreateReferenceRequest">CreateReferenceRequest</h3>
         <p></p>
 
@@ -9207,6 +9280,13 @@ Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p
                 <td><a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse">UnsetArbitraryMetadataResponse</a></td>
                 <td><p>Unsets arbitrary metdata into a storage resource.
 Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateHome</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeRequest">CreateHomeRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeResponse">CreateHomeResponse</a></td>
+                <td><p>Creates the home directory for a user.</p></td>
               </tr>
             
           </tbody>
