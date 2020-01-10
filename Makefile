@@ -3,13 +3,16 @@
 pwd = $(shell pwd)
 default: build
 
-build:
+pull:
+	docker pull cs3org/cs3apis
+
+build: pull
 	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-proto
-python:
+python: pull
 	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-python
-go:
+go: pull
 	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-go
-js:
+js: pull
 	docker run -v ${pwd}:/root/cs3apis cs3org/cs3apis cs3apis-build -build-js
 clean:
 	rm -rf build/
