@@ -122,4 +122,7 @@ message GetHomeResponse {
   // The path to the home in a storage provider.
   // For example /eos/user/h/hugo in the storage provider with root path /eos/user/.
   string path = 3;
+  // REQUIRED.
+  // The home storage provider.
+  cs3.storage.registry.v1beta1.ProviderInfo provider = 4;
 }
