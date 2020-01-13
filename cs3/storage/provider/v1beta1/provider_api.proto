@@ -140,6 +140,27 @@ service ProviderAPI {
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
   // Creates the home directory for a user.
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
+  // Gets the home path for the user.
+  rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
+}
+
+message GetHomeRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message GetHomeResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The path to the home in a storage provider.
+  // For example /eos/user/h/hugo in the storage provider with root path /eos/user/.
+  string path = 3;
 }
 
 message AddGrantRequest {

@@ -56,12 +56,29 @@ service RegistryAPI {
   rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
   // Returns a list of the available storage providers known by this registry.
   rpc ListStorageProviders(ListStorageProvidersRequest) returns (ListStorageProvidersResponse);
-  // Returns the home path for the given authenticated user.
-  // When a user has access to multiple storage providers, one of them is the home.
+  // Gets the user home storage provider.
   rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
   // TODO(labkode): missing methods for adding and removing a storage provider
   // with different visibility levels (system-wide, user-wide, group-wide)...
 
+}
+
+message GetHomeRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message GetHomeResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The storage provider for the user home.
+  cs3.storage.registry.v1beta1.ProviderInfo provider = 3;
 }
 
 message GetStorageProviderRequest {
@@ -103,23 +120,4 @@ message ListStorageProvidersResponse {
   // REQUIRED.
   // The list of storage providers this registry knows about.
   repeated cs3.storage.registry.v1beta1.ProviderInfo providers = 3;
-}
-
-message GetHomeRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-}
-
-message GetHomeResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The path to the home in a storage provider.
-  // For example /eos/user/h/hugo in the storage provider with root path /eos/user/.
-  string path = 3;
 }

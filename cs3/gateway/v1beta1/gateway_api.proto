@@ -39,7 +39,6 @@ import "cs3/sharing/link/v1beta1/link_api.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
-import "cs3/storage/registry/v1beta1/registry_api.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // Gateway API
@@ -272,7 +271,7 @@ service GatewayAPI {
 
   // Returns the home path for the given authenticated user.
   // When a user has access to multiple storage providers, one of them is the home.
-  rpc GetHome(cs3.storage.registry.v1beta1.GetHomeRequest) returns (cs3.storage.registry.v1beta1.GetHomeResponse);
+  rpc GetHome(cs3.storage.provider.v1beta1.GetHomeRequest) returns (cs3.storage.provider.v1beta1.GetHomeResponse);
 }
 
 // CAUTION:

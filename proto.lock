@@ -366,13 +366,13 @@
         ],
         "imports": [
           {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -518,6 +518,10 @@
             "value": "Cs3.Auth.Registry.V1Beta1"
           },
           {
+            "name": "go_package",
+            "value": "registryv1beta1"
+          },
+          {
             "name": "java_multiple_files",
             "value": "true"
           },
@@ -536,10 +540,6 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Auth\\\\Registry\\\\V1Beta1"
-          },
-          {
-            "name": "go_package",
-            "value": "registryv1beta1"
           }
         ]
       }
@@ -588,6 +588,10 @@
             "value": "Cs3.Auth.Registry.V1Beta1"
           },
           {
+            "name": "go_package",
+            "value": "registryv1beta1"
+          },
+          {
             "name": "java_multiple_files",
             "value": "true"
           },
@@ -606,10 +610,6 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Auth\\\\Registry\\\\V1Beta1"
-          },
-          {
-            "name": "go_package",
-            "value": "registryv1beta1"
           }
         ]
       }
@@ -973,6 +973,11 @@
                 "out_type": "cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse"
               },
               {
+                "name": "CreateHome",
+                "in_type": "cs3.storage.provider.v1beta1.CreateHomeRequest",
+                "out_type": "cs3.storage.provider.v1beta1.CreateHomeResponse"
+              },
+              {
                 "name": "CreateShare",
                 "in_type": "cs3.sharing.collaboration.v1beta1.CreateShareRequest",
                 "out_type": "cs3.sharing.collaboration.v1beta1.CreateShareResponse"
@@ -1124,8 +1129,8 @@
               },
               {
                 "name": "GetHome",
-                "in_type": "cs3.storage.registry.v1beta1.GetHomeRequest",
-                "out_type": "cs3.storage.registry.v1beta1.GetHomeResponse"
+                "in_type": "cs3.storage.provider.v1beta1.GetHomeRequest",
+                "out_type": "cs3.storage.provider.v1beta1.GetHomeResponse"
               }
             ]
           }
@@ -1138,37 +1143,34 @@
             "path": "cs3/auth/registry/v1beta1/registry_api.proto"
           },
           {
-            "path": "cs3/sharing/ocm/v1beta1/ocm_api.proto"
-          },
-          {
-            "path": "cs3/preferences/v1beta1/preferences_api.proto"
-          },
-          {
-            "path": "cs3/sharing/link/v1beta1/link_api.proto"
-          },
-          {
-            "path": "cs3/rpc/v1beta1/status.proto"
-          },
-          {
-            "path": "cs3/storage/provider/v1beta1/resources.proto"
-          },
-          {
-            "path": "cs3/storage/provider/v1beta1/provider_api.proto"
-          },
-          {
-            "path": "cs3/storage/registry/v1beta1/registry_api.proto"
-          },
-          {
-            "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
             "path": "cs3/identity/user/v1beta1/user_api.proto"
           },
           {
+            "path": "cs3/preferences/v1beta1/preferences_api.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
             "path": "cs3/sharing/collaboration/v1beta1/collaboration_api.proto"
+          },
+          {
+            "path": "cs3/sharing/link/v1beta1/link_api.proto"
+          },
+          {
+            "path": "cs3/sharing/ocm/v1beta1/ocm_api.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/provider_api.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
           }
         ],
         "package": {
@@ -1488,13 +1490,13 @@
         ],
         "imports": [
           {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -1734,6 +1736,10 @@
         },
         "options": [
           {
+            "name": "csharp_namespace",
+            "value": "Cs3.Rpc.V1Beta1"
+          },
+          {
             "name": "go_package",
             "value": "rpcv1beta1"
           },
@@ -1756,10 +1762,6 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Rpc\\\\V1Beta1"
-          },
-          {
-            "name": "csharp_namespace",
-            "value": "Cs3.Rpc.V1Beta1"
           }
         ]
       }
@@ -1804,6 +1806,10 @@
         },
         "options": [
           {
+            "name": "csharp_namespace",
+            "value": "Cs3.Rpc.V1Beta1"
+          },
+          {
             "name": "go_package",
             "value": "rpcv1beta1"
           },
@@ -1826,10 +1832,6 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Rpc\\\\V1Beta1"
-          },
-          {
-            "name": "csharp_namespace",
-            "value": "Cs3.Rpc.V1Beta1"
           }
         ]
       }
@@ -2253,19 +2255,19 @@
         ],
         "imports": [
           {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/sharing/collaboration/v1beta1/resources.proto"
           },
           {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/sharing/collaboration/v1beta1/resources.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -2462,13 +2464,13 @@
         ],
         "imports": [
           {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -2848,19 +2850,19 @@
         ],
         "imports": [
           {
-            "path": "cs3/sharing/link/v1beta1/resources.proto"
+            "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/sharing/link/v1beta1/resources.proto"
           },
           {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -3020,13 +3022,13 @@
         ],
         "imports": [
           {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -3451,19 +3453,19 @@
         ],
         "imports": [
           {
-            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
+            "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           },
           {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -3665,13 +3667,13 @@
         ],
         "imports": [
           {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -3713,6 +3715,36 @@
       "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
         "messages": [
+          {
+            "name": "GetHomeRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetHomeResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "path",
+                "type": "string"
+              }
+            ]
+          },
           {
             "name": "AddGrantRequest",
             "fields": [
@@ -4556,6 +4588,31 @@
                 "type": "cs3.types.v1beta1.Opaque"
               }
             ]
+          },
+          {
+            "name": "CreateHomeRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "CreateHomeResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -4678,6 +4735,16 @@
                 "name": "UnsetArbitraryMetadata",
                 "in_type": "UnsetArbitraryMetadataRequest",
                 "out_type": "UnsetArbitraryMetadataResponse"
+              },
+              {
+                "name": "CreateHome",
+                "in_type": "CreateHomeRequest",
+                "out_type": "CreateHomeResponse"
+              },
+              {
+                "name": "GetHome",
+                "in_type": "GetHomeRequest",
+                "out_type": "GetHomeResponse"
               }
             ]
           }
@@ -5143,10 +5210,10 @@
         ],
         "imports": [
           {
-            "path": "cs3/types/v1beta1/types.proto"
+            "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
+            "path": "cs3/types/v1beta1/types.proto"
           }
         ],
         "package": {
@@ -5253,36 +5320,6 @@
                 "is_repeated": true
               }
             ]
-          },
-          {
-            "name": "GetHomeRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              }
-            ]
-          },
-          {
-            "name": "GetHomeResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "path",
-                "type": "string"
-              }
-            ]
           }
         ],
         "services": [
@@ -5298,11 +5335,6 @@
                 "name": "ListStorageProviders",
                 "in_type": "ListStorageProvidersRequest",
                 "out_type": "ListStorageProvidersResponse"
-              },
-              {
-                "name": "GetHome",
-                "in_type": "GetHomeRequest",
-                "out_type": "GetHomeResponse"
               }
             ]
           }
@@ -5506,6 +5538,10 @@
         },
         "options": [
           {
+            "name": "csharp_namespace",
+            "value": "Cs3.Types.V1Beta1"
+          },
+          {
             "name": "go_package",
             "value": "typesv1beta1"
           },
@@ -5528,10 +5564,6 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Types\\\\V1Beta1"
-          },
-          {
-            "name": "csharp_namespace",
-            "value": "Cs3.Types.V1Beta1"
           }
         ]
       }
