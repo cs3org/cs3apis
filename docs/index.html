@@ -924,6 +924,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateHomeRequest"><span class="badge">M</span>CreateHomeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateHomeResponse"><span class="badge">M</span>CreateHomeResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.CreateReferenceRequest"><span class="badge">M</span>CreateReferenceRequest</a>
                 </li>
               
@@ -937,6 +945,14 @@
               
                 <li>
                   <a href="#cs3.storage.provider.v1beta1.DeleteResponse"><span class="badge">M</span>DeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.GetHomeRequest"><span class="badge">M</span>GetHomeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.GetHomeResponse"><span class="badge">M</span>GetHomeResponse</a>
                 </li>
               
                 <li>
@@ -1947,7 +1963,14 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td><a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest">.cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse">.cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse</a></td>
                 <td><p>Unsets arbitrary metdata into a storage resource.
-Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
+Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateHome</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeRequest">.cs3.storage.provider.v1beta1.CreateHomeRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeResponse">.cs3.storage.provider.v1beta1.CreateHomeResponse</a></td>
+                <td><p>Creates the home directory for a user.
 
 *****************************************************************/
 ************************ USER SHARE PROVIDER ********************/
@@ -2227,8 +2250,8 @@ TODO(labkode): to define the filters that make more sense.
             
               <tr>
                 <td>GetHome</td>
-                <td><a href="#cs3.storage.registry.v1beta1.GetHomeRequest">.cs3.storage.registry.v1beta1.GetHomeRequest</a></td>
-                <td><a href="#cs3.storage.registry.v1beta1.GetHomeResponse">.cs3.storage.registry.v1beta1.GetHomeResponse</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetHomeRequest">.cs3.storage.provider.v1beta1.GetHomeRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetHomeResponse">.cs3.storage.provider.v1beta1.GetHomeResponse</a></td>
                 <td><p>Returns the home path for the given authenticated user.
 When a user has access to multiple storage providers, one of them is the home.</p></td>
               </tr>
@@ -7360,6 +7383,64 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.CreateHomeRequest">CreateHomeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.CreateHomeResponse">CreateHomeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.CreateReferenceRequest">CreateReferenceRequest</h3>
         <p></p>
 
@@ -7491,6 +7572,73 @@ The response status. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.GetHomeRequest">GetHomeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.GetHomeResponse">GetHomeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The path to the home in a storage provider.
+For example /eos/user/h/hugo in the storage provider with root path /eos/user/. </p></td>
                 </tr>
               
             </tbody>
@@ -9209,6 +9357,20 @@ Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p
 Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p></td>
               </tr>
             
+              <tr>
+                <td>CreateHome</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeRequest">CreateHomeRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateHomeResponse">CreateHomeResponse</a></td>
+                <td><p>Creates the home directory for a user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetHome</td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetHomeRequest">GetHomeRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetHomeResponse">GetHomeResponse</a></td>
+                <td><p>Gets the home path for the user.</p></td>
+              </tr>
+            
           </tbody>
         </table>
 
@@ -10106,12 +10268,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>provider</td>
+                  <td><a href="#cs3.storage.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The path to the home in a storage provider.
-For example /eos/user/h/hugo in the storage provider with root path /eos/user/. </p></td>
+The storage provider for the user home. </p></td>
                 </tr>
               
             </tbody>
@@ -10297,8 +10458,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td>GetHome</td>
                 <td><a href="#cs3.storage.registry.v1beta1.GetHomeRequest">GetHomeRequest</a></td>
                 <td><a href="#cs3.storage.registry.v1beta1.GetHomeResponse">GetHomeResponse</a></td>
-                <td><p>Returns the home path for the given authenticated user.
-When a user has access to multiple storage providers, one of them is the home.
+                <td><p>Gets the user home storage provider.
 
 TODO(labkode): missing methods for adding and removing a storage provider
 with different visibility levels (system-wide, user-wide, group-wide)...</p></td>
