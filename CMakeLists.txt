@@ -30,5 +30,5 @@ add_custom_command(
 set_property(SOURCE ${CS3_SRC} PROPERTY SKIP_AUTOMOC ON)
 add_library(cs3apis STATIC ${CS3_SRC})
 target_include_directories(cs3apis PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/cs3apis/>)
-target_link_libraries(cs3apis PUBLIC gRPC::grpc protobuf::libprotobuf)
+target_link_libraries(cs3apis PUBLIC gRPC::grpc++ protobuf::libprotobuf)
 target_compile_definitions(cs3apis PUBLIC _WIN32_WINNT=0x600)
