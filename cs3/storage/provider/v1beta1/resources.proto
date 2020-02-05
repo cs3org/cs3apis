@@ -86,6 +86,9 @@ message ResourceInfo {
   // OPTIONAL.
   // Arbitrary metadata attached to a resource.
   ArbitraryMetadata arbitrary_metadata = 14;
+  // OPTIONAL
+  // Number of contained children
+  uint64 child_count = 15;
 }
 
 // CanonicalMetadata contains extra metadata
