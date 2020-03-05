@@ -78,6 +78,8 @@ message ResourceInfo {
   // REQUIRED:
   // Identifier of the owner of the resource.
   cs3.identity.user.v1beta1.UserId owner = 11;
+  // REQUIRED if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE
+  string target = 12;
   // OPTIONAL.
   // Additional metadata attached to the resource.
   // If resource type is RESOURCE_TYPE_REFERENCE it MUST
