@@ -792,6 +792,14 @@
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetOCMShareResponse"><span class="badge">M</span>GetOCMShareResponse</a>
                 </li>
+
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest"><span class="badge">M</span>GetReceivedOCMShareRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse"><span class="badge">M</span>GetReceivedOCMShareResponse</a>
+                </li>
               
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ListOCMSharesRequest"><span class="badge">M</span>ListOCMSharesRequest</a>
@@ -866,7 +874,7 @@
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ProviderInfo"><span class="badge">E</span>ProviderInfo</a>
                 </li>
-              
+
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ReceivedShare"><span class="badge">M</span>ReceivedShare</a>
                 </li>
@@ -2188,7 +2196,19 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.
 ************************ APP REGISTRY ****************************/
 *****************************************************************/</p></td>
               </tr>
-            
+
+              <tr>
+                <td>GetReceivedOCMShare</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest">.cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse">.cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse</a></td>
+                <td><p>Get the information for the given received share reference.
+MUST return CODE_NOT_FOUND if the received share reference does not exist.
+
+*****************************************************************/
+************************ PREFERENCES ***************************/
+*****************************************************************/</p></td>
+              </tr>
+
               <tr>
                 <td>GetAppProviders</td>
                 <td><a href="#cs3.app.registry.v1beta1.GetAppProvidersRequest">.cs3.app.registry.v1beta1.GetAppProvidersRequest</a></td>
@@ -6311,9 +6331,81 @@ The share. </p></td>
             </tbody>
           </table>
 
-          
 
-        
+
+
+        <h3 id="cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest">GetReceivedOCMShareRequest</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareReference">ShareReference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference of the received share. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+        <h3 id="cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse">GetReceivedOCMShareResponse</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+
+                <tr>
+                  <td>share</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The share. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
       
         <h3 id="cs3.sharing.ocm.v1beta1.ListOCMSharesRequest">ListOCMSharesRequest</h3>
         <p></p>
@@ -6900,12 +6992,19 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
 MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
               </tr>
             
+              <tr>
+                <td>GetReceivedOCMShare</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest">GetReceivedOCMShareRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse">GetReceivedOCMShareResponse</a></td>
+                <td><p>Get the information for the given received share reference.
+MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></td>
+              </tr>
+
           </tbody>
         </table>
 
-        
-    
-      
+
+
       <div class="file-heading">
         <h2 id="cs3/sharing/ocm/v1beta1/resources.proto">cs3/sharing/ocm/v1beta1/resources.proto</h2><a href="#title">Top</a>
       </div>
@@ -6951,7 +7050,7 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
 
             </tbody>
           </table>
-
+      
       
         <h3 id="cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</h3>
         <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
