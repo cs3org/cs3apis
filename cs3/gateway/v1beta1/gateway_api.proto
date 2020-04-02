@@ -32,6 +32,7 @@ import "cs3/app/registry/v1beta1/registry_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
+import "cs3/invite/v1beta1/invite_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
@@ -238,6 +239,9 @@ service GatewayAPI {
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateReceivedOCMShare(cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareResponse);
+  // Get the information for the given received share reference.
+  // MUST return CODE_NOT_FOUND if the received share reference does not exist.
+  rpc GetReceivedOCMShare(cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse);
   // *****************************************************************/
   // ************************ APP REGISTRY ****************************/
   // *****************************************************************/
@@ -272,6 +276,16 @@ service GatewayAPI {
   // Returns the home path for the given authenticated user.
   // When a user has access to multiple storage providers, one of them is the home.
   rpc GetHome(cs3.storage.provider.v1beta1.GetHomeRequest) returns (cs3.storage.provider.v1beta1.GetHomeResponse);
+  // *****************************************************************/
+  // ************************ OCM INVITE MANAGER *********************/
+  // *****************************************************************/
+
+  // Generates a new token for the user with a validity of 24 hours.
+  rpc GenerateInviteToken(cs3.invite.v1beta1.GenerateInviteTokenRequest) returns (cs3.invite.v1beta1.GenerateInviteTokenResponse);
+  // Forwards a received invite to the sync'n'share system provider.
+  rpc ForwardInvite(cs3.invite.v1beta1.ForwardInviteRequest) returns (cs3.invite.v1beta1.ForwardInviteResponse);
+  // Completes an invitation acceptance.
+  rpc AcceptInvite(cs3.invite.v1beta1.AcceptInviteRequest) returns (cs3.invite.v1beta1.AcceptInviteResponse);
 }
 
 // CAUTION:

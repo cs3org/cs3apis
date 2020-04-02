@@ -1,0 +1,126 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.invite.v1beta1;
+
+option csharp_namespace = "Cs3.Invite.V1Beta1";
+option go_package = "invitev1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "InviteApiProto";
+option java_package = "com.cs3.invite.v1beta1";
+option objc_class_prefix = "CIX";
+option php_namespace = "Cs3\\Invite\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/invite/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// Invite API
+//
+// The Invite API is meant to invite users and groups belonging to other
+// sync'n'share systems, so that collaboration of resources can be enabled.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service InviteAPI {
+  // Generates a new token for the user with a validity of 24 hours.
+  rpc GenerateInviteToken(GenerateInviteTokenRequest) returns (GenerateInviteTokenResponse);
+  // Forwards a received invite to the sync'n'share system provider.
+  rpc ForwardInvite(ForwardInviteRequest) returns (ForwardInviteResponse);
+  // Completes an invitation acceptance.
+  rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
+}
+
+message GenerateInviteTokenRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message GenerateInviteTokenResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The generated token.
+  InviteToken invite_token = 3;
+}
+
+message ForwardInviteRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The token to authenticate with.
+  InviteToken invite_token = 2;
+  // REQUIRED.
+  // The details of the sync'n'share system provider of the user who sent the invite.
+  cs3.sharing.ocm.v1beta1.ProviderInfo origin_system_provider = 3;
+}
+
+message ForwardInviteResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message AcceptInviteRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The token to authenticate with.
+  InviteToken invite_token = 2;
+  // REQUIRED.
+  // The details of the sync'n'share system provider of the user who sent the invite.
+  cs3.sharing.ocm.v1beta1.ProviderInfo origin_system_provider = 3;
+  // REQUIRED.
+  // The user who accepted the invite.
+  cs3.identity.user.v1beta1.UserId user_id = 4;
+  // REQUIRED.
+  // The details of the sync'n'share system provider of the user who accepted the invite.
+  cs3.sharing.ocm.v1beta1.ProviderInfo recipient_system_provider = 5;
+}
+
+message AcceptInviteResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
