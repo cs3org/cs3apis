@@ -106,14 +106,11 @@ message AcceptInviteRequest {
   // The token to authenticate with.
   InviteToken invite_token = 2;
   // REQUIRED.
-  // The details of the sync'n'share system provider of the user who sent the invite.
-  cs3.sharing.ocm.v1beta1.ProviderInfo origin_system_provider = 3;
-  // REQUIRED.
   // The user who accepted the invite.
-  cs3.identity.user.v1beta1.UserId user_id = 4;
+  cs3.identity.user.v1beta1.UserId user_id = 3;
   // REQUIRED.
   // The details of the sync'n'share system provider of the user who accepted the invite.
-  cs3.sharing.ocm.v1beta1.ProviderInfo recipient_system_provider = 5;
+  cs3.sharing.ocm.v1beta1.ProviderInfo recipient_system_provider = 4;
 }
 
 message AcceptInviteResponse {
