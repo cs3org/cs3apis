@@ -64,7 +64,7 @@ message GenerateInviteTokenRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The user who accepted the invite.
+  // The user for whom the token has to be generated.
   cs3.identity.user.v1beta1.UserId user_id = 2;
 }
 
