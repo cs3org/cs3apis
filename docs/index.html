@@ -234,6 +234,60 @@
         
           
           <li>
+            <a href="#cs3%2finvite%2fv1beta1%2finvite_api.proto">cs3/invite/v1beta1/invite_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.AcceptInviteRequest"><span class="badge">M</span>AcceptInviteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.AcceptInviteResponse"><span class="badge">M</span>AcceptInviteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.ForwardInviteRequest"><span class="badge">M</span>ForwardInviteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.ForwardInviteResponse"><span class="badge">M</span>ForwardInviteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.GenerateInviteTokenRequest"><span class="badge">M</span>GenerateInviteTokenRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.GenerateInviteTokenResponse"><span class="badge">M</span>GenerateInviteTokenResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.InviteAPI"><span class="badge">S</span>InviteAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2finvite%2fv1beta1%2fresources.proto">cs3/invite/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.invite.v1beta1.InviteToken"><span class="badge">M</span>InviteToken</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fpreferences%2fv1beta1%2fpreferences_api.proto">cs3/preferences/v1beta1/preferences_api.proto</a>
             <ul>
               
@@ -792,11 +846,11 @@
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetOCMShareResponse"><span class="badge">M</span>GetOCMShareResponse</a>
                 </li>
-
+              
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest"><span class="badge">M</span>GetReceivedOCMShareRequest</a>
                 </li>
-
+              
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse"><span class="badge">M</span>GetReceivedOCMShareResponse</a>
                 </li>
@@ -871,10 +925,11 @@
           <li>
             <a href="#cs3%2fsharing%2focm%2fv1beta1%2fresources.proto">cs3/sharing/ocm/v1beta1/resources.proto</a>
             <ul>
+              
                 <li>
-                  <a href="#cs3.sharing.ocm.v1beta1.ProviderInfo"><span class="badge">E</span>ProviderInfo</a>
+                  <a href="#cs3.sharing.ocm.v1beta1.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
                 </li>
-
+              
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ReceivedShare"><span class="badge">M</span>ReceivedShare</a>
                 </li>
@@ -901,6 +956,10 @@
               
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ShareReference"><span class="badge">M</span>ShareReference</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.UserShareList"><span class="badge">M</span>UserShareList</a>
                 </li>
               
               
@@ -2190,13 +2249,9 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest">.cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest</a></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareResponse">.cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareResponse</a></td>
                 <td><p>Update the received share to change the share state or the display name.
-MUST return CODE_NOT_FOUND if the share reference does not exist.
-
-*****************************************************************/
-************************ APP REGISTRY ****************************/
-*****************************************************************/</p></td>
+MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
               </tr>
-
+            
               <tr>
                 <td>GetReceivedOCMShare</td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest">.cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest</a></td>
@@ -2205,10 +2260,10 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.
 MUST return CODE_NOT_FOUND if the received share reference does not exist.
 
 *****************************************************************/
-************************ PREFERENCES ***************************/
+************************ APP REGISTRY ****************************/
 *****************************************************************/</p></td>
               </tr>
-
+            
               <tr>
                 <td>GetAppProviders</td>
                 <td><a href="#cs3.app.registry.v1beta1.GetAppProvidersRequest">.cs3.app.registry.v1beta1.GetAppProvidersRequest</a></td>
@@ -2276,13 +2331,362 @@ TODO(labkode): to define the filters that make more sense.
                 <td><a href="#cs3.storage.provider.v1beta1.GetHomeRequest">.cs3.storage.provider.v1beta1.GetHomeRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.GetHomeResponse">.cs3.storage.provider.v1beta1.GetHomeResponse</a></td>
                 <td><p>Returns the home path for the given authenticated user.
-When a user has access to multiple storage providers, one of them is the home.</p></td>
+When a user has access to multiple storage providers, one of them is the home.
+
+*****************************************************************/
+************************ OCM INVITE MANAGER *********************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>GenerateInviteToken</td>
+                <td><a href="#cs3.invite.v1beta1.GenerateInviteTokenRequest">.cs3.invite.v1beta1.GenerateInviteTokenRequest</a></td>
+                <td><a href="#cs3.invite.v1beta1.GenerateInviteTokenResponse">.cs3.invite.v1beta1.GenerateInviteTokenResponse</a></td>
+                <td><p>Generates a new token for the user with a validity of 24 hours.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ForwardInvite</td>
+                <td><a href="#cs3.invite.v1beta1.ForwardInviteRequest">.cs3.invite.v1beta1.ForwardInviteRequest</a></td>
+                <td><a href="#cs3.invite.v1beta1.ForwardInviteResponse">.cs3.invite.v1beta1.ForwardInviteResponse</a></td>
+                <td><p>Forwards a received invite to the sync&#39;n&#39;share system provider.</p></td>
+              </tr>
+            
+              <tr>
+                <td>AcceptInvite</td>
+                <td><a href="#cs3.invite.v1beta1.AcceptInviteRequest">.cs3.invite.v1beta1.AcceptInviteRequest</a></td>
+                <td><a href="#cs3.invite.v1beta1.AcceptInviteResponse">.cs3.invite.v1beta1.AcceptInviteResponse</a></td>
+                <td><p>Completes an invitation acceptance.</p></td>
               </tr>
             
           </tbody>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/invite/v1beta1/invite_api.proto">cs3/invite/v1beta1/invite_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.invite.v1beta1.AcceptInviteRequest">AcceptInviteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>invite_token</td>
+                  <td><a href="#cs3.invite.v1beta1.InviteToken">InviteToken</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The token to authenticate with. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user who accepted the invite. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>recipient_system_provider</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ProviderInfo">cs3.sharing.ocm.v1beta1.ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The details of the sync&#39;n&#39;share system provider of the user who accepted the invite. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.invite.v1beta1.AcceptInviteResponse">AcceptInviteResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.invite.v1beta1.ForwardInviteRequest">ForwardInviteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>invite_token</td>
+                  <td><a href="#cs3.invite.v1beta1.InviteToken">InviteToken</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The token to authenticate with. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>origin_system_provider</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ProviderInfo">cs3.sharing.ocm.v1beta1.ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The details of the sync&#39;n&#39;share system provider of the user who sent the invite. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.invite.v1beta1.ForwardInviteResponse">ForwardInviteResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.invite.v1beta1.GenerateInviteTokenRequest">GenerateInviteTokenRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.invite.v1beta1.GenerateInviteTokenResponse">GenerateInviteTokenResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>invite_token</td>
+                  <td><a href="#cs3.invite.v1beta1.InviteToken">InviteToken</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The generated token. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.invite.v1beta1.InviteAPI">InviteAPI</h3>
+        <p>Invite API</p><p>The Invite API is meant to invite users and groups belonging to other</p><p>sync'n'share systems, so that collaboration of resources can be enabled.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GenerateInviteToken</td>
+                <td><a href="#cs3.invite.v1beta1.GenerateInviteTokenRequest">GenerateInviteTokenRequest</a></td>
+                <td><a href="#cs3.invite.v1beta1.GenerateInviteTokenResponse">GenerateInviteTokenResponse</a></td>
+                <td><p>Generates a new token for the user with a validity of 24 hours.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ForwardInvite</td>
+                <td><a href="#cs3.invite.v1beta1.ForwardInviteRequest">ForwardInviteRequest</a></td>
+                <td><a href="#cs3.invite.v1beta1.ForwardInviteResponse">ForwardInviteResponse</a></td>
+                <td><p>Forwards a received invite to the sync&#39;n&#39;share system provider.</p></td>
+              </tr>
+            
+              <tr>
+                <td>AcceptInvite</td>
+                <td><a href="#cs3.invite.v1beta1.AcceptInviteRequest">AcceptInviteRequest</a></td>
+                <td><a href="#cs3.invite.v1beta1.AcceptInviteResponse">AcceptInviteResponse</a></td>
+                <td><p>Completes an invitation acceptance.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/invite/v1beta1/resources.proto">cs3/invite/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.invite.v1beta1.InviteToken">InviteToken</h3>
+        <p>InviteToken is used to invite users and groups from other sync'n'share</p><p>systems to collaborate on resources.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Unique ID associated with an InviteToken. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user who created the token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The time when the token will expire. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
     
       
       <div class="file-heading">
@@ -6331,19 +6735,20 @@ The share. </p></td>
             </tbody>
           </table>
 
+          
 
-
-
+        
+      
         <h3 id="cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest">GetReceivedOCMShareRequest</h3>
         <p></p>
 
-
+        
           <table class="field-table">
             <thead>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-
+              
                 <tr>
                   <td>opaque</td>
                   <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
@@ -6351,7 +6756,7 @@ The share. </p></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
                 </tr>
-
+              
                 <tr>
                   <td>ref</td>
                   <td><a href="#cs3.sharing.ocm.v1beta1.ShareReference">ShareReference</a></td>
@@ -6359,23 +6764,24 @@ Opaque information. </p></td>
                   <td><p>REQUIRED.
 The reference of the received share. </p></td>
                 </tr>
-
+              
             </tbody>
           </table>
 
+          
 
-
-
+        
+      
         <h3 id="cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse">GetReceivedOCMShareResponse</h3>
         <p></p>
 
-
+        
           <table class="field-table">
             <thead>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-
+              
                 <tr>
                   <td>status</td>
                   <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
@@ -6383,7 +6789,7 @@ The reference of the received share. </p></td>
                   <td><p>REQUIRED.
 The response status. </p></td>
                 </tr>
-
+              
                 <tr>
                   <td>opaque</td>
                   <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
@@ -6391,7 +6797,7 @@ The response status. </p></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
                 </tr>
-
+              
                 <tr>
                   <td>share</td>
                   <td><a href="#cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</a></td>
@@ -6399,13 +6805,13 @@ Opaque information. </p></td>
                   <td><p>REQUIRED.
 The share. </p></td>
                 </tr>
-
+              
             </tbody>
           </table>
 
+          
 
-
-
+        
       
         <h3 id="cs3.sharing.ocm.v1beta1.ListOCMSharesRequest">ListOCMSharesRequest</h3>
         <p></p>
@@ -6999,58 +7405,67 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><p>Get the information for the given received share reference.
 MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></td>
               </tr>
-
+            
           </tbody>
         </table>
 
-
-
+        
+    
+      
       <div class="file-heading">
         <h2 id="cs3/sharing/ocm/v1beta1/resources.proto">cs3/sharing/ocm/v1beta1/resources.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
+      
         <h3 id="cs3.sharing.ocm.v1beta1.ProviderInfo">ProviderInfo</h3>
         <p>Details of the sync'n'share system provider.</p>
 
-
+        
           <table class="field-table">
             <thead>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-
+              
                 <tr>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. The domain of the sync'n'share provider.</p></td>
+                  <td><p>REQUIRED.
+The domain of the sync&#39;n&#39;share provider. </p></td>
                 </tr>
-
+              
                 <tr>
                   <td>api_version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. The API version supported by the provider.</p></td>
+                  <td><p>REQUIRED.
+The API version supported by the provider. </p></td>
                 </tr>
-
+              
                 <tr>
                   <td>api_endpoint</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. The endpoint on which the API is exposed.</p></td>
+                  <td><p>REQUIRED.
+The endpoint on which the API is exposed. </p></td>
                 </tr>
-
+              
                 <tr>
                   <td>webdav_endpoint</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. The endpoint on which the webdav protocol is exposed.</p></td>
+                  <td><p>REQUIRED.
+The endpoint on which the webdav protocol is exposed. </p></td>
                 </tr>
-
+              
             </tbody>
           </table>
-      
+
+          
+
+        
       
         <h3 id="cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</h3>
         <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
@@ -7324,6 +7739,39 @@ implementation of the service. </p></td>
                   <td></td>
                   <td><p>The combination of fields that
 make the share unique. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.UserShareList">UserShareList</h3>
+        <p>List of users a user can share resources with.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user who can share the resources. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>users</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of users. </p></td>
                 </tr>
               
             </tbody>
