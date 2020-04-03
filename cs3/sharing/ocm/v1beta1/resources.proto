@@ -160,3 +160,29 @@ message ShareGrant {
   // The share permissions for the grant.
   SharePermissions permissions = 2;
 }
+
+// Details of the sync'n'share system provider.
+message ProviderInfo {
+  // REQUIRED.
+  // The domain of the sync'n'share provider.
+  string domain = 1;
+  // REQUIRED.
+  // The API version supported by the provider.
+  string api_version = 2;
+  // REQUIRED.
+  // The endpoint on which the API is exposed.
+  string api_endpoint = 3;
+  // REQUIRED.
+  // The endpoint on which the webdav protocol is exposed.
+  string webdav_endpoint = 4;
+}
+
+// List of users a user can share resources with.
+message UserShareList {
+  // REQUIRED.
+  // The user who can share the resources.
+  cs3.identity.user.v1beta1.UserId user_id = 1;
+  // REQUIRED.
+  // The list of users.
+  repeated cs3.identity.user.v1beta1.UserId users = 2;
+}

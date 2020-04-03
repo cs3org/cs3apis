@@ -18,25 +18,26 @@
 
 syntax = "proto3";
 
-package cs3.storage.registry.v1beta1;
+package cs3.invite.v1beta1;
 
-option csharp_namespace = "Cs3.Storage.Registry.V1Beta1";
-option go_package = "registryv1beta1";
+option csharp_namespace = "Cs3.Invite.V1Beta1";
+option go_package = "invitev1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "RegistryApiProto";
-option java_package = "com.cs3.storage.registry.v1beta1";
-option objc_class_prefix = "CSR";
-option php_namespace = "Cs3\\Storage\\Registry\\V1Beta1";
+option java_outer_classname = "InviteApiProto";
+option java_package = "com.cs3.invite.v1beta1";
+option objc_class_prefix = "CIX";
+option php_namespace = "Cs3\\Invite\\V1Beta1";
 
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/invite/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
-import "cs3/storage/registry/v1beta1/resources.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
-// Storage Registry API
+// Invite API
 //
-// The Storage Registry API is meant to as registry to obtain
-// information of available storage providers.
+// The Invite API is meant to invite users and groups belonging to other
+// sync'n'share systems, so that collaboration of resources can be enabled.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -49,27 +50,22 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service RegistryAPI {
-  // Returns the storage provider that is reponsible for the given
-  // resource reference.
-  // MUST return CODE_NOT_FOUND if the reference does not exist.
-  rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
-  // Returns a list of the available storage providers known by this registry.
-  rpc ListStorageProviders(ListStorageProvidersRequest) returns (ListStorageProvidersResponse);
-  // Gets the user home storage provider.
-  rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
-  // TODO(labkode): missing methods for adding and removing a storage provider
-  // with different visibility levels (system-wide, user-wide, group-wide)...
-
+service InviteAPI {
+  // Generates a new token for the user with a validity of 24 hours.
+  rpc GenerateInviteToken(GenerateInviteTokenRequest) returns (GenerateInviteTokenResponse);
+  // Forwards a received invite to the sync'n'share system provider.
+  rpc ForwardInvite(ForwardInviteRequest) returns (ForwardInviteResponse);
+  // Completes an invitation acceptance.
+  rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
 }
 
-message GetHomeRequest {
+message GenerateInviteTokenRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
 }
 
-message GetHomeResponse {
+message GenerateInviteTokenResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -77,47 +73,51 @@ message GetHomeResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The storage provider for the user home.
-  cs3.storage.registry.v1beta1.ProviderInfo provider = 3;
+  // The generated token.
+  InviteToken invite_token = 3;
 }
 
-message GetStorageProviderRequest {
+message ForwardInviteRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The reference for the resource.
-  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // The token to authenticate with.
+  InviteToken invite_token = 2;
+  // REQUIRED.
+  // The details of the sync'n'share system provider of the user who sent the invite.
+  cs3.sharing.ocm.v1beta1.ProviderInfo origin_system_provider = 3;
 }
 
-message GetStorageProviderResponse {
+message ForwardInviteResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The storage provider handling the requested storage resource.
-  cs3.storage.registry.v1beta1.ProviderInfo provider = 3;
 }
 
-message ListStorageProvidersRequest {
+message AcceptInviteRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // TODO(labkode): maybe add some filter?
-
+  // REQUIRED.
+  // The token to authenticate with.
+  InviteToken invite_token = 2;
+  // REQUIRED.
+  // The user who accepted the invite.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The details of the sync'n'share system provider of the user who accepted the invite.
+  cs3.sharing.ocm.v1beta1.ProviderInfo recipient_system_provider = 4;
 }
 
-message ListStorageProvidersResponse {
+message AcceptInviteResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The list of storage providers this registry knows about.
-  repeated cs3.storage.registry.v1beta1.ProviderInfo providers = 3;
 }
