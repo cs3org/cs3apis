@@ -50,6 +50,10 @@ import "cs3/types/v1beta1/types.proto";
 service ProviderAPI {
   // Authenticate authenticates a client.
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+
+  // ForgeToken creates a token from a public link OpaqueID that can be used to
+  // impersonate the share creator and access authenticated endpoints.
+  rpc ForgeToken(ForgeTokenRequest) returns (ForgeTokenResponse);
 }
 
 message AuthenticateRequest {
@@ -61,4 +65,13 @@ message AuthenticateRequest {
 message AuthenticateResponse {
   cs3.rpc.v1beta1.Status status = 1;
   cs3.identity.user.v1beta1.User user = 2;
+}
+
+message ForgeTokenRequest {
+  string token = 1;
+}
+
+message ForgeTokenResponse {
+  cs3.rpc.v1beta1.Status status = 1;
+  string token = 2;
 }
