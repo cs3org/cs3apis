@@ -176,13 +176,3 @@ message ProviderInfo {
   // The endpoint on which the webdav protocol is exposed.
   string webdav_endpoint = 4;
 }
-
-// List of users a user can share resources with.
-message UserShareList {
-  // REQUIRED.
-  // The user who can share the resources.
-  cs3.identity.user.v1beta1.UserId user_id = 1;
-  // REQUIRED.
-  // The list of users.
-  repeated cs3.identity.user.v1beta1.UserId users = 2;
-}

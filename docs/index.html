@@ -840,6 +840,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.GetInfoByDomainRequest"><span class="badge">M</span>GetInfoByDomainRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.GetInfoByDomainResponse"><span class="badge">M</span>GetInfoByDomainResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetOCMShareRequest"><span class="badge">M</span>GetOCMShareRequest</a>
                 </li>
               
@@ -853,6 +861,22 @@
               
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse"><span class="badge">M</span>GetReceivedOCMShareResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.IsProviderAllowedRequest"><span class="badge">M</span>IsProviderAllowedRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.IsProviderAllowedResponse"><span class="badge">M</span>IsProviderAllowedResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.ListAllProvidersRequest"><span class="badge">M</span>ListAllProvidersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.ListAllProvidersResponse"><span class="badge">M</span>ListAllProvidersResponse</a>
                 </li>
               
                 <li>
@@ -956,10 +980,6 @@
               
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ShareReference"><span class="badge">M</span>ShareReference</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.sharing.ocm.v1beta1.UserShareList"><span class="badge">M</span>UserShareList</a>
                 </li>
               
               
@@ -2257,7 +2277,30 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest">.cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest</a></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse">.cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse</a></td>
                 <td><p>Get the information for the given received share reference.
-MUST return CODE_NOT_FOUND if the received share reference does not exist.
+MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>IsProviderAllowed</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.IsProviderAllowedRequest">.cs3.sharing.ocm.v1beta1.IsProviderAllowedRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.IsProviderAllowedResponse">.cs3.sharing.ocm.v1beta1.IsProviderAllowedResponse</a></td>
+                <td><p>Check if a given system provider is registered in the mesh or not.
+MUST return CODE_UNAUTHENTICATED if the system is not registered</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetInfoByDomain</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetInfoByDomainRequest">.cs3.sharing.ocm.v1beta1.GetInfoByDomainRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetInfoByDomainResponse">.cs3.sharing.ocm.v1beta1.GetInfoByDomainResponse</a></td>
+                <td><p>Get the information of the provider identified by a specific domain.
+MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListAllProviders</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.ListAllProvidersRequest">.cs3.sharing.ocm.v1beta1.ListAllProvidersRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.ListAllProvidersResponse">.cs3.sharing.ocm.v1beta1.ListAllProvidersResponse</a></td>
+                <td><p>Get the information of all the providers registered in the mesh.
 
 *****************************************************************/
 ************************ APP REGISTRY ****************************/
@@ -6665,6 +6708,80 @@ The created share. </p></td>
 
         
       
+        <h3 id="cs3.sharing.ocm.v1beta1.GetInfoByDomainRequest">GetInfoByDomainRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>domain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The domain of the system provider. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.GetInfoByDomainResponse">GetInfoByDomainResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider_info</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The info of the provider </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.sharing.ocm.v1beta1.GetOCMShareRequest">GetOCMShareRequest</h3>
         <p></p>
 
@@ -6802,6 +6919,138 @@ Opaque information. </p></td>
                   <td>share</td>
                   <td><a href="#cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</a></td>
                   <td></td>
+                  <td><p>REQUIRED.
+The share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.IsProviderAllowedRequest">IsProviderAllowedRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user whose system provider we need to verify. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.IsProviderAllowedResponse">IsProviderAllowedResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.ListAllProvidersRequest">ListAllProvidersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.ListAllProvidersResponse">ListAllProvidersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>providers</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td>repeated</td>
                   <td><p>REQUIRED.
 The share. </p></td>
                 </tr>
@@ -7406,6 +7655,29 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
 MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></td>
               </tr>
             
+              <tr>
+                <td>IsProviderAllowed</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.IsProviderAllowedRequest">IsProviderAllowedRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.IsProviderAllowedResponse">IsProviderAllowedResponse</a></td>
+                <td><p>Check if a given system provider is registered in the mesh or not.
+MUST return CODE_UNAUTHENTICATED if the system is not registered</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetInfoByDomain</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetInfoByDomainRequest">GetInfoByDomainRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetInfoByDomainResponse">GetInfoByDomainResponse</a></td>
+                <td><p>Get the information of the provider identified by a specific domain.
+MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListAllProviders</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.ListAllProvidersRequest">ListAllProvidersRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.ListAllProvidersResponse">ListAllProvidersResponse</a></td>
+                <td><p>Get the information of all the providers registered in the mesh.</p></td>
+              </tr>
+            
           </tbody>
         </table>
 
@@ -7739,39 +8011,6 @@ implementation of the service. </p></td>
                   <td></td>
                   <td><p>The combination of fields that
 make the share unique. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.sharing.ocm.v1beta1.UserShareList">UserShareList</h3>
-        <p>List of users a user can share resources with.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>user_id</td>
-                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The user who can share the resources. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>users</td>
-                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
-                  <td>repeated</td>
-                  <td><p>REQUIRED.
-The list of users. </p></td>
                 </tr>
               
             </tbody>

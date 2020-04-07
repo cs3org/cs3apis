@@ -242,6 +242,14 @@ service GatewayAPI {
   // Get the information for the given received share reference.
   // MUST return CODE_NOT_FOUND if the received share reference does not exist.
   rpc GetReceivedOCMShare(cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse);
+  // Check if a given system provider is registered in the mesh or not.
+  // MUST return CODE_UNAUTHENTICATED if the system is not registered
+  rpc IsProviderAllowed(cs3.sharing.ocm.v1beta1.IsProviderAllowedRequest) returns (cs3.sharing.ocm.v1beta1.IsProviderAllowedResponse);
+  // Get the information of the provider identified by a specific domain.
+  // MUST return CODE_NOT_FOUND if the sync'n'share system provider does not exist.
+  rpc GetInfoByDomain(cs3.sharing.ocm.v1beta1.GetInfoByDomainRequest) returns (cs3.sharing.ocm.v1beta1.GetInfoByDomainResponse);
+  // Get the information of all the providers registered in the mesh.
+  rpc ListAllProviders(cs3.sharing.ocm.v1beta1.ListAllProvidersRequest) returns (cs3.sharing.ocm.v1beta1.ListAllProvidersResponse);
   // *****************************************************************/
   // ************************ APP REGISTRY ****************************/
   // *****************************************************************/

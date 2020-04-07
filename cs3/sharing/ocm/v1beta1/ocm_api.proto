@@ -79,6 +79,14 @@ service OcmAPI {
   // Get the information for the given received share reference.
   // MUST return CODE_NOT_FOUND if the received share reference does not exist.
   rpc GetReceivedOCMShare(GetReceivedOCMShareRequest) returns (GetReceivedOCMShareResponse);
+  // Check if a given system provider is registered in the mesh or not.
+  // MUST return CODE_UNAUTHENTICATED if the system is not registered
+  rpc IsProviderAllowed(IsProviderAllowedRequest) returns (IsProviderAllowedResponse);
+  // Get the information of the provider identified by a specific domain.
+  // MUST return CODE_NOT_FOUND if the sync'n'share system provider does not exist.
+  rpc GetInfoByDomain(GetInfoByDomainRequest) returns (GetInfoByDomainResponse);
+  // Get the information of all the providers registered in the mesh.
+  rpc ListAllProviders(ListAllProvidersRequest) returns (ListAllProvidersResponse);
 }
 
 message CreateOCMShareRequest {
@@ -283,4 +291,61 @@ message GetReceivedOCMShareResponse {
   // REQUIRED.
   // The share.
   ReceivedShare share = 3;
+}
+
+message IsProviderAllowedRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The user whose system provider we need to verify.
+  cs3.identity.user.v1beta1.User user = 2;
+}
+
+message IsProviderAllowedResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetInfoByDomainRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The domain of the system provider.
+  string domain = 2;
+}
+
+message GetInfoByDomainResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The info of the provider
+  ProviderInfo provider_info = 3;
+}
+
+message ListAllProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message ListAllProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  repeated ProviderInfo providers = 3;
 }
