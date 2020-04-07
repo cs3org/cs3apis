@@ -29,11 +29,11 @@ option objc_class_prefix = "CGX";
 option php_namespace = "Cs3\\Gateway\\V1Beta1";
 
 import "cs3/app/registry/v1beta1/registry_api.proto";
-import "cs3/auth/ocm/provider/v1beta1/ocm_provider_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
-import "cs3/invite/v1beta1/invite_api.proto";
+import "cs3/ocm/invite/v1beta1/invite_api.proto";
+import "cs3/ocm/provider/v1beta1/provider_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
@@ -282,23 +282,23 @@ service GatewayAPI {
   // *****************************************************************/
 
   // Generates a new token for the user with a validity of 24 hours.
-  rpc GenerateInviteToken(cs3.invite.v1beta1.GenerateInviteTokenRequest) returns (cs3.invite.v1beta1.GenerateInviteTokenResponse);
+  rpc GenerateInviteToken(cs3.ocm.invite.v1beta1.GenerateInviteTokenRequest) returns (cs3.ocm.invite.v1beta1.GenerateInviteTokenResponse);
   // Forwards a received invite to the sync'n'share system provider.
-  rpc ForwardInvite(cs3.invite.v1beta1.ForwardInviteRequest) returns (cs3.invite.v1beta1.ForwardInviteResponse);
+  rpc ForwardInvite(cs3.ocm.invite.v1beta1.ForwardInviteRequest) returns (cs3.ocm.invite.v1beta1.ForwardInviteResponse);
   // Completes an invitation acceptance.
-  rpc AcceptInvite(cs3.invite.v1beta1.AcceptInviteRequest) returns (cs3.invite.v1beta1.AcceptInviteResponse);
+  rpc AcceptInvite(cs3.ocm.invite.v1beta1.AcceptInviteRequest) returns (cs3.ocm.invite.v1beta1.AcceptInviteResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
   // *****************************************************************/
 
   // Check if a given system provider is registered in the mesh or not.
   // MUST return CODE_UNAUTHENTICATED if the system is not registered
-  rpc IsProviderAllowed(cs3.auth.ocm.provider.v1beta1.IsProviderAllowedRequest) returns (cs3.auth.ocm.provider.v1beta1.IsProviderAllowedResponse);
+  rpc IsProviderAllowed(cs3.ocm.provider.v1beta1.IsProviderAllowedRequest) returns (cs3.ocm.provider.v1beta1.IsProviderAllowedResponse);
   // Get the information of the provider identified by a specific domain.
   // MUST return CODE_NOT_FOUND if the sync'n'share system provider does not exist.
-  rpc GetInfoByDomain(cs3.auth.ocm.provider.v1beta1.GetInfoByDomainRequest) returns (cs3.auth.ocm.provider.v1beta1.GetInfoByDomainResponse);
+  rpc GetInfoByDomain(cs3.ocm.provider.v1beta1.GetInfoByDomainRequest) returns (cs3.ocm.provider.v1beta1.GetInfoByDomainResponse);
   // Get the information of all the providers registered in the mesh.
-  rpc ListAllProviders(cs3.auth.ocm.provider.v1beta1.ListAllProvidersRequest) returns (cs3.auth.ocm.provider.v1beta1.ListAllProvidersResponse);
+  rpc ListAllProviders(cs3.ocm.provider.v1beta1.ListAllProvidersRequest) returns (cs3.ocm.provider.v1beta1.ListAllProvidersResponse);
 }
 
 // CAUTION:

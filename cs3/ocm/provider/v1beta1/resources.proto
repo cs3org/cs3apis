@@ -18,15 +18,15 @@
 
 syntax = "proto3";
 
-package cs3.auth.ocm.provider.v1beta1;
+package cs3.ocm.provider.v1beta1;
 
-option csharp_namespace = "Cs3.Auth.Ocm.Provider.V1Beta1";
+option csharp_namespace = "Cs3.Ocm.Provider.V1Beta1";
 option go_package = "providerv1beta1";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.auth.ocm.provider.v1beta1";
-option objc_class_prefix = "CAOP";
-option php_namespace = "Cs3\\Auth\\Ocm\\Provider\\V1Beta1";
+option java_package = "com.cs3.ocm.provider.v1beta1";
+option objc_class_prefix = "COP";
+option php_namespace = "Cs3\\Ocm\\Provider\\V1Beta1";
 
 // Details of the sync'n'share system provider.
 message ProviderInfo {
