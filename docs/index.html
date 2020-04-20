@@ -537,6 +537,30 @@
                   <a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse"><span class="badge">M</span>CreateOCMCoreShareResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.GetOCMCoreShareRequest"><span class="badge">M</span>GetOCMCoreShareRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.GetOCMCoreShareResponse"><span class="badge">M</span>GetOCMCoreShareResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest"><span class="badge">M</span>ListOCMCoreSharesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter"><span class="badge">M</span>ListOCMCoreSharesRequest.Filter</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse"><span class="badge">M</span>ListOCMCoreSharesResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter.Type"><span class="badge">E</span>ListOCMCoreSharesRequest.Filter.Type</a>
+                </li>
               
               
               
@@ -4415,7 +4439,253 @@ Unique ID to identify the share at the consumer side. </p></td>
 
         
       
+        <h3 id="cs3.ocm.core.v1beta1.GetOCMCoreShareRequest">GetOCMCoreShareRequest</h3>
+        <p></p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareReference">cs3.sharing.ocm.v1beta1.ShareReference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference to which the action should be performed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.core.v1beta1.GetOCMCoreShareResponse">GetOCMCoreShareResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.Share">cs3.sharing.ocm.v1beta1.Share</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest">ListOCMCoreSharesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filters</td>
+                  <td><a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter">ListOCMCoreSharesRequest.Filter</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The list of filters to apply if any. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter">ListOCMCoreSharesRequest.Filter</h3>
+        <p>REQUIRED.</p><p>represents a filter to apply to the request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter.Type">ListOCMCoreSharesRequest.Filter.Type</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>creator</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse">ListOCMCoreSharesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>shares</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.Share">cs3.sharing.ocm.v1beta1.Share</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of shares. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter.Type">ListOCMCoreSharesRequest.Filter.Type</h3>
+        <p>REQUIRED.</p><p>The filter to apply.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_NO</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_RESOURCE_ID</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_OWNER</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_CREATOR</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_OWNER_PROVIDER</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_CREATOR_PROVIDER</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -4434,6 +4704,20 @@ Unique ID to identify the share at the consumer side. </p></td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">CreateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">CreateOCMCoreShareResponse</a></td>
                 <td><p>Creates a new ocm share.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetOCMCoreShare</td>
+                <td><a href="#cs3.ocm.core.v1beta1.GetOCMCoreShareRequest">GetOCMCoreShareRequest</a></td>
+                <td><a href="#cs3.ocm.core.v1beta1.GetOCMCoreShareResponse">GetOCMCoreShareResponse</a></td>
+                <td><p>Gets an ocm share.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListOCMCoreShares</td>
+                <td><a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest">ListOCMCoreSharesRequest</a></td>
+                <td><a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse">ListOCMCoreSharesResponse</a></td>
+                <td><p>Lists all ocm shares.</p></td>
               </tr>
             
           </tbody>
