@@ -18,26 +18,24 @@
 
 syntax = "proto3";
 
-package cs3.invite.v1beta1;
+package cs3.ocm.provider.v1beta1;
 
-option csharp_namespace = "Cs3.Invite.V1Beta1";
-option go_package = "invitev1beta1";
+option csharp_namespace = "Cs3.Ocm.Provider.V1Beta1";
+option go_package = "providerv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "InviteApiProto";
-option java_package = "com.cs3.invite.v1beta1";
-option objc_class_prefix = "CIX";
-option php_namespace = "Cs3\\Invite\\V1Beta1";
+option java_outer_classname = "ProviderApiProto";
+option java_package = "com.cs3.ocm.provider.v1beta1";
+option objc_class_prefix = "COP";
+option php_namespace = "Cs3\\Ocm\\Provider\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/invite/v1beta1/resources.proto";
+import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
-import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
-// Invite API
+// OCM Auth Provider API
 //
-// The Invite API is meant to invite users and groups belonging to other
-// sync'n'share systems, so that collaboration of resources can be enabled.
+// The Auth Provider API is meant to authenticate a sync'n'share provider regsistered in the mesh.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -50,46 +48,27 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service InviteAPI {
-  // Generates a new token for the user with a validity of 24 hours.
-  rpc GenerateInviteToken(GenerateInviteTokenRequest) returns (GenerateInviteTokenResponse);
-  // Forwards a received invite to the sync'n'share system provider.
-  rpc ForwardInvite(ForwardInviteRequest) returns (ForwardInviteResponse);
-  // Completes an invitation acceptance.
-  rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
+service ProviderAPI {
+  // Check if a given system provider is registered in the mesh or not.
+  // MUST return CODE_UNAUTHENTICATED if the system is not registered
+  rpc IsProviderAllowed(IsProviderAllowedRequest) returns (IsProviderAllowedResponse);
+  // Get the information of the provider identified by a specific domain.
+  // MUST return CODE_NOT_FOUND if the sync'n'share system provider does not exist.
+  rpc GetInfoByDomain(GetInfoByDomainRequest) returns (GetInfoByDomainResponse);
+  // Get the information of all the providers registered in the mesh.
+  rpc ListAllProviders(ListAllProvidersRequest) returns (ListAllProvidersResponse);
 }
 
-message GenerateInviteTokenRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-}
-
-message GenerateInviteTokenResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The generated token.
-  InviteToken invite_token = 3;
-}
-
-message ForwardInviteRequest {
+message IsProviderAllowedRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The token to authenticate with.
-  InviteToken invite_token = 2;
-  // REQUIRED.
-  // The details of the sync'n'share system provider of the user who sent the invite.
-  cs3.sharing.ocm.v1beta1.ProviderInfo origin_system_provider = 3;
+  // The user whose system provider we need to verify.
+  cs3.identity.user.v1beta1.User user = 2;
 }
 
-message ForwardInviteResponse {
+message IsProviderAllowedResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -98,26 +77,41 @@ message ForwardInviteResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message AcceptInviteRequest {
+message GetInfoByDomainRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The token to authenticate with.
-  InviteToken invite_token = 2;
-  // REQUIRED.
-  // The user who accepted the invite.
-  cs3.identity.user.v1beta1.UserId user_id = 3;
-  // REQUIRED.
-  // The details of the sync'n'share system provider of the user who accepted the invite.
-  cs3.sharing.ocm.v1beta1.ProviderInfo recipient_system_provider = 4;
+  // The domain of the system provider.
+  string domain = 2;
 }
 
-message AcceptInviteResponse {
+message GetInfoByDomainResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The info of the provider
+  ProviderInfo provider_info = 3;
+}
+
+message ListAllProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message ListAllProvidersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The share.
+  repeated ProviderInfo providers = 3;
 }
