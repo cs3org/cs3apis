@@ -126,6 +126,7 @@ message UpdatePublicShareRequest {
     // Contains the field that will be updated.
     Grant grant = 4;
   }
+  Update update = 3;
 }
 
 message UpdatePublicShareResponse {
