@@ -76,6 +76,8 @@ message CreateOCMCoreShareRequest {
   // Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
   // TODO: this field needs to represent either a user or group in the future, not only a user.
   cs3.identity.user.v1beta1.UserId share_with = 6;
+  // REQUIRED.
+  // The protocol which is used to establish synchronisation. 
   Protocol protocol = 7;
 }
 
