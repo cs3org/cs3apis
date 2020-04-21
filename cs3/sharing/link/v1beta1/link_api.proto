@@ -118,13 +118,17 @@ message UpdatePublicShareRequest {
       TYPE_PERMISSIONS = 1;
       TYPE_PASSWORD = 2;
       TYPE_EXPIRATION = 3;
+      TYPE_DISPLAYNAME = 4;
     }
     // REQUIRED.
-    // Defines the field to update
+    // Defines the field to update.
     Type type = 3;
     // REQUIRED.
     // Contains the field that will be updated.
     Grant grant = 4;
+    // OPTIONAL
+    // Defines the public link display name.
+    string display_name = 5;
   }
   Update update = 3;
 }
