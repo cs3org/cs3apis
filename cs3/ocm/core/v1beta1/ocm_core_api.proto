@@ -31,7 +31,6 @@ option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/ocm/core/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
-import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -93,10 +92,37 @@ message CreateOCMCoreShareResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // Unique ID to identify the share at the consumer side.
-  string id = 3;
+  // Consumer specific identifier of the user or group the provider wants to share the resource with.
+  // This is known in advance, for example using the OCM invitation flow.
+  // Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+  // TODO: this field needs to represent either a user or group in the future, not only a user.
+  string share_with = 3;
   // REQUIRED.
-  cs3.types.v1beta1.Timestamp created = 4;
+  // Name of the resource (file or folder).
+  string name = 4;
+  // OPTIONAL.
+  // Optional description of the resource (file or folder).
+  string description = 5;
+  // REQUIRED.
+  // Identifier to identify the resource at the provider side. This is unique per provider.
+  string provider_id = 6;
+  // REQUIRED.
+  // Provider specific identifier of the user that wants to share the resource. Please note that the requesting provider
+  // is being identified on a higher level, so the former remote property is no part of the request body.
+  string owner = 7;
+  // REQUIRED.
+  // The protocol which is used to establish synchronisation. At the moment only webdav is supported, but other (custom)
+  // protocols might be added in the future.
+  Protocol protocol = 8;
+  // REQUIRED.
+  // Unique ID to identify the share at the consumer side.
+  string id = 9;
+  // REQUIRED.
+  // Datetime when the share was created at the consumer side (ISO 8601).
+  string created_at = 10;
+  // REQUIRED.
+  // Link to this specific share.
+  string href = 11;
 }
 
 message ListOCMCoreSharesRequest {
@@ -138,8 +164,44 @@ message ListOCMCoreSharesResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
+  // The share.
+  message Share {
+    // REQUIRED.
+    // Consumer specific identifier of the user or group the provider wants to share the resource with.
+    // This is known in advance, for example using the OCM invitation flow.
+    // Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+    // TODO: this field needs to represent either a user or group in the future, not only a user.
+    string share_with = 1;
+    // REQUIRED.
+    // Name of the resource (file or folder).
+    string name = 2;
+    // OPTIONAL.
+    // Optional description of the resource (file or folder).
+    string description = 3;
+    // REQUIRED.
+    // Identifier to identify the resource at the provider side. This is unique per provider.
+    string provider_id = 4;
+    // REQUIRED.
+    // Provider specific identifier of the user that wants to share the resource. Please note that the requesting provider
+    // is being identified on a higher level, so the former remote property is no part of the request body.
+    string owner = 5;
+    // REQUIRED.
+    // The protocol which is used to establish synchronisation. At the moment only webdav is supported, but other (custom)
+    // protocols might be added in the future.
+    Protocol protocol = 6;
+    // REQUIRED.
+    // Unique ID to identify the share at the consumer side.
+    string id = 7;
+    // REQUIRED.
+    // Datetime when the share was created at the consumer side (ISO 8601).
+    string created_at = 8;
+    // REQUIRED.
+    // Link to this specific share.
+    string href = 9;
+  }
+  // REQUIRED.
   // The list of shares.
-  repeated cs3.sharing.ocm.v1beta1.Share shares = 3;
+  repeated Share shares = 3;
 }
 
 message GetOCMCoreShareRequest {
@@ -148,7 +210,7 @@ message GetOCMCoreShareRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The reference to which the action should be performed.
-  cs3.sharing.ocm.v1beta1.ShareReference ref = 2;
+  string id = 2;
 }
 
 message GetOCMCoreShareResponse {
@@ -159,6 +221,35 @@ message GetOCMCoreShareResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The share.
-  cs3.sharing.ocm.v1beta1.Share share = 3;
+  // Consumer specific identifier of the user or group the provider wants to share the resource with.
+  // This is known in advance, for example using the OCM invitation flow.
+  // Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+  // TODO: this field needs to represent either a user or group in the future, not only a user.
+  string share_with = 3;
+  // REQUIRED.
+  // Name of the resource (file or folder).
+  string name = 4;
+  // OPTIONAL.
+  // Optional description of the resource (file or folder).
+  string description = 5;
+  // REQUIRED.
+  // Identifier to identify the resource at the provider side. This is unique per provider.
+  string provider_id = 6;
+  // REQUIRED.
+  // Provider specific identifier of the user that wants to share the resource. Please note that the requesting provider
+  // is being identified on a higher level, so the former remote property is no part of the request body.
+  string owner = 7;
+  // REQUIRED.
+  // The protocol which is used to establish synchronisation. At the moment only webdav is supported, but other (custom)
+  // protocols might be added in the future.
+  Protocol protocol = 8;
+  // REQUIRED.
+  // Unique ID to identify the share at the consumer side.
+  string id = 9;
+  // REQUIRED.
+  // Datetime when the share was created at the consumer side (ISO 8601).
+  string created_at = 10;
+  // REQUIRED.
+  // Link to this specific share.
+  string href = 11;
 }

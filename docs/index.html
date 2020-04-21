@@ -557,6 +557,10 @@
                   <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse"><span class="badge">M</span>ListOCMCoreSharesResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse.Share"><span class="badge">M</span>ListOCMCoreSharesResponse.Share</a>
+                </li>
+              
               
                 <li>
                   <a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesRequest.Filter.Type"><span class="badge">E</span>ListOCMCoreSharesRequest.Filter.Type</a>
@@ -4418,6 +4422,59 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
+                  <td>share_with</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Consumer specific identifier of the user or group the provider wants to share the resource with.
+This is known in advance, for example using the OCM invitation flow.
+Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+TODO: this field needs to represent either a user or group in the future, not only a user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Name of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Optional description of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Identifier to identify the resource at the provider side. This is unique per provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Provider specific identifier of the user that wants to share the resource. Please note that the requesting provider
+is being identified on a higher level, so the former remote property is no part of the request body. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#cs3.ocm.core.v1beta1.Protocol">Protocol</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol which is used to establish synchronisation. At the moment only webdav is supported, but other (custom)
+protocols might be added in the future. </p></td>
+                </tr>
+              
+                <tr>
                   <td>id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -4426,10 +4483,19 @@ Unique ID to identify the share at the consumer side. </p></td>
                 </tr>
               
                 <tr>
-                  <td>created</td>
-                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td>created_at</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+Datetime when the share was created at the consumer side (ISO 8601). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>href</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Link to this specific share. </p></td>
                 </tr>
               
             </tbody>
@@ -4458,8 +4524,8 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareReference">cs3.sharing.ocm.v1beta1.ShareReference</a></td>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
@@ -4499,11 +4565,80 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>share</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.Share">cs3.sharing.ocm.v1beta1.Share</a></td>
+                  <td>share_with</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The share. </p></td>
+Consumer specific identifier of the user or group the provider wants to share the resource with.
+This is known in advance, for example using the OCM invitation flow.
+Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+TODO: this field needs to represent either a user or group in the future, not only a user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Name of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Optional description of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Identifier to identify the resource at the provider side. This is unique per provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Provider specific identifier of the user that wants to share the resource. Please note that the requesting provider
+is being identified on a higher level, so the former remote property is no part of the request body. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#cs3.ocm.core.v1beta1.Protocol">Protocol</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol which is used to establish synchronisation. At the moment only webdav is supported, but other (custom)
+protocols might be added in the future. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Unique ID to identify the share at the consumer side. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Datetime when the share was created at the consumer side (ISO 8601). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>href</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Link to this specific share. </p></td>
                 </tr>
               
             </tbody>
@@ -4619,10 +4754,104 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>shares</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.Share">cs3.sharing.ocm.v1beta1.Share</a></td>
+                  <td><a href="#cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse.Share">ListOCMCoreSharesResponse.Share</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The list of shares. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.core.v1beta1.ListOCMCoreSharesResponse.Share">ListOCMCoreSharesResponse.Share</h3>
+        <p>REQUIRED.</p><p>The share.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>share_with</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Consumer specific identifier of the user or group the provider wants to share the resource with.
+This is known in advance, for example using the OCM invitation flow.
+Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+TODO: this field needs to represent either a user or group in the future, not only a user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Name of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Optional description of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Identifier to identify the resource at the provider side. This is unique per provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Provider specific identifier of the user that wants to share the resource. Please note that the requesting provider
+is being identified on a higher level, so the former remote property is no part of the request body. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#cs3.ocm.core.v1beta1.Protocol">Protocol</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol which is used to establish synchronisation. At the moment only webdav is supported, but other (custom)
+protocols might be added in the future. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Unique ID to identify the share at the consumer side. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Datetime when the share was created at the consumer side (ISO 8601). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>href</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Link to this specific share. </p></td>
                 </tr>
               
             </tbody>
