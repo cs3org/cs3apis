@@ -591,6 +591,14 @@
                   <a href="#cs3.ocm.invite.v1beta1.GenerateInviteTokenResponse"><span class="badge">M</span>GenerateInviteTokenResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest"><span class="badge">M</span>GetRemoteUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse"><span class="badge">M</span>GetRemoteUserResponse</a>
+                </li>
+              
               
               
               
@@ -2440,7 +2448,14 @@ When a user has access to multiple storage providers, one of them is the home.
                 <td>AcceptInvite</td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteRequest">.cs3.ocm.invite.v1beta1.AcceptInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteResponse">.cs3.ocm.invite.v1beta1.AcceptInviteResponse</a></td>
-                <td><p>Completes an invitation acceptance.
+                <td><p>Completes an invitation acceptance.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRemoteUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest">.cs3.ocm.invite.v1beta1.GetRemoteUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse">.cs3.ocm.invite.v1beta1.GetRemoteUserResponse</a></td>
+                <td><p>Retrieves details about a remote user who has accepted an invite to share.
 
 *****************************************************************/
 ******************** OCM PROVIDER AUTHORIZER ********************/
@@ -2467,7 +2482,18 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>ListAllProviders</td>
                 <td><a href="#cs3.ocm.provider.v1beta1.ListAllProvidersRequest">.cs3.ocm.provider.v1beta1.ListAllProvidersRequest</a></td>
                 <td><a href="#cs3.ocm.provider.v1beta1.ListAllProvidersResponse">.cs3.ocm.provider.v1beta1.ListAllProvidersResponse</a></td>
-                <td><p>Get the information of all the providers registered in the mesh.</p></td>
+                <td><p>Get the information of all the providers registered in the mesh.
+
+*****************************************************************/
+**************************** OCM CORE ***************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateOCMCoreShare</td>
+                <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">.cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest</a></td>
+                <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">.cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse</a></td>
+                <td><p>Creates a new ocm share.</p></td>
               </tr>
             
           </tbody>
@@ -4357,7 +4383,8 @@ TODO: this field needs to represent either a user or group in the future, not on
                   <td>protocol</td>
                   <td><a href="#cs3.ocm.core.v1beta1.Protocol">Protocol</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The protocol which is used to establish synchronisation. </p></td>
                 </tr>
               
             </tbody>
@@ -4523,19 +4550,11 @@ The token to authenticate with. </p></td>
                 </tr>
               
                 <tr>
-                  <td>user_id</td>
-                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td>remote_user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The user who accepted the invite. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>recipient_system_provider</td>
-                  <td><a href="#cs3.ocm.provider.v1beta1.ProviderInfo">cs3.ocm.provider.v1beta1.ProviderInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The details of the sync&#39;n&#39;share system provider of the user who accepted the invite. </p></td>
                 </tr>
               
             </tbody>
@@ -4718,6 +4737,80 @@ The generated token. </p></td>
 
         
       
+        <h3 id="cs3.ocm.invite.v1beta1.GetRemoteUserRequest">GetRemoteUserRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remote_user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.invite.v1beta1.GetRemoteUserResponse">GetRemoteUserResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remote_user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -4751,6 +4844,13 @@ The generated token. </p></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteRequest">AcceptInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteResponse">AcceptInviteResponse</a></td>
                 <td><p>Completes an invitation acceptance.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRemoteUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest">GetRemoteUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse">GetRemoteUserResponse</a></td>
+                <td><p>Retrieves details about a remote user who has accepted an invite to share.</p></td>
               </tr>
             
           </tbody>
