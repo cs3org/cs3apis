@@ -1,0 +1,96 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.ocm.core.v1beta1;
+
+option csharp_namespace = "Cs3.Ocm.Core.V1Beta1";
+option go_package = "corev1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "OcmCoreApiProto";
+option java_package = "com.cs3.ocm.core.v1beta1";
+option objc_class_prefix = "COC";
+option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/ocm/core/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// OCM Core API
+//
+// The OCM Core API is the mapping in GRPC of the OCM core protocol.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service OcmCoreAPI {
+  // Creates a new ocm share.
+  rpc CreateOCMCoreShare(CreateOCMCoreShareRequest) returns (CreateOCMCoreShareResponse);
+}
+
+// https://rawgit.com/GEANT/OCM-API/v1/docs.html#null%2Fpaths%2F~1shares%2Fpost
+message CreateOCMCoreShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // Description for the share.
+  string description = 2;
+  // REQUIRED.
+  // Name of the resource (file or folder).
+  string name = 3;
+  // REQUIRED.
+  // Identifier to identify the resource at the provider side. This is unique per provider.
+  string provider_id = 4;
+  // REQUIRED.
+  // Provider specific identifier of the user that wants to share the resource.
+  cs3.identity.user.v1beta1.UserId owner = 5;
+  // REQUIRED.
+  // Consumer specific identifier of the user or group the provider wants to share the resource with.
+  // This is known in advance, for example using the OCM invitation flow.
+  // Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+  // TODO: this field needs to represent either a user or group in the future, not only a user.
+  cs3.identity.user.v1beta1.UserId share_with = 6;
+  // REQUIRED.
+  // The protocol which is used to establish synchronisation. 
+  Protocol protocol = 7;
+}
+
+message CreateOCMCoreShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // Unique ID to identify the share at the consumer side.
+  string id = 3;
+  // REQUIRED.
+  cs3.types.v1beta1.Timestamp created = 4;
+}
