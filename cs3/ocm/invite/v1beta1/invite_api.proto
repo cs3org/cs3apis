@@ -57,6 +57,8 @@ service InviteAPI {
   rpc ForwardInvite(ForwardInviteRequest) returns (ForwardInviteResponse);
   // Completes an invitation acceptance.
   rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
+  // Retrieves details about a remote user who has accepted an invite to share.
+  rpc GetRemoteUser(GetRemoteUserRequest) returns (GetRemoteUserResponse);
 }
 
 message GenerateInviteTokenRequest {
@@ -107,10 +109,7 @@ message AcceptInviteRequest {
   InviteToken invite_token = 2;
   // REQUIRED.
   // The user who accepted the invite.
-  cs3.identity.user.v1beta1.UserId user_id = 3;
-  // REQUIRED.
-  // The details of the sync'n'share system provider of the user who accepted the invite.
-  cs3.ocm.provider.v1beta1.ProviderInfo recipient_system_provider = 4;
+  cs3.identity.user.v1beta1.User remote_user = 3;
 }
 
 message AcceptInviteResponse {
@@ -120,4 +119,25 @@ message AcceptInviteResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetRemoteUserRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the user.
+  cs3.identity.user.v1beta1.UserId remote_user_id = 2;
+}
+
+message GetRemoteUserResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The user information.
+  cs3.identity.user.v1beta1.User remote_user = 3;
 }
