@@ -77,7 +77,7 @@ message CreateOCMCoreShareRequest {
   // TODO: this field needs to represent either a user or group in the future, not only a user.
   cs3.identity.user.v1beta1.UserId share_with = 6;
   // REQUIRED.
-  // The protocol which is used to establish synchronisation. 
+  // The protocol which is used to establish synchronisation.
   Protocol protocol = 7;
 }
 
