@@ -32,6 +32,7 @@ import "cs3/app/registry/v1beta1/registry_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
+import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
@@ -287,6 +288,8 @@ service GatewayAPI {
   rpc ForwardInvite(cs3.ocm.invite.v1beta1.ForwardInviteRequest) returns (cs3.ocm.invite.v1beta1.ForwardInviteResponse);
   // Completes an invitation acceptance.
   rpc AcceptInvite(cs3.ocm.invite.v1beta1.AcceptInviteRequest) returns (cs3.ocm.invite.v1beta1.AcceptInviteResponse);
+  // Retrieves details about a remote user who has accepted an invite to share.
+  rpc GetRemoteUser(cs3.ocm.invite.v1beta1.GetRemoteUserRequest) returns (cs3.ocm.invite.v1beta1.GetRemoteUserResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
   // *****************************************************************/
@@ -299,6 +302,12 @@ service GatewayAPI {
   rpc GetInfoByDomain(cs3.ocm.provider.v1beta1.GetInfoByDomainRequest) returns (cs3.ocm.provider.v1beta1.GetInfoByDomainResponse);
   // Get the information of all the providers registered in the mesh.
   rpc ListAllProviders(cs3.ocm.provider.v1beta1.ListAllProvidersRequest) returns (cs3.ocm.provider.v1beta1.ListAllProvidersResponse);
+  // *****************************************************************/
+  // **************************** OCM CORE ***************************/
+  // *****************************************************************/
+
+  // Creates a new ocm share.
+  rpc CreateOCMCoreShare(cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse);
 }
 
 // CAUTION:

@@ -526,6 +526,44 @@
         
           
           <li>
+            <a href="#cs3%2focm%2fcore%2fv1beta1%2focm_core_api.proto">cs3/ocm/core/v1beta1/ocm_core_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest"><span class="badge">M</span>CreateOCMCoreShareRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse"><span class="badge">M</span>CreateOCMCoreShareResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.OcmCoreAPI"><span class="badge">S</span>OcmCoreAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2focm%2fcore%2fv1beta1%2fresources.proto">cs3/ocm/core/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.ocm.core.v1beta1.Protocol"><span class="badge">M</span>Protocol</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2focm%2finvite%2fv1beta1%2finvite_api.proto">cs3/ocm/invite/v1beta1/invite_api.proto</a>
             <ul>
               
@@ -551,6 +589,14 @@
               
                 <li>
                   <a href="#cs3.ocm.invite.v1beta1.GenerateInviteTokenResponse"><span class="badge">M</span>GenerateInviteTokenResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest"><span class="badge">M</span>GetRemoteUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse"><span class="badge">M</span>GetRemoteUserResponse</a>
                 </li>
               
               
@@ -2402,7 +2448,14 @@ When a user has access to multiple storage providers, one of them is the home.
                 <td>AcceptInvite</td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteRequest">.cs3.ocm.invite.v1beta1.AcceptInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteResponse">.cs3.ocm.invite.v1beta1.AcceptInviteResponse</a></td>
-                <td><p>Completes an invitation acceptance.
+                <td><p>Completes an invitation acceptance.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRemoteUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest">.cs3.ocm.invite.v1beta1.GetRemoteUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse">.cs3.ocm.invite.v1beta1.GetRemoteUserResponse</a></td>
+                <td><p>Retrieves details about a remote user who has accepted an invite to share.
 
 *****************************************************************/
 ******************** OCM PROVIDER AUTHORIZER ********************/
@@ -2429,7 +2482,18 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>ListAllProviders</td>
                 <td><a href="#cs3.ocm.provider.v1beta1.ListAllProvidersRequest">.cs3.ocm.provider.v1beta1.ListAllProvidersRequest</a></td>
                 <td><a href="#cs3.ocm.provider.v1beta1.ListAllProvidersResponse">.cs3.ocm.provider.v1beta1.ListAllProvidersResponse</a></td>
-                <td><p>Get the information of all the providers registered in the mesh.</p></td>
+                <td><p>Get the information of all the providers registered in the mesh.
+
+*****************************************************************/
+**************************** OCM CORE ***************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateOCMCoreShare</td>
+                <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">.cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest</a></td>
+                <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">.cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse</a></td>
+                <td><p>Creates a new ocm share.</p></td>
               </tr>
             
           </tbody>
@@ -4249,6 +4313,211 @@ TODO(labkode): to define the filters that make more sense.</p></td>
     
       
       <div class="file-heading">
+        <h2 id="cs3/ocm/core/v1beta1/ocm_core_api.proto">cs3/ocm/core/v1beta1/ocm_core_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">CreateOCMCoreShareRequest</h3>
+        <p>https://rawgit.com/GEANT/OCM-API/v1/docs.html#null%2Fpaths%2F~1shares%2Fpost</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Description for the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Name of the resource (file or folder). </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Identifier to identify the resource at the provider side. This is unique per provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Provider specific identifier of the user that wants to share the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share_with</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Consumer specific identifier of the user or group the provider wants to share the resource with.
+This is known in advance, for example using the OCM invitation flow.
+Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
+TODO: this field needs to represent either a user or group in the future, not only a user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#cs3.ocm.core.v1beta1.Protocol">Protocol</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol which is used to establish synchronisation. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">CreateOCMCoreShareResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Unique ID to identify the share at the consumer side. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.ocm.core.v1beta1.OcmCoreAPI">OcmCoreAPI</h3>
+        <p>OCM Core API</p><p>The OCM Core API is the mapping in GRPC of the OCM core protocol.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateOCMCoreShare</td>
+                <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">CreateOCMCoreShareRequest</a></td>
+                <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">CreateOCMCoreShareResponse</a></td>
+                <td><p>Creates a new ocm share.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/ocm/core/v1beta1/resources.proto">cs3/ocm/core/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.ocm.core.v1beta1.Protocol">Protocol</h3>
+        <p>The protocol which is used to establish synchronisation.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The name of the protocol to use. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+JSON object with protocol specific options,
+e.g. uri, access_token, password, permissions etc. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="cs3/ocm/invite/v1beta1/invite_api.proto">cs3/ocm/invite/v1beta1/invite_api.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -4281,19 +4550,11 @@ The token to authenticate with. </p></td>
                 </tr>
               
                 <tr>
-                  <td>user_id</td>
-                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td>remote_user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The user who accepted the invite. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>recipient_system_provider</td>
-                  <td><a href="#cs3.ocm.provider.v1beta1.ProviderInfo">cs3.ocm.provider.v1beta1.ProviderInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The details of the sync&#39;n&#39;share system provider of the user who accepted the invite. </p></td>
                 </tr>
               
             </tbody>
@@ -4476,6 +4737,80 @@ The generated token. </p></td>
 
         
       
+        <h3 id="cs3.ocm.invite.v1beta1.GetRemoteUserRequest">GetRemoteUserRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remote_user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.invite.v1beta1.GetRemoteUserResponse">GetRemoteUserResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remote_user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -4509,6 +4844,13 @@ The generated token. </p></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteRequest">AcceptInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteResponse">AcceptInviteResponse</a></td>
                 <td><p>Completes an invitation acceptance.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetRemoteUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest">GetRemoteUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse">GetRemoteUserResponse</a></td>
+                <td><p>Retrieves details about a remote user who has accepted an invite to share.</p></td>
               </tr>
             
           </tbody>
@@ -6491,6 +6833,13 @@ The reference to the public share.
 Available fields to update. </p></td>
                 </tr>
               
+                <tr>
+                  <td>update</td>
+                  <td><a href="#cs3.sharing.link.v1beta1.UpdatePublicShareRequest.Update">UpdatePublicShareRequest.Update</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -6513,7 +6862,7 @@ Available fields to update. </p></td>
                   <td><a href="#cs3.sharing.link.v1beta1.UpdatePublicShareRequest.Update.Type">UpdatePublicShareRequest.Update.Type</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Defines the field to update </p></td>
+Defines the field to update. </p></td>
                 </tr>
               
                 <tr>
@@ -6522,6 +6871,14 @@ Defines the field to update </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 Contains the field that will be updated. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Defines the public link display name. </p></td>
                 </tr>
               
             </tbody>
@@ -6638,6 +6995,12 @@ The updated public share. </p></td>
               <tr>
                 <td>TYPE_EXPIRATION</td>
                 <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_DISPLAYNAME</td>
+                <td>4</td>
                 <td><p></p></td>
               </tr>
             
