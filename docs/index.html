@@ -6496,6 +6496,14 @@ Opaque information. </p></td>
 The unlisted token to identify the public share. </p></td>
                 </tr>
               
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The public link can be password protected. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10921,7 +10929,7 @@ in Unix Epoch timestamp in seconds. </p></td>
         
       
         <h3 id="cs3.storage.provider.v1beta1.Reference">Reference</h3>
-        <p>The mechanism to identify a resource</p><p>in the storage provider namespace.</p>
+        <p>The mechanism to identify a resource</p><p>in the storage provider namespace. Note that the path OR the resourceId must be specifed, not both.</p>
 
         
           <table class="field-table">
