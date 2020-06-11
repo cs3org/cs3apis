@@ -74,6 +74,18 @@ message OpenRequest {
   // The access token MUST be short-lived.
   // TODO(labkode): investigate token derivation techniques.
   string access_token = 3;
+  // REQUIRED.
+  // View mode.
+  enum ViewMode {
+    VIEW_MODE_INVALID = 0;
+    // The file can be opened but not downloaded.
+    VIEW_MODE_VIEW_ONLY = 1;
+    // The file can be downloaded.
+    VIEW_MODE_READ_ONLY = 2;
+    // The file can be downloaded and updated.
+    VIEW_MODE_READ_WRITE = 3;
+  }
+  ViewMode view_mode = 4;
 }
 
 message OpenResponse {
