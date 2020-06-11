@@ -33,7 +33,7 @@ You can also use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
 
 CS3 APIs follows Google and Uber API design guidelines, specially on error handling and naming convention.
-You can read more about these guidelines at https://cloud.google.com/apis/design/.
+You can read more about these guidelines at https://cloud.google.com/apis/design/ and https://github.com/uber/prototool/blob/dev/style/README.md.
 
 This repository structure is very similar to https://github.com/googleapis/googleapis.
 
