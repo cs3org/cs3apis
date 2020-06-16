@@ -1203,6 +1203,11 @@
                 "name": "CreateOCMCoreShare",
                 "in_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest",
                 "out_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse"
+              },
+              {
+                "name": "Open",
+                "in_type": "cs3.app.provider.v1beta1.OpenRequest",
+                "out_type": "cs3.app.provider.v1beta1.OpenResponse"
               }
             ]
           }
