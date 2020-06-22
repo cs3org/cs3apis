@@ -35,8 +35,7 @@ message ServiceType {
   string name = 1;
   // REQUIRED
   // The description of the service type.
-  // string description = 2;
-
+  string description = 2;
 }
 
 // The endpoints exposed by particular services.
