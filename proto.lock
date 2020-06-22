@@ -36,8 +36,8 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_info",
+                "type": "storage.provider.v1beta1.ResourceInfo"
               },
               {
                 "id": 3,
@@ -2278,6 +2278,11 @@
               {
                 "id": 1,
                 "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "description",
                 "type": "string"
               }
             ]
