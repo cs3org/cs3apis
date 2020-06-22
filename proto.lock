@@ -3,6 +3,28 @@
     {
       "protopath": "cs3:/:app:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "OpenRequest.ViewMode",
+            "enum_fields": [
+              {
+                "name": "VIEW_MODE_INVALID"
+              },
+              {
+                "name": "VIEW_MODE_VIEW_ONLY",
+                "integer": 1
+              },
+              {
+                "name": "VIEW_MODE_READ_ONLY",
+                "integer": 2
+              },
+              {
+                "name": "VIEW_MODE_READ_WRITE",
+                "integer": 3
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "OpenRequest",
@@ -21,6 +43,11 @@
                 "id": 3,
                 "name": "access_token",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "view_mode",
+                "type": "ViewMode"
               }
             ]
           },
@@ -2246,27 +2273,129 @@
       "def": {
         "messages": [
           {
-            "name": "ProviderInfo",
+            "name": "ServiceType",
             "fields": [
               {
                 "id": 1,
-                "name": "domain",
+                "name": "name",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ServiceEndpoint",
+            "fields": [
+              {
+                "id": 1,
+                "name": "type",
+                "type": "ServiceType"
               },
               {
                 "id": 2,
-                "name": "api_version",
+                "name": "name",
                 "type": "string"
               },
               {
                 "id": 3,
-                "name": "api_endpoint",
+                "name": "path",
                 "type": "string"
               },
               {
                 "id": 4,
-                "name": "webdav_endpoint",
+                "name": "is_monitored",
+                "type": "bool"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 5,
+                  "name": "properties",
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Service",
+            "fields": [
+              {
+                "id": 1,
+                "name": "host",
                 "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "endpoint",
+                "type": "ServiceEndpoint"
+              },
+              {
+                "id": 3,
+                "name": "api_version",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "additional_endpoints",
+                "type": "ServiceEndpoint",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "ProviderInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "full_name",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "organization",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "domain",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "homepage",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "services",
+                "type": "Service",
+                "is_repeated": true
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 9,
+                  "name": "properties",
+                  "type": "string"
+                }
               }
             ]
           }
