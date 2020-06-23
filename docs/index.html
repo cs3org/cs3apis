@@ -326,16 +326,16 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenRequest"><span class="badge">M</span>OpenRequest</a>
+                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest"><span class="badge">M</span>OpenFileInAppProviderRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenResponse"><span class="badge">M</span>OpenResponse</a>
+                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"><span class="badge">M</span>OpenFileInAppProviderResponse</a>
                 </li>
               
               
                 <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenRequest.ViewMode"><span class="badge">E</span>OpenRequest.ViewMode</a>
+                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode"><span class="badge">E</span>OpenFileInAppProviderRequest.ViewMode</a>
                 </li>
               
               
@@ -2159,6 +2159,17 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td><p>Creates the home directory for a user.
 
 *****************************************************************/
+************************ APP PROVIDER ********************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>OpenFileInAppProvider</td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">.cs3.app.provider.v1beta1.OpenFileInAppProviderRequest</a></td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">.cs3.app.provider.v1beta1.OpenFileInAppProviderResponse</a></td>
+                <td><p>Returns the iframe url from the WOPI server. The iframe url will let you open the document in the correct online document editor.
+
+*****************************************************************/
 ************************ USER SHARE PROVIDER ********************/
 *****************************************************************/</p></td>
               </tr>
@@ -2518,13 +2529,6 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">.cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">.cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse</a></td>
                 <td><p>Creates a new ocm share.</p></td>
-              </tr>
-            
-              <tr>
-                <td>Open</td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenRequest">.cs3.app.provider.v1beta1.OpenRequest</a></td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenResponse">.cs3.app.provider.v1beta1.OpenResponse</a></td>
-                <td><p>Returns the iframe url.</p></td>
               </tr>
             
           </tbody>
@@ -3146,7 +3150,7 @@ inclusive. </p></td>
       <p></p>
 
       
-        <h3 id="cs3.app.provider.v1beta1.OpenRequest">OpenRequest</h3>
+        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</h3>
         <p></p>
 
         
@@ -3189,7 +3193,7 @@ TODO(labkode): investigate token derivation techniques. </p></td>
               
                 <tr>
                   <td>view_mode</td>
-                  <td><a href="#cs3.app.provider.v1beta1.OpenRequest.ViewMode">OpenRequest.ViewMode</a></td>
+                  <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3201,7 +3205,7 @@ TODO(labkode): investigate token derivation techniques. </p></td>
 
         
       
-        <h3 id="cs3.app.provider.v1beta1.OpenResponse">OpenResponse</h3>
+        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</h3>
         <p></p>
 
         
@@ -3228,7 +3232,7 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>iframe_url</td>
+                  <td>app_provider_url</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
@@ -3246,7 +3250,7 @@ at least, Office 365, Collabora, OnlyOffice do like that. </p></td>
       
 
       
-        <h3 id="cs3.app.provider.v1beta1.OpenRequest.ViewMode">OpenRequest.ViewMode</h3>
+        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</h3>
         <p>REQUIRED.</p><p>View mode.</p>
         <table class="enum-table">
           <thead>
@@ -3294,9 +3298,9 @@ at least, Office 365, Collabora, OnlyOffice do like that. </p></td>
           <tbody>
             
               <tr>
-                <td>Open</td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenRequest">OpenRequest</a></td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenResponse">OpenResponse</a></td>
+                <td>OpenFileInAppProvider</td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</a></td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</a></td>
                 <td><p>Returns the iframe url
 MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
               </tr>

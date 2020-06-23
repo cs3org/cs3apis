@@ -148,12 +148,12 @@ service GatewayAPI {
   rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
   // Creates the home directory for a user.
   rpc CreateHome(cs3.storage.provider.v1beta1.CreateHomeRequest) returns (cs3.storage.provider.v1beta1.CreateHomeResponse);
-  
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
+
   // Returns the iframe url from the WOPI server. The iframe url will let you open the document in the correct online document editor.
-  rpc Open(cs3.app.provider.v1beta1.OpenRequest) returns (cs3.app.provider.v1beta1.OpenResponse);
+  rpc OpenFileInAppProvider(cs3.app.provider.v1beta1.OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
   // *****************************************************************/
