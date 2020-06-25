@@ -28,7 +28,6 @@ option java_package = "com.cs3.ocm.provider.v1beta1";
 option objc_class_prefix = "COP";
 option php_namespace = "Cs3\\Ocm\\Provider\\V1Beta1";
 
-import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
@@ -64,8 +63,8 @@ message IsProviderAllowedRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The user whose system provider we need to verify.
-  cs3.identity.user.v1beta1.User user = 2;
+  // The provider that we need to check against the list of verified mesh providers.
+  ProviderInfo provider = 2;
 }
 
 message IsProviderAllowedResponse {

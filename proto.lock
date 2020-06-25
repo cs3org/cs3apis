@@ -2110,8 +2110,8 @@
               },
               {
                 "id": 2,
-                "name": "user",
-                "type": "cs3.identity.user.v1beta1.User"
+                "name": "provider",
+                "type": "ProviderInfo"
               }
             ]
           },
@@ -2220,9 +2220,6 @@
           }
         ],
         "imports": [
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
           {
             "path": "cs3/ocm/provider/v1beta1/resources.proto"
           },
