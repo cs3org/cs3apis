@@ -63,7 +63,7 @@ message OpenFileInAppProviderRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The resource reference.
-  storage.provider.v1beta1.ResourceInfo resource_info = 2;
+  storage.provider.v1beta1.Reference ref = 2;
   // REQUIRED.
   // The access token this application provider will use when contacting
   // the storage provider to read and write.
