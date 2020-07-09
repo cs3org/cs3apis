@@ -5,7 +5,7 @@
       "def": {
         "enums": [
           {
-            "name": "OpenRequest.ViewMode",
+            "name": "OpenFileInAppProviderRequest.ViewMode",
             "enum_fields": [
               {
                 "name": "VIEW_MODE_INVALID"
@@ -27,7 +27,7 @@
         ],
         "messages": [
           {
-            "name": "OpenRequest",
+            "name": "OpenFileInAppProviderRequest",
             "fields": [
               {
                 "id": 1,
@@ -36,8 +36,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_info",
-                "type": "storage.provider.v1beta1.ResourceInfo"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 3,
@@ -52,7 +52,7 @@
             ]
           },
           {
-            "name": "OpenResponse",
+            "name": "OpenFileInAppProviderResponse",
             "fields": [
               {
                 "id": 1,
@@ -66,7 +66,7 @@
               },
               {
                 "id": 3,
-                "name": "iframe_url",
+                "name": "app_provider_url",
                 "type": "string"
               }
             ]
@@ -77,9 +77,9 @@
             "name": "ProviderAPI",
             "rpcs": [
               {
-                "name": "Open",
-                "in_type": "OpenRequest",
-                "out_type": "OpenResponse"
+                "name": "OpenFileInAppProvider",
+                "in_type": "OpenFileInAppProviderRequest",
+                "out_type": "OpenFileInAppProviderResponse"
               }
             ]
           }
@@ -1005,6 +1005,11 @@
                 "out_type": "cs3.storage.provider.v1beta1.CreateHomeResponse"
               },
               {
+                "name": "OpenFileInAppProvider",
+                "in_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderRequest",
+                "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
+              },
+              {
                 "name": "CreateShare",
                 "in_type": "cs3.sharing.collaboration.v1beta1.CreateShareRequest",
                 "out_type": "cs3.sharing.collaboration.v1beta1.CreateShareResponse"
@@ -1208,6 +1213,9 @@
           }
         ],
         "imports": [
+          {
+            "path": "cs3/app/provider/v1beta1/provider_api.proto"
+          },
           {
             "path": "cs3/app/registry/v1beta1/registry_api.proto"
           },
