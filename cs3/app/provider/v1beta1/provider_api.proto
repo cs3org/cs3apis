@@ -54,16 +54,16 @@ import "cs3/types/v1beta1/types.proto";
 service ProviderAPI {
   // Returns the iframe url
   // MUST return CODE_NOT_FOUND if the resource does not exist.
-  rpc Open(OpenRequest) returns (OpenResponse);
+  rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (OpenFileInAppProviderResponse);
 }
 
-message OpenRequest {
+message OpenFileInAppProviderRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The resource information.
-  storage.provider.v1beta1.ResourceInfo resource_info = 2;
+  // The resource reference.
+  storage.provider.v1beta1.Reference ref = 2;
   // REQUIRED.
   // The access token this application provider will use when contacting
   // the storage provider to read and write.
@@ -74,9 +74,21 @@ message OpenRequest {
   // The access token MUST be short-lived.
   // TODO(labkode): investigate token derivation techniques.
   string access_token = 3;
+  // REQUIRED.
+  // View mode.
+  enum ViewMode {
+    VIEW_MODE_INVALID = 0;
+    // The file can be opened but not downloaded.
+    VIEW_MODE_VIEW_ONLY = 1;
+    // The file can be downloaded.
+    VIEW_MODE_READ_ONLY = 2;
+    // The file can be downloaded and updated.
+    VIEW_MODE_READ_WRITE = 3;
+  }
+  ViewMode view_mode = 4;
 }
 
-message OpenResponse {
+message OpenFileInAppProviderResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -87,5 +99,5 @@ message OpenResponse {
   // The url that user agents will render to clients.
   // Usually the rendering happens by using HTML iframes,
   // at least, Office 365, Collabora, OnlyOffice do like that.
-  string iframe_url = 3;
+  string app_provider_url = 3;
 }

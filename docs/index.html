@@ -326,13 +326,17 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenRequest"><span class="badge">M</span>OpenRequest</a>
+                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest"><span class="badge">M</span>OpenFileInAppProviderRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenResponse"><span class="badge">M</span>OpenResponse</a>
+                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"><span class="badge">M</span>OpenFileInAppProviderResponse</a>
                 </li>
               
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode"><span class="badge">E</span>OpenFileInAppProviderRequest.ViewMode</a>
+                </li>
               
               
               
@@ -670,6 +674,26 @@
               
                 <li>
                   <a href="#cs3.ocm.provider.v1beta1.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.provider.v1beta1.ProviderInfo.PropertiesEntry"><span class="badge">M</span>ProviderInfo.PropertiesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.provider.v1beta1.Service"><span class="badge">M</span>Service</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.provider.v1beta1.ServiceEndpoint"><span class="badge">M</span>ServiceEndpoint</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.provider.v1beta1.ServiceEndpoint.PropertiesEntry"><span class="badge">M</span>ServiceEndpoint.PropertiesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.provider.v1beta1.ServiceType"><span class="badge">M</span>ServiceType</a>
                 </li>
               
               
@@ -2135,6 +2159,17 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td><p>Creates the home directory for a user.
 
 *****************************************************************/
+************************ APP PROVIDER ********************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>OpenFileInAppProvider</td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">.cs3.app.provider.v1beta1.OpenFileInAppProviderRequest</a></td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">.cs3.app.provider.v1beta1.OpenFileInAppProviderResponse</a></td>
+                <td><p>Returns the iframe url from the WOPI server. The iframe url will let you open the document in the correct online document editor.
+
+*****************************************************************/
 ************************ USER SHARE PROVIDER ********************/
 *****************************************************************/</p></td>
               </tr>
@@ -3115,7 +3150,7 @@ inclusive. </p></td>
       <p></p>
 
       
-        <h3 id="cs3.app.provider.v1beta1.OpenRequest">OpenRequest</h3>
+        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</h3>
         <p></p>
 
         
@@ -3134,11 +3169,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>resource_info</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceInfo">cs3.storage.provider.v1beta1.ResourceInfo</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The resource information. </p></td>
+The resource reference. </p></td>
                 </tr>
               
                 <tr>
@@ -3156,6 +3191,13 @@ The access token MUST be short-lived.
 TODO(labkode): investigate token derivation techniques. </p></td>
                 </tr>
               
+                <tr>
+                  <td>view_mode</td>
+                  <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3163,7 +3205,7 @@ TODO(labkode): investigate token derivation techniques. </p></td>
 
         
       
-        <h3 id="cs3.app.provider.v1beta1.OpenResponse">OpenResponse</h3>
+        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</h3>
         <p></p>
 
         
@@ -3190,7 +3232,7 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>iframe_url</td>
+                  <td>app_provider_url</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
@@ -3208,6 +3250,41 @@ at least, Office 365, Collabora, OnlyOffice do like that. </p></td>
       
 
       
+        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</h3>
+        <p>REQUIRED.</p><p>View mode.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VIEW_MODE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_VIEW_ONLY</td>
+                <td>1</td>
+                <td><p>The file can be opened but not downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_ONLY</td>
+                <td>2</td>
+                <td><p>The file can be downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_WRITE</td>
+                <td>3</td>
+                <td><p>The file can be downloaded and updated.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
       
 
@@ -3221,9 +3298,9 @@ at least, Office 365, Collabora, OnlyOffice do like that. </p></td>
           <tbody>
             
               <tr>
-                <td>Open</td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenRequest">OpenRequest</a></td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenResponse">OpenResponse</a></td>
+                <td>OpenFileInAppProvider</td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</a></td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</a></td>
                 <td><p>Returns the iframe url
 MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
               </tr>
@@ -5013,11 +5090,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>user</td>
-                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td>provider</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ProviderInfo">ProviderInfo</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The user whose system provider we need to verify. </p></td>
+The provider that we need to check against the list of verified mesh providers. </p></td>
                 </tr>
               
             </tbody>
@@ -5186,6 +5263,38 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
             <tbody>
               
                 <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The name of the provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>full_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The full name of the provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+A description of the provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>organization</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The organization to which the provider belongs. </p></td>
+                </tr>
+              
+                <tr>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -5194,27 +5303,236 @@ The domain of the sync&#39;n&#39;share provider. </p></td>
                 </tr>
               
                 <tr>
+                  <td>homepage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The homepage of the provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The email at which the provider can be reached. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>services</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.Service">Service</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of services provided by the provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>properties</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ProviderInfo.PropertiesEntry">ProviderInfo.PropertiesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+Additional properties about the service. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.provider.v1beta1.ProviderInfo.PropertiesEntry">ProviderInfo.PropertiesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.provider.v1beta1.Service">Service</h3>
+        <p>The services offered by sync'n'share system providers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>host</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The URL at which the service is hosted. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>endpoint</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ServiceEndpoint">ServiceEndpoint</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The primary endpoint of the service. </p></td>
+                </tr>
+              
+                <tr>
                   <td>api_version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The API version supported by the provider. </p></td>
+The API version of the provided service. </p></td>
                 </tr>
               
                 <tr>
-                  <td>api_endpoint</td>
-                  <td><a href="#string">string</a></td>
+                  <td>additional_endpoints</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ServiceEndpoint">ServiceEndpoint</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+Additional endpoints at which the service is exposed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.provider.v1beta1.ServiceEndpoint">ServiceEndpoint</h3>
+        <p>The endpoints exposed by particular services.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ServiceType">ServiceType</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The endpoint on which the API is exposed. </p></td>
+The type of service. </p></td>
                 </tr>
               
                 <tr>
-                  <td>webdav_endpoint</td>
+                  <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The endpoint on which the webdav protocol is exposed. </p></td>
+The name of the service. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The path at which the service is hosted. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_monitored</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Whether the service is monitored. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>properties</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ServiceEndpoint.PropertiesEntry">ServiceEndpoint.PropertiesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+Additional properties about the service. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.provider.v1beta1.ServiceEndpoint.PropertiesEntry">ServiceEndpoint.PropertiesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.provider.v1beta1.ServiceType">ServiceType</h3>
+        <p>Identifier for various types of services offered by sync'n'share system providers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED
+The name of the service type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED
+The description of the service type. </p></td>
                 </tr>
               
             </tbody>
@@ -6496,6 +6814,14 @@ Opaque information. </p></td>
 The unlisted token to identify the public share. </p></td>
                 </tr>
               
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The public link can be password protected. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -7369,6 +7695,14 @@ The unique identifier for the shared storage resource. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The share grant for the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>recipient_mesh_provider</td>
+                  <td><a href="#cs3.ocm.provider.v1beta1.ProviderInfo">cs3.ocm.provider.v1beta1.ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The details of the recipient user&#39;s mesh provider. </p></td>
                 </tr>
               
             </tbody>
@@ -10913,7 +11247,7 @@ in Unix Epoch timestamp in seconds. </p></td>
         
       
         <h3 id="cs3.storage.provider.v1beta1.Reference">Reference</h3>
-        <p>The mechanism to identify a resource</p><p>in the storage provider namespace.</p>
+        <p>The mechanism to identify a resource</p><p>in the storage provider namespace. Note that the path OR the resourceId must be specifed, not both.</p>
 
         
           <table class="field-table">

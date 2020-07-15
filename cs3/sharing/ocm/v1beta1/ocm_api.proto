@@ -29,6 +29,7 @@ option objc_class_prefix = "CSO";
 option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
@@ -91,6 +92,9 @@ message CreateOCMShareRequest {
   // REQUIRED.
   // The share grant for the share.
   ShareGrant grant = 3;
+  // REQUIRED.
+  // The details of the recipient user's mesh provider.
+  cs3.ocm.provider.v1beta1.ProviderInfo recipient_mesh_provider = 4;
 }
 
 message CreateOCMShareResponse {

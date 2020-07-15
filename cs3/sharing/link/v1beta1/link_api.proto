@@ -229,6 +229,9 @@ message GetPublicShareByTokenRequest {
   // REQUIRED.
   // The unlisted token to identify the public share.
   string token = 2;
+  // OPTIONAL.
+  // The public link can be password protected.
+  string password = 3;
 }
 
 message GetPublicShareByTokenResponse {
