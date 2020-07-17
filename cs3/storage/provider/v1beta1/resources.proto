@@ -258,6 +258,9 @@ message Grantee {
   // The unique id for the grantee.
   // For example, a group name, user name or uuid.
   cs3.identity.user.v1beta1.UserId id = 2;
+  // OPTIONAL.
+  // Opaque information such as UID or GID.
+  cs3.types.v1beta1.Opaque opaque = 3;
 }
 
 // The type of the grantee.
