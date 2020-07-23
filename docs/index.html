@@ -303,6 +303,64 @@
         
           
           <li>
+            <a href="#cs3%2ftx%2fv1beta1%2fresources.proto">cs3/tx/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.TxInfo"><span class="badge">M</span>TxInfo</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.TxInfo.Status"><span class="badge">E</span>TxInfo.Status</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2ftx%2fv1beta1%2ftx_api.proto">cs3/tx/v1beta1/tx_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.CancelTransferRequest"><span class="badge">M</span>CancelTransferRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.CancelTransferResponse"><span class="badge">M</span>CancelTransferResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.CreateTransferRequest"><span class="badge">M</span>CreateTransferRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.CreateTransferResponse"><span class="badge">M</span>CreateTransferResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.GetTransferStatusRequest"><span class="badge">M</span>GetTransferStatusRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.GetTransferStatusResponse"><span class="badge">M</span>GetTransferStatusResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.TxAPI"><span class="badge">S</span>TxAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2ftypes%2fv1beta1%2ftypes.proto">cs3/types/v1beta1/types.proto</a>
             <ul>
               
@@ -3116,6 +3174,373 @@ https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></t
       
 
       
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/tx/v1beta1/resources.proto">cs3/tx/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.tx.v1beta1.TxInfo">TxInfo</h3>
+        <p>TxInfo represents information about a transfer.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The transfer id. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.tx.v1beta1.TxInfo.Status">TxInfo.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The transfer status. Eg.: STATUS_TRANSFER_FAILED.
+Note: the description field may provide additional information on the transfer status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Information to describe the transfer status.
+Eg. may contain information about a transfer failure.
+Meant to be human-readable. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="cs3.tx.v1beta1.TxInfo.Status">TxInfo.Status</h3>
+        <p>Status represents transfer status.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STATUS_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_DESTINATION_NOT_FOUND</td>
+                <td>1</td>
+                <td><p>The destination could not be found.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_NEW</td>
+                <td>2</td>
+                <td><p>A new data transfer</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_AWAITING_ACCEPTANCE</td>
+                <td>3</td>
+                <td><p>The data transfer is awaiting acceptance from the destination</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_ACCEPTED</td>
+                <td>4</td>
+                <td><p>The data transfer is accepted by the destination.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_PENDING</td>
+                <td>5</td>
+                <td><p>The data transfer has started and not yet completed.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_COMPLETE</td>
+                <td>6</td>
+                <td><p>The data transfer has completed.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_FAILED</td>
+                <td>7</td>
+                <td><p>The data transfer has failed.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_CANCELLED</td>
+                <td>8</td>
+                <td><p>The data transfer had been cancelled.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_CANCEL_FAILED</td>
+                <td>9</td>
+                <td><p>The request for cancelling the data transfer has failed.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATUS_TRANSFER_EXPIRED</td>
+                <td>10</td>
+                <td><p>The transfer has expired somewhere down the line.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/tx/v1beta1/tx_api.proto">cs3/tx/v1beta1/tx_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.tx.v1beta1.CancelTransferRequest">CancelTransferRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tx_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The transfer id. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.CancelTransferResponse">CancelTransferResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_info</td>
+                  <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+TxInfo, includes transfer id, status, description. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.CreateTransferRequest">CreateTransferRequest</h3>
+        <p>TODO: any additional fields; Opaque information ??</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>resource_info</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceInfo">cs3.storage.provider.v1beta1.ResourceInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference to the resource to be transfered.
+TODO: maybe the ResourcePermissions should be expended with a transfer permission ??? </p></td>
+                </tr>
+              
+                <tr>
+                  <td>dest_email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The destination reference the resource is transferred to.
+An email address. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.CreateTransferResponse">CreateTransferResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_info</td>
+                  <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+TxInfo, includes transfer id, status, description. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.GetTransferStatusRequest">GetTransferStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tx_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The transfer id. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.GetTransferStatusResponse">GetTransferStatusResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_info</td>
+                  <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+TxInfo, includes transfer id, status, description. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.tx.v1beta1.TxAPI">TxAPI</h3>
+        <p>Tx API</p><p>The Tx API provides data transfer capabilities.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferRequest">CreateTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferResponse">CreateTransferResponse</a></td>
+                <td><p>Creates (requests the destination to accept) a transfer.
+Returns a response containing a TxInfo (transfer info) object.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetTransferStatus</td>
+                <td><a href="#cs3.tx.v1beta1.GetTransferStatusRequest">GetTransferStatusRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.GetTransferStatusResponse">GetTransferStatusResponse</a></td>
+                <td><p>Requests a transfer status.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CancelTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.CancelTransferRequest">CancelTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.CancelTransferResponse">CancelTransferResponse</a></td>
+                <td><p>Requests to cancel a transfer.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
