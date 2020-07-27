@@ -495,6 +495,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.identity.user.v1beta1.GetUserByClaimRequest"><span class="badge">M</span>GetUserByClaimRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.user.v1beta1.GetUserByClaimResponse"><span class="badge">M</span>GetUserByClaimResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.identity.user.v1beta1.GetUserGroupsRequest"><span class="badge">M</span>GetUserGroupsRequest</a>
                 </li>
               
@@ -2414,7 +2422,14 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
                 <td>GetUser</td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserRequest">.cs3.identity.user.v1beta1.GetUserRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserResponse">.cs3.identity.user.v1beta1.GetUserResponse</a></td>
-                <td><p>Gets the information about an user by its user id.</p></td>
+                <td><p>Gets the information about a user by its user id.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetUserByClaim</td>
+                <td><a href="#cs3.identity.user.v1beta1.GetUserByClaimRequest">.cs3.identity.user.v1beta1.GetUserByClaimRequest</a></td>
+                <td><a href="#cs3.identity.user.v1beta1.GetUserByClaimResponse">.cs3.identity.user.v1beta1.GetUserByClaimResponse</a></td>
+                <td><p>Gets the information about a user based on a specified claim.</p></td>
               </tr>
             
               <tr>
@@ -4110,6 +4125,88 @@ The groups for the user. </p></td>
 
         
       
+        <h3 id="cs3.identity.user.v1beta1.GetUserByClaimRequest">GetUserByClaimRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>field</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The field on the basis of which users will be filtered. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>claim</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The claim to find the specific user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.user.v1beta1.GetUserByClaimResponse">GetUserByClaimResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.identity.user.v1beta1.GetUserGroupsRequest">GetUserGroupsRequest</h3>
         <p></p>
 
@@ -4358,7 +4455,14 @@ Tells if the user belongs to the group. </p></td>
                 <td>GetUser</td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserRequest">GetUserRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserResponse">GetUserResponse</a></td>
-                <td><p>Gets the information about an user by its user id.</p></td>
+                <td><p>Gets the information about a user by its user id.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetUserByClaim</td>
+                <td><a href="#cs3.identity.user.v1beta1.GetUserByClaimRequest">GetUserByClaimRequest</a></td>
+                <td><a href="#cs3.identity.user.v1beta1.GetUserByClaimResponse">GetUserByClaimResponse</a></td>
+                <td><p>Gets the information about a user based on a specified claim.</p></td>
               </tr>
             
               <tr>
