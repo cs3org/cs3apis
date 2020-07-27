@@ -90,11 +90,11 @@ message GetUserByClaimRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The field on the basis of which users will be filtered.
-  string field = 2;
+  // The claim on the basis of which users will be filtered.
+  string claim = 2;
   // REQUIRED.
-  // The claim to find the specific user.
-  string claim = 3;
+  // The value of the claim to find the specific user.
+  string value = 3;
 }
 
 message GetUserByClaimResponse {
