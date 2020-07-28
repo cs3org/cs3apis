@@ -264,8 +264,10 @@ service GatewayAPI {
   // ************************ USER PROVIDER **************************/
   // *****************************************************************/
 
-  // Gets the information about an user by its user id.
+  // Gets the information about a user by its user id.
   rpc GetUser(cs3.identity.user.v1beta1.GetUserRequest) returns (cs3.identity.user.v1beta1.GetUserResponse);
+  // Gets the information about a user based on a specified claim.
+  rpc GetUserByClaim(cs3.identity.user.v1beta1.GetUserByClaimRequest) returns (cs3.identity.user.v1beta1.GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(cs3.identity.user.v1beta1.GetUserGroupsRequest) returns (cs3.identity.user.v1beta1.GetUserGroupsResponse);
   // Tells if the user is in a certain group.
