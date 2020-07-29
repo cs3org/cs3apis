@@ -36,18 +36,18 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_info",
+                "type": "storage.provider.v1beta1.ResourceInfo"
               },
               {
                 "id": 3,
-                "name": "access_token",
-                "type": "string"
+                "name": "view_mode",
+                "type": "ViewMode"
               },
               {
                 "id": 4,
-                "name": "view_mode",
-                "type": "ViewMode"
+                "name": "access_token",
+                "type": "string"
               }
             ]
           },
@@ -644,6 +644,28 @@
     {
       "protopath": "cs3:/:gateway:/:v1beta1:/:gateway_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "OpenFileInAppProviderRequest.ViewMode",
+            "enum_fields": [
+              {
+                "name": "VIEW_MODE_INVALID"
+              },
+              {
+                "name": "VIEW_MODE_VIEW_ONLY",
+                "integer": 1
+              },
+              {
+                "name": "VIEW_MODE_READ_ONLY",
+                "integer": 2
+              },
+              {
+                "name": "VIEW_MODE_READ_WRITE",
+                "integer": 3
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "AuthenticateRequest",
@@ -891,6 +913,26 @@
                 "is_repeated": true
               }
             ]
+          },
+          {
+            "name": "OpenFileInAppProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
+              },
+              {
+                "id": 3,
+                "name": "view_mode",
+                "type": "ViewMode"
+              }
+            ]
           }
         ],
         "services": [
@@ -1006,7 +1048,7 @@
               },
               {
                 "name": "OpenFileInAppProvider",
-                "in_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderRequest",
+                "in_type": "OpenFileInAppProviderRequest",
                 "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
               },
               {

@@ -152,8 +152,8 @@ service GatewayAPI {
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
 
-  // Returns the iframe url from the WOPI server. The iframe url will let you open the document in the correct online document editor.
-  rpc OpenFileInAppProvider(cs3.app.provider.v1beta1.OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
+  // Returns the App provider URL, which lets the user open a file in the correct online document editor.
+  rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
   // *****************************************************************/
@@ -487,4 +487,26 @@ message ListAuthProvidersResponse {
   // The list of auth types.
   // TODO(labkode): maybe add description?
   repeated string types = 3;
+}
+
+message OpenFileInAppProviderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
+  // when a call to the WOPI server is to be issued (cf. the provider grpc message)
+  storage.provider.v1beta1.Reference ref = 2;
+  // REQUIRED.
+  // View mode.
+  enum ViewMode {
+    VIEW_MODE_INVALID = 0;
+    // The file can be opened but not downloaded.
+    VIEW_MODE_VIEW_ONLY = 1;
+    // The file can be downloaded.
+    VIEW_MODE_READ_ONLY = 2;
+    // The file can be downloaded and updated.
+    VIEW_MODE_READ_WRITE = 3;
+  }
+  ViewMode view_mode = 3;
 }
