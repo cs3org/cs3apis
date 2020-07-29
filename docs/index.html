@@ -3188,7 +3188,8 @@ Opaque information. </p></td>
                   <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The resource reference. </p></td>
+The resource reference. If a path is given, it will be resolved via Stat() to a ResourceId
+when a call to the WOPI server is to be issued. </p></td>
                 </tr>
               
                 <tr>
@@ -3305,7 +3306,7 @@ at least, Office 365, Collabora, OnlyOffice do like that. </p></td>
 
       
         <h3 id="cs3.app.provider.v1beta1.ProviderAPI">ProviderAPI</h3>
-        <p>App Provider API</p><p>The App Provider API is responsible for creating urls that</p><p>will render a viewer or editor for the given resource.</p><p>For example, an OnlyOffice or HackMD editor.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>App Provider API</p><p>The App Provider API is responsible for creating URLs that</p><p>will render a viewer or editor for the given resource, typically via WOPI protocol.</p><p>For example, a Collabora or HackMD editor.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
