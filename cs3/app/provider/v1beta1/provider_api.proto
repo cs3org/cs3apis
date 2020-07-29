@@ -36,9 +36,9 @@ import "cs3/types/v1beta1/types.proto";
 
 // App Provider API
 //
-// The App Provider API is responsible for creating urls that
-// will render a viewer or editor for the given resource.
-// For example, an OnlyOffice or HackMD editor.
+// The App Provider API is responsible for creating URLs that
+// will render a viewer or editor for the given resource, typically via WOPI protocol.
+// For example, a Collabora or HackMD editor.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -62,7 +62,8 @@ message OpenFileInAppProviderRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The resource reference.
+  // The resource reference. If a path is given, it will be resolved via Stat() to a ResourceId
+  // when a call to the WOPI server is to be issued.
   storage.provider.v1beta1.Reference ref = 2;
   // REQUIRED.
   // The access token this application provider will use when contacting
