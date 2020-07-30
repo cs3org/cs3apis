@@ -1145,6 +1145,11 @@
                 "out_type": "cs3.identity.user.v1beta1.GetUserResponse"
               },
               {
+                "name": "GetUserByClaim",
+                "in_type": "cs3.identity.user.v1beta1.GetUserByClaimRequest",
+                "out_type": "cs3.identity.user.v1beta1.GetUserByClaimResponse"
+              },
+              {
                 "name": "GetUserGroups",
                 "in_type": "cs3.identity.user.v1beta1.GetUserGroupsRequest",
                 "out_type": "cs3.identity.user.v1beta1.GetUserGroupsResponse"
@@ -1438,6 +1443,46 @@
             ]
           },
           {
+            "name": "GetUserByClaimRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "claim",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "value",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetUserByClaimResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "User"
+              }
+            ]
+          },
+          {
             "name": "GetUserGroupsRequest",
             "fields": [
               {
@@ -1558,6 +1603,11 @@
                 "name": "GetUser",
                 "in_type": "GetUserRequest",
                 "out_type": "GetUserResponse"
+              },
+              {
+                "name": "GetUserByClaim",
+                "in_type": "GetUserByClaimRequest",
+                "out_type": "GetUserByClaimResponse"
               },
               {
                 "name": "GetUserGroups",
@@ -6127,6 +6177,11 @@
                 "id": 2,
                 "name": "id",
                 "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
               }
             ]
           },
