@@ -4614,31 +4614,36 @@
               },
               {
                 "id": 3,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 4,
                 "name": "permissions",
                 "type": "SharePermissions"
               },
               {
-                "id": 4,
+                "id": 5,
                 "name": "grantee",
                 "type": "storage.provider.v1beta1.Grantee"
               },
               {
-                "id": 5,
+                "id": 6,
                 "name": "owner",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 6,
+                "id": 7,
                 "name": "creator",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 7,
+                "id": 8,
                 "name": "ctime",
                 "type": "cs3.types.v1beta1.Timestamp"
               },
               {
-                "id": 8,
+                "id": 9,
                 "name": "mtime",
                 "type": "cs3.types.v1beta1.Timestamp"
               }
