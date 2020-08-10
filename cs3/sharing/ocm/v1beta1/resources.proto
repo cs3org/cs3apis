@@ -43,30 +43,33 @@ message Share {
   // Unique identifier of the shared resource.
   storage.provider.v1beta1.ResourceId resource_id = 2;
   // REQUIRED.
+  // Name of the shared resource.
+  string name = 3;
+  // REQUIRED.
   // Permissions for the grantee to use
   // the resource.
-  SharePermissions permissions = 3;
+  SharePermissions permissions = 4;
   // REQUIRED.
   // The receiver of the share, like a user, group ...
-  storage.provider.v1beta1.Grantee grantee = 4;
+  storage.provider.v1beta1.Grantee grantee = 5;
   // REQUIRED.
   // Uniquely identifies the owner of the share
   // (the resource owner at the time of creating the share).
   // In case the ownership of the underlying resource changes
   // the share owner field MAY change to reflect the change of ownsership.
-  cs3.identity.user.v1beta1.UserId owner = 5;
+  cs3.identity.user.v1beta1.UserId owner = 6;
   // REQUIRED.
   // Uniquely identifies a principal who initiates the share creation.
   // A creator can create shares on behalf of the owner (because of re-sharing,
   // because belonging to special groups, ...).
   // Creator and owner often result in being the same principal.
-  cs3.identity.user.v1beta1.UserId creator = 6;
+  cs3.identity.user.v1beta1.UserId creator = 7;
   // REQUIRED.
   // Creation time of the share.
-  cs3.types.v1beta1.Timestamp ctime = 7;
+  cs3.types.v1beta1.Timestamp ctime = 8;
   // REQUIRED.
   // Last modification time of the share.
-  cs3.types.v1beta1.Timestamp mtime = 8;
+  cs3.types.v1beta1.Timestamp mtime = 9;
 }
 
 // The permissions for a share.
