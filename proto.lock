@@ -1,6 +1,355 @@
 {
   "definitions": [
     {
+      "protopath": "cs3:/:admin:/:group:/:v1beta1:/:group_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CreateGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group",
+                "type": "cs3.identity.group.v1beta1.Group"
+              }
+            ]
+          },
+          {
+            "name": "CreateGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "cs3.identity.group.v1beta1.Group"
+              }
+            ]
+          },
+          {
+            "name": "DeleteGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "AddUserToGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "AddUserToGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RemoveUserFromGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RemoveUserFromGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "GroupAPI",
+            "rpcs": [
+              {
+                "name": "CreateGroup",
+                "in_type": "CreateGroupRequest",
+                "out_type": "CreateGroupResponse"
+              },
+              {
+                "name": "DeleteGroup",
+                "in_type": "DeleteGroupRequest",
+                "out_type": "DeleteGroupResponse"
+              },
+              {
+                "name": "AddUserToGroup",
+                "in_type": "AddUserToGroupRequest",
+                "out_type": "AddUserToGroupResponse"
+              },
+              {
+                "name": "RemoveUserFromGroup",
+                "in_type": "RemoveUserFromGroupRequest",
+                "out_type": "RemoveUserFromGroupResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.admin.group.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Admin.Group.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "groupv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "GroupApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.admin.group.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAG"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Admin\\\\Group\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:admin:/:user:/:v1beta1:/:user_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CreateUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.User"
+              }
+            ]
+          },
+          {
+            "name": "CreateUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.User"
+              }
+            ]
+          },
+          {
+            "name": "DeleteUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "UserAPI",
+            "rpcs": [
+              {
+                "name": "CreateUser",
+                "in_type": "CreateUserRequest",
+                "out_type": "CreateUserResponse"
+              },
+              {
+                "name": "DeleteUser",
+                "in_type": "DeleteUserRequest",
+                "out_type": "DeleteUserResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.admin.user.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Admin.User.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "userv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "UserApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.admin.user.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAU"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Admin\\\\User\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:app:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
         "enums": [
@@ -5658,6 +6007,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "exclusive",
+                "type": "bool"
               }
             ]
           },

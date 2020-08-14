@@ -280,6 +280,13 @@ message InitiateFileUploadRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // OPTIONAL.
+  // Whether the file is to be uploaded in exclusive mode. Defaults to false.
+  // If true, the request SHALL be processed such that only one of multiple concurrent uploads
+  // to the same target reference MAY succeed, whereas all others MUST fail with CODE_ALREADY_EXISTS.
+  // The semantic is similar to the O_CREAT|O_EXCL POSIX flags.
+  // The request MUST return CODE_NOT_IMPLEMENTED if the provider does not support this mode.
+  bool exclusive = 3;
 }
 
 message InitiateFileUploadResponse {
