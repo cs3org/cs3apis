@@ -31,6 +31,7 @@ option php_namespace = "Cs3\\Tx\\V1Beta1";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/tx/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
 
 // Tx API
 //
@@ -61,13 +62,15 @@ message CreateTransferRequest {
   // TODO: any additional fields; Opaque information ??
 
   // REQUIRED.
-  // The reference to the resource to be transfered.
-  // TODO: maybe the ResourcePermissions should be expended with a transfer permission ???
-  cs3.storage.provider.v1beta1.ResourceInfo resource_info = 1;
+  // Identifer of the resource to be transfered.
+  cs3.storage.provider.v1beta1.ResourceId resource_id = 1;
   // REQUIRED.
   // The destination reference the resource is transferred to.
   // An email address.
   string dest_email = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
 }
 
 message CreateTransferResponse {
@@ -77,12 +80,18 @@ message CreateTransferResponse {
   // REQUIRED.
   // TxInfo, includes transfer id, status, description.
   TxInfo tx_info = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
 }
 
 message GetTransferStatusRequest {
   // REQUIRED.
   // The transfer id.
   string tx_id = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
 }
 
 message GetTransferStatusResponse {
@@ -92,12 +101,18 @@ message GetTransferStatusResponse {
   // REQUIRED.
   // TxInfo, includes transfer id, status, description.
   TxInfo tx_info = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
 }
 
 message CancelTransferRequest {
   // REQUIRED.
   // The transfer id.
   string tx_id = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
 }
 
 message CancelTransferResponse {
@@ -107,4 +122,7 @@ message CancelTransferResponse {
   // REQUIRED.
   // TxInfo, includes transfer id, status, description.
   TxInfo tx_info = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
 }
