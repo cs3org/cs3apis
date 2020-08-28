@@ -140,6 +140,8 @@ service GatewayAPI {
   // Returns the resource information at the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Stat(cs3.storage.provider.v1beta1.StatRequest) returns (cs3.storage.provider.v1beta1.StatResponse);
+  // Creates a symlink to another resource.
+  rpc CreateSymlink(cs3.storage.provider.v1beta1.CreateSymlinkRequest) returns (cs3.storage.provider.v1beta1.CreateSymlinkResponse);
   // Sets arbitrary metadata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
   rpc SetArbitraryMetadata(cs3.storage.provider.v1beta1.SetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.SetArbitraryMetadataResponse);
