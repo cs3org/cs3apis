@@ -28,11 +28,16 @@ option java_package = "com.cs3.tx.v1beta1";
 option objc_class_prefix = "CTX";
 option php_namespace = "Cs3\\Tx\\V1Beta1";
 
+// TxId uniquely identifies a transfer in the transfer provider namespace.
+message TxId {
+  string opaque_id = 1;
+}
+
 // TxInfo represents information about a transfer.
 message TxInfo {
   // REQUIRED.
-  // The transfer id.
-  string id = 1;
+  // The transfer identifier.
+  TxId id = 1;
   // Status represents transfer status.
   enum Status {
     STATUS_INVALID = 0;

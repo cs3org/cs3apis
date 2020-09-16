@@ -84,8 +84,8 @@ message CreateTransferResponse {
 
 message GetTransferStatusRequest {
   // REQUIRED.
-  // The transfer id.
-  string tx_id = 1;
+  // The transfer identifier.
+  TxId tx_id = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
@@ -105,8 +105,8 @@ message GetTransferStatusResponse {
 
 message CancelTransferRequest {
   // REQUIRED.
-  // The transfer id.
-  string tx_id = 1;
+  // The transfer identifier.
+  TxId tx_id = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
