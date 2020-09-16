@@ -65,9 +65,8 @@ message CreateTransferRequest {
   // Identifer of the resource to be transfered.
   cs3.storage.provider.v1beta1.ResourceId resource_id = 1;
   // REQUIRED.
-  // The destination reference the resource is transferred to.
-  // An email address.
-  string dest_email = 2;
+  // The destination (receiver of the transfer)
+  cs3.storage.provider.v1beta1.Grantee grantee = 2;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 3;
