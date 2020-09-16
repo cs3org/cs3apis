@@ -45,7 +45,7 @@ message TxInfo {
     // The data transfer is accepted by the destination.
     STATUS_TRANSFER_ACCEPTED = 4;
     // The data transfer has started and not yet completed.
-    STATUS_TRANSFER_PENDING = 5;
+    STATUS_TRANSFER_IN_PROGRESS = 5;
     // The data transfer has completed.
     STATUS_TRANSFER_COMPLETE = 6;
     // The data transfer has failed.
