@@ -59,11 +59,9 @@ service TxAPI {
 }
 
 message CreateTransferRequest {
-  // TODO: any additional fields; Opaque information ??
-
   // REQUIRED.
-  // Identifer of the resource to be transfered.
-  cs3.storage.provider.v1beta1.ResourceId resource_id = 1;
+  // Reference of the resource to be transfered.
+  cs3.storage.provider.v1beta1.Reference ref = 1;
   // REQUIRED.
   // The destination (receiver of the transfer)
   cs3.storage.provider.v1beta1.Grantee grantee = 2;
