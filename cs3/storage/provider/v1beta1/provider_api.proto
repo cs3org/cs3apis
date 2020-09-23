@@ -646,6 +646,7 @@ message CreateSymlinkResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
 }
+
 message CreateReferenceRequest {
   // OPTIONAL.
   // Opaque information.
