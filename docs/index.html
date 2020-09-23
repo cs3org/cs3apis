@@ -1142,6 +1142,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateSymlinkRequest"><span class="badge">M</span>CreateSymlinkRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateSymlinkResponse"><span class="badge">M</span>CreateSymlinkResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.DeleteRequest"><span class="badge">M</span>DeleteRequest</a>
                 </li>
               
@@ -2226,6 +2234,13 @@ and the recycle item cannot be restored to the restore_path.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.StatResponse">.cs3.storage.provider.v1beta1.StatResponse</a></td>
                 <td><p>Returns the resource information at the provided reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateSymlink</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateSymlinkRequest">.cs3.storage.provider.v1beta1.CreateSymlinkRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateSymlinkResponse">.cs3.storage.provider.v1beta1.CreateSymlinkResponse</a></td>
+                <td><p>Creates a symlink to another resource.</p></td>
               </tr>
             
               <tr>
@@ -9307,6 +9322,81 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.CreateSymlinkRequest">CreateSymlinkRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The location where to store the symlink. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>target</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The link target can hold arbitrary text; if later resolved,
+a relative link is interpreted in relation to its parent directory </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.CreateSymlinkResponse">CreateSymlinkResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.DeleteRequest">DeleteRequest</h3>
         <p></p>
 
@@ -11123,6 +11213,13 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td><p>Updates an ACL for the provided reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_PRECONDITION_FAILED if the acl does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateSymlink</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateSymlinkRequest">CreateSymlinkRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateSymlinkResponse">CreateSymlinkResponse</a></td>
+                <td><p>Creates a symlink to another resource.</p></td>
               </tr>
             
               <tr>
