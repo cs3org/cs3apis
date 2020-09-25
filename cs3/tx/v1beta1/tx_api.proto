@@ -96,7 +96,7 @@ message GetTransferStatusResponse {
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
   // REQUIRED.
-  // TxInfo, includes transfer id, status, description.
+  // TxInfo, includes ao. transfer id, status, description.
   TxInfo tx_info = 2;
   // OPTIONAL.
   // Opaque information.
@@ -117,7 +117,7 @@ message CancelTransferResponse {
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
   // REQUIRED.
-  // TxInfo, includes transfer id, status, description.
+  // TxInfo, includes ao. transfer id, status, description.
   TxInfo tx_info = 2;
   // OPTIONAL.
   // Opaque information.
