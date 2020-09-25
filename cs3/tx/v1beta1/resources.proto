@@ -28,6 +28,10 @@ option java_package = "com.cs3.tx.v1beta1";
 option objc_class_prefix = "CTX";
 option php_namespace = "Cs3\\Tx\\V1Beta1";
 
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
 // TxId uniquely identifies a transfer in the transfer provider namespace.
 message TxId {
   string opaque_id = 1;
@@ -38,6 +42,9 @@ message TxInfo {
   // REQUIRED.
   // The transfer identifier.
   TxId id = 1;
+  // REQUIRED.
+  // Reference of the resource to be transfered.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
   // Status represents transfer status.
   enum Status {
     STATUS_INVALID = 0;
@@ -65,10 +72,19 @@ message TxInfo {
   // REQUIRED.
   // The transfer status. Eg.: STATUS_TRANSFER_FAILED.
   // Note: the description field may provide additional information on the transfer status.
-  Status status = 2;
+  Status status = 3;
+    // REQUIRED.
+  // The destination (receiver of the transfer)
+  cs3.storage.provider.v1beta1.Grantee grantee = 4;
+  // REQUIRED.
+  // Uniquely identifies a principal who initiates the transfer creation.
+  cs3.identity.user.v1beta1.UserId creator = 5;
+  // REQUIRED.
+  // Creation time of the transfer.
+  cs3.types.v1beta1.Timestamp ctime = 6;
   // OPTIONAL.
   // Information to describe the transfer status.
   // Eg. may contain information about a transfer failure.
   // Meant to be human-readable.
-  string description = 3;
+  string description = 7;
 }
