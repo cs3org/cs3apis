@@ -307,6 +307,10 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.tx.v1beta1.TxId"><span class="badge">M</span>TxId</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.tx.v1beta1.TxInfo"><span class="badge">M</span>TxInfo</a>
                 </li>
               
@@ -2700,7 +2704,32 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>CreateOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">.cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">.cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse</a></td>
-                <td><p>Creates a new ocm share.</p></td>
+                <td><p>Creates a new ocm share.
+
+*****************************************************************/
+************************** FILE TRANSFER ************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferRequest">.cs3.tx.v1beta1.CreateTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferResponse">.cs3.tx.v1beta1.CreateTransferResponse</a></td>
+                <td><p>Returns a response containing a TxInfo (transfer info) object.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetTransferStatus</td>
+                <td><a href="#cs3.tx.v1beta1.GetTransferStatusRequest">.cs3.tx.v1beta1.GetTransferStatusRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.GetTransferStatusResponse">.cs3.tx.v1beta1.GetTransferStatusResponse</a></td>
+                <td><p>Requests a transfer status.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CancelTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.CancelTransferRequest">.cs3.tx.v1beta1.CancelTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.CancelTransferResponse">.cs3.tx.v1beta1.CancelTransferResponse</a></td>
+                <td><p>Requests to cancel a transfer.</p></td>
               </tr>
             
           </tbody>
@@ -3182,6 +3211,33 @@ https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></t
       <p></p>
 
       
+        <h3 id="cs3.tx.v1beta1.TxId">TxId</h3>
+        <p>TxId uniquely identifies a transfer in the transfer provider namespace.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The internal transfer id used by the service implementor
+to uniquely identity the transfer in the internal
+implementation of the service. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.tx.v1beta1.TxInfo">TxInfo</h3>
         <p>TxInfo represents information about a transfer.</p>
 
@@ -3194,10 +3250,18 @@ https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></t
               
                 <tr>
                   <td>id</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#cs3.tx.v1beta1.TxId">TxId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The transfer id. </p></td>
+The transfer identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Reference of the resource to be transfered. </p></td>
                 </tr>
               
                 <tr>
@@ -3207,6 +3271,30 @@ The transfer id. </p></td>
                   <td><p>REQUIRED.
 The transfer status. Eg.: STATUS_TRANSFER_FAILED.
 Note: the description field may provide additional information on the transfer status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Grantee">cs3.storage.provider.v1beta1.Grantee</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The destination (receiver of the transfer) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>creator</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Uniquely identifies a principal who initiates the transfer creation. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ctime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Creation time of the transfer. </p></td>
                 </tr>
               
                 <tr>
@@ -3267,7 +3355,7 @@ Meant to be human-readable. </p></td>
               </tr>
             
               <tr>
-                <td>STATUS_TRANSFER_PENDING</td>
+                <td>STATUS_TRANSFER_IN_PROGRESS</td>
                 <td>5</td>
                 <td><p>The data transfer has started and not yet completed.</p></td>
               </tr>
@@ -3329,10 +3417,18 @@ Meant to be human-readable. </p></td>
               
                 <tr>
                   <td>tx_id</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#cs3.tx.v1beta1.TxId">TxId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The transfer id. </p></td>
+The transfer identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>
@@ -3365,7 +3461,15 @@ The response status. </p></td>
                   <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-TxInfo, includes transfer id, status, description. </p></td>
+TxInfo, includes ao. transfer id, status, description. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>
@@ -3376,7 +3480,7 @@ TxInfo, includes transfer id, status, description. </p></td>
         
       
         <h3 id="cs3.tx.v1beta1.CreateTransferRequest">CreateTransferRequest</h3>
-        <p>TODO: any additional fields; Opaque information ??</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -3386,21 +3490,27 @@ TxInfo, includes transfer id, status, description. </p></td>
             <tbody>
               
                 <tr>
-                  <td>resource_info</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceInfo">cs3.storage.provider.v1beta1.ResourceInfo</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The reference to the resource to be transfered.
-TODO: maybe the ResourcePermissions should be expended with a transfer permission ??? </p></td>
+Reference of the resource to be transfered. </p></td>
                 </tr>
               
                 <tr>
-                  <td>dest_email</td>
-                  <td><a href="#string">string</a></td>
+                  <td>grantee</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Grantee">cs3.storage.provider.v1beta1.Grantee</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The destination reference the resource is transferred to.
-An email address. </p></td>
+The destination (receiver of the transfer) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>
@@ -3436,6 +3546,14 @@ The response status. </p></td>
 TxInfo, includes transfer id, status, description. </p></td>
                 </tr>
               
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -3455,10 +3573,18 @@ TxInfo, includes transfer id, status, description. </p></td>
               
                 <tr>
                   <td>tx_id</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#cs3.tx.v1beta1.TxId">TxId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The transfer id. </p></td>
+The transfer identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>
@@ -3491,7 +3617,15 @@ The response status. </p></td>
                   <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-TxInfo, includes transfer id, status, description. </p></td>
+TxInfo, includes ao. transfer id, status, description. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>

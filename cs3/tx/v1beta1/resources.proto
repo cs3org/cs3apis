@@ -77,7 +77,7 @@ message TxInfo {
   // The transfer status. Eg.: STATUS_TRANSFER_FAILED.
   // Note: the description field may provide additional information on the transfer status.
   Status status = 3;
-    // REQUIRED.
+  // REQUIRED.
   // The destination (receiver of the transfer)
   cs3.storage.provider.v1beta1.Grantee grantee = 4;
   // REQUIRED.
