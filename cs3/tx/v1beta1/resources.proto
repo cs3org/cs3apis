@@ -1,0 +1,94 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.tx.v1beta1;
+
+option csharp_namespace = "Cs3.Tx.V1Beta1";
+option go_package = "txv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.tx.v1beta1";
+option objc_class_prefix = "CTX";
+option php_namespace = "Cs3\\Tx\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// TxId uniquely identifies a transfer in the transfer provider namespace.
+message TxId {
+  // REQUIRED.
+  // The internal transfer id used by the service implementor
+  // to uniquely identity the transfer in the internal
+  // implementation of the service.
+  string opaque_id = 1;
+}
+
+// TxInfo represents information about a transfer.
+message TxInfo {
+  // REQUIRED.
+  // The transfer identifier.
+  TxId id = 1;
+  // REQUIRED.
+  // Reference of the resource to be transfered.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // Status represents transfer status.
+  enum Status {
+    STATUS_INVALID = 0;
+    // The destination could not be found.
+    STATUS_DESTINATION_NOT_FOUND = 1;
+    // A new data transfer
+    STATUS_TRANSFER_NEW = 2;
+    // The data transfer is awaiting acceptance from the destination
+    STATUS_TRANSFER_AWAITING_ACCEPTANCE = 3;
+    // The data transfer is accepted by the destination.
+    STATUS_TRANSFER_ACCEPTED = 4;
+    // The data transfer has started and not yet completed.
+    STATUS_TRANSFER_IN_PROGRESS = 5;
+    // The data transfer has completed.
+    STATUS_TRANSFER_COMPLETE = 6;
+    // The data transfer has failed.
+    STATUS_TRANSFER_FAILED = 7;
+    // The data transfer had been cancelled.
+    STATUS_TRANSFER_CANCELLED = 8;
+    // The request for cancelling the data transfer has failed.
+    STATUS_TRANSFER_CANCEL_FAILED = 9;
+    // The transfer has expired somewhere down the line.
+    STATUS_TRANSFER_EXPIRED = 10;
+  }
+  // REQUIRED.
+  // The transfer status. Eg.: STATUS_TRANSFER_FAILED.
+  // Note: the description field may provide additional information on the transfer status.
+  Status status = 3;
+  // REQUIRED.
+  // The destination (receiver of the transfer)
+  cs3.storage.provider.v1beta1.Grantee grantee = 4;
+  // REQUIRED.
+  // Uniquely identifies a principal who initiates the transfer creation.
+  cs3.identity.user.v1beta1.UserId creator = 5;
+  // REQUIRED.
+  // Creation time of the transfer.
+  cs3.types.v1beta1.Timestamp ctime = 6;
+  // OPTIONAL.
+  // Information to describe the transfer status.
+  // Eg. may contain information about a transfer failure.
+  // Meant to be human-readable.
+  string description = 7;
+}

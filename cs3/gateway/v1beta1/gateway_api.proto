@@ -43,6 +43,7 @@ import "cs3/sharing/link/v1beta1/link_api.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/tx/v1beta1/tx_api.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // Gateway API
@@ -319,6 +320,16 @@ service GatewayAPI {
 
   // Creates a new ocm share.
   rpc CreateOCMCoreShare(cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse);
+  // *****************************************************************/
+  // ************************** FILE TRANSFER ************************/
+  // *****************************************************************/
+
+  // Returns a response containing a TxInfo (transfer info) object.
+  rpc CreateTransfer(cs3.tx.v1beta1.CreateTransferRequest) returns (cs3.tx.v1beta1.CreateTransferResponse);
+  // Requests a transfer status.
+  rpc GetTransferStatus(cs3.tx.v1beta1.GetTransferStatusRequest) returns (cs3.tx.v1beta1.GetTransferStatusResponse);
+  // Requests to cancel a transfer.
+  rpc CancelTransfer(cs3.tx.v1beta1.CancelTransferRequest) returns (cs3.tx.v1beta1.CancelTransferResponse);
 }
 
 // CAUTION:
