@@ -34,6 +34,10 @@ import "cs3/types/v1beta1/types.proto";
 
 // TxId uniquely identifies a transfer in the transfer provider namespace.
 message TxId {
+  // REQUIRED.
+  // The internal transfer id used by the service implementor
+  // to uniquely identity the transfer in the internal
+  // implementation of the service.
   string opaque_id = 1;
 }
 
