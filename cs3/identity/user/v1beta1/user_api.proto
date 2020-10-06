@@ -51,7 +51,7 @@ import "cs3/types/v1beta1/types.proto";
 
 // Provides an API for managing users.
 service UserAPI {
-  // Gets the information about a user by its user id.
+  // Gets the information about a user by the user id.
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   // Gets the information about a user based on a specified claim.
   rpc GetUserByClaim(GetUserByClaimRequest) returns (GetUserByClaimResponse);
@@ -59,9 +59,11 @@ service UserAPI {
   rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
   // Tells if the user is in a certain group.
   rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
-  // Finds users by any attribute of the user?
+  // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
+  // Finds groups whose names match the specified filter.
+  rpc FindGroups(FindGroupsRequest) returns (FindGroupsResponse);
 }
 
 message GetUserRequest {
@@ -158,7 +160,7 @@ message FindUsersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED. TODO(labkode): create propper filters for most common searchs.
+  // REQUIRED. TODO(labkode): create proper filters for most common searches.
   // The filter to apply.
   string filter = 2;
 }
@@ -171,6 +173,27 @@ message FindUsersResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The groups for the user.
+  // The users matching the specified filter.
   repeated User users = 3;
+}
+
+message FindGroupsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The filter to apply.
+  string filter = 2;
+}
+
+message FindGroupsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The groups matching the specified filter.
+  repeated string groups = 3;
 }

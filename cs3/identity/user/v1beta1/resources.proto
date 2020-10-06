@@ -41,7 +41,7 @@ message UserId {
   string opaque_id = 2;
 }
 
-// Represents an user of the system.
+// Represents a user of the system.
 message User {
   UserId id = 1;
   string username = 2;

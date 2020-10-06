@@ -557,6 +557,14 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.identity.user.v1beta1.FindGroupsRequest"><span class="badge">M</span>FindGroupsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.user.v1beta1.FindGroupsResponse"><span class="badge">M</span>FindGroupsResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.identity.user.v1beta1.FindUsersRequest"><span class="badge">M</span>FindUsersRequest</a>
                 </li>
               
@@ -2583,7 +2591,7 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
                 <td>GetUser</td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserRequest">.cs3.identity.user.v1beta1.GetUserRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserResponse">.cs3.identity.user.v1beta1.GetUserResponse</a></td>
-                <td><p>Gets the information about a user by its user id.</p></td>
+                <td><p>Gets the information about a user by the user id.</p></td>
               </tr>
             
               <tr>
@@ -2611,8 +2619,15 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
                 <td>FindUsers</td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersRequest">.cs3.identity.user.v1beta1.FindUsersRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersResponse">.cs3.identity.user.v1beta1.FindUsersResponse</a></td>
-                <td><p>Finds users by any attribute of the user?
-TODO(labkode): to define the filters that make more sense.
+                <td><p>Finds users by any attribute of the user.
+TODO(labkode): to define the filters that make more sense.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FindGroups</td>
+                <td><a href="#cs3.identity.user.v1beta1.FindGroupsRequest">.cs3.identity.user.v1beta1.FindGroupsRequest</a></td>
+                <td><a href="#cs3.identity.user.v1beta1.FindGroupsResponse">.cs3.identity.user.v1beta1.FindGroupsResponse</a></td>
+                <td><p>Finds groups whose names match the specified filter.
 
 *****************************************************************/
 ************************ AUTH REGISTRY  **************************/
@@ -4595,7 +4610,7 @@ by humans. </p></td>
 
       
         <h3 id="cs3.identity.user.v1beta1.User">User</h3>
-        <p>Represents an user of the system.</p>
+        <p>Represents a user of the system.</p>
 
         
           <table class="field-table">
@@ -4708,6 +4723,80 @@ the identity provider. </p></td>
       <p></p>
 
       
+        <h3 id="cs3.identity.user.v1beta1.FindGroupsRequest">FindGroupsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The filter to apply. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.user.v1beta1.FindGroupsResponse">FindGroupsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The groups matching the specified filter. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.identity.user.v1beta1.FindUsersRequest">FindUsersRequest</h3>
         <p></p>
 
@@ -4730,7 +4819,7 @@ Opaque information. </p></td>
                   <td>filter</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. TODO(labkode): create propper filters for most common searchs.
+                  <td><p>REQUIRED. TODO(labkode): create proper filters for most common searches.
 The filter to apply. </p></td>
                 </tr>
               
@@ -4772,7 +4861,7 @@ Opaque information. </p></td>
                   <td><a href="#cs3.identity.user.v1beta1.User">User</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
-The groups for the user. </p></td>
+The users matching the specified filter. </p></td>
                 </tr>
               
             </tbody>
@@ -5112,7 +5201,7 @@ Tells if the user belongs to the group. </p></td>
                 <td>GetUser</td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserRequest">GetUserRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.GetUserResponse">GetUserResponse</a></td>
-                <td><p>Gets the information about a user by its user id.</p></td>
+                <td><p>Gets the information about a user by the user id.</p></td>
               </tr>
             
               <tr>
@@ -5140,8 +5229,15 @@ Tells if the user belongs to the group. </p></td>
                 <td>FindUsers</td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersRequest">FindUsersRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersResponse">FindUsersResponse</a></td>
-                <td><p>Finds users by any attribute of the user?
+                <td><p>Finds users by any attribute of the user.
 TODO(labkode): to define the filters that make more sense.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FindGroups</td>
+                <td><a href="#cs3.identity.user.v1beta1.FindGroupsRequest">FindGroupsRequest</a></td>
+                <td><a href="#cs3.identity.user.v1beta1.FindGroupsResponse">FindGroupsResponse</a></td>
+                <td><p>Finds groups whose names match the specified filter.</p></td>
               </tr>
             
           </tbody>
