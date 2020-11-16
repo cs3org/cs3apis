@@ -281,18 +281,8 @@ message InitiateFileUploadResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The endpoint where to upload the data.
-  // The value MUST be a Uniform Resource Identifier (URI)
-  // as specified in RFC 3986.
-  string upload_endpoint = 3;
-  // REQUIRED.
-  // List of available checksums
-  // the client can use when sending
-  // the file.
-  repeated ResourceChecksumPriority available_checksums = 4;
-  // REQUIRED.
-  // Tells to the gateway if the client should be exposed directly to the upload_endpoint.
-  bool expose = 5;
+  // The protocols through which data can be uploaded.
+  repeated FileUploadProtocol protocols = 3;
 }
 
 message InitiateFileDownloadRequest {
@@ -312,13 +302,8 @@ message InitiateFileDownloadResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The endpoint where to downooad the data.
-  // The value MUST be a Uniform Resource Identifier (URI)
-  // as specified in RFC 3986.
-  string download_endpoint = 3;
-  // REQUIRED.
-  // Tells to the gateway if the client should be exposed directly to the download_endpoint.
-  bool expose = 5;
+  // The protocols through which data can be downloaded.
+  repeated FileDownloadProtocol protocols = 3;
 }
 
 message ListGrantsRequest {

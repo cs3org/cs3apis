@@ -242,6 +242,25 @@
         
           
           <li>
+            <a href="#cs3%2fgateway%2fv1beta1%2fresources.proto">cs3/gateway/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.gateway.v1beta1.FileDownloadProtocol"><span class="badge">M</span>FileDownloadProtocol</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gateway.v1beta1.FileUploadProtocol"><span class="badge">M</span>FileUploadProtocol</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fpreferences%2fv1beta1%2fpreferences_api.proto">cs3/preferences/v1beta1/preferences_api.proto</a>
             <ul>
               
@@ -1415,6 +1434,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.FileDownloadProtocol"><span class="badge">M</span>FileDownloadProtocol</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.FileUploadProtocol"><span class="badge">M</span>FileUploadProtocol</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.FileVersion"><span class="badge">M</span>FileVersion</a>
                 </li>
               
@@ -1703,30 +1730,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>download_endpoint</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>protocols</td>
+                  <td><a href="#cs3.gateway.v1beta1.FileDownloadProtocol">FileDownloadProtocol</a></td>
+                  <td>repeated</td>
                   <td><p>REQUIRED.
-The endpoint where to downooad the data.
-The value MUST be a Uniform Resource Identifier (URI)
-as specified in RFC 3986. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expose</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-Tells to the gateway if the client should be exposed directly to the download_endpoint. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>token</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A token that MUST be validated by the data gateway for the upload.
-Only makes sense for uploads passing through the data gateway. </p></td>
+The protocols through which data can be downloaded. </p></td>
                 </tr>
               
             </tbody>
@@ -1763,32 +1771,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>upload_endpoint</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The endpoint where to upload the data.
-The value MUST be a Uniform Resource Identifier (URI)
-as specified in RFC 3986. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>available_checksums</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceChecksumPriority">cs3.storage.provider.v1beta1.ResourceChecksumPriority</a></td>
+                  <td>protocols</td>
+                  <td><a href="#cs3.gateway.v1beta1.FileUploadProtocol">FileUploadProtocol</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
-List of available checksums
-the client can use when sending
-the file. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>token</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A token that MUST be validated by the data gateway for the upload.
-Only makes sense for uploads passing through the data gateway. </p></td>
+The protocols through which data can be uploaded. </p></td>
                 </tr>
               
             </tbody>
@@ -2751,6 +2738,134 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/gateway/v1beta1/resources.proto">cs3/gateway/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.gateway.v1beta1.FileDownloadProtocol">FileDownloadProtocol</h3>
+        <p>A file download protocol object stores information about</p><p>downloading resources using a specific protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol to be followed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>download_endpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The endpoint where to download the data.
+The value MUST be a Uniform Resource Identifier (URI)
+as specified in RFC 3986. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A token that MUST be validated by the data gateway for the download.
+Only makes sense for downloads passing through the data gateway. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gateway.v1beta1.FileUploadProtocol">FileUploadProtocol</h3>
+        <p>A file upload protocol object stores information about</p><p>uploading resources using a specific protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol to be followed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>upload_endpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The endpoint where to upload the data.
+The value MUST be a Uniform Resource Identifier (URI)
+as specified in RFC 3986. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>available_checksums</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceChecksumPriority">cs3.storage.provider.v1beta1.ResourceChecksumPriority</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+List of available checksums
+the client can use when sending
+the file. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A token that MUST be validated by the data gateway for the upload.
+Only makes sense for uploads passing through the data gateway. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
     
       
       <div class="file-heading">
@@ -10393,21 +10508,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>download_endpoint</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>protocols</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.FileDownloadProtocol">FileDownloadProtocol</a></td>
+                  <td>repeated</td>
                   <td><p>REQUIRED.
-The endpoint where to downooad the data.
-The value MUST be a Uniform Resource Identifier (URI)
-as specified in RFC 3986. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expose</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-Tells to the gateway if the client should be exposed directly to the download_endpoint. </p></td>
+The protocols through which data can be downloaded. </p></td>
                 </tr>
               
             </tbody>
@@ -10477,31 +10582,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>upload_endpoint</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The endpoint where to upload the data.
-The value MUST be a Uniform Resource Identifier (URI)
-as specified in RFC 3986. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>available_checksums</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceChecksumPriority">ResourceChecksumPriority</a></td>
+                  <td>protocols</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.FileUploadProtocol">FileUploadProtocol</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
-List of available checksums
-the client can use when sending
-the file. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>expose</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-Tells to the gateway if the client should be exposed directly to the upload_endpoint. </p></td>
+The protocols through which data can be uploaded. </p></td>
                 </tr>
               
             </tbody>
@@ -12003,6 +12088,118 @@ TODO(moscicki): what fields can fit here? executable bit?
 bool executable = 2;
 TODO(labkode): at some points maybe we could add here
 acls and other well-known metadata. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.FileDownloadProtocol">FileDownloadProtocol</h3>
+        <p>A file download protocol object stores information about</p><p>downloading resources using a specific protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol to be followed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>download_endpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The endpoint where to download the data.
+The value MUST be a Uniform Resource Identifier (URI)
+as specified in RFC 3986. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expose</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Tells to the gateway if the client should be exposed directly to the download_endpoint. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.FileUploadProtocol">FileUploadProtocol</h3>
+        <p>A file upload protocol object stores information about</p><p>uploading resources using a specific protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocol</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The protocol to be followed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>upload_endpoint</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The endpoint where to upload the data.
+The value MUST be a Uniform Resource Identifier (URI)
+as specified in RFC 3986. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>available_checksums</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceChecksumPriority">ResourceChecksumPriority</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+List of available checksums
+the client can use when sending
+the file. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expose</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Tells to the gateway if the client should be exposed directly to the upload_endpoint. </p></td>
                 </tr>
               
             </tbody>
