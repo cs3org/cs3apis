@@ -1,0 +1,78 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.gateway.v1beta1;
+
+option csharp_namespace = "Cs3.Gateway.V1Beta1";
+option go_package = "gatewayv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.gateway.v1beta1";
+option objc_class_prefix = "CGX";
+option php_namespace = "Cs3\\Gateway\\V1Beta1";
+
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// A file upload protocol object stores information about
+// uploading resources using a specific protocol.
+message FileUploadProtocol {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The protocol to be followed.
+  string protocol = 2;
+  // REQUIRED.
+  // The endpoint where to upload the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string upload_endpoint = 3;
+  // REQUIRED.
+  // List of available checksums
+  // the client can use when sending
+  // the file.
+  repeated cs3.storage.provider.v1beta1.ResourceChecksumPriority available_checksums = 4;
+  // OPTIONAL.
+  // A token that MUST be validated by the data gateway for the upload.
+  // Only makes sense for uploads passing through the data gateway.
+  string token = 5;
+}
+
+// A file download protocol object stores information about
+// downloading resources using a specific protocol.
+message FileDownloadProtocol {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The protocol to be followed.
+  string protocol = 2;
+  // REQUIRED.
+  // The endpoint where to download the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string download_endpoint = 3;
+  // OPTIONAL.
+  // A token that MUST be validated by the data gateway for the download.
+  // Only makes sense for downloads passing through the data gateway.
+  string token = 4;
+}
