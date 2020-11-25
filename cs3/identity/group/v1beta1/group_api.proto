@@ -18,15 +18,15 @@
 
 syntax = "proto3";
 
-package cs3.identity.user.v1beta1;
+package cs3.identity.group.v1beta1;
 
-option csharp_namespace = "Cs3.Identity.User.V1Beta1";
-option go_package = "userv1beta1";
+option csharp_namespace = "Cs3.Identity.Group.V1Beta1";
+option go_package = "groupv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "UserApiProto";
-option java_package = "com.cs3.identity.user.v1beta1";
-option objc_class_prefix = "CIU";
-option php_namespace = "Cs3\\Identity\\User\\V1Beta1";
+option java_outer_classname = "GroupApiProto";
+option java_package = "com.cs3.identity.group.v1beta1";
+option objc_class_prefix = "CIG";
+option php_namespace = "Cs3\\Identity\\Group\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/group/v1beta1/resources.proto";
@@ -36,7 +36,7 @@ import "cs3/types/v1beta1/types.proto";
 // UserProvider API.
 //
 // The UserProvider API is responsible for creating
-// a key-value map according to user userprovider.
+// a key-value map according to group groupprovider.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -50,31 +50,30 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 
-// Provides an API for managing users.
-service UserAPI {
-  // Gets the information about a user by the user id.
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
-  // Gets the information about a user based on a specified claim.
-  rpc GetUserByClaim(GetUserByClaimRequest) returns (GetUserByClaimResponse);
-  // Gets the groups of a user.
-  rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
-  // Tells if the user is in a certain group.
-  rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
-  // Finds users by any attribute of the user.
-  // TODO(labkode): to define the filters that make more sense.
-  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
+// Provides an API for managing groups.
+service GroupAPI {
+  // Gets the information about a group by the group id.
+  rpc GetGroup(GetGroupRequest) returns (GetGroupResponse);
+  // Gets the information about a group based on a specified claim.
+  rpc GetGroupByClaim(GetGroupByClaimRequest) returns (GetGroupByClaimResponse);
+  // Gets the members of a group.
+  rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
+  // Tells if the group has certain member.
+  rpc HasMember(HasMemberRequest) returns (HasMemberResponse);
+  // Finds groups whose names match the specified filter.
+  rpc FindGroups(FindGroupsRequest) returns (FindGroupsResponse);
 }
 
-message GetUserRequest {
+message GetGroupRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The id of the user.
-  cs3.identity.user.v1beta1.UserId user_id = 2;
+  // The id of the group.
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
 }
 
-message GetUserResponse {
+message GetGroupResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -82,23 +81,23 @@ message GetUserResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The user information.
-  User user = 3;
+  // The group information.
+  Group group = 3;
 }
 
-message GetUserByClaimRequest {
+message GetGroupByClaimRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The claim on the basis of which users will be filtered.
+  // The claim on the basis of which groups will be filtered.
   string claim = 2;
   // REQUIRED.
-  // The value of the claim to find the specific user.
+  // The value of the claim to find the specific group.
   string value = 3;
 }
 
-message GetUserByClaimResponse {
+message GetGroupByClaimResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -106,20 +105,20 @@ message GetUserByClaimResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The user information.
-  User user = 3;
+  // The group information.
+  Group group = 3;
 }
 
-message GetUserGroupsRequest {
+message GetMembersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The id of the user.
-  cs3.identity.user.v1beta1.UserId user_id = 2;
+  // The id of the group.
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
 }
 
-message GetUserGroupsResponse {
+message GetMembersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -127,23 +126,23 @@ message GetUserGroupsResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The groups for the user.
-  repeated string groups = 3;
+  // The members of the group.
+  repeated cs3.identity.user.v1beta1.UserId members = 3;
 }
 
-message IsInGroupRequest {
+message HasMemberRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The id of the user.
-  cs3.identity.user.v1beta1.UserId user_id = 2;
+  // The id of the group.
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
   // REQUIRED.
-  // The id of the group to check.
-  cs3.identity.group.v1beta1.GroupId group_id = 3;
+  // The id of the user to check.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
 }
 
-message IsInGroupResponse {
+message HasMemberResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -155,16 +154,16 @@ message IsInGroupResponse {
   bool ok = 3;
 }
 
-message FindUsersRequest {
+message FindGroupsRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED. TODO(labkode): create proper filters for most common searches.
+  // REQUIRED.
   // The filter to apply.
   string filter = 2;
 }
 
-message FindUsersResponse {
+message FindGroupsResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -172,7 +171,6 @@ message FindUsersResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The users matching the specified filter.
-  repeated User users = 3;
+  // The groups matching the specified filter.
+  repeated Group groups = 3;
 }
-
