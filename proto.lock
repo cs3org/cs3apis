@@ -36,18 +36,18 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_info",
+                "type": "storage.provider.v1beta1.ResourceInfo"
               },
               {
                 "id": 3,
-                "name": "access_token",
-                "type": "string"
+                "name": "view_mode",
+                "type": "ViewMode"
               },
               {
                 "id": 4,
-                "name": "view_mode",
-                "type": "ViewMode"
+                "name": "access_token",
+                "type": "string"
               }
             ]
           },
@@ -644,6 +644,28 @@
     {
       "protopath": "cs3:/:gateway:/:v1beta1:/:gateway_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "OpenFileInAppProviderRequest.ViewMode",
+            "enum_fields": [
+              {
+                "name": "VIEW_MODE_INVALID"
+              },
+              {
+                "name": "VIEW_MODE_VIEW_ONLY",
+                "integer": 1
+              },
+              {
+                "name": "VIEW_MODE_READ_ONLY",
+                "integer": 2
+              },
+              {
+                "name": "VIEW_MODE_READ_WRITE",
+                "integer": 3
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "AuthenticateRequest",
@@ -825,18 +847,9 @@
               },
               {
                 "id": 3,
-                "name": "download_endpoint",
-                "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "expose",
-                "type": "bool"
-              },
-              {
-                "id": 6,
-                "name": "token",
-                "type": "string"
+                "name": "protocols",
+                "type": "FileDownloadProtocol",
+                "is_repeated": true
               }
             ]
           },
@@ -855,19 +868,9 @@
               },
               {
                 "id": 3,
-                "name": "upload_endpoint",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "available_checksums",
-                "type": "cs3.storage.provider.v1beta1.ResourceChecksumPriority",
+                "name": "protocols",
+                "type": "FileUploadProtocol",
                 "is_repeated": true
-              },
-              {
-                "id": 5,
-                "name": "token",
-                "type": "string"
               }
             ]
           },
@@ -889,6 +892,26 @@
                 "name": "types",
                 "type": "string",
                 "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "OpenFileInAppProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
+              },
+              {
+                "id": 3,
+                "name": "view_mode",
+                "type": "ViewMode"
               }
             ]
           }
@@ -990,6 +1013,11 @@
                 "out_type": "cs3.storage.provider.v1beta1.StatResponse"
               },
               {
+                "name": "CreateSymlink",
+                "in_type": "cs3.storage.provider.v1beta1.CreateSymlinkRequest",
+                "out_type": "cs3.storage.provider.v1beta1.CreateSymlinkResponse"
+              },
+              {
                 "name": "SetArbitraryMetadata",
                 "in_type": "cs3.storage.provider.v1beta1.SetArbitraryMetadataRequest",
                 "out_type": "cs3.storage.provider.v1beta1.SetArbitraryMetadataResponse"
@@ -1006,7 +1034,7 @@
               },
               {
                 "name": "OpenFileInAppProvider",
-                "in_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderRequest",
+                "in_type": "OpenFileInAppProviderRequest",
                 "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
               },
               {
@@ -1145,6 +1173,11 @@
                 "out_type": "cs3.identity.user.v1beta1.GetUserResponse"
               },
               {
+                "name": "GetUserByClaim",
+                "in_type": "cs3.identity.user.v1beta1.GetUserByClaimRequest",
+                "out_type": "cs3.identity.user.v1beta1.GetUserByClaimResponse"
+              },
+              {
                 "name": "GetUserGroups",
                 "in_type": "cs3.identity.user.v1beta1.GetUserGroupsRequest",
                 "out_type": "cs3.identity.user.v1beta1.GetUserGroupsResponse"
@@ -1158,6 +1191,11 @@
                 "name": "FindUsers",
                 "in_type": "cs3.identity.user.v1beta1.FindUsersRequest",
                 "out_type": "cs3.identity.user.v1beta1.FindUsersResponse"
+              },
+              {
+                "name": "FindGroups",
+                "in_type": "cs3.identity.user.v1beta1.FindGroupsRequest",
+                "out_type": "cs3.identity.user.v1beta1.FindGroupsResponse"
               },
               {
                 "name": "ListAuthProviders",
@@ -1208,6 +1246,21 @@
                 "name": "CreateOCMCoreShare",
                 "in_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest",
                 "out_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse"
+              },
+              {
+                "name": "CreateTransfer",
+                "in_type": "cs3.tx.v1beta1.CreateTransferRequest",
+                "out_type": "cs3.tx.v1beta1.CreateTransferResponse"
+              },
+              {
+                "name": "GetTransferStatus",
+                "in_type": "cs3.tx.v1beta1.GetTransferStatusRequest",
+                "out_type": "cs3.tx.v1beta1.GetTransferStatusResponse"
+              },
+              {
+                "name": "CancelTransfer",
+                "in_type": "cs3.tx.v1beta1.CancelTransferRequest",
+                "out_type": "cs3.tx.v1beta1.CancelTransferResponse"
               }
             ]
           }
@@ -1221,6 +1274,9 @@
           },
           {
             "path": "cs3/auth/registry/v1beta1/registry_api.proto"
+          },
+          {
+            "path": "cs3/gateway/v1beta1/resources.proto"
           },
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
@@ -1259,6 +1315,9 @@
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
+            "path": "cs3/tx/v1beta1/tx_api.proto"
+          },
+          {
             "path": "cs3/types/v1beta1/types.proto"
           }
         ],
@@ -1281,6 +1340,113 @@
           {
             "name": "java_outer_classname",
             "value": "GatewayApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.gateway.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CGX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Gateway\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:gateway:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "FileUploadProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "protocol",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "upload_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "available_checksums",
+                "type": "cs3.storage.provider.v1beta1.ResourceChecksumPriority",
+                "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FileDownloadProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "protocol",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "download_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.gateway.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Gateway.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "gatewayv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -1438,6 +1604,46 @@
             ]
           },
           {
+            "name": "GetUserByClaimRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "claim",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "value",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetUserByClaimResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "User"
+              }
+            ]
+          },
+          {
             "name": "GetUserGroupsRequest",
             "fields": [
               {
@@ -1548,6 +1754,42 @@
                 "is_repeated": true
               }
             ]
+          },
+          {
+            "name": "FindGroupsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindGroupsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "groups",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
           }
         ],
         "services": [
@@ -1558,6 +1800,11 @@
                 "name": "GetUser",
                 "in_type": "GetUserRequest",
                 "out_type": "GetUserResponse"
+              },
+              {
+                "name": "GetUserByClaim",
+                "in_type": "GetUserByClaimRequest",
+                "out_type": "GetUserByClaimResponse"
               },
               {
                 "name": "GetUserGroups",
@@ -1573,6 +1820,11 @@
                 "name": "FindUsers",
                 "in_type": "FindUsersRequest",
                 "out_type": "FindUsersResponse"
+              },
+              {
+                "name": "FindGroups",
+                "in_type": "FindGroupsRequest",
+                "out_type": "FindGroupsResponse"
               }
             ]
           }
@@ -4522,31 +4774,36 @@
               },
               {
                 "id": 3,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 4,
                 "name": "permissions",
                 "type": "SharePermissions"
               },
               {
-                "id": 4,
+                "id": 5,
                 "name": "grantee",
                 "type": "storage.provider.v1beta1.Grantee"
               },
               {
-                "id": 5,
+                "id": 6,
                 "name": "owner",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 6,
+                "id": 7,
                 "name": "creator",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 7,
+                "id": 8,
                 "name": "ctime",
                 "type": "cs3.types.v1beta1.Timestamp"
               },
               {
-                "id": 8,
+                "id": 9,
                 "name": "mtime",
                 "type": "cs3.types.v1beta1.Timestamp"
               }
@@ -4918,19 +5175,9 @@
               },
               {
                 "id": 3,
-                "name": "upload_endpoint",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "available_checksums",
-                "type": "ResourceChecksumPriority",
+                "name": "protocols",
+                "type": "FileUploadProtocol",
                 "is_repeated": true
-              },
-              {
-                "id": 5,
-                "name": "expose",
-                "type": "bool"
               }
             ]
           },
@@ -4964,13 +5211,9 @@
               },
               {
                 "id": 3,
-                "name": "download_endpoint",
-                "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "expose",
-                "type": "bool"
+                "name": "protocols",
+                "type": "FileDownloadProtocol",
+                "is_repeated": true
               }
             ]
           },
@@ -5462,6 +5705,41 @@
             ]
           },
           {
+            "name": "CreateSymlinkRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "path",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "target",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "CreateSymlinkResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
             "name": "CreateReferenceRequest",
             "fields": [
               {
@@ -5698,6 +5976,11 @@
                 "name": "UpdateGrant",
                 "in_type": "UpdateGrantRequest",
                 "out_type": "UpdateGrantResponse"
+              },
+              {
+                "name": "CreateSymlink",
+                "in_type": "CreateSymlinkRequest",
+                "out_type": "CreateSymlinkResponse"
               },
               {
                 "name": "CreateReference",
@@ -6127,6 +6410,11 @@
                 "id": 2,
                 "name": "id",
                 "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
               }
             ]
           },
@@ -6187,6 +6475,62 @@
                 "id": 6,
                 "name": "deletion_time",
                 "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "FileUploadProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "protocol",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "upload_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "available_checksums",
+                "type": "ResourceChecksumPriority",
+                "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "expose",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "FileDownloadProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "protocol",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "download_endpoint",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "expose",
+                "type": "bool"
               }
             ]
           }
@@ -6499,6 +6843,343 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Storage\\\\Registry\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:tx:/:v1beta1:/:resources.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "TxInfo.Status",
+            "enum_fields": [
+              {
+                "name": "STATUS_INVALID"
+              },
+              {
+                "name": "STATUS_DESTINATION_NOT_FOUND",
+                "integer": 1
+              },
+              {
+                "name": "STATUS_TRANSFER_NEW",
+                "integer": 2
+              },
+              {
+                "name": "STATUS_TRANSFER_AWAITING_ACCEPTANCE",
+                "integer": 3
+              },
+              {
+                "name": "STATUS_TRANSFER_ACCEPTED",
+                "integer": 4
+              },
+              {
+                "name": "STATUS_TRANSFER_IN_PROGRESS",
+                "integer": 5
+              },
+              {
+                "name": "STATUS_TRANSFER_COMPLETE",
+                "integer": 6
+              },
+              {
+                "name": "STATUS_TRANSFER_FAILED",
+                "integer": 7
+              },
+              {
+                "name": "STATUS_TRANSFER_CANCELLED",
+                "integer": 8
+              },
+              {
+                "name": "STATUS_TRANSFER_CANCEL_FAILED",
+                "integer": 9
+              },
+              {
+                "name": "STATUS_TRANSFER_EXPIRED",
+                "integer": 10
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "TxId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "TxInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "TxId"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "cs3.storage.provider.v1beta1.Reference"
+              },
+              {
+                "id": 3,
+                "name": "status",
+                "type": "Status"
+              },
+              {
+                "id": 4,
+                "name": "grantee",
+                "type": "cs3.storage.provider.v1beta1.Grantee"
+              },
+              {
+                "id": 5,
+                "name": "creator",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 6,
+                "name": "ctime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 7,
+                "name": "description",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.tx.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Tx.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "txv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.tx.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CTX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Tx\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:tx:/:v1beta1:/:tx_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CreateTransferRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "ref",
+                "type": "cs3.storage.provider.v1beta1.Reference"
+              },
+              {
+                "id": 2,
+                "name": "grantee",
+                "type": "cs3.storage.provider.v1beta1.Grantee"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "CreateTransferResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "tx_info",
+                "type": "TxInfo"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetTransferStatusRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "tx_id",
+                "type": "TxId"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetTransferStatusResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "tx_info",
+                "type": "TxInfo"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "CancelTransferRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "tx_id",
+                "type": "TxId"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "CancelTransferResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "tx_info",
+                "type": "TxInfo"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "TxAPI",
+            "rpcs": [
+              {
+                "name": "CreateTransfer",
+                "in_type": "CreateTransferRequest",
+                "out_type": "CreateTransferResponse"
+              },
+              {
+                "name": "GetTransferStatus",
+                "in_type": "GetTransferStatusRequest",
+                "out_type": "GetTransferStatusResponse"
+              },
+              {
+                "name": "CancelTransfer",
+                "in_type": "CancelTransferRequest",
+                "out_type": "CancelTransferResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/tx/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.tx.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Tx.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "txv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "TxApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.tx.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CTX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Tx\\\\V1Beta1"
           }
         ]
       }

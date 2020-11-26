@@ -31,6 +31,7 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 import "cs3/app/provider/v1beta1/provider_api.proto";
 import "cs3/app/registry/v1beta1/registry_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
+import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
@@ -43,6 +44,7 @@ import "cs3/sharing/link/v1beta1/link_api.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/tx/v1beta1/tx_api.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // Gateway API
@@ -140,6 +142,8 @@ service GatewayAPI {
   // Returns the resource information at the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Stat(cs3.storage.provider.v1beta1.StatRequest) returns (cs3.storage.provider.v1beta1.StatResponse);
+  // Creates a symlink to another resource.
+  rpc CreateSymlink(cs3.storage.provider.v1beta1.CreateSymlinkRequest) returns (cs3.storage.provider.v1beta1.CreateSymlinkResponse);
   // Sets arbitrary metadata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
   rpc SetArbitraryMetadata(cs3.storage.provider.v1beta1.SetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.SetArbitraryMetadataResponse);
@@ -152,8 +156,8 @@ service GatewayAPI {
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
 
-  // Returns the iframe url from the WOPI server. The iframe url will let you open the document in the correct online document editor.
-  rpc OpenFileInAppProvider(cs3.app.provider.v1beta1.OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
+  // Returns the App provider URL, which lets the user open a file in the correct online document editor.
+  rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
   // *****************************************************************/
@@ -264,15 +268,19 @@ service GatewayAPI {
   // ************************ USER PROVIDER **************************/
   // *****************************************************************/
 
-  // Gets the information about an user by its user id.
+  // Gets the information about a user by the user id.
   rpc GetUser(cs3.identity.user.v1beta1.GetUserRequest) returns (cs3.identity.user.v1beta1.GetUserResponse);
+  // Gets the information about a user based on a specified claim.
+  rpc GetUserByClaim(cs3.identity.user.v1beta1.GetUserByClaimRequest) returns (cs3.identity.user.v1beta1.GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(cs3.identity.user.v1beta1.GetUserGroupsRequest) returns (cs3.identity.user.v1beta1.GetUserGroupsResponse);
   // Tells if the user is in a certain group.
   rpc IsInGroup(cs3.identity.user.v1beta1.IsInGroupRequest) returns (cs3.identity.user.v1beta1.IsInGroupResponse);
-  // Finds users by any attribute of the user?
+  // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
+  // Finds groups whose names match the specified filter.
+  rpc FindGroups(cs3.identity.user.v1beta1.FindGroupsRequest) returns (cs3.identity.user.v1beta1.FindGroupsResponse);
   // *****************************************************************/
   // ************************ AUTH REGISTRY  **************************/
   // *****************************************************************/
@@ -315,6 +323,16 @@ service GatewayAPI {
 
   // Creates a new ocm share.
   rpc CreateOCMCoreShare(cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse);
+  // *****************************************************************/
+  // ************************** FILE TRANSFER ************************/
+  // *****************************************************************/
+
+  // Returns a response containing a TxInfo (transfer info) object.
+  rpc CreateTransfer(cs3.tx.v1beta1.CreateTransferRequest) returns (cs3.tx.v1beta1.CreateTransferResponse);
+  // Requests a transfer status.
+  rpc GetTransferStatus(cs3.tx.v1beta1.GetTransferStatusRequest) returns (cs3.tx.v1beta1.GetTransferStatusResponse);
+  // Requests to cancel a transfer.
+  rpc CancelTransfer(cs3.tx.v1beta1.CancelTransferRequest) returns (cs3.tx.v1beta1.CancelTransferResponse);
 }
 
 // CAUTION:
@@ -438,17 +456,8 @@ message InitiateFileDownloadResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The endpoint where to downooad the data.
-  // The value MUST be a Uniform Resource Identifier (URI)
-  // as specified in RFC 3986.
-  string download_endpoint = 3;
-  // REQUIRED.
-  // Tells to the gateway if the client should be exposed directly to the download_endpoint.
-  bool expose = 5;
-  // OPTIONAL.
-  // A token that MUST be validated by the data gateway for the upload.
-  // Only makes sense for uploads passing through the data gateway.
-  string token = 6;
+  // The protocols through which data can be downloaded.
+  repeated FileDownloadProtocol protocols = 3;
 }
 
 message InitiateFileUploadResponse {
@@ -459,19 +468,8 @@ message InitiateFileUploadResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The endpoint where to upload the data.
-  // The value MUST be a Uniform Resource Identifier (URI)
-  // as specified in RFC 3986.
-  string upload_endpoint = 3;
-  // REQUIRED.
-  // List of available checksums
-  // the client can use when sending
-  // the file.
-  repeated cs3.storage.provider.v1beta1.ResourceChecksumPriority available_checksums = 4;
-  // OPTIONAL.
-  // A token that MUST be validated by the data gateway for the upload.
-  // Only makes sense for uploads passing through the data gateway.
-  string token = 5;
+  // The protocols through which data can be uploaded.
+  repeated FileUploadProtocol protocols = 3;
 }
 
 message ListAuthProvidersResponse {
@@ -485,4 +483,26 @@ message ListAuthProvidersResponse {
   // The list of auth types.
   // TODO(labkode): maybe add description?
   repeated string types = 3;
+}
+
+message OpenFileInAppProviderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
+  // when a call to the WOPI server is to be issued (cf. the provider grpc message)
+  storage.provider.v1beta1.Reference ref = 2;
+  // REQUIRED.
+  // View mode.
+  enum ViewMode {
+    VIEW_MODE_INVALID = 0;
+    // The file can be opened but not downloaded.
+    VIEW_MODE_VIEW_ONLY = 1;
+    // The file can be downloaded.
+    VIEW_MODE_READ_ONLY = 2;
+    // The file can be downloaded and updated.
+    VIEW_MODE_READ_WRITE = 3;
+  }
+  ViewMode view_mode = 3;
 }

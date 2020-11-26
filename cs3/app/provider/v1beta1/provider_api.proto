@@ -36,9 +36,9 @@ import "cs3/types/v1beta1/types.proto";
 
 // App Provider API
 //
-// The App Provider API is responsible for creating urls that
-// will render a viewer or editor for the given resource.
-// For example, an OnlyOffice or HackMD editor.
+// The App Provider API is responsible for creating URLs that
+// will render a viewer or editor for the given resource, typically via WOPI protocol.
+// For example, a Collabora or HackMD editor.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -52,7 +52,7 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service ProviderAPI {
-  // Returns the iframe url
+  // Returns the App provider URL
   // MUST return CODE_NOT_FOUND if the resource does not exist.
   rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (OpenFileInAppProviderResponse);
 }
@@ -62,18 +62,8 @@ message OpenFileInAppProviderRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The resource reference.
-  storage.provider.v1beta1.Reference ref = 2;
-  // REQUIRED.
-  // The access token this application provider will use when contacting
-  // the storage provider to read and write.
-  // Service implementors MUST make sure that the access token only grants
-  // access to the requested resource.
-  // Service implementors should use a ResourceId rather than a filename to grant access, as
-  // ResourceIds MUST NOT change when a resource is renamed.
-  // The access token MUST be short-lived.
-  // TODO(labkode): investigate token derivation techniques.
-  string access_token = 3;
+  // The resourceInfo to be opened. The gateway grpc message has a ref instead.
+  storage.provider.v1beta1.ResourceInfo resource_info = 2;
   // REQUIRED.
   // View mode.
   enum ViewMode {
@@ -85,7 +75,17 @@ message OpenFileInAppProviderRequest {
     // The file can be downloaded and updated.
     VIEW_MODE_READ_WRITE = 3;
   }
-  ViewMode view_mode = 4;
+  ViewMode view_mode = 3;
+  // REQUIRED.
+  // The access token this application provider will use when contacting
+  // the storage provider to read and write.
+  // Service implementors MUST make sure that the access token only grants
+  // access to the requested resource.
+  // Service implementors should use a ResourceId rather than a filename to grant access, as
+  // ResourceIds MUST NOT change when a resource is renamed.
+  // The access token MUST be short-lived.
+  // TODO(labkode): investigate token derivation techniques.
+  string access_token = 4;
 }
 
 message OpenFileInAppProviderResponse {
@@ -97,7 +97,6 @@ message OpenFileInAppProviderResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
   // The url that user agents will render to clients.
-  // Usually the rendering happens by using HTML iframes,
-  // at least, Office 365, Collabora, OnlyOffice do like that.
+  // Usually the rendering happens by using HTML iframes or in separate browser tabs.
   string app_provider_url = 3;
 }

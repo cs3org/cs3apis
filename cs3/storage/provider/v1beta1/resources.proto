@@ -258,6 +258,9 @@ message Grantee {
   // The unique id for the grantee.
   // For example, a group name, user name or uuid.
   cs3.identity.user.v1beta1.UserId id = 2;
+  // OPTIONAL.
+  // Opaque information such as UID or GID.
+  cs3.types.v1beta1.Opaque opaque = 3;
 }
 
 // The type of the grantee.
@@ -308,4 +311,47 @@ message RecycleItem {
   // The deletion time of the resource
   // in Unix Epoch timestamp in seconds.
   cs3.types.v1beta1.Timestamp deletion_time = 6;
+}
+
+// A file upload protocol object stores information about
+// uploading resources using a specific protocol.
+message FileUploadProtocol {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The protocol to be followed.
+  string protocol = 2;
+  // REQUIRED.
+  // The endpoint where to upload the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string upload_endpoint = 3;
+  // REQUIRED.
+  // List of available checksums
+  // the client can use when sending
+  // the file.
+  repeated ResourceChecksumPriority available_checksums = 4;
+  // REQUIRED.
+  // Tells to the gateway if the client should be exposed directly to the upload_endpoint.
+  bool expose = 5;
+}
+
+// A file download protocol object stores information about
+// downloading resources using a specific protocol.
+message FileDownloadProtocol {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The protocol to be followed.
+  string protocol = 2;
+  // REQUIRED.
+  // The endpoint where to download the data.
+  // The value MUST be a Uniform Resource Identifier (URI)
+  // as specified in RFC 3986.
+  string download_endpoint = 3;
+  // REQUIRED.
+  // Tells to the gateway if the client should be exposed directly to the download_endpoint.
+  bool expose = 4;
 }
