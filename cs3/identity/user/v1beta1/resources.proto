@@ -45,11 +45,11 @@ message UserId {
 message User {
   UserId id = 1;
   string username = 2;
-  int64 uid_number = 3;
-  int64 gid_number = 4;
-  string mail = 5;
-  bool mail_verified = 6;
-  string display_name = 7;
-  repeated string groups = 8;
-  cs3.types.v1beta1.Opaque opaque = 9;
+  string mail = 3;
+  bool mail_verified = 4;
+  string display_name = 5;
+  repeated string groups = 6;
+  cs3.types.v1beta1.Opaque opaque = 7;
+  int64 uid_number = 8;
+  int64 gid_number = 9;
 }

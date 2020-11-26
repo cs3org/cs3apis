@@ -1193,9 +1193,29 @@
                 "out_type": "cs3.identity.user.v1beta1.FindUsersResponse"
               },
               {
+                "name": "GetGroup",
+                "in_type": "cs3.identity.group.v1beta1.GetGroupRequest",
+                "out_type": "cs3.identity.group.v1beta1.GetGroupResponse"
+              },
+              {
+                "name": "GetGroupByClaim",
+                "in_type": "cs3.identity.group.v1beta1.GetGroupByClaimRequest",
+                "out_type": "cs3.identity.group.v1beta1.GetGroupByClaimResponse"
+              },
+              {
+                "name": "GetMembers",
+                "in_type": "cs3.identity.group.v1beta1.GetMembersRequest",
+                "out_type": "cs3.identity.group.v1beta1.GetMembersResponse"
+              },
+              {
+                "name": "HasMember",
+                "in_type": "cs3.identity.group.v1beta1.HasMemberRequest",
+                "out_type": "cs3.identity.group.v1beta1.HasMemberResponse"
+              },
+              {
                 "name": "FindGroups",
-                "in_type": "cs3.identity.user.v1beta1.FindGroupsRequest",
-                "out_type": "cs3.identity.user.v1beta1.FindGroupsResponse"
+                "in_type": "cs3.identity.group.v1beta1.FindGroupsRequest",
+                "out_type": "cs3.identity.group.v1beta1.FindGroupsResponse"
               },
               {
                 "name": "ListAuthProviders",
@@ -1283,6 +1303,9 @@
           },
           {
             "path": "cs3/identity/user/v1beta1/user_api.proto"
+          },
+          {
+            "path": "cs3/identity/group/v1beta1/group_api.proto"
           },
           {
             "path": "cs3/ocm/core/v1beta1/ocm_core_api.proto"
@@ -1464,6 +1487,388 @@
       }
     },
     {
+      "protopath": "cs3:/:identity:/:group:/:v1beta1:/:group_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          },
+          {
+            "name": "GetGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "Group"
+              }
+            ]
+          },
+          {
+            "name": "GetGroupByClaimRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "claim",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "value",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetGroupByClaimResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "Group"
+              }
+            ]
+          },
+          {
+            "name": "GetMembersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          },
+          {
+            "name": "GetMembersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "members",
+                "type": "cs3.identity.user.v1beta1.UserId",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "HasMemberRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              }
+            ]
+          },
+          {
+            "name": "HasMemberResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "ok",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "FindGroupsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindGroupsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "groups",
+                "type": "Group",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "GroupAPI",
+            "rpcs": [
+              {
+                "name": "GetGroup",
+                "in_type": "GetGroupRequest",
+                "out_type": "GetGroupResponse"
+              },
+              {
+                "name": "GetGroupByClaim",
+                "in_type": "GetGroupByClaimRequest",
+                "out_type": "GetGroupByClaimResponse"
+              },
+              {
+                "name": "GetMembers",
+                "in_type": "GetMembersRequest",
+                "out_type": "GetMembersResponse"
+              },
+              {
+                "name": "HasMember",
+                "in_type": "HasMemberRequest",
+                "out_type": "HasMemberResponse"
+              },
+              {
+                "name": "FindGroups",
+                "in_type": "FindGroupsRequest",
+                "out_type": "FindGroupsResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.identity.group.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Identity.Group.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "groupv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "GroupApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.identity.group.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CIG"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Identity\\\\Group\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:identity:/:group:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GroupId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "idp",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "Group",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "GroupId"
+              },
+              {
+                "id": 2,
+                "name": "group_name",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "gid_number",
+                "type": "int64"
+              },
+              {
+                "id": 4,
+                "name": "mail",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "mail_verified",
+                "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "display_name",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "members",
+                "type": "cs3.identity.user.v1beta1.UserId",
+                "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.identity.group.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Identity.Group.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "groupv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.identity.group.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CIU"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Identity\\\\Group\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:identity:/:user:/:v1beta1:/:resources.proto",
       "def": {
         "messages": [
@@ -1520,6 +1925,16 @@
                 "id": 7,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 8,
+                "name": "uid_number",
+                "type": "int64"
+              },
+              {
+                "id": 9,
+                "name": "gid_number",
+                "type": "int64"
               }
             ]
           }
@@ -1694,8 +2109,8 @@
               },
               {
                 "id": 3,
-                "name": "group",
-                "type": "string"
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
               }
             ]
           },
@@ -1754,42 +2169,6 @@
                 "is_repeated": true
               }
             ]
-          },
-          {
-            "name": "FindGroupsRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "filter",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "FindGroupsResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "groups",
-                "type": "string",
-                "is_repeated": true
-              }
-            ]
           }
         ],
         "services": [
@@ -1820,11 +2199,6 @@
                 "name": "FindUsers",
                 "in_type": "FindUsersRequest",
                 "out_type": "FindUsersResponse"
-              },
-              {
-                "name": "FindGroups",
-                "in_type": "FindGroupsRequest",
-                "out_type": "FindGroupsResponse"
               }
             ]
           }
@@ -1832,6 +2206,9 @@
         "imports": [
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/v1beta1/status.proto"

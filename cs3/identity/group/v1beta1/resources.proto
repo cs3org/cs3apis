@@ -45,7 +45,7 @@ message GroupId {
 // Represents a group of the system.
 message Group {
   GroupId id = 1;
-  string groupname = 2;
+  string group_name = 2;
   int64 gid_number = 3;
   string mail = 4;
   bool mail_verified = 5;
