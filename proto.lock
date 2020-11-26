@@ -1859,7 +1859,7 @@
           },
           {
             "name": "objc_class_prefix",
-            "value": "CIU"
+            "value": "CIG"
           },
           {
             "name": "php_namespace",
