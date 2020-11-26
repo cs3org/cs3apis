@@ -25,7 +25,7 @@ option go_package = "groupv1beta1";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
 option java_package = "com.cs3.identity.group.v1beta1";
-option objc_class_prefix = "CIU";
+option objc_class_prefix = "CIG";
 option php_namespace = "Cs3\\Identity\\Group\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
