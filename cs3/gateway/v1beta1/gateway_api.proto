@@ -34,6 +34,7 @@ import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
+import "cs3/identity/group/v1beta1/group_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
@@ -279,8 +280,21 @@ service GatewayAPI {
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
+  // *****************************************************************/
+  // ************************ GROUP PROVIDER **************************/
+  // *****************************************************************/
+
+  // Gets the information about a group by the group id.
+  rpc GetGroup(cs3.identity.group.v1beta1.GetGroupRequest) returns (cs3.identity.group.v1beta1.GetGroupResponse);
+  // Gets the information about a group based on a specified claim.
+  rpc GetGroupByClaim(cs3.identity.group.v1beta1.GetGroupByClaimRequest) returns (cs3.identity.group.v1beta1.GetGroupByClaimResponse);
+  // Gets the members of a group.
+  rpc GetMembers(cs3.identity.group.v1beta1.GetMembersRequest) returns (cs3.identity.group.v1beta1.GetMembersResponse);
+  // Tells if the group has a certain member.
+  rpc HasMember(cs3.identity.group.v1beta1.HasMemberRequest) returns (cs3.identity.group.v1beta1.HasMemberResponse);
+  // TODO(labkode): to define the filters that make more sense.
   // Finds groups whose names match the specified filter.
-  rpc FindGroups(cs3.identity.user.v1beta1.FindGroupsRequest) returns (cs3.identity.user.v1beta1.FindGroupsResponse);
+  rpc FindGroups(cs3.identity.group.v1beta1.FindGroupsRequest) returns (cs3.identity.group.v1beta1.FindGroupsResponse);
   // *****************************************************************/
   // ************************ AUTH REGISTRY  **************************/
   // *****************************************************************/
