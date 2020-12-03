@@ -553,6 +553,80 @@
         
           
           <li>
+            <a href="#cs3%2fidentity%2fgroup%2fv1beta1%2fgroup_api.proto">cs3/identity/group/v1beta1/group_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.FindGroupsRequest"><span class="badge">M</span>FindGroupsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.FindGroupsResponse"><span class="badge">M</span>FindGroupsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GetGroupByClaimRequest"><span class="badge">M</span>GetGroupByClaimRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GetGroupByClaimResponse"><span class="badge">M</span>GetGroupByClaimResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GetGroupRequest"><span class="badge">M</span>GetGroupRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GetGroupResponse"><span class="badge">M</span>GetGroupResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GetMembersRequest"><span class="badge">M</span>GetMembersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GetMembersResponse"><span class="badge">M</span>GetMembersResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.HasMemberRequest"><span class="badge">M</span>HasMemberRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.HasMemberResponse"><span class="badge">M</span>HasMemberResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GroupAPI"><span class="badge">S</span>GroupAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fidentity%2fgroup%2fv1beta1%2fresources.proto">cs3/identity/group/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.Group"><span class="badge">M</span>Group</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.identity.group.v1beta1.GroupId"><span class="badge">M</span>GroupId</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fidentity%2fuser%2fv1beta1%2fresources.proto">cs3/identity/user/v1beta1/resources.proto</a>
             <ul>
               
@@ -574,14 +648,6 @@
           <li>
             <a href="#cs3%2fidentity%2fuser%2fv1beta1%2fuser_api.proto">cs3/identity/user/v1beta1/user_api.proto</a>
             <ul>
-              
-                <li>
-                  <a href="#cs3.identity.user.v1beta1.FindGroupsRequest"><span class="badge">M</span>FindGroupsRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.identity.user.v1beta1.FindGroupsResponse"><span class="badge">M</span>FindGroupsResponse</a>
-                </li>
               
                 <li>
                   <a href="#cs3.identity.user.v1beta1.FindUsersRequest"><span class="badge">M</span>FindUsersRequest</a>
@@ -2607,14 +2673,47 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersRequest">.cs3.identity.user.v1beta1.FindUsersRequest</a></td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersResponse">.cs3.identity.user.v1beta1.FindUsersResponse</a></td>
                 <td><p>Finds users by any attribute of the user.
-TODO(labkode): to define the filters that make more sense.</p></td>
+TODO(labkode): to define the filters that make more sense.
+
+*****************************************************************/
+************************ GROUP PROVIDER **************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetGroup</td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupRequest">.cs3.identity.group.v1beta1.GetGroupRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupResponse">.cs3.identity.group.v1beta1.GetGroupResponse</a></td>
+                <td><p>Gets the information about a group by the group id.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetGroupByClaim</td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupByClaimRequest">.cs3.identity.group.v1beta1.GetGroupByClaimRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupByClaimResponse">.cs3.identity.group.v1beta1.GetGroupByClaimResponse</a></td>
+                <td><p>Gets the information about a group based on a specified claim.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetMembers</td>
+                <td><a href="#cs3.identity.group.v1beta1.GetMembersRequest">.cs3.identity.group.v1beta1.GetMembersRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.GetMembersResponse">.cs3.identity.group.v1beta1.GetMembersResponse</a></td>
+                <td><p>Gets the members of a group.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HasMember</td>
+                <td><a href="#cs3.identity.group.v1beta1.HasMemberRequest">.cs3.identity.group.v1beta1.HasMemberRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.HasMemberResponse">.cs3.identity.group.v1beta1.HasMemberResponse</a></td>
+                <td><p>Tells if the group has a certain member.</p></td>
               </tr>
             
               <tr>
                 <td>FindGroups</td>
-                <td><a href="#cs3.identity.user.v1beta1.FindGroupsRequest">.cs3.identity.user.v1beta1.FindGroupsRequest</a></td>
-                <td><a href="#cs3.identity.user.v1beta1.FindGroupsResponse">.cs3.identity.user.v1beta1.FindGroupsResponse</a></td>
-                <td><p>Finds groups whose names match the specified filter.
+                <td><a href="#cs3.identity.group.v1beta1.FindGroupsRequest">.cs3.identity.group.v1beta1.FindGroupsRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.FindGroupsResponse">.cs3.identity.group.v1beta1.FindGroupsResponse</a></td>
+                <td><p>TODO(labkode): to define the filters that make more sense.
+Finds groups whose names match the specified filter.
 
 *****************************************************************/
 ************************ AUTH REGISTRY  **************************/
@@ -4719,6 +4818,574 @@ by humans. </p></td>
     
       
       <div class="file-heading">
+        <h2 id="cs3/identity/group/v1beta1/group_api.proto">cs3/identity/group/v1beta1/group_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.identity.group.v1beta1.FindGroupsRequest">FindGroupsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The filter to apply. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.FindGroupsResponse">FindGroupsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#cs3.identity.group.v1beta1.Group">Group</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The groups matching the specified filter. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GetGroupByClaimRequest">GetGroupByClaimRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>claim</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The claim on the basis of which groups will be filtered. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The value of the claim to find the specific group. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GetGroupByClaimResponse">GetGroupByClaimResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#cs3.identity.group.v1beta1.Group">Group</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The group information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GetGroupRequest">GetGroupRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">GroupId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the group. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GetGroupResponse">GetGroupResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#cs3.identity.group.v1beta1.Group">Group</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The group information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GetMembersRequest">GetMembersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">GroupId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the group. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GetMembersResponse">GetMembersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>members</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The members of the group. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.HasMemberRequest">HasMemberRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">GroupId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the group. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user to check. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.HasMemberResponse">HasMemberResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ok</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Tells if the user belongs to the group. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.identity.group.v1beta1.GroupAPI">GroupAPI</h3>
+        <p>Provides an API for managing groups.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetGroup</td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupRequest">GetGroupRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupResponse">GetGroupResponse</a></td>
+                <td><p>Gets the information about a group by the group id.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetGroupByClaim</td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupByClaimRequest">GetGroupByClaimRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.GetGroupByClaimResponse">GetGroupByClaimResponse</a></td>
+                <td><p>Gets the information about a group based on a specified claim.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetMembers</td>
+                <td><a href="#cs3.identity.group.v1beta1.GetMembersRequest">GetMembersRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.GetMembersResponse">GetMembersResponse</a></td>
+                <td><p>Gets the members of a group.</p></td>
+              </tr>
+            
+              <tr>
+                <td>HasMember</td>
+                <td><a href="#cs3.identity.group.v1beta1.HasMemberRequest">HasMemberRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.HasMemberResponse">HasMemberResponse</a></td>
+                <td><p>Tells if the group has certain member.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FindGroups</td>
+                <td><a href="#cs3.identity.group.v1beta1.FindGroupsRequest">FindGroupsRequest</a></td>
+                <td><a href="#cs3.identity.group.v1beta1.FindGroupsResponse">FindGroupsResponse</a></td>
+                <td><p>Finds groups whose names match the specified filter.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/identity/group/v1beta1/resources.proto">cs3/identity/group/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.identity.group.v1beta1.Group">Group</h3>
+        <p>Represents a group of the system.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">GroupId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gid_number</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mail</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mail_verified</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>members</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.identity.group.v1beta1.GroupId">GroupId</h3>
+        <p>A GroupId represents a group.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>idp</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The identity provider for the group. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+the unique identifier for the group in the scope of
+the identity provider. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="cs3/identity/user/v1beta1/resources.proto">cs3/identity/user/v1beta1/resources.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -4783,6 +5450,20 @@ by humans. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>uid_number</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gid_number</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -4837,80 +5518,6 @@ the identity provider. </p></td>
       </div>
       <p></p>
 
-      
-        <h3 id="cs3.identity.user.v1beta1.FindGroupsRequest">FindGroupsRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filter</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The filter to apply. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.identity.user.v1beta1.FindGroupsResponse">FindGroupsResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>groups</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>REQUIRED.
-The groups matching the specified filter. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
       
         <h3 id="cs3.identity.user.v1beta1.FindUsersRequest">FindUsersRequest</h3>
         <p></p>
@@ -5243,11 +5850,11 @@ The id of the user. </p></td>
                 </tr>
               
                 <tr>
-                  <td>group</td>
-                  <td><a href="#string">string</a></td>
+                  <td>group_id</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">cs3.identity.group.v1beta1.GroupId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The group to check. </p></td>
+The id of the group to check. </p></td>
                 </tr>
               
             </tbody>
@@ -5346,13 +5953,6 @@ Tells if the user belongs to the group. </p></td>
                 <td><a href="#cs3.identity.user.v1beta1.FindUsersResponse">FindUsersResponse</a></td>
                 <td><p>Finds users by any attribute of the user.
 TODO(labkode): to define the filters that make more sense.</p></td>
-              </tr>
-            
-              <tr>
-                <td>FindGroups</td>
-                <td><a href="#cs3.identity.user.v1beta1.FindGroupsRequest">FindGroupsRequest</a></td>
-                <td><a href="#cs3.identity.user.v1beta1.FindGroupsResponse">FindGroupsResponse</a></td>
-                <td><p>Finds groups whose names match the specified filter.</p></td>
               </tr>
             
           </tbody>
