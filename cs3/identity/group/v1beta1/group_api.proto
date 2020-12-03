@@ -33,10 +33,10 @@ import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
 
-// UserProvider API.
+// GroupProvider API.
 //
-// The UserProvider API is responsible for creating
-// a key-value map according to group groupprovider.
+// The GroupProvider API is responsible for providing methods to retrieve
+// information about groups and their interactions with users.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -44,7 +44,7 @@ import "cs3/types/v1beta1/types.proto";
 // RFC 2119.
 //
 // The following are global requirements that apply to all methods:
-// Any method MUST return CODE_OK on a succesful operation.
+// Any method MUST return CODE_OK on a successful operation.
 // Any method MAY return NOT_IMPLEMENTED.
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.

@@ -275,8 +275,6 @@ service GatewayAPI {
   rpc GetUserByClaim(cs3.identity.user.v1beta1.GetUserByClaimRequest) returns (cs3.identity.user.v1beta1.GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(cs3.identity.user.v1beta1.GetUserGroupsRequest) returns (cs3.identity.user.v1beta1.GetUserGroupsResponse);
-  // Tells if the user is in a certain group.
-  rpc IsInGroup(cs3.identity.user.v1beta1.IsInGroupRequest) returns (cs3.identity.user.v1beta1.IsInGroupResponse);
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
