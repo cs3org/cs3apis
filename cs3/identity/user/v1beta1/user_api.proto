@@ -28,15 +28,14 @@ option java_package = "com.cs3.identity.user.v1beta1";
 option objc_class_prefix = "CIU";
 option php_namespace = "Cs3\\Identity\\User\\V1Beta1";
 
-import "cs3/identity/group/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // UserProvider API.
 //
-// The UserProvider API is responsible for creating
-// a key-value map according to user userprovider.
+// The UserProvider API is responsible for providing
+// methods to retrieve information about the users.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -44,7 +43,7 @@ import "cs3/types/v1beta1/types.proto";
 // RFC 2119.
 //
 // The following are global requirements that apply to all methods:
-// Any method MUST return CODE_OK on a succesful operation.
+// Any method MUST return CODE_OK on a successful operation.
 // Any method MAY return NOT_IMPLEMENTED.
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
@@ -58,8 +57,6 @@ service UserAPI {
   rpc GetUserByClaim(GetUserByClaimRequest) returns (GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
-  // Tells if the user is in a certain group.
-  rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
@@ -129,30 +126,6 @@ message GetUserGroupsResponse {
   // REQUIRED.
   // The groups for the user.
   repeated string groups = 3;
-}
-
-message IsInGroupRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The id of the user.
-  cs3.identity.user.v1beta1.UserId user_id = 2;
-  // REQUIRED.
-  // The id of the group to check.
-  cs3.identity.group.v1beta1.GroupId group_id = 3;
-}
-
-message IsInGroupResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // Tells if the user belongs to the group.
-  bool ok = 3;
 }
 
 message FindUsersRequest {

@@ -1183,11 +1183,6 @@
                 "out_type": "cs3.identity.user.v1beta1.GetUserGroupsResponse"
               },
               {
-                "name": "IsInGroup",
-                "in_type": "cs3.identity.user.v1beta1.IsInGroupRequest",
-                "out_type": "cs3.identity.user.v1beta1.IsInGroupResponse"
-              },
-              {
                 "name": "FindUsers",
                 "in_type": "cs3.identity.user.v1beta1.FindUsersRequest",
                 "out_type": "cs3.identity.user.v1beta1.FindUsersResponse"
@@ -1299,13 +1294,13 @@
             "path": "cs3/gateway/v1beta1/resources.proto"
           },
           {
+            "path": "cs3/identity/group/v1beta1/group_api.proto"
+          },
+          {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
             "path": "cs3/identity/user/v1beta1/user_api.proto"
-          },
-          {
-            "path": "cs3/identity/group/v1beta1/group_api.proto"
           },
           {
             "path": "cs3/ocm/core/v1beta1/ocm_core_api.proto"
@@ -1712,10 +1707,10 @@
         ],
         "imports": [
           {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
+            "path": "cs3/identity/group/v1beta1/resources.proto"
           },
           {
-            "path": "cs3/identity/group/v1beta1/resources.proto"
+            "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
@@ -2095,46 +2090,6 @@
             ]
           },
           {
-            "name": "IsInGroupRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "user_id",
-                "type": "cs3.identity.user.v1beta1.UserId"
-              },
-              {
-                "id": 3,
-                "name": "group_id",
-                "type": "cs3.identity.group.v1beta1.GroupId"
-              }
-            ]
-          },
-          {
-            "name": "IsInGroupResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "ok",
-                "type": "bool"
-              }
-            ]
-          },
-          {
             "name": "FindUsersRequest",
             "fields": [
               {
@@ -2191,11 +2146,6 @@
                 "out_type": "GetUserGroupsResponse"
               },
               {
-                "name": "IsInGroup",
-                "in_type": "IsInGroupRequest",
-                "out_type": "IsInGroupResponse"
-              },
-              {
                 "name": "FindUsers",
                 "in_type": "FindUsersRequest",
                 "out_type": "FindUsersResponse"
@@ -2206,9 +2156,6 @@
         "imports": [
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
-          {
-            "path": "cs3/identity/group/v1beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
