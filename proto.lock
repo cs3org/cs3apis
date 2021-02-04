@@ -6731,12 +6731,17 @@
                 "type": "GranteeType"
               },
               {
-                "id": 2,
-                "name": "id",
+                "id": 3,
+                "name": "user_id",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 3,
+                "id": 4,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 5,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
               }
@@ -6860,6 +6865,9 @@
           }
         ],
         "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
