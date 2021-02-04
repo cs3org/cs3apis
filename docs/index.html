@@ -1289,6 +1289,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateStorageSpaceRequest"><span class="badge">M</span>CreateStorageSpaceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateStorageSpaceResponse"><span class="badge">M</span>CreateStorageSpaceResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.CreateSymlinkRequest"><span class="badge">M</span>CreateSymlinkRequest</a>
                 </li>
               
@@ -1302,6 +1310,14 @@
               
                 <li>
                   <a href="#cs3.storage.provider.v1beta1.DeleteResponse"><span class="badge">M</span>DeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest"><span class="badge">M</span>DeleteStorageSpaceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse"><span class="badge">M</span>DeleteStorageSpaceResponse</a>
                 </li>
               
                 <li>
@@ -1393,6 +1409,18 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest"><span class="badge">M</span>ListStorageSpacesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest.Filter"><span class="badge">M</span>ListStorageSpacesRequest.Filter</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.ListStorageSpacesResponse"><span class="badge">M</span>ListStorageSpacesResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.MoveRequest"><span class="badge">M</span>MoveRequest</a>
                 </li>
               
@@ -1464,6 +1492,18 @@
                   <a href="#cs3.storage.provider.v1beta1.UpdateGrantResponse"><span class="badge">M</span>UpdateGrantResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest"><span class="badge">M</span>UpdateStorageSpaceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse"><span class="badge">M</span>UpdateStorageSpaceResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest.Filter.Type"><span class="badge">E</span>ListStorageSpacesRequest.Filter.Type</a>
+                </li>
               
               
               
@@ -1512,6 +1552,10 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.Quota"><span class="badge">M</span>Quota</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.RecycleItem"><span class="badge">M</span>RecycleItem</a>
                 </li>
               
@@ -1537,6 +1581,14 @@
               
                 <li>
                   <a href="#cs3.storage.provider.v1beta1.ResourcePermissions"><span class="badge">M</span>ResourcePermissions</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.StorageSpace"><span class="badge">M</span>StorageSpace</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.StorageSpaceId"><span class="badge">M</span>StorageSpaceId</a>
                 </li>
               
               
@@ -2378,7 +2430,35 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td>CreateHome</td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateHomeRequest">.cs3.storage.provider.v1beta1.CreateHomeRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateHomeResponse">.cs3.storage.provider.v1beta1.CreateHomeResponse</a></td>
-                <td><p>Creates the home directory for a user.
+                <td><p>Creates the home directory for a user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateStorageSpace</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateStorageSpaceRequest">.cs3.storage.provider.v1beta1.CreateStorageSpaceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateStorageSpaceResponse">.cs3.storage.provider.v1beta1.CreateStorageSpaceResponse</a></td>
+                <td><p>Creates a storage space.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListStorageSpaces</td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest">.cs3.storage.provider.v1beta1.ListStorageSpacesRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListStorageSpacesResponse">.cs3.storage.provider.v1beta1.ListStorageSpacesResponse</a></td>
+                <td><p>Lists storage spaces.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateStorageSpace</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest">.cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse">.cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse</a></td>
+                <td><p>Updates a storage space.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteStorageSpace</td>
+                <td><a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest">.cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse">.cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse</a></td>
+                <td><p>Deletes a storage space.
 
 *****************************************************************/
 ************************ APP PROVIDER ********************/
@@ -10588,6 +10668,101 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.CreateStorageSpaceRequest">CreateStorageSpaceRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Could be &#39;home&#39;, &#39;share&#39;, &#39;project&#39;, &#39;space&#39;... </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+User readable name of the storage space. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quota</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Quota">Quota</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.CreateStorageSpaceResponse">CreateStorageSpaceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>storage_space</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpace">StorageSpace</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The created storage space. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.CreateSymlinkRequest">CreateSymlinkRequest</h3>
         <p></p>
 
@@ -10720,6 +10895,71 @@ The response status. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest">DeleteStorageSpaceRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpaceId">StorageSpaceId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse">DeleteStorageSpaceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
                 </tr>
               
             </tbody>
@@ -11578,6 +11818,124 @@ The recycle items. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.ListStorageSpacesRequest">ListStorageSpacesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filters</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest.Filter">ListStorageSpacesRequest.Filter</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The list of filters to apply if any. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.ListStorageSpacesRequest.Filter">ListStorageSpacesRequest.Filter</h3>
+        <p>Represents a filter to apply to the request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest.Filter.Type">ListStorageSpacesRequest.Filter.Type</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpaceId">StorageSpaceId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>space_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.ListStorageSpacesResponse">ListStorageSpacesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>storage_spaces</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpace">StorageSpace</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.MoveRequest">MoveRequest</h3>
         <p></p>
 
@@ -12257,7 +12615,121 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest">UpdateStorageSpaceRequest</h3>
+        <p></p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>storage_space</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpace">StorageSpace</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse">UpdateStorageSpaceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>storage_space</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpace">StorageSpace</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The updated storage space. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="cs3.storage.provider.v1beta1.ListStorageSpacesRequest.Filter.Type">ListStorageSpacesRequest.Filter.Type</h3>
+        <p>The filter to apply.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_NO</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_ID</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_OWNER</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_SPACE_TYPE</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -12494,6 +12966,34 @@ Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p
                 <td><a href="#cs3.storage.provider.v1beta1.GetHomeRequest">GetHomeRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.GetHomeResponse">GetHomeResponse</a></td>
                 <td><p>Gets the home path for the user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateStorageSpace</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateStorageSpaceRequest">CreateStorageSpaceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateStorageSpaceResponse">CreateStorageSpaceResponse</a></td>
+                <td><p>Creates a storage space.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListStorageSpaces</td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListStorageSpacesRequest">ListStorageSpacesRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListStorageSpacesResponse">ListStorageSpacesResponse</a></td>
+                <td><p>Lists storage spaces.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateStorageSpace</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest">UpdateStorageSpaceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse">UpdateStorageSpaceResponse</a></td>
+                <td><p>Updates a storage space.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteStorageSpace</td>
+                <td><a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest">DeleteStorageSpaceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse">DeleteStorageSpaceResponse</a></td>
+                <td><p>Deletes a storage space.</p></td>
               </tr>
             
           </tbody>
@@ -12819,6 +13319,47 @@ For example, a group name, user name or uuid. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information such as UID or GID. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.Quota">Quota</h3>
+        <p>Represents a quota for a storage space.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quota_max_bytes</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The bytes quota for the user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quota_max_files</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The files quota for the user. </p></td>
                 </tr>
               
             </tbody>
@@ -13307,6 +13848,108 @@ Arbitrary metadata attached to a resource. </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.StorageSpace">StorageSpace</h3>
+        <p>Represents a storage space which could be a 'home', 'share' etc...</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.StorageSpaceId">StorageSpaceId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>root</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The root resource of the storage space. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quota</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Quota">Quota</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>space_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Could be &#39;home&#39;, &#39;share&#39;, &#39;project&#39;, &#39;space&#39;... </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mtime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Last modification time (mtime) of the root resource of this storage space. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.StorageSpaceId">StorageSpaceId</h3>
+        <p>The id of a storage space.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The internal storage space id. </p></td>
                 </tr>
               
             </tbody>

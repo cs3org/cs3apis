@@ -153,6 +153,14 @@ service GatewayAPI {
   rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
   // Creates the home directory for a user.
   rpc CreateHome(cs3.storage.provider.v1beta1.CreateHomeRequest) returns (cs3.storage.provider.v1beta1.CreateHomeResponse);
+  // Creates a storage space.
+  rpc CreateStorageSpace(cs3.storage.provider.v1beta1.CreateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.CreateStorageSpaceResponse);
+  // Lists storage spaces.
+  rpc ListStorageSpaces(cs3.storage.provider.v1beta1.ListStorageSpacesRequest) returns (cs3.storage.provider.v1beta1.ListStorageSpacesResponse);
+  // Updates a storage space.
+  rpc UpdateStorageSpace(cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse);
+  // Deletes a storage space.
+  rpc DeleteStorageSpace(cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse);
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
