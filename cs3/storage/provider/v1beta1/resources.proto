@@ -28,6 +28,7 @@ option java_package = "com.cs3.storage.provider.v1beta1";
 option objc_class_prefix = "CSP";
 option php_namespace = "Cs3\\Storage\\Provider\\V1Beta1";
 
+import "cs3/identity/group/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -255,12 +256,18 @@ message Grantee {
   // REQUIRED.
   // The type of the grantee.
   GranteeType type = 1;
+  // REQUIRED.
   // The unique id for the grantee.
-  // For example, a group name, user name or uuid.
-  cs3.identity.user.v1beta1.UserId id = 2;
+  // One of the ids MUST be specified.
+  oneof id {
+    // The user id.
+    cs3.identity.user.v1beta1.UserId user_id = 3;
+    // The group id.
+    cs3.identity.group.v1beta1.GroupId group_id = 4;
+  }
   // OPTIONAL.
   // Opaque information such as UID or GID.
-  cs3.types.v1beta1.Opaque opaque = 3;
+  cs3.types.v1beta1.Opaque opaque = 5;
 }
 
 // The type of the grantee.
