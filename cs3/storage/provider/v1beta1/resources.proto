@@ -362,3 +362,47 @@ message FileDownloadProtocol {
   // Tells to the gateway if the client should be exposed directly to the download_endpoint.
   bool expose = 4;
 }
+
+// Represents a storage space which could be a 'home', 'share' etc...
+message StorageSpace {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  StorageSpaceId id = 2;
+  // OPTIONAL.
+  cs3.identity.user.v1beta1.User owner = 3;
+  // OPTIONAL.
+  // The root resource of the storage space.
+  ResourceId root = 4;
+  // OPTIONAL.
+  string name = 5;
+  // OPTIONAL.
+  Quota quota = 6;
+  // OPTIONAL.
+  // Could be 'home', 'share', 'project', 'space'...
+  string space_type = 7;
+  // OPTIONAL.
+  // Last modification time (mtime) of the root resource of this storage space.
+  cs3.types.v1beta1.Timestamp mtime = 8;
+}
+
+// The id of a storage space.
+message StorageSpaceId {
+  // REQUIRED.
+  // The internal storage space id.
+  string opaque_id = 1;
+}
+
+// Represents a quota for a storage space.
+message Quota {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The bytes quota for the user.
+  uint64 quota_max_bytes = 2;
+  // OPTIONAL.
+  // The files quota for the user.
+  uint64 quota_max_files = 3;
+}

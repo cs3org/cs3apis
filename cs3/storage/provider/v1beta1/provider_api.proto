@@ -28,6 +28,7 @@ option java_package = "com.cs3.storage.provider.v1beta1";
 option objc_class_prefix = "CSP";
 option php_namespace = "Cs3\\Storage\\Provider\\V1Beta1";
 
+import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
@@ -144,6 +145,14 @@ service ProviderAPI {
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
   // Gets the home path for the user.
   rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
+  // Creates a storage space.
+  rpc CreateStorageSpace(CreateStorageSpaceRequest) returns (CreateStorageSpaceResponse);
+  // Lists storage spaces.
+  rpc ListStorageSpaces(ListStorageSpacesRequest) returns (ListStorageSpacesResponse);
+  // Updates a storage space.
+  rpc UpdateStorageSpace(UpdateStorageSpaceRequest) returns (UpdateStorageSpaceResponse);
+  // Deletes a storage space.
+  rpc DeleteStorageSpace(DeleteStorageSpaceRequest) returns (DeleteStorageSpaceResponse);
 }
 
 message GetHomeRequest {
@@ -708,4 +717,106 @@ message CreateHomeResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message CreateStorageSpaceRequest {
+  // OPTIONAL.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  cs3.identity.user.v1beta1.User owner = 2;
+  // OPTIONAL.
+  // Could be 'home', 'share', 'project', 'space'...
+  string type = 3;
+  // OPTIONAL.
+  // User readable name of the storage space.
+  string name = 4;
+  // OPTIONAL.
+  Quota quota = 5;
+}
+
+message CreateStorageSpaceResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+  // REQUIRED.
+  // The created storage space.
+  StorageSpace storage_space = 3;
+}
+
+message ListStorageSpacesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // Represents a filter to apply to the request.
+  message Filter {
+    // The filter to apply.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_NO = 1;
+      TYPE_ID = 2;
+      TYPE_OWNER = 3;
+      TYPE_SPACE_TYPE = 4;
+    }
+    // REQUIRED.
+    Type type = 1;
+    oneof term {
+      StorageSpaceId id = 2;
+      cs3.identity.user.v1beta1.UserId owner = 3;
+      string space_type = 4;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
+}
+
+message ListStorageSpacesResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+  // REQUIRED.
+  repeated StorageSpace storage_spaces = 3;
+}
+
+message UpdateStorageSpaceRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  StorageSpace storage_space = 2;
+}
+
+message UpdateStorageSpaceResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+  // REQUIRED.
+  // The updated storage space.
+  StorageSpace storage_space = 3;
+}
+
+message DeleteStorageSpaceRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  StorageSpaceId id = 2;
+}
+
+message DeleteStorageSpaceResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
 }
