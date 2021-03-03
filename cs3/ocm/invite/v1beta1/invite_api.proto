@@ -59,6 +59,8 @@ service InviteAPI {
   rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
   // Retrieves details about a remote user who has accepted an invite to share.
   rpc GetRemoteUser(GetRemoteUserRequest) returns (GetRemoteUserResponse);
+  // Retrieves a list of users that accepted a certain invite token
+  rpc GetAcceptedUsers(GetAcceptedUsersRequest) returns (GetAcceptedUsersResponse);
 }
 
 message GenerateInviteTokenRequest {
@@ -140,4 +142,25 @@ message GetRemoteUserResponse {
   // REQUIRED.
   // The user information.
   cs3.identity.user.v1beta1.User remote_user = 3;
+}
+
+message GetAcceptedUsersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The token name to search accepted users for.
+  string token_name = 2;
+}
+
+message GetAcceptedUsersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The users that accepted the token with the given name.
+  repeated cs3.identity.user.v1beta1.User accepted_users = 3;
 }
