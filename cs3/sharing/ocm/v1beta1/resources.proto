@@ -72,10 +72,11 @@ message Share {
   cs3.types.v1beta1.Timestamp mtime = 9;
   // Share type defines purpose.
   enum ShareType {
+    SHARE_TYPE_INVALID = 0;
     // A regular file or folder share (this is the default share type).
-    SHARE = 0;
+    SHARE_TYPE_REGULAR = 1;
     // A file or folder transfer.
-    TRANSFER = 1;
+    SHARE_TYPE_TRANSFER = 2;
   }
   // Specifies the type of the share so  
   // the service implementor can act accordingly.
