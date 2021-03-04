@@ -59,7 +59,7 @@ service InviteAPI {
   rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
   // Retrieves details about a remote user who has accepted an invite to share.
   rpc GetRemoteUser(GetRemoteUserRequest) returns (GetRemoteUserResponse);
-  // Retrieves a list of users that accepted a certain invite token
+  // Retrieves a list of users that accepted a certain invite token.
   rpc GetAcceptedUsers(GetAcceptedUsersRequest) returns (GetAcceptedUsersResponse);
 }
 

@@ -70,6 +70,16 @@ message Share {
   // REQUIRED.
   // Last modification time of the share.
   cs3.types.v1beta1.Timestamp mtime = 9;
+  // Defines the type of share based on its origin.
+  enum ShareType {
+    SHARE_TYPE_INVALID = 0;
+    // A regular file or folder share.
+    SHARE_TYPE_REGULAR = 1;
+    // A file or folder transfer.
+    SHARE_TYPE_TRANSFER = 2;
+  }
+  // Specifies the type of the share.
+  ShareType share_type = 10;
 }
 
 // The permissions for a share.
