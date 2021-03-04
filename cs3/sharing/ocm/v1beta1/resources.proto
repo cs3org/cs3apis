@@ -73,12 +73,12 @@ message Share {
   // Share type defines purpose.
   enum ShareType {
     SHARE_TYPE_INVALID = 0;
-    // A regular file or folder share (this is the default share type).
+    // A regular file or folder share.
     SHARE_TYPE_REGULAR = 1;
     // A file or folder transfer.
     SHARE_TYPE_TRANSFER = 2;
   }
-  // Specifies the type of the share so  
+  // Specifies the type of the share so
   // the service implementor can act accordingly.
   ShareType share_type = 10;
 }
