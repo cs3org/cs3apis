@@ -1243,6 +1243,10 @@
               
               
                 <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.Share.ShareType"><span class="badge">E</span>Share.ShareType</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ShareState"><span class="badge">E</span>ShareState</a>
                 </li>
               
@@ -10175,6 +10179,14 @@ Creation time of the share. </p></td>
 Last modification time of the share. </p></td>
                 </tr>
               
+                <tr>
+                  <td>share_type</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.Share.ShareType">Share.ShareType</a></td>
+                  <td></td>
+                  <td><p>Specifies the type of the share so
+the service implementor can act accordingly. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10344,6 +10356,35 @@ make the share unique. </p></td>
         
       
 
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.Share.ShareType">Share.ShareType</h3>
+        <p>Share type defines purpose.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SHARE_TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SHARE_TYPE_REGULAR</td>
+                <td>1</td>
+                <td><p>A regular file or folder share.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SHARE_TYPE_TRANSFER</td>
+                <td>2</td>
+                <td><p>A file or folder transfer.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="cs3.sharing.ocm.v1beta1.ShareState">ShareState</h3>
         <p>The state of the share.</p>
