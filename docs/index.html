@@ -743,6 +743,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest"><span class="badge">M</span>FindAcceptedUsersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse"><span class="badge">M</span>FindAcceptedUsersResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.ocm.invite.v1beta1.ForwardInviteRequest"><span class="badge">M</span>ForwardInviteRequest</a>
                 </li>
               
@@ -759,19 +767,11 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.ocm.invite.v1beta1.GetAcceptedUsersRequest"><span class="badge">M</span>GetAcceptedUsersRequest</a>
+                  <a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserRequest"><span class="badge">M</span>GetAcceptedUserRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.ocm.invite.v1beta1.GetAcceptedUsersResponse"><span class="badge">M</span>GetAcceptedUsersResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest"><span class="badge">M</span>GetRemoteUserRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse"><span class="badge">M</span>GetRemoteUserResponse</a>
+                  <a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserResponse"><span class="badge">M</span>GetAcceptedUserResponse</a>
                 </li>
               
               
@@ -2841,10 +2841,17 @@ When a user has access to multiple storage providers, one of them is the home.
               </tr>
             
               <tr>
-                <td>GetRemoteUser</td>
-                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest">.cs3.ocm.invite.v1beta1.GetRemoteUserRequest</a></td>
-                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse">.cs3.ocm.invite.v1beta1.GetRemoteUserResponse</a></td>
-                <td><p>Retrieves details about a remote user who has accepted an invite to share.
+                <td>GetAcceptedUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserRequest">.cs3.ocm.invite.v1beta1.GetAcceptedUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserResponse">.cs3.ocm.invite.v1beta1.GetAcceptedUserResponse</a></td>
+                <td><p>Retrieves details about a remote user who has accepted an invite to share.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FindAcceptedUsers</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest">.cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse">.cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse</a></td>
+                <td><p>Finds users who accepted invite tokens by their attributes.
 
 *****************************************************************/
 ******************** OCM PROVIDER AUTHORIZER ********************/
@@ -6234,6 +6241,80 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest">FindAcceptedUsersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>filter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The filter to apply. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse">FindAcceptedUsersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>accepted_users</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The accepted users matching the specified filter. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.ocm.invite.v1beta1.ForwardInviteRequest">ForwardInviteRequest</h3>
         <p></p>
 
@@ -6374,81 +6455,7 @@ The generated token. </p></td>
 
         
       
-        <h3 id="cs3.ocm.invite.v1beta1.GetAcceptedUsersRequest">GetAcceptedUsersRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>token_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The token name to search accepted users for. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.ocm.invite.v1beta1.GetAcceptedUsersResponse">GetAcceptedUsersResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>accepted_users</td>
-                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
-                  <td>repeated</td>
-                  <td><p>REQUIRED.
-The users that accepted the token with the given name. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.ocm.invite.v1beta1.GetRemoteUserRequest">GetRemoteUserRequest</h3>
+        <h3 id="cs3.ocm.invite.v1beta1.GetAcceptedUserRequest">GetAcceptedUserRequest</h3>
         <p></p>
 
         
@@ -6481,7 +6488,7 @@ The id of the user. </p></td>
 
         
       
-        <h3 id="cs3.ocm.invite.v1beta1.GetRemoteUserResponse">GetRemoteUserResponse</h3>
+        <h3 id="cs3.ocm.invite.v1beta1.GetAcceptedUserResponse">GetAcceptedUserResponse</h3>
         <p></p>
 
         
@@ -6558,17 +6565,17 @@ The user information. </p></td>
               </tr>
             
               <tr>
-                <td>GetRemoteUser</td>
-                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserRequest">GetRemoteUserRequest</a></td>
-                <td><a href="#cs3.ocm.invite.v1beta1.GetRemoteUserResponse">GetRemoteUserResponse</a></td>
+                <td>GetAcceptedUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserRequest">GetAcceptedUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserResponse">GetAcceptedUserResponse</a></td>
                 <td><p>Retrieves details about a remote user who has accepted an invite to share.</p></td>
               </tr>
             
               <tr>
-                <td>GetAcceptedUsers</td>
-                <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUsersRequest">GetAcceptedUsersRequest</a></td>
-                <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUsersResponse">GetAcceptedUsersResponse</a></td>
-                <td><p>Retrieves a list of users that accepted a certain invite token.</p></td>
+                <td>FindAcceptedUsers</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest">FindAcceptedUsersRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse">FindAcceptedUsersResponse</a></td>
+                <td><p>Finds users who accepted invite tokens by their attributes.</p></td>
               </tr>
             
           </tbody>
@@ -6618,11 +6625,11 @@ The time when the token will expire. </p></td>
                 </tr>
               
                 <tr>
-                  <td>name</td>
+                  <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED.
-User-defined token name for token identification. </p></td>
+                  <td><p>OPTIONAL.
+User-defined description to be forwarded to the invitees. </p></td>
                 </tr>
               
             </tbody>

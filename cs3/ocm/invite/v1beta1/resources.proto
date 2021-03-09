@@ -44,7 +44,7 @@ message InviteToken {
   // OPTIONAL.
   // The time when the token will expire.
   cs3.types.v1beta1.Timestamp expiration = 3;
-  // REQUIRED.
-  // User-defined token name for token identification.
-  string name = 4;
+  // OPTIONAL.
+  // User-defined description to be forwarded to the invitees.
+  string description = 4;
 }

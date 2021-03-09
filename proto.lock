@@ -1033,6 +1033,26 @@
                 "out_type": "cs3.storage.provider.v1beta1.CreateHomeResponse"
               },
               {
+                "name": "CreateStorageSpace",
+                "in_type": "cs3.storage.provider.v1beta1.CreateStorageSpaceRequest",
+                "out_type": "cs3.storage.provider.v1beta1.CreateStorageSpaceResponse"
+              },
+              {
+                "name": "ListStorageSpaces",
+                "in_type": "cs3.storage.provider.v1beta1.ListStorageSpacesRequest",
+                "out_type": "cs3.storage.provider.v1beta1.ListStorageSpacesResponse"
+              },
+              {
+                "name": "UpdateStorageSpace",
+                "in_type": "cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest",
+                "out_type": "cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse"
+              },
+              {
+                "name": "DeleteStorageSpace",
+                "in_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest",
+                "out_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse"
+              },
+              {
                 "name": "OpenFileInAppProvider",
                 "in_type": "OpenFileInAppProviderRequest",
                 "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
@@ -1238,9 +1258,14 @@
                 "out_type": "cs3.ocm.invite.v1beta1.AcceptInviteResponse"
               },
               {
-                "name": "GetRemoteUser",
-                "in_type": "cs3.ocm.invite.v1beta1.GetRemoteUserRequest",
-                "out_type": "cs3.ocm.invite.v1beta1.GetRemoteUserResponse"
+                "name": "GetAcceptedUser",
+                "in_type": "cs3.ocm.invite.v1beta1.GetAcceptedUserRequest",
+                "out_type": "cs3.ocm.invite.v1beta1.GetAcceptedUserResponse"
+              },
+              {
+                "name": "FindAcceptedUsers",
+                "in_type": "cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest",
+                "out_type": "cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse"
               },
               {
                 "name": "IsProviderAllowed",
@@ -2495,7 +2520,7 @@
             ]
           },
           {
-            "name": "GetRemoteUserRequest",
+            "name": "GetAcceptedUserRequest",
             "fields": [
               {
                 "id": 1,
@@ -2510,7 +2535,7 @@
             ]
           },
           {
-            "name": "GetRemoteUserResponse",
+            "name": "GetAcceptedUserResponse",
             "fields": [
               {
                 "id": 1,
@@ -2526,6 +2551,42 @@
                 "id": 3,
                 "name": "remote_user",
                 "type": "cs3.identity.user.v1beta1.User"
+              }
+            ]
+          },
+          {
+            "name": "FindAcceptedUsersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindAcceptedUsersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "accepted_users",
+                "type": "cs3.identity.user.v1beta1.User",
+                "is_repeated": true
               }
             ]
           }
@@ -2550,9 +2611,14 @@
                 "out_type": "AcceptInviteResponse"
               },
               {
-                "name": "GetRemoteUser",
-                "in_type": "GetRemoteUserRequest",
-                "out_type": "GetRemoteUserResponse"
+                "name": "GetAcceptedUser",
+                "in_type": "GetAcceptedUserRequest",
+                "out_type": "GetAcceptedUserResponse"
+              },
+              {
+                "name": "FindAcceptedUsers",
+                "in_type": "FindAcceptedUsersRequest",
+                "out_type": "FindAcceptedUsersResponse"
               }
             ]
           }
@@ -2630,6 +2696,11 @@
                 "id": 3,
                 "name": "expiration",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
               }
             ]
           }
@@ -5062,6 +5133,22 @@
       "def": {
         "enums": [
           {
+            "name": "Share.ShareType",
+            "enum_fields": [
+              {
+                "name": "SHARE_TYPE_INVALID"
+              },
+              {
+                "name": "SHARE_TYPE_REGULAR",
+                "integer": 1
+              },
+              {
+                "name": "SHARE_TYPE_TRANSFER",
+                "integer": 2
+              }
+            ]
+          },
+          {
             "name": "ShareState",
             "enum_fields": [
               {
@@ -5130,6 +5217,11 @@
                 "id": 9,
                 "name": "mtime",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 10,
+                "name": "share_type",
+                "type": "ShareType"
               }
             ]
           },
@@ -5273,6 +5365,32 @@
     {
       "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_NO",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_OWNER",
+                "integer": 3
+              },
+              {
+                "name": "TYPE_SPACE_TYPE",
+                "integer": 4
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "GetHomeRequest",
@@ -6193,6 +6311,185 @@
                 "type": "cs3.types.v1beta1.Opaque"
               }
             ]
+          },
+          {
+            "name": "CreateStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.User"
+              },
+              {
+                "id": 3,
+                "name": "type",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "quota",
+                "type": "Quota"
+              }
+            ]
+          },
+          {
+            "name": "CreateStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "ListStorageSpacesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 2,
+                    "name": "id",
+                    "type": "StorageSpaceId"
+                  },
+                  {
+                    "id": 3,
+                    "name": "owner",
+                    "type": "cs3.identity.user.v1beta1.UserId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "space_type",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListStorageSpacesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_spaces",
+                "type": "StorageSpace",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "UpdateStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "UpdateStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "DeleteStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "StorageSpaceId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              }
+            ]
           }
         ],
         "services": [
@@ -6330,11 +6627,34 @@
                 "name": "GetHome",
                 "in_type": "GetHomeRequest",
                 "out_type": "GetHomeResponse"
+              },
+              {
+                "name": "CreateStorageSpace",
+                "in_type": "CreateStorageSpaceRequest",
+                "out_type": "CreateStorageSpaceResponse"
+              },
+              {
+                "name": "ListStorageSpaces",
+                "in_type": "ListStorageSpacesRequest",
+                "out_type": "ListStorageSpacesResponse"
+              },
+              {
+                "name": "UpdateStorageSpace",
+                "in_type": "UpdateStorageSpaceRequest",
+                "out_type": "UpdateStorageSpaceResponse"
+              },
+              {
+                "name": "DeleteStorageSpace",
+                "in_type": "DeleteStorageSpaceRequest",
+                "out_type": "DeleteStorageSpaceResponse"
               }
             ]
           }
         ],
         "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
@@ -6860,6 +7180,81 @@
                 "id": 4,
                 "name": "expose",
                 "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "StorageSpace",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "StorageSpaceId"
+              },
+              {
+                "id": 3,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.User"
+              },
+              {
+                "id": 4,
+                "name": "root",
+                "type": "ResourceId"
+              },
+              {
+                "id": 5,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "quota",
+                "type": "Quota"
+              },
+              {
+                "id": 7,
+                "name": "space_type",
+                "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "mtime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "StorageSpaceId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "Quota",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "quota_max_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 3,
+                "name": "quota_max_files",
+                "type": "uint64"
               }
             ]
           }
