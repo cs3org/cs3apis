@@ -58,9 +58,9 @@ service InviteAPI {
   // Completes an invitation acceptance.
   rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
   // Retrieves details about a remote user who has accepted an invite to share.
-  rpc GetRemoteUser(GetRemoteUserRequest) returns (GetRemoteUserResponse);
-  // Retrieves a list of users that accepted a certain invite token.
-  rpc GetAcceptedUsers(GetAcceptedUsersRequest) returns (GetAcceptedUsersResponse);
+  rpc GetAcceptedUser(GetAcceptedUserRequest) returns (GetAcceptedUserResponse);
+  // Finds users who accepted invite tokens by their attributes.
+  rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
 }
 
 message GenerateInviteTokenRequest {
@@ -123,7 +123,7 @@ message AcceptInviteResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message GetRemoteUserRequest {
+message GetAcceptedUserRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -132,7 +132,7 @@ message GetRemoteUserRequest {
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
 }
 
-message GetRemoteUserResponse {
+message GetAcceptedUserResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -144,16 +144,16 @@ message GetRemoteUserResponse {
   cs3.identity.user.v1beta1.User remote_user = 3;
 }
 
-message GetAcceptedUsersRequest {
+message FindAcceptedUsersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The token name to search accepted users for.
-  string token_name = 2;
+  // The filter to apply.
+  string filter = 2;
 }
 
-message GetAcceptedUsersResponse {
+message FindAcceptedUsersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -161,6 +161,6 @@ message GetAcceptedUsersResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The users that accepted the token with the given name.
+  // The accepted users matching the specified filter.
   repeated cs3.identity.user.v1beta1.User accepted_users = 3;
 }
