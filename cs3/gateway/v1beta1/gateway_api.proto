@@ -324,7 +324,9 @@ service GatewayAPI {
   // Completes an invitation acceptance.
   rpc AcceptInvite(cs3.ocm.invite.v1beta1.AcceptInviteRequest) returns (cs3.ocm.invite.v1beta1.AcceptInviteResponse);
   // Retrieves details about a remote user who has accepted an invite to share.
-  rpc GetRemoteUser(cs3.ocm.invite.v1beta1.GetRemoteUserRequest) returns (cs3.ocm.invite.v1beta1.GetRemoteUserResponse);
+  rpc GetAcceptedUser(cs3.ocm.invite.v1beta1.GetAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.GetAcceptedUserResponse);
+  // Finds users who accepted invite tokens by their attributes.
+  rpc FindAcceptedUsers(cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest) returns (cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
   // *****************************************************************/
