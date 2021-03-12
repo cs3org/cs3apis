@@ -310,6 +310,7 @@ message RecycleItem {
   string key = 3;
   // REQUIRED.
   // The original path of the deleted resource.
+  // MUST start with the slash character (/).
   string path = 4;
   // OPTIONAL.
   // The size of the deleted resource.
