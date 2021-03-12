@@ -13391,6 +13391,15 @@ The size in bytes of the file version. </p></td>
 The Unix Epoch timestamp in seconds. </p></td>
                 </tr>
               
+                <tr>
+                  <td>etag</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+As decribed in https://tools.ietf.org/html/rfc7232#section-2.3
+For a file version, the etag does not change because a version is immutable. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13558,7 +13567,8 @@ The key to identify the deleted resource. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The original path of the deleted resource. </p></td>
+The original path of the deleted resource.
+MUST start with the slash character (/). </p></td>
                 </tr>
               
                 <tr>
