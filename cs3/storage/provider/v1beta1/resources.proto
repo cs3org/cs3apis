@@ -294,6 +294,10 @@ message FileVersion {
   // REQUIRED.
   // The Unix Epoch timestamp in seconds.
   uint64 mtime = 5;
+  // REQUIRED.
+  // As decribed in https://tools.ietf.org/html/rfc7232#section-2.3
+  // For a file version, the etag does not change because a version is immutable.
+  string etag = 6;
 }
 
 // A recycle item represents the information
