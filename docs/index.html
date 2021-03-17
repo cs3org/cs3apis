@@ -1635,11 +1635,11 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.storage.registry.v1beta1.GetStorageProviderRequest"><span class="badge">M</span>GetStorageProviderRequest</a>
+                  <a href="#cs3.storage.registry.v1beta1.GetStorageProvidersRequest"><span class="badge">M</span>GetStorageProvidersRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.storage.registry.v1beta1.GetStorageProviderResponse"><span class="badge">M</span>GetStorageProviderResponse</a>
+                  <a href="#cs3.storage.registry.v1beta1.GetStorageProvidersResponse"><span class="badge">M</span>GetStorageProvidersResponse</a>
                 </li>
               
                 <li>
@@ -14353,7 +14353,7 @@ The storage provider for the user home. </p></td>
 
         
       
-        <h3 id="cs3.storage.registry.v1beta1.GetStorageProviderRequest">GetStorageProviderRequest</h3>
+        <h3 id="cs3.storage.registry.v1beta1.GetStorageProvidersRequest">GetStorageProvidersRequest</h3>
         <p></p>
 
         
@@ -14386,7 +14386,7 @@ The reference for the resource. </p></td>
 
         
       
-        <h3 id="cs3.storage.registry.v1beta1.GetStorageProviderResponse">GetStorageProviderResponse</h3>
+        <h3 id="cs3.storage.registry.v1beta1.GetStorageProvidersResponse">GetStorageProvidersResponse</h3>
         <p></p>
 
         
@@ -14413,11 +14413,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>provider</td>
+                  <td>providers</td>
                   <td><a href="#cs3.storage.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
-                  <td></td>
+                  <td>repeated</td>
                   <td><p>REQUIRED.
-The storage provider handling the requested storage resource. </p></td>
+The storage providers handling the requested storage resource. </p></td>
                 </tr>
               
             </tbody>
@@ -14510,9 +14510,9 @@ The list of storage providers this registry knows about. </p></td>
           <tbody>
             
               <tr>
-                <td>GetStorageProvider</td>
-                <td><a href="#cs3.storage.registry.v1beta1.GetStorageProviderRequest">GetStorageProviderRequest</a></td>
-                <td><a href="#cs3.storage.registry.v1beta1.GetStorageProviderResponse">GetStorageProviderResponse</a></td>
+                <td>GetStorageProviders</td>
+                <td><a href="#cs3.storage.registry.v1beta1.GetStorageProvidersRequest">GetStorageProvidersRequest</a></td>
+                <td><a href="#cs3.storage.registry.v1beta1.GetStorageProvidersResponse">GetStorageProvidersResponse</a></td>
                 <td><p>Returns the storage provider that is reponsible for the given
 resource reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>

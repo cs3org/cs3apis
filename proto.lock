@@ -1462,9 +1462,6 @@
         ],
         "imports": [
           {
-            "path": "cs3/rpc/v1beta1/status.proto"
-          },
-          {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
@@ -2708,9 +2705,6 @@
         "imports": [
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
-          {
-            "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
@@ -4344,6 +4338,11 @@
                 "id": 3,
                 "name": "share",
                 "type": "PublicShare"
+              },
+              {
+                "id": 4,
+                "name": "password_hash",
+                "type": "string"
               }
             ]
           },
@@ -4384,6 +4383,11 @@
                 "id": 3,
                 "name": "share",
                 "type": "PublicShare"
+              },
+              {
+                "id": 4,
+                "name": "password_hash",
+                "type": "string"
               }
             ]
           }
@@ -7089,6 +7093,11 @@
                 "id": 5,
                 "name": "mtime",
                 "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "etag",
+                "type": "string"
               }
             ]
           },
@@ -7340,7 +7349,7 @@
             ]
           },
           {
-            "name": "GetStorageProviderRequest",
+            "name": "GetStorageProvidersRequest",
             "fields": [
               {
                 "id": 1,
@@ -7355,7 +7364,7 @@
             ]
           },
           {
-            "name": "GetStorageProviderResponse",
+            "name": "GetStorageProvidersResponse",
             "fields": [
               {
                 "id": 1,
@@ -7369,8 +7378,9 @@
               },
               {
                 "id": 3,
-                "name": "provider",
-                "type": "cs3.storage.registry.v1beta1.ProviderInfo"
+                "name": "providers",
+                "type": "cs3.storage.registry.v1beta1.ProviderInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -7411,9 +7421,9 @@
             "name": "RegistryAPI",
             "rpcs": [
               {
-                "name": "GetStorageProvider",
-                "in_type": "GetStorageProviderRequest",
-                "out_type": "GetStorageProviderResponse"
+                "name": "GetStorageProviders",
+                "in_type": "GetStorageProvidersRequest",
+                "out_type": "GetStorageProvidersResponse"
               },
               {
                 "name": "ListStorageProviders",
