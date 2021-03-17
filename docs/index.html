@@ -8519,6 +8519,14 @@ Opaque information. </p></td>
 The share. </p></td>
                 </tr>
               
+                <tr>
+                  <td>password_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The share password hash. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -8591,6 +8599,14 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The share password hash. </p></td>
                 </tr>
               
             </tbody>
@@ -8994,7 +9010,7 @@ The updated public share. </p></td>
 
       
         <h3 id="cs3.sharing.link.v1beta1.LinkAPI">LinkAPI</h3>
-        <p>PublicShare Provider API</p><p>The Public Share Provider API is meant to manipulate public shares</p><p>also called public links.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>PublicShare Provider API</p><p>The Public Share Provider API is meant to manipulate public shares</p><p>also called public links.</p><p>Access to public shares can be limitted by a password. The share</p><p>provider must store this password in a secure manner e.g. hashed</p><p>with the bcrypt algorithm.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
