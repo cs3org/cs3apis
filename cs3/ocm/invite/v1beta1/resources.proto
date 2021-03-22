@@ -29,7 +29,6 @@ option objc_class_prefix = "COI";
 option php_namespace = "Cs3\\Ocm\\Invite\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // InviteToken is used to invite users and groups from other sync'n'share

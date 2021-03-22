@@ -53,7 +53,7 @@ service RegistryAPI {
   // Returns the storage provider that is reponsible for the given
   // resource reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  rpc GetStorageProvider(GetStorageProviderRequest) returns (GetStorageProviderResponse);
+  rpc GetStorageProviders(GetStorageProvidersRequest) returns (GetStorageProvidersResponse);
   // Returns a list of the available storage providers known by this registry.
   rpc ListStorageProviders(ListStorageProvidersRequest) returns (ListStorageProvidersResponse);
   // Gets the user home storage provider.
@@ -81,7 +81,7 @@ message GetHomeResponse {
   cs3.storage.registry.v1beta1.ProviderInfo provider = 3;
 }
 
-message GetStorageProviderRequest {
+message GetStorageProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -90,7 +90,7 @@ message GetStorageProviderRequest {
   cs3.storage.provider.v1beta1.Reference ref = 2;
 }
 
-message GetStorageProviderResponse {
+message GetStorageProvidersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -98,8 +98,8 @@ message GetStorageProviderResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The storage provider handling the requested storage resource.
-  cs3.storage.registry.v1beta1.ProviderInfo provider = 3;
+  // The storage providers handling the requested storage resource.
+  repeated cs3.storage.registry.v1beta1.ProviderInfo providers = 3;
 }
 
 message ListStorageProvidersRequest {
