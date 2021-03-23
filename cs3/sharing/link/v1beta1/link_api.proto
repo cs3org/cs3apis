@@ -173,6 +173,9 @@ message ListPublicSharesRequest {
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 3;
 }
 
 message ListPublicSharesResponse {
@@ -212,6 +215,9 @@ message GetPublicShareRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   PublicShareReference ref = 2;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 3;
 }
 
 message GetPublicShareResponse {
@@ -224,9 +230,6 @@ message GetPublicShareResponse {
   // REQUIRED.
   // The share.
   PublicShare share = 3;
-  // OPTIONAL.
-  // The share password hash.
-  string password_hash = 4;
 }
 
 message GetPublicShareByTokenRequest {
@@ -237,8 +240,11 @@ message GetPublicShareByTokenRequest {
   // The unlisted token to identify the public share.
   string token = 2;
   // OPTIONAL.
-  // The public link can be password protected.
-  string password = 3;
+  // The public link can require authentication.
+  PublicShareAuthentication authentication = 3;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 4;
 }
 
 message GetPublicShareByTokenResponse {
@@ -253,5 +259,5 @@ message GetPublicShareByTokenResponse {
   PublicShare share = 3;
   // OPTIONAL.
   // The share password hash.
-  string password_hash = 4;
+  string password_hash = 4 [deprecated = true];
 }
