@@ -183,4 +183,12 @@ enum Code {
   // Redirects the operation to another location.
   // Used in a Status reponse with a reference to the target URI.
   CODE_REDIRECTION = 18;
+  //
+  // The operation could not be performed because there is not enough
+  // storage available. This can be because of lack of real storage
+  // space or because of the exceeding of a quota associated to a
+  // storage.
+  //
+  // HTTP Mapping: 507 Insufficient Storage
+  CODE_INSUFFICIENT_STORAGE = 19;
 }
