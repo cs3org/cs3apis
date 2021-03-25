@@ -1104,6 +1104,10 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.sharing.link.v1beta1.PublicShareAuthentication"><span class="badge">M</span>PublicShareAuthentication</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.sharing.link.v1beta1.PublicShareId"><span class="badge">M</span>PublicShareId</a>
                 </li>
               
@@ -1113,6 +1117,10 @@
               
                 <li>
                   <a href="#cs3.sharing.link.v1beta1.PublicShareReference"><span class="badge">M</span>PublicShareReference</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.link.v1beta1.ShareSignature"><span class="badge">M</span>ShareSignature</a>
                 </li>
               
               
@@ -8482,11 +8490,19 @@ The unlisted token to identify the public share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>password</td>
-                  <td><a href="#string">string</a></td>
+                  <td>authentication</td>
+                  <td><a href="#cs3.sharing.link.v1beta1.PublicShareAuthentication">PublicShareAuthentication</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The public link can be password protected. </p></td>
+The public link can require authentication. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+If a signature should be included in the share. </p></td>
                 </tr>
               
             </tbody>
@@ -8542,6 +8558,27 @@ The share password hash. </p></td>
           </table>
 
           
+            
+            
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>password_hash</td>
+                  <td><p>true</p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
 
         
       
@@ -8569,6 +8606,14 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+If a signature should be included in the share. </p></td>
                 </tr>
               
             </tbody>
@@ -8612,14 +8657,6 @@ Opaque information. </p></td>
 The share. </p></td>
                 </tr>
               
-                <tr>
-                  <td>password_hash</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-The share password hash. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -8651,6 +8688,14 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
 The list of filters to apply if any. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+If a signature should be included in the share. </p></td>
                 </tr>
               
             </tbody>
@@ -9243,6 +9288,47 @@ This field is only useful for informational purposes, like for example,
 setting the window title in a public share HTML page. </p></td>
                 </tr>
               
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#cs3.sharing.link.v1beta1.ShareSignature">ShareSignature</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A time constrained token with which
+GetPublicSharebyToken requests can be
+authenticated. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.link.v1beta1.PublicShareAuthentication">PublicShareAuthentication</h3>
+        <p>The mechanism to authenticate a request to</p><p>GetPublicShareByToken.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The password of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#cs3.sharing.link.v1beta1.ShareSignature">ShareSignature</a></td>
+                  <td></td>
+                  <td><p>The signature issued by GetPublicShareByToken. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -9323,6 +9409,39 @@ implementation of the service. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>The token to identify the public share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.link.v1beta1.ShareSignature">ShareSignature</h3>
+        <p>A time constrained token which can be used to</p><p>authenticate link share requests.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The signature value. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>signature_expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The time until the signature becomes invalid. </p></td>
                 </tr>
               
             </tbody>

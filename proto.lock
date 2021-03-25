@@ -3279,6 +3279,10 @@
               {
                 "name": "CODE_REDIRECTION",
                 "integer": 18
+              },
+              {
+                "name": "CODE_INSUFFICIENT_STORAGE",
+                "integer": 19
               }
             ]
           }
@@ -4225,6 +4229,11 @@
                 "name": "filters",
                 "type": "Filter",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "sign",
+                "type": "bool"
               }
             ],
             "messages": [
@@ -4318,6 +4327,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "PublicShareReference"
+              },
+              {
+                "id": 3,
+                "name": "sign",
+                "type": "bool"
               }
             ]
           },
@@ -4338,11 +4352,6 @@
                 "id": 3,
                 "name": "share",
                 "type": "PublicShare"
-              },
-              {
-                "id": 4,
-                "name": "password_hash",
-                "type": "string"
               }
             ]
           },
@@ -4361,8 +4370,13 @@
               },
               {
                 "id": 3,
-                "name": "password",
-                "type": "string"
+                "name": "authentication",
+                "type": "PublicShareAuthentication"
+              },
+              {
+                "id": 4,
+                "name": "sign",
+                "type": "bool"
               }
             ]
           },
@@ -4387,7 +4401,13 @@
               {
                 "id": 4,
                 "name": "password_hash",
-                "type": "string"
+                "type": "string",
+                "options": [
+                  {
+                    "name": "deprecated",
+                    "value": "true"
+                  }
+                ]
               }
             ]
           }
@@ -4542,6 +4562,11 @@
                 "id": 11,
                 "name": "display_name",
                 "type": "string"
+              },
+              {
+                "id": 12,
+                "name": "signature",
+                "type": "ShareSignature"
               }
             ]
           },
@@ -4577,6 +4602,36 @@
                 "id": 2,
                 "name": "token",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "PublicShareAuthentication",
+            "fields": [
+              {
+                "id": 1,
+                "name": "password",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "signature",
+                "type": "ShareSignature"
+              }
+            ]
+          },
+          {
+            "name": "ShareSignature",
+            "fields": [
+              {
+                "id": 1,
+                "name": "signature",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "signature_expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
