@@ -18,26 +18,25 @@
 
 syntax = "proto3";
 
-package cs3.ocm.invite.v1beta1;
+package cs3.identity.group.v1beta1;
 
-option csharp_namespace = "Cs3.Ocm.Invite.V1Beta1";
-option go_package = "invitev1beta1";
+option csharp_namespace = "Cs3.Identity.Group.V1Beta1";
+option go_package = "groupv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "InviteApiProto";
-option java_package = "com.cs3.ocm.invite.v1beta1";
-option objc_class_prefix = "COI";
-option php_namespace = "Cs3\\Ocm\\Invite\\V1Beta1";
+option java_outer_classname = "GroupApiProto";
+option java_package = "com.cs3.identity.group.v1beta1";
+option objc_class_prefix = "CIG";
+option php_namespace = "Cs3\\Identity\\Group\\V1Beta1";
 
+import "cs3/identity/group/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/ocm/invite/v1beta1/resources.proto";
-import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
 
-// Invite API
+// GroupProvider API.
 //
-// The Invite API is meant to invite users and groups belonging to other
-// sync'n'share systems, so that collaboration of resources can be enabled.
+// The GroupProvider API is responsible for providing methods to retrieve
+// information about groups and their interactions with users.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -45,31 +44,36 @@ import "cs3/types/v1beta1/types.proto";
 // RFC 2119.
 //
 // The following are global requirements that apply to all methods:
-// Any method MUST return CODE_OK on a succesful operation.
+// Any method MUST return CODE_OK on a successful operation.
 // Any method MAY return NOT_IMPLEMENTED.
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service InviteAPI {
-  // Generates a new token for the user with a validity of 24 hours.
-  rpc GenerateInviteToken(GenerateInviteTokenRequest) returns (GenerateInviteTokenResponse);
-  // Forwards a received invite to the sync'n'share system provider.
-  rpc ForwardInvite(ForwardInviteRequest) returns (ForwardInviteResponse);
-  // Completes an invitation acceptance.
-  rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
-  // Retrieves details about a remote user who has accepted an invite to share.
-  rpc GetAcceptedUser(GetAcceptedUserRequest) returns (GetAcceptedUserResponse);
-  // Finds users who accepted invite tokens by their attributes.
-  rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
+
+// Provides an API for managing groups.
+service GroupAPI {
+  // Gets the information about a group by the group id.
+  rpc GetGroup(GetGroupRequest) returns (GetGroupResponse);
+  // Gets the information about a group based on a specified claim.
+  rpc GetGroupByClaim(GetGroupByClaimRequest) returns (GetGroupByClaimResponse);
+  // Gets the members of a group.
+  rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
+  // Tells if the group has certain member.
+  rpc HasMember(HasMemberRequest) returns (HasMemberResponse);
+  // Finds groups whose names match the specified filter.
+  rpc FindGroups(FindGroupsRequest) returns (FindGroupsResponse);
 }
 
-message GenerateInviteTokenRequest {
+message GetGroupRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the group.
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
 }
 
-message GenerateInviteTokenResponse {
+message GetGroupResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -77,62 +81,23 @@ message GenerateInviteTokenResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The generated token.
-  InviteToken invite_token = 3;
+  // The group information.
+  Group group = 3;
 }
 
-message ForwardInviteRequest {
+message GetGroupByClaimRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The token to authenticate with.
-  InviteToken invite_token = 2;
+  // The claim on the basis of which groups will be filtered.
+  string claim = 2;
   // REQUIRED.
-  // The details of the sync'n'share system provider of the user who sent the invite.
-  cs3.ocm.provider.v1beta1.ProviderInfo origin_system_provider = 3;
+  // The value of the claim to find the specific group.
+  string value = 3;
 }
 
-message ForwardInviteResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-}
-
-message AcceptInviteRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The token to authenticate with.
-  InviteToken invite_token = 2;
-  // REQUIRED.
-  // The user who accepted the invite.
-  cs3.identity.user.v1beta1.User remote_user = 3;
-}
-
-message AcceptInviteResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-}
-
-message GetAcceptedUserRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The id of the user.
-  cs3.identity.user.v1beta1.UserId remote_user_id = 2;
-}
-
-message GetAcceptedUserResponse {
+message GetGroupByClaimResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -140,11 +105,56 @@ message GetAcceptedUserResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The user information.
-  cs3.identity.user.v1beta1.User remote_user = 3;
+  // The group information.
+  Group group = 3;
 }
 
-message FindAcceptedUsersRequest {
+message GetMembersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the group.
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
+}
+
+message GetMembersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The members of the group.
+  repeated cs3.identity.user.v1beta1.UserId members = 3;
+}
+
+message HasMemberRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the group.
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
+  // REQUIRED.
+  // The id of the user to check.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+}
+
+message HasMemberResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // Tells if the user belongs to the group.
+  bool ok = 3;
+}
+
+message FindGroupsRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -153,7 +163,7 @@ message FindAcceptedUsersRequest {
   string filter = 2;
 }
 
-message FindAcceptedUsersResponse {
+message FindGroupsResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -161,6 +171,6 @@ message FindAcceptedUsersResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The accepted users matching the specified filter.
-  repeated cs3.identity.user.v1beta1.User accepted_users = 3;
+  // The groups matching the specified filter.
+  repeated Group groups = 3;
 }

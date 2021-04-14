@@ -34,8 +34,8 @@ import "cs3/types/v1beta1/types.proto";
 
 // UserProvider API.
 //
-// The UserProvider API is responsible for creating
-// a key-value map according to user userprovider.
+// The UserProvider API is responsible for providing
+// methods to retrieve information about the users.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -43,7 +43,7 @@ import "cs3/types/v1beta1/types.proto";
 // RFC 2119.
 //
 // The following are global requirements that apply to all methods:
-// Any method MUST return CODE_OK on a succesful operation.
+// Any method MUST return CODE_OK on a successful operation.
 // Any method MAY return NOT_IMPLEMENTED.
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
@@ -57,13 +57,9 @@ service UserAPI {
   rpc GetUserByClaim(GetUserByClaimRequest) returns (GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
-  // Tells if the user is in a certain group.
-  rpc IsInGroup(IsInGroupRequest) returns (IsInGroupResponse);
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
-  // Finds groups whose names match the specified filter.
-  rpc FindGroups(FindGroupsRequest) returns (FindGroupsResponse);
 }
 
 message GetUserRequest {
@@ -132,30 +128,6 @@ message GetUserGroupsResponse {
   repeated string groups = 3;
 }
 
-message IsInGroupRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The id of the user.
-  cs3.identity.user.v1beta1.UserId user_id = 2;
-  // REQUIRED.
-  // The group to check.
-  string group = 3;
-}
-
-message IsInGroupResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // Tells if the user belongs to the group.
-  bool ok = 3;
-}
-
 message FindUsersRequest {
   // OPTIONAL.
   // Opaque information.
@@ -175,25 +147,4 @@ message FindUsersResponse {
   // REQUIRED.
   // The users matching the specified filter.
   repeated User users = 3;
-}
-
-message FindGroupsRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The filter to apply.
-  string filter = 2;
-}
-
-message FindGroupsResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The groups matching the specified filter.
-  repeated string groups = 3;
 }

@@ -32,6 +32,7 @@ import "cs3/app/provider/v1beta1/provider_api.proto";
 import "cs3/app/registry/v1beta1/registry_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/gateway/v1beta1/resources.proto";
+import "cs3/identity/group/v1beta1/group_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
@@ -152,6 +153,14 @@ service GatewayAPI {
   rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
   // Creates the home directory for a user.
   rpc CreateHome(cs3.storage.provider.v1beta1.CreateHomeRequest) returns (cs3.storage.provider.v1beta1.CreateHomeResponse);
+  // Creates a storage space.
+  rpc CreateStorageSpace(cs3.storage.provider.v1beta1.CreateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.CreateStorageSpaceResponse);
+  // Lists storage spaces.
+  rpc ListStorageSpaces(cs3.storage.provider.v1beta1.ListStorageSpacesRequest) returns (cs3.storage.provider.v1beta1.ListStorageSpacesResponse);
+  // Updates a storage space.
+  rpc UpdateStorageSpace(cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse);
+  // Deletes a storage space.
+  rpc DeleteStorageSpace(cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse);
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
@@ -274,13 +283,24 @@ service GatewayAPI {
   rpc GetUserByClaim(cs3.identity.user.v1beta1.GetUserByClaimRequest) returns (cs3.identity.user.v1beta1.GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(cs3.identity.user.v1beta1.GetUserGroupsRequest) returns (cs3.identity.user.v1beta1.GetUserGroupsResponse);
-  // Tells if the user is in a certain group.
-  rpc IsInGroup(cs3.identity.user.v1beta1.IsInGroupRequest) returns (cs3.identity.user.v1beta1.IsInGroupResponse);
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
+  // *****************************************************************/
+  // ************************ GROUP PROVIDER **************************/
+  // *****************************************************************/
+
+  // Gets the information about a group by the group id.
+  rpc GetGroup(cs3.identity.group.v1beta1.GetGroupRequest) returns (cs3.identity.group.v1beta1.GetGroupResponse);
+  // Gets the information about a group based on a specified claim.
+  rpc GetGroupByClaim(cs3.identity.group.v1beta1.GetGroupByClaimRequest) returns (cs3.identity.group.v1beta1.GetGroupByClaimResponse);
+  // Gets the members of a group.
+  rpc GetMembers(cs3.identity.group.v1beta1.GetMembersRequest) returns (cs3.identity.group.v1beta1.GetMembersResponse);
+  // Tells if the group has a certain member.
+  rpc HasMember(cs3.identity.group.v1beta1.HasMemberRequest) returns (cs3.identity.group.v1beta1.HasMemberResponse);
+  // TODO(labkode): to define the filters that make more sense.
   // Finds groups whose names match the specified filter.
-  rpc FindGroups(cs3.identity.user.v1beta1.FindGroupsRequest) returns (cs3.identity.user.v1beta1.FindGroupsResponse);
+  rpc FindGroups(cs3.identity.group.v1beta1.FindGroupsRequest) returns (cs3.identity.group.v1beta1.FindGroupsResponse);
   // *****************************************************************/
   // ************************ AUTH REGISTRY  **************************/
   // *****************************************************************/
@@ -304,7 +324,9 @@ service GatewayAPI {
   // Completes an invitation acceptance.
   rpc AcceptInvite(cs3.ocm.invite.v1beta1.AcceptInviteRequest) returns (cs3.ocm.invite.v1beta1.AcceptInviteResponse);
   // Retrieves details about a remote user who has accepted an invite to share.
-  rpc GetRemoteUser(cs3.ocm.invite.v1beta1.GetRemoteUserRequest) returns (cs3.ocm.invite.v1beta1.GetRemoteUserResponse);
+  rpc GetAcceptedUser(cs3.ocm.invite.v1beta1.GetAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.GetAcceptedUserResponse);
+  // Finds users who accepted invite tokens by their attributes.
+  rpc FindAcceptedUsers(cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest) returns (cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
   // *****************************************************************/

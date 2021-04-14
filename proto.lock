@@ -1033,6 +1033,26 @@
                 "out_type": "cs3.storage.provider.v1beta1.CreateHomeResponse"
               },
               {
+                "name": "CreateStorageSpace",
+                "in_type": "cs3.storage.provider.v1beta1.CreateStorageSpaceRequest",
+                "out_type": "cs3.storage.provider.v1beta1.CreateStorageSpaceResponse"
+              },
+              {
+                "name": "ListStorageSpaces",
+                "in_type": "cs3.storage.provider.v1beta1.ListStorageSpacesRequest",
+                "out_type": "cs3.storage.provider.v1beta1.ListStorageSpacesResponse"
+              },
+              {
+                "name": "UpdateStorageSpace",
+                "in_type": "cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest",
+                "out_type": "cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse"
+              },
+              {
+                "name": "DeleteStorageSpace",
+                "in_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest",
+                "out_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse"
+              },
+              {
                 "name": "OpenFileInAppProvider",
                 "in_type": "OpenFileInAppProviderRequest",
                 "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
@@ -1183,19 +1203,34 @@
                 "out_type": "cs3.identity.user.v1beta1.GetUserGroupsResponse"
               },
               {
-                "name": "IsInGroup",
-                "in_type": "cs3.identity.user.v1beta1.IsInGroupRequest",
-                "out_type": "cs3.identity.user.v1beta1.IsInGroupResponse"
-              },
-              {
                 "name": "FindUsers",
                 "in_type": "cs3.identity.user.v1beta1.FindUsersRequest",
                 "out_type": "cs3.identity.user.v1beta1.FindUsersResponse"
               },
               {
+                "name": "GetGroup",
+                "in_type": "cs3.identity.group.v1beta1.GetGroupRequest",
+                "out_type": "cs3.identity.group.v1beta1.GetGroupResponse"
+              },
+              {
+                "name": "GetGroupByClaim",
+                "in_type": "cs3.identity.group.v1beta1.GetGroupByClaimRequest",
+                "out_type": "cs3.identity.group.v1beta1.GetGroupByClaimResponse"
+              },
+              {
+                "name": "GetMembers",
+                "in_type": "cs3.identity.group.v1beta1.GetMembersRequest",
+                "out_type": "cs3.identity.group.v1beta1.GetMembersResponse"
+              },
+              {
+                "name": "HasMember",
+                "in_type": "cs3.identity.group.v1beta1.HasMemberRequest",
+                "out_type": "cs3.identity.group.v1beta1.HasMemberResponse"
+              },
+              {
                 "name": "FindGroups",
-                "in_type": "cs3.identity.user.v1beta1.FindGroupsRequest",
-                "out_type": "cs3.identity.user.v1beta1.FindGroupsResponse"
+                "in_type": "cs3.identity.group.v1beta1.FindGroupsRequest",
+                "out_type": "cs3.identity.group.v1beta1.FindGroupsResponse"
               },
               {
                 "name": "ListAuthProviders",
@@ -1223,9 +1258,14 @@
                 "out_type": "cs3.ocm.invite.v1beta1.AcceptInviteResponse"
               },
               {
-                "name": "GetRemoteUser",
-                "in_type": "cs3.ocm.invite.v1beta1.GetRemoteUserRequest",
-                "out_type": "cs3.ocm.invite.v1beta1.GetRemoteUserResponse"
+                "name": "GetAcceptedUser",
+                "in_type": "cs3.ocm.invite.v1beta1.GetAcceptedUserRequest",
+                "out_type": "cs3.ocm.invite.v1beta1.GetAcceptedUserResponse"
+              },
+              {
+                "name": "FindAcceptedUsers",
+                "in_type": "cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest",
+                "out_type": "cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse"
               },
               {
                 "name": "IsProviderAllowed",
@@ -1277,6 +1317,9 @@
           },
           {
             "path": "cs3/gateway/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/group/v1beta1/group_api.proto"
           },
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
@@ -1419,9 +1462,6 @@
         ],
         "imports": [
           {
-            "path": "cs3/rpc/v1beta1/status.proto"
-          },
-          {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
@@ -1459,6 +1499,388 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Gateway\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:identity:/:group:/:v1beta1:/:group_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GetGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          },
+          {
+            "name": "GetGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "Group"
+              }
+            ]
+          },
+          {
+            "name": "GetGroupByClaimRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "claim",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "value",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetGroupByClaimResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "Group"
+              }
+            ]
+          },
+          {
+            "name": "GetMembersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          },
+          {
+            "name": "GetMembersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "members",
+                "type": "cs3.identity.user.v1beta1.UserId",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "HasMemberRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              }
+            ]
+          },
+          {
+            "name": "HasMemberResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "ok",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "FindGroupsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindGroupsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "groups",
+                "type": "Group",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "GroupAPI",
+            "rpcs": [
+              {
+                "name": "GetGroup",
+                "in_type": "GetGroupRequest",
+                "out_type": "GetGroupResponse"
+              },
+              {
+                "name": "GetGroupByClaim",
+                "in_type": "GetGroupByClaimRequest",
+                "out_type": "GetGroupByClaimResponse"
+              },
+              {
+                "name": "GetMembers",
+                "in_type": "GetMembersRequest",
+                "out_type": "GetMembersResponse"
+              },
+              {
+                "name": "HasMember",
+                "in_type": "HasMemberRequest",
+                "out_type": "HasMemberResponse"
+              },
+              {
+                "name": "FindGroups",
+                "in_type": "FindGroupsRequest",
+                "out_type": "FindGroupsResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.identity.group.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Identity.Group.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "groupv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "GroupApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.identity.group.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CIG"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Identity\\\\Group\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:identity:/:group:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GroupId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "idp",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "Group",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "GroupId"
+              },
+              {
+                "id": 2,
+                "name": "group_name",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "gid_number",
+                "type": "int64"
+              },
+              {
+                "id": 4,
+                "name": "mail",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "mail_verified",
+                "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "display_name",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "members",
+                "type": "cs3.identity.user.v1beta1.UserId",
+                "is_repeated": true
+              },
+              {
+                "id": 8,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.identity.group.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Identity.Group.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "groupv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.identity.group.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CIG"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Identity\\\\Group\\\\V1Beta1"
           }
         ]
       }
@@ -1520,6 +1942,16 @@
                 "id": 7,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 8,
+                "name": "uid_number",
+                "type": "int64"
+              },
+              {
+                "id": 9,
+                "name": "gid_number",
+                "type": "int64"
               }
             ]
           }
@@ -1680,46 +2112,6 @@
             ]
           },
           {
-            "name": "IsInGroupRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "user_id",
-                "type": "cs3.identity.user.v1beta1.UserId"
-              },
-              {
-                "id": 3,
-                "name": "group",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "IsInGroupResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "ok",
-                "type": "bool"
-              }
-            ]
-          },
-          {
             "name": "FindUsersRequest",
             "fields": [
               {
@@ -1754,42 +2146,6 @@
                 "is_repeated": true
               }
             ]
-          },
-          {
-            "name": "FindGroupsRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "filter",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "FindGroupsResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "groups",
-                "type": "string",
-                "is_repeated": true
-              }
-            ]
           }
         ],
         "services": [
@@ -1812,19 +2168,9 @@
                 "out_type": "GetUserGroupsResponse"
               },
               {
-                "name": "IsInGroup",
-                "in_type": "IsInGroupRequest",
-                "out_type": "IsInGroupResponse"
-              },
-              {
                 "name": "FindUsers",
                 "in_type": "FindUsersRequest",
                 "out_type": "FindUsersResponse"
-              },
-              {
-                "name": "FindGroups",
-                "in_type": "FindGroupsRequest",
-                "out_type": "FindGroupsResponse"
               }
             ]
           }
@@ -2171,7 +2517,7 @@
             ]
           },
           {
-            "name": "GetRemoteUserRequest",
+            "name": "GetAcceptedUserRequest",
             "fields": [
               {
                 "id": 1,
@@ -2186,7 +2532,7 @@
             ]
           },
           {
-            "name": "GetRemoteUserResponse",
+            "name": "GetAcceptedUserResponse",
             "fields": [
               {
                 "id": 1,
@@ -2202,6 +2548,42 @@
                 "id": 3,
                 "name": "remote_user",
                 "type": "cs3.identity.user.v1beta1.User"
+              }
+            ]
+          },
+          {
+            "name": "FindAcceptedUsersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filter",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "FindAcceptedUsersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "accepted_users",
+                "type": "cs3.identity.user.v1beta1.User",
+                "is_repeated": true
               }
             ]
           }
@@ -2226,9 +2608,14 @@
                 "out_type": "AcceptInviteResponse"
               },
               {
-                "name": "GetRemoteUser",
-                "in_type": "GetRemoteUserRequest",
-                "out_type": "GetRemoteUserResponse"
+                "name": "GetAcceptedUser",
+                "in_type": "GetAcceptedUserRequest",
+                "out_type": "GetAcceptedUserResponse"
+              },
+              {
+                "name": "FindAcceptedUsers",
+                "in_type": "FindAcceptedUsersRequest",
+                "out_type": "FindAcceptedUsersResponse"
               }
             ]
           }
@@ -2306,6 +2693,11 @@
                 "id": 3,
                 "name": "expiration",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
               }
             ]
           }
@@ -2313,9 +2705,6 @@
         "imports": [
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
-          {
-            "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
@@ -2890,6 +3279,10 @@
               {
                 "name": "CODE_REDIRECTION",
                 "integer": 18
+              },
+              {
+                "name": "CODE_INSUFFICIENT_STORAGE",
+                "integer": 19
               }
             ]
           }
@@ -3836,6 +4229,11 @@
                 "name": "filters",
                 "type": "Filter",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "sign",
+                "type": "bool"
               }
             ],
             "messages": [
@@ -3929,6 +4327,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "PublicShareReference"
+              },
+              {
+                "id": 3,
+                "name": "sign",
+                "type": "bool"
               }
             ]
           },
@@ -3967,8 +4370,13 @@
               },
               {
                 "id": 3,
-                "name": "password",
-                "type": "string"
+                "name": "authentication",
+                "type": "PublicShareAuthentication"
+              },
+              {
+                "id": 4,
+                "name": "sign",
+                "type": "bool"
               }
             ]
           },
@@ -3989,6 +4397,17 @@
                 "id": 3,
                 "name": "share",
                 "type": "PublicShare"
+              },
+              {
+                "id": 4,
+                "name": "password_hash",
+                "type": "string",
+                "options": [
+                  {
+                    "name": "deprecated",
+                    "value": "true"
+                  }
+                ]
               }
             ]
           }
@@ -4143,6 +4562,11 @@
                 "id": 11,
                 "name": "display_name",
                 "type": "string"
+              },
+              {
+                "id": 12,
+                "name": "signature",
+                "type": "ShareSignature"
               }
             ]
           },
@@ -4178,6 +4602,36 @@
                 "id": 2,
                 "name": "token",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "PublicShareAuthentication",
+            "fields": [
+              {
+                "id": 1,
+                "name": "password",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "signature",
+                "type": "ShareSignature"
+              }
+            ]
+          },
+          {
+            "name": "ShareSignature",
+            "fields": [
+              {
+                "id": 1,
+                "name": "signature",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "signature_expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -4738,6 +5192,22 @@
       "def": {
         "enums": [
           {
+            "name": "Share.ShareType",
+            "enum_fields": [
+              {
+                "name": "SHARE_TYPE_INVALID"
+              },
+              {
+                "name": "SHARE_TYPE_REGULAR",
+                "integer": 1
+              },
+              {
+                "name": "SHARE_TYPE_TRANSFER",
+                "integer": 2
+              }
+            ]
+          },
+          {
             "name": "ShareState",
             "enum_fields": [
               {
@@ -4806,6 +5276,11 @@
                 "id": 9,
                 "name": "mtime",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 10,
+                "name": "share_type",
+                "type": "ShareType"
               }
             ]
           },
@@ -4949,6 +5424,32 @@
     {
       "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_NO",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_OWNER",
+                "integer": 3
+              },
+              {
+                "name": "TYPE_SPACE_TYPE",
+                "integer": 4
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "GetHomeRequest",
@@ -5869,6 +6370,185 @@
                 "type": "cs3.types.v1beta1.Opaque"
               }
             ]
+          },
+          {
+            "name": "CreateStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.User"
+              },
+              {
+                "id": 3,
+                "name": "type",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "quota",
+                "type": "Quota"
+              }
+            ]
+          },
+          {
+            "name": "CreateStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "ListStorageSpacesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 2,
+                    "name": "id",
+                    "type": "StorageSpaceId"
+                  },
+                  {
+                    "id": 3,
+                    "name": "owner",
+                    "type": "cs3.identity.user.v1beta1.UserId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "space_type",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListStorageSpacesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_spaces",
+                "type": "StorageSpace",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "UpdateStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "UpdateStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "DeleteStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "StorageSpaceId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              }
+            ]
           }
         ],
         "services": [
@@ -6006,11 +6686,34 @@
                 "name": "GetHome",
                 "in_type": "GetHomeRequest",
                 "out_type": "GetHomeResponse"
+              },
+              {
+                "name": "CreateStorageSpace",
+                "in_type": "CreateStorageSpaceRequest",
+                "out_type": "CreateStorageSpaceResponse"
+              },
+              {
+                "name": "ListStorageSpaces",
+                "in_type": "ListStorageSpacesRequest",
+                "out_type": "ListStorageSpacesResponse"
+              },
+              {
+                "name": "UpdateStorageSpace",
+                "in_type": "UpdateStorageSpaceRequest",
+                "out_type": "UpdateStorageSpaceResponse"
+              },
+              {
+                "name": "DeleteStorageSpace",
+                "in_type": "DeleteStorageSpaceRequest",
+                "out_type": "DeleteStorageSpaceResponse"
               }
             ]
           }
         ],
         "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
@@ -6407,12 +7110,17 @@
                 "type": "GranteeType"
               },
               {
-                "id": 2,
-                "name": "id",
+                "id": 3,
+                "name": "user_id",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 3,
+                "id": 4,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 5,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
               }
@@ -6440,6 +7148,11 @@
                 "id": 5,
                 "name": "mtime",
                 "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "etag",
+                "type": "string"
               }
             ]
           },
@@ -6533,9 +7246,87 @@
                 "type": "bool"
               }
             ]
+          },
+          {
+            "name": "StorageSpace",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "StorageSpaceId"
+              },
+              {
+                "id": 3,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.User"
+              },
+              {
+                "id": 4,
+                "name": "root",
+                "type": "ResourceId"
+              },
+              {
+                "id": 5,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "quota",
+                "type": "Quota"
+              },
+              {
+                "id": 7,
+                "name": "space_type",
+                "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "mtime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ]
+          },
+          {
+            "name": "StorageSpaceId",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "Quota",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "quota_max_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 3,
+                "name": "quota_max_files",
+                "type": "uint64"
+              }
+            ]
           }
         ],
         "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
@@ -6613,7 +7404,7 @@
             ]
           },
           {
-            "name": "GetStorageProviderRequest",
+            "name": "GetStorageProvidersRequest",
             "fields": [
               {
                 "id": 1,
@@ -6628,7 +7419,7 @@
             ]
           },
           {
-            "name": "GetStorageProviderResponse",
+            "name": "GetStorageProvidersResponse",
             "fields": [
               {
                 "id": 1,
@@ -6642,8 +7433,9 @@
               },
               {
                 "id": 3,
-                "name": "provider",
-                "type": "cs3.storage.registry.v1beta1.ProviderInfo"
+                "name": "providers",
+                "type": "cs3.storage.registry.v1beta1.ProviderInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -6684,9 +7476,9 @@
             "name": "RegistryAPI",
             "rpcs": [
               {
-                "name": "GetStorageProvider",
-                "in_type": "GetStorageProviderRequest",
-                "out_type": "GetStorageProviderResponse"
+                "name": "GetStorageProviders",
+                "in_type": "GetStorageProvidersRequest",
+                "out_type": "GetStorageProvidersResponse"
               },
               {
                 "name": "ListStorageProviders",

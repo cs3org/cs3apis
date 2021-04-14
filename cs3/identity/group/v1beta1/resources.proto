@@ -18,38 +18,38 @@
 
 syntax = "proto3";
 
-package cs3.identity.user.v1beta1;
+package cs3.identity.group.v1beta1;
 
-option csharp_namespace = "Cs3.Identity.User.V1Beta1";
-option go_package = "userv1beta1";
+option csharp_namespace = "Cs3.Identity.Group.V1Beta1";
+option go_package = "groupv1beta1";
 option java_multiple_files = true;
 option java_outer_classname = "ResourcesProto";
-option java_package = "com.cs3.identity.user.v1beta1";
-option objc_class_prefix = "CIU";
-option php_namespace = "Cs3\\Identity\\User\\V1Beta1";
+option java_package = "com.cs3.identity.group.v1beta1";
+option objc_class_prefix = "CIG";
+option php_namespace = "Cs3\\Identity\\Group\\V1Beta1";
 
+import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
-// A UserId represents a user.
-message UserId {
+// A GroupId represents a group.
+message GroupId {
   // REQUIRED.
-  // The identity provider for the user.
+  // The identity provider for the group.
   string idp = 1;
   // REQUIRED.
-  // the unique identifier for the user in the scope of
+  // the unique identifier for the group in the scope of
   // the identity provider.
   string opaque_id = 2;
 }
 
-// Represents a user of the system.
-message User {
-  UserId id = 1;
-  string username = 2;
-  string mail = 3;
-  bool mail_verified = 4;
-  string display_name = 5;
-  repeated string groups = 6;
-  cs3.types.v1beta1.Opaque opaque = 7;
-  int64 uid_number = 8;
-  int64 gid_number = 9;
+// Represents a group of the system.
+message Group {
+  GroupId id = 1;
+  string group_name = 2;
+  int64 gid_number = 3;
+  string mail = 4;
+  bool mail_verified = 5;
+  string display_name = 6;
+  repeated cs3.identity.user.v1beta1.UserId members = 7;
+  cs3.types.v1beta1.Opaque opaque = 8;
 }

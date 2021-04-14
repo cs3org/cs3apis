@@ -39,6 +39,10 @@ import "cs3/types/v1beta1/types.proto";
 // The Public Share Provider API is meant to manipulate public shares
 // also called public links.
 //
+// Access to public shares can be limitted by a password. The share
+// provider must store this password in a secure manner e.g. hashed
+// with the bcrypt algorithm.
+//
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 // "OPTIONAL" in this document are to be interpreted as described in
@@ -169,6 +173,9 @@ message ListPublicSharesRequest {
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 3;
 }
 
 message ListPublicSharesResponse {
@@ -208,6 +215,9 @@ message GetPublicShareRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   PublicShareReference ref = 2;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 3;
 }
 
 message GetPublicShareResponse {
@@ -230,8 +240,11 @@ message GetPublicShareByTokenRequest {
   // The unlisted token to identify the public share.
   string token = 2;
   // OPTIONAL.
-  // The public link can be password protected.
-  string password = 3;
+  // The public link can require authentication.
+  PublicShareAuthentication authentication = 3;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 4;
 }
 
 message GetPublicShareByTokenResponse {
@@ -244,4 +257,7 @@ message GetPublicShareByTokenResponse {
   // REQUIRED.
   // The share.
   PublicShare share = 3;
+  // OPTIONAL.
+  // The share password hash.
+  string password_hash = 4 [deprecated = true];
 }

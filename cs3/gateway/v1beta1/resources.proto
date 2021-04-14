@@ -28,7 +28,6 @@ option java_package = "com.cs3.gateway.v1beta1";
 option objc_class_prefix = "CGX";
 option php_namespace = "Cs3\\Gateway\\V1Beta1";
 
-import "cs3/rpc/v1beta1/status.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
