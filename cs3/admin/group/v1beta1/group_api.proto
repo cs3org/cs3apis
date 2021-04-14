@@ -41,6 +41,8 @@ service GroupAPI {
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   // Add a user to a group.
   rpc AddUser(AddUserRequest) returns (AddUserResponse);
+  // Remove a user from a group.
+  rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse);
 }
 
 message CreateRequest {
@@ -95,6 +97,27 @@ message AddUserRequest {
 }
 
 message AddUserResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message RemoveUserRequest {
+  // REQUIRED.
+  // ID of the user to add to the group
+  cs3.identity.user.v1beta1.UserId userid = 1;
+  // REQUIRED.
+  // ID of the target group.
+  cs3.identity.group.v1beta1.GroupId groupid = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
+}
+
+message RemoveUserResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
