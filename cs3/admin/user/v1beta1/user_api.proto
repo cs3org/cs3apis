@@ -23,7 +23,7 @@ package cs3.admin.user.v1beta1;
 option csharp_namespace = "Cs3.Admin.User.V1Beta1";
 option go_package = "userv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "AdminApiProto";
+option java_outer_classname = "UserApiProto";
 option java_package = "com.cs3.admin.user.v1beta1";
 option objc_class_prefix = "CAU";
 option php_namespace = "Cs3\\Admin\\User\\V1Beta1";
