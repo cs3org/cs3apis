@@ -21,11 +21,11 @@ syntax = "proto3";
 package cs3.admin.group.v1beta1;
 
 option csharp_namespace = "Cs3.Admin.Group.V1Beta1";
-option go_package = "admingroupv1beta1";
+option go_package = "groupv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "AdminGroupApiProto";
+option java_outer_classname = "GroupApiProto";
 option java_package = "com.cs3.admin.group.v1beta1";
-option objc_class_prefix = "CIU";
+option objc_class_prefix = "CAG";
 option php_namespace = "Cs3\\Admin\\Group\\V1Beta1";
 
 import "cs3/identity/group/v1beta1/resources.proto";
@@ -33,16 +33,17 @@ import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
 
+// Provides a write only API for managing groups.
 service GroupAPI {
   // Create a group.
-  rpc Create(CreateGroupRequest) returns (CreateGroupResponse);
+  rpc Create(CreateRequest) returns (CreateResponse);
   // Delete a group.
-  rpc Delete(DeleteGroupRequest) returns (DeleteGroupResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
   // Add a user to a group.
   rpc AddUser(AddUserRequest) returns (AddUserResponse);
 }
 
-message CreateGroupRequest {
+message CreateRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -51,7 +52,7 @@ message CreateGroupRequest {
   cs3.identity.group.v1beta1.Group group = 3;
 }
 
-message CreateGroupResponse {
+message CreateResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -63,7 +64,7 @@ message CreateGroupResponse {
   cs3.identity.group.v1beta1.Group group = 3;
 }
 
-message DeleteGroupRequest {
+message DeleteRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -72,7 +73,7 @@ message DeleteGroupRequest {
   cs3.identity.group.v1beta1.GroupId groupid = 2;
 }
 
-message DeleteGroupResponse {
+message DeleteResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

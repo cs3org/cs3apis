@@ -21,25 +21,26 @@ syntax = "proto3";
 package cs3.admin.user.v1beta1;
 
 option csharp_namespace = "Cs3.Admin.User.V1Beta1";
-option go_package = "adminuserv1beta1";
+option go_package = "userv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "AdminUserApiProto";
+option java_outer_classname = "AdminApiProto";
 option java_package = "com.cs3.admin.user.v1beta1";
-option objc_class_prefix = "CIU";
+option objc_class_prefix = "CAU";
 option php_namespace = "Cs3\\Admin\\User\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
 
+// Provides a write only API for managing users.
 service UserAPI {
   // Create a user account.
-  rpc Create(CreateUserRequest) returns (CreateUserResponse);
+  rpc Create(CreateRequest) returns (CreateResponse);
   // Delete a user account.
-  rpc Delete(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 }
 
-message CreateUserRequest {
+message CreateRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -48,7 +49,7 @@ message CreateUserRequest {
   cs3.identity.user.v1beta1.User user = 3;
 }
 
-message CreateUserResponse {
+message CreateResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -60,7 +61,7 @@ message CreateUserResponse {
   cs3.identity.user.v1beta1.User user = 3;
 }
 
-message DeleteUserRequest {
+message DeleteRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -69,7 +70,7 @@ message DeleteUserRequest {
   cs3.identity.user.v1beta1.UserId userid = 2;
 }
 
-message DeleteUserResponse {
+message DeleteResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
