@@ -67,7 +67,7 @@ message DeleteRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The user to be deleted, given their ID.
-  cs3.identity.user.v1beta1.UserId userid = 2;
+  cs3.identity.user.v1beta1.UserId user_id = 2;
 }
 
 message DeleteResponse {
