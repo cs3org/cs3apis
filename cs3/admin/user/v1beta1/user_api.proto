@@ -35,12 +35,12 @@ import "cs3/types/v1beta1/types.proto";
 // Provides a write only API for managing users.
 service UserAPI {
   // Create a user account.
-  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
   // Delete a user account.
-  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 }
 
-message CreateRequest {
+message CreateUserRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -49,7 +49,7 @@ message CreateRequest {
   cs3.identity.user.v1beta1.User user = 2;
 }
 
-message CreateResponse {
+message CreateUserResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -61,7 +61,7 @@ message CreateResponse {
   cs3.identity.user.v1beta1.User user = 3;
 }
 
-message DeleteRequest {
+message DeleteUserRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -70,7 +70,7 @@ message DeleteRequest {
   cs3.identity.user.v1beta1.UserId user_id = 2;
 }
 
-message DeleteResponse {
+message DeleteUserResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

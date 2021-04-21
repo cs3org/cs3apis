@@ -36,16 +36,16 @@ import "cs3/types/v1beta1/types.proto";
 // Provides a write only API for managing groups.
 service GroupAPI {
   // Create a group.
-  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc CreateGroup(CreateGroupRequest) returns (CreateGroupResponse);
   // Delete a group.
-  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc DeleteGroup(DeleteGroupRequest) returns (DeleteGroupResponse);
   // Add a user to a group.
-  rpc AddUser(AddUserRequest) returns (AddUserResponse);
+  rpc AddUserToGroup(AddUserToGroupRequest) returns (AddUserToGroupResponse);
   // Remove a user from a group.
-  rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse);
+  rpc RemoveUserFromGroup(RemoveUserFromGroupRequest) returns (RemoveUserFromGroupResponse);
 }
 
-message CreateRequest {
+message CreateGroupRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -54,7 +54,7 @@ message CreateRequest {
   cs3.identity.group.v1beta1.Group group = 2;
 }
 
-message CreateResponse {
+message CreateGroupResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -66,7 +66,7 @@ message CreateResponse {
   cs3.identity.group.v1beta1.Group group = 3;
 }
 
-message DeleteRequest {
+message DeleteGroupRequest {
   // OPTIONAL.
   // Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -75,7 +75,7 @@ message DeleteRequest {
   cs3.identity.group.v1beta1.GroupId group_id = 2;
 }
 
-message DeleteResponse {
+message DeleteGroupResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -84,7 +84,7 @@ message DeleteResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message AddUserRequest {
+message AddUserToGroupRequest {
   // REQUIRED.
   // ID of the user to add to the group
   cs3.identity.user.v1beta1.UserId user_id = 1;
@@ -96,7 +96,7 @@ message AddUserRequest {
   cs3.types.v1beta1.Opaque opaque = 3;
 }
 
-message AddUserResponse {
+message AddUserToGroupResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -105,7 +105,7 @@ message AddUserResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message RemoveUserRequest {
+message RemoveUserFromGroupRequest {
   // REQUIRED.
   // ID of the user to add to the group
   cs3.identity.user.v1beta1.UserId user_id = 1;
@@ -117,7 +117,7 @@ message RemoveUserRequest {
   cs3.types.v1beta1.Opaque opaque = 3;
 }
 
-message RemoveUserResponse {
+message RemoveUserFromGroupResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
