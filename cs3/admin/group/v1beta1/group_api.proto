@@ -51,7 +51,7 @@ message CreateRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The information of group to be created.
-  cs3.identity.group.v1beta1.Group group = 3;
+  cs3.identity.group.v1beta1.Group group = 2;
 }
 
 message CreateResponse {
@@ -72,7 +72,7 @@ message DeleteRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The group to be deleted, given their ID.
-  cs3.identity.group.v1beta1.GroupId groupid = 2;
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
 }
 
 message DeleteResponse {
@@ -90,7 +90,7 @@ message AddUserRequest {
   cs3.identity.user.v1beta1.UserId userid = 1;
   // REQUIRED.
   // ID of the target group.
-  cs3.identity.group.v1beta1.GroupId groupid = 2;
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 3;
@@ -111,7 +111,7 @@ message RemoveUserRequest {
   cs3.identity.user.v1beta1.UserId userid = 1;
   // REQUIRED.
   // ID of the target group.
-  cs3.identity.group.v1beta1.GroupId groupid = 2;
+  cs3.identity.group.v1beta1.GroupId group_id = 2;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 3;

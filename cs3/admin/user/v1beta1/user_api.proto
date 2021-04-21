@@ -46,7 +46,7 @@ message CreateRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The information of user to be created.
-  cs3.identity.user.v1beta1.User user = 3;
+  cs3.identity.user.v1beta1.User user = 2;
 }
 
 message CreateResponse {
