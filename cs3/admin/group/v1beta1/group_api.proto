@@ -87,7 +87,7 @@ message DeleteResponse {
 message AddUserRequest {
   // REQUIRED.
   // ID of the user to add to the group
-  cs3.identity.user.v1beta1.UserId userid = 1;
+  cs3.identity.user.v1beta1.UserId user_id = 1;
   // REQUIRED.
   // ID of the target group.
   cs3.identity.group.v1beta1.GroupId group_id = 2;
@@ -108,7 +108,7 @@ message AddUserResponse {
 message RemoveUserRequest {
   // REQUIRED.
   // ID of the user to add to the group
-  cs3.identity.user.v1beta1.UserId userid = 1;
+  cs3.identity.user.v1beta1.UserId user_id = 1;
   // REQUIRED.
   // ID of the target group.
   cs3.identity.group.v1beta1.GroupId group_id = 2;
