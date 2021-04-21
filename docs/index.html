@@ -639,6 +639,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#cs3.identity.user.v1beta1.UserAccountType"><span class="badge">E</span>UserAccountType</a>
+                </li>
+              
               
               
             </ul>
@@ -5601,6 +5605,14 @@ the unique identifier for the user in the scope of
 the identity provider. </p></td>
                 </tr>
               
+                <tr>
+                  <td>account_type</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserAccountType">UserAccountType</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The type of user account. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5609,6 +5621,59 @@ the identity provider. </p></td>
         
       
 
+      
+        <h3 id="cs3.identity.user.v1beta1.UserAccountType">UserAccountType</h3>
+        <p>The type of user account.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_INVALID</td>
+                <td>0</td>
+                <td><p>The user account is invalid, for example, is missing primary attributes.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_PRIMARY</td>
+                <td>1</td>
+                <td><p>A primary user account.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_SECONDARY</td>
+                <td>2</td>
+                <td><p>A secondary account for users with multiple identities.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_SERVICE</td>
+                <td>3</td>
+                <td><p>An account catering to specific services.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_APPLICATION</td>
+                <td>4</td>
+                <td><p>An account to be used by specific applications.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_GUEST</td>
+                <td>5</td>
+                <td><p>Guest accounts which can be used by users not affiliated to the IDP.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_ACCOUNT_TYPE_FEDERATED</td>
+                <td>6</td>
+                <td><p>Federated accounts provided by external IDPs.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
