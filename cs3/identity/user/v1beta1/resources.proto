@@ -40,8 +40,8 @@ message UserId {
   // the identity provider.
   string opaque_id = 2;
   // REQUIRED.
-  // The type of user account.
-  UserAccountType account_type = 3;
+  // The type of user.
+  UserType type = 3;
 }
 
 // Represents a user of the system.
@@ -57,20 +57,20 @@ message User {
   int64 gid_number = 9;
 }
 
-// The type of user account.
-enum UserAccountType {
-  // The user account is invalid, for example, is missing primary attributes.
-  USER_ACCOUNT_TYPE_INVALID = 0;
-  // A primary user account.
-  USER_ACCOUNT_TYPE_PRIMARY = 1;
-  // A secondary account for users with multiple identities.
-  USER_ACCOUNT_TYPE_SECONDARY = 2;
-  // An account catering to specific services.
-  USER_ACCOUNT_TYPE_SERVICE = 3;
-  // An account to be used by specific applications.
-  USER_ACCOUNT_TYPE_APPLICATION = 4;
-  // Guest accounts which can be used by users not affiliated to the IDP.
-  USER_ACCOUNT_TYPE_GUEST = 5;
-  // Federated accounts provided by external IDPs.
-  USER_ACCOUNT_TYPE_FEDERATED = 6;
+// The type of user.
+enum UserType {
+  // The user is invalid, for example, is missing primary attributes.
+  USER_TYPE_INVALID = 0;
+  // A primary user.
+  USER_TYPE_PRIMARY = 1;
+  // A secondary user for cases with multiple identities.
+  USER_TYPE_SECONDARY = 2;
+  // A user catering to specific services.
+  USER_TYPE_SERVICE = 3;
+  // A user to be used by specific applications.
+  USER_TYPE_APPLICATION = 4;
+  // A guest user not affiliated to the IDP.
+  USER_TYPE_GUEST = 5;
+  // A federated user provided by external IDPs.
+  USER_TYPE_FEDERATED = 6;
 }
