@@ -411,6 +411,84 @@
         
           
           <li>
+            <a href="#cs3%2fadmin%2fgroup%2fv1beta1%2fgroup_api.proto">cs3/admin/group/v1beta1/group_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.AddUserRequest"><span class="badge">M</span>AddUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.AddUserResponse"><span class="badge">M</span>AddUserResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.CreateRequest"><span class="badge">M</span>CreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.CreateResponse"><span class="badge">M</span>CreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.DeleteRequest"><span class="badge">M</span>DeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.DeleteResponse"><span class="badge">M</span>DeleteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.RemoveUserRequest"><span class="badge">M</span>RemoveUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.RemoveUserResponse"><span class="badge">M</span>RemoveUserResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.admin.group.v1beta1.GroupAPI"><span class="badge">S</span>GroupAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fadmin%2fuser%2fv1beta1%2fuser_api.proto">cs3/admin/user/v1beta1/user_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.admin.user.v1beta1.CreateRequest"><span class="badge">M</span>CreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.user.v1beta1.CreateResponse"><span class="badge">M</span>CreateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.user.v1beta1.DeleteRequest"><span class="badge">M</span>DeleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.admin.user.v1beta1.DeleteResponse"><span class="badge">M</span>DeleteResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.admin.user.v1beta1.UserAPI"><span class="badge">S</span>UserAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fapp%2fprovider%2fv1beta1%2fprovider_api.proto">cs3/app/provider/v1beta1/provider_api.proto</a>
             <ul>
               
@@ -4147,6 +4225,528 @@ inclusive. </p></td>
       
 
       
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/admin/group/v1beta1/group_api.proto">cs3/admin/group/v1beta1/group_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.admin.group.v1beta1.AddUserRequest">AddUserRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>userid</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+ID of the user to add to the group </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groupid</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">cs3.identity.group.v1beta1.GroupId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+ID of the target group. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.AddUserResponse">AddUserResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.CreateRequest">CreateRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#cs3.identity.group.v1beta1.Group">cs3.identity.group.v1beta1.Group</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The information of group to be created. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.CreateResponse">CreateResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#cs3.identity.group.v1beta1.Group">cs3.identity.group.v1beta1.Group</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The group information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.DeleteRequest">DeleteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groupid</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">cs3.identity.group.v1beta1.GroupId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The group to be deleted, given their ID. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.DeleteResponse">DeleteResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.RemoveUserRequest">RemoveUserRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>userid</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+ID of the user to add to the group </p></td>
+                </tr>
+              
+                <tr>
+                  <td>groupid</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">cs3.identity.group.v1beta1.GroupId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+ID of the target group. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.group.v1beta1.RemoveUserResponse">RemoveUserResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.admin.group.v1beta1.GroupAPI">GroupAPI</h3>
+        <p>Provides a write only API for managing groups.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#cs3.admin.group.v1beta1.CreateRequest">CreateRequest</a></td>
+                <td><a href="#cs3.admin.group.v1beta1.CreateResponse">CreateResponse</a></td>
+                <td><p>Create a group.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#cs3.admin.group.v1beta1.DeleteRequest">DeleteRequest</a></td>
+                <td><a href="#cs3.admin.group.v1beta1.DeleteResponse">DeleteResponse</a></td>
+                <td><p>Delete a group.</p></td>
+              </tr>
+            
+              <tr>
+                <td>AddUser</td>
+                <td><a href="#cs3.admin.group.v1beta1.AddUserRequest">AddUserRequest</a></td>
+                <td><a href="#cs3.admin.group.v1beta1.AddUserResponse">AddUserResponse</a></td>
+                <td><p>Add a user to a group.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RemoveUser</td>
+                <td><a href="#cs3.admin.group.v1beta1.RemoveUserRequest">RemoveUserRequest</a></td>
+                <td><a href="#cs3.admin.group.v1beta1.RemoveUserResponse">RemoveUserResponse</a></td>
+                <td><p>Remove a user from a group.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/admin/user/v1beta1/user_api.proto">cs3/admin/user/v1beta1/user_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.admin.user.v1beta1.CreateRequest">CreateRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The information of user to be created. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.user.v1beta1.CreateResponse">CreateResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.user.v1beta1.DeleteRequest">DeleteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. Allow to send any arbitrary data a service might use that is outside the API boundaries </p></td>
+                </tr>
+              
+                <tr>
+                  <td>userid</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user to be deleted, given their ID. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.admin.user.v1beta1.DeleteResponse">DeleteResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.admin.user.v1beta1.UserAPI">UserAPI</h3>
+        <p>Provides a write only API for managing users.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Create</td>
+                <td><a href="#cs3.admin.user.v1beta1.CreateRequest">CreateRequest</a></td>
+                <td><a href="#cs3.admin.user.v1beta1.CreateResponse">CreateResponse</a></td>
+                <td><p>Create a user account.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Delete</td>
+                <td><a href="#cs3.admin.user.v1beta1.DeleteRequest">DeleteRequest</a></td>
+                <td><a href="#cs3.admin.user.v1beta1.DeleteResponse">DeleteResponse</a></td>
+                <td><p>Delete a user account.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
