@@ -500,9 +500,21 @@
                   <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"><span class="badge">M</span>OpenFileInAppProviderResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenInAppRequest"><span class="badge">M</span>OpenInAppRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenInAppResponse"><span class="badge">M</span>OpenInAppResponse</a>
+                </li>
+              
               
                 <li>
                   <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode"><span class="badge">E</span>OpenFileInAppProviderRequest.ViewMode</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode"><span class="badge">E</span>OpenInAppRequest.ViewMode</a>
                 </li>
               
               
@@ -4852,6 +4864,114 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
 
         
       
+        <h3 id="cs3.app.provider.v1beta1.OpenInAppRequest">OpenInAppRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_info</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceInfo">cs3.storage.provider.v1beta1.ResourceInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The resourceInfo to be opened. The gateway grpc message has a ref instead. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>view_mode</td>
+                  <td><a href="#cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>access_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The access token this application provider will use when contacting
+the storage provider to read and write.
+Service implementors MUST make sure that the access token only grants
+access to the requested resource.
+Service implementors should use a ResourceId rather than a filepath to grant access, as
+ResourceIds MUST NOT change when a resource is renamed.
+The access token MUST be short-lived.
+TODO(labkode): investigate token derivation techniques. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A reference to the application to be used to open the resource, should the
+default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
+If the targeted resource is a directory, this parameter is required and
+in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.provider.v1beta1.OpenInAppResponse">OpenInAppResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The url that user agents will render to clients.
+Usually the rendering happens by using HTML iframes or in separate browser tabs. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
         <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</h3>
@@ -4889,6 +5009,41 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
           </tbody>
         </table>
       
+        <h3 id="cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</h3>
+        <p>REQUIRED.</p><p>View mode.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VIEW_MODE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_VIEW_ONLY</td>
+                <td>1</td>
+                <td><p>The resource can be opened but not downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_ONLY</td>
+                <td>2</td>
+                <td><p>The resource can be downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_WRITE</td>
+                <td>3</td>
+                <td><p>The resource can be downloaded and updated.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
       
 
@@ -4905,6 +5060,14 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
                 <td>OpenFileInAppProvider</td>
                 <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</a></td>
                 <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</a></td>
+                <td><p>Returns the App provider URL (deprecated)
+MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OpenInApp</td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenInAppRequest">OpenInAppRequest</a></td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenInAppResponse">OpenInAppResponse</a></td>
                 <td><p>Returns the App provider URL
 MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
               </tr>
