@@ -73,4 +73,6 @@ enum UserType {
   USER_TYPE_GUEST = 5;
   // A federated user provided by external IDPs.
   USER_TYPE_FEDERATED = 6;
+  // A lightweight user account without access to various major functionalities.
+  USER_TYPE_LIGHTWEIGHT = 7;
 }
