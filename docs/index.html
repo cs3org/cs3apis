@@ -717,6 +717,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#cs3.identity.user.v1beta1.UserType"><span class="badge">E</span>UserType</a>
+                </li>
+              
               
               
             </ul>
@@ -6201,6 +6205,14 @@ the unique identifier for the user in the scope of
 the identity provider. </p></td>
                 </tr>
               
+                <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserType">UserType</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The type of user. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -6209,6 +6221,65 @@ the identity provider. </p></td>
         
       
 
+      
+        <h3 id="cs3.identity.user.v1beta1.UserType">UserType</h3>
+        <p>The type of user.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>USER_TYPE_INVALID</td>
+                <td>0</td>
+                <td><p>The user is invalid, for example, is missing primary attributes.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_PRIMARY</td>
+                <td>1</td>
+                <td><p>A primary user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_SECONDARY</td>
+                <td>2</td>
+                <td><p>A secondary user for cases with multiple identities.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_SERVICE</td>
+                <td>3</td>
+                <td><p>A user catering to specific services.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_APPLICATION</td>
+                <td>4</td>
+                <td><p>A user to be used by specific applications.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_GUEST</td>
+                <td>5</td>
+                <td><p>A guest user not affiliated to the IDP.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_FEDERATED</td>
+                <td>6</td>
+                <td><p>A federated user provided by external IDPs.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_LIGHTWEIGHT</td>
+                <td>7</td>
+                <td><p>A lightweight user account without access to various major functionalities.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
