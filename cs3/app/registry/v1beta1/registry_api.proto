@@ -82,8 +82,24 @@ message ListAppProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // TODO(labkode): maybe add some filter?
-
+  // REQUIRED.
+  // Represents a filter to apply to the request.
+  message Filter {
+    // The filter to apply.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_MIME_TYPE = 1;
+    }
+    // REQUIRED.
+    Type type = 2;
+    oneof term {
+      // if present, the response MUST list all known app providers for the given mimetype.
+      string mime_type = 3;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
 }
 
 message ListAppProvidersResponse {
