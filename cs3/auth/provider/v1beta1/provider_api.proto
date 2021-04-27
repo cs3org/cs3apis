@@ -28,6 +28,7 @@ option java_package = "com.cs3.auth.provider.v1beta1";
 option objc_class_prefix = "CAP";
 option php_namespace = "Cs3\\Auth\\Provider\\V1Beta1";
 
+import "cs3/auth/provider/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
@@ -61,4 +62,8 @@ message AuthenticateRequest {
 message AuthenticateResponse {
   cs3.rpc.v1beta1.Status status = 1;
   cs3.identity.user.v1beta1.User user = 2;
+  // REQUIRED.
+  // The scope of the token to be issued.
+  // This would be a list of resources with corresponding role-based access scope.
+  map<string, Scope> token_scope = 3;
 }
