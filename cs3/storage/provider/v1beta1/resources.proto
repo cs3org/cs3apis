@@ -216,6 +216,9 @@ message ResourceId {
   // uniquely identity the resource in the internal
   // implementation of the service.
   string opaque_id = 2;
+  // OPTIONAL.
+  // A path relative to the opaque_id.
+  string path = 3;
 }
 
 // The representation of permissions attached to a resource.
