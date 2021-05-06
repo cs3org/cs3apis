@@ -134,6 +134,9 @@ message UpdateShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The updated share.
+  Share share = 3;
 }
 
 message ListSharesRequest {
@@ -261,6 +264,9 @@ message UpdateReceivedShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The updated share.
+  ReceivedShare share = 3;
 }
 
 message GetReceivedShareRequest {
