@@ -593,12 +593,35 @@
                   <a href="#cs3.auth.provider.v1beta1.AuthenticateResponse"><span class="badge">M</span>AuthenticateResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.auth.provider.v1beta1.AuthenticateResponse.TokenScopeEntry"><span class="badge">M</span>AuthenticateResponse.TokenScopeEntry</a>
+                </li>
+              
               
               
               
                 <li>
                   <a href="#cs3.auth.provider.v1beta1.ProviderAPI"><span class="badge">S</span>ProviderAPI</a>
                 </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fauth%2fprovider%2fv1beta1%2fresources.proto">cs3/auth/provider/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.auth.provider.v1beta1.Scope"><span class="badge">M</span>Scope</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#cs3.auth.provider.v1beta1.Role"><span class="badge">E</span>Role</a>
+                </li>
+              
+              
               
             </ul>
           </li>
@@ -5467,6 +5490,46 @@ by humans. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>token_scope</td>
+                  <td><a href="#cs3.auth.provider.v1beta1.AuthenticateResponse.TokenScopeEntry">AuthenticateResponse.TokenScopeEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The scope of the token to be issued.
+This would be a list of resources with corresponding role-based access scope. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.provider.v1beta1.AuthenticateResponse.TokenScopeEntry">AuthenticateResponse.TokenScopeEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#cs3.auth.provider.v1beta1.Scope">Scope</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5499,6 +5562,113 @@ by humans. </p></td>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/auth/provider/v1beta1/resources.proto">cs3/auth/provider/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.auth.provider.v1beta1.Scope">Scope</h3>
+        <p>Scope defines role-based permissions for various resources.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>resource</td>
+                  <td><a href="#cs3.types.v1beta1.OpaqueEntry">cs3.types.v1beta1.OpaqueEntry</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The resource embedded in the request of a particular method. It depends on
+the method, hence is left as opaque. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#cs3.auth.provider.v1beta1.Role">Role</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The role associated with the resource. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="cs3.auth.provider.v1beta1.Role">Role</h3>
+        <p>The role associated with the scope.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ROLE_INVALID</td>
+                <td>0</td>
+                <td><p>Used for invalid roles</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_OWNER</td>
+                <td>1</td>
+                <td><p>Grants owner permissions on a resource</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_LEGACY</td>
+                <td>2</td>
+                <td><p>Provides backwards compatibility</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_VIEWER</td>
+                <td>3</td>
+                <td><p>Grants non-editor role on a resource</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_EDITOR</td>
+                <td>4</td>
+                <td><p>Grants editor permission on a resource, including folders</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_FILE_EDITOR</td>
+                <td>5</td>
+                <td><p>Grants editor permission on a single file</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_COOWNER</td>
+                <td>6</td>
+                <td><p>Grants co-owner permissions on a resource</p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_UPLOADER</td>
+                <td>7</td>
+                <td><p>Role with only write permission can use InitiateFileUpload, nothing else</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
     
       
       <div class="file-heading">
