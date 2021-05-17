@@ -48,7 +48,7 @@ import "cs3/types/v1beta1/types.proto";
 
 // Public share are relationships between a resource owner
 // (usually the authenticated user) who grants permissions to a recipient (grantee)
-// on a specified resource (resource_id). UserShares represents both user and groups.
+// on a specified resource (reference). UserShares represents both user and groups.
 // TODO(labkode): do we need to have  resource_type stored on the share?
 // This is not needed if when getting the shares a stat operation is launched against the
 // the storage provider.
@@ -61,8 +61,8 @@ message PublicShare {
   // to the public share.
   string token = 2;
   // REQUIRED.
-  // Unique identifier of the shared resource.
-  storage.provider.v1beta1.ResourceId resource_id = 3;
+  // Unique identifier of the shared resource (path must be empty).
+  storage.provider.v1beta1.Reference ref = 3;
   // REQUIRED.
   // Permissions for the grantee to use
   // the resource.

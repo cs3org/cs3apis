@@ -44,7 +44,7 @@ message ResourceInfo {
   ResourceType type = 2;
   // REQUIRED.
   // Opaque unique identifier of the resource.
-  ResourceId id = 3;
+  Reference id = 3;
   // REQUIRED.
   // The data checksum for the file resource.
   // For all other resources, the checksum is unset.
@@ -189,33 +189,27 @@ message ResourceChecksumPriority {
   uint32 priority = 2;
 }
 
-// The mechanism to identify a resource
-// in the storage provider namespace. Note that the path OR the resourceId must be specifed, not both.
+// The mechanism to identify a resource in the CS3 namespace.
+// It can represent path based references as well as combined references:
+// The storage registry uses the storage space id to determine the responsible storage provider. When the storage space id is not available it will use the path.
+// In a URL the different components can be represented in a string using the following layout:
+// <space_id>!<root_id>:<path>
+// the space_id can be composed of a storage provider id and an opaque id which is seperated by $, the full layout then becoming:
+// <storage_provider_id>$<opaque_id>!<root_id>:<path>
 message Reference {
-  // REQUIRED.
-  // One of the specifications MUST be specified.
-  oneof spec {
-    // The path to the resource.
-    // MUST start with the slash character (/).
-    string path = 1;
-    // The id for the resource.
-    // MUST NOT start with the slash character (/).
-    ResourceId id = 2;
-  }
-}
-
-// A resource id identifies uniquely a
-// resource in the storage provider namespace.
-// A ResourceId MUST be unique in the storage provider.
-message ResourceId {
-  // REQUIRED.
-  // The storage id of the storage provider.
-  string storage_id = 1;
-  // REQUIRED.
-  // The internal id used by service implementor to
+  // OPTIONAL.
+  // The id of the storage space. Used by the storage registry to determine the responsible storage provider.
+  // For simple routing purposes the space_id can consist of a storage_provider_id and an opaque_id.
+  string space_id = 1;
+  // OPTIONAL.
+  // The id used by service implementor to
   // uniquely identity the resource in the internal
   // implementation of the service.
-  string opaque_id = 2;
+  string root_id = 2;
+  // OPTIONAL.
+  // When starting with '/' represents an absolute path. In this case the space id and the root_id must be empty.
+  // When not starting with `/` represents a path relative to the space_id and root_id. When root_id is empty the path is considered relative to the root of the storage space.
+  string path = 3;
 }
 
 // The representation of permissions attached to a resource.
@@ -379,7 +373,7 @@ message StorageSpace {
   cs3.identity.user.v1beta1.User owner = 3;
   // OPTIONAL.
   // The root resource of the storage space.
-  ResourceId root = 4;
+  Reference root = 4;
   // OPTIONAL.
   string name = 5;
   // OPTIONAL.
