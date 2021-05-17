@@ -64,7 +64,7 @@ service ProviderAPI {
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   // Returns the path reference for
-  // the provided resource id reference.
+  // the provided resource reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc GetPath(GetPathRequest) returns (GetPathResponse);
   // Returns the quota available under the provided
@@ -236,8 +236,8 @@ message GetPathRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The resource id of the resource.
-  ResourceId resource_id = 2;
+  // Unique identifier of the shared resource (path must be empty).
+  Reference ref = 2;
 }
 
 message GetPathResponse {

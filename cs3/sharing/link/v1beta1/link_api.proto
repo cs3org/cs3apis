@@ -159,13 +159,14 @@ message ListPublicSharesRequest {
     // REQUIRED.
     enum Type {
       TYPE_INVALID = 0;
-      TYPE_RESOURCE_ID = 1;
+      TYPE_REFERENCE = 1;
       TYPE_OWNER = 2;
       TYPE_CREATOR = 3;
     }
     Type type = 2;
     oneof term {
-      storage.provider.v1beta1.ResourceId resource_id = 3;
+      // Unique identifier of the shared resource (path must be empty).
+      storage.provider.v1beta1.Reference ref = 3;
       cs3.identity.user.v1beta1.UserId owner = 4;
       cs3.identity.user.v1beta1.UserId creator = 5;
     }
