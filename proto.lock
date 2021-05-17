@@ -837,6 +837,16 @@
                 "name": "user",
                 "type": "cs3.identity.user.v1beta1.User"
               }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 3,
+                  "name": "token_scope",
+                  "type": "Scope"
+                }
+              }
             ]
           }
         ],
@@ -853,6 +863,9 @@
           }
         ],
         "imports": [
+          {
+            "path": "cs3/auth/provider/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
@@ -882,6 +895,104 @@
           {
             "name": "java_outer_classname",
             "value": "ProviderApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.auth.provider.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAP"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Auth\\\\Provider\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:auth:/:provider:/:v1beta1:/:resources.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Role",
+            "enum_fields": [
+              {
+                "name": "ROLE_INVALID"
+              },
+              {
+                "name": "ROLE_OWNER",
+                "integer": 1
+              },
+              {
+                "name": "ROLE_LEGACY",
+                "integer": 2
+              },
+              {
+                "name": "ROLE_VIEWER",
+                "integer": 3
+              },
+              {
+                "name": "ROLE_EDITOR",
+                "integer": 4
+              },
+              {
+                "name": "ROLE_FILE_EDITOR",
+                "integer": 5
+              },
+              {
+                "name": "ROLE_COOWNER",
+                "integer": 6
+              },
+              {
+                "name": "ROLE_UPLOADER",
+                "integer": 7
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "Scope",
+            "fields": [
+              {
+                "id": 1,
+                "name": "resource",
+                "type": "cs3.types.v1beta1.OpaqueEntry"
+              },
+              {
+                "id": 2,
+                "name": "role",
+                "type": "Role"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.auth.provider.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Auth.Provider.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "providerv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -3911,7 +4022,7 @@
                 "integer": 1
               },
               {
-                "name": "TYPE_RESOURCE_ID",
+                "name": "TYPE_REFERENCE",
                 "integer": 2
               },
               {
@@ -4015,6 +4126,11 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share"
               }
             ]
           },
@@ -4044,8 +4160,8 @@
                   },
                   {
                     "id": 3,
-                    "name": "resource_id",
-                    "type": "storage.provider.v1beta1.ResourceId"
+                    "name": "ref",
+                    "type": "storage.provider.v1beta1.Reference"
                   },
                   {
                     "id": 4,
@@ -4227,6 +4343,11 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "ReceivedShare"
               }
             ]
           },
@@ -4401,8 +4522,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 3,
@@ -4471,8 +4592,8 @@
               },
               {
                 "id": 3,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 4,
@@ -4603,7 +4724,7 @@
                 "name": "TYPE_INVALID"
               },
               {
-                "name": "TYPE_RESOURCE_ID",
+                "name": "TYPE_REFERENCE",
                 "integer": 1
               },
               {
@@ -4751,8 +4872,8 @@
                   },
                   {
                     "id": 3,
-                    "name": "resource_id",
-                    "type": "storage.provider.v1beta1.ResourceId"
+                    "name": "ref",
+                    "type": "storage.provider.v1beta1.Reference"
                   },
                   {
                     "id": 4,
@@ -5024,8 +5145,8 @@
               },
               {
                 "id": 3,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 4,
@@ -5221,7 +5342,7 @@
                 "integer": 1
               },
               {
-                "name": "TYPE_RESOURCE_ID",
+                "name": "TYPE_REFERENCE",
                 "integer": 2
               },
               {
@@ -5254,8 +5375,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 3,
@@ -5367,8 +5488,8 @@
                   },
                   {
                     "id": 3,
-                    "name": "resource_id",
-                    "type": "storage.provider.v1beta1.ResourceId"
+                    "name": "ref",
+                    "type": "storage.provider.v1beta1.Reference"
                   },
                   {
                     "id": 4,
@@ -5743,8 +5864,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 3,
@@ -5828,8 +5949,8 @@
               },
               {
                 "id": 3,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
               },
               {
                 "id": 4,
@@ -6090,8 +6211,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "ResourceId"
+                "name": "ref",
+                "type": "Reference"
               }
             ]
           },
@@ -7363,7 +7484,7 @@
               {
                 "id": 3,
                 "name": "id",
-                "type": "ResourceId"
+                "type": "Reference"
               },
               {
                 "id": 4,
@@ -7480,27 +7601,17 @@
             "fields": [
               {
                 "id": 1,
+                "name": "space_id",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "root_id",
+                "type": "string"
+              },
+              {
+                "id": 3,
                 "name": "path",
-                "type": "string"
-              },
-              {
-                "id": 2,
-                "name": "id",
-                "type": "ResourceId"
-              }
-            ]
-          },
-          {
-            "name": "ResourceId",
-            "fields": [
-              {
-                "id": 1,
-                "name": "storage_id",
-                "type": "string"
-              },
-              {
-                "id": 2,
-                "name": "opaque_id",
                 "type": "string"
               }
             ]
@@ -7782,7 +7893,7 @@
               {
                 "id": 4,
                 "name": "root",
-                "type": "ResourceId"
+                "type": "Reference"
               },
               {
                 "id": 5,
