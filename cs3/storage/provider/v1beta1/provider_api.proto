@@ -169,9 +169,8 @@ message GetHomeResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The path to the home in a storage provider.
-  // For example /eos/user/h/hugo in the storage provider with root path /eos/user/.
-  string path = 3;
+  // The reference to the home in a storage provider.
+  Reference ref = 3;
 }
 
 message AddGrantRequest {
@@ -249,7 +248,7 @@ message GetPathResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
   // The path of the resource.
-  string path = 3;
+  Reference ref = 3;
 }
 
 message GetQuotaRequest {
@@ -554,7 +553,7 @@ message RestoreRecycleItemRequest {
   // the original.
   // If empty, service implementors MUST restore
   // to original location if possible.
-  string restore_path = 4;
+  Reference restore_ref = 4;
 }
 
 message RestoreRecycleItemResponse {
@@ -639,7 +638,7 @@ message CreateSymlinkRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The location where to store the symlink.
-  string path = 2;
+  Reference ref = 2;
   // REQUIRED.
   // The link target can hold arbitrary text; if later resolved,
   // a relative link is interpreted in relation to its parent directory
@@ -661,7 +660,7 @@ message CreateReferenceRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The location where to store the reference.
-  string path = 2;
+  Reference ref = 2;
   // REQUIRED.
   // The reference resource by RFC3986.
   string target_uri = 3;
