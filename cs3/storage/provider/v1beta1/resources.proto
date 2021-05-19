@@ -64,9 +64,8 @@ message ResourceInfo {
   // For reference types this is NOT the mtime of the target.
   cs3.types.v1beta1.Timestamp mtime = 7;
   // REQUIRED.
-  // The path for the resource.
-  // It MUST start with the slash character (/).
-  string path = 8;
+  // The reference for the resource.
+  Reference ref = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
   ResourcePermissions permission_set = 9;
@@ -191,24 +190,21 @@ message ResourceChecksumPriority {
 
 // The mechanism to identify a resource in the CS3 namespace.
 // It can represent path based references as well as combined references:
-// The storage registry uses the storage space id to determine the responsible storage provider. When the storage space id is not available it will use the path.
+// The storage registry uses the storage id to determine the responsible storage provider. When the storage space id is not available it will use the path.
 // In a URL the different components can be represented in a string using the following layout:
-// <space_id>!<root_id>:<path>
-// the space_id can be composed of a storage provider id and an opaque id which is seperated by $, the full layout then becoming:
-// <storage_provider_id>$<opaque_id>!<root_id>:<path>
+// <storage_id>!<node_id>:<path>
 message Reference {
   // OPTIONAL.
-  // The id of the storage space. Used by the storage registry to determine the responsible storage provider.
-  // For simple routing purposes the space_id can consist of a storage_provider_id and an opaque_id.
-  string space_id = 1;
+  // The id of the storage. Used by the storage registry to determine the responsible storage provider.
+  string storage_id = 1;
   // OPTIONAL.
-  // The id used by service implementor to
-  // uniquely identity the resource in the internal
+  // The node id used by a storage provider to uniquely identity a resource in the internal
   // implementation of the service.
-  string root_id = 2;
+  string node_id = 2;
   // OPTIONAL.
-  // When starting with '/' represents an absolute path. In this case the space id and the root_id must be empty.
-  // When not starting with `/` represents a path relative to the space_id and root_id. When root_id is empty the path is considered relative to the root of the storage space.
+  // When starting with `/` the reference represents an absolute path. In this case the storage_id and the root_id must be empty.
+  // When not starting with `/` represents a path relative to the node_id.
+  // When node_id is empty the path is considered relative to the root of the storage.
   string path = 3;
 }
 
@@ -307,9 +303,8 @@ message RecycleItem {
   // The key to identify the deleted resource.
   string key = 3;
   // REQUIRED.
-  // The original path of the deleted resource.
-  // MUST start with the slash character (/).
-  string path = 4;
+  // The original reference of the deleted resource.
+  Reference ref = 4;
   // OPTIONAL.
   // The size of the deleted resource.
   uint64 size = 5;
