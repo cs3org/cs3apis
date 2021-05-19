@@ -30,6 +30,7 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 
 import "cs3/app/provider/v1beta1/provider_api.proto";
 import "cs3/app/registry/v1beta1/registry_api.proto";
+import "cs3/auth/provider/v1beta1/resources.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/group/v1beta1/group_api.proto";
@@ -72,6 +73,9 @@ service GatewayAPI {
 
   // Authenticates a user.
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+  // GenerateAppToken creates a token with specified scope to be used by
+  // third-party applications.
+  rpc GenerateAppToken(GenerateAppTokenRequest) returns (GenerateAppTokenResponse);
   // WhoAmI returns the information for a user.
   rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
   // *****************************************************************/
@@ -379,6 +383,30 @@ message AuthenticateRequest {
 }
 
 message AuthenticateResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The access token.
+  string token = 3;
+  // REQUIRED.
+  // The authenticated user.
+  cs3.identity.user.v1beta1.User user = 4;
+}
+
+message GenerateAppTokenRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // The scope of the token to be issued.
+  // This would be a list of resources with corresponding role-based access scope.
+  map<string, cs3.auth.provider.v1beta1.Scope> token_scope = 2;
+}
+
+message GenerateAppTokenResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

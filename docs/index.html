@@ -187,6 +187,18 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.gateway.v1beta1.GenerateAppTokenRequest"><span class="badge">M</span>GenerateAppTokenRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gateway.v1beta1.GenerateAppTokenRequest.TokenScopeEntry"><span class="badge">M</span>GenerateAppTokenRequest.TokenScopeEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gateway.v1beta1.GenerateAppTokenResponse"><span class="badge">M</span>GenerateAppTokenResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.gateway.v1beta1.GetQuotaRequest"><span class="badge">M</span>GetQuotaRequest</a>
                 </li>
               
@@ -1915,6 +1927,119 @@ The access token. </p></td>
                   <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
                   <td></td>
                   <td><p>REQUIRED.
+The authenticated user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gateway.v1beta1.GenerateAppTokenRequest">GenerateAppTokenRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token_scope</td>
+                  <td><a href="#cs3.gateway.v1beta1.GenerateAppTokenRequest.TokenScopeEntry">GenerateAppTokenRequest.TokenScopeEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>The scope of the token to be issued.
+This would be a list of resources with corresponding role-based access scope. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gateway.v1beta1.GenerateAppTokenRequest.TokenScopeEntry">GenerateAppTokenRequest.TokenScopeEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#cs3.auth.provider.v1beta1.Scope">cs3.auth.provider.v1beta1.Scope</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gateway.v1beta1.GenerateAppTokenResponse">GenerateAppTokenResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The access token. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
 The user. </p></td>
                 </tr>
               
@@ -2390,6 +2515,14 @@ The user information. </p></td>
                 <td><a href="#cs3.gateway.v1beta1.AuthenticateRequest">AuthenticateRequest</a></td>
                 <td><a href="#cs3.gateway.v1beta1.AuthenticateResponse">AuthenticateResponse</a></td>
                 <td><p>Authenticates a user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GenerateAppToken</td>
+                <td><a href="#cs3.gateway.v1beta1.GenerateAppTokenRequest">GenerateAppTokenRequest</a></td>
+                <td><a href="#cs3.gateway.v1beta1.GenerateAppTokenResponse">GenerateAppTokenResponse</a></td>
+                <td><p>GenerateAppToken creates a token with specified scope to be used by
+third-party applications.</p></td>
               </tr>
             
               <tr>
@@ -5442,21 +5575,27 @@ by humans. </p></td>
                   <td>opaque</td>
                   <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
                 <tr>
                   <td>client_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+The id of the client.
+For basic authentication with username and password
+both client_id and client_secret are expected to be filled.
+However, for example, for OIDC only a token is necessary. </p></td>
                 </tr>
               
                 <tr>
                   <td>client_secret</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+The secret of the client. </p></td>
                 </tr>
               
             </tbody>
@@ -5480,14 +5619,16 @@ by humans. </p></td>
                   <td>status</td>
                   <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
                 </tr>
               
                 <tr>
                   <td>user</td>
                   <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The authenticated user. </p></td>
                 </tr>
               
                 <tr>

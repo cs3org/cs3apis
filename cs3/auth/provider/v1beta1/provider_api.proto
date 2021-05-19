@@ -54,13 +54,26 @@ service ProviderAPI {
 }
 
 message AuthenticateRequest {
+  // OPTIONAL.
+  // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The id of the client.
+  // For basic authentication with username and password
+  // both client_id and client_secret are expected to be filled.
+  // However, for example, for OIDC only a token is necessary.
   string client_id = 2;
+  // OPTIONAL.
+  // The secret of the client.
   string client_secret = 3;
 }
 
 message AuthenticateResponse {
+  // REQUIRED.
+  // The response status.
   cs3.rpc.v1beta1.Status status = 1;
+  // REQUIRED.
+  // The authenticated user.
   cs3.identity.user.v1beta1.User user = 2;
   // REQUIRED.
   // The scope of the token to be issued.
