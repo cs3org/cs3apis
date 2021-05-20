@@ -6101,8 +6101,8 @@
               },
               {
                 "id": 3,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               }
             ]
           },
@@ -6231,8 +6231,8 @@
               },
               {
                 "id": 3,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               }
             ]
           },
@@ -6699,8 +6699,8 @@
               },
               {
                 "id": 4,
-                "name": "restore_path",
-                "type": "string"
+                "name": "restore_ref",
+                "type": "Reference"
               }
             ]
           },
@@ -6840,8 +6840,8 @@
               },
               {
                 "id": 2,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 3,
@@ -6875,8 +6875,8 @@
               },
               {
                 "id": 2,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 3,
@@ -7498,8 +7498,8 @@
               },
               {
                 "id": 8,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 9,
@@ -7591,12 +7591,12 @@
             "fields": [
               {
                 "id": 1,
-                "name": "space_id",
+                "name": "storage_id",
                 "type": "string"
               },
               {
                 "id": 2,
-                "name": "root_id",
+                "name": "node_id",
                 "type": "string"
               },
               {
@@ -7791,8 +7791,8 @@
               },
               {
                 "id": 4,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 5,
