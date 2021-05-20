@@ -76,7 +76,7 @@ message GenerateAppPasswordRequest {
   string label = 3;
   // OPTIONAL.
   // The time when the token will expire.
-  cs3.types.v1beta1.Timestamp expiration = 5;
+  cs3.types.v1beta1.Timestamp expiration = 4;
 }
 
 message GenerateAppPasswordResponse {
