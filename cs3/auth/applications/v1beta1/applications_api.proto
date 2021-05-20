@@ -1,0 +1,148 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.auth.applications.v1beta1;
+
+option csharp_namespace = "Cs3.Auth.Applications.V1Beta1";
+option go_package = "applicationsv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ApplicationsApiProto";
+option java_package = "com.cs3.auth.applications.v1beta1";
+option objc_class_prefix = "CAA";
+option php_namespace = "Cs3\\Auth\\Applications\\V1Beta1";
+
+import "cs3/auth/applications/v1beta1/resources.proto";
+import "cs3/auth/provider/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/types/v1beta1/types.proto";
+
+// Auth Applications API
+//
+// The Auth Applications API is meant to generate and manage authentication
+// tokens with specified scopes to be used in third-party applications on behalf
+// of the user.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service ApplicationsAPI {
+  // GenerateAppPassword creates a password with specified scope to be used by
+  // third-party applications.
+  rpc GenerateAppPassword(GenerateAppPasswordRequest) returns (GenerateAppPasswordResponse);
+  // ListAppPasswords lists the application passwords created by a user.
+  rpc ListAppPasswords(ListAppPasswordsRequest) returns (ListAppPasswordsResponse);
+  // InvalidateAppPassword invalidates a generated password.
+  rpc InvalidateAppPassword(InvalidateAppPasswordRequest) returns (InvalidateAppPasswordResponse);
+  // GetAppPassword retrieves the password information by the combination of username and password.
+  rpc GetAppPassword(GetAppPasswordRequest) returns (GetAppPasswordResponse);
+}
+
+message GenerateAppPasswordRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The scope of the token to be issued.
+  // This would be a list of resources with corresponding role-based access scope.
+  map<string, cs3.auth.provider.v1beta1.Scope> token_scope = 2;
+  // OPTIONAL.
+  // A label to be associated with the password.
+  string label = 3;
+}
+
+message GenerateAppPasswordResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The generated access password.
+  AppPassword app_password = 3;
+}
+
+message ListAppPasswordsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message ListAppPasswordsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The generated access password.
+  repeated AppPassword app_passwords = 3;
+}
+
+message InvalidateAppPasswordRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The password which has to be invalidated.
+  string password = 2;
+}
+
+message InvalidateAppPasswordResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetAppPasswordRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The username of the user who created the app password.
+  string username = 2;
+  // REQUIRED.
+  // The password which has to be retrieved.
+  string password = 3;
+}
+
+message GetAppPasswordResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The generated access password.
+  AppPassword app_password = 3;
+}
