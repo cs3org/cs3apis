@@ -51,4 +51,10 @@ message AppPassword {
   // OPTIONAL.
   // The time when the token will expire.
   cs3.types.v1beta1.Timestamp expiration = 5;
+  // REQUIRED.
+  // The creation time of the password.
+  cs3.types.v1beta1.Timestamp ctime = 6;
+  // REQUIRED.
+  // The last time the password was used.
+  cs3.types.v1beta1.Timestamp utime = 7;
 }
