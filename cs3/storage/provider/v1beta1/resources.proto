@@ -189,17 +189,17 @@ message ResourceChecksumPriority {
 }
 
 // The mechanism to identify a resource in the CS3 namespace.
-// It can represent path based references as well as combined references:
-// The storage registry uses the storage id to determine the responsible storage provider. When the storage space id is not available it will use the path.
+// It can represent path based, id based and combined references:
+// The storage registry uses the storage_id to determine the responsible storage provider.
+// When the storage_id is not available it will use the path.
 // In a URL the different components can be represented in a string using the following layout:
 // <storage_id>!<node_id>:<path>
 message Reference {
   // OPTIONAL.
-  // The id of the storage. Used by the storage registry to determine the responsible storage provider.
+  // The logical id of a storage. Used by the storage registry to determine the responsible storage provider.
   string storage_id = 1;
   // OPTIONAL.
-  // The node id used by a storage provider to uniquely identity a resource in the internal
-  // implementation of the service.
+  // The logical node id used by a storage provider to uniquely identify a resource in a storage.
   string node_id = 2;
   // OPTIONAL.
   // When starting with `/` the reference represents an absolute path. In this case the storage_id and the node_id must be empty.
