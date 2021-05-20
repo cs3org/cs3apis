@@ -202,7 +202,7 @@ message Reference {
   // implementation of the service.
   string node_id = 2;
   // OPTIONAL.
-  // When starting with `/` the reference represents an absolute path. In this case the storage_id and the root_id must be empty.
+  // When starting with `/` the reference represents an absolute path. In this case the storage_id and the node_id must be empty.
   // When not starting with `/` represents a path relative to the node_id.
   // When node_id is empty the path is considered relative to the root of the storage.
   string path = 3;
