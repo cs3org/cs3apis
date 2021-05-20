@@ -30,6 +30,7 @@ option php_namespace = "Cs3\\Auth\\Applications\\V1Beta1";
 
 import "cs3/auth/applications/v1beta1/resources.proto";
 import "cs3/auth/provider/v1beta1/resources.proto";
+import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -128,8 +129,8 @@ message GetAppPasswordRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The username of the user who created the app password.
-  string username = 2;
+  // The user who created the app password.
+  cs3.identity.user.v1beta1.UserId user = 2;
   // REQUIRED.
   // The password which has to be retrieved.
   string password = 3;
