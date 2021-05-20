@@ -15547,7 +15547,7 @@ in Unix Epoch timestamp in seconds. </p></td>
         
       
         <h3 id="cs3.storage.provider.v1beta1.Reference">Reference</h3>
-        <p>The mechanism to identify a resource in the CS3 namespace.</p><p>It can represent path based references as well as combined references:</p><p>The storage registry uses the storage id to determine the responsible storage provider. When the storage space id is not available it will use the path.</p><p>In a URL the different components can be represented in a string using the following layout:</p><p><storage_id>!<node_id>:<path></p>
+        <p>The mechanism to identify a resource in the CS3 namespace.</p><p>It can represent path based, id based and combined references:</p><p>The storage registry uses the storage_id to determine the responsible storage provider.</p><p>When the storage_id is not available it will use the path.</p><p>In a URL the different components can be represented in a string using the following layout:</p><p><storage_id>!<node_id>:<path></p>
 
         
           <table class="field-table">
@@ -15561,7 +15561,7 @@ in Unix Epoch timestamp in seconds. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The id of the storage. Used by the storage registry to determine the responsible storage provider. </p></td>
+The logical id of a storage. Used by the storage registry to determine the responsible storage provider. </p></td>
                 </tr>
               
                 <tr>
@@ -15569,8 +15569,7 @@ The id of the storage. Used by the storage registry to determine the responsible
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The node id used by a storage provider to uniquely identity a resource in the internal
-implementation of the service. </p></td>
+The logical node id used by a storage provider to uniquely identify a resource in a storage. </p></td>
                 </tr>
               
                 <tr>
