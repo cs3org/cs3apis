@@ -12710,8 +12710,8 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The location where to store the reference. </p></td>
@@ -12879,8 +12879,8 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The location where to store the symlink. </p></td>
@@ -13118,12 +13118,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The path to the home in a storage provider.
-For example /eos/user/h/hugo in the storage provider with root path /eos/user/. </p></td>
+The reference to the home in a storage provider. </p></td>
                 </tr>
               
             </tbody>
@@ -13193,8 +13192,8 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The path of the resource. </p></td>
@@ -14378,8 +14377,8 @@ The key for the recycle item to be restored. </p></td>
                 </tr>
               
                 <tr>
-                  <td>restore_path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>restore_ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
 An optional restore path for the deleted resource.
@@ -15538,12 +15537,11 @@ The key to identify the deleted resource. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The original path of the deleted resource.
-MUST start with the slash character (/). </p></td>
+The original reference of the deleted resource. </p></td>
                 </tr>
               
                 <tr>
@@ -15571,7 +15569,7 @@ in Unix Epoch timestamp in seconds. </p></td>
         
       
         <h3 id="cs3.storage.provider.v1beta1.Reference">Reference</h3>
-        <p>The mechanism to identify a resource in the CS3 namespace.</p><p>It can represent path based references as well as combined references:</p><p>The storage registry uses the storage space id to determine the responsible storage provider. When the storage space id is not available it will use the path.</p><p>In a URL the different components can be represented in a string using the following layout:</p><p><space_id>!<root_id>:<path></p><p>the space_id can be composed of a storage provider id and an opaque id which is seperated by $, the full layout then becoming:</p><p><storage_provider_id>$<opaque_id>!<root_id>:<path></p>
+        <p>The mechanism to identify a resource in the CS3 namespace.</p><p>It can represent path based references as well as combined references:</p><p>The storage registry uses the storage id to determine the responsible storage provider. When the storage space id is not available it will use the path.</p><p>In a URL the different components can be represented in a string using the following layout:</p><p><storage_id>!<node_id>:<path></p>
 
         
           <table class="field-table">
@@ -15581,21 +15579,19 @@ in Unix Epoch timestamp in seconds. </p></td>
             <tbody>
               
                 <tr>
-                  <td>space_id</td>
+                  <td>storage_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The id of the storage space. Used by the storage registry to determine the responsible storage provider.
-For simple routing purposes the space_id can consist of a storage_provider_id and an opaque_id. </p></td>
+The id of the storage. Used by the storage registry to determine the responsible storage provider. </p></td>
                 </tr>
               
                 <tr>
-                  <td>root_id</td>
+                  <td>node_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The id used by service implementor to
-uniquely identity the resource in the internal
+The node id used by a storage provider to uniquely identity a resource in the internal
 implementation of the service. </p></td>
                 </tr>
               
@@ -15604,8 +15600,9 @@ implementation of the service. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-When starting with &#39;/&#39; represents an absolute path. In this case the space id and the root_id must be empty.
-When not starting with `/` represents a path relative to the space_id and root_id. When root_id is empty the path is considered relative to the root of the storage space. </p></td>
+When starting with `/` the reference represents an absolute path. In this case the storage_id and the node_id must be empty.
+When not starting with `/` represents a path relative to the node_id.
+When node_id is empty the path is considered relative to the root of the storage. </p></td>
                 </tr>
               
             </tbody>
@@ -15759,12 +15756,11 @@ For reference types this is NOT the mtime of the target. </p></td>
                 </tr>
               
                 <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The path for the resource.
-It MUST start with the slash character (/). </p></td>
+The reference for the resource. </p></td>
                 </tr>
               
                 <tr>
