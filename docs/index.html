@@ -215,6 +215,10 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.gateway.v1beta1.OpenInAppRequest"><span class="badge">M</span>OpenInAppRequest</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.gateway.v1beta1.PurgeRecycleRequest"><span class="badge">M</span>PurgeRecycleRequest</a>
                 </li>
               
@@ -229,6 +233,10 @@
               
                 <li>
                   <a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest.ViewMode"><span class="badge">E</span>OpenFileInAppProviderRequest.ViewMode</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.gateway.v1beta1.OpenInAppRequest.ViewMode"><span class="badge">E</span>OpenInAppRequest.ViewMode</a>
                 </li>
               
               
@@ -2189,7 +2197,7 @@ The value is Unix Epoch timestamp in seconds. </p></td>
         
       
         <h3 id="cs3.gateway.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</h3>
-        <p></p>
+        <p>Deprecated</p>
 
         
           <table class="field-table">
@@ -2220,6 +2228,56 @@ when a call to the WOPI server is to be issued (cf. the provider grpc message) <
                   <td><a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.gateway.v1beta1.OpenInAppRequest">OpenInAppRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
+when a call to the WOPI server is to be issued (cf. the provider grpc message) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>view_mode</td>
+                  <td><a href="#cs3.gateway.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The application to be used to open the resource. Defaults to the primary application
+registered for the mime type of the given resource. </p></td>
                 </tr>
               
             </tbody>
@@ -2368,6 +2426,41 @@ The user information. </p></td>
                 <td>VIEW_MODE_READ_WRITE</td>
                 <td>3</td>
                 <td><p>The file can be downloaded and updated.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="cs3.gateway.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</h3>
+        <p>REQUIRED.</p><p>View mode.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VIEW_MODE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_VIEW_ONLY</td>
+                <td>1</td>
+                <td><p>The resource can be opened but not downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_ONLY</td>
+                <td>2</td>
+                <td><p>The resource can be downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_WRITE</td>
+                <td>3</td>
+                <td><p>The resource can be downloaded and updated.</p></td>
               </tr>
             
           </tbody>
@@ -2611,10 +2704,17 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
               </tr>
             
               <tr>
+                <td>OpenInApp</td>
+                <td><a href="#cs3.gateway.v1beta1.OpenInAppRequest">OpenInAppRequest</a></td>
+                <td><a href="#cs3.app.provider.v1beta1.OpenInAppResponse">.cs3.app.provider.v1beta1.OpenInAppResponse</a></td>
+                <td><p>Returns the App provider URL, which allows the user to open a resource in an online editor.</p></td>
+              </tr>
+            
+              <tr>
                 <td>OpenFileInAppProvider</td>
                 <td><a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</a></td>
                 <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">.cs3.app.provider.v1beta1.OpenFileInAppProviderResponse</a></td>
-                <td><p>Returns the App provider URL, which lets the user open a file in the correct online document editor.
+                <td><p>Deprecated.
 
 *****************************************************************/
 ************************ USER SHARE PROVIDER ********************/
