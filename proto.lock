@@ -7508,7 +7508,7 @@
               },
               {
                 "id": 8,
-                "name": "ref",
+                "name": "path",
                 "type": "Reference"
               },
               {
