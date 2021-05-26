@@ -65,7 +65,7 @@ message ResourceInfo {
   cs3.types.v1beta1.Timestamp mtime = 7;
   // REQUIRED.
   // The reference for the resource.
-  Reference ref = 8;
+  Reference path = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
   ResourcePermissions permission_set = 9;
