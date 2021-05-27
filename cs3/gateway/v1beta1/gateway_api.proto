@@ -30,6 +30,7 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 
 import "cs3/app/provider/v1beta1/provider_api.proto";
 import "cs3/app/registry/v1beta1/registry_api.proto";
+import "cs3/auth/applications/v1beta1/applications_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/group/v1beta1/group_api.proto";
@@ -74,6 +75,19 @@ service GatewayAPI {
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
   // WhoAmI returns the information for a user.
   rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
+  // *****************************************************************/
+  // ********************** APPLICATIONS AUTH ************************/
+  // *****************************************************************/
+
+  // GenerateAppPassword creates a password with specified scope to be used by
+  // third-party applications.
+  rpc GenerateAppPassword(cs3.auth.applications.v1beta1.GenerateAppPasswordRequest) returns (cs3.auth.applications.v1beta1.GenerateAppPasswordResponse);
+  // ListAppPasswords lists the application passwords created by a user.
+  rpc ListAppPasswords(cs3.auth.applications.v1beta1.ListAppPasswordsRequest) returns (cs3.auth.applications.v1beta1.ListAppPasswordsResponse);
+  // InvalidateAppPassword invalidates a generated password.
+  rpc InvalidateAppPassword(cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest) returns (cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse);
+  // GetAppPassword retrieves the password information by the combination of username and password.
+  rpc GetAppPassword(cs3.auth.applications.v1beta1.GetAppPasswordRequest) returns (cs3.auth.applications.v1beta1.GetAppPasswordResponse);
   // *****************************************************************/
   // ************************ STORAGE PROVIDER ***********************/
   // *****************************************************************/
@@ -391,7 +405,7 @@ message AuthenticateResponse {
   // The access token.
   string token = 3;
   // REQUIRED.
-  // The user.
+  // The authenticated user.
   cs3.identity.user.v1beta1.User user = 4;
 }
 
