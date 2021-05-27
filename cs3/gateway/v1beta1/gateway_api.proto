@@ -179,7 +179,9 @@ service GatewayAPI {
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
 
-  // Returns the App provider URL, which lets the user open a file in the correct online document editor.
+  // Returns the App provider URL, which allows the user to open a resource in an online editor.
+  rpc OpenInApp(OpenInAppRequest) returns (cs3.app.provider.v1beta1.OpenInAppResponse);
+  // Deprecated.
   rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
@@ -521,6 +523,33 @@ message ListAuthProvidersResponse {
   repeated string types = 3;
 }
 
+message OpenInAppRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
+  // when a call to the WOPI server is to be issued (cf. the provider grpc message)
+  storage.provider.v1beta1.Reference ref = 2;
+  // REQUIRED.
+  // View mode.
+  enum ViewMode {
+    VIEW_MODE_INVALID = 0;
+    // The resource can be opened but not downloaded.
+    VIEW_MODE_VIEW_ONLY = 1;
+    // The resource can be downloaded.
+    VIEW_MODE_READ_ONLY = 2;
+    // The resource can be downloaded and updated.
+    VIEW_MODE_READ_WRITE = 3;
+  }
+  ViewMode view_mode = 3;
+  // OPTIONAL.
+  // The application to be used to open the resource. Defaults to the primary application
+  // registered for the mime type of the given resource.
+  string app = 4;
+}
+
+// Deprecated
 message OpenFileInAppProviderRequest {
   // OPTIONAL.
   // Opaque information.
