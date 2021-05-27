@@ -582,6 +582,76 @@
         
           
           <li>
+            <a href="#cs3%2fauth%2fapplications%2fv1beta1%2fapplications_api.proto">cs3/auth/applications/v1beta1/applications_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordRequest"><span class="badge">M</span>GenerateAppPasswordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordRequest.TokenScopeEntry"><span class="badge">M</span>GenerateAppPasswordRequest.TokenScopeEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordResponse"><span class="badge">M</span>GenerateAppPasswordResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.GetAppPasswordRequest"><span class="badge">M</span>GetAppPasswordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.GetAppPasswordResponse"><span class="badge">M</span>GetAppPasswordResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest"><span class="badge">M</span>InvalidateAppPasswordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse"><span class="badge">M</span>InvalidateAppPasswordResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.ListAppPasswordsRequest"><span class="badge">M</span>ListAppPasswordsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.ListAppPasswordsResponse"><span class="badge">M</span>ListAppPasswordsResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.ApplicationsAPI"><span class="badge">S</span>ApplicationsAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fauth%2fapplications%2fv1beta1%2fresources.proto">cs3/auth/applications/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.AppPassword"><span class="badge">M</span>AppPassword</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.auth.applications.v1beta1.AppPassword.TokenScopeEntry"><span class="badge">M</span>AppPassword.TokenScopeEntry</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fauth%2fprovider%2fv1beta1%2fprovider_api.proto">cs3/auth/provider/v1beta1/provider_api.proto</a>
             <ul>
               
@@ -1915,7 +1985,7 @@ The access token. </p></td>
                   <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The user. </p></td>
+The authenticated user. </p></td>
                 </tr>
               
             </tbody>
@@ -2397,6 +2467,39 @@ The user information. </p></td>
                 <td><a href="#cs3.gateway.v1beta1.WhoAmIRequest">WhoAmIRequest</a></td>
                 <td><a href="#cs3.gateway.v1beta1.WhoAmIResponse">WhoAmIResponse</a></td>
                 <td><p>WhoAmI returns the information for a user.
+
+*****************************************************************/
+********************** APPLICATIONS AUTH ************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>GenerateAppPassword</td>
+                <td><a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordRequest">.cs3.auth.applications.v1beta1.GenerateAppPasswordRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordResponse">.cs3.auth.applications.v1beta1.GenerateAppPasswordResponse</a></td>
+                <td><p>GenerateAppPassword creates a password with specified scope to be used by
+third-party applications.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListAppPasswords</td>
+                <td><a href="#cs3.auth.applications.v1beta1.ListAppPasswordsRequest">.cs3.auth.applications.v1beta1.ListAppPasswordsRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.ListAppPasswordsResponse">.cs3.auth.applications.v1beta1.ListAppPasswordsResponse</a></td>
+                <td><p>ListAppPasswords lists the application passwords created by a user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>InvalidateAppPassword</td>
+                <td><a href="#cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest">.cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse">.cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse</a></td>
+                <td><p>InvalidateAppPassword invalidates a generated password.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppPassword</td>
+                <td><a href="#cs3.auth.applications.v1beta1.GetAppPasswordRequest">.cs3.auth.applications.v1beta1.GetAppPasswordRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.GetAppPasswordResponse">.cs3.auth.applications.v1beta1.GetAppPasswordResponse</a></td>
+                <td><p>GetAppPassword retrieves the password information by the combination of username and password.
 
 *****************************************************************/
 ************************ STORAGE PROVIDER ***********************/
@@ -5423,6 +5526,516 @@ by humans. </p></td>
     
       
       <div class="file-heading">
+        <h2 id="cs3/auth/applications/v1beta1/applications_api.proto">cs3/auth/applications/v1beta1/applications_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.auth.applications.v1beta1.GenerateAppPasswordRequest">GenerateAppPasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token_scope</td>
+                  <td><a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordRequest.TokenScopeEntry">GenerateAppPasswordRequest.TokenScopeEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The scope of the token to be issued.
+This would be a list of resources with corresponding role-based access scope. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A label to be associated with the password. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The time when the token will expire. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.GenerateAppPasswordRequest.TokenScopeEntry">GenerateAppPasswordRequest.TokenScopeEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#cs3.auth.provider.v1beta1.Scope">cs3.auth.provider.v1beta1.Scope</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.GenerateAppPasswordResponse">GenerateAppPasswordResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_password</td>
+                  <td><a href="#cs3.auth.applications.v1beta1.AppPassword">AppPassword</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The generated access password. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.GetAppPasswordRequest">GetAppPasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user who created the app password. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The password which has to be retrieved. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.GetAppPasswordResponse">GetAppPasswordResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_password</td>
+                  <td><a href="#cs3.auth.applications.v1beta1.AppPassword">AppPassword</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The generated access password. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest">InvalidateAppPasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The password which has to be invalidated. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse">InvalidateAppPasswordResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.ListAppPasswordsRequest">ListAppPasswordsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.ListAppPasswordsResponse">ListAppPasswordsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_passwords</td>
+                  <td><a href="#cs3.auth.applications.v1beta1.AppPassword">AppPassword</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The generated access password. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.auth.applications.v1beta1.ApplicationsAPI">ApplicationsAPI</h3>
+        <p>Auth Applications API</p><p>The Auth Applications API is meant to generate and manage authentication</p><p>tokens with specified scopes to be used in third-party applications on behalf</p><p>of the user.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GenerateAppPassword</td>
+                <td><a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordRequest">GenerateAppPasswordRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.GenerateAppPasswordResponse">GenerateAppPasswordResponse</a></td>
+                <td><p>GenerateAppPassword creates a password with specified scope to be used by
+third-party applications.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListAppPasswords</td>
+                <td><a href="#cs3.auth.applications.v1beta1.ListAppPasswordsRequest">ListAppPasswordsRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.ListAppPasswordsResponse">ListAppPasswordsResponse</a></td>
+                <td><p>ListAppPasswords lists the application passwords created by a user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>InvalidateAppPassword</td>
+                <td><a href="#cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest">InvalidateAppPasswordRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse">InvalidateAppPasswordResponse</a></td>
+                <td><p>InvalidateAppPassword invalidates a generated password.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppPassword</td>
+                <td><a href="#cs3.auth.applications.v1beta1.GetAppPasswordRequest">GetAppPasswordRequest</a></td>
+                <td><a href="#cs3.auth.applications.v1beta1.GetAppPasswordResponse">GetAppPasswordResponse</a></td>
+                <td><p>GetAppPassword retrieves the password information by the combination of username and password.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/auth/applications/v1beta1/resources.proto">cs3/auth/applications/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.auth.applications.v1beta1.AppPassword">AppPassword</h3>
+        <p>AppPassword stores information about secondary passwords generated by users</p><p>to be used with third-party applications.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The generated access password. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token_scope</td>
+                  <td><a href="#cs3.auth.applications.v1beta1.AppPassword.TokenScopeEntry">AppPassword.TokenScopeEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The scope of the token to be issued.
+This would be a list of resources with corresponding role-based access scope. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A label to be associated with the password. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The user who created the password. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The time when the token will expire. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ctime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The creation time of the password. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>utime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The last time the password was used. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.auth.applications.v1beta1.AppPassword.TokenScopeEntry">AppPassword.TokenScopeEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#cs3.auth.provider.v1beta1.Scope">cs3.auth.provider.v1beta1.Scope</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="cs3/auth/provider/v1beta1/provider_api.proto">cs3/auth/provider/v1beta1/provider_api.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -5442,21 +6055,27 @@ by humans. </p></td>
                   <td>opaque</td>
                   <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
                 <tr>
                   <td>client_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+The id of the client.
+For basic authentication with username and password
+both client_id and client_secret are expected to be filled.
+However, for example, for OIDC only a token is necessary. </p></td>
                 </tr>
               
                 <tr>
                   <td>client_secret</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>OPTIONAL.
+The secret of the client. </p></td>
                 </tr>
               
             </tbody>
@@ -5480,14 +6099,16 @@ by humans. </p></td>
                   <td>status</td>
                   <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
                 </tr>
               
                 <tr>
                   <td>user</td>
                   <td><a href="#cs3.identity.user.v1beta1.User">cs3.identity.user.v1beta1.User</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The authenticated user. </p></td>
                 </tr>
               
                 <tr>
