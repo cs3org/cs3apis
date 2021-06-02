@@ -7509,7 +7509,7 @@
               {
                 "id": 8,
                 "name": "path",
-                "type": "Reference"
+                "type": "string"
               },
               {
                 "id": 9,

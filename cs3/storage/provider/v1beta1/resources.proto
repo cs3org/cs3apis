@@ -64,8 +64,8 @@ message ResourceInfo {
   // For reference types this is NOT the mtime of the target.
   cs3.types.v1beta1.Timestamp mtime = 7;
   // REQUIRED.
-  // The reference for the resource.
-  Reference path = 8;
+  // The path for the resource, relative to the reference used to make the request.
+  string path = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
   ResourcePermissions permission_set = 9;
