@@ -87,8 +87,8 @@ message CreateOCMShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // Unique identifier of the shared resource (path must be empty).
-  storage.provider.v1beta1.Reference ref = 2;
+  // The unique identifier for the shared storage resource.
+  storage.provider.v1beta1.ResourceId resource_id = 2;
   // REQUIRED.
   // The share grant for the share.
   ShareGrant grant = 3;
@@ -151,7 +151,7 @@ message ListOCMSharesRequest {
     enum Type {
       TYPE_INVALID = 0;
       TYPE_NO = 1;
-      TYPE_REFERENCE = 2;
+      TYPE_RESOURCE_ID = 2;
       TYPE_OWNER = 3;
       TYPE_CREATOR = 4;
       TYPE_OWNER_PROVIDER = 5;
@@ -160,8 +160,7 @@ message ListOCMSharesRequest {
     // REQUIRED.
     Type type = 2;
     oneof term {
-      // Unique identifier of the shared resource (path must be empty).
-      storage.provider.v1beta1.Reference ref = 3;
+      storage.provider.v1beta1.ResourceId resource_id = 3;
       cs3.identity.user.v1beta1.UserId owner = 4;
       cs3.identity.user.v1beta1.UserId creator = 5;
     }

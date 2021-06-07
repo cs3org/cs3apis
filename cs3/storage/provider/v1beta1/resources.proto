@@ -44,7 +44,7 @@ message ResourceInfo {
   ResourceType type = 2;
   // REQUIRED.
   // Opaque unique identifier of the resource.
-  Reference id = 3;
+  ResourceId id = 3;
   // REQUIRED.
   // The data checksum for the file resource.
   // For all other resources, the checksum is unset.
@@ -64,7 +64,9 @@ message ResourceInfo {
   // For reference types this is NOT the mtime of the target.
   cs3.types.v1beta1.Timestamp mtime = 7;
   // REQUIRED.
-  // The path for the resource, relative to the reference used to make the request.
+  // The path for the resource:
+  // MUST start with `/` when the reference had no resource_id, indicating an absolute path.
+  // MUST start with `.` when the reference had a resource_id, indicating a relative path.
   string path = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
@@ -195,17 +197,28 @@ message ResourceChecksumPriority {
 // In a URL the different components can be represented in a string using the following layout:
 // <storage_id>!<node_id>:<path>
 message Reference {
+  // OPTIONAL
+  ResourceId resource_id = 1;
   // OPTIONAL.
-  // The logical id of a storage. Used by the storage registry to determine the responsible storage provider.
+  // When starting with `/` represents an absolute path. In this case the resource_id MUST be empty.
+  // When starting with `.` represents a path relative to the resource_id. The resource_id MUST be given.
+  // When path is empty the resource_id must be set. Used to look up the path for a resource_id.
+  string path = 2;
+}
+
+// A resource id uniquely identifies a
+// resource in the storage provider namespace.
+// A ResourceId MUST be unique in the storage provider.
+message ResourceId {
+  // REQUIRED.
+  // The logical id of a storage. Used by the storage
+  // registry to determine the responsible storage provider.
   string storage_id = 1;
-  // OPTIONAL.
-  // The logical node id used by a storage provider to uniquely identify a resource in a storage.
-  string node_id = 2;
-  // OPTIONAL.
-  // When starting with `/` the reference represents an absolute path. In this case the storage_id and the node_id must be empty.
-  // When not starting with `/` represents a path relative to the node_id.
-  // When node_id is empty the path is considered relative to the root of the storage.
-  string path = 3;
+  // REQUIRED.
+  // The internal id used by service implementor to
+  // uniquely identity the resource in the internal
+  // implementation of the service.
+  string opaque_id = 2;
 }
 
 // The representation of permissions attached to a resource.
@@ -367,8 +380,8 @@ message StorageSpace {
   // OPTIONAL.
   cs3.identity.user.v1beta1.User owner = 3;
   // OPTIONAL.
-  // The root resource of the storage space.
-  Reference root = 4;
+  // The root resource id of the storage space.
+  ResourceId root = 4;
   // OPTIONAL.
   string name = 5;
   // OPTIONAL.

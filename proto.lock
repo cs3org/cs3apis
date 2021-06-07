@@ -801,6 +801,337 @@
       }
     },
     {
+      "protopath": "cs3:/:auth:/:applications:/:v1beta1:/:applications_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GenerateAppPasswordRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 2,
+                  "name": "token_scope",
+                  "type": "cs3.auth.provider.v1beta1.Scope"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GenerateAppPasswordResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "app_password",
+                "type": "AppPassword"
+              }
+            ]
+          },
+          {
+            "name": "ListAppPasswordsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListAppPasswordsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "app_passwords",
+                "type": "AppPassword",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "InvalidateAppPasswordRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "password",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "InvalidateAppPasswordResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetAppPasswordRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 3,
+                "name": "password",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetAppPasswordResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "app_password",
+                "type": "AppPassword"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "ApplicationsAPI",
+            "rpcs": [
+              {
+                "name": "GenerateAppPassword",
+                "in_type": "GenerateAppPasswordRequest",
+                "out_type": "GenerateAppPasswordResponse"
+              },
+              {
+                "name": "ListAppPasswords",
+                "in_type": "ListAppPasswordsRequest",
+                "out_type": "ListAppPasswordsResponse"
+              },
+              {
+                "name": "InvalidateAppPassword",
+                "in_type": "InvalidateAppPasswordRequest",
+                "out_type": "InvalidateAppPasswordResponse"
+              },
+              {
+                "name": "GetAppPassword",
+                "in_type": "GetAppPasswordRequest",
+                "out_type": "GetAppPasswordResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/auth/applications/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/auth/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.auth.applications.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Auth.Applications.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "applicationsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ApplicationsApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.auth.applications.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAA"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Auth\\\\Applications\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:auth:/:applications:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "AppPassword",
+            "fields": [
+              {
+                "id": 1,
+                "name": "password",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 5,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 6,
+                "name": "ctime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 7,
+                "name": "utime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 2,
+                  "name": "token_scope",
+                  "type": "cs3.auth.provider.v1beta1.Scope"
+                }
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/auth/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.auth.applications.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Auth.Applications.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "applicationsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.auth.applications.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAA"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Auth\\\\Applications\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:auth:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
         "messages": [
@@ -1218,6 +1549,26 @@
       "def": {
         "enums": [
           {
+            "name": "OpenInAppRequest.ViewMode",
+            "enum_fields": [
+              {
+                "name": "VIEW_MODE_INVALID"
+              },
+              {
+                "name": "VIEW_MODE_VIEW_ONLY",
+                "integer": 1
+              },
+              {
+                "name": "VIEW_MODE_READ_ONLY",
+                "integer": 2
+              },
+              {
+                "name": "VIEW_MODE_READ_WRITE",
+                "integer": 3
+              }
+            ]
+          },
+          {
             "name": "OpenFileInAppProviderRequest.ViewMode",
             "enum_fields": [
               {
@@ -1468,6 +1819,31 @@
             ]
           },
           {
+            "name": "OpenInAppRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "storage.provider.v1beta1.Reference"
+              },
+              {
+                "id": 3,
+                "name": "view_mode",
+                "type": "ViewMode"
+              },
+              {
+                "id": 4,
+                "name": "app",
+                "type": "string"
+              }
+            ]
+          },
+          {
             "name": "OpenFileInAppProviderRequest",
             "fields": [
               {
@@ -1501,6 +1877,26 @@
                 "name": "WhoAmI",
                 "in_type": "WhoAmIRequest",
                 "out_type": "WhoAmIResponse"
+              },
+              {
+                "name": "GenerateAppPassword",
+                "in_type": "cs3.auth.applications.v1beta1.GenerateAppPasswordRequest",
+                "out_type": "cs3.auth.applications.v1beta1.GenerateAppPasswordResponse"
+              },
+              {
+                "name": "ListAppPasswords",
+                "in_type": "cs3.auth.applications.v1beta1.ListAppPasswordsRequest",
+                "out_type": "cs3.auth.applications.v1beta1.ListAppPasswordsResponse"
+              },
+              {
+                "name": "InvalidateAppPassword",
+                "in_type": "cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest",
+                "out_type": "cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse"
+              },
+              {
+                "name": "GetAppPassword",
+                "in_type": "cs3.auth.applications.v1beta1.GetAppPasswordRequest",
+                "out_type": "cs3.auth.applications.v1beta1.GetAppPasswordResponse"
               },
               {
                 "name": "CreateContainer",
@@ -1623,6 +2019,11 @@
                 "name": "DeleteStorageSpace",
                 "in_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest",
                 "out_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse"
+              },
+              {
+                "name": "OpenInApp",
+                "in_type": "OpenInAppRequest",
+                "out_type": "cs3.app.provider.v1beta1.OpenInAppResponse"
               },
               {
                 "name": "OpenFileInAppProvider",
@@ -1883,6 +2284,9 @@
           },
           {
             "path": "cs3/app/registry/v1beta1/registry_api.proto"
+          },
+          {
+            "path": "cs3/auth/applications/v1beta1/applications_api.proto"
           },
           {
             "path": "cs3/auth/registry/v1beta1/registry_api.proto"
@@ -4022,7 +4426,7 @@
                 "integer": 1
               },
               {
-                "name": "TYPE_REFERENCE",
+                "name": "TYPE_RESOURCE_ID",
                 "integer": 2
               },
               {
@@ -4160,8 +4564,8 @@
                   },
                   {
                     "id": 3,
-                    "name": "ref",
-                    "type": "storage.provider.v1beta1.Reference"
+                    "name": "resource_id",
+                    "type": "storage.provider.v1beta1.ResourceId"
                   },
                   {
                     "id": 4,
@@ -4522,8 +4926,8 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -4592,8 +4996,8 @@
               },
               {
                 "id": 3,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 4,
@@ -4724,7 +5128,7 @@
                 "name": "TYPE_INVALID"
               },
               {
-                "name": "TYPE_REFERENCE",
+                "name": "TYPE_RESOURCE_ID",
                 "integer": 1
               },
               {
@@ -4872,8 +5276,8 @@
                   },
                   {
                     "id": 3,
-                    "name": "ref",
-                    "type": "storage.provider.v1beta1.Reference"
+                    "name": "resource_id",
+                    "type": "storage.provider.v1beta1.ResourceId"
                   },
                   {
                     "id": 4,
@@ -5145,8 +5549,8 @@
               },
               {
                 "id": 3,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 4,
@@ -5342,7 +5746,7 @@
                 "integer": 1
               },
               {
-                "name": "TYPE_REFERENCE",
+                "name": "TYPE_RESOURCE_ID",
                 "integer": 2
               },
               {
@@ -5375,8 +5779,8 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -5488,8 +5892,8 @@
                   },
                   {
                     "id": 3,
-                    "name": "ref",
-                    "type": "storage.provider.v1beta1.Reference"
+                    "name": "resource_id",
+                    "type": "storage.provider.v1beta1.ResourceId"
                   },
                   {
                     "id": 4,
@@ -5864,8 +6268,8 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -5949,8 +6353,8 @@
               },
               {
                 "id": 3,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 4,
@@ -6101,8 +6505,8 @@
               },
               {
                 "id": 3,
-                "name": "ref",
-                "type": "Reference"
+                "name": "path",
+                "type": "string"
               }
             ]
           },
@@ -6211,8 +6615,8 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "Reference"
+                "name": "resource_id",
+                "type": "ResourceId"
               }
             ]
           },
@@ -7484,7 +7888,7 @@
               {
                 "id": 3,
                 "name": "id",
-                "type": "Reference"
+                "type": "ResourceId"
               },
               {
                 "id": 4,
@@ -7601,17 +8005,27 @@
             "fields": [
               {
                 "id": 1,
+                "name": "resource_id",
+                "type": "ResourceId"
+              },
+              {
+                "id": 2,
+                "name": "path",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "ResourceId",
+            "fields": [
+              {
+                "id": 1,
                 "name": "storage_id",
                 "type": "string"
               },
               {
                 "id": 2,
-                "name": "node_id",
-                "type": "string"
-              },
-              {
-                "id": 3,
-                "name": "path",
+                "name": "opaque_id",
                 "type": "string"
               }
             ]
@@ -7893,7 +8307,7 @@
               {
                 "id": 4,
                 "name": "root",
-                "type": "Reference"
+                "type": "ResourceId"
               },
               {
                 "id": 5,

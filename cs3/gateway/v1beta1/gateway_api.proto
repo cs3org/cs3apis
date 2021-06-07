@@ -103,7 +103,7 @@ service GatewayAPI {
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Delete(cs3.storage.provider.v1beta1.DeleteRequest) returns (cs3.storage.provider.v1beta1.DeleteResponse);
   // Returns the path reference for
-  // the provided resource reference.
+  // the provided resource id reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc GetPath(cs3.storage.provider.v1beta1.GetPathRequest) returns (cs3.storage.provider.v1beta1.GetPathResponse);
   // Returns the quota available under the provided

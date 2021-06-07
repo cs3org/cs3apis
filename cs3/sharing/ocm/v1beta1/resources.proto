@@ -34,14 +34,14 @@ import "cs3/types/v1beta1/types.proto";
 
 // Shares are relationships between a resource owner
 // (usually the authenticated user) who grants permissions to a recipient (grantee)
-// on a specified resource (reference). UserShares represents both user and groups.
+// on a specified resource (resource_id). UserShares represents both user and groups.
 message Share {
   // REQUIRED.
   // Opaque unique identifier of the share.
   ShareId id = 1;
   // REQUIRED.
-  // Unique identifier of the shared resource (path must be empty).
-  storage.provider.v1beta1.Reference ref = 2;
+  // Unique identifier of the shared resource.
+  storage.provider.v1beta1.ResourceId resource_id = 2;
   // REQUIRED.
   // Name of the shared resource.
   string name = 3;
@@ -134,8 +134,7 @@ message ShareKey {
   // REQUIRED.
   cs3.identity.user.v1beta1.UserId owner = 2;
   // REQUIRED.
-  // Unique identifier of the shared resource (path must be empty).
-  storage.provider.v1beta1.Reference ref = 3;
+  storage.provider.v1beta1.ResourceId resource_id = 3;
   // REQUIRED.
   storage.provider.v1beta1.Grantee grantee = 4;
 }

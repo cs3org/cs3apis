@@ -1795,6 +1795,10 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.ResourceId"><span class="badge">M</span>ResourceId</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.ResourceInfo"><span class="badge">M</span>ResourceInfo</a>
                 </li>
               
@@ -2620,7 +2624,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.GetPathRequest">.cs3.storage.provider.v1beta1.GetPathRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.GetPathResponse">.cs3.storage.provider.v1beta1.GetPathResponse</a></td>
                 <td><p>Returns the path reference for
-the provided resource reference.
+the provided resource id reference.
 MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
               </tr>
             
@@ -5043,8 +5047,8 @@ The access token this application provider will use when contacting
 the storage provider to read and write.
 Service implementors MUST make sure that the access token only grants
 access to the requested resource.
-Service implementors should use a Reference with a root_id and an empty path to grant access, as
-root_ids MUST NOT change when a resource is renamed.
+Service implementors should use a ResourceId rather than a filename to grant access, as
+ResourceIds MUST NOT change when a resource is renamed.
 The access token MUST be short-lived.
 TODO(labkode): investigate token derivation techniques. </p></td>
                 </tr>
@@ -5140,8 +5144,8 @@ The access token this application provider will use when contacting
 the storage provider to read and write.
 Service implementors MUST make sure that the access token only grants
 access to the requested resource.
-Service implementors should use a Reference with a root_id and an empty path to grant access, as
-root_ids MUST NOT change when a resource is renamed.
+Service implementors should use a ResourceId rather than a filepath to grant access, as
+ResourceIds MUST NOT change when a resource is renamed.
 The access token MUST be short-lived.
 TODO(labkode): investigate token derivation techniques. </p></td>
                 </tr>
@@ -9367,8 +9371,8 @@ The list of filters to apply if any. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -9748,7 +9752,7 @@ The updated share. </p></td>
               </tr>
             
               <tr>
-                <td>TYPE_REFERENCE</td>
+                <td>TYPE_RESOURCE_ID</td>
                 <td>2</td>
                 <td><p></p></td>
               </tr>
@@ -9892,7 +9896,7 @@ The state of the share. </p></td>
         
       
         <h3 id="cs3.sharing.collaboration.v1beta1.Share">Share</h3>
-        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (reference). UserShares represents both user and groups.</p>
+        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p>
 
         
           <table class="field-table">
@@ -9910,11 +9914,11 @@ Opaque unique identifier of the share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+Unique identifier of the shared resource. </p></td>
                 </tr>
               
                 <tr>
@@ -10057,11 +10061,10 @@ implementation of the service. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
-                  <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+                  <td><p>REQUIRED. </p></td>
                 </tr>
               
                 <tr>
@@ -10529,10 +10532,10 @@ If a signature should be included in the share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
-                  <td><p>Unique identifier of the shared resource (path must be empty). </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -10806,7 +10809,7 @@ The updated public share. </p></td>
               </tr>
             
               <tr>
-                <td>TYPE_REFERENCE</td>
+                <td>TYPE_RESOURCE_ID</td>
                 <td>1</td>
                 <td><p></p></td>
               </tr>
@@ -10985,7 +10988,7 @@ An expiration date to protect the access to the public share. </p></td>
         
       
         <h3 id="cs3.sharing.link.v1beta1.PublicShare">PublicShare</h3>
-        <p>Public share are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (reference). UserShares represents both user and groups.</p><p>TODO(labkode): do we need to have  resource_type stored on the share?</p><p>This is not needed if when getting the shares a stat operation is launched against the</p><p>the storage provider.</p>
+        <p>Public share are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p><p>TODO(labkode): do we need to have  resource_type stored on the share?</p><p>This is not needed if when getting the shares a stat operation is launched against the</p><p>the storage provider.</p>
 
         
           <table class="field-table">
@@ -11012,11 +11015,11 @@ to the public share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+Unique identifier of the shared resource. </p></td>
                 </tr>
               
                 <tr>
@@ -11290,11 +11293,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+The unique identifier for the shared storage resource. </p></td>
                 </tr>
               
                 <tr>
@@ -11560,10 +11563,10 @@ The list of filters to apply if any. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
-                  <td><p>Unique identifier of the shared resource (path must be empty). </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -11991,7 +11994,7 @@ Opaque information. </p></td>
               </tr>
             
               <tr>
-                <td>TYPE_REFERENCE</td>
+                <td>TYPE_RESOURCE_ID</td>
                 <td>2</td>
                 <td><p></p></td>
               </tr>
@@ -12147,7 +12150,7 @@ The state of the share. </p></td>
         
       
         <h3 id="cs3.sharing.ocm.v1beta1.Share">Share</h3>
-        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (reference). UserShares represents both user and groups.</p>
+        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p>
 
         
           <table class="field-table">
@@ -12165,11 +12168,11 @@ Opaque unique identifier of the share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+Unique identifier of the shared resource. </p></td>
                 </tr>
               
                 <tr>
@@ -12327,11 +12330,10 @@ implementation of the service. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
-                  <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+                  <td><p>REQUIRED. </p></td>
                 </tr>
               
                 <tr>
@@ -13118,11 +13120,12 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The reference to the home in a storage provider. </p></td>
+The path to the home in a storage provider.
+For example /eos/user/h/hugo in the storage provider with root path /eos/user/. </p></td>
                 </tr>
               
             </tbody>
@@ -13151,11 +13154,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-Unique identifier of the shared resource (path must be empty). </p></td>
+The resource id of the resource. </p></td>
                 </tr>
               
             </tbody>
@@ -14894,7 +14897,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.GetPathRequest">GetPathRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.GetPathResponse">GetPathResponse</a></td>
                 <td><p>Returns the path reference for
-the provided resource reference.
+the provided resource id reference.
 MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
               </tr>
             
@@ -15579,19 +15582,10 @@ in Unix Epoch timestamp in seconds. </p></td>
             <tbody>
               
                 <tr>
-                  <td>storage_id</td>
-                  <td><a href="#string">string</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
                   <td></td>
-                  <td><p>OPTIONAL.
-The logical id of a storage. Used by the storage registry to determine the responsible storage provider. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>node_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-The logical node id used by a storage provider to uniquely identify a resource in a storage. </p></td>
+                  <td><p>OPTIONAL </p></td>
                 </tr>
               
                 <tr>
@@ -15599,9 +15593,9 @@ The logical node id used by a storage provider to uniquely identify a resource i
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-When starting with `/` the reference represents an absolute path. In this case the storage_id and the node_id must be empty.
-When not starting with `/` represents a path relative to the node_id.
-When node_id is empty the path is considered relative to the root of the storage. </p></td>
+When starting with `/` represents an absolute path. In this case the resource_id MUST be empty.
+When starting with `.` represents a path relative to the resource_id. The resource_id MUST be given.
+When path is empty the resource_id must be set. Used to look up the path for a resource_id. </p></td>
                 </tr>
               
             </tbody>
@@ -15681,6 +15675,42 @@ The value is case-insensitive, so
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.ResourceId">ResourceId</h3>
+        <p>A resource id uniquely identifies a</p><p>resource in the storage provider namespace.</p><p>A ResourceId MUST be unique in the storage provider.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>storage_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The logical id of a storage. Used by the storage
+registry to determine the responsible storage provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The internal id used by service implementor to
+uniquely identity the resource in the internal
+implementation of the service. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.ResourceInfo">ResourceInfo</h3>
         <p>Represents the information (metadata) about</p><p>a storage resource organized in a hierarchical namespace (file, directory/container, reference, symlink, ...).</p>
 
@@ -15710,7 +15740,7 @@ See the enum ResourceType for all possible types. </p></td>
               
                 <tr>
                   <td>id</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 Opaque unique identifier of the resource. </p></td>
@@ -15759,7 +15789,9 @@ For reference types this is NOT the mtime of the target. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The path for the resource, relative to the reference used to make the request. </p></td>
+The path for the resource:
+MUST start with `/` when the reference had no resource_id, indicating an absolute path.
+MUST start with `.` when the reference had a resource_id, indicating a relative path. </p></td>
                 </tr>
               
                 <tr>
@@ -15998,10 +16030,10 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>root</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The root resource of the storage space. </p></td>
+The root resource id of the storage space. </p></td>
                 </tr>
               
                 <tr>
