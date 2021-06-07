@@ -6231,8 +6231,8 @@
               },
               {
                 "id": 3,
-                "name": "ref",
-                "type": "Reference"
+                "name": "path",
+                "type": "string"
               }
             ]
           },

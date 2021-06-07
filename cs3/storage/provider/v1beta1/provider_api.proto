@@ -248,7 +248,7 @@ message GetPathResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
   // The path of the resource.
-  Reference ref = 3;
+  string path = 3;
 }
 
 message GetQuotaRequest {
