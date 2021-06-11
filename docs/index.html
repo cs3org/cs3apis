@@ -12595,6 +12595,28 @@ Opaque information. </p></td>
 The reference to which the action should be performed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>if_not_exist</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Whether the file is to be uploaded in exclusive mode. Defaults to false.
+If true, the request SHALL be processed such that only one of multiple concurrent uploads
+to the same target reference MAY succeed, whereas all others MUST fail with CODE_ALREADY_EXISTS.
+The semantic is similar to the O_CREAT|O_EXCL POSIX flags.
+The request MUST return CODE_NOT_IMPLEMENTED if the provider does not support this mode. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>if_match</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Whether the file is to be uploaded if the given etag matches. Default to always upload.
+If a mismatching etag is given, the request MUST return CODE_ALREADY_EXISTS with the current etag
+in the opaque field. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
