@@ -64,8 +64,9 @@ message ResourceInfo {
   // For reference types this is NOT the mtime of the target.
   cs3.types.v1beta1.Timestamp mtime = 7;
   // REQUIRED.
-  // The path for the resource.
-  // It MUST start with the slash character (/).
+  // The path for the resource:
+  // MUST start with `/` when the reference had no resource_id, indicating an absolute path.
+  // MUST start with `.` when the reference had a resource_id, indicating a relative path.
   string path = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
@@ -189,27 +190,29 @@ message ResourceChecksumPriority {
   uint32 priority = 2;
 }
 
-// The mechanism to identify a resource
-// in the storage provider namespace. Note that the path OR the resourceId must be specifed, not both.
+// The mechanism to identify a resource in the CS3 namespace.
+// It can represent path based, id based and combined references:
+// The storage registry uses the storage_id to determine the responsible storage provider.
+// When the storage_id is not available it will use the path.
+// In a URL the different components can be represented in a string using the following layout:
+// <storage_id>!<node_id>:<path>
 message Reference {
-  // REQUIRED.
-  // One of the specifications MUST be specified.
-  oneof spec {
-    // The path to the resource.
-    // MUST start with the slash character (/).
-    string path = 1;
-    // The id for the resource.
-    // MUST NOT start with the slash character (/).
-    ResourceId id = 2;
-  }
+  // OPTIONAL
+  ResourceId resource_id = 1;
+  // OPTIONAL.
+  // When starting with `/` represents an absolute path. In this case the resource_id MUST be empty.
+  // When starting with `.` represents a path relative to the resource_id. The resource_id MUST be given.
+  // When path is empty the resource_id must be set. Used to look up the path for a resource_id.
+  string path = 2;
 }
 
-// A resource id identifies uniquely a
+// A resource id uniquely identifies a
 // resource in the storage provider namespace.
 // A ResourceId MUST be unique in the storage provider.
 message ResourceId {
   // REQUIRED.
-  // The storage id of the storage provider.
+  // The logical id of a storage. Used by the storage
+  // registry to determine the responsible storage provider.
   string storage_id = 1;
   // REQUIRED.
   // The internal id used by service implementor to
@@ -313,9 +316,8 @@ message RecycleItem {
   // The key to identify the deleted resource.
   string key = 3;
   // REQUIRED.
-  // The original path of the deleted resource.
-  // MUST start with the slash character (/).
-  string path = 4;
+  // The original reference of the deleted resource.
+  Reference ref = 4;
   // OPTIONAL.
   // The size of the deleted resource.
   uint64 size = 5;
@@ -378,7 +380,7 @@ message StorageSpace {
   // OPTIONAL.
   cs3.identity.user.v1beta1.User owner = 3;
   // OPTIONAL.
-  // The root resource of the storage space.
+  // The root resource id of the storage space.
   ResourceId root = 4;
   // OPTIONAL.
   string name = 5;
