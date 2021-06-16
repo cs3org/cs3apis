@@ -106,15 +106,6 @@ message ListAppProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // Represents a filter to apply to the request.
-  message Filter {
-    // if present, the response MUST list all known app providers for the given mimetype.
-    string mime_type = 1;
-  }
-  // OPTIONAL.
-  // The list of filters to apply if any.
-  repeated Filter filters = 2;
 }
 
 message ListAppProvidersResponse {

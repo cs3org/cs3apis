@@ -631,24 +631,6 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "filters",
-                "type": "Filter",
-                "is_repeated": true
-              }
-            ],
-            "messages": [
-              {
-                "name": "Filter",
-                "fields": [
-                  {
-                    "id": 1,
-                    "name": "mime_type",
-                    "type": "string"
-                  }
-                ]
               }
             ]
           },
