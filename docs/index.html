@@ -380,6 +380,14 @@
                   <a href="#cs3.tx.v1beta1.GetTransferStatusResponse"><span class="badge">M</span>GetTransferStatusResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.tx.v1beta1.PullTransferRequest"><span class="badge">M</span>PullTransferRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.PullTransferResponse"><span class="badge">M</span>PullTransferResponse</a>
+                </li>
+              
               
               
               
@@ -4295,6 +4303,89 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.tx.v1beta1.PullTransferRequest">PullTransferRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>target_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The target URI. Should include at the minimum all the info needed to access the source.
+https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_id</td>
+                  <td><a href="#cs3.tx.v1beta1.TxId">TxId</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The transfer identifier. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.PullTransferResponse">PullTransferResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_info</td>
+                  <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+TxInfo, includes transfer id, status, description. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -4315,6 +4406,14 @@ Opaque information. </p></td>
                 <td><a href="#cs3.tx.v1beta1.CreateTransferResponse">CreateTransferResponse</a></td>
                 <td><p>Creates (requests the destination to accept) a transfer.
 Returns a response containing a TxInfo (transfer info) object.</p></td>
+              </tr>
+            
+              <tr>
+                <td>PullTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.PullTransferRequest">PullTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.PullTransferResponse">PullTransferResponse</a></td>
+                <td><p>Requests the destination to pull a resource from source.
+Returns a PullTransferResponse</p></td>
               </tr>
             
               <tr>
