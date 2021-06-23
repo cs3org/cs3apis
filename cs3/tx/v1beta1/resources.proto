@@ -47,48 +47,46 @@ message TxInfo {
   // The transfer identifier.
   TxId id = 1;
   // REQUIRED.
-  // Reference of the resource to be transfered.
-  cs3.storage.provider.v1beta1.Reference ref = 2;
-  // Status represents transfer status.
-  enum Status {
-    STATUS_INVALID = 0;
-    // The destination could not be found.
-    STATUS_DESTINATION_NOT_FOUND = 1;
-    // A new data transfer
-    STATUS_TRANSFER_NEW = 2;
-    // The data transfer is awaiting acceptance from the destination
-    STATUS_TRANSFER_AWAITING_ACCEPTANCE = 3;
-    // The data transfer is accepted by the destination.
-    STATUS_TRANSFER_ACCEPTED = 4;
-    // The data transfer has started and not yet completed.
-    STATUS_TRANSFER_IN_PROGRESS = 5;
-    // The data transfer has completed.
-    STATUS_TRANSFER_COMPLETE = 6;
-    // The data transfer has failed.
-    STATUS_TRANSFER_FAILED = 7;
-    // The data transfer had been cancelled.
-    STATUS_TRANSFER_CANCELLED = 8;
-    // The request for cancelling the data transfer has failed.
-    STATUS_TRANSFER_CANCEL_FAILED = 9;
-    // The transfer has expired somewhere down the line.
-    STATUS_TRANSFER_EXPIRED = 10;
-  }
-  // REQUIRED.
   // The transfer status. Eg.: STATUS_TRANSFER_FAILED.
   // Note: the description field may provide additional information on the transfer status.
-  Status status = 3;
+  Status status = 2;
   // REQUIRED.
   // The destination (receiver of the transfer)
-  cs3.storage.provider.v1beta1.Grantee grantee = 4;
+  cs3.storage.provider.v1beta1.Grantee grantee = 3;
   // REQUIRED.
   // Uniquely identifies a principal who initiates the transfer creation.
-  cs3.identity.user.v1beta1.UserId creator = 5;
+  cs3.identity.user.v1beta1.UserId creator = 4;
   // REQUIRED.
   // Creation time of the transfer.
-  cs3.types.v1beta1.Timestamp ctime = 6;
+  cs3.types.v1beta1.Timestamp ctime = 5;
   // OPTIONAL.
   // Information to describe the transfer status.
   // Eg. may contain information about a transfer failure.
   // Meant to be human-readable.
-  string description = 7;
+  string description = 6;
+}
+
+// Status represents transfer status.
+enum Status {
+  STATUS_INVALID = 0;
+  // The destination could not be found.
+  STATUS_DESTINATION_NOT_FOUND = 1;
+  // A new data transfer
+  STATUS_TRANSFER_NEW = 2;
+  // The data transfer is awaiting acceptance from the destination
+  STATUS_TRANSFER_AWAITING_ACCEPTANCE = 3;
+  // The data transfer is accepted by the destination.
+  STATUS_TRANSFER_ACCEPTED = 4;
+  // The data transfer has started and not yet completed.
+  STATUS_TRANSFER_IN_PROGRESS = 5;
+  // The data transfer has completed.
+  STATUS_TRANSFER_COMPLETE = 6;
+  // The data transfer has failed.
+  STATUS_TRANSFER_FAILED = 7;
+  // The data transfer had been cancelled.
+  STATUS_TRANSFER_CANCELLED = 8;
+  // The request for cancelling the data transfer has failed.
+  STATUS_TRANSFER_CANCEL_FAILED = 9;
+  // The transfer has expired somewhere down the line.
+  STATUS_TRANSFER_EXPIRED = 10;
 }

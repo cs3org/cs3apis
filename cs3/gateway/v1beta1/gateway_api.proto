@@ -365,12 +365,16 @@ service GatewayAPI {
   // ************************** FILE TRANSFER ************************/
   // *****************************************************************/
 
-  // Returns a response containing a TxInfo (transfer info) object.
-  rpc CreateTransfer(cs3.tx.v1beta1.CreateTransferRequest) returns (cs3.tx.v1beta1.CreateTransferResponse);
+  //  Requests the destination to pull a resource from source.
+  rpc PullTransfer(cs3.tx.v1beta1.PullTransferRequest) returns (cs3.tx.v1beta1.PullTransferResponse);
   // Requests a transfer status.
   rpc GetTransferStatus(cs3.tx.v1beta1.GetTransferStatusRequest) returns (cs3.tx.v1beta1.GetTransferStatusResponse);
   // Requests to cancel a transfer.
   rpc CancelTransfer(cs3.tx.v1beta1.CancelTransferRequest) returns (cs3.tx.v1beta1.CancelTransferResponse);
+  // Requests a list of transfers received by the authenticated principle.
+  rpc ListTransfers(cs3.tx.v1beta1.ListTransfersRequest) returns (cs3.tx.v1beta1.ListTransfersResponse);
+  // Requests retrying a transfer.
+  rpc RetryTransfer(cs3.tx.v1beta1.RetryTransferRequest) returns (cs3.tx.v1beta1.RetryTransferResponse);
 }
 
 // CAUTION:
