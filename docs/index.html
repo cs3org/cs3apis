@@ -401,6 +401,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#cs3.tx.v1beta1.ListTransfersRequest.Filter.Type"><span class="badge">E</span>ListTransfersRequest.Filter.Type</a>
+                </li>
+              
               
               
                 <li>
@@ -4273,7 +4277,7 @@ The list of filters to apply if any. </p></td>
         
       
         <h3 id="cs3.tx.v1beta1.ListTransfersRequest.Filter">ListTransfersRequest.Filter</h3>
-        <p>REQUIRED.</p><p>represents a filter to apply to the request.</p>
+        <p>REQUIRED.</p><p>Represents a filter to apply to the request.</p>
 
         
           <table class="field-table">
@@ -4283,10 +4287,31 @@ The list of filters to apply if any. </p></td>
             <tbody>
               
                 <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.tx.v1beta1.ListTransfersRequest.Filter.Type">ListTransfersRequest.Filter.Type</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
                   <td>status</td>
                   <td><a href="#cs3.tx.v1beta1.Status">Status</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share_ref</td>
+                  <td><a href="#cs3.sharing.collaboration.v1beta1.ShareReference">cs3.sharing.collaboration.v1beta1.ShareReference</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_id</td>
+                  <td><a href="#cs3.tx.v1beta1.TxId">TxId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -4487,6 +4512,41 @@ Opaque information. </p></td>
         
       
 
+      
+        <h3 id="cs3.tx.v1beta1.ListTransfersRequest.Filter.Type">ListTransfersRequest.Filter.Type</h3>
+        <p>The filter type.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_STATUS</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_SHARE_REF</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_TX_ID</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

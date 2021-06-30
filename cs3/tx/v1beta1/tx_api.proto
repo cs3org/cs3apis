@@ -29,6 +29,7 @@ option objc_class_prefix = "CTX";
 option php_namespace = "Cs3\\Tx\\V1Beta1";
 
 import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/tx/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -131,10 +132,23 @@ message ListTransfersRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // represents a filter to apply to the request.
+  // Represents a filter to apply to the request.
   message Filter {
+    // The filter type.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_STATUS = 1;
+      TYPE_SHARE_REF = 2;
+      TYPE_TX_ID = 3;
+    }
     // REQUIRED.
-    Status status = 1;
+    Type type = 1;
+    // REQUIRED.
+    oneof term {
+      Status status = 2;
+      cs3.sharing.collaboration.v1beta1.ShareReference share_ref = 3;
+      TxId tx_id = 4;
+    }
   }
   // OPTIONAL.
   // The list of filters to apply if any.
