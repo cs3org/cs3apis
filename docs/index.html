@@ -2362,8 +2362,10 @@ when a call to the WOPI server is to be issued (cf. the provider grpc message) <
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The application to be used to open the resource. Defaults to the primary application
-registered for the mime type of the given resource. </p></td>
+A reference to the application to be used to open the resource, should the
+default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
+If the targeted resource is a directory, this parameter is required and
+in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
                 </tr>
               
             </tbody>
@@ -5185,17 +5187,6 @@ Service implementors should use a ResourceId rather than a filepath to grant acc
 ResourceIds MUST NOT change when a resource is renamed.
 The access token MUST be short-lived.
 TODO(labkode): investigate token derivation techniques. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>app</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A reference to the application to be used to open the resource, should the
-default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
-If the targeted resource is a directory, this parameter is required and
-in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
                 </tr>
               
             </tbody>

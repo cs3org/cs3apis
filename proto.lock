@@ -417,11 +417,6 @@
                 "id": 4,
                 "name": "access_token",
                 "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "app",
-                "type": "string"
               }
             ]
           },
