@@ -207,7 +207,7 @@ message DenyGrantRequest {
   Reference ref = 2;
   // REQUIRED.
   // The grantee to remove permission.
-  Grantee grantee = 1;
+  Grantee grantee = 3;
 }
 
 message DenyGrantResponse {
@@ -218,7 +218,6 @@ message DenyGrantResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
 }
-
 
 message CreateContainerRequest {
   // OPTIONAL.

@@ -1544,6 +1544,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.DenyGrantRequest"><span class="badge">M</span>DenyGrantRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.DenyGrantResponse"><span class="badge">M</span>DenyGrantResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.GetHomeRequest"><span class="badge">M</span>GetHomeRequest</a>
                 </li>
               
@@ -13068,6 +13076,80 @@ The response status. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.DenyGrantRequest">DenyGrantRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Grantee">Grantee</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The grantee to remove permission. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.DenyGrantResponse">DenyGrantResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.GetHomeRequest">GetHomeRequest</h3>
         <p></p>
 
@@ -14890,6 +14972,14 @@ If a resource specifies the non-empty container (directory, ...),
 then the entire directory is deleted recursively.
 If a resource specifies a reference or symlink type, only the reference is removed (not the target).
 MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DenyGrant</td>
+                <td><a href="#cs3.storage.provider.v1beta1.DenyGrantRequest">DenyGrantRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.DenyGrantResponse">DenyGrantResponse</a></td>
+                <td><p>Denies access to the provided reference.
+MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
               </tr>
             
               <tr>
