@@ -6929,6 +6929,11 @@
                 "id": 3,
                 "name": "to_ts",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 4,
+                "name": "ref",
+                "type": "Reference"
               }
             ]
           },
@@ -6970,6 +6975,11 @@
                 "id": 3,
                 "name": "to_ts",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 4,
+                "name": "ref",
+                "type": "Reference"
               }
             ]
           },
