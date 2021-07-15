@@ -540,6 +540,14 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.app.registry.v1beta1.AddAppProviderRequest"><span class="badge">M</span>AddAppProviderRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.AddAppProviderResponse"><span class="badge">M</span>AddAppProviderResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.app.registry.v1beta1.GetAppProvidersRequest"><span class="badge">M</span>GetAppProvidersRequest</a>
                 </li>
               
@@ -548,21 +556,29 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest"><span class="badge">M</span>ListAppProvidersRequest</a>
+                  <a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest"><span class="badge">M</span>GetDefaultAppProviderForMimeTypeRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter"><span class="badge">M</span>ListAppProvidersRequest.Filter</a>
+                  <a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse"><span class="badge">M</span>GetDefaultAppProviderForMimeTypeResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest"><span class="badge">M</span>ListAppProvidersRequest</a>
                 </li>
               
                 <li>
                   <a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse"><span class="badge">M</span>ListAppProvidersResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest"><span class="badge">M</span>SetDefaultAppProviderForMimeTypeRequest</a>
+                </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter.Type"><span class="badge">E</span>ListAppProvidersRequest.Filter.Type</a>
+                  <a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse"><span class="badge">M</span>SetDefaultAppProviderForMimeTypeResponse</a>
                 </li>
+              
               
               
               
@@ -2346,8 +2362,10 @@ when a call to the WOPI server is to be issued (cf. the provider grpc message) <
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The application to be used to open the resource. Defaults to the primary application
-registered for the mime type of the given resource. </p></td>
+A reference to the application to be used to open the resource, should the
+default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
+If the targeted resource is a directory, this parameter is required and
+in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
                 </tr>
               
             </tbody>
@@ -3050,10 +3068,31 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
               </tr>
             
               <tr>
+                <td>AddAppProvider</td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderRequest">.cs3.app.registry.v1beta1.AddAppProviderRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderResponse">.cs3.app.registry.v1beta1.AddAppProviderResponse</a></td>
+                <td><p>Registers a new app provider to the registry.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ListAppProviders</td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest">.cs3.app.registry.v1beta1.ListAppProvidersRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse">.cs3.app.registry.v1beta1.ListAppProvidersResponse</a></td>
-                <td><p>Returns a list of the available app providers known by this registry.
+                <td><p>Returns a list of the available app providers known by this registry.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">.cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">.cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Returns the default app provider which serves a specified mime type.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">.cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse">.cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Sets the default app provider for a specified mime type.
 
 *****************************************************************/
 ************************ USER PROVIDER **************************/
@@ -5150,17 +5189,6 @@ The access token MUST be short-lived.
 TODO(labkode): investigate token derivation techniques. </p></td>
                 </tr>
               
-                <tr>
-                  <td>app</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A reference to the application to be used to open the resource, should the
-default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
-If the targeted resource is a directory, this parameter is required and
-in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -5322,6 +5350,72 @@ MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
       <p></p>
 
       
+        <h3 id="cs3.app.registry.v1beta1.AddAppProviderRequest">AddAppProviderRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The app provider to be registered. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.AddAppProviderResponse">AddAppProviderResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.app.registry.v1beta1.GetAppProvidersRequest">GetAppProvidersRequest</h3>
         <p></p>
 
@@ -5396,7 +5490,7 @@ The app providers available for the given resource info. </p></td>
 
         
       
-        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest">ListAppProvidersRequest</h3>
+        <h3 id="cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">GetDefaultAppProviderForMimeTypeRequest</h3>
         <p></p>
 
         
@@ -5415,11 +5509,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>filters</td>
-                  <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter">ListAppProvidersRequest.Filter</a></td>
-                  <td>repeated</td>
-                  <td><p>OPTIONAL.
-The list of filters to apply if any. </p></td>
+                  <td>mime_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mimetype for which the default app has to be returned. </p></td>
                 </tr>
               
             </tbody>
@@ -5429,8 +5523,8 @@ The list of filters to apply if any. </p></td>
 
         
       
-        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter">ListAppProvidersRequest.Filter</h3>
-        <p>REQUIRED.</p><p>Represents a filter to apply to the request.</p>
+        <h3 id="cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">GetDefaultAppProviderForMimeTypeResponse</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -5440,17 +5534,52 @@ The list of filters to apply if any. </p></td>
             <tbody>
               
                 <tr>
-                  <td>type</td>
-                  <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter.Type">ListAppProvidersRequest.Filter.Type</a></td>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
                 </tr>
               
                 <tr>
-                  <td>mime_type</td>
-                  <td><a href="#string">string</a></td>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
                   <td></td>
-                  <td><p>if present, the response MUST list all known app providers for the given mimetype. </p></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The default app provider for the specified mime type. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest">ListAppProvidersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>
@@ -5501,30 +5630,81 @@ The list of app providers this registry knows about. </p></td>
 
         
       
+        <h3 id="cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">SetDefaultAppProviderForMimeTypeRequest</h3>
+        <p></p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mimetype for which the default app has to be returned. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The app provider to be marked as default for the specified mime type. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
-        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter.Type">ListAppProvidersRequest.Filter.Type</h3>
-        <p>The filter to apply.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>TYPE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TYPE_MIME_TYPE</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
+        <h3 id="cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse">SetDefaultAppProviderForMimeTypeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
       
 
       
@@ -5547,10 +5727,31 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
               </tr>
             
               <tr>
+                <td>AddAppProvider</td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderRequest">AddAppProviderRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderResponse">AddAppProviderResponse</a></td>
+                <td><p>Registers a new app provider to the registry.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ListAppProviders</td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest">ListAppProvidersRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse">ListAppProvidersResponse</a></td>
                 <td><p>Returns a list of the available app providers known by this registry.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">GetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">GetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Returns the default app provider which serves a specified mime type.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">SetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse">SetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Sets the default app provider for a specified mime type.</p></td>
               </tr>
             
           </tbody>
@@ -5598,6 +5799,14 @@ The mimetypes handled by this provider. </p></td>
                   <td><p>REQUIRED.
 The address where the app provider can be reached.
 For example, tcp://localhost:1099. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A human-readable name of the app provider. </p></td>
                 </tr>
               
                 <tr>

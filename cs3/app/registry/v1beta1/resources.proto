@@ -43,8 +43,11 @@ message ProviderInfo {
   // For example, tcp://localhost:1099.
   string address = 3;
   // OPTIONAL.
+  // A human-readable name of the app provider.
+  string name = 4;
+  // OPTIONAL.
   // Information to describe the functionalities
   // offered by the app provider. Meant to be read
   // by humans.
-  string description = 4;
+  string description = 5;
 }

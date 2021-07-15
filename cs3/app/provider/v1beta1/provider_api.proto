@@ -89,12 +89,6 @@ message OpenInAppRequest {
   // The access token MUST be short-lived.
   // TODO(labkode): investigate token derivation techniques.
   string access_token = 4;
-  // OPTIONAL.
-  // A reference to the application to be used to open the resource, should the
-  // default inferred from the resource's mimetype be overridden by user's choice.
-  // If the targeted resource is a directory, this parameter is required and
-  // in its absence the implementation MUST return INVALID_ARGUMENT.
-  string app = 5;
 }
 
 message OpenInAppResponse {

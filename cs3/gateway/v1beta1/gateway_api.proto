@@ -287,8 +287,14 @@ service GatewayAPI {
   // Returns the app providers that are capable of handling this resource info.
   // MUST return CODE_NOT_FOUND if no providers are available.
   rpc GetAppProviders(cs3.app.registry.v1beta1.GetAppProvidersRequest) returns (cs3.app.registry.v1beta1.GetAppProvidersResponse);
+  // Registers a new app provider to the registry.
+  rpc AddAppProvider(cs3.app.registry.v1beta1.AddAppProviderRequest) returns (cs3.app.registry.v1beta1.AddAppProviderResponse);
   // Returns a list of the available app providers known by this registry.
   rpc ListAppProviders(cs3.app.registry.v1beta1.ListAppProvidersRequest) returns (cs3.app.registry.v1beta1.ListAppProvidersResponse);
+  // Returns the default app provider which serves a specified mime type.
+  rpc GetDefaultAppProviderForMimeType(cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest) returns (cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse);
+  // Sets the default app provider for a specified mime type.
+  rpc SetDefaultAppProviderForMimeType(cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest) returns (cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse);
   // *****************************************************************/
   // ************************ USER PROVIDER **************************/
   // *****************************************************************/
@@ -544,8 +550,10 @@ message OpenInAppRequest {
   }
   ViewMode view_mode = 3;
   // OPTIONAL.
-  // The application to be used to open the resource. Defaults to the primary application
-  // registered for the mime type of the given resource.
+  // A reference to the application to be used to open the resource, should the
+  // default inferred from the resource's mimetype be overridden by user's choice.
+  // If the targeted resource is a directory, this parameter is required and
+  // in its absence the implementation MUST return INVALID_ARGUMENT.
   string app = 4;
 }
 
