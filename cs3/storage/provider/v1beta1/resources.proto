@@ -241,6 +241,7 @@ message ResourcePermissions {
   bool restore_recycle_item = 17;
   bool stat = 18;
   bool update_grant = 19;
+  bool deny_grant = 20;
 }
 
 // A grant grants permissions

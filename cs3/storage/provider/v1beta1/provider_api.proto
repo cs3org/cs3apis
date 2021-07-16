@@ -63,6 +63,9 @@ service ProviderAPI {
   // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   rpc Delete(DeleteRequest) returns (DeleteResponse);
+  // Denies access to the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist
+  rpc DenyGrant(DenyGrantRequest) returns (DenyGrantResponse);
   // Returns the path reference for
   // the provided resource id reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist
@@ -187,6 +190,27 @@ message AddGrantRequest {
 }
 
 message AddGrantResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message DenyGrantRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The grantee to remove permission.
+  Grantee grantee = 3;
+}
+
+message DenyGrantResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
