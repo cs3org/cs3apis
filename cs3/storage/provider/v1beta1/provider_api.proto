@@ -459,6 +459,9 @@ message ListRecycleRequest {
   // The end time range to query for recycle items.
   // The value is Unix Epoch timestamp in seconds.
   cs3.types.v1beta1.Timestamp to_ts = 3;
+  // OPTIONAL.
+  // The reference to which the action should be performed.
+  Reference ref = 4;
 }
 
 message ListRecycleResponse {
@@ -487,6 +490,9 @@ message ListRecycleStreamRequest {
   // The end time range to query for recycle items.
   // The value is Unix Epoch timestamp in seconds.
   cs3.types.v1beta1.Timestamp to_ts = 3;
+  // OPTIONAL.
+  // The reference to which the action should be performed.
+  Reference ref = 4;
 }
 
 message ListRecycleStreamResponse {
