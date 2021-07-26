@@ -53,8 +53,14 @@ service RegistryAPI {
   // Returns the app providers that are capable of handling this resource info.
   // MUST return CODE_NOT_FOUND if no providers are available.
   rpc GetAppProviders(GetAppProvidersRequest) returns (GetAppProvidersResponse);
+  // Registers a new app provider to the registry.
+  rpc AddAppProvider(AddAppProviderRequest) returns (AddAppProviderResponse);
   // Returns a list of the available app providers known by this registry.
   rpc ListAppProviders(ListAppProvidersRequest) returns (ListAppProvidersResponse);
+  // Returns the default app provider which serves a specified mime type.
+  rpc GetDefaultAppProviderForMimeType(GetDefaultAppProviderForMimeTypeRequest) returns (GetDefaultAppProviderForMimeTypeResponse);
+  // Sets the default app provider for a specified mime type.
+  rpc SetDefaultAppProviderForMimeType(SetDefaultAppProviderForMimeTypeRequest) returns (SetDefaultAppProviderForMimeTypeResponse);
 }
 
 message GetAppProvidersRequest {
@@ -78,28 +84,28 @@ message GetAppProvidersResponse {
   repeated ProviderInfo providers = 3;
 }
 
-message ListAppProvidersRequest {
+message AddAppProviderRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // Represents a filter to apply to the request.
-  message Filter {
-    // The filter to apply.
-    enum Type {
-      TYPE_INVALID = 0;
-      TYPE_MIME_TYPE = 1;
-    }
-    // REQUIRED.
-    Type type = 2;
-    oneof term {
-      // if present, the response MUST list all known app providers for the given mimetype.
-      string mime_type = 3;
-    }
-  }
+  // The app provider to be registered.
+  ProviderInfo provider = 2;
+}
+
+message AddAppProviderResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
-  // The list of filters to apply if any.
-  repeated Filter filters = 2;
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message ListAppProvidersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
 }
 
 message ListAppProvidersResponse {
@@ -112,4 +118,46 @@ message ListAppProvidersResponse {
   // REQUIRED.
   // The list of app providers this registry knows about.
   repeated ProviderInfo providers = 3;
+}
+
+message GetDefaultAppProviderForMimeTypeRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The mimetype for which the default app has to be returned.
+  string mime_type = 2;
+}
+
+message GetDefaultAppProviderForMimeTypeResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The default app provider for the specified mime type.
+  ProviderInfo provider = 3;
+}
+
+message SetDefaultAppProviderForMimeTypeRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The mimetype for which the default app has to be returned.
+  string mime_type = 2;
+  // REQUIRED.
+  // The app provider to be marked as default for the specified mime type.
+  ProviderInfo provider = 3;
+}
+
+message SetDefaultAppProviderForMimeTypeResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
 }
