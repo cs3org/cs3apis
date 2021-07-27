@@ -372,26 +372,6 @@
                 "integer": 3
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest.ViewMode",
-            "enum_fields": [
-              {
-                "name": "VIEW_MODE_INVALID"
-              },
-              {
-                "name": "VIEW_MODE_VIEW_ONLY",
-                "integer": 1
-              },
-              {
-                "name": "VIEW_MODE_READ_ONLY",
-                "integer": 2
-              },
-              {
-                "name": "VIEW_MODE_READ_WRITE",
-                "integer": 3
-              }
-            ]
           }
         ],
         "messages": [
@@ -439,62 +419,12 @@
                 "type": "string"
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "resource_info",
-                "type": "storage.provider.v1beta1.ResourceInfo"
-              },
-              {
-                "id": 3,
-                "name": "view_mode",
-                "type": "ViewMode"
-              },
-              {
-                "id": 4,
-                "name": "access_token",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "OpenFileInAppProviderResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "app_provider_url",
-                "type": "string"
-              }
-            ]
           }
         ],
         "services": [
           {
             "name": "ProviderAPI",
             "rpcs": [
-              {
-                "name": "OpenFileInAppProvider",
-                "in_type": "OpenFileInAppProviderRequest",
-                "out_type": "OpenFileInAppProviderResponse"
-              },
               {
                 "name": "OpenInApp",
                 "in_type": "OpenInAppRequest",
@@ -1645,26 +1575,6 @@
                 "integer": 3
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest.ViewMode",
-            "enum_fields": [
-              {
-                "name": "VIEW_MODE_INVALID"
-              },
-              {
-                "name": "VIEW_MODE_VIEW_ONLY",
-                "integer": 1
-              },
-              {
-                "name": "VIEW_MODE_READ_ONLY",
-                "integer": 2
-              },
-              {
-                "name": "VIEW_MODE_READ_WRITE",
-                "integer": 3
-              }
-            ]
           }
         ],
         "messages": [
@@ -1920,26 +1830,6 @@
                 "type": "string"
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
-                "name": "view_mode",
-                "type": "ViewMode"
-              }
-            ]
           }
         ],
         "services": [
@@ -2102,11 +1992,6 @@
                 "name": "OpenInApp",
                 "in_type": "OpenInAppRequest",
                 "out_type": "cs3.app.provider.v1beta1.OpenInAppResponse"
-              },
-              {
-                "name": "OpenFileInAppProvider",
-                "in_type": "OpenFileInAppProviderRequest",
-                "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
               },
               {
                 "name": "CreateShare",
