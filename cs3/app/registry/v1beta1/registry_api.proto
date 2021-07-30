@@ -137,7 +137,7 @@ message ListSupportedMimeTypesResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
   // The list of supported mime types with the apps which they can be opened with.
-  map<string, ProviderNameList> mime_types = 3;
+  map<string, AppProviderNameList> mime_types = 3;
 }
 
 message GetDefaultAppProviderForMimeTypeRequest {

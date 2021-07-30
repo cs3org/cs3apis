@@ -52,7 +52,7 @@ message ProviderInfo {
   string description = 5;
 }
 
-// Holds a list of app provider names which can open a particular mime type.
-message ProviderNameList {
-  repeated string provider_name = 1;
+// Holds a list of app names which can open a particular mime type.
+message AppProviderNameList {
+  repeated string app_provider_name = 1;
 }

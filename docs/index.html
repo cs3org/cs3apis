@@ -552,6 +552,18 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest"><span class="badge">M</span>ListSupportedMimeTypesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse"><span class="badge">M</span>ListSupportedMimeTypesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry"><span class="badge">M</span>ListSupportedMimeTypesResponse.MimeTypesEntry</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest"><span class="badge">M</span>SetDefaultAppProviderForMimeTypeRequest</a>
                 </li>
               
@@ -573,6 +585,10 @@
           <li>
             <a href="#cs3%2fapp%2fregistry%2fv1beta1%2fresources.proto">cs3/app/registry/v1beta1/resources.proto</a>
             <ul>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.AppProviderNameList"><span class="badge">M</span>AppProviderNameList</a>
+                </li>
               
                 <li>
                   <a href="#cs3.app.registry.v1beta1.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
@@ -2976,6 +2992,13 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest">.cs3.app.registry.v1beta1.ListAppProvidersRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse">.cs3.app.registry.v1beta1.ListAppProvidersResponse</a></td>
                 <td><p>Returns a list of the available app providers known by this registry.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListSupportedMimeTypes</td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">.cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">.cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse</a></td>
+                <td><p>Returns a list of the supported mime types along with the apps which they can opened with.</p></td>
               </tr>
             
               <tr>
@@ -5387,6 +5410,103 @@ The list of app providers this registry knows about. </p></td>
 
         
       
+        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">ListSupportedMimeTypesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">ListSupportedMimeTypesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime_types</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry">ListSupportedMimeTypesResponse.MimeTypesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of supported mime types with the apps which they can be opened with. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry">ListSupportedMimeTypesResponse.MimeTypesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">SetDefaultAppProviderForMimeTypeRequest</h3>
         <p></p>
 
@@ -5498,6 +5618,13 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
               </tr>
             
               <tr>
+                <td>ListSupportedMimeTypes</td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">ListSupportedMimeTypesRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">ListSupportedMimeTypesResponse</a></td>
+                <td><p>Returns a list of the supported mime types along with the apps which they can opened with.</p></td>
+              </tr>
+            
+              <tr>
                 <td>GetDefaultAppProviderForMimeType</td>
                 <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">GetDefaultAppProviderForMimeTypeRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">GetDefaultAppProviderForMimeTypeResponse</a></td>
@@ -5522,6 +5649,30 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
       </div>
       <p></p>
 
+      
+        <h3 id="cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</h3>
+        <p>Holds a list of app names which can open a particular mime type.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_provider_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</h3>
         <p>Represents the information of the app provider.</p>
