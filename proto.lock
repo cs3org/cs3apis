@@ -372,26 +372,6 @@
                 "integer": 3
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest.ViewMode",
-            "enum_fields": [
-              {
-                "name": "VIEW_MODE_INVALID"
-              },
-              {
-                "name": "VIEW_MODE_VIEW_ONLY",
-                "integer": 1
-              },
-              {
-                "name": "VIEW_MODE_READ_ONLY",
-                "integer": 2
-              },
-              {
-                "name": "VIEW_MODE_READ_WRITE",
-                "integer": 3
-              }
-            ]
           }
         ],
         "messages": [
@@ -417,11 +397,6 @@
                 "id": 4,
                 "name": "access_token",
                 "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "app",
-                "type": "string"
               }
             ]
           },
@@ -444,62 +419,12 @@
                 "type": "string"
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "resource_info",
-                "type": "storage.provider.v1beta1.ResourceInfo"
-              },
-              {
-                "id": 3,
-                "name": "view_mode",
-                "type": "ViewMode"
-              },
-              {
-                "id": 4,
-                "name": "access_token",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "OpenFileInAppProviderResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 3,
-                "name": "app_provider_url",
-                "type": "string"
-              }
-            ]
           }
         ],
         "services": [
           {
             "name": "ProviderAPI",
             "rpcs": [
-              {
-                "name": "OpenFileInAppProvider",
-                "in_type": "OpenFileInAppProviderRequest",
-                "out_type": "OpenFileInAppProviderResponse"
-              },
               {
                 "name": "OpenInApp",
                 "in_type": "OpenInAppRequest",
@@ -557,20 +482,6 @@
     {
       "protopath": "cs3:/:app:/:registry:/:v1beta1:/:registry_api.proto",
       "def": {
-        "enums": [
-          {
-            "name": "Filter.Type",
-            "enum_fields": [
-              {
-                "name": "TYPE_INVALID"
-              },
-              {
-                "name": "TYPE_MIME_TYPE",
-                "integer": 1
-              }
-            ]
-          }
-        ],
         "messages": [
           {
             "name": "GetAppProvidersRequest",
@@ -609,7 +520,7 @@
             ]
           },
           {
-            "name": "ListAppProvidersRequest",
+            "name": "AddAppProviderRequest",
             "fields": [
               {
                 "id": 1,
@@ -618,26 +529,33 @@
               },
               {
                 "id": 2,
-                "name": "filters",
-                "type": "Filter",
-                "is_repeated": true
+                "name": "provider",
+                "type": "ProviderInfo"
               }
-            ],
-            "messages": [
+            ]
+          },
+          {
+            "name": "AddAppProviderResponse",
+            "fields": [
               {
-                "name": "Filter",
-                "fields": [
-                  {
-                    "id": 2,
-                    "name": "type",
-                    "type": "Type"
-                  },
-                  {
-                    "id": 3,
-                    "name": "mime_type",
-                    "type": "string"
-                  }
-                ]
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListAppProvidersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
               }
             ]
           },
@@ -661,6 +579,76 @@
                 "is_repeated": true
               }
             ]
+          },
+          {
+            "name": "GetDefaultAppProviderForMimeTypeRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_type",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetDefaultAppProviderForMimeTypeResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "SetDefaultAppProviderForMimeTypeRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_type",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "SetDefaultAppProviderForMimeTypeResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -673,9 +661,24 @@
                 "out_type": "GetAppProvidersResponse"
               },
               {
+                "name": "AddAppProvider",
+                "in_type": "AddAppProviderRequest",
+                "out_type": "AddAppProviderResponse"
+              },
+              {
                 "name": "ListAppProviders",
                 "in_type": "ListAppProvidersRequest",
                 "out_type": "ListAppProvidersResponse"
+              },
+              {
+                "name": "GetDefaultAppProviderForMimeType",
+                "in_type": "GetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "GetDefaultAppProviderForMimeTypeResponse"
+              },
+              {
+                "name": "SetDefaultAppProviderForMimeType",
+                "in_type": "SetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "SetDefaultAppProviderForMimeTypeResponse"
               }
             ]
           }
@@ -754,6 +757,11 @@
               },
               {
                 "id": 4,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 5,
                 "name": "description",
                 "type": "string"
               }
@@ -1567,26 +1575,6 @@
                 "integer": 3
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest.ViewMode",
-            "enum_fields": [
-              {
-                "name": "VIEW_MODE_INVALID"
-              },
-              {
-                "name": "VIEW_MODE_VIEW_ONLY",
-                "integer": 1
-              },
-              {
-                "name": "VIEW_MODE_READ_ONLY",
-                "integer": 2
-              },
-              {
-                "name": "VIEW_MODE_READ_WRITE",
-                "integer": 3
-              }
-            ]
           }
         ],
         "messages": [
@@ -1842,26 +1830,6 @@
                 "type": "string"
               }
             ]
-          },
-          {
-            "name": "OpenFileInAppProviderRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
-                "name": "view_mode",
-                "type": "ViewMode"
-              }
-            ]
           }
         ],
         "services": [
@@ -2026,11 +1994,6 @@
                 "out_type": "cs3.app.provider.v1beta1.OpenInAppResponse"
               },
               {
-                "name": "OpenFileInAppProvider",
-                "in_type": "OpenFileInAppProviderRequest",
-                "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
-              },
-              {
                 "name": "CreateShare",
                 "in_type": "cs3.sharing.collaboration.v1beta1.CreateShareRequest",
                 "out_type": "cs3.sharing.collaboration.v1beta1.CreateShareResponse"
@@ -2156,9 +2119,24 @@
                 "out_type": "cs3.app.registry.v1beta1.GetAppProvidersResponse"
               },
               {
+                "name": "AddAppProvider",
+                "in_type": "cs3.app.registry.v1beta1.AddAppProviderRequest",
+                "out_type": "cs3.app.registry.v1beta1.AddAppProviderResponse"
+              },
+              {
                 "name": "ListAppProviders",
                 "in_type": "cs3.app.registry.v1beta1.ListAppProvidersRequest",
                 "out_type": "cs3.app.registry.v1beta1.ListAppProvidersResponse"
+              },
+              {
+                "name": "GetDefaultAppProviderForMimeType",
+                "in_type": "cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse"
+              },
+              {
+                "name": "SetDefaultAppProviderForMimeType",
+                "in_type": "cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse"
               },
               {
                 "name": "GetUser",

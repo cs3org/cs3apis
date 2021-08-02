@@ -52,9 +52,6 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service ProviderAPI {
-  // Returns the App provider URL (deprecated)
-  // MUST return CODE_NOT_FOUND if the resource does not exist.
-  rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (OpenFileInAppProviderResponse);
   // Returns the App provider URL
   // MUST return CODE_NOT_FOUND if the resource does not exist.
   rpc OpenInApp(OpenInAppRequest) returns (OpenInAppResponse);
@@ -89,12 +86,6 @@ message OpenInAppRequest {
   // The access token MUST be short-lived.
   // TODO(labkode): investigate token derivation techniques.
   string access_token = 4;
-  // OPTIONAL.
-  // A reference to the application to be used to open the resource, should the
-  // default inferred from the resource's mimetype be overridden by user's choice.
-  // If the targeted resource is a directory, this parameter is required and
-  // in its absence the implementation MUST return INVALID_ARGUMENT.
-  string app = 5;
 }
 
 message OpenInAppResponse {
@@ -108,48 +99,4 @@ message OpenInAppResponse {
   // The url that user agents will render to clients.
   // Usually the rendering happens by using HTML iframes or in separate browser tabs.
   string app_url = 3;
-}
-
-message OpenFileInAppProviderRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The resourceInfo to be opened. The gateway grpc message has a ref instead.
-  storage.provider.v1beta1.ResourceInfo resource_info = 2;
-  // REQUIRED.
-  // View mode.
-  enum ViewMode {
-    VIEW_MODE_INVALID = 0;
-    // The file can be opened but not downloaded.
-    VIEW_MODE_VIEW_ONLY = 1;
-    // The file can be downloaded.
-    VIEW_MODE_READ_ONLY = 2;
-    // The file can be downloaded and updated.
-    VIEW_MODE_READ_WRITE = 3;
-  }
-  ViewMode view_mode = 3;
-  // REQUIRED.
-  // The access token this application provider will use when contacting
-  // the storage provider to read and write.
-  // Service implementors MUST make sure that the access token only grants
-  // access to the requested resource.
-  // Service implementors should use a ResourceId rather than a filename to grant access, as
-  // ResourceIds MUST NOT change when a resource is renamed.
-  // The access token MUST be short-lived.
-  // TODO(labkode): investigate token derivation techniques.
-  string access_token = 4;
-}
-
-message OpenFileInAppProviderResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The url that user agents will render to clients.
-  // Usually the rendering happens by using HTML iframes or in separate browser tabs.
-  string app_provider_url = 3;
 }

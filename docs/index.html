@@ -211,10 +211,6 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest"><span class="badge">M</span>OpenFileInAppProviderRequest</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.gateway.v1beta1.OpenInAppRequest"><span class="badge">M</span>OpenInAppRequest</a>
                 </li>
               
@@ -230,10 +226,6 @@
                   <a href="#cs3.gateway.v1beta1.WhoAmIResponse"><span class="badge">M</span>WhoAmIResponse</a>
                 </li>
               
-              
-                <li>
-                  <a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest.ViewMode"><span class="badge">E</span>OpenFileInAppProviderRequest.ViewMode</a>
-                </li>
               
                 <li>
                   <a href="#cs3.gateway.v1beta1.OpenInAppRequest.ViewMode"><span class="badge">E</span>OpenInAppRequest.ViewMode</a>
@@ -501,14 +493,6 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest"><span class="badge">M</span>OpenFileInAppProviderRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"><span class="badge">M</span>OpenFileInAppProviderResponse</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.app.provider.v1beta1.OpenInAppRequest"><span class="badge">M</span>OpenInAppRequest</a>
                 </li>
               
@@ -516,10 +500,6 @@
                   <a href="#cs3.app.provider.v1beta1.OpenInAppResponse"><span class="badge">M</span>OpenInAppResponse</a>
                 </li>
               
-              
-                <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode"><span class="badge">E</span>OpenFileInAppProviderRequest.ViewMode</a>
-                </li>
               
                 <li>
                   <a href="#cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode"><span class="badge">E</span>OpenInAppRequest.ViewMode</a>
@@ -540,6 +520,14 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.app.registry.v1beta1.AddAppProviderRequest"><span class="badge">M</span>AddAppProviderRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.AddAppProviderResponse"><span class="badge">M</span>AddAppProviderResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.app.registry.v1beta1.GetAppProvidersRequest"><span class="badge">M</span>GetAppProvidersRequest</a>
                 </li>
               
@@ -548,21 +536,41 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest"><span class="badge">M</span>ListAppProvidersRequest</a>
+                  <a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest"><span class="badge">M</span>GetDefaultAppProviderForMimeTypeRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter"><span class="badge">M</span>ListAppProvidersRequest.Filter</a>
+                  <a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse"><span class="badge">M</span>GetDefaultAppProviderForMimeTypeResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest"><span class="badge">M</span>ListAppProvidersRequest</a>
                 </li>
               
                 <li>
                   <a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse"><span class="badge">M</span>ListAppProvidersResponse</a>
                 </li>
               
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest"><span class="badge">M</span>ListSupportedMimeTypesRequest</a>
+                </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter.Type"><span class="badge">E</span>ListAppProvidersRequest.Filter.Type</a>
+                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse"><span class="badge">M</span>ListSupportedMimeTypesResponse</a>
                 </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry"><span class="badge">M</span>ListSupportedMimeTypesResponse.MimeTypesEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest"><span class="badge">M</span>SetDefaultAppProviderForMimeTypeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse"><span class="badge">M</span>SetDefaultAppProviderForMimeTypeResponse</a>
+                </li>
+              
               
               
               
@@ -577,6 +585,10 @@
           <li>
             <a href="#cs3%2fapp%2fregistry%2fv1beta1%2fresources.proto">cs3/app/registry/v1beta1/resources.proto</a>
             <ul>
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.AppProviderNameList"><span class="badge">M</span>AppProviderNameList</a>
+                </li>
               
                 <li>
                   <a href="#cs3.app.registry.v1beta1.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
@@ -2274,47 +2286,6 @@ The value is Unix Epoch timestamp in seconds. </p></td>
 
         
       
-        <h3 id="cs3.gateway.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</h3>
-        <p>Deprecated</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
-when a call to the WOPI server is to be issued (cf. the provider grpc message) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_mode</td>
-                  <td><a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.gateway.v1beta1.OpenInAppRequest">OpenInAppRequest</h3>
         <p></p>
 
@@ -2354,8 +2325,10 @@ when a call to the WOPI server is to be issued (cf. the provider grpc message) <
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The application to be used to open the resource. Defaults to the primary application
-registered for the mime type of the given resource. </p></td>
+A reference to the application to be used to open the resource, should the
+default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
+If the targeted resource is a directory, this parameter is required and
+in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
                 </tr>
               
             </tbody>
@@ -2473,41 +2446,6 @@ The user information. </p></td>
         
       
 
-      
-        <h3 id="cs3.gateway.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</h3>
-        <p>REQUIRED.</p><p>View mode.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>VIEW_MODE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_VIEW_ONLY</td>
-                <td>1</td>
-                <td><p>The file can be opened but not downloaded.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_READ_ONLY</td>
-                <td>2</td>
-                <td><p>The file can be downloaded.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_READ_WRITE</td>
-                <td>3</td>
-                <td><p>The file can be downloaded and updated.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
         <h3 id="cs3.gateway.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</h3>
         <p>REQUIRED.</p><p>View mode.</p>
@@ -2818,14 +2756,7 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td>OpenInApp</td>
                 <td><a href="#cs3.gateway.v1beta1.OpenInAppRequest">OpenInAppRequest</a></td>
                 <td><a href="#cs3.app.provider.v1beta1.OpenInAppResponse">.cs3.app.provider.v1beta1.OpenInAppResponse</a></td>
-                <td><p>Returns the App provider URL, which allows the user to open a resource in an online editor.</p></td>
-              </tr>
-            
-              <tr>
-                <td>OpenFileInAppProvider</td>
-                <td><a href="#cs3.gateway.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</a></td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">.cs3.app.provider.v1beta1.OpenFileInAppProviderResponse</a></td>
-                <td><p>Deprecated.
+                <td><p>Returns the App provider URL, which allows the user to open a resource in an online editor.
 
 *****************************************************************/
 ************************ USER SHARE PROVIDER ********************/
@@ -3058,10 +2989,38 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
               </tr>
             
               <tr>
+                <td>AddAppProvider</td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderRequest">.cs3.app.registry.v1beta1.AddAppProviderRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderResponse">.cs3.app.registry.v1beta1.AddAppProviderResponse</a></td>
+                <td><p>Registers a new app provider to the registry.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ListAppProviders</td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest">.cs3.app.registry.v1beta1.ListAppProvidersRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse">.cs3.app.registry.v1beta1.ListAppProvidersResponse</a></td>
-                <td><p>Returns a list of the available app providers known by this registry.
+                <td><p>Returns a list of the available app providers known by this registry.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListSupportedMimeTypes</td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">.cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">.cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse</a></td>
+                <td><p>Returns a list of the supported mime types along with the apps which they can opened with.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">.cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">.cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Returns the default app provider which serves a specified mime type.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">.cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse">.cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Sets the default app provider for a specified mime type.
 
 *****************************************************************/
 ************************ USER PROVIDER **************************/
@@ -5013,103 +4972,6 @@ Opaque information. </p></td>
       <p></p>
 
       
-        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>resource_info</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceInfo">cs3.storage.provider.v1beta1.ResourceInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The resourceInfo to be opened. The gateway grpc message has a ref instead. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_mode</td>
-                  <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>access_token</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The access token this application provider will use when contacting
-the storage provider to read and write.
-Service implementors MUST make sure that the access token only grants
-access to the requested resource.
-Service implementors should use a ResourceId rather than a filename to grant access, as
-ResourceIds MUST NOT change when a resource is renamed.
-The access token MUST be short-lived.
-TODO(labkode): investigate token derivation techniques. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>app_provider_url</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The url that user agents will render to clients.
-Usually the rendering happens by using HTML iframes or in separate browser tabs. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.app.provider.v1beta1.OpenInAppRequest">OpenInAppRequest</h3>
         <p></p>
 
@@ -5156,17 +5018,6 @@ Service implementors should use a ResourceId rather than a filepath to grant acc
 ResourceIds MUST NOT change when a resource is renamed.
 The access token MUST be short-lived.
 TODO(labkode): investigate token derivation techniques. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>app</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A reference to the application to be used to open the resource, should the
-default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
-If the targeted resource is a directory, this parameter is required and
-in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
                 </tr>
               
             </tbody>
@@ -5220,41 +5071,6 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
       
 
       
-        <h3 id="cs3.app.provider.v1beta1.OpenFileInAppProviderRequest.ViewMode">OpenFileInAppProviderRequest.ViewMode</h3>
-        <p>REQUIRED.</p><p>View mode.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>VIEW_MODE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_VIEW_ONLY</td>
-                <td>1</td>
-                <td><p>The file can be opened but not downloaded.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_READ_ONLY</td>
-                <td>2</td>
-                <td><p>The file can be downloaded.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_READ_WRITE</td>
-                <td>3</td>
-                <td><p>The file can be downloaded and updated.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</h3>
         <p>REQUIRED.</p><p>View mode.</p>
         <table class="enum-table">
@@ -5303,14 +5119,6 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
           <tbody>
             
               <tr>
-                <td>OpenFileInAppProvider</td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderRequest">OpenFileInAppProviderRequest</a></td>
-                <td><a href="#cs3.app.provider.v1beta1.OpenFileInAppProviderResponse">OpenFileInAppProviderResponse</a></td>
-                <td><p>Returns the App provider URL (deprecated)
-MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
-              </tr>
-            
-              <tr>
                 <td>OpenInApp</td>
                 <td><a href="#cs3.app.provider.v1beta1.OpenInAppRequest">OpenInAppRequest</a></td>
                 <td><a href="#cs3.app.provider.v1beta1.OpenInAppResponse">OpenInAppResponse</a></td>
@@ -5329,6 +5137,72 @@ MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
       </div>
       <p></p>
 
+      
+        <h3 id="cs3.app.registry.v1beta1.AddAppProviderRequest">AddAppProviderRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The app provider to be registered. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.AddAppProviderResponse">AddAppProviderResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="cs3.app.registry.v1beta1.GetAppProvidersRequest">GetAppProvidersRequest</h3>
         <p></p>
@@ -5404,7 +5278,7 @@ The app providers available for the given resource info. </p></td>
 
         
       
-        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest">ListAppProvidersRequest</h3>
+        <h3 id="cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">GetDefaultAppProviderForMimeTypeRequest</h3>
         <p></p>
 
         
@@ -5423,11 +5297,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>filters</td>
-                  <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter">ListAppProvidersRequest.Filter</a></td>
-                  <td>repeated</td>
-                  <td><p>OPTIONAL.
-The list of filters to apply if any. </p></td>
+                  <td>mime_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mimetype for which the default app has to be returned. </p></td>
                 </tr>
               
             </tbody>
@@ -5437,8 +5311,8 @@ The list of filters to apply if any. </p></td>
 
         
       
-        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter">ListAppProvidersRequest.Filter</h3>
-        <p>REQUIRED.</p><p>Represents a filter to apply to the request.</p>
+        <h3 id="cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">GetDefaultAppProviderForMimeTypeResponse</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -5448,17 +5322,52 @@ The list of filters to apply if any. </p></td>
             <tbody>
               
                 <tr>
-                  <td>type</td>
-                  <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter.Type">ListAppProvidersRequest.Filter.Type</a></td>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
                 </tr>
               
                 <tr>
-                  <td>mime_type</td>
-                  <td><a href="#string">string</a></td>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
                   <td></td>
-                  <td><p>if present, the response MUST list all known app providers for the given mimetype. </p></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The default app provider for the specified mime type. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest">ListAppProvidersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
                 </tr>
               
             </tbody>
@@ -5509,30 +5418,178 @@ The list of app providers this registry knows about. </p></td>
 
         
       
+        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">ListSupportedMimeTypesRequest</h3>
+        <p></p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
-        <h3 id="cs3.app.registry.v1beta1.ListAppProvidersRequest.Filter.Type">ListAppProvidersRequest.Filter.Type</h3>
-        <p>The filter to apply.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>TYPE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TYPE_MIME_TYPE</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
+        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">ListSupportedMimeTypesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime_types</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry">ListSupportedMimeTypesResponse.MimeTypesEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The list of supported mime types with the apps which they can be opened with. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry">ListSupportedMimeTypesResponse.MimeTypesEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">SetDefaultAppProviderForMimeTypeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mimetype for which the default app has to be returned. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>provider</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The app provider to be marked as default for the specified mime type. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse">SetDefaultAppProviderForMimeTypeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
       
 
       
@@ -5555,10 +5612,38 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
               </tr>
             
               <tr>
+                <td>AddAppProvider</td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderRequest">AddAppProviderRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.AddAppProviderResponse">AddAppProviderResponse</a></td>
+                <td><p>Registers a new app provider to the registry.</p></td>
+              </tr>
+            
+              <tr>
                 <td>ListAppProviders</td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersRequest">ListAppProvidersRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListAppProvidersResponse">ListAppProvidersResponse</a></td>
                 <td><p>Returns a list of the available app providers known by this registry.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListSupportedMimeTypes</td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">ListSupportedMimeTypesRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">ListSupportedMimeTypesResponse</a></td>
+                <td><p>Returns a list of the supported mime types along with the apps which they can opened with.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest">GetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse">GetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Returns the default app provider which serves a specified mime type.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetDefaultAppProviderForMimeType</td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest">SetDefaultAppProviderForMimeTypeRequest</a></td>
+                <td><a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse">SetDefaultAppProviderForMimeTypeResponse</a></td>
+                <td><p>Sets the default app provider for a specified mime type.</p></td>
               </tr>
             
           </tbody>
@@ -5572,6 +5657,30 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
       </div>
       <p></p>
 
+      
+        <h3 id="cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</h3>
+        <p>Holds a list of app names which can open a particular mime type.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_provider_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</h3>
         <p>Represents the information of the app provider.</p>
@@ -5606,6 +5715,14 @@ The mimetypes handled by this provider. </p></td>
                   <td><p>REQUIRED.
 The address where the app provider can be reached.
 For example, tcp://localhost:1099. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A human-readable name of the app provider. </p></td>
                 </tr>
               
                 <tr>
