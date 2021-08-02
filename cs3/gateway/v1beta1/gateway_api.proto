@@ -181,8 +181,6 @@ service GatewayAPI {
 
   // Returns the App provider URL, which allows the user to open a resource in an online editor.
   rpc OpenInApp(OpenInAppRequest) returns (cs3.app.provider.v1beta1.OpenInAppResponse);
-  // Deprecated.
-  rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (cs3.app.provider.v1beta1.OpenFileInAppProviderResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
   // *****************************************************************/
@@ -291,6 +289,8 @@ service GatewayAPI {
   rpc AddAppProvider(cs3.app.registry.v1beta1.AddAppProviderRequest) returns (cs3.app.registry.v1beta1.AddAppProviderResponse);
   // Returns a list of the available app providers known by this registry.
   rpc ListAppProviders(cs3.app.registry.v1beta1.ListAppProvidersRequest) returns (cs3.app.registry.v1beta1.ListAppProvidersResponse);
+  // Returns a list of the supported mime types along with the apps which they can opened with.
+  rpc ListSupportedMimeTypes(cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest) returns (cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse);
   // Returns the default app provider which serves a specified mime type.
   rpc GetDefaultAppProviderForMimeType(cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest) returns (cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse);
   // Sets the default app provider for a specified mime type.
@@ -555,27 +555,4 @@ message OpenInAppRequest {
   // If the targeted resource is a directory, this parameter is required and
   // in its absence the implementation MUST return INVALID_ARGUMENT.
   string app = 4;
-}
-
-// Deprecated
-message OpenFileInAppProviderRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
-  // when a call to the WOPI server is to be issued (cf. the provider grpc message)
-  storage.provider.v1beta1.Reference ref = 2;
-  // REQUIRED.
-  // View mode.
-  enum ViewMode {
-    VIEW_MODE_INVALID = 0;
-    // The file can be opened but not downloaded.
-    VIEW_MODE_VIEW_ONLY = 1;
-    // The file can be downloaded.
-    VIEW_MODE_READ_ONLY = 2;
-    // The file can be downloaded and updated.
-    VIEW_MODE_READ_WRITE = 3;
-  }
-  ViewMode view_mode = 3;
 }

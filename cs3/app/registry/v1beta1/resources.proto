@@ -51,3 +51,8 @@ message ProviderInfo {
   // by humans.
   string description = 5;
 }
+
+// Holds a list of app names which can open a particular mime type.
+message AppProviderNameList {
+  repeated string app_provider_name = 1;
+}
