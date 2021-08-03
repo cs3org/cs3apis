@@ -35,6 +35,7 @@ message OpenInAppURL {
   string app_url = 1;
   // REQUIRED.
   // The method for the request to be made.
+  // Only GET and POST are supported.
   string method = 2;
   // OPTIONAL.
   // The form parameters which have to be passed along with the request.
