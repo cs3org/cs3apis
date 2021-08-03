@@ -416,7 +416,7 @@
               {
                 "id": 3,
                 "name": "app_url",
-                "type": "string"
+                "type": "OpenInAppURL"
               }
             ]
           }
@@ -434,6 +434,9 @@
           }
         ],
         "imports": [
+          {
+            "path": "cs3/app/provider/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
@@ -463,6 +466,79 @@
           {
             "name": "java_outer_classname",
             "value": "ProviderApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.app.provider.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAP"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\App\\\\Provider\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:app:/:provider:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "OpenInAppURL",
+            "fields": [
+              {
+                "id": 1,
+                "name": "app_url",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "method",
+                "type": "string"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 3,
+                  "name": "form_parameters",
+                  "type": "string"
+                }
+              },
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 4,
+                  "name": "headers",
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.app.provider.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.App.Provider.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "providerv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -581,6 +657,41 @@
             ]
           },
           {
+            "name": "ListSupportedMimeTypesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListSupportedMimeTypesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 3,
+                  "name": "mime_types",
+                  "type": "AppProviderNameList"
+                }
+              }
+            ]
+          },
+          {
             "name": "GetDefaultAppProviderForMimeTypeRequest",
             "fields": [
               {
@@ -669,6 +780,11 @@
                 "name": "ListAppProviders",
                 "in_type": "ListAppProvidersRequest",
                 "out_type": "ListAppProvidersResponse"
+              },
+              {
+                "name": "ListSupportedMimeTypes",
+                "in_type": "ListSupportedMimeTypesRequest",
+                "out_type": "ListSupportedMimeTypesResponse"
               },
               {
                 "name": "GetDefaultAppProviderForMimeType",
@@ -764,6 +880,17 @@
                 "id": 5,
                 "name": "description",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "AppProviderNameList",
+            "fields": [
+              {
+                "id": 1,
+                "name": "app_provider_names",
+                "type": "string",
+                "is_repeated": true
               }
             ]
           }
@@ -2127,6 +2254,11 @@
                 "name": "ListAppProviders",
                 "in_type": "cs3.app.registry.v1beta1.ListAppProvidersRequest",
                 "out_type": "cs3.app.registry.v1beta1.ListAppProvidersResponse"
+              },
+              {
+                "name": "ListSupportedMimeTypes",
+                "in_type": "cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest",
+                "out_type": "cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse"
               },
               {
                 "name": "GetDefaultAppProviderForMimeType",
@@ -6524,6 +6656,41 @@
             ]
           },
           {
+            "name": "DenyGrantRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "grantee",
+                "type": "Grantee"
+              }
+            ]
+          },
+          {
+            "name": "DenyGrantResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
             "name": "CreateContainerRequest",
             "fields": [
               {
@@ -7598,6 +7765,11 @@
                 "out_type": "DeleteResponse"
               },
               {
+                "name": "DenyGrant",
+                "in_type": "DenyGrantRequest",
+                "out_type": "DenyGrantResponse"
+              },
+              {
                 "name": "GetPath",
                 "in_type": "GetPathRequest",
                 "out_type": "GetPathResponse"
@@ -8109,6 +8281,11 @@
               {
                 "id": 19,
                 "name": "update_grant",
+                "type": "bool"
+              },
+              {
+                "id": 20,
+                "name": "deny_grant",
                 "type": "bool"
               }
             ]
