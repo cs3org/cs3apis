@@ -686,7 +686,7 @@
                 "field": {
                   "id": 3,
                   "name": "mime_types",
-                  "type": "AppProviderNameList"
+                  "type": "AppProviderList"
                 }
               }
             ]
@@ -880,16 +880,26 @@
                 "id": 5,
                 "name": "description",
                 "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "desktop_only",
+                "type": "bool"
               }
             ]
           },
           {
-            "name": "AppProviderNameList",
+            "name": "AppProviderList",
             "fields": [
               {
                 "id": 1,
-                "name": "app_provider_names",
-                "type": "string",
+                "name": "app_providers",
+                "type": "ProviderInfo",
                 "is_repeated": true
               }
             ]

@@ -610,7 +610,7 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.AppProviderNameList"><span class="badge">M</span>AppProviderNameList</a>
+                  <a href="#cs3.app.registry.v1beta1.AppProviderList"><span class="badge">M</span>AppProviderList</a>
                 </li>
               
                 <li>
@@ -5653,7 +5653,7 @@ The list of supported mime types with the apps which they can be opened with. </
               
                 <tr>
                   <td>value</td>
-                  <td><a href="#cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</a></td>
+                  <td><a href="#cs3.app.registry.v1beta1.AppProviderList">AppProviderList</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -5808,8 +5808,8 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
       <p></p>
 
       
-        <h3 id="cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</h3>
-        <p>Holds a list of app names which can open a particular mime type.</p>
+        <h3 id="cs3.app.registry.v1beta1.AppProviderList">AppProviderList</h3>
+        <p>Holds a list of app providers which can open a particular mime type.</p>
 
         
           <table class="field-table">
@@ -5819,8 +5819,8 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
             <tbody>
               
                 <tr>
-                  <td>app_provider_names</td>
-                  <td><a href="#string">string</a></td>
+                  <td>app_providers</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
@@ -5883,6 +5883,22 @@ A human-readable name of the app provider. </p></td>
 Information to describe the functionalities
 offered by the app provider. Meant to be read
 by humans. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>icon</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A URI to a static asset which represents the app icon. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>desktop_only</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Whether the app can be opened only on desktop </p></td>
                 </tr>
               
             </tbody>

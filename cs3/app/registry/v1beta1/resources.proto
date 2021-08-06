@@ -50,9 +50,15 @@ message ProviderInfo {
   // offered by the app provider. Meant to be read
   // by humans.
   string description = 5;
+  // OPTIONAL.
+  // A URI to a static asset which represents the app icon.
+  string icon = 6;
+  // OPTIONAL.
+  // Whether the app can be opened only on desktop
+  bool desktop_only = 7;
 }
 
-// Holds a list of app names which can open a particular mime type.
-message AppProviderNameList {
-  repeated string app_provider_names = 1;
+// Holds a list of app providers which can open a particular mime type.
+message AppProviderList {
+  repeated ProviderInfo app_providers = 1;
 }
