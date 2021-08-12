@@ -516,6 +516,29 @@
         
           
           <li>
+            <a href="#cs3%2fapp%2fprovider%2fv1beta1%2fresources.proto">cs3/app/provider/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenInAppURL"><span class="badge">M</span>OpenInAppURL</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenInAppURL.FormParametersEntry"><span class="badge">M</span>OpenInAppURL.FormParametersEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.OpenInAppURL.HeadersEntry"><span class="badge">M</span>OpenInAppURL.HeadersEntry</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fapp%2fregistry%2fv1beta1%2fregistry_api.proto">cs3/app/registry/v1beta1/registry_api.proto</a>
             <ul>
               
@@ -587,7 +610,7 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.AppProviderNameList"><span class="badge">M</span>AppProviderNameList</a>
+                  <a href="#cs3.app.registry.v1beta1.AppProviderList"><span class="badge">M</span>AppProviderList</a>
                 </li>
               
                 <li>
@@ -5055,7 +5078,7 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>app_url</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#cs3.app.provider.v1beta1.OpenInAppURL">OpenInAppURL</a></td>
                   <td></td>
                   <td><p>REQUIRED.
 The url that user agents will render to clients.
@@ -5130,6 +5153,133 @@ MUST return CODE_NOT_FOUND if the resource does not exist.</p></td>
         </table>
 
         
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/app/provider/v1beta1/resources.proto">cs3/app/provider/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.app.provider.v1beta1.OpenInAppURL">OpenInAppURL</h3>
+        <p>Represents the information for the app URL to be called by the clients.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The URL that clients will perform requests to. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>method</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The method for the request to be made.
+Only GET and POST are supported. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>form_parameters</td>
+                  <td><a href="#cs3.app.provider.v1beta1.OpenInAppURL.FormParametersEntry">OpenInAppURL.FormParametersEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The form parameters which have to be passed along with the request.
+These are sent only if the method is &#39;POST&#39;. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>headers</td>
+                  <td><a href="#cs3.app.provider.v1beta1.OpenInAppURL.HeadersEntry">OpenInAppURL.HeadersEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The headers to be added to the request. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.provider.v1beta1.OpenInAppURL.FormParametersEntry">OpenInAppURL.FormParametersEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.app.provider.v1beta1.OpenInAppURL.HeadersEntry">OpenInAppURL.HeadersEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
     
       
       <div class="file-heading">
@@ -5503,7 +5653,7 @@ The list of supported mime types with the apps which they can be opened with. </
               
                 <tr>
                   <td>value</td>
-                  <td><a href="#cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</a></td>
+                  <td><a href="#cs3.app.registry.v1beta1.AppProviderList">AppProviderList</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -5658,8 +5808,8 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
       <p></p>
 
       
-        <h3 id="cs3.app.registry.v1beta1.AppProviderNameList">AppProviderNameList</h3>
-        <p>Holds a list of app names which can open a particular mime type.</p>
+        <h3 id="cs3.app.registry.v1beta1.AppProviderList">AppProviderList</h3>
+        <p>Holds a list of app providers which can open a particular mime type.</p>
 
         
           <table class="field-table">
@@ -5669,8 +5819,8 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
             <tbody>
               
                 <tr>
-                  <td>app_provider_name</td>
-                  <td><a href="#string">string</a></td>
+                  <td>app_providers</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
@@ -5733,6 +5883,22 @@ A human-readable name of the app provider. </p></td>
 Information to describe the functionalities
 offered by the app provider. Meant to be read
 by humans. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>icon</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A URI to a static asset which represents the app icon. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>desktop_only</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Whether the app can be opened only on desktop </p></td>
                 </tr>
               
             </tbody>
