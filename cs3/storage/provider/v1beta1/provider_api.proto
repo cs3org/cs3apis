@@ -138,6 +138,8 @@ service ProviderAPI {
   // Creates a reference to another resource in the same cluster or another domain (OCM shares).
   // The references resource can be accessed by the protocol specificied in the request message.
   rpc CreateReference(CreateReferenceRequest) returns (CreateReferenceResponse);
+  // Deletes a reference to another resource in the same cluster or another domain (OCM shares).
+  rpc DeleteReference(DeleteReferenceRequest) returns (DeleteReferenceResponse);
   // Sets arbitrary metadata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.
   rpc SetArbitraryMetadata(SetArbitraryMetadataRequest) returns (SetArbitraryMetadataResponse);
@@ -698,6 +700,24 @@ message CreateReferenceRequest {
 }
 
 message CreateReferenceResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message DeleteReferenceRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The location where to store the reference.
+  Reference ref = 2;
+}
+
+message DeleteReferenceResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

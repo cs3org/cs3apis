@@ -1563,6 +1563,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.DeleteReferenceRequest"><span class="badge">M</span>DeleteReferenceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.DeleteReferenceResponse"><span class="badge">M</span>DeleteReferenceResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.DeleteRequest"><span class="badge">M</span>DeleteRequest</a>
                 </li>
               
@@ -13228,6 +13236,72 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.DeleteReferenceRequest">DeleteReferenceRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The location where to store the reference. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.DeleteReferenceResponse">DeleteReferenceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.DeleteRequest">DeleteRequest</h3>
         <p></p>
 
@@ -15446,6 +15520,13 @@ MUST return CODE_PRECONDITION_FAILED if the acl does not exist.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateReferenceResponse">CreateReferenceResponse</a></td>
                 <td><p>Creates a reference to another resource in the same cluster or another domain (OCM shares).
 The references resource can be accessed by the protocol specificied in the request message.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteReference</td>
+                <td><a href="#cs3.storage.provider.v1beta1.DeleteReferenceRequest">DeleteReferenceRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.DeleteReferenceResponse">DeleteReferenceResponse</a></td>
+                <td><p>Deletes a reference to another resource in the same cluster or another domain (OCM shares).</p></td>
               </tr>
             
               <tr>
