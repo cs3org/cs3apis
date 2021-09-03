@@ -28,7 +28,6 @@ option java_package = "com.cs3.sharing.collaboration.v1beta1";
 option objc_class_prefix = "CSC";
 option php_namespace = "Cs3\\Sharing\\Collaboration\\V1Beta1";
 
-import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
@@ -143,25 +142,6 @@ message ListSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // represents a filter to apply to the request.
-  message Filter {
-    // The filter to apply.
-    enum Type {
-      TYPE_INVALID = 0;
-      TYPE_NO = 1;
-      TYPE_RESOURCE_ID = 2;
-      TYPE_OWNER = 3;
-      TYPE_CREATOR = 4;
-    }
-    // REQUIRED.
-    Type type = 2;
-    oneof term {
-      storage.provider.v1beta1.ResourceId resource_id = 3;
-      cs3.identity.user.v1beta1.UserId owner = 4;
-      cs3.identity.user.v1beta1.UserId creator = 5;
-    }
-  }
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
@@ -222,6 +202,9 @@ message ListReceivedSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 3;
 }
 
 message ListReceivedSharesResponse {
