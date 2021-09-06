@@ -4534,32 +4534,6 @@
     {
       "protopath": "cs3:/:sharing:/:collaboration:/:v1beta1:/:collaboration_api.proto",
       "def": {
-        "enums": [
-          {
-            "name": "Filter.Type",
-            "enum_fields": [
-              {
-                "name": "TYPE_INVALID"
-              },
-              {
-                "name": "TYPE_NO",
-                "integer": 1
-              },
-              {
-                "name": "TYPE_RESOURCE_ID",
-                "integer": 2
-              },
-              {
-                "name": "TYPE_OWNER",
-                "integer": 3
-              },
-              {
-                "name": "TYPE_CREATOR",
-                "integer": 4
-              }
-            ]
-          }
-        ],
         "messages": [
           {
             "name": "CreateShareRequest",
@@ -4672,33 +4646,6 @@
                 "type": "Filter",
                 "is_repeated": true
               }
-            ],
-            "messages": [
-              {
-                "name": "Filter",
-                "fields": [
-                  {
-                    "id": 2,
-                    "name": "type",
-                    "type": "Type"
-                  },
-                  {
-                    "id": 3,
-                    "name": "resource_id",
-                    "type": "storage.provider.v1beta1.ResourceId"
-                  },
-                  {
-                    "id": 4,
-                    "name": "owner",
-                    "type": "cs3.identity.user.v1beta1.UserId"
-                  },
-                  {
-                    "id": 5,
-                    "name": "creator",
-                    "type": "cs3.identity.user.v1beta1.UserId"
-                  }
-                ]
-              }
             ]
           },
           {
@@ -4794,6 +4741,12 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
               }
             ]
           },
@@ -4960,9 +4913,6 @@
         ],
         "imports": [
           {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
-          {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
@@ -5031,6 +4981,34 @@
               {
                 "name": "SHARE_STATE_REJECTED",
                 "integer": 3
+              }
+            ]
+          },
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_NO",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_RESOURCE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_OWNER",
+                "integer": 3
+              },
+              {
+                "name": "TYPE_CREATOR",
+                "integer": 4
+              },
+              {
+                "name": "TYPE_GRANTEE_TYPE",
+                "integer": 5
               }
             ]
           }
@@ -5163,6 +5141,36 @@
                 "id": 2,
                 "name": "permissions",
                 "type": "SharePermissions"
+              }
+            ]
+          },
+          {
+            "name": "Filter",
+            "fields": [
+              {
+                "id": 2,
+                "name": "type",
+                "type": "Type"
+              },
+              {
+                "id": 3,
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
+              },
+              {
+                "id": 4,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 5,
+                "name": "creator",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 6,
+                "name": "grantee_type",
+                "type": "storage.provider.v1beta1.GranteeType"
               }
             ]
           }

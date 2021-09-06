@@ -161,3 +161,24 @@ message ShareGrant {
   // The share permissions for the grant.
   SharePermissions permissions = 2;
 }
+
+// Represents a filter to apply to the request.
+message Filter {
+  // The filter to apply.
+  enum Type {
+    TYPE_INVALID = 0;
+    TYPE_NO = 1;
+    TYPE_RESOURCE_ID = 2;
+    TYPE_OWNER = 3;
+    TYPE_CREATOR = 4;
+    TYPE_GRANTEE_TYPE = 5;
+  }
+  // REQUIRED.
+  Type type = 2;
+  oneof term {
+    storage.provider.v1beta1.ResourceId resource_id = 3;
+    cs3.identity.user.v1beta1.UserId owner = 4;
+    cs3.identity.user.v1beta1.UserId creator = 5;
+    storage.provider.v1beta1.GranteeType grantee_type = 6;
+  }
+}

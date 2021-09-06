@@ -1153,10 +1153,6 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.sharing.collaboration.v1beta1.ListSharesRequest.Filter"><span class="badge">M</span>ListSharesRequest.Filter</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.sharing.collaboration.v1beta1.ListSharesResponse"><span class="badge">M</span>ListSharesResponse</a>
                 </li>
               
@@ -1193,10 +1189,6 @@
                 </li>
               
               
-                <li>
-                  <a href="#cs3.sharing.collaboration.v1beta1.ListSharesRequest.Filter.Type"><span class="badge">E</span>ListSharesRequest.Filter.Type</a>
-                </li>
-              
               
               
                 <li>
@@ -1210,6 +1202,10 @@
           <li>
             <a href="#cs3%2fsharing%2fcollaboration%2fv1beta1%2fresources.proto">cs3/sharing/collaboration/v1beta1/resources.proto</a>
             <ul>
+              
+                <li>
+                  <a href="#cs3.sharing.collaboration.v1beta1.Filter"><span class="badge">M</span>Filter</a>
+                </li>
               
                 <li>
                   <a href="#cs3.sharing.collaboration.v1beta1.ReceivedShare"><span class="badge">M</span>ReceivedShare</a>
@@ -1239,6 +1235,10 @@
                   <a href="#cs3.sharing.collaboration.v1beta1.ShareReference"><span class="badge">M</span>ShareReference</a>
                 </li>
               
+              
+                <li>
+                  <a href="#cs3.sharing.collaboration.v1beta1.Filter.Type"><span class="badge">E</span>Filter.Type</a>
+                </li>
               
                 <li>
                   <a href="#cs3.sharing.collaboration.v1beta1.ShareState"><span class="badge">E</span>ShareState</a>
@@ -9563,6 +9563,14 @@ The share. </p></td>
 Opaque information. </p></td>
                 </tr>
               
+                <tr>
+                  <td>filters</td>
+                  <td><a href="#cs3.sharing.collaboration.v1beta1.Filter">Filter</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+The list of filters to apply if any. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -9631,55 +9639,10 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>filters</td>
-                  <td><a href="#cs3.sharing.collaboration.v1beta1.ListSharesRequest.Filter">ListSharesRequest.Filter</a></td>
+                  <td><a href="#cs3.sharing.collaboration.v1beta1.Filter">Filter</a></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
 The list of filters to apply if any. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.sharing.collaboration.v1beta1.ListSharesRequest.Filter">ListSharesRequest.Filter</h3>
-        <p>REQUIRED.</p><p>represents a filter to apply to the request.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>type</td>
-                  <td><a href="#cs3.sharing.collaboration.v1beta1.ListSharesRequest.Filter.Type">ListSharesRequest.Filter.Type</a></td>
-                  <td></td>
-                  <td><p>REQUIRED. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>resource_id</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>owner</td>
-                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>creator</td>
-                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -10022,47 +9985,6 @@ The updated share. </p></td>
       
 
       
-        <h3 id="cs3.sharing.collaboration.v1beta1.ListSharesRequest.Filter.Type">ListSharesRequest.Filter.Type</h3>
-        <p>The filter to apply.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>TYPE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TYPE_NO</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TYPE_RESOURCE_ID</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TYPE_OWNER</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>TYPE_CREATOR</td>
-                <td>4</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
 
       
 
@@ -10153,6 +10075,58 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
       </div>
       <p></p>
 
+      
+        <h3 id="cs3.sharing.collaboration.v1beta1.Filter">Filter</h3>
+        <p>Represents a filter to apply to the request.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.sharing.collaboration.v1beta1.Filter.Type">Filter.Type</a></td>
+                  <td></td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>creator</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>grantee_type</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.GranteeType">cs3.storage.provider.v1beta1.GranteeType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="cs3.sharing.collaboration.v1beta1.ReceivedShare">ReceivedShare</h3>
         <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
@@ -10429,6 +10403,53 @@ make the share unique. </p></td>
         
       
 
+      
+        <h3 id="cs3.sharing.collaboration.v1beta1.Filter.Type">Filter.Type</h3>
+        <p>The filter to apply.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_NO</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_RESOURCE_ID</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_OWNER</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_CREATOR</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_GRANTEE_TYPE</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="cs3.sharing.collaboration.v1beta1.ShareState">ShareState</h3>
         <p>The state of the share.</p>
