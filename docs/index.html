@@ -1169,10 +1169,6 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest.UpdateField"><span class="badge">M</span>UpdateReceivedShareRequest.UpdateField</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.sharing.collaboration.v1beta1.UpdateReceivedShareResponse"><span class="badge">M</span>UpdateReceivedShareResponse</a>
                 </li>
               
@@ -1438,10 +1434,6 @@
               
                 <li>
                   <a href="#cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest"><span class="badge">M</span>UpdateReceivedOCMShareRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest.UpdateField"><span class="badge">M</span>UpdateReceivedOCMShareRequest.UpdateField</a>
                 </li>
               
                 <li>
@@ -9833,48 +9825,19 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.sharing.collaboration.v1beta1.ShareReference">ShareReference</a></td>
+                  <td>share</td>
+                  <td><a href="#cs3.sharing.collaboration.v1beta1.ReceivedShare">ReceivedShare</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+The received share to update. </p></td>
                 </tr>
               
                 <tr>
-                  <td>field</td>
-                  <td><a href="#cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest.UpdateField">UpdateReceivedShareRequest.UpdateField</a></td>
+                  <td>update_mask</td>
+                  <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest.UpdateField">UpdateReceivedShareRequest.UpdateField</h3>
-        <p>REQUIRED.</p><p>The field to update.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>display_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Update the display name. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>state</td>
-                  <td><a href="#cs3.sharing.collaboration.v1beta1.ShareState">ShareState</a></td>
-                  <td></td>
-                  <td><p>Update the share state </p></td>
+                  <td><p>The update mask applies to the resource. For the `FieldMask` definition,
+see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
                 </tr>
               
             </tbody>
@@ -10184,7 +10147,7 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
         
       
         <h3 id="cs3.sharing.collaboration.v1beta1.ReceivedShare">ReceivedShare</h3>
-        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
+        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount point in case the share will be mounted</p><p>in a storage provider.</p>
 
         
           <table class="field-table">
@@ -10206,6 +10169,14 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
                   <td></td>
                   <td><p>REQUIRED.
 The state of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mount_point</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mount point of the share. </p></td>
                 </tr>
               
             </tbody>
@@ -12260,48 +12231,19 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareReference">ShareReference</a></td>
+                  <td>share</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+The received share to update. </p></td>
                 </tr>
               
                 <tr>
-                  <td>field</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest.UpdateField">UpdateReceivedOCMShareRequest.UpdateField</a></td>
+                  <td>update_mask</td>
+                  <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.sharing.ocm.v1beta1.UpdateReceivedOCMShareRequest.UpdateField">UpdateReceivedOCMShareRequest.UpdateField</h3>
-        <p>REQUIRED.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>display_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Update the display name. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>state</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareState">ShareState</a></td>
-                  <td></td>
-                  <td><p>Update the share state </p></td>
+                  <td><p>The update mask applies to the resource. For the `FieldMask` definition,
+see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
                 </tr>
               
             </tbody>
@@ -12491,7 +12433,7 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
 
       
         <h3 id="cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</h3>
-        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount path in case the share will be mounted</p><p>in a path in a storage provider.</p>
+        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount point in case the share will be mounted</p><p>in a storage provider.</p>
 
         
           <table class="field-table">
@@ -12513,6 +12455,14 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
                   <td></td>
                   <td><p>REQUIRED.
 The state of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mount_point</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mount point of the share. </p></td>
                 </tr>
               
             </tbody>

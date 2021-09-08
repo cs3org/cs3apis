@@ -79,14 +79,17 @@ message SharePermissions {
 // A received share is the share that a grantee will receive.
 // It expands the original share by adding state to the share,
 // a display name from the perspective of the grantee and a
-// resource mount path in case the share will be mounted
-// in a path in a storage provider.
+// resource mount point in case the share will be mounted
+// in a storage provider.
 message ReceivedShare {
   // REQUIRED.
   Share share = 1;
   // REQUIRED.
   // The state of the share.
   ShareState state = 2;
+  // REQUIRED.
+  // The mount point of the share.
+  storage.provider.v1beta1.Reference mount_point = 3;
 }
 
 // The state of the share.

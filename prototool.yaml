@@ -1,3 +1,18 @@
+# Paths to exclude when searching for Protobuf files.
+# These can either be file or directory names.
+# If there is a directory name, that directory and all sub-directories will be excluded.
+excludes:
+  - docs
+  - tools
+
+# Protoc directives.
+protoc:
+  # Additional paths to include with -I to protoc.
+  # By default, the directory of the config file is included,
+  # or the current directory if there is no config file.
+  includes:
+    - third_party
+
 lint:
   group: uber2
   ignores:
@@ -16,6 +31,26 @@ lint:
   - id: REQUEST_RESPONSE_NAMES_MATCH_RPC
     files:
     - cs3/gateway/v1beta1/gateway_api.proto
+    # the external google field mask
+  - id: FILE_OPTIONS_EQUAL_CSHARP_NAMESPACE_CAPITALIZED
+    files:
+    - third_party/google/protobuf/field_mask.proto
+  - id: FILE_OPTIONS_EQUAL_GO_PACKAGE_V2_SUFFIX
+    files:
+    - third_party/google/protobuf/field_mask.proto
+  - id: FILE_OPTIONS_EQUAL_OBJC_CLASS_PREFIX_ABBR
+    files:
+    - third_party/google/protobuf/field_mask.proto
+  - id: FILE_OPTIONS_REQUIRE_PHP_NAMESPACE
+    files:
+    - third_party/google/protobuf/field_mask.proto
+  - id: MESSAGES_HAVE_SENTENCE_COMMENTS_EXCEPT_REQUEST_RESPONSE_TYPES
+    files:
+    - third_party/google/protobuf/field_mask.proto
+  - id: PACKAGE_MAJOR_BETA_VERSIONED
+    files:
+    - third_party/google/protobuf/field_mask.proto
+
 
 
 
