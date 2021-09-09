@@ -42,20 +42,30 @@ message ProviderInfo {
   // The address where the app provider can be reached.
   // For example, tcp://localhost:1099.
   string address = 3;
+  // REQUIRED.
+  // The capability of the underlying app.
+  enum Capability {
+    CAPABILITY_INVALID = 0;
+    // The app is a simple viewer.
+    CAPABILITY_VIEWER = 1;
+    // The app is a full editor.
+    CAPABILITY_EDITOR = 2;
+  }
+  Capability capability = 4;
   // OPTIONAL.
-  // A human-readable name of the app provider.
-  string name = 4;
+  // A human-readable name of the underlying app.
+  string name = 5;
   // OPTIONAL.
   // Information to describe the functionalities
   // offered by the app provider. Meant to be read
   // by humans.
-  string description = 5;
+  string description = 6;
   // OPTIONAL.
   // A URI to a static asset which represents the app icon.
-  string icon = 6;
+  string icon = 7;
   // OPTIONAL.
   // Whether the app can be opened only on desktop
-  bool desktop_only = 7;
+  bool desktop_only = 8;
 }
 
 // Holds a list of app providers which can open a particular mime type.
