@@ -72,7 +72,7 @@ message Share {
 // The permissions for a share.
 message SharePermissions {
   storage.provider.v1beta1.ResourcePermissions permissions = 1;
-  // TODO(labkode): additional permissions for shares like re-sharing
+  // TODO(labkode): additional permissions for shares like re-sharing and denying
 
 }
 
@@ -172,6 +172,7 @@ message Filter {
     TYPE_OWNER = 3;
     TYPE_CREATOR = 4;
     TYPE_GRANTEE_TYPE = 5;
+    TYPE_EXCLUDE_DENIALS = 6;
   }
   // REQUIRED.
   Type type = 2;
