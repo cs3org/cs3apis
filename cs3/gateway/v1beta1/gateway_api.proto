@@ -179,7 +179,11 @@ service GatewayAPI {
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
 
-  // Returns the App provider URL, which allows the user to open a resource in an online editor.
+  // Creates a new file to be opened by an app. The new file MAY be either
+  // empty or generated out of a template if the AppProvider has such capability.
+  rpc CreateFileForApp(CreateFileForAppRequest) returns (CreateFileForAppResponse);
+  // Returns the App URL and all necessary info to open a resource in an online editor.
+  // MUST return CODE_NOT_FOUND if the resource does not exist.
   rpc OpenInApp(OpenInAppRequest) returns (cs3.app.provider.v1beta1.OpenInAppResponse);
   // *****************************************************************/
   // ************************ USER SHARE PROVIDER ********************/
@@ -527,6 +531,33 @@ message ListAuthProvidersResponse {
   // The list of auth types.
   // TODO(labkode): maybe add description?
   repeated string types = 3;
+}
+
+message CreateFileForAppRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The target container where the file has to be created.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // REQUIRED.
+  // The name of the file to be created.
+  string filename = 3;
+  // OPTIONAL.
+  // A reference to a template that SHOULD be used to create the file.
+  string template = 4;
+}
+
+message CreateFileForAppResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The resourceInfo of the file that was created.
+  cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
 }
 
 message OpenInAppRequest {
