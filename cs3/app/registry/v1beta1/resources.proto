@@ -57,7 +57,7 @@ message ProviderInfo {
   string name = 5;
   // OPTIONAL.
   // Information to describe the functionalities
-  // offered by the app provider. Meant to be read
+  // offered by the underlying app. Meant to be read
   // by humans.
   string description = 6;
   // OPTIONAL.
@@ -68,7 +68,27 @@ message ProviderInfo {
   bool desktop_only = 8;
 }
 
-// Holds a list of app providers which can open a particular mime type.
-message AppProviderList {
-  repeated ProviderInfo app_providers = 1;
+// Represents a mime type and its corresponding file extension.
+message MimeTypeInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The mime type.
+  string mime_type = 2;
+  // REQUIRED.
+  // The file extension mapped to this mime type.
+  string ext = 3;
+  // REQUIRED.
+  // The list of app providers which can open this mime type
+  repeated ProviderInfo app_providers = 4;
+  // OPTIONAL.
+  // The friendly name of this mime type.
+  string name = 5;
+  // OPTIONAL.
+  // Human-readable information to describe the mime type.
+  string description = 6;
+  // OPTIONAL.
+  // A URI to a static asset which represents the mime type icon.
+  string icon = 7;
 }

@@ -583,10 +583,6 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry"><span class="badge">M</span>ListSupportedMimeTypesResponse.MimeTypesEntry</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest"><span class="badge">M</span>SetDefaultAppProviderForMimeTypeRequest</a>
                 </li>
               
@@ -610,13 +606,17 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.app.registry.v1beta1.AppProviderList"><span class="badge">M</span>AppProviderList</a>
+                  <a href="#cs3.app.registry.v1beta1.MimeTypeInfo"><span class="badge">M</span>MimeTypeInfo</a>
                 </li>
               
                 <li>
                   <a href="#cs3.app.registry.v1beta1.ProviderInfo"><span class="badge">M</span>ProviderInfo</a>
                 </li>
               
+              
+                <li>
+                  <a href="#cs3.app.registry.v1beta1.ProviderInfo.Capability"><span class="badge">E</span>ProviderInfo.Capability</a>
+                </li>
               
               
               
@@ -5622,41 +5622,10 @@ Opaque information. </p></td>
               
                 <tr>
                   <td>mime_types</td>
-                  <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry">ListSupportedMimeTypesResponse.MimeTypesEntry</a></td>
+                  <td><a href="#cs3.app.registry.v1beta1.MimeTypeInfo">MimeTypeInfo</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
-The list of supported mime types with the apps which they can be opened with. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse.MimeTypesEntry">ListSupportedMimeTypesResponse.MimeTypesEntry</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>key</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#cs3.app.registry.v1beta1.AppProviderList">AppProviderList</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+The list of supported mime types and their properties. </p></td>
                 </tr>
               
             </tbody>
@@ -5780,7 +5749,7 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
                 <td>ListSupportedMimeTypes</td>
                 <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest">ListSupportedMimeTypesRequest</a></td>
                 <td><a href="#cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse">ListSupportedMimeTypesResponse</a></td>
-                <td><p>Returns a list of the supported mime types along with the apps which they can opened with.</p></td>
+                <td><p>Returns a list of the supported mime types along with the apps which they can be opened with.</p></td>
               </tr>
             
               <tr>
@@ -5809,8 +5778,8 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
       <p></p>
 
       
-        <h3 id="cs3.app.registry.v1beta1.AppProviderList">AppProviderList</h3>
-        <p>Holds a list of app providers which can open a particular mime type.</p>
+        <h3 id="cs3.app.registry.v1beta1.MimeTypeInfo">MimeTypeInfo</h3>
+        <p>Represents a mime type and its corresponding file extension.</p>
 
         
           <table class="field-table">
@@ -5820,10 +5789,59 @@ MUST return CODE_NOT_FOUND if no providers are available.</p></td>
             <tbody>
               
                 <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mime_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The mime type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ext</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The file extension mapped to this mime type. </p></td>
+                </tr>
+              
+                <tr>
                   <td>app_providers</td>
                   <td><a href="#cs3.app.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+The list of app providers which can open this mime type </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The friendly name of this mime type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Human-readable information to describe the mime type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>icon</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A URI to a static asset which represents the mime type icon. </p></td>
                 </tr>
               
             </tbody>
@@ -5869,11 +5887,18 @@ For example, tcp://localhost:1099. </p></td>
                 </tr>
               
                 <tr>
+                  <td>capability</td>
+                  <td><a href="#cs3.app.registry.v1beta1.ProviderInfo.Capability">ProviderInfo.Capability</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-A human-readable name of the app provider. </p></td>
+A human-readable name of the underlying app. </p></td>
                 </tr>
               
                 <tr>
@@ -5882,7 +5907,7 @@ A human-readable name of the app provider. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Information to describe the functionalities
-offered by the app provider. Meant to be read
+offered by the underlying app. Meant to be read
 by humans. </p></td>
                 </tr>
               
@@ -5910,6 +5935,35 @@ Whether the app can be opened only on desktop </p></td>
         
       
 
+      
+        <h3 id="cs3.app.registry.v1beta1.ProviderInfo.Capability">ProviderInfo.Capability</h3>
+        <p>REQUIRED.</p><p>The capability of the underlying app.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CAPABILITY_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CAPABILITY_VIEWER</td>
+                <td>1</td>
+                <td><p>The app is a simple viewer.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CAPABILITY_EDITOR</td>
+                <td>2</td>
+                <td><p>The app is a full editor.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

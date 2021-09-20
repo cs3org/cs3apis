@@ -57,7 +57,7 @@ service RegistryAPI {
   rpc AddAppProvider(AddAppProviderRequest) returns (AddAppProviderResponse);
   // Returns a list of the available app providers known by this registry.
   rpc ListAppProviders(ListAppProvidersRequest) returns (ListAppProvidersResponse);
-  // Returns a list of the supported mime types along with the apps which they can opened with.
+  // Returns a list of the supported mime types along with the apps which they can be opened with.
   rpc ListSupportedMimeTypes(ListSupportedMimeTypesRequest) returns (ListSupportedMimeTypesResponse);
   // Returns the default app provider which serves a specified mime type.
   rpc GetDefaultAppProviderForMimeType(GetDefaultAppProviderForMimeTypeRequest) returns (GetDefaultAppProviderForMimeTypeResponse);
@@ -136,8 +136,8 @@ message ListSupportedMimeTypesResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The list of supported mime types with the apps which they can be opened with.
-  map<string, AppProviderList> mime_types = 3;
+  // The list of supported mime types and their properties.
+  repeated MimeTypeInfo mime_types = 3;
 }
 
 message GetDefaultAppProviderForMimeTypeRequest {
