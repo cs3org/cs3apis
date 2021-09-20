@@ -187,14 +187,6 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.gateway.v1beta1.CreateFileForAppRequest"><span class="badge">M</span>CreateFileForAppRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.gateway.v1beta1.CreateFileForAppResponse"><span class="badge">M</span>CreateFileForAppResponse</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.gateway.v1beta1.GetQuotaRequest"><span class="badge">M</span>GetQuotaRequest</a>
                 </li>
               
@@ -2054,96 +2046,6 @@ The authenticated user. </p></td>
 
         
       
-        <h3 id="cs3.gateway.v1beta1.CreateFileForAppRequest">CreateFileForAppRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The target container where the file has to be created. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>filename</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The name of the file to be created. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>template</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A reference to a template that SHOULD be used to create the file. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.gateway.v1beta1.CreateFileForAppResponse">CreateFileForAppResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>resource_info</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceInfo">cs3.storage.provider.v1beta1.ResourceInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The resourceInfo of the file that was created. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.gateway.v1beta1.GetQuotaRequest">GetQuotaRequest</h3>
         <p></p>
 
@@ -2871,14 +2773,6 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
 *****************************************************************/
 ************************ APP PROVIDER ********************/
 *****************************************************************/</p></td>
-              </tr>
-            
-              <tr>
-                <td>CreateFileForApp</td>
-                <td><a href="#cs3.gateway.v1beta1.CreateFileForAppRequest">CreateFileForAppRequest</a></td>
-                <td><a href="#cs3.gateway.v1beta1.CreateFileForAppResponse">CreateFileForAppResponse</a></td>
-                <td><p>Creates a new file to be opened by an app. The new file MAY be either
-empty or generated out of a template if the AppProvider has such capability.</p></td>
               </tr>
             
               <tr>
