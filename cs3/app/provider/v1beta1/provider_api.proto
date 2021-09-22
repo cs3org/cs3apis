@@ -53,7 +53,7 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service ProviderAPI {
-  // Returns the App provider URL
+  // Returns the App URL and all necessary info to open a resource in an online editor.
   // MUST return CODE_NOT_FOUND if the resource does not exist.
   rpc OpenInApp(OpenInAppRequest) returns (OpenInAppResponse);
 }

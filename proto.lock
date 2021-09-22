@@ -678,16 +678,12 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
-              }
-            ],
-            "maps": [
+              },
               {
-                "key_type": "string",
-                "field": {
-                  "id": 3,
-                  "name": "mime_types",
-                  "type": "AppProviderList"
-                }
+                "id": 3,
+                "name": "mime_types",
+                "type": "MimeTypeInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -851,6 +847,24 @@
     {
       "protopath": "cs3:/:app:/:registry:/:v1beta1:/:resources.proto",
       "def": {
+        "enums": [
+          {
+            "name": "ProviderInfo.Capability",
+            "enum_fields": [
+              {
+                "name": "CAPABILITY_INVALID"
+              },
+              {
+                "name": "CAPABILITY_VIEWER",
+                "integer": 1
+              },
+              {
+                "name": "CAPABILITY_EDITOR",
+                "integer": 2
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "ProviderInfo",
@@ -873,34 +887,69 @@
               },
               {
                 "id": 4,
+                "name": "capability",
+                "type": "Capability"
+              },
+              {
+                "id": 5,
                 "name": "name",
                 "type": "string"
               },
               {
-                "id": 5,
+                "id": 6,
                 "name": "description",
                 "type": "string"
               },
               {
-                "id": 6,
+                "id": 7,
                 "name": "icon",
                 "type": "string"
               },
               {
-                "id": 7,
+                "id": 8,
                 "name": "desktop_only",
                 "type": "bool"
               }
             ]
           },
           {
-            "name": "AppProviderList",
+            "name": "MimeTypeInfo",
             "fields": [
               {
                 "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_type",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "ext",
+                "type": "string"
+              },
+              {
+                "id": 4,
                 "name": "app_providers",
                 "type": "ProviderInfo",
                 "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "icon",
+                "type": "string"
               }
             ]
           }
@@ -5009,6 +5058,10 @@
               {
                 "name": "TYPE_GRANTEE_TYPE",
                 "integer": 5
+              },
+              {
+                "name": "TYPE_EXCLUDE_DENIALS",
+                "integer": 6
               }
             ]
           }
