@@ -762,7 +762,7 @@ message RestoreRecycleItemRequest {
   // The reference to the user's home directory.
   Reference ref = 2;
   // REQUIRED.
-  // The path for the recycle item's original location.
+  // The key for the recycle item to be restored.
   string key = 3;
   // OPTIONAL.
   // An optional restore path for the deleted resource.
