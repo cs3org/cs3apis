@@ -32,6 +32,7 @@ import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
+import "google/protobuf/field_mask.proto";
 
 // User Share Provider API
 //
@@ -225,19 +226,11 @@ message UpdateReceivedShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  ShareReference ref = 2;
-  // REQUIRED.
-  // The field to update.
-  message UpdateField {
-    // One of the update fields MUST be specified.
-    oneof field {
-      // Update the display name.
-      string display_name = 1;
-      // Update the share state
-      ShareState state = 2;
-    }
-  }
-  UpdateField field = 3;
+  // The received share to update.
+  ReceivedShare share = 2;
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 3;
 }
 
 message UpdateReceivedShareResponse {
