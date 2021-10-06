@@ -280,6 +280,9 @@ message GetQuotaRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // Limit the quota Response to the given reference
+  cs3.storage.provider.v1beta1.Reference ref = 2;
 }
 
 message GetQuotaResponse {
