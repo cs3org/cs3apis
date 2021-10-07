@@ -91,4 +91,9 @@ message MimeTypeInfo {
   // OPTIONAL.
   // A URI to a static asset which represents the mime type icon.
   string icon = 7;
+  // OPTIONAL.
+  // Whether the mime type is eligible for file creation in the web UI.
+  // Defaults to false, i.e. files with this mime type can be opened
+  // but not directly allow_creationd from the web UI.
+  bool allow_creation = 8;
 }
