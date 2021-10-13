@@ -546,6 +546,9 @@ message PurgeRecycleRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // REQUIRED.
+  // The key corresponding to the item to be purged..
+  string key = 3;
 }
 
 message PurgeRecycleResponse {
