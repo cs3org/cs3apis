@@ -950,6 +950,11 @@
                 "id": 7,
                 "name": "icon",
                 "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "allow_creation",
+                "type": "bool"
               }
             ]
           }
@@ -1865,71 +1870,6 @@
             ]
           },
           {
-            "name": "ListRecycleRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
-                "name": "from_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              },
-              {
-                "id": 4,
-                "name": "to_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              }
-            ]
-          },
-          {
-            "name": "ListRecycleStreamRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
-                "name": "from_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              },
-              {
-                "id": 4,
-                "name": "to_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              }
-            ]
-          },
-          {
-            "name": "PurgeRecycleRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              }
-            ]
-          },
-          {
             "name": "InitiateFileDownloadResponse",
             "fields": [
               {
@@ -2100,13 +2040,13 @@
               },
               {
                 "name": "ListRecycleStream",
-                "in_type": "ListRecycleStreamRequest",
+                "in_type": "cs3.storage.provider.v1beta1.ListRecycleStreamRequest",
                 "out_type": "cs3.storage.provider.v1beta1.ListRecycleStreamResponse",
                 "out_streamed": true
               },
               {
                 "name": "ListRecycle",
-                "in_type": "ListRecycleRequest",
+                "in_type": "cs3.storage.provider.v1beta1.ListRecycleRequest",
                 "out_type": "cs3.storage.provider.v1beta1.ListRecycleResponse"
               },
               {
@@ -2116,7 +2056,7 @@
               },
               {
                 "name": "PurgeRecycle",
-                "in_type": "PurgeRecycleRequest",
+                "in_type": "cs3.storage.provider.v1beta1.PurgeRecycleRequest",
                 "out_type": "cs3.storage.provider.v1beta1.PurgeRecycleResponse"
               },
               {
@@ -6845,6 +6785,11 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "cs3.storage.provider.v1beta1.Reference"
               }
             ]
           },
@@ -7132,6 +7077,11 @@
                 "id": 4,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 5,
+                "name": "key",
+                "type": "string"
               }
             ]
           },
@@ -7178,6 +7128,11 @@
                 "id": 4,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 5,
+                "name": "key",
+                "type": "string"
               }
             ]
           },

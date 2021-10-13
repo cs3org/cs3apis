@@ -132,10 +132,10 @@ service GatewayAPI {
   // TODO: What code if resource not of type file?
   rpc ListFileVersions(cs3.storage.provider.v1beta1.ListFileVersionsRequest) returns (cs3.storage.provider.v1beta1.ListFileVersionsResponse);
   // Returns a stream of recycle items for this storage provider.
-  rpc ListRecycleStream(ListRecycleStreamRequest) returns (stream cs3.storage.provider.v1beta1.ListRecycleStreamResponse);
+  rpc ListRecycleStream(cs3.storage.provider.v1beta1.ListRecycleStreamRequest) returns (stream cs3.storage.provider.v1beta1.ListRecycleStreamResponse);
   // Returns a list of recycle items for this storage provider.
   // MUST return CODE_OK and MUST return an empty list if no recycle items are available.
-  rpc ListRecycle(ListRecycleRequest) returns (cs3.storage.provider.v1beta1.ListRecycleResponse);
+  rpc ListRecycle(cs3.storage.provider.v1beta1.ListRecycleRequest) returns (cs3.storage.provider.v1beta1.ListRecycleResponse);
   // Moves a resource from one reference to another.
   // MUST return CODE_NOT_FOUND if any of the references do not exist.
   // MUST return CODE_PRECONDITION_FAILED if the source reference
@@ -144,7 +144,7 @@ service GatewayAPI {
   // Permanently removes a recycle item from the recycle.
   // This operation is irrevocable.
   // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-  rpc PurgeRecycle(PurgeRecycleRequest) returns (cs3.storage.provider.v1beta1.PurgeRecycleResponse);
+  rpc PurgeRecycle(cs3.storage.provider.v1beta1.PurgeRecycleRequest) returns (cs3.storage.provider.v1beta1.PurgeRecycleResponse);
   // Restores a file version for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_NOT_FOUND if the version does not exist.
@@ -438,53 +438,6 @@ message WhoAmIResponse {
 }
 
 message GetQuotaRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  cs3.storage.provider.v1beta1.Reference ref = 2;
-}
-
-message ListRecycleRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  cs3.storage.provider.v1beta1.Reference ref = 2;
-  // OPTIONAL.
-  // SHOULD be specified.
-  // The start time range to query for recycle items.
-  // The value is the Unix Epoch timestamp in seconds.
-  cs3.types.v1beta1.Timestamp from_ts = 3;
-  // OPTIONAL.
-  // SHOULD be specified.
-  // The end time range to query for recycle items.
-  // The value is Unix Epoch timestamp in seconds.
-  cs3.types.v1beta1.Timestamp to_ts = 4;
-}
-
-message ListRecycleStreamRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  cs3.storage.provider.v1beta1.Reference ref = 2;
-  // OPTIONAL.
-  // SHOULD be specified.
-  // The start time range to query for recycle items.
-  // The value is the Unix Epoch timestamp in seconds.
-  cs3.types.v1beta1.Timestamp from_ts = 3;
-  // OPTIONAL.
-  // SHOULD be specified.
-  // The end time range to query for recycle items.
-  // The value is Unix Epoch timestamp in seconds.
-  cs3.types.v1beta1.Timestamp to_ts = 4;
-}
-
-message PurgeRecycleRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
