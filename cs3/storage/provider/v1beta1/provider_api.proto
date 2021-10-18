@@ -465,6 +465,10 @@ message ListRecycleRequest {
   // OPTIONAL.
   // The reference to which the action should be performed.
   Reference ref = 4;
+  // OPTIONAL.
+  // The key for a recycle item to be listed.
+  // If provided, the item corresponding to the key will be listed.
+  string key = 5;
 }
 
 message ListRecycleResponse {
@@ -496,6 +500,10 @@ message ListRecycleStreamRequest {
   // OPTIONAL.
   // The reference to which the action should be performed.
   Reference ref = 4;
+  // OPTIONAL.
+  // The key for a recycle item to be listed.
+  // If provided, the item corresponding to the key will be listed.
+  string key = 5;
 }
 
 message ListRecycleStreamResponse {
@@ -538,6 +546,9 @@ message PurgeRecycleRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // REQUIRED.
+  // The key corresponding to the item to be purged..
+  string key = 3;
 }
 
 message PurgeRecycleResponse {

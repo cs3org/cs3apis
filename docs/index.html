@@ -203,19 +203,7 @@
                 </li>
               
                 <li>
-                  <a href="#cs3.gateway.v1beta1.ListRecycleRequest"><span class="badge">M</span>ListRecycleRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.gateway.v1beta1.ListRecycleStreamRequest"><span class="badge">M</span>ListRecycleStreamRequest</a>
-                </li>
-              
-                <li>
                   <a href="#cs3.gateway.v1beta1.OpenInAppRequest"><span class="badge">M</span>OpenInAppRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.gateway.v1beta1.PurgeRecycleRequest"><span class="badge">M</span>PurgeRecycleRequest</a>
                 </li>
               
                 <li>
@@ -2195,112 +2183,6 @@ TODO(labkode): maybe add description? </p></td>
 
         
       
-        <h3 id="cs3.gateway.v1beta1.ListRecycleRequest">ListRecycleRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The reference to which the action should be performed. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>from_ts</td>
-                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-SHOULD be specified.
-The start time range to query for recycle items.
-The value is the Unix Epoch timestamp in seconds. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>to_ts</td>
-                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-SHOULD be specified.
-The end time range to query for recycle items.
-The value is Unix Epoch timestamp in seconds. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.gateway.v1beta1.ListRecycleStreamRequest">ListRecycleStreamRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The reference to which the action should be performed. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>from_ts</td>
-                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-SHOULD be specified.
-The start time range to query for recycle items.
-The value is the Unix Epoch timestamp in seconds. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>to_ts</td>
-                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-SHOULD be specified.
-The end time range to query for recycle items.
-The value is Unix Epoch timestamp in seconds. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.gateway.v1beta1.OpenInAppRequest">OpenInAppRequest</h3>
         <p></p>
 
@@ -2344,39 +2226,6 @@ A reference to the application to be used to open the resource, should the
 default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
 If the targeted resource is a directory, this parameter is required and
 in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.gateway.v1beta1.PurgeRecycleRequest">PurgeRecycleRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>ref</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The reference to which the action should be performed. </p></td>
                 </tr>
               
             </tbody>
@@ -2646,14 +2495,14 @@ TODO: What code if resource not of type file?</p></td>
             
               <tr>
                 <td>ListRecycleStream</td>
-                <td><a href="#cs3.gateway.v1beta1.ListRecycleStreamRequest">ListRecycleStreamRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListRecycleStreamRequest">.cs3.storage.provider.v1beta1.ListRecycleStreamRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.ListRecycleStreamResponse">.cs3.storage.provider.v1beta1.ListRecycleStreamResponse</a> stream</td>
                 <td><p>Returns a stream of recycle items for this storage provider.</p></td>
               </tr>
             
               <tr>
                 <td>ListRecycle</td>
-                <td><a href="#cs3.gateway.v1beta1.ListRecycleRequest">ListRecycleRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListRecycleRequest">.cs3.storage.provider.v1beta1.ListRecycleRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.ListRecycleResponse">.cs3.storage.provider.v1beta1.ListRecycleResponse</a></td>
                 <td><p>Returns a list of recycle items for this storage provider.
 MUST return CODE_OK and MUST return an empty list if no recycle items are available.</p></td>
@@ -2671,7 +2520,7 @@ cannot be moved to the destination reference.</p></td>
             
               <tr>
                 <td>PurgeRecycle</td>
-                <td><a href="#cs3.gateway.v1beta1.PurgeRecycleRequest">PurgeRecycleRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.PurgeRecycleRequest">.cs3.storage.provider.v1beta1.PurgeRecycleRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.PurgeRecycleResponse">.cs3.storage.provider.v1beta1.PurgeRecycleResponse</a></td>
                 <td><p>Permanently removes a recycle item from the recycle.
 This operation is irrevocable.
@@ -14228,6 +14077,15 @@ The value is Unix Epoch timestamp in seconds. </p></td>
 The reference to which the action should be performed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The key for a recycle item to be listed.
+If provided, the item corresponding to the key will be listed. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14320,6 +14178,15 @@ The value is Unix Epoch timestamp in seconds. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The key for a recycle item to be listed.
+If provided, the item corresponding to the key will be listed. </p></td>
                 </tr>
               
             </tbody>
@@ -14586,6 +14453,14 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The key corresponding to the item to be purged.. </p></td>
                 </tr>
               
             </tbody>
