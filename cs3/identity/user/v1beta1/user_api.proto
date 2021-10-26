@@ -69,6 +69,9 @@ message GetUserRequest {
   // REQUIRED.
   // The id of the user.
   cs3.identity.user.v1beta1.UserId user_id = 2;
+  // OPTIONAL.
+  // Whether to skip fetching user groups along with the user object.
+  bool skip_fetching_user_groups = 3;
 }
 
 message GetUserResponse {
@@ -93,6 +96,9 @@ message GetUserByClaimRequest {
   // REQUIRED.
   // The value of the claim to find the specific user.
   string value = 3;
+  // OPTIONAL.
+  // Whether to skip fetching user groups along with the user object.
+  bool skip_fetching_user_groups = 4;
 }
 
 message GetUserByClaimResponse {
@@ -135,6 +141,9 @@ message FindUsersRequest {
   // REQUIRED. TODO(labkode): create proper filters for most common searches.
   // The filter to apply.
   string filter = 2;
+  // OPTIONAL.
+  // Whether to skip fetching user groups along with the user object.
+  bool skip_fetching_user_groups = 3;
 }
 
 message FindUsersResponse {

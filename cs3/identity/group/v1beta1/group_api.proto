@@ -71,6 +71,9 @@ message GetGroupRequest {
   // REQUIRED.
   // The id of the group.
   cs3.identity.group.v1beta1.GroupId group_id = 2;
+  // OPTIONAL.
+  // Whether to skip fetching members along with the group object.
+  bool skip_fetching_members = 3;
 }
 
 message GetGroupResponse {
@@ -95,6 +98,9 @@ message GetGroupByClaimRequest {
   // REQUIRED.
   // The value of the claim to find the specific group.
   string value = 3;
+  // OPTIONAL.
+  // Whether to skip fetching members along with the group object.
+  bool skip_fetching_members = 4;
 }
 
 message GetGroupByClaimResponse {
@@ -161,6 +167,9 @@ message FindGroupsRequest {
   // REQUIRED.
   // The filter to apply.
   string filter = 2;
+  // OPTIONAL.
+  // Whether to skip fetching members along with the group object.
+  bool skip_fetching_members = 3;
 }
 
 message FindGroupsResponse {
