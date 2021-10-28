@@ -1511,6 +1511,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateFileRequest"><span class="badge">M</span>CreateFileRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.CreateFileResponse"><span class="badge">M</span>CreateFileResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.CreateHomeRequest"><span class="badge">M</span>CreateHomeRequest</a>
                 </li>
               
@@ -2415,6 +2423,15 @@ third-party applications.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerResponse">.cs3.storage.provider.v1beta1.CreateContainerResponse</a></td>
                 <td><p>Creates a new resource of type container.
 MUST return CODE_PRECONDITION_FAILED if the container
+cannot be created at the specified reference.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateFile</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateFileRequest">.cs3.storage.provider.v1beta1.CreateFileRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateFileResponse">.cs3.storage.provider.v1beta1.CreateFileResponse</a></td>
+                <td><p>Creates a new resource of type file.
+MUST return CODE_PRECONDITION_FAILED if the file
 cannot be created at the specified reference.</p></td>
               </tr>
             
@@ -12865,6 +12882,72 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.CreateFileRequest">CreateFileRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference to which the action should be performed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.CreateFileResponse">CreateFileResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.CreateHomeRequest">CreateHomeRequest</h3>
         <p></p>
 
@@ -15232,6 +15315,15 @@ MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerResponse">CreateContainerResponse</a></td>
                 <td><p>Creates a new resource of type container.
 MUST return CODE_PRECONDITION_FAILED if the container
+cannot be created at the specified reference.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateFile</td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateFileRequest">CreateFileRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.CreateFileResponse">CreateFileResponse</a></td>
+                <td><p>Creates a new resource of type file.
+MUST return CODE_PRECONDITION_FAILED if the file
 cannot be created at the specified reference.</p></td>
               </tr>
             
