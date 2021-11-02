@@ -19,6 +19,7 @@ You need to have Docker installed. The artifacts will be available under the bui
 
 ```
 $ git clone https://github.com/cs3org/cs3apis
+$ cd cs3apis
 $ make build 
 $ make go # generate go code
 ```
