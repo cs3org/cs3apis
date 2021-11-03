@@ -96,4 +96,7 @@ message MimeTypeInfo {
   // Defaults to false, i.e. files with this mime type can be opened
   // but not directly allow_creationd from the web UI.
   bool allow_creation = 8;
+  // OPTIONAL.
+  // name of the default application to open this mime type
+  string default_application = 9;
 }
