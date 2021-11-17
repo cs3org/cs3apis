@@ -33,7 +33,7 @@ import "cs3/types/v1beta1/types.proto";
 // A UserId represents a user.
 message UserId {
   // REQUIRED.
-  // The identity provider for the user.
+  // The origin (url without path) of the identity provider for the user, e.g. "https://example.com" or "http://localhost:8080"
   string idp = 1;
   // REQUIRED.
   // the unique identifier for the user in the scope of
