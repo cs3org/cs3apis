@@ -148,6 +148,18 @@ service ProviderAPI {
   // Unsets arbitrary metdata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
+  // Locks a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+  rpc SetLock(SetLockRequest) returns (SetLockResponse);
+  // Gets the lock metadata of a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  rpc GetLock(GetLockRequest) returns (GetLockResponse);
+  // Refreshes the lock metadata of a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  rpc RefreshLock(RefreshLockRequest) returns (RefreshLockResponse);
+  // Unlocks a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  rpc Unlock(UnlockRequest) returns (UnlockResponse);
   // Creates the home directory for a user.
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
   // Gets the home path for the user.
@@ -776,6 +788,94 @@ message UnsetArbitraryMetadataRequest {
 }
 
 message UnsetArbitraryMetadataResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message SetLockRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference on which the lock should be set,
+  // if no lock is present.
+  // The storage driver MUST ensure atomic handling
+  // of lock/unlock operations.
+  Reference ref = 2;
+  // REQUIRED.
+  // The lock metadata.
+  Lock lock = 3;
+}
+
+message SetLockResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message GetLockRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference the lock is associated to.
+  Reference ref = 2;
+}
+
+message GetLockResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The lock metadata
+  Lock lock = 3;
+}
+
+message RefreshLockRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference on which the lock should be refreshed.
+  // The storage driver MUST ensure atomic handling
+  // of lock/unlock operations.
+  Reference ref = 2;
+  // REQUIRED.
+  // The lock metadata.
+  Lock lock = 3;
+}
+
+message RefreshLockResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message UnlockRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference the lock is associated to.
+  // The storage driver MUST ensure atomic handling
+  // of lock/unlock operations.
+  Reference ref = 2;
+}
+
+message UnlockResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

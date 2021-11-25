@@ -115,6 +115,30 @@ message ArbitraryMetadata {
   map<string, string> metadata = 1;
 }
 
+// The available type of locks for a resource.
+enum LockType {
+  LOCK_TYPE_INVALID = 0;
+  // Shared (advisory) lock: the resource can be read or
+  // written or unlocked by everyone who has access.
+  LOCK_TYPE_SHARED = 1;
+  // Write lock: the resource can be read by everyone who has
+  // access, but write and unlock is restricted to the lock holder.
+  LOCK_TYPE_WRITE = 2;
+  // Exclusive lock: the resource cannot be read nor written
+  // nor unlocked except by the user holding the lock.
+  LOCK_TYPE_EXCL = 3;
+}
+
+// The metadata associated with a lock on a resource.
+message Lock {
+  // The type of lock.
+  LockType type = 1;
+  // The user holding the lock.
+  cs3.identity.user.v1beta1.UserId user = 2;
+  // Some arbitrary metadata associated with the lock.
+  string metadata = 3;
+}
+
 // The available types of resources.
 enum ResourceType {
   RESOURCE_TYPE_INVALID = 0;

@@ -169,6 +169,18 @@ service GatewayAPI {
   // Unsets arbitrary metdata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
+  // Locks a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+  rpc SetLock(cs3.storage.provider.v1beta1.SetLockRequest) returns (cs3.storage.provider.v1beta1.SetLockResponse);
+  // Gets the lock metadata of a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  rpc GetLock(cs3.storage.provider.v1beta1.GetLockRequest) returns (cs3.storage.provider.v1beta1.GetLockResponse);
+  // Refreshes the lock metadata of a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  rpc RefreshLock(cs3.storage.provider.v1beta1.RefreshLockRequest) returns (cs3.storage.provider.v1beta1.RefreshLockResponse);
+  // Unlocks a storage resource.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  rpc Unlock(cs3.storage.provider.v1beta1.UnlockRequest) returns (cs3.storage.provider.v1beta1.UnlockResponse);
   // Creates the home directory for a user.
   rpc CreateHome(cs3.storage.provider.v1beta1.CreateHomeRequest) returns (cs3.storage.provider.v1beta1.CreateHomeResponse);
   // Creates a storage space.
