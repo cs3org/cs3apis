@@ -133,10 +133,15 @@ enum LockType {
 message Lock {
   // The type of lock.
   LockType type = 1;
-  // The user holding the lock.
-  cs3.identity.user.v1beta1.UserId user = 2;
+  // The entity holding the lock.
+  oneof holder {
+    // A userid if the lock is held by a user
+    cs3.identity.user.v1beta1.UserId user = 2;
+    // An application name if the lock is held by an app
+    string app_name = 3;
+  }
   // Some arbitrary metadata associated with the lock.
-  string metadata = 3;
+  string metadata = 4;
 }
 
 // The available types of resources.
