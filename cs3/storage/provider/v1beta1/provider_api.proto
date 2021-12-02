@@ -60,7 +60,7 @@ service ProviderAPI {
   // Creates a new resource of type file.
   // MUST return CODE_PRECONDITION_FAILED if the file
   // cannot be created at the specified reference.
-  rpc CreateFile(CreateFileRequest) returns (CreateFileResponse);
+  rpc TouchFile(TouchFileRequest) returns (TouchFileResponse);
   // Deletes a resource.
   // If a resource specifies the non-empty container (directory, ...),
   // then the entire directory is deleted recursively.
@@ -241,7 +241,7 @@ message CreateContainerResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message CreateFileRequest {
+message TouchFileRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -250,7 +250,7 @@ message CreateFileRequest {
   Reference ref = 2;
 }
 
-message CreateFileResponse {
+message TouchFileResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;

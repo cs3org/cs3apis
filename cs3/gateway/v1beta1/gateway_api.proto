@@ -99,7 +99,7 @@ service GatewayAPI {
   // Creates a new resource of type file.
   // MUST return CODE_PRECONDITION_FAILED if the file
   // cannot be created at the specified reference.
-  rpc CreateFile(cs3.storage.provider.v1beta1.CreateFileRequest) returns (cs3.storage.provider.v1beta1.CreateFileResponse);
+  rpc TouchFile(cs3.storage.provider.v1beta1.TouchFileRequest) returns (cs3.storage.provider.v1beta1.TouchFileResponse);
   // Deletes a resource.
   // If a resource specifies the non-empty container (directory, ...),
   // then the entire directory is deleted recursively.
