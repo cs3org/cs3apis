@@ -170,16 +170,27 @@ service GatewayAPI {
   // Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest) returns (cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse);
   // Locks a storage resource.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+  // In addition, the implementation MUST ensure atomicity when multiple users
+  // concurrently attempt to set a lock.
+  // The caller MUST have write permissions on the resource.
   rpc SetLock(cs3.storage.provider.v1beta1.SetLockRequest) returns (cs3.storage.provider.v1beta1.SetLockResponse);
   // Gets the lock metadata of a storage resource.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  // MUST return CODE_NOT_FOUND if the reference does not exist or is not locked.
+  // The caller MUST have read permissions on the resource.
   rpc GetLock(cs3.storage.provider.v1beta1.GetLockRequest) returns (cs3.storage.provider.v1beta1.GetLockResponse);
   // Refreshes the lock metadata of a storage resource.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+  // or if the caller does not hold the lock.
+  // The caller MUST have write permissions on the resource.
   rpc RefreshLock(cs3.storage.provider.v1beta1.RefreshLockRequest) returns (cs3.storage.provider.v1beta1.RefreshLockResponse);
   // Unlocks a storage resource.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+  // or if the caller does not hold the lock.
+  // The caller MUST have write permissions on the resource.
   rpc Unlock(cs3.storage.provider.v1beta1.UnlockRequest) returns (cs3.storage.provider.v1beta1.UnlockResponse);
   // Creates the home directory for a user.
   rpc CreateHome(cs3.storage.provider.v1beta1.CreateHomeRequest) returns (cs3.storage.provider.v1beta1.CreateHomeResponse);
