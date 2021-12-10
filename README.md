@@ -9,9 +9,22 @@ The CS3APIS connect Storage and Applications Providers.
 https://cs3org.github.io/cs3apis/
 
 ## Officialy compiled libraries
+The libraries for different languages are compiled from the protobuf definitions in this repo.
+When a commit to master is made the CI takes care to create a new version of the library in the following languages.
+Please note that the versioning used in the libraries below differs from language to language, however they point to the 
+same source commit. This is due to the way the different package managers handle package versions.
+
 * Go: https://github.com/cs3org/go-cs3apis
 * Python: https://github.com/cs3org/python-cs3apis
-* Javascript: https://github.com/cs3org/js-cs3apis
+* Javascript: https://github.com/cs3org/js-cs3apis (to be used from Web applications - frontend)
+* NodeJS: https://github.com/cs3org/node-cs3apis (to be used from NodeJS applications - backend)
+
+## Repository packages
+* Go: https://pkg.go.dev/github.com/cs3org/go-cs3apis
+* Python: https://pypi.org/project/cs3apis/
+* Javascript: https://www.npmjs.com/package/@cs3org/cs3apis
+* NodeJS: https://www.npmjs.com/package/@cs3org/node-cs3apis
+
 
 ## Local compilation
 
@@ -19,6 +32,7 @@ You need to have Docker installed. The artifacts will be available under the bui
 
 ```
 $ git clone https://github.com/cs3org/cs3apis
+$ cd cs3apis
 $ make build 
 $ make go # generate go code
 ```
