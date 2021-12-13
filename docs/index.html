@@ -249,6 +249,44 @@
         
           
           <li>
+            <a href="#cs3%2fpermissions%2fv1beta1%2fpermissions_api.proto">cs3/permissions/v1beta1/permissions_api.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.permissions.v1beta1.CheckPermissionRequest"><span class="badge">M</span>CheckPermissionRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.permissions.v1beta1.CheckPermissionResponse"><span class="badge">M</span>CheckPermissionResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#cs3.permissions.v1beta1.PermissionsAPI"><span class="badge">S</span>PermissionsAPI</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#cs3%2fpermissions%2fv1beta1%2fresources.proto">cs3/permissions/v1beta1/resources.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#cs3.permissions.v1beta1.SubjectReference"><span class="badge">M</span>SubjectReference</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#cs3%2fpreferences%2fv1beta1%2fpreferences_api.proto">cs3/preferences/v1beta1/preferences_api.proto</a>
             <ul>
               
@@ -3099,7 +3137,18 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>CancelTransfer</td>
                 <td><a href="#cs3.tx.v1beta1.CancelTransferRequest">.cs3.tx.v1beta1.CancelTransferRequest</a></td>
                 <td><a href="#cs3.tx.v1beta1.CancelTransferResponse">.cs3.tx.v1beta1.CancelTransferResponse</a></td>
-                <td><p>Requests to cancel a transfer.</p></td>
+                <td><p>Requests to cancel a transfer.
+
+*****************************************************************/
+************************** Permissions **************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>CheckPermission</td>
+                <td><a href="#cs3.permissions.v1beta1.CheckPermissionRequest">.cs3.permissions.v1beta1.CheckPermissionRequest</a></td>
+                <td><a href="#cs3.permissions.v1beta1.CheckPermissionResponse">.cs3.permissions.v1beta1.CheckPermissionResponse</a></td>
+                <td><p>CheckPermission checks if a user or group has a certain permission.</p></td>
               </tr>
             
           </tbody>
@@ -3219,6 +3268,150 @@ the file. </p></td>
                   <td><p>OPTIONAL.
 A token that MUST be validated by the data gateway for the upload.
 Only makes sense for uploads passing through the data gateway. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/permissions/v1beta1/permissions_api.proto">cs3/permissions/v1beta1/permissions_api.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.permissions.v1beta1.CheckPermissionRequest">CheckPermissionRequest</h3>
+        <p>CheckPermissionsRequest is used to check if a user has a certain permission.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>permission</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The permission to check. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>subject_ref</td>
+                  <td><a href="#cs3.permissions.v1beta1.SubjectReference">SubjectReference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The subject holding the permission. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The target resource of the permission. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.permissions.v1beta1.CheckPermissionResponse">CheckPermissionResponse</h3>
+        <p>CheckPermissionsResponse ...</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="cs3.permissions.v1beta1.PermissionsAPI">PermissionsAPI</h3>
+        <p>PermissionsAPI defines a service for permissions.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CheckPermission</td>
+                <td><a href="#cs3.permissions.v1beta1.CheckPermissionRequest">CheckPermissionRequest</a></td>
+                <td><a href="#cs3.permissions.v1beta1.CheckPermissionResponse">CheckPermissionResponse</a></td>
+                <td><p>CheckPermission defines a method to check permission/role.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="cs3/permissions/v1beta1/resources.proto">cs3/permissions/v1beta1/resources.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="cs3.permissions.v1beta1.SubjectReference">SubjectReference</h3>
+        <p>SubjectReference references either a user or a group by id.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#cs3.identity.group.v1beta1.GroupId">cs3.identity.group.v1beta1.GroupId</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -5709,7 +5902,7 @@ A URI to a static asset which represents the mime type icon. </p></td>
                   <td><p>OPTIONAL.
 Whether the mime type is eligible for file creation in the web UI.
 Defaults to false, i.e. files with this mime type can be opened
-but not directly allow_creationd from the web UI. </p></td>
+but not directly created from the web UI. </p></td>
                 </tr>
               
                 <tr>

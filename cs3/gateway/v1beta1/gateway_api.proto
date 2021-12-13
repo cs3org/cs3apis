@@ -39,6 +39,7 @@ import "cs3/identity/user/v1beta1/user_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
+import "cs3/permissions/v1beta1/permissions_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
@@ -382,6 +383,12 @@ service GatewayAPI {
   rpc GetTransferStatus(cs3.tx.v1beta1.GetTransferStatusRequest) returns (cs3.tx.v1beta1.GetTransferStatusResponse);
   // Requests to cancel a transfer.
   rpc CancelTransfer(cs3.tx.v1beta1.CancelTransferRequest) returns (cs3.tx.v1beta1.CancelTransferResponse);
+  // *****************************************************************/
+  // ************************** Permissions **************************/
+  // *****************************************************************/
+
+  // CheckPermission checks if a user or group has a certain permission.
+  rpc CheckPermission(cs3.permissions.v1beta1.CheckPermissionRequest) returns (cs3.permissions.v1beta1.CheckPermissionResponse);
 }
 
 // CAUTION:

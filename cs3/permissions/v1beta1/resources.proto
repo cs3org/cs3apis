@@ -1,0 +1,40 @@
+// Copyright 2018-2021 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.permissions.v1beta1;
+
+option csharp_namespace = "Cs3.Permissions.V1Beta1";
+option go_package = "permissionsv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ResourcesProto";
+option java_package = "com.cs3.permissions.v1beta1";
+option objc_class_prefix = "CPX";
+option php_namespace = "Cs3\\Permissions\\V1Beta1";
+
+import "cs3/identity/group/v1beta1/resources.proto";
+import "cs3/identity/user/v1beta1/resources.proto";
+
+// SubjectReference references either a user or a group by id.
+message SubjectReference {
+  oneof spec {
+    cs3.identity.user.v1beta1.UserId user_id = 1;
+    cs3.identity.group.v1beta1.GroupId group_id = 2;
+  }
+}
