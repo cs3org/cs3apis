@@ -1723,6 +1723,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.TouchFileRequest"><span class="badge">M</span>TouchFileRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.TouchFileResponse"><span class="badge">M</span>TouchFileResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest"><span class="badge">M</span>UnsetArbitraryMetadataRequest</a>
                 </li>
               
@@ -2415,6 +2423,15 @@ third-party applications.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerResponse">.cs3.storage.provider.v1beta1.CreateContainerResponse</a></td>
                 <td><p>Creates a new resource of type container.
 MUST return CODE_PRECONDITION_FAILED if the container
+cannot be created at the specified reference.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TouchFile</td>
+                <td><a href="#cs3.storage.provider.v1beta1.TouchFileRequest">.cs3.storage.provider.v1beta1.TouchFileRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.TouchFileResponse">.cs3.storage.provider.v1beta1.TouchFileResponse</a></td>
+                <td><p>Creates a new resource of type file.
+MUST return CODE_PRECONDITION_FAILED if the file
 cannot be created at the specified reference.</p></td>
               </tr>
             
@@ -14950,6 +14967,72 @@ The resource information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.TouchFileRequest">TouchFileRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference to which the action should be performed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.TouchFileResponse">TouchFileResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest">UnsetArbitraryMetadataRequest</h3>
         <p></p>
 
@@ -15240,6 +15323,15 @@ MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerResponse">CreateContainerResponse</a></td>
                 <td><p>Creates a new resource of type container.
 MUST return CODE_PRECONDITION_FAILED if the container
+cannot be created at the specified reference.</p></td>
+              </tr>
+            
+              <tr>
+                <td>TouchFile</td>
+                <td><a href="#cs3.storage.provider.v1beta1.TouchFileRequest">TouchFileRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.TouchFileResponse">TouchFileResponse</a></td>
+                <td><p>Creates a new resource of type file.
+MUST return CODE_PRECONDITION_FAILED if the file
 cannot be created at the specified reference.</p></td>
               </tr>
             
