@@ -1575,6 +1575,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.GetLockRequest"><span class="badge">M</span>GetLockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.GetLockResponse"><span class="badge">M</span>GetLockResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.GetPathRequest"><span class="badge">M</span>GetPathRequest</a>
                 </li>
               
@@ -1683,6 +1691,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.RefreshLockRequest"><span class="badge">M</span>RefreshLockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.RefreshLockResponse"><span class="badge">M</span>RefreshLockResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.RemoveGrantRequest"><span class="badge">M</span>RemoveGrantRequest</a>
                 </li>
               
@@ -1715,6 +1731,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.SetLockRequest"><span class="badge">M</span>SetLockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.SetLockResponse"><span class="badge">M</span>SetLockResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.StatRequest"><span class="badge">M</span>StatRequest</a>
                 </li>
               
@@ -1728,6 +1752,14 @@
               
                 <li>
                   <a href="#cs3.storage.provider.v1beta1.TouchFileResponse"><span class="badge">M</span>TouchFileResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.UnlockRequest"><span class="badge">M</span>UnlockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.UnlockResponse"><span class="badge">M</span>UnlockResponse</a>
                 </li>
               
                 <li>
@@ -1806,6 +1838,10 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.Lock"><span class="badge">M</span>Lock</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.Quota"><span class="badge">M</span>Quota</a>
                 </li>
               
@@ -1848,6 +1884,10 @@
               
                 <li>
                   <a href="#cs3.storage.provider.v1beta1.GranteeType"><span class="badge">E</span>GranteeType</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.LockType"><span class="badge">E</span>LockType</a>
                 </li>
               
                 <li>
@@ -2592,6 +2632,49 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td><a href="#cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse">.cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse</a></td>
                 <td><p>Unsets arbitrary metdata into a storage resource.
 Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetLock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.SetLockRequest">.cs3.storage.provider.v1beta1.SetLockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.SetLockResponse">.cs3.storage.provider.v1beta1.SetLockResponse</a></td>
+                <td><p>Locks a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+In addition, the implementation MUST ensure atomicity when multiple users
+concurrently attempt to set a lock.
+The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetLock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetLockRequest">.cs3.storage.provider.v1beta1.GetLockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetLockResponse">.cs3.storage.provider.v1beta1.GetLockResponse</a></td>
+                <td><p>Gets the lock metadata of a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist or is not locked.
+The caller MUST have read permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RefreshLock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.RefreshLockRequest">.cs3.storage.provider.v1beta1.RefreshLockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.RefreshLockResponse">.cs3.storage.provider.v1beta1.RefreshLockResponse</a></td>
+                <td><p>Refreshes the lock metadata of a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+or if the caller does not hold the lock.
+The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Unlock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockRequest">.cs3.storage.provider.v1beta1.UnlockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockResponse">.cs3.storage.provider.v1beta1.UnlockResponse</a></td>
+                <td><p>Unlocks a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+or if the caller does not hold the lock.
+The caller MUST have write permissions on the resource.</p></td>
               </tr>
             
               <tr>
@@ -5709,7 +5792,7 @@ A URI to a static asset which represents the mime type icon. </p></td>
                   <td><p>OPTIONAL.
 Whether the mime type is eligible for file creation in the web UI.
 Defaults to false, i.e. files with this mime type can be opened
-but not directly allow_creationd from the web UI. </p></td>
+but not directly created from the web UI. </p></td>
                 </tr>
               
                 <tr>
@@ -13464,6 +13547,80 @@ For example /eos/user/h/hugo in the storage provider with root path /eos/user/. 
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.GetLockRequest">GetLockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference the lock is associated to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.GetLockResponse">GetLockResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The lock metadata </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.GetPathRequest">GetPathRequest</h3>
         <p></p>
 
@@ -14576,6 +14733,80 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.RefreshLockRequest">RefreshLockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference on which the lock should be refreshed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The lock metadata. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.RefreshLockResponse">RefreshLockResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.RemoveGrantRequest">RemoveGrantRequest</h3>
         <p></p>
 
@@ -14884,6 +15115,81 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.SetLockRequest">SetLockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference on which the lock should be set,
+if no lock is present. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The lock metadata. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.SetLockResponse">SetLockResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.StatRequest">StatRequest</h3>
         <p></p>
 
@@ -15001,6 +15307,72 @@ The reference to which the action should be performed. </p></td>
         
       
         <h3 id="cs3.storage.provider.v1beta1.TouchFileResponse">TouchFileResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.UnlockRequest">UnlockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference the lock is associated to. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.UnlockResponse">UnlockResponse</h3>
         <p></p>
 
         
@@ -15538,6 +15910,49 @@ Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p
               </tr>
             
               <tr>
+                <td>SetLock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.SetLockRequest">SetLockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.SetLockResponse">SetLockResponse</a></td>
+                <td><p>Locks a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+In addition, the implementation MUST ensure atomicity when multiple users
+concurrently attempt to set a lock.
+The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetLock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetLockRequest">GetLockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.GetLockResponse">GetLockResponse</a></td>
+                <td><p>Gets the lock metadata of a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist or is not locked.
+The caller MUST have read permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RefreshLock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.RefreshLockRequest">RefreshLockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.RefreshLockResponse">RefreshLockResponse</a></td>
+                <td><p>Refreshes the lock metadata of a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_PRECONDITION_FALIED if the reference is not locked
+or if the caller does not hold the lock.
+The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>Unlock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockRequest">UnlockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockResponse">UnlockResponse</a></td>
+                <td><p>Unlocks a storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+or if the caller does not hold the lock.
+The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
                 <td>CreateHome</td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateHomeRequest">CreateHomeRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateHomeResponse">CreateHomeResponse</a></td>
@@ -15917,6 +16332,59 @@ The type of the grantee. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information such as UID or GID. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.Lock">Lock</h3>
+        <p>The metadata associated with a lock on a resource.</p><p>Provided that storage drivers are free to implement the storage</p><p>of this metadata according to their constraints, a reference</p><p>implementation is given here. The lock SHOULD be stored</p><p>as an extended attribute on the referenced filesystem entry.</p><p>It MUST NOT be accessible via the Stat/SetArbitraryMetadata APIs,</p><p>and it SHOULD contain a base64-encoded JSON with the following format:</p><p>{</p><p>"type" : "<LOCK_TYPE>",</p><p>"h" : "<holder>",</p><p>"md" : "<metadata>",</p><p>"mtime" : "<Unix timestamp>"</p><p>}</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.LockType">LockType</a></td>
+                  <td></td>
+                  <td><p>The type of lock. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>A userid if the lock is held by a user. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An application name if the lock is held by an app. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Some arbitrary metadata associated with the lock. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mtime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The last modification time of the lock.
+The value is Unix Epoch timestamp in seconds. </p></td>
                 </tr>
               
             </tbody>
@@ -16593,6 +17061,45 @@ The internal storage space id. </p></td>
                 <td>GRANTEE_TYPE_GROUP</td>
                 <td>2</td>
                 <td><p>This type represents a group of individuals.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="cs3.storage.provider.v1beta1.LockType">LockType</h3>
+        <p>The available type of locks for a resource.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>LOCK_TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LOCK_TYPE_SHARED</td>
+                <td>1</td>
+                <td><p>Shared (advisory) lock: the resource can be read,
+written/overwritten or unlocked by everyone who has access.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LOCK_TYPE_WRITE</td>
+                <td>2</td>
+                <td><p>Write lock: the resource can be read by everyone who has
+access, but write, refreshlock and unlock operations
+are restricted to the lock holder.</p></td>
+              </tr>
+            
+              <tr>
+                <td>LOCK_TYPE_EXCL</td>
+                <td>3</td>
+                <td><p>Exclusive lock: only the lock holder can operate on the
+resource, anyone else is denied to access it.</p></td>
               </tr>
             
           </tbody>
