@@ -141,7 +141,7 @@ enum LockType {
 //   "type" : "<LOCK_TYPE>",
 //   "h" : "<holder>",
 //   "md" : "<metadata>",
-//   "mtime" : "<Unix timestamp>"
+//   "exp" : "<Unix timestamp>"
 // }
 message Lock {
   // The type of lock.
@@ -153,11 +153,10 @@ message Lock {
     // An application name if the lock is held by an app.
     string app_name = 3;
   }
-  // Some arbitrary metadata associated with the lock.
+  // OPTIONAL. Some arbitrary metadata associated with the lock.
   string metadata = 4;
-  // The last modification time of the lock.
-  // The value is Unix Epoch timestamp in seconds.
-  cs3.types.v1beta1.Timestamp mtime = 5;
+  // OPTIONAL. The time when the lock will expire.
+  cs3.types.v1beta1.Timestamp expiration = 5;
 }
 
 // The available types of resources.
