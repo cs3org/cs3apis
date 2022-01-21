@@ -878,6 +878,9 @@ message UnlockRequest {
   // REQUIRED.
   // The reference the lock is associated to.
   Reference ref = 2;
+  // REQUIRED.
+  // The lock metadata.
+  Lock lock = 3;
 }
 
 message UnlockResponse {
