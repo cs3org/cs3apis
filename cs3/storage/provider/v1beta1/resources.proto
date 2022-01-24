@@ -90,6 +90,9 @@ message ResourceInfo {
   // OPTIONAL.
   // Arbitrary metadata attached to a resource.
   ArbitraryMetadata arbitrary_metadata = 14;
+  // OPTIONAL.
+  // Locks on this resource.
+  repeated Lock locks = 15;
 }
 
 // CanonicalMetadata contains extra metadata
