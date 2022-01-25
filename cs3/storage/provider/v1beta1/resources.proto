@@ -141,7 +141,8 @@ enum LockType {
 // of this metadata according to their constraints, a reference
 // implementation is given here. The lock SHOULD be stored
 // as an extended attribute on the referenced filesystem entry.
-// It MUST NOT be accessible via the Stat/SetArbitraryMetadata APIs.
+// Such extended attribute MUST NOT be exposed via the `Stat` and `SetArbitraryMetadata` APIs.
+// Instead, the `ResourceInfo.Lock` attribute MUST be populated if a lock exists for the given reference.
 message Lock {
   // OPTIONAL.
   // Opaque information.
