@@ -146,17 +146,22 @@ message Lock {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED. The id of the lock, eg. the X-WOPI-Lock id or the WebDAV opaquelocktoken.
+  // REQUIRED.
+  // The id of the lock, eg. the X-WOPI-Lock id or the WebDAV opaquelocktoken.
   string lock_id = 2;
-  // REQUIRED. The type of lock.
+  // REQUIRED.
+  // The type of lock.
   LockType type = 3;
   // OPTIONAL.
   // The userid of a user, which represents either the lock holder, or the user that last created/modified the lock.
   // When non empty, `RefreshLock` and `Unlock` operations MUST check their request's content against it.
   cs3.identity.user.v1beta1.UserId user = 4;
-  // OPTIONAL An application name if the lock is held by an app.
+  // OPTIONAL.
+  // An application name if the lock is held by an app.
+  // When non empty, `RefreshLock` and `Unlock` operations MUST check their request's content against it.
   string app_name = 5;
-  // OPTIONAL. The time when the lock will expire.
+  // OPTIONAL.
+  // The time when the lock will expire.
   cs3.types.v1beta1.Timestamp expiration = 6;
 }
 
