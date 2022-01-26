@@ -90,6 +90,12 @@ message ResourceInfo {
   // OPTIONAL.
   // Arbitrary metadata attached to a resource.
   ArbitraryMetadata arbitrary_metadata = 14;
+  // OPTIONAL.
+  // Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock. Can be used by WOPI or other apps requiring exclusive locks.
+  Lock lock = 15;
+  // OPTIONAL.
+  // Advisory locks on this resource. Can be used for shared locks or other forms of collaborative locks.
+  repeated Lock advisory_locks = 16;
 }
 
 // CanonicalMetadata contains extra metadata
@@ -135,29 +141,29 @@ enum LockType {
 // of this metadata according to their constraints, a reference
 // implementation is given here. The lock SHOULD be stored
 // as an extended attribute on the referenced filesystem entry.
-// It MUST NOT be accessible via the Stat/SetArbitraryMetadata APIs,
-// and it SHOULD contain a base64-encoded JSON with the following format:
-// {
-//   "type" : "<LOCK_TYPE>",
-//   "h" : "<holder>",
-//   "md" : "<metadata>",
-//   "mtime" : "<Unix timestamp>"
-// }
+// Such extended attribute MUST NOT be exposed via the `Stat` and `SetArbitraryMetadata` APIs.
+// Instead, the `ResourceInfo.Lock` attribute MUST be populated if a lock exists for the given reference.
 message Lock {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the lock, eg. the X-WOPI-Lock id or the WebDAV opaquelocktoken.
+  string lock_id = 2;
+  // REQUIRED.
   // The type of lock.
-  LockType type = 1;
-  // The entity holding the lock.
-  oneof holder {
-    // A userid if the lock is held by a user.
-    cs3.identity.user.v1beta1.UserId user = 2;
-    // An application name if the lock is held by an app.
-    string app_name = 3;
-  }
-  // Some arbitrary metadata associated with the lock.
-  string metadata = 4;
-  // The last modification time of the lock.
-  // The value is Unix Epoch timestamp in seconds.
-  cs3.types.v1beta1.Timestamp mtime = 5;
+  LockType type = 3;
+  // OPTIONAL.
+  // The userid of a user, which represents either the lock holder, or the user that last created/modified the lock.
+  // When non empty, `RefreshLock` and `Unlock` operations MUST check their request's content against it.
+  cs3.identity.user.v1beta1.UserId user = 4;
+  // OPTIONAL.
+  // An application name if the lock is held by an app.
+  // When non empty, `RefreshLock` and `Unlock` operations MUST check their request's content against it.
+  string app_name = 5;
+  // OPTIONAL.
+  // The time when the lock will expire.
+  cs3.types.v1beta1.Timestamp expiration = 6;
 }
 
 // The available types of resources.
