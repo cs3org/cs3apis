@@ -639,6 +639,10 @@ message RestoreFileVersionRequest {
   // REQUIRED.
   // The key to restore a specific file version.
   string key = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message RestoreFileVersionResponse {
@@ -668,6 +672,10 @@ message RestoreRecycleItemRequest {
   // If empty, service implementors MUST restore
   // to original location if possible.
   Reference restore_ref = 4;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 5;
 }
 
 message RestoreRecycleItemResponse {
@@ -690,8 +698,8 @@ message RemoveGrantRequest {
   // The grant to remove.
   Grant grant = 3;
   // OPTIONAL.
-  // A lock_id: should the reference be locked and the lock be exclusive,
-  // the stored lock_id MUST be equal to the given value.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
   string lock_id = 4;
 }
 
@@ -740,8 +748,8 @@ message UpdateGrantRequest {
   // The grant to be updated.
   Grant grant = 3;
   // OPTIONAL.
-  // A lock_id: should the reference be locked and the lock be exclusive,
-  // the stored lock_id MUST be equal to the given value.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
   string lock_id = 4;
 }
 

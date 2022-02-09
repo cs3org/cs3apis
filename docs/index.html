@@ -2317,7 +2317,7 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
-when a call to the WOPI server is to be issued (cf. the provider grpc message) </p></td>
+in case a call to the WOPI server is to be issued (cf. the provider grpc message) </p></td>
                 </tr>
               
                 <tr>
@@ -2336,6 +2336,15 @@ A reference to the application to be used to open the resource, should the
 default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
 If the targeted resource is a directory, this parameter is required and
 in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+the stored lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -13418,15 +13427,6 @@ Opaque information. </p></td>
 The reference to which the action should be performed. </p></td>
                 </tr>
               
-                <tr>
-                  <td>lock_id</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-A lock_id: should the reference be locked, the stored
-lock_id MUST be equal to the given value. </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -13800,8 +13800,8 @@ The reference to which the action should be performed. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
-the stored lock_id MUST be equal to the given value. </p></td>
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -14313,6 +14313,15 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+the stored lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15376,8 +15385,8 @@ The grant to remove. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-A lock_id: should the reference be locked and the lock be exclusive,
-the stored lock_id MUST be equal to the given value. </p></td>
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15452,6 +15461,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The key to restore a specific file version. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15538,6 +15556,15 @@ It can be useful to restore to another location rather than
 the original.
 If empty, service implementors MUST restore
 to original location if possible. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -16083,8 +16110,8 @@ The grant to be updated. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-A lock_id: should the reference be locked and the lock be exclusive,
-the stored lock_id MUST be equal to the given value. </p></td>
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>

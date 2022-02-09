@@ -527,7 +527,7 @@ message OpenInAppRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
-  // when a call to the WOPI server is to be issued (cf. the provider grpc message)
+  // in case a call to the WOPI server is to be issued (cf. the provider grpc message)
   storage.provider.v1beta1.Reference ref = 2;
   // REQUIRED.
   // View mode.
@@ -547,4 +547,8 @@ message OpenInAppRequest {
   // If the targeted resource is a directory, this parameter is required and
   // in its absence the implementation MUST return INVALID_ARGUMENT.
   string app = 4;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+  // the stored lock_id MUST be equal to the given value.
+  string lock_id = 5;
 }
