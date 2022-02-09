@@ -13343,6 +13343,15 @@ The reference to which the action should be performed. </p></td>
 The grant to be added. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13407,6 +13416,15 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -13777,6 +13795,15 @@ Opaque information. </p></td>
 The reference to which the action should be performed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+the stored lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13914,6 +13941,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The grantee to remove permission. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -14373,6 +14409,15 @@ The request MUST return CODE_NOT_IMPLEMENTED if the provider does not support th
 Whether the file is to be uploaded if the given etag matches. Default to always upload.
 If the storage provider has a more recent etag for the target file, the request MUST
 return CODE_FAILED_PRECONDITION. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference exist and be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15095,6 +15140,15 @@ The source reference the resource is moved from. </p></td>
 The destination reference the resource is moved to. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the source reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15315,6 +15369,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The grant to remove. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock be exclusive,
+the stored lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15549,6 +15612,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The arbitrary metadata to add to the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15923,6 +15995,15 @@ The reference to which the action should be performed. </p></td>
 The arbitrary metadata to delete. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15995,6 +16076,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The grant to be updated. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock be exclusive,
+the stored lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>

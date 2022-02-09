@@ -214,6 +214,10 @@ message AddGrantRequest {
   // REQUIRED.
   // The grant to be added.
   Grant grant = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message AddGrantResponse {
@@ -235,6 +239,10 @@ message DenyGrantRequest {
   // REQUIRED.
   // The grantee to remove permission.
   Grantee grantee = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message DenyGrantResponse {
@@ -289,6 +297,10 @@ message DeleteRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message DeleteResponse {
@@ -366,6 +378,10 @@ message InitiateFileUploadRequest {
     // return CODE_FAILED_PRECONDITION.
     string if_match = 4;
   }
+  // OPTIONAL.
+  // A lock_id: should the reference exist and be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 5;
 }
 
 message InitiateFileUploadResponse {
@@ -387,6 +403,10 @@ message InitiateFileDownloadRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+  // the stored lock_id MUST be equal to the given value.
+  string lock_id = 3;
 }
 
 message InitiateFileDownloadResponse {
@@ -573,6 +593,10 @@ message MoveRequest {
   // REQUIRED.
   // The destination reference the resource is moved to.
   Reference destination = 3;
+  // OPTIONAL.
+  // A lock_id: should the source reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message MoveResponse {
@@ -665,6 +689,10 @@ message RemoveGrantRequest {
   // REQUIRED.
   // The grant to remove.
   Grant grant = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked and the lock be exclusive,
+  // the stored lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message RemoveGrantResponse {
@@ -711,6 +739,10 @@ message UpdateGrantRequest {
   // REQUIRED.
   // The grant to be updated.
   Grant grant = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked and the lock be exclusive,
+  // the stored lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message UpdateGrantResponse {
@@ -775,6 +807,10 @@ message SetArbitraryMetadataRequest {
   // REQUIRED.
   // The arbitrary metadata to add to the resource.
   ArbitraryMetadata arbitrary_metadata = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message SetArbitraryMetadataResponse {
@@ -796,6 +832,10 @@ message UnsetArbitraryMetadataRequest {
   // REQUIRED.
   // The arbitrary metadata to delete.
   repeated string arbitrary_metadata_keys = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message UnsetArbitraryMetadataResponse {
