@@ -54,11 +54,11 @@ service ProviderAPI {
   // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc AddGrant(AddGrantRequest) returns (AddGrantResponse);
   // Creates a new resource of type container.
-  // MUST return CODE_PRECONDITION_FAILED if the container
+  // MUST return CODE_FAILED_PRECONDITION if the container
   // cannot be created at the specified reference.
   rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);
   // Creates a new resource of type file.
-  // MUST return CODE_PRECONDITION_FAILED if the file
+  // MUST return CODE_FAILED_PRECONDITION if the file
   // cannot be created at the specified reference.
   rpc TouchFile(TouchFileRequest) returns (TouchFileResponse);
   // Deletes a resource.
@@ -109,7 +109,7 @@ service ProviderAPI {
   rpc ListRecycle(ListRecycleRequest) returns (ListRecycleResponse);
   // Moves a resource from one reference to another.
   // MUST return CODE_NOT_FOUND if any of the references do not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the source reference
+  // MUST return CODE_FAILED_PRECONDITION if the source reference
   // cannot be moved to the destination reference.
   rpc Move(MoveRequest) returns (MoveResponse);
   // Removes a grant for the provided reference.
@@ -127,7 +127,7 @@ service ProviderAPI {
   rpc RestoreFileVersion(RestoreFileVersionRequest) returns (RestoreFileVersionResponse);
   // Restores a recycle item from the recycle.
   // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
+  // MUST return CODE_FAILED_PRECONDITION if the restore_path is non-empty
   // and the recycle item cannot be restored to the restore_path.
   rpc RestoreRecycleItem(RestoreRecycleItemRequest) returns (RestoreRecycleItemResponse);
   // Returns the resource information at the provided reference.
@@ -135,7 +135,7 @@ service ProviderAPI {
   rpc Stat(StatRequest) returns (StatResponse);
   // Updates an ACL for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
+  // MUST return CODE_FAILED_PRECONDITION if the acl does not exist.
   rpc UpdateGrant(UpdateGrantRequest) returns (UpdateGrantResponse);
   // Creates a symlink to another resource.
   rpc CreateSymlink(CreateSymlinkRequest) returns (CreateSymlinkResponse);
@@ -150,7 +150,7 @@ service ProviderAPI {
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
   // Locks a storage resource.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+  // MUST return CODE_FAILED_PRECONDITION if the reference is already locked.
   // In addition, the implementation MUST ensure atomicity when multiple users
   // concurrently attempt to set a lock.
   // The caller MUST have write permissions on the resource.
@@ -167,7 +167,7 @@ service ProviderAPI {
   rpc RefreshLock(RefreshLockRequest) returns (RefreshLockResponse);
   // Unlocks a storage resource.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+  // MUST return CODE_FAILED_PRECONDITION if the reference is not locked
   // or if the caller does not hold the lock.
   // The caller MUST have write permissions on the resource.
   rpc Unlock(UnlockRequest) returns (UnlockResponse);
