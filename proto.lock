@@ -955,6 +955,11 @@
                 "id": 8,
                 "name": "allow_creation",
                 "type": "bool"
+              },
+              {
+                "id": 9,
+                "name": "default_application",
+                "type": "string"
               }
             ]
           }
@@ -2370,9 +2375,9 @@
                 "out_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse"
               },
               {
-                "name": "CreateTransfer",
-                "in_type": "cs3.tx.v1beta1.CreateTransferRequest",
-                "out_type": "cs3.tx.v1beta1.CreateTransferResponse"
+                "name": "PullTransfer",
+                "in_type": "cs3.tx.v1beta1.PullTransferRequest",
+                "out_type": "cs3.tx.v1beta1.PullTransferResponse"
               },
               {
                 "name": "GetTransferStatus",
@@ -2383,6 +2388,16 @@
                 "name": "CancelTransfer",
                 "in_type": "cs3.tx.v1beta1.CancelTransferRequest",
                 "out_type": "cs3.tx.v1beta1.CancelTransferResponse"
+              },
+              {
+                "name": "ListTransfers",
+                "in_type": "cs3.tx.v1beta1.ListTransfersRequest",
+                "out_type": "cs3.tx.v1beta1.ListTransfersResponse"
+              },
+              {
+                "name": "RetryTransfer",
+                "in_type": "cs3.tx.v1beta1.RetryTransferRequest",
+                "out_type": "cs3.tx.v1beta1.RetryTransferResponse"
               }
             ]
           }
@@ -2604,6 +2619,11 @@
                 "id": 2,
                 "name": "group_id",
                 "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_members",
+                "type": "bool"
               }
             ]
           },
@@ -2644,6 +2664,11 @@
                 "id": 3,
                 "name": "value",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "skip_fetching_members",
+                "type": "bool"
               }
             ]
           },
@@ -2755,6 +2780,11 @@
                 "id": 2,
                 "name": "filter",
                 "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_members",
+                "type": "bool"
               }
             ]
           },
@@ -3140,6 +3170,11 @@
                 "id": 2,
                 "name": "user_id",
                 "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_user_groups",
+                "type": "bool"
               }
             ]
           },
@@ -3180,6 +3215,11 @@
                 "id": 3,
                 "name": "value",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "skip_fetching_user_groups",
+                "type": "bool"
               }
             ]
           },
@@ -3251,6 +3291,11 @@
                 "id": 2,
                 "name": "filter",
                 "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_user_groups",
+                "type": "bool"
               }
             ]
           },
@@ -7203,6 +7248,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "key",
+                "type": "string"
               }
             ]
           },
@@ -8856,7 +8906,7 @@
       "def": {
         "enums": [
           {
-            "name": "TxInfo.Status",
+            "name": "Status",
             "enum_fields": [
               {
                 "name": "STATUS_INVALID"
@@ -8925,33 +8975,33 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
                 "name": "status",
                 "type": "Status"
               },
               {
-                "id": 4,
+                "id": 3,
                 "name": "grantee",
                 "type": "cs3.storage.provider.v1beta1.Grantee"
               },
               {
-                "id": 5,
+                "id": 4,
                 "name": "creator",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 6,
+                "id": 5,
                 "name": "ctime",
                 "type": "cs3.types.v1beta1.Timestamp"
               },
               {
-                "id": 7,
+                "id": 6,
                 "name": "description",
                 "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "share_id",
+                "type": "cs3.sharing.ocm.v1beta1.ShareId"
               }
             ]
           }
@@ -8959,6 +9009,9 @@
         "imports": [
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           },
           {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
@@ -9005,19 +9058,41 @@
     {
       "protopath": "cs3:/:tx:/:v1beta1:/:tx_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_STATUS",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_SHARE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_TX_ID",
+                "integer": 3
+              }
+            ]
+          }
+        ],
         "messages": [
           {
-            "name": "CreateTransferRequest",
+            "name": "PullTransferRequest",
             "fields": [
               {
                 "id": 1,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
+                "name": "src_target_uri",
+                "type": "string"
               },
               {
                 "id": 2,
-                "name": "grantee",
-                "type": "cs3.storage.provider.v1beta1.Grantee"
+                "name": "dest_target_uri",
+                "type": "string"
               },
               {
                 "id": 3,
@@ -9027,7 +9102,7 @@
             ]
           },
           {
-            "name": "CreateTransferResponse",
+            "name": "PullTransferResponse",
             "fields": [
               {
                 "id": 1,
@@ -9115,6 +9190,105 @@
                 "type": "cs3.types.v1beta1.Opaque"
               }
             ]
+          },
+          {
+            "name": "ListTransfersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 2,
+                    "name": "status",
+                    "type": "Status"
+                  },
+                  {
+                    "id": 3,
+                    "name": "share_id",
+                    "type": "cs3.sharing.ocm.v1beta1.ShareId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "tx_id",
+                    "type": "TxId"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListTransfersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "transfers",
+                "type": "TxInfo",
+                "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RetryTransferRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "tx_id",
+                "type": "TxId"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RetryTransferResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "tx_info",
+                "type": "TxInfo"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -9122,9 +9296,9 @@
             "name": "TxAPI",
             "rpcs": [
               {
-                "name": "CreateTransfer",
-                "in_type": "CreateTransferRequest",
-                "out_type": "CreateTransferResponse"
+                "name": "PullTransfer",
+                "in_type": "PullTransferRequest",
+                "out_type": "PullTransferResponse"
               },
               {
                 "name": "GetTransferStatus",
@@ -9135,6 +9309,16 @@
                 "name": "CancelTransfer",
                 "in_type": "CancelTransferRequest",
                 "out_type": "CancelTransferResponse"
+              },
+              {
+                "name": "ListTransfers",
+                "in_type": "ListTransfersRequest",
+                "out_type": "ListTransfersResponse"
+              },
+              {
+                "name": "RetryTransfer",
+                "in_type": "RetryTransferRequest",
+                "out_type": "RetryTransferResponse"
               }
             ]
           }
@@ -9144,7 +9328,7 @@
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
-            "path": "cs3/storage/provider/v1beta1/resources.proto"
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           },
           {
             "path": "cs3/tx/v1beta1/resources.proto"

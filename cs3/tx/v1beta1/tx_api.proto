@@ -29,7 +29,7 @@ option objc_class_prefix = "CTX";
 option php_namespace = "Cs3\\Tx\\V1Beta1";
 
 import "cs3/rpc/v1beta1/status.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/tx/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -49,28 +49,35 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service TxAPI {
-  // Creates (requests the destination to accept) a transfer.
-  // Returns a response containing a TxInfo (transfer info) object.
-  rpc CreateTransfer(CreateTransferRequest) returns (CreateTransferResponse);
+  // Requests the destination to pull a resource from source.
+  // Returns a PullTransferResponse
+  rpc PullTransfer(PullTransferRequest) returns (PullTransferResponse);
   // Requests a transfer status.
   rpc GetTransferStatus(GetTransferStatusRequest) returns (GetTransferStatusResponse);
   // Requests to cancel a transfer.
   rpc CancelTransfer(CancelTransferRequest) returns (CancelTransferResponse);
+  // Requests a list of transfers received by the authenticated principle.
+  // If a filter is specified, only transfers satisfying the filter MUST be returned.
+  rpc ListTransfers(ListTransfersRequest) returns (ListTransfersResponse);
+  // Requests retrying a transfer.
+  rpc RetryTransfer(RetryTransferRequest) returns (RetryTransferResponse);
 }
 
-message CreateTransferRequest {
+message PullTransferRequest {
   // REQUIRED.
-  // Reference of the resource to be transfered.
-  cs3.storage.provider.v1beta1.Reference ref = 1;
+  // The source target URI. Should include at the minimum all the info needed to access the source.
+  // https://golang.org/pkg/net/url/#URL provides a quick view of the format.
+  string src_target_uri = 1;
   // REQUIRED.
-  // The destination (receiver of the transfer)
-  cs3.storage.provider.v1beta1.Grantee grantee = 2;
+  // The destination target URI. Should include at the minimum all the info needed to access the destination.
+  // https://golang.org/pkg/net/url/#URL provides a quick view of the format.
+  string dest_target_uri = 2;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 3;
 }
 
-message CreateTransferResponse {
+message PullTransferResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -113,6 +120,67 @@ message CancelTransferRequest {
 }
 
 message CancelTransferResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // REQUIRED.
+  // TxInfo, includes ao. transfer id, status, description.
+  TxInfo tx_info = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
+}
+
+message ListTransfersRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Represents a filter to apply to the request.
+  message Filter {
+    // The filter type.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_STATUS = 1;
+      TYPE_SHARE_ID = 2;
+      TYPE_TX_ID = 3;
+    }
+    // REQUIRED.
+    Type type = 1;
+    // REQUIRED.
+    oneof term {
+      Status status = 2;
+      cs3.sharing.ocm.v1beta1.ShareId share_id = 3;
+      TxId tx_id = 4;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
+}
+
+message ListTransfersResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // REQUIRED.
+  // List of TxInfo types representing transfers.
+  repeated TxInfo transfers = 2;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 3;
+}
+
+message RetryTransferRequest {
+  // REQUIRED.
+  // The transfer identifier.
+  TxId tx_id = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message RetryTransferResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
