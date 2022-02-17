@@ -1549,7 +1549,7 @@
       "def": {
         "messages": [
           {
-            "name": "GetAuthProviderRequest",
+            "name": "GetAuthProvidersRequest",
             "fields": [
               {
                 "id": 1,
@@ -1564,7 +1564,7 @@
             ]
           },
           {
-            "name": "GetAuthProviderResponse",
+            "name": "GetAuthProvidersResponse",
             "fields": [
               {
                 "id": 1,
@@ -1578,8 +1578,9 @@
               },
               {
                 "id": 3,
-                "name": "provider",
-                "type": "ProviderInfo"
+                "name": "providers",
+                "type": "ProviderInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -1620,9 +1621,9 @@
             "name": "RegistryAPI",
             "rpcs": [
               {
-                "name": "GetAuthProvider",
-                "in_type": "GetAuthProviderRequest",
-                "out_type": "GetAuthProviderResponse"
+                "name": "GetAuthProviders",
+                "in_type": "GetAuthProvidersRequest",
+                "out_type": "GetAuthProvidersResponse"
               },
               {
                 "name": "ListAuthProviders",
@@ -2003,6 +2004,11 @@
                 "out_type": "cs3.storage.provider.v1beta1.CreateContainerResponse"
               },
               {
+                "name": "TouchFile",
+                "in_type": "cs3.storage.provider.v1beta1.TouchFileRequest",
+                "out_type": "cs3.storage.provider.v1beta1.TouchFileResponse"
+              },
+              {
                 "name": "Delete",
                 "in_type": "cs3.storage.provider.v1beta1.DeleteRequest",
                 "out_type": "cs3.storage.provider.v1beta1.DeleteResponse"
@@ -2093,6 +2099,26 @@
                 "name": "UnsetArbitraryMetadata",
                 "in_type": "cs3.storage.provider.v1beta1.UnsetArbitraryMetadataRequest",
                 "out_type": "cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse"
+              },
+              {
+                "name": "SetLock",
+                "in_type": "cs3.storage.provider.v1beta1.SetLockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.SetLockResponse"
+              },
+              {
+                "name": "GetLock",
+                "in_type": "cs3.storage.provider.v1beta1.GetLockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.GetLockResponse"
+              },
+              {
+                "name": "RefreshLock",
+                "in_type": "cs3.storage.provider.v1beta1.RefreshLockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.RefreshLockResponse"
+              },
+              {
+                "name": "Unlock",
+                "in_type": "cs3.storage.provider.v1beta1.UnlockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.UnlockResponse"
               },
               {
                 "name": "CreateHome",
@@ -2398,6 +2424,11 @@
                 "name": "RetryTransfer",
                 "in_type": "cs3.tx.v1beta1.RetryTransferRequest",
                 "out_type": "cs3.tx.v1beta1.RetryTransferResponse"
+              },
+              {
+                "name": "CheckPermission",
+                "in_type": "cs3.permissions.v1beta1.CheckPermissionRequest",
+                "out_type": "cs3.permissions.v1beta1.CheckPermissionResponse"
               }
             ]
           }
@@ -2435,6 +2466,9 @@
           },
           {
             "path": "cs3/ocm/provider/v1beta1/provider_api.proto"
+          },
+          {
+            "path": "cs3/permissions/v1beta1/permissions_api.proto"
           },
           {
             "path": "cs3/preferences/v1beta1/preferences_api.proto"
@@ -4255,6 +4289,162 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Ocm\\\\Provider\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:permissions:/:v1beta1:/:permissions_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CheckPermissionRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "permission",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "subject_ref",
+                "type": "cs3.permissions.v1beta1.SubjectReference"
+              },
+              {
+                "id": 3,
+                "name": "ref",
+                "type": "cs3.storage.provider.v1beta1.Reference"
+              }
+            ]
+          },
+          {
+            "name": "CheckPermissionResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "PermissionsAPI",
+            "rpcs": [
+              {
+                "name": "CheckPermission",
+                "in_type": "CheckPermissionRequest",
+                "out_type": "CheckPermissionResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/permissions/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.permissions.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Permissions.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "permissionsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "PermissionsApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.permissions.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CPX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Permissions\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:permissions:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "SubjectReference",
+            "fields": [
+              {
+                "id": 1,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.permissions.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Permissions.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "permissionsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.permissions.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CPX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Permissions\\\\V1Beta1"
           }
         ]
       }
@@ -6759,6 +6949,36 @@
             ]
           },
           {
+            "name": "TouchFileRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "TouchFileResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
             "name": "DeleteRequest",
             "fields": [
               {
@@ -7599,6 +7819,146 @@
             ]
           },
           {
+            "name": "SetLockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "SetLockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetLockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "GetLockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "RefreshLockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "RefreshLockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "UnlockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "UnlockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
             "name": "CreateHomeRequest",
             "fields": [
               {
@@ -7818,6 +8178,11 @@
                 "out_type": "CreateContainerResponse"
               },
               {
+                "name": "TouchFile",
+                "in_type": "TouchFileRequest",
+                "out_type": "TouchFileResponse"
+              },
+              {
                 "name": "Delete",
                 "in_type": "DeleteRequest",
                 "out_type": "DeleteResponse"
@@ -7935,6 +8300,26 @@
                 "out_type": "UnsetArbitraryMetadataResponse"
               },
               {
+                "name": "SetLock",
+                "in_type": "SetLockRequest",
+                "out_type": "SetLockResponse"
+              },
+              {
+                "name": "GetLock",
+                "in_type": "GetLockRequest",
+                "out_type": "GetLockResponse"
+              },
+              {
+                "name": "RefreshLock",
+                "in_type": "RefreshLockRequest",
+                "out_type": "RefreshLockResponse"
+              },
+              {
+                "name": "Unlock",
+                "in_type": "UnlockRequest",
+                "out_type": "UnlockResponse"
+              },
+              {
                 "name": "CreateHome",
                 "in_type": "CreateHomeRequest",
                 "out_type": "CreateHomeResponse"
@@ -8020,6 +8405,26 @@
       "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:resources.proto",
       "def": {
         "enums": [
+          {
+            "name": "LockType",
+            "enum_fields": [
+              {
+                "name": "LOCK_TYPE_INVALID"
+              },
+              {
+                "name": "LOCK_TYPE_SHARED",
+                "integer": 1
+              },
+              {
+                "name": "LOCK_TYPE_WRITE",
+                "integer": 2
+              },
+              {
+                "name": "LOCK_TYPE_EXCL",
+                "integer": 3
+              }
+            ]
+          },
           {
             "name": "ResourceType",
             "enum_fields": [
@@ -8162,6 +8567,17 @@
                 "id": 14,
                 "name": "arbitrary_metadata",
                 "type": "ArbitraryMetadata"
+              },
+              {
+                "id": 15,
+                "name": "lock",
+                "type": "Lock"
+              },
+              {
+                "id": 16,
+                "name": "advisory_locks",
+                "type": "Lock",
+                "is_repeated": true
               }
             ]
           },
@@ -8185,6 +8601,41 @@
                   "name": "metadata",
                   "type": "string"
                 }
+              }
+            ]
+          },
+          {
+            "name": "Lock",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "lock_id",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "type",
+                "type": "LockType"
+              },
+              {
+                "id": 4,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 5,
+                "name": "app_name",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
