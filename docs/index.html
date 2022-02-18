@@ -423,10 +423,6 @@
                   <a href="#cs3.tx.v1beta1.ListTransfersRequest.Filter.Type"><span class="badge">E</span>ListTransfersRequest.Filter.Type</a>
                 </li>
               
-                <li>
-                  <a href="#cs3.tx.v1beta1.ListTransfersRequest.Filter.Type"><span class="badge">E</span>ListTransfersRequest.Filter.Type</a>
-                </li>
-              
               
               
                 <li>
@@ -799,11 +795,11 @@
             <ul>
               
                 <li>
-                  <a href="#cs3.auth.registry.v1beta1.GetAuthProviderRequest"><span class="badge">M</span>GetAuthProviderRequest</a>
+                  <a href="#cs3.auth.registry.v1beta1.GetAuthProvidersRequest"><span class="badge">M</span>GetAuthProvidersRequest</a>
                 </li>
               
                 <li>
-                  <a href="#cs3.auth.registry.v1beta1.GetAuthProviderResponse"><span class="badge">M</span>GetAuthProviderResponse</a>
+                  <a href="#cs3.auth.registry.v1beta1.GetAuthProvidersResponse"><span class="badge">M</span>GetAuthProvidersResponse</a>
                 </li>
               
                 <li>
@@ -3248,18 +3244,7 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>CancelTransfer</td>
                 <td><a href="#cs3.tx.v1beta1.CancelTransferRequest">.cs3.tx.v1beta1.CancelTransferRequest</a></td>
                 <td><a href="#cs3.tx.v1beta1.CancelTransferResponse">.cs3.tx.v1beta1.CancelTransferResponse</a></td>
-                <td><p>Requests to cancel a transfer.
-
-*****************************************************************/
-************************** Permissions **************************/
-*****************************************************************/</p></td>
-              </tr>
-            
-              <tr>
-                <td>CheckPermission</td>
-                <td><a href="#cs3.permissions.v1beta1.CheckPermissionRequest">.cs3.permissions.v1beta1.CheckPermissionRequest</a></td>
-                <td><a href="#cs3.permissions.v1beta1.CheckPermissionResponse">.cs3.permissions.v1beta1.CheckPermissionResponse</a></td>
-                <td><p>CheckPermission checks if a user or group has a certain permission.</p></td>
+                <td><p>Requests to cancel a transfer.</p></td>
               </tr>
             
               <tr>
@@ -3273,7 +3258,18 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>RetryTransfer</td>
                 <td><a href="#cs3.tx.v1beta1.RetryTransferRequest">.cs3.tx.v1beta1.RetryTransferRequest</a></td>
                 <td><a href="#cs3.tx.v1beta1.RetryTransferResponse">.cs3.tx.v1beta1.RetryTransferResponse</a></td>
-                <td><p>Requests retrying a transfer.</p></td>
+                <td><p>Requests retrying a transfer.
+
+*****************************************************************/
+************************** Permissions **************************/
+*****************************************************************/</p></td>
+              </tr>
+            
+              <tr>
+                <td>CheckPermission</td>
+                <td><a href="#cs3.permissions.v1beta1.CheckPermissionRequest">.cs3.permissions.v1beta1.CheckPermissionRequest</a></td>
+                <td><a href="#cs3.permissions.v1beta1.CheckPermissionResponse">.cs3.permissions.v1beta1.CheckPermissionResponse</a></td>
+                <td><p>CheckPermission checks if a user or group has a certain permission.</p></td>
               </tr>
             
           </tbody>
@@ -7183,7 +7179,7 @@ The role associated with the resource. </p></td>
       <p></p>
 
       
-        <h3 id="cs3.auth.registry.v1beta1.GetAuthProviderRequest">GetAuthProviderRequest</h3>
+        <h3 id="cs3.auth.registry.v1beta1.GetAuthProvidersRequest">GetAuthProvidersRequest</h3>
         <p></p>
 
         
@@ -7216,7 +7212,7 @@ The type of authentication provider. </p></td>
 
         
       
-        <h3 id="cs3.auth.registry.v1beta1.GetAuthProviderResponse">GetAuthProviderResponse</h3>
+        <h3 id="cs3.auth.registry.v1beta1.GetAuthProvidersResponse">GetAuthProvidersResponse</h3>
         <p></p>
 
         
@@ -7243,11 +7239,11 @@ Opaque information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>provider</td>
+                  <td>providers</td>
                   <td><a href="#cs3.auth.registry.v1beta1.ProviderInfo">ProviderInfo</a></td>
-                  <td></td>
+                  <td>repeated</td>
                   <td><p>REQUIRED.
-The auth provider handling the requested auth call. </p></td>
+The auth providers handling the requested auth call. </p></td>
                 </tr>
               
             </tbody>
@@ -7340,9 +7336,9 @@ The list of auth providers this registry knows about. </p></td>
           <tbody>
             
               <tr>
-                <td>GetAuthProvider</td>
-                <td><a href="#cs3.auth.registry.v1beta1.GetAuthProviderRequest">GetAuthProviderRequest</a></td>
-                <td><a href="#cs3.auth.registry.v1beta1.GetAuthProviderResponse">GetAuthProviderResponse</a></td>
+                <td>GetAuthProviders</td>
+                <td><a href="#cs3.auth.registry.v1beta1.GetAuthProvidersRequest">GetAuthProvidersRequest</a></td>
+                <td><a href="#cs3.auth.registry.v1beta1.GetAuthProvidersResponse">GetAuthProvidersResponse</a></td>
                 <td><p>Returns the auth provider that is reponsible for the given
 resource reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
@@ -15845,6 +15841,14 @@ Opaque information. </p></td>
 The reference the lock is associated to. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The lock metadata. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -16822,7 +16826,7 @@ Opaque information such as UID or GID. </p></td>
         
       
         <h3 id="cs3.storage.provider.v1beta1.Lock">Lock</h3>
-        <p>The metadata associated with a lock on a resource.</p><p>Provided that storage drivers are free to implement the storage</p><p>of this metadata according to their constraints, a reference</p><p>implementation is given here. The lock SHOULD be stored</p><p>as an extended attribute on the referenced filesystem entry.</p><p>It MUST NOT be accessible via the Stat/SetArbitraryMetadata APIs,</p><p>and it SHOULD contain a base64-encoded JSON with the following format:</p><p>{</p><p>"type" : "<LOCK_TYPE>",</p><p>"h" : "<holder>",</p><p>"md" : "<metadata>",</p><p>"mtime" : "<Unix timestamp>"</p><p>}</p>
+        <p>The metadata associated with a lock on a resource.</p><p>Provided that storage drivers are free to implement the storage</p><p>of this metadata according to their constraints, a reference</p><p>implementation is given here. The lock SHOULD be stored</p><p>as an extended attribute on the referenced filesystem entry.</p><p>Such extended attribute MUST NOT be exposed via the `Stat` and `SetArbitraryMetadata` APIs.</p><p>Instead, the `ResourceInfo.Lock` attribute MUST be populated if a lock exists for the given reference.</p>
 
         
           <table class="field-table">
@@ -16832,39 +16836,53 @@ Opaque information such as UID or GID. </p></td>
             <tbody>
               
                 <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the lock, eg. the X-WOPI-Lock id or the WebDAV opaquelocktoken. </p></td>
+                </tr>
+              
+                <tr>
                   <td>type</td>
                   <td><a href="#cs3.storage.provider.v1beta1.LockType">LockType</a></td>
                   <td></td>
-                  <td><p>The type of lock. </p></td>
+                  <td><p>REQUIRED.
+The type of lock. </p></td>
                 </tr>
               
                 <tr>
                   <td>user</td>
                   <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
                   <td></td>
-                  <td><p>A userid if the lock is held by a user. </p></td>
+                  <td><p>OPTIONAL.
+The userid of a user, which represents either the lock holder, or the user that last created/modified the lock.
+When non empty, `RefreshLock` and `Unlock` operations MUST check their request&#39;s content against it. </p></td>
                 </tr>
               
                 <tr>
                   <td>app_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>An application name if the lock is held by an app. </p></td>
+                  <td><p>OPTIONAL.
+An application name if the lock is held by an app.
+When non empty, `RefreshLock` and `Unlock` operations MUST check their request&#39;s content against it. </p></td>
                 </tr>
               
                 <tr>
-                  <td>metadata</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Some arbitrary metadata associated with the lock. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>mtime</td>
+                  <td>expiration</td>
                   <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
                   <td></td>
-                  <td><p>The last modification time of the lock.
-The value is Unix Epoch timestamp in seconds. </p></td>
+                  <td><p>OPTIONAL.
+The time when the lock will expire. </p></td>
                 </tr>
               
             </tbody>
@@ -17254,6 +17272,22 @@ be specified. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Arbitrary metadata attached to a resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock. Can be used by WOPI or other apps requiring exclusive locks. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>advisory_locks</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td>repeated</td>
+                  <td><p>OPTIONAL.
+Advisory locks on this resource. Can be used for shared locks or other forms of collaborative locks. </p></td>
                 </tr>
               
             </tbody>

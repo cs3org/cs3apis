@@ -53,12 +53,12 @@ service RegistryAPI {
   // Returns the auth provider that is reponsible for the given
   // resource reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  rpc GetAuthProvider(GetAuthProviderRequest) returns (GetAuthProviderResponse);
+  rpc GetAuthProviders(GetAuthProvidersRequest) returns (GetAuthProvidersResponse);
   // Returns a list of the available auth providers known by this registry.
   rpc ListAuthProviders(ListAuthProvidersRequest) returns (ListAuthProvidersResponse);
 }
 
-message GetAuthProviderRequest {
+message GetAuthProvidersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -67,7 +67,7 @@ message GetAuthProviderRequest {
   string type = 2;
 }
 
-message GetAuthProviderResponse {
+message GetAuthProvidersResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -75,8 +75,8 @@ message GetAuthProviderResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The auth provider handling the requested auth call.
-  ProviderInfo provider = 3;
+  // The auth providers handling the requested auth call.
+  repeated ProviderInfo providers = 3;
 }
 
 message ListAuthProvidersRequest {
