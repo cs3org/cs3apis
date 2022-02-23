@@ -300,7 +300,7 @@ message DeleteRequest {
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
   // lock_id MUST be equal to the given value.
-  string lock_id = 4;
+  string lock_id = 3;
 }
 
 message DeleteResponse {
@@ -673,8 +673,8 @@ message RestoreRecycleItemRequest {
   // to original location if possible.
   Reference restore_ref = 4;
   // OPTIONAL.
-  // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // A lock_id: should a lock exist for the reference where the file is
+  // to be restored, the stored lock_id MUST be equal to the given value.
   string lock_id = 5;
 }
 
