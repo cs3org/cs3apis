@@ -148,7 +148,8 @@ service ProviderAPI {
   // Unsets arbitrary metdata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
-  // Locks a storage resource.
+  // Locks a storage resource. Note that if the resource is a container,
+  // MAY return CODE_NOT_IMPLEMENTED as the behavior is yet to be defined at this stage.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_FAILED_PRECONDITION if the reference is already locked.
   // In addition, the implementation MUST ensure atomicity when multiple users
@@ -450,7 +451,7 @@ message ListContainerStreamRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // OPTIONAL.
-  // Arbitrary metadata be included with the resource.
+  // Arbitrary metadata to be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
 }
@@ -475,7 +476,7 @@ message ListContainerRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // OPTIONAL.
-  // Arbitrary metadata be included with the resource.
+  // Arbitrary metadata to be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
 }

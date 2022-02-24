@@ -14508,7 +14508,7 @@ The reference to which the action should be performed. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
-Arbitrary metadata be included with the resource.
+Arbitrary metadata to be included with the resource.
 A key with the name &#39;*&#39; means to return all available arbitrary metadata. </p></td>
                 </tr>
               
@@ -14591,7 +14591,7 @@ The reference to which the action should be performed. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
-Arbitrary metadata be included with the resource.
+Arbitrary metadata to be included with the resource.
 A key with the name &#39;*&#39; means to return all available arbitrary metadata. </p></td>
                 </tr>
               
@@ -16514,7 +16514,8 @@ Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p
                 <td>SetLock</td>
                 <td><a href="#cs3.storage.provider.v1beta1.SetLockRequest">SetLockRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.SetLockResponse">SetLockResponse</a></td>
-                <td><p>Locks a storage resource.
+                <td><p>Locks a storage resource. Note that if the resource is a container,
+MAY return CODE_NOT_IMPLEMENTED as the behavior is yet to be defined at this stage.
 MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_FAILED_PRECONDITION if the reference is already locked.
 In addition, the implementation MUST ensure atomicity when multiple users
