@@ -2317,7 +2317,7 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The resource reference. If a path is given, it will be resolved via Stat() to a ResourceInfo
-when a call to the WOPI server is to be issued (cf. the provider grpc message) </p></td>
+in case a call to the WOPI server is to be issued (cf. the provider grpc message) </p></td>
                 </tr>
               
                 <tr>
@@ -2336,6 +2336,15 @@ A reference to the application to be used to open the resource, should the
 default inferred from the resource&#39;s mimetype be overridden by user&#39;s choice.
 If the targeted resource is a directory, this parameter is required and
 in its absence the implementation MUST return INVALID_ARGUMENT. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+the stored lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -2524,7 +2533,7 @@ third-party applications.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerRequest">.cs3.storage.provider.v1beta1.CreateContainerRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerResponse">.cs3.storage.provider.v1beta1.CreateContainerResponse</a></td>
                 <td><p>Creates a new resource of type container.
-MUST return CODE_PRECONDITION_FAILED if the container
+MUST return CODE_FAILED_PRECONDITION if the container
 cannot be created at the specified reference.</p></td>
               </tr>
             
@@ -2533,7 +2542,7 @@ cannot be created at the specified reference.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.TouchFileRequest">.cs3.storage.provider.v1beta1.TouchFileRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.TouchFileResponse">.cs3.storage.provider.v1beta1.TouchFileResponse</a></td>
                 <td><p>Creates a new resource of type file.
-MUST return CODE_PRECONDITION_FAILED if the file
+MUST return CODE_FAILED_PRECONDITION if the file
 cannot be created at the specified reference.</p></td>
               </tr>
             
@@ -2633,7 +2642,7 @@ MUST return CODE_OK and MUST return an empty list if no recycle items are availa
                 <td><a href="#cs3.storage.provider.v1beta1.MoveResponse">.cs3.storage.provider.v1beta1.MoveResponse</a></td>
                 <td><p>Moves a resource from one reference to another.
 MUST return CODE_NOT_FOUND if any of the references do not exist.
-MUST return CODE_PRECONDITION_FAILED if the source reference
+MUST return CODE_FAILED_PRECONDITION if the source reference
 cannot be moved to the destination reference.</p></td>
               </tr>
             
@@ -2661,7 +2670,7 @@ MUST return CODE_NOT_FOUND if the version does not exist.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.RestoreRecycleItemResponse">.cs3.storage.provider.v1beta1.RestoreRecycleItemResponse</a></td>
                 <td><p>Restores a recycle item from the recycle.
 MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
+MUST return CODE_FAILED_PRECONDITION if the restore_path is non-empty
 and the recycle item cannot be restored to the restore_path.</p></td>
               </tr>
             
@@ -2702,7 +2711,7 @@ Arbitrary metadata is returned in a cs3.storage.provider.v1beta1.ResourceInfo.</
                 <td><a href="#cs3.storage.provider.v1beta1.SetLockResponse">.cs3.storage.provider.v1beta1.SetLockResponse</a></td>
                 <td><p>Locks a storage resource.
 MUST return CODE_NOT_FOUND if the reference does not exist.
-MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+MUST return CODE_FAILED_PRECONDITION if the reference is already locked.
 In addition, the implementation MUST ensure atomicity when multiple users
 concurrently attempt to set a lock.
 The caller MUST have write permissions on the resource.</p></td>
@@ -2723,7 +2732,7 @@ The caller MUST have read permissions on the resource.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.RefreshLockResponse">.cs3.storage.provider.v1beta1.RefreshLockResponse</a></td>
                 <td><p>Refreshes the lock metadata of a storage resource.
 MUST return CODE_NOT_FOUND if the reference does not exist.
-MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+MUST return CODE_FAILED_PRECONDITION if the reference is not locked
 or if the caller does not hold the lock.
 The caller MUST have write permissions on the resource.</p></td>
               </tr>
@@ -2734,7 +2743,7 @@ The caller MUST have write permissions on the resource.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.UnlockResponse">.cs3.storage.provider.v1beta1.UnlockResponse</a></td>
                 <td><p>Unlocks a storage resource.
 MUST return CODE_NOT_FOUND if the reference does not exist.
-MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+MUST return CODE_FAILED_PRECONDITION if the reference is not locked
 or if the caller does not hold the lock.
 The caller MUST have write permissions on the resource.</p></td>
               </tr>
@@ -13343,6 +13352,15 @@ The reference to which the action should be performed. </p></td>
 The grant to be added. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13777,6 +13795,15 @@ Opaque information. </p></td>
 The reference to which the action should be performed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -13914,6 +13941,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The grantee to remove permission. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -14279,6 +14315,15 @@ Opaque information. </p></td>
 The reference to which the action should be performed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+the stored lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14375,6 +14420,15 @@ If the storage provider has a more recent etag for the target file, the request 
 return CODE_FAILED_PRECONDITION. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference exist and be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14454,7 +14508,7 @@ The reference to which the action should be performed. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
-Arbitrary metadata be included with the resource.
+Arbitrary metadata to be included with the resource.
 A key with the name &#39;*&#39; means to return all available arbitrary metadata. </p></td>
                 </tr>
               
@@ -14537,7 +14591,7 @@ The reference to which the action should be performed. </p></td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
-Arbitrary metadata be included with the resource.
+Arbitrary metadata to be included with the resource.
 A key with the name &#39;*&#39; means to return all available arbitrary metadata. </p></td>
                 </tr>
               
@@ -15095,6 +15149,15 @@ The source reference the resource is moved from. </p></td>
 The destination reference the resource is moved to. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the source reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15317,6 +15380,15 @@ The reference to which the action should be performed. </p></td>
 The grant to remove. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15389,6 +15461,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The key to restore a specific file version. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15477,6 +15558,15 @@ If empty, service implementors MUST restore
 to original location if possible. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should a lock exist for the reference where the file is
+to be restored, the stored lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15549,6 +15639,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The arbitrary metadata to add to the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -15923,6 +16022,15 @@ The reference to which the action should be performed. </p></td>
 The arbitrary metadata to delete. </p></td>
                 </tr>
               
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15995,6 +16103,15 @@ The reference to which the action should be performed. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The grant to be updated. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+A lock_id: should the reference be locked, the stored
+lock_id MUST be equal to the given value. </p></td>
                 </tr>
               
             </tbody>
@@ -16178,7 +16295,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerRequest">CreateContainerRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.CreateContainerResponse">CreateContainerResponse</a></td>
                 <td><p>Creates a new resource of type container.
-MUST return CODE_PRECONDITION_FAILED if the container
+MUST return CODE_FAILED_PRECONDITION if the container
 cannot be created at the specified reference.</p></td>
               </tr>
             
@@ -16187,7 +16304,7 @@ cannot be created at the specified reference.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.TouchFileRequest">TouchFileRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.TouchFileResponse">TouchFileResponse</a></td>
                 <td><p>Creates a new resource of type file.
-MUST return CODE_PRECONDITION_FAILED if the file
+MUST return CODE_FAILED_PRECONDITION if the file
 cannot be created at the specified reference.</p></td>
               </tr>
             
@@ -16303,7 +16420,7 @@ MUST return CODE_OK and MUST return an empty list if no recycle items are availa
                 <td><a href="#cs3.storage.provider.v1beta1.MoveResponse">MoveResponse</a></td>
                 <td><p>Moves a resource from one reference to another.
 MUST return CODE_NOT_FOUND if any of the references do not exist.
-MUST return CODE_PRECONDITION_FAILED if the source reference
+MUST return CODE_FAILED_PRECONDITION if the source reference
 cannot be moved to the destination reference.</p></td>
               </tr>
             
@@ -16341,7 +16458,7 @@ MUST return CODE_NOT_FOUND if the version does not exist.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.RestoreRecycleItemResponse">RestoreRecycleItemResponse</a></td>
                 <td><p>Restores a recycle item from the recycle.
 MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
+MUST return CODE_FAILED_PRECONDITION if the restore_path is non-empty
 and the recycle item cannot be restored to the restore_path.</p></td>
               </tr>
             
@@ -16359,7 +16476,7 @@ MUST return CODE_NOT_FOUND if the reference does not exist.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.UpdateGrantResponse">UpdateGrantResponse</a></td>
                 <td><p>Updates an ACL for the provided reference.
 MUST return CODE_NOT_FOUND if the reference does not exist.
-MUST return CODE_PRECONDITION_FAILED if the acl does not exist.</p></td>
+MUST return CODE_FAILED_PRECONDITION if the acl does not exist.</p></td>
               </tr>
             
               <tr>
@@ -16397,9 +16514,10 @@ Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.</p
                 <td>SetLock</td>
                 <td><a href="#cs3.storage.provider.v1beta1.SetLockRequest">SetLockRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.SetLockResponse">SetLockResponse</a></td>
-                <td><p>Locks a storage resource.
+                <td><p>Locks a storage resource. Note that if the resource is a container,
+MAY return CODE_NOT_IMPLEMENTED as the behavior is yet to be defined at this stage.
 MUST return CODE_NOT_FOUND if the reference does not exist.
-MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+MUST return CODE_FAILED_PRECONDITION if the reference is already locked.
 In addition, the implementation MUST ensure atomicity when multiple users
 concurrently attempt to set a lock.
 The caller MUST have write permissions on the resource.</p></td>
@@ -16431,7 +16549,7 @@ The caller MUST have write permissions on the resource.</p></td>
                 <td><a href="#cs3.storage.provider.v1beta1.UnlockResponse">UnlockResponse</a></td>
                 <td><p>Unlocks a storage resource.
 MUST return CODE_NOT_FOUND if the reference does not exist.
-MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+MUST return CODE_FAILED_PRECONDITION if the reference is not locked
 or if the caller does not hold the lock.
 The caller MUST have write permissions on the resource.</p></td>
               </tr>

@@ -54,11 +54,11 @@ service ProviderAPI {
   // MUST return CODE_NOT_FOUND if the reference does not exist
   rpc AddGrant(AddGrantRequest) returns (AddGrantResponse);
   // Creates a new resource of type container.
-  // MUST return CODE_PRECONDITION_FAILED if the container
+  // MUST return CODE_FAILED_PRECONDITION if the container
   // cannot be created at the specified reference.
   rpc CreateContainer(CreateContainerRequest) returns (CreateContainerResponse);
   // Creates a new resource of type file.
-  // MUST return CODE_PRECONDITION_FAILED if the file
+  // MUST return CODE_FAILED_PRECONDITION if the file
   // cannot be created at the specified reference.
   rpc TouchFile(TouchFileRequest) returns (TouchFileResponse);
   // Deletes a resource.
@@ -109,7 +109,7 @@ service ProviderAPI {
   rpc ListRecycle(ListRecycleRequest) returns (ListRecycleResponse);
   // Moves a resource from one reference to another.
   // MUST return CODE_NOT_FOUND if any of the references do not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the source reference
+  // MUST return CODE_FAILED_PRECONDITION if the source reference
   // cannot be moved to the destination reference.
   rpc Move(MoveRequest) returns (MoveResponse);
   // Removes a grant for the provided reference.
@@ -127,7 +127,7 @@ service ProviderAPI {
   rpc RestoreFileVersion(RestoreFileVersionRequest) returns (RestoreFileVersionResponse);
   // Restores a recycle item from the recycle.
   // MUST return CODE_NOT_FOUND if the recycle item id does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the restore_path is non-empty
+  // MUST return CODE_FAILED_PRECONDITION if the restore_path is non-empty
   // and the recycle item cannot be restored to the restore_path.
   rpc RestoreRecycleItem(RestoreRecycleItemRequest) returns (RestoreRecycleItemResponse);
   // Returns the resource information at the provided reference.
@@ -135,7 +135,7 @@ service ProviderAPI {
   rpc Stat(StatRequest) returns (StatResponse);
   // Updates an ACL for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the acl does not exist.
+  // MUST return CODE_FAILED_PRECONDITION if the acl does not exist.
   rpc UpdateGrant(UpdateGrantRequest) returns (UpdateGrantResponse);
   // Creates a symlink to another resource.
   rpc CreateSymlink(CreateSymlinkRequest) returns (CreateSymlinkResponse);
@@ -148,9 +148,10 @@ service ProviderAPI {
   // Unsets arbitrary metdata into a storage resource.
   // Arbitrary metadata is returned in a cs3.storageprovider.v1beta1.ResourceInfo.
   rpc UnsetArbitraryMetadata(UnsetArbitraryMetadataRequest) returns (UnsetArbitraryMetadataResponse);
-  // Locks a storage resource.
+  // Locks a storage resource. Note that if the resource is a container,
+  // MAY return CODE_NOT_IMPLEMENTED as the behavior is yet to be defined at this stage.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is already locked.
+  // MUST return CODE_FAILED_PRECONDITION if the reference is already locked.
   // In addition, the implementation MUST ensure atomicity when multiple users
   // concurrently attempt to set a lock.
   // The caller MUST have write permissions on the resource.
@@ -167,7 +168,7 @@ service ProviderAPI {
   rpc RefreshLock(RefreshLockRequest) returns (RefreshLockResponse);
   // Unlocks a storage resource.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
-  // MUST return CODE_PRECONDITION_FAILED if the reference is not locked
+  // MUST return CODE_FAILED_PRECONDITION if the reference is not locked
   // or if the caller does not hold the lock.
   // The caller MUST have write permissions on the resource.
   rpc Unlock(UnlockRequest) returns (UnlockResponse);
@@ -214,6 +215,10 @@ message AddGrantRequest {
   // REQUIRED.
   // The grant to be added.
   Grant grant = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message AddGrantResponse {
@@ -235,6 +240,10 @@ message DenyGrantRequest {
   // REQUIRED.
   // The grantee to remove permission.
   Grantee grantee = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message DenyGrantResponse {
@@ -289,6 +298,10 @@ message DeleteRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 3;
 }
 
 message DeleteResponse {
@@ -366,6 +379,10 @@ message InitiateFileUploadRequest {
     // return CODE_FAILED_PRECONDITION.
     string if_match = 4;
   }
+  // OPTIONAL.
+  // A lock_id: should the reference exist and be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 5;
 }
 
 message InitiateFileUploadResponse {
@@ -387,6 +404,10 @@ message InitiateFileDownloadRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked and the lock type be LOCK_TYPE_EXCL,
+  // the stored lock_id MUST be equal to the given value.
+  string lock_id = 3;
 }
 
 message InitiateFileDownloadResponse {
@@ -430,7 +451,7 @@ message ListContainerStreamRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // OPTIONAL.
-  // Arbitrary metadata be included with the resource.
+  // Arbitrary metadata to be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
 }
@@ -455,7 +476,7 @@ message ListContainerRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // OPTIONAL.
-  // Arbitrary metadata be included with the resource.
+  // Arbitrary metadata to be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
 }
@@ -573,6 +594,10 @@ message MoveRequest {
   // REQUIRED.
   // The destination reference the resource is moved to.
   Reference destination = 3;
+  // OPTIONAL.
+  // A lock_id: should the source reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message MoveResponse {
@@ -615,6 +640,10 @@ message RestoreFileVersionRequest {
   // REQUIRED.
   // The key to restore a specific file version.
   string key = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message RestoreFileVersionResponse {
@@ -644,6 +673,10 @@ message RestoreRecycleItemRequest {
   // If empty, service implementors MUST restore
   // to original location if possible.
   Reference restore_ref = 4;
+  // OPTIONAL.
+  // A lock_id: should a lock exist for the reference where the file is
+  // to be restored, the stored lock_id MUST be equal to the given value.
+  string lock_id = 5;
 }
 
 message RestoreRecycleItemResponse {
@@ -665,6 +698,10 @@ message RemoveGrantRequest {
   // REQUIRED.
   // The grant to remove.
   Grant grant = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message RemoveGrantResponse {
@@ -711,6 +748,10 @@ message UpdateGrantRequest {
   // REQUIRED.
   // The grant to be updated.
   Grant grant = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message UpdateGrantResponse {
@@ -775,6 +816,10 @@ message SetArbitraryMetadataRequest {
   // REQUIRED.
   // The arbitrary metadata to add to the resource.
   ArbitraryMetadata arbitrary_metadata = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message SetArbitraryMetadataResponse {
@@ -796,6 +841,10 @@ message UnsetArbitraryMetadataRequest {
   // REQUIRED.
   // The arbitrary metadata to delete.
   repeated string arbitrary_metadata_keys = 3;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value.
+  string lock_id = 4;
 }
 
 message UnsetArbitraryMetadataResponse {
