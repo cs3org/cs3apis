@@ -2780,7 +2780,50 @@ The caller MUST have write permissions on the resource.</p></td>
                 <td>DeleteStorageSpace</td>
                 <td><a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest">.cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest</a></td>
                 <td><a href="#cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse">.cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse</a></td>
-                <td><p>Deletes a storage space.
+                <td><p>Deletes a storage space.</p></td>
+              </tr>
+            
+              <tr>
+                <td>AddGrant</td>
+                <td><a href="#cs3.storage.provider.v1beta1.AddGrantRequest">.cs3.storage.provider.v1beta1.AddGrantRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.AddGrantResponse">.cs3.storage.provider.v1beta1.AddGrantResponse</a></td>
+                <td><p>Adds a new grant for the provided reference.
+MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
+              </tr>
+            
+              <tr>
+                <td>DenyGrant</td>
+                <td><a href="#cs3.storage.provider.v1beta1.DenyGrantRequest">.cs3.storage.provider.v1beta1.DenyGrantRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.DenyGrantResponse">.cs3.storage.provider.v1beta1.DenyGrantResponse</a></td>
+                <td><p>Denies access to the provided reference.
+MUST return CODE_NOT_FOUND if the reference does not exist</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListGrants</td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListGrantsRequest">.cs3.storage.provider.v1beta1.ListGrantsRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.ListGrantsResponse">.cs3.storage.provider.v1beta1.ListGrantsResponse</a></td>
+                <td><p>Returns the list of grants for the provided reference.
+MUST return CODE_NOT_FOUND if the reference does not exists.</p></td>
+              </tr>
+            
+              <tr>
+                <td>RemoveGrant</td>
+                <td><a href="#cs3.storage.provider.v1beta1.RemoveGrantRequest">.cs3.storage.provider.v1beta1.RemoveGrantRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.RemoveGrantResponse">.cs3.storage.provider.v1beta1.RemoveGrantResponse</a></td>
+                <td><p>Removes a grant for the provided reference.
+This is recursive and atomic for directories. Does not follow references.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_NOT_FOUND if grant does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateGrant</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UpdateGrantRequest">.cs3.storage.provider.v1beta1.UpdateGrantRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UpdateGrantResponse">.cs3.storage.provider.v1beta1.UpdateGrantResponse</a></td>
+                <td><p>Updates an ACL for the provided reference.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_FAILED_PRECONDITION if the acl does not exist.
 
 *****************************************************************/
 ************************ APP PROVIDER ********************/

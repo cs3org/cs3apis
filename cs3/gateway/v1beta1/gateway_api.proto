@@ -203,6 +203,24 @@ service GatewayAPI {
   rpc UpdateStorageSpace(cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse);
   // Deletes a storage space.
   rpc DeleteStorageSpace(cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse);
+  // Adds a new grant for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist
+  rpc AddGrant(cs3.storage.provider.v1beta1.AddGrantRequest) returns (cs3.storage.provider.v1beta1.AddGrantResponse);
+  // Denies access to the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist
+  rpc DenyGrant(cs3.storage.provider.v1beta1.DenyGrantRequest) returns (cs3.storage.provider.v1beta1.DenyGrantResponse);
+  // Returns the list of grants for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exists.
+  rpc ListGrants(cs3.storage.provider.v1beta1.ListGrantsRequest) returns (cs3.storage.provider.v1beta1.ListGrantsResponse);
+  // Removes a grant for the provided reference.
+  // This is recursive and atomic for directories. Does not follow references.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_NOT_FOUND if grant does not exist.
+  rpc RemoveGrant(cs3.storage.provider.v1beta1.RemoveGrantRequest) returns (cs3.storage.provider.v1beta1.RemoveGrantResponse);
+  // Updates an ACL for the provided reference.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_FAILED_PRECONDITION if the acl does not exist.
+  rpc UpdateGrant(cs3.storage.provider.v1beta1.UpdateGrantRequest) returns (cs3.storage.provider.v1beta1.UpdateGrantResponse);
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
