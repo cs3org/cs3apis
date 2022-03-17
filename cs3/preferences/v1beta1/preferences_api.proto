@@ -28,6 +28,7 @@ option java_package = "com.cs3.preferences.v1beta1";
 option objc_class_prefix = "CPX";
 option php_namespace = "Cs3\\Preferences\\V1Beta1";
 
+import "cs3/preferences/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 
 // Preferences API.
@@ -56,7 +57,7 @@ service PreferencesAPI {
 
 message SetKeyRequest {
   // REQUIRED.
-  string key = 1;
+  PreferenceKey key = 1;
   // REQUIRED.
   // The value associated with the key.
   string val = 2;
@@ -70,7 +71,7 @@ message SetKeyResponse {
 
 message GetKeyRequest {
   // REQUIRED.
-  string key = 1;
+  PreferenceKey key = 1;
 }
 
 message GetKeyResponse {

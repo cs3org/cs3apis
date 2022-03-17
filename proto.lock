@@ -1960,6 +1960,11 @@
                 "id": 4,
                 "name": "app",
                 "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           }
@@ -4459,7 +4464,7 @@
               {
                 "id": 1,
                 "name": "key",
-                "type": "string"
+                "type": "PreferenceKey"
               },
               {
                 "id": 2,
@@ -4484,7 +4489,7 @@
               {
                 "id": 1,
                 "name": "key",
-                "type": "string"
+                "type": "PreferenceKey"
               }
             ]
           },
@@ -4524,6 +4529,9 @@
         "imports": [
           {
             "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/preferences/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -4545,6 +4553,61 @@
           {
             "name": "java_outer_classname",
             "value": "PreferencesApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.preferences.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CPX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Preferences\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:preferences:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "PreferenceKey",
+            "fields": [
+              {
+                "id": 1,
+                "name": "namespace",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "key",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.preferences.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Preferences.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "preferencesv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -6865,6 +6928,11 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -6900,6 +6968,11 @@
                 "id": 3,
                 "name": "grantee",
                 "type": "Grantee"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -6990,6 +7063,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7105,6 +7183,11 @@
                 "id": 4,
                 "name": "if_match",
                 "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7141,6 +7224,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7438,6 +7526,11 @@
                 "id": 3,
                 "name": "destination",
                 "type": "Reference"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7508,6 +7601,11 @@
                 "id": 3,
                 "name": "key",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7548,6 +7646,11 @@
                 "id": 4,
                 "name": "restore_ref",
                 "type": "Reference"
+              },
+              {
+                "id": 5,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7583,6 +7686,11 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7659,6 +7767,11 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7764,6 +7877,11 @@
                 "id": 3,
                 "name": "arbitrary_metadata",
                 "type": "ArbitraryMetadata"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -7800,6 +7918,11 @@
                 "name": "arbitrary_metadata_keys",
                 "type": "string",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
