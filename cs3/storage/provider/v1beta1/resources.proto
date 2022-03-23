@@ -77,25 +77,32 @@ message ResourceInfo {
   // Is the accounting recursive?, could it be set to 0 for directories if recursive not supported? use another field?
   // TODO(moscicki): This needs to be defined also for other types (such as a symlink to a directory or file)
   uint64 size = 10;
-  // REQUIRED:
+  // REQUIRED.
   // Identifier of the owner of the resource.
   cs3.identity.user.v1beta1.UserId owner = 11;
-  // REQUIRED if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE
+  // OPTIONAL.
+  // if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE
+  // it MUST be specified.
   string target = 12;
   // OPTIONAL.
   // Additional metadata attached to the resource.
-  // If resource type is RESOURCE_TYPE_REFERENCE it MUST
+  // If ResourceType is RESOURCE_TYPE_REFERENCE it MUST
   // be specified.
   CanonicalMetadata canonical_metadata = 13;
   // OPTIONAL.
   // Arbitrary metadata attached to a resource.
   ArbitraryMetadata arbitrary_metadata = 14;
   // OPTIONAL.
-  // Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock. Can be used by WOPI or other apps requiring exclusive locks.
+  // Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock.
+  // Can be used by WOPI or other apps requiring write or exclusive locks.
   Lock lock = 15;
   // OPTIONAL.
   // Advisory locks on this resource. Can be used for shared locks or other forms of collaborative locks.
   repeated Lock advisory_locks = 16;
+  // OPTIONAL.
+  // Reference to the container of this resource. If path is relative it MUST be specified:
+  // in a context where access to the parent metadata is denied (e.g. single-file share), it MUST be set to 0.
+  ResourceId parent_id = 17;
 }
 
 // CanonicalMetadata contains extra metadata
