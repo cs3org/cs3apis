@@ -17416,8 +17416,8 @@ Advisory locks on this resource. Can be used for shared locks or other forms of 
                   <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Reference to the container of this resource. If path is relative it MUST be specified:
-in a context where access to the parent metadata is denied (e.g. single-file share), it MUST be set to 0. </p></td>
+Reference to the container of this resource. If path is relative it MUST be specified, regardless the
+access restrictions to the resource: a subsequent Stat() on it MAY return access denied if appropriate. </p></td>
                 </tr>
               
             </tbody>

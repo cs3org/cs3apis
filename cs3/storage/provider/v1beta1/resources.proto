@@ -100,8 +100,8 @@ message ResourceInfo {
   // Advisory locks on this resource. Can be used for shared locks or other forms of collaborative locks.
   repeated Lock advisory_locks = 16;
   // OPTIONAL.
-  // Reference to the container of this resource. If path is relative it MUST be specified:
-  // in a context where access to the parent metadata is denied (e.g. single-file share), it MUST be set to 0.
+  // Reference to the container of this resource. If path is relative it MUST be specified, regardless the
+  // access restrictions to the resource: a subsequent Stat() on it MAY return access denied if appropriate.
   ResourceId parent_id = 17;
 }
 
