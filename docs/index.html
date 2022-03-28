@@ -17424,7 +17424,7 @@ TODO(moscicki): This needs to be defined also for other types (such as a symlink
                   <td>owner</td>
                   <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
                   <td></td>
-                  <td><p>REQUIRED:
+                  <td><p>REQUIRED.
 Identifier of the owner of the resource. </p></td>
                 </tr>
               
@@ -17432,7 +17432,9 @@ Identifier of the owner of the resource. </p></td>
                   <td>target</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE </p></td>
+                  <td><p>OPTIONAL.
+if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE
+it MUST be specified. </p></td>
                 </tr>
               
                 <tr>
@@ -17441,7 +17443,7 @@ Identifier of the owner of the resource. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Additional metadata attached to the resource.
-If resource type is RESOURCE_TYPE_REFERENCE it MUST
+If ResourceType is RESOURCE_TYPE_REFERENCE it MUST
 be specified. </p></td>
                 </tr>
               
@@ -17458,7 +17460,8 @@ Arbitrary metadata attached to a resource. </p></td>
                   <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock. Can be used by WOPI or other apps requiring exclusive locks. </p></td>
+Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock.
+Can be used by WOPI or other apps requiring write or exclusive locks. </p></td>
                 </tr>
               
                 <tr>
@@ -17467,6 +17470,15 @@ Exclusive or write lock on this resource that will limit modification of the res
                   <td>repeated</td>
                   <td><p>OPTIONAL.
 Advisory locks on this resource. Can be used for shared locks or other forms of collaborative locks. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parent_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">ResourceId</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Reference to the container of this resource. If path is relative it MUST be specified, regardless the
+access restrictions to the resource: a subsequent Stat() on it MAY return access denied if appropriate. </p></td>
                 </tr>
               
             </tbody>
