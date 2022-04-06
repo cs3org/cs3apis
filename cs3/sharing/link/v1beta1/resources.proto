@@ -103,6 +103,10 @@ message PublicShare {
   // GetPublicSharebyToken requests can be
   // authenticated.
   ShareSignature signature = 12;
+  // OPTIONAL
+  // A bool value indicating if the link is the quicklink
+  // the server will enforce a maximum of 1 quicklink per resource
+  bool quicklink = 13;
 }
 
 // The permissions for a share.
