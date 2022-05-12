@@ -996,6 +996,7 @@ message ListStorageSpacesRequest {
       TYPE_ID = 2;
       TYPE_OWNER = 3;
       TYPE_SPACE_TYPE = 4;
+      TYPE_PATH = 5;
     }
     // REQUIRED.
     Type type = 1;
@@ -1003,6 +1004,7 @@ message ListStorageSpacesRequest {
       StorageSpaceId id = 2;
       cs3.identity.user.v1beta1.UserId owner = 3;
       string space_type = 4;
+      string path = 5;
     }
   }
   // OPTIONAL.
