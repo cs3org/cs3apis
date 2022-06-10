@@ -311,6 +311,9 @@ message Grant {
   // REQUIRED.
   // The permissions for the grant.
   ResourcePermissions permissions = 2;
+  // OPTIONAL
+  // The Creator of the grant
+  cs3.identity.user.v1beta1.UserId creator = 3;
 }
 
 // A grantee is the receiver of a grant.
