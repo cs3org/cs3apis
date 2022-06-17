@@ -10179,6 +10179,25 @@ Opaque information. </p></td>
 The list of filters to apply if any. </p></td>
                 </tr>
               
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10220,6 +10239,16 @@ Opaque information. </p></td>
 The list of received shares. </p></td>
                 </tr>
               
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -10251,6 +10280,25 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>OPTIONAL.
 The list of filters to apply if any. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -10292,6 +10340,16 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The list of shares. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -11412,6 +11470,25 @@ The list of filters to apply if any. </p></td>
 If a signature should be included in the share. </p></td>
                 </tr>
               
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -11496,6 +11573,16 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The list of shares. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -12452,6 +12539,25 @@ Opaque information. </p></td>
 The list of filters to apply if any. </p></td>
                 </tr>
               
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12538,6 +12644,16 @@ Opaque information. </p></td>
 The list of shares. </p></td>
                 </tr>
               
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12561,6 +12677,25 @@ The list of shares. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -12602,6 +12737,16 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The list of received shares. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -14586,8 +14731,28 @@ A key with the name &#39;*&#39; means to return all available arbitrary metadata
                   <td>field_mask</td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
-                  <td><p>The field mask applies to the resource. For the `FieldMask` definition,
+                  <td><p>OPTIONAL.
+The field mask applies to the resource. For the `FieldMask` definition,
 see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -14629,6 +14794,16 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The list of resource informations. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -14677,8 +14852,28 @@ A key with the name &#39;*&#39; means to return all available arbitrary metadata
                   <td>field_mask</td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
-                  <td><p>The field mask applies to the resource. For the `FieldMask` definition,
+                  <td><p>OPTIONAL.
+The field mask applies to the resource. For the `FieldMask` definition,
 see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -14722,6 +14917,16 @@ Opaque information. </p></td>
 The resource information. </p></td>
                 </tr>
               
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14753,6 +14958,25 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -14796,6 +15020,16 @@ Opaque information. </p></td>
 The list of file versions. </p></td>
                 </tr>
               
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14827,6 +15061,25 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The reference to which the action should be performed. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -14868,6 +15121,16 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The grants. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -14932,6 +15195,25 @@ The key for a recycle item to be listed.
 If provided, the item corresponding to the key will be listed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -14971,6 +15253,16 @@ Opaque information. </p></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
 The list of recycle items. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -15035,6 +15327,25 @@ The key for a recycle item to be listed.
 If provided, the item corresponding to the key will be listed. </p></td>
                 </tr>
               
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15076,6 +15387,16 @@ Opaque information. </p></td>
 The recycle items. </p></td>
                 </tr>
               
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -15113,8 +15434,28 @@ The list of filters to apply if any. </p></td>
                   <td>field_mask</td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
-                  <td><p>The field mask applies to the resource. For the `FieldMask` definition,
+                  <td><p>OPTIONAL.
+The field mask applies to the resource. For the `FieldMask` definition,
 see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+                </tr>
+              
+                <tr>
+                  <td>page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The client uses this field to request a specific page of the list results. </p></td>
                 </tr>
               
             </tbody>
@@ -15207,6 +15548,16 @@ The response status. </p></td>
                   <td><a href="#cs3.storage.provider.v1beta1.StorageSpace">StorageSpace</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>next_page_token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
             </tbody>
@@ -15905,7 +16256,8 @@ A key with the name &#39;*&#39; means to return all available arbitrary metadata
                   <td>field_mask</td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
-                  <td><p>The field mask applies to the resource. For the `FieldMask` definition,
+                  <td><p>OPTIONAL.
+The field mask applies to the resource. For the `FieldMask` definition,
 see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
                 </tr>
               
