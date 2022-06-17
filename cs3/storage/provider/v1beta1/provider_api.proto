@@ -32,6 +32,7 @@ import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
+import "google/protobuf/field_mask.proto";
 
 // Storage Provider API
 //
@@ -454,6 +455,9 @@ message ListContainerStreamRequest {
   // Arbitrary metadata to be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
+  // The field mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask field_mask = 4;
 }
 
 message ListContainerStreamResponse {
@@ -479,6 +483,9 @@ message ListContainerRequest {
   // Arbitrary metadata to be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
+  // The field mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask field_mask = 4;
 }
 
 message ListContainerResponse {
@@ -724,6 +731,9 @@ message StatRequest {
   // Arbitrary metadata be included with the resource.
   // A key with the name '*' means to return all available arbitrary metadata.
   repeated string arbitrary_metadata_keys = 3;
+  // The field mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask field_mask = 4;
 }
 
 message StatResponse {
@@ -1010,6 +1020,9 @@ message ListStorageSpacesRequest {
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
+  // The field mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask field_mask = 3;
 }
 
 message ListStorageSpacesResponse {
