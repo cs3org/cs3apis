@@ -283,6 +283,11 @@ message ResourceId {
   // uniquely identity the resource in the internal
   // implementation of the service.
   string opaque_id = 2;
+  // OPTIONAL.
+  // The internal id used by service implementor to
+  // uniquely identify the storage space.
+  // Used by the storageprovider to locate the correct storage space.
+  string space_id = 3;
 }
 
 // The representation of permissions attached to a resource.
