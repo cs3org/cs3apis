@@ -422,6 +422,9 @@ message FileUploadProtocol {
   // REQUIRED.
   // Tells to the gateway if the client should be exposed directly to the upload_endpoint.
   bool expose = 5;
+  // OPTIONAL.
+  // The time at which the upload will expire.
+  cs3.types.v1beta1.Timestamp expiration = 6;
 }
 
 // A file download protocol object stores information about
