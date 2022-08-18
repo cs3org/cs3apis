@@ -379,6 +379,11 @@ message InitiateFileUploadRequest {
     // If the storage provider has a more recent etag for the target file, the request MUST
     // return CODE_FAILED_PRECONDITION.
     string if_match = 4;
+    // OPTIONAL.
+    // Whether the file is to be uploaded when it has been modified on the server. Defauls to always upload.
+    // If the resource has been modified on the storage provider after the given timestamp the request MUST
+    // return CODE_FAILED_PRECONDITION.
+    cs3.types.v1beta1.Timestamp if_unmodified_since = 6;
   }
   // OPTIONAL.
   // A lock_id: should the reference exist and be locked, the stored

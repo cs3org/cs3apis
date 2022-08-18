@@ -14636,6 +14636,16 @@ return CODE_FAILED_PRECONDITION. </p></td>
                 </tr>
               
                 <tr>
+                  <td>if_unmodified_since</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Whether the file is to be uploaded when it has been modified on the server. Defauls to always upload.
+If the resource has been modified on the storage provider after the given timestamp the request MUST
+return CODE_FAILED_PRECONDITION. </p></td>
+                </tr>
+              
+                <tr>
                   <td>lock_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
