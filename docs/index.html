@@ -5611,7 +5611,17 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
               <tr>
                 <td>VIEW_MODE_READ_WRITE</td>
                 <td>3</td>
-                <td><p>The resource can be downloaded and updated.</p></td>
+                <td><p>The resource can be downloaded and updated. The underlying application
+MUST be a fully capable editor to support this mode.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_PREVIEW</td>
+                <td>4</td>
+                <td><p>The resource can be downloaded and updated, but must be shown in
+preview mode. If the underlying application does not support a preview mode,
+or if in a view-only mode users are not allowed to switch to edit mode,
+then this mode MUST fall back to READ_WRITE.</p></td>
               </tr>
             
           </tbody>
