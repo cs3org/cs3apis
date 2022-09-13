@@ -176,6 +176,8 @@ message Filter {
     TYPE_CREATOR = 4;
     TYPE_GRANTEE_TYPE = 5;
     TYPE_EXCLUDE_DENIALS = 6;
+    TYPE_SPACE_ID = 7;
+    TYPE_STATE = 8;
   }
   // REQUIRED.
   Type type = 2;
@@ -184,5 +186,7 @@ message Filter {
     cs3.identity.user.v1beta1.UserId owner = 4;
     cs3.identity.user.v1beta1.UserId creator = 5;
     storage.provider.v1beta1.GranteeType grantee_type = 6;
+    string space_id = 7;
+    ShareState state = 8;
   }
 }
