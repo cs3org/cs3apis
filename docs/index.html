@@ -1832,6 +1832,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.storage.provider.v1beta1.UnlockAndRelockRequest"><span class="badge">M</span>UnlockAndRelockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.storage.provider.v1beta1.UnlockAndRelockResponse"><span class="badge">M</span>UnlockAndRelockResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.storage.provider.v1beta1.UnlockRequest"><span class="badge">M</span>UnlockRequest</a>
                 </li>
               
@@ -2760,6 +2768,19 @@ MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_FAILED_PRECONDITION if the reference is not locked
 or if the caller does not hold the lock.
 The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UnlockAndRelock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockAndRelockRequest">.cs3.storage.provider.v1beta1.UnlockAndRelockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockAndRelockResponse">.cs3.storage.provider.v1beta1.UnlockAndRelockResponse</a></td>
+                <td><p>Releases a lock on the storage resource and immediately relocks the storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_FAILED_PRECONDITION if the reference is not locked,
+if the caller does not hold the existing lock or if the lock id does not match.
+The caller MUST have write permissions on the resource.
+In addition, the implementation MUST ensure atomicity when multiple users
+concurrently attempt to unlock and relock.</p></td>
               </tr>
             
               <tr>
@@ -16412,6 +16433,88 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.storage.provider.v1beta1.UnlockAndRelockRequest">UnlockAndRelockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ref</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Reference">Reference</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The reference on which the lock should be UnlockedAndRelocked </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Lock">Lock</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The lock metadata. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>oldlock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The existing lock id </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.storage.provider.v1beta1.UnlockAndRelockResponse">UnlockAndRelockResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.storage.provider.v1beta1.UnlockRequest">UnlockRequest</h3>
         <p></p>
 
@@ -17051,6 +17154,19 @@ MUST return CODE_NOT_FOUND if the reference does not exist.
 MUST return CODE_PRECONDITION_FALIED if the reference is not locked
 or if the caller does not hold the lock.
 The caller MUST have write permissions on the resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UnlockAndRelock</td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockAndRelockRequest">UnlockAndRelockRequest</a></td>
+                <td><a href="#cs3.storage.provider.v1beta1.UnlockAndRelockResponse">UnlockAndRelockResponse</a></td>
+                <td><p>Releases a lock on the storage resource and immediately relocks the storage resource.
+MUST return CODE_NOT_FOUND if the reference does not exist.
+MUST return CODE_FAILED_PRECONDITION if the reference is not locked,
+if the caller does not hold the existing lock or if the lock id does not match.
+The caller MUST have write permissions on the resource.
+In addition, the implementation MUST ensure atomicity when multiple users
+concurrently attempt to unlock and relock.</p></td>
               </tr>
             
               <tr>

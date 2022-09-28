@@ -187,6 +187,14 @@ service GatewayAPI {
   // or if the caller does not hold the lock.
   // The caller MUST have write permissions on the resource.
   rpc RefreshLock(cs3.storage.provider.v1beta1.RefreshLockRequest) returns (cs3.storage.provider.v1beta1.RefreshLockResponse);
+  // Releases a lock on the storage resource and immediately relocks the storage resource.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_FAILED_PRECONDITION if the reference is not locked,
+  // if the caller does not hold the existing lock or if the lock id does not match.
+  // The caller MUST have write permissions on the resource.
+  // In addition, the implementation MUST ensure atomicity when multiple users
+  // concurrently attempt to unlock and relock.
+  rpc UnlockAndRelock(cs3.storage.provider.v1beta1.UnlockAndRelockRequest) returns (cs3.storage.provider.v1beta1.UnlockAndRelockResponse);
   // Unlocks a storage resource.
   // MUST return CODE_NOT_FOUND if the reference does not exist.
   // MUST return CODE_FAILED_PRECONDITION if the reference is not locked
