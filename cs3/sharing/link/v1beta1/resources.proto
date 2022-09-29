@@ -107,6 +107,9 @@ message PublicShare {
   // A bool value indicating if the link is the quicklink
   // the server will enforce a maximum of 1 quicklink per resource
   bool quicklink = 13;
+  // OPTIONAL
+  // Description of the share.
+  string description = 14;
 }
 
 // The permissions for a share.

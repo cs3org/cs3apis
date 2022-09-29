@@ -123,6 +123,7 @@ message UpdatePublicShareRequest {
       TYPE_PASSWORD = 2;
       TYPE_EXPIRATION = 3;
       TYPE_DISPLAYNAME = 4;
+      TYPE_DESCRIPTION = 5;
     }
     // REQUIRED.
     // Defines the field to update.
@@ -133,6 +134,9 @@ message UpdatePublicShareRequest {
     // OPTIONAL
     // Defines the public link display name.
     string display_name = 5;
+    // OPTIONAL
+    // Defines the public link description.
+    string description = 6;
   }
   Update update = 3;
 }
