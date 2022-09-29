@@ -1011,6 +1011,11 @@ message RefreshLockRequest {
   // REQUIRED.
   // The lock metadata.
   Lock lock = 3;
+  // OPTIONAL.
+  // The existing lock id.
+  // This can be used to refresh the existing lock with a new lock while
+  // checking if the lock holder sends the correct existing lock_id
+  string existing_lock_id = 4;
 }
 
 message RefreshLockResponse {
