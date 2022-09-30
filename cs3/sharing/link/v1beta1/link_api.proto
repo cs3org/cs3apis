@@ -89,6 +89,9 @@ message CreatePublicShareRequest {
   // REQUIRED.
   // The restrictions to apply to the share.
   Grant grant = 3;
+  // OPTIONAL
+  // The description to add to the share.
+  string description = 4;
 }
 
 message CreatePublicShareResponse {
