@@ -11207,6 +11207,23 @@ The unique identifier for the shared storage resource. </p></td>
 The restrictions to apply to the share. </p></td>
                 </tr>
               
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+The description to add to the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>internal</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Indicates a share used for internal usage,
+not exposed by a ListPublicShares. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -11756,6 +11773,14 @@ Contains the field that will be updated. </p></td>
 Defines the public link display name. </p></td>
                 </tr>
               
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Defines the public link description. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -11876,6 +11901,12 @@ The updated public share. </p></td>
               <tr>
                 <td>TYPE_DISPLAYNAME</td>
                 <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_DESCRIPTION</td>
+                <td>5</td>
                 <td><p></p></td>
               </tr>
             
@@ -12126,6 +12157,14 @@ authenticated. </p></td>
                   <td><p>OPTIONAL
 A bool value indicating if the link is the quicklink
 the server will enforce a maximum of 1 quicklink per resource </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Description of the share. </p></td>
                 </tr>
               
             </tbody>
