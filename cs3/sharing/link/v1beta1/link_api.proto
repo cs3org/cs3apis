@@ -92,6 +92,10 @@ message CreatePublicShareRequest {
   // OPTIONAL
   // The description to add to the share.
   string description = 4;
+  // OPTIONAL
+  // Indicates a share used for internal usage,
+  // not exposed by a ListPublicShares.
+  bool internal = 5;
 }
 
 message CreatePublicShareResponse {
