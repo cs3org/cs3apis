@@ -75,4 +75,6 @@ enum UserType {
   USER_TYPE_FEDERATED = 6;
   // A lightweight user account without access to various major functionalities.
   USER_TYPE_LIGHTWEIGHT = 7;
+  // A space owner te allow access for public link or content indexing.
+  USER_TYPE_SPACE_OWNER = 8;
 }
