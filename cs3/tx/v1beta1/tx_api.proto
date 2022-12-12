@@ -49,9 +49,9 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service TxAPI {
-  // Requests the destination to pull a resource from source.
-  // Returns a PullTransferResponse
-  rpc PullTransfer(PullTransferRequest) returns (PullTransferResponse);
+  // Requests creation of a transfer.
+  // Returns a CreateTransferResponse.
+  rpc CreateTransfer(CreateTransferRequest) returns (CreateTransferResponse);
   // Requests a transfer status.
   rpc GetTransferStatus(GetTransferStatusRequest) returns (GetTransferStatusResponse);
   // Requests to cancel a transfer.
@@ -63,7 +63,7 @@ service TxAPI {
   rpc RetryTransfer(RetryTransferRequest) returns (RetryTransferResponse);
 }
 
-message PullTransferRequest {
+message CreateTransferRequest {
   // REQUIRED.
   // The source target URI. Should include at the minimum all the info needed to access the source.
   // https://golang.org/pkg/net/url/#URL provides a quick view of the format.
@@ -77,7 +77,7 @@ message PullTransferRequest {
   cs3.types.v1beta1.Opaque opaque = 3;
 }
 
-message PullTransferResponse {
+message CreateTransferResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
