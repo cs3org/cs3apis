@@ -398,6 +398,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.tx.v1beta1.CreateTransferRequest"><span class="badge">M</span>CreateTransferRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.tx.v1beta1.CreateTransferResponse"><span class="badge">M</span>CreateTransferResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.tx.v1beta1.GetTransferStatusRequest"><span class="badge">M</span>GetTransferStatusRequest</a>
                 </li>
               
@@ -415,14 +423,6 @@
               
                 <li>
                   <a href="#cs3.tx.v1beta1.ListTransfersResponse"><span class="badge">M</span>ListTransfersResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.tx.v1beta1.PullTransferRequest"><span class="badge">M</span>PullTransferRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#cs3.tx.v1beta1.PullTransferResponse"><span class="badge">M</span>PullTransferResponse</a>
                 </li>
               
                 <li>
@@ -3261,10 +3261,10 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
               </tr>
             
               <tr>
-                <td>PullTransfer</td>
-                <td><a href="#cs3.tx.v1beta1.PullTransferRequest">.cs3.tx.v1beta1.PullTransferRequest</a></td>
-                <td><a href="#cs3.tx.v1beta1.PullTransferResponse">.cs3.tx.v1beta1.PullTransferResponse</a></td>
-                <td><p>Requests the destination to pull a resource from source.</p></td>
+                <td>CreateTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferRequest">.cs3.tx.v1beta1.CreateTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferResponse">.cs3.tx.v1beta1.CreateTransferResponse</a></td>
+                <td><p>Requests creation of a transfer.</p></td>
               </tr>
             
               <tr>
@@ -4382,6 +4382,90 @@ Opaque information. </p></td>
 
         
       
+        <h3 id="cs3.tx.v1beta1.CreateTransferRequest">CreateTransferRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>src_target_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The source target URI. Should include at the minimum all the info needed to access the source.
+https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>dest_target_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The destination target URI. Should include at the minimum all the info needed to access the destination.
+https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.tx.v1beta1.CreateTransferResponse">CreateTransferResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_info</td>
+                  <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+TxInfo, includes transfer id, status, description. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.tx.v1beta1.GetTransferStatusRequest">GetTransferStatusRequest</h3>
         <p></p>
 
@@ -4575,90 +4659,6 @@ Opaque information. </p></td>
 
         
       
-        <h3 id="cs3.tx.v1beta1.PullTransferRequest">PullTransferRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>src_target_uri</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The source target URI. Should include at the minimum all the info needed to access the source.
-https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>dest_target_uri</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The destination target URI. Should include at the minimum all the info needed to access the destination.
-https://golang.org/pkg/net/url/#URL provides a quick view of the format. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="cs3.tx.v1beta1.PullTransferResponse">PullTransferResponse</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The response status. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tx_info</td>
-                  <td><a href="#cs3.tx.v1beta1.TxInfo">TxInfo</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-TxInfo, includes transfer id, status, description. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>OPTIONAL.
-Opaque information. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="cs3.tx.v1beta1.RetryTransferRequest">RetryTransferRequest</h3>
         <p></p>
 
@@ -4783,11 +4783,11 @@ Opaque information. </p></td>
           <tbody>
             
               <tr>
-                <td>PullTransfer</td>
-                <td><a href="#cs3.tx.v1beta1.PullTransferRequest">PullTransferRequest</a></td>
-                <td><a href="#cs3.tx.v1beta1.PullTransferResponse">PullTransferResponse</a></td>
-                <td><p>Requests the destination to pull a resource from source.
-Returns a PullTransferResponse</p></td>
+                <td>CreateTransfer</td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferRequest">CreateTransferRequest</a></td>
+                <td><a href="#cs3.tx.v1beta1.CreateTransferResponse">CreateTransferResponse</a></td>
+                <td><p>Requests creation of a transfer.
+Returns a CreateTransferResponse.</p></td>
               </tr>
             
               <tr>
@@ -8293,6 +8293,12 @@ The type of user. </p></td>
                 <td>USER_TYPE_LIGHTWEIGHT</td>
                 <td>7</td>
                 <td><p>A lightweight user account without access to various major functionalities.</p></td>
+              </tr>
+            
+              <tr>
+                <td>USER_TYPE_SPACE_OWNER</td>
+                <td>8</td>
+                <td><p>A space owner to allow access for public link or content indexing.</p></td>
               </tr>
             
           </tbody>

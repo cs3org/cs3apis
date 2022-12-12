@@ -400,8 +400,8 @@ service GatewayAPI {
   // ************************** FILE TRANSFER ************************/
   // *****************************************************************/
 
-  //  Requests the destination to pull a resource from source.
-  rpc PullTransfer(cs3.tx.v1beta1.PullTransferRequest) returns (cs3.tx.v1beta1.PullTransferResponse);
+  //  Requests creation of a transfer.
+  rpc CreateTransfer(cs3.tx.v1beta1.CreateTransferRequest) returns (cs3.tx.v1beta1.CreateTransferResponse);
   // Requests a transfer status.
   rpc GetTransferStatus(cs3.tx.v1beta1.GetTransferStatusRequest) returns (cs3.tx.v1beta1.GetTransferStatusResponse);
   // Requests to cancel a transfer.
