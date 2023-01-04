@@ -163,6 +163,9 @@ message ShareGrant {
   // REQUIRED.
   // The share permissions for the grant.
   SharePermissions permissions = 2;
+  // OPTIONAL
+  // Expiration of the grant.
+  cs3.types.v1beta1.Timestamp expiration = 3;
 }
 
 // Represents a filter to apply to the request.

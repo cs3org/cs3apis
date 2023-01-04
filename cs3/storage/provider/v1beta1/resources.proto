@@ -325,6 +325,9 @@ message Grant {
   // OPTIONAL
   // The Creator of the grant
   cs3.identity.user.v1beta1.UserId creator = 3;
+  // OPTIONAL
+  // Expiration of the grant.
+  cs3.types.v1beta1.Timestamp expiration = 4;
 }
 
 // A grantee is the receiver of a grant.

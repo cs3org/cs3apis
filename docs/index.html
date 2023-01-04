@@ -8295,6 +8295,12 @@ The type of user. </p></td>
                 <td><p>A lightweight user account without access to various major functionalities.</p></td>
               </tr>
             
+              <tr>
+                <td>USER_TYPE_SPACE_OWNER</td>
+                <td>8</td>
+                <td><p>A space owner to allow access for public link or content indexing.</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -10951,6 +10957,14 @@ The grantee of the grant. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The share permissions for the grant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Expiration of the grant. </p></td>
                 </tr>
               
             </tbody>
@@ -17488,6 +17502,14 @@ The permissions for the grant. </p></td>
                   <td></td>
                   <td><p>OPTIONAL
 The Creator of the grant </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Expiration of the grant. </p></td>
                 </tr>
               
             </tbody>
