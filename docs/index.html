@@ -10548,23 +10548,39 @@ The updated share. </p></td>
                   <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Opaque information.
-
-REQUIRED. </p></td>
+Opaque information. </p></td>
                 </tr>
               
                 <tr>
                   <td>ref</td>
                   <td><a href="#cs3.sharing.collaboration.v1beta1.ShareReference">ShareReference</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+Deprecated use the share and update_mask attribute. </p></td>
                 </tr>
               
                 <tr>
                   <td>field</td>
                   <td><a href="#cs3.sharing.collaboration.v1beta1.UpdateShareRequest.UpdateField">UpdateShareRequest.UpdateField</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+Deprecated use the share and update_mask attribute. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>update_mask</td>
+                  <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
+                  <td></td>
+                  <td><p>The update mask applies to the resource. For the `FieldMask` definition,
+see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share</td>
+                  <td><a href="#cs3.sharing.collaboration.v1beta1.Share">Share</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The share containing the new data </p></td>
                 </tr>
               
             </tbody>
@@ -10924,6 +10940,14 @@ Creation time of the share. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 Last modification time of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Optional.
+The expiration time of the share. </p></td>
                 </tr>
               
             </tbody>
