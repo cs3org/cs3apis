@@ -67,6 +67,9 @@ message GenerateInviteTokenRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The description of the token.
+  string description = 2;
 }
 
 message GenerateInviteTokenResponse {
