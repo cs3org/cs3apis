@@ -103,6 +103,15 @@ message ForwardInviteResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+    // REQUIRED.
+  // The initiator's user id of the workflow.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The initiator's email of the workflow.
+  string email = 4;
+  // REQUIRED.
+  // The initiator's display name of the workflow.
+  string display_name = 5;
 }
 
 message AcceptInviteRequest {
@@ -124,6 +133,15 @@ message AcceptInviteResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The initiator's user id of the workflow.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The initiator's email of the workflow.
+  string email = 4;
+  // REQUIRED.
+  // The initiator's display name of the workflow.
+  string display_name = 5;
 }
 
 message GetAcceptedUserRequest {

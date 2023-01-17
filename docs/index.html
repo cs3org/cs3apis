@@ -8295,6 +8295,12 @@ The type of user. </p></td>
                 <td><p>A lightweight user account without access to various major functionalities.</p></td>
               </tr>
             
+              <tr>
+                <td>USER_TYPE_SPACE_OWNER</td>
+                <td>8</td>
+                <td><p>A space owner to allow access for public link or content indexing.</p></td>
+              </tr>
+            
           </tbody>
         </table>
       
@@ -8963,6 +8969,30 @@ The response status. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The initiator&#39;s user id of the workflow. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The initiator&#39;s email of the workflow. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The initiator&#39;s display name of the workflow. </p></td>
                 </tr>
               
             </tbody>
