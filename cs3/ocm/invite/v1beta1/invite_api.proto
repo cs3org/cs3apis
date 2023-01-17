@@ -111,7 +111,7 @@ message ForwardInviteResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
-    // REQUIRED.
+  // REQUIRED.
   // The initiator's user id of the workflow.
   cs3.identity.user.v1beta1.UserId user_id = 3;
   // REQUIRED.

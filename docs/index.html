@@ -9143,6 +9143,30 @@ The response status. </p></td>
 Opaque information. </p></td>
                 </tr>
               
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The initiator&#39;s user id of the workflow. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The initiator&#39;s email of the workflow. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The initiator&#39;s display name of the workflow. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -9315,21 +9339,29 @@ The user information. </p></td>
                 <td>ForwardInvite</td>
                 <td><a href="#cs3.ocm.invite.v1beta1.ForwardInviteRequest">ForwardInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.ForwardInviteResponse">ForwardInviteResponse</a></td>
-                <td><p>Forwards a received invite to the sync&#39;n&#39;share system provider.</p></td>
+                <td><p>Forwards a received invite to the sync&#39;n&#39;share system provider.
+MUST return CODE_NOT_FOUND if the token does not exist.
+MUST return CODE_INVALID_ARGUMENT if the token expired.
+MUST return CODE_ALREADY_EXISTS if the user already accepted an invite.
+MUST return CODE_PERMISSION_DENIED if the remote service is not trusted to accept invitations.</p></td>
               </tr>
             
               <tr>
                 <td>AcceptInvite</td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteRequest">AcceptInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.AcceptInviteResponse">AcceptInviteResponse</a></td>
-                <td><p>Completes an invitation acceptance.</p></td>
+                <td><p>Completes an invitation acceptance.
+MUST return CODE_NOT_FOUND if the token does not exist.
+MUST return CODE_INVALID_ARGUMENT if the token expired.
+MUST return CODE_ALREADY_EXISTS if the user already accepted an invite.</p></td>
               </tr>
             
               <tr>
                 <td>GetAcceptedUser</td>
                 <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserRequest">GetAcceptedUserRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.GetAcceptedUserResponse">GetAcceptedUserResponse</a></td>
-                <td><p>Retrieves details about a remote user who has accepted an invite to share.</p></td>
+                <td><p>Retrieves details about a remote user who has accepted an invite to share.
+MUST return CODE_NOT_FOUND if the user does not exist.</p></td>
               </tr>
             
               <tr>
