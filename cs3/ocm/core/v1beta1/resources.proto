@@ -28,15 +28,43 @@ option java_package = "com.cs3.ocm.core.v1beta1";
 option objc_class_prefix = "COC";
 option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
 
-import "cs3/types/v1beta1/types.proto";
-
 // The protocol which is used to establish synchronisation.
 message Protocol {
   // REQUIRED.
-  // The name of the protocol to use.
-  string name = 1;
-  // REQUIRED.
-  // JSON object with protocol specific options,
-  // e.g. uri, access_token, password, permissions etc.
-  cs3.types.v1beta1.Opaque opaque = 2;
+  oneof term {
+    WebDAVProtocol webdap_options = 1;
+    WebappProtocol webapp_options = 2;
+    DatatxProtocol datatx_oprions = 3;
+  }
 }
+
+// Defines the options for the WebDAV protocol.
+message WebDAVProtocol {
+  // Secret use to access the resource.
+  string shared_secret = 1;
+  // Permissions of the shared resource.
+  string permissions = 2; // TODO: use cs3 permissions
+  // WebDAV URL used to access the resource.
+  string uri = 3;
+}
+
+// Defines the options for the Webapp protocol.
+message WebappProtocol {
+  // TODO: add
+  string uriTemplate = 1;
+}
+
+// Defines the options for the Datatx protocol.
+message DatatxProtocol {
+  string shared_secret = 1;
+  string source_uri = 2;
+  uint64 size = 3;
+}
+
+// Defines the type of share based on its recipient.
+enum ShareType {
+    // Share of type user.
+    SHARE_TYPE_USER = 0;
+    // Share of type group.
+    SHARE_TYPE_GROUP = 1;
+  }
