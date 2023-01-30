@@ -3647,6 +3647,11 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "description",
+                "type": "string"
               }
             ]
           },
@@ -3702,6 +3707,21 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 4,
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "display_name",
+                "type": "string"
               }
             ]
           },
@@ -3737,6 +3757,21 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 4,
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "display_name",
+                "type": "string"
               }
             ]
           },
@@ -9995,6 +10030,11 @@
               },
               {
                 "id": 3,
+                "name": "share_id",
+                "type": "cs3.sharing.ocm.v1beta1.ShareId"
+              },
+              {
+                "id": 4,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
               }

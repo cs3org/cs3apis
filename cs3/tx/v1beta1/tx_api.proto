@@ -72,9 +72,12 @@ message CreateTransferRequest {
   // The destination target URI. Should include at the minimum all the info needed to access the destination.
   // https://golang.org/pkg/net/url/#URL provides a quick view of the format.
   string dest_target_uri = 2;
+  // REQUIRED.
+  // The share Id of the share this transfer is based on.
+  cs3.sharing.ocm.v1beta1.ShareId share_id = 3;
   // OPTIONAL.
   // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 3;
+  cs3.types.v1beta1.Opaque opaque = 4;
 }
 
 message CreateTransferResponse {
