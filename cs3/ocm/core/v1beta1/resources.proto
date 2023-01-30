@@ -29,6 +29,7 @@ option objc_class_prefix = "COC";
 option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
 
 import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
 
 // The protocol which is used to establish synchronisation.
 message Protocol {
@@ -37,6 +38,7 @@ message Protocol {
     WebDAVProtocol webdap_options = 1;
     WebappProtocol webapp_options = 2;
     DatatxProtocol datatx_oprions = 3;
+    cs3.types.v1beta1.Opaque generic_options = 4;
   }
 }
 
