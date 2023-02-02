@@ -91,11 +91,16 @@ message CreateOCMShareRequest {
   // The unique identifier for the shared storage resource.
   storage.provider.v1beta1.ResourceId resource_id = 2;
   // REQUIRED.
-  // The share grant for the share.
-  ShareGrant grant = 3;
+  // The grantee for the share.
+  storage.provider.v1beta1.Grantee grantee = 3;
   // REQUIRED.
   // The details of the recipient user's mesh provider.
   cs3.ocm.provider.v1beta1.ProviderInfo recipient_mesh_provider = 4;
+  // REQUIRED.
+  repeated AccessMethod access_methods = 5;
+  // OPTIONAL.
+  // The expiration time for the ocm share.
+  cs3.types.v1beta1.Timestamp expiration = 6;
 }
 
 message CreateOCMShareResponse {

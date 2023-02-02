@@ -45,3 +45,19 @@ message OpenInAppURL {
   // The headers to be added to the request.
   map<string, string> headers = 4;
 }
+
+enum ViewMode {
+  VIEW_MODE_INVALID = 0;
+  // The resource can be opened but not downloaded.
+  VIEW_MODE_VIEW_ONLY = 1;
+  // The resource can be downloaded.
+  VIEW_MODE_READ_ONLY = 2;
+  // The resource can be downloaded and updated. The underlying application
+  // MUST be a fully capable editor to support this mode.
+  VIEW_MODE_READ_WRITE = 3;
+  // The resource can be downloaded and updated, but must be shown in
+  // preview mode. If the underlying application does not support a preview mode,
+  // or if in a view-only mode users are not allowed to switch to edit mode,
+  // then this mode MUST fall back to READ_WRITE.
+  VIEW_MODE_PREVIEW = 4;
+}

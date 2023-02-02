@@ -86,9 +86,12 @@ message CreateOCMCoreShareRequest {
   // REQUIRED.
   // Recipient share type.
   cs3.sharing.ocm.v1beta1.ShareType share_type = 9;
+  // OPTIONAL.
+  // The expiration time for the ocm share.
+  cs3.types.v1beta1.Timestamp expiration = 10;
   // REQUIRED.
   // The protocols which are used to establish synchronisation.
-  repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 10;
+  repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 11;
 }
 
 message CreateOCMCoreShareResponse {
