@@ -6813,8 +6813,8 @@
               },
               {
                 "id": 2,
-                "name": "token",
-                "type": "string"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 3,
@@ -6823,8 +6823,8 @@
               },
               {
                 "id": 4,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "token",
+                "type": "string"
               },
               {
                 "id": 5,
