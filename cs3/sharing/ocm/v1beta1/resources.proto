@@ -42,13 +42,14 @@ message Share {
   // Opaque unique identifier of the share.
   ShareId id = 1;
   // REQUIRED.
-  // The unlisted token to give access to the ocm share.
-  string token = 2;
+  // Unique identifier of the shared resource.
+  storage.provider.v1beta1.ResourceId resource_id = 2;
   // REQUIRED.
   // Name of the shared resource.
   string name = 3;
   // REQUIRED.
-  storage.provider.v1beta1.ResourceId resource_id = 4;
+  // The unlisted token to give access to the ocm share.
+  string token = 4;
   // REQUIRED.
   // The receiver of the share, like a user, group ...
   storage.provider.v1beta1.Grantee grantee = 5;
