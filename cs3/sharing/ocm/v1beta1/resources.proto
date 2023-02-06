@@ -210,10 +210,17 @@ message ShareGrant {
 // The protocol which is used to establish synchronisation.
 message Protocol {
   // REQUIRED.
+  // One of the protocols MUST be specified.
   oneof term {
-    WebDAVProtocol webdap_options = 1;
+    // Options for WebDAV protocol.
+    WebDAVProtocol webdav_options = 1;
+    // Options for Webapp protocol.
     WebappProtocol webapp_options = 2;
-    DatatxProtocol datatx_oprions = 3;
+    // Options for transfer protocol.
+    TransferProtocol transfer_options = 3;
+    // Options for a generic protocol.
+    // Used to implement future protocols
+    // in the OCM specs.
     cs3.types.v1beta1.Opaque generic_options = 4;
   }
 }
@@ -235,11 +242,11 @@ message WebDAVProtocol {
 message WebappProtocol {
   // REQUIRED.
   // Template URI to open the resource with a remote app.
-  string uriTemplate = 1;
+  string uri_template = 1;
 }
 
-// Defines the options for the Datatx protocol.
-message DatatxProtocol {
+// Defines the options for the Transfer protocol.
+message TransferProtocol {
   // REQUIRED.
   // Secret used to access the source of the data transfer.
   string shared_secret = 1;
@@ -253,27 +260,43 @@ message DatatxProtocol {
 
 // Defines the type of share based on its recipient.
 enum ShareType {
+  SHARE_TYPE_INVALID = 0;
   // Share of type user.
-  SHARE_TYPE_USER = 0;
+  SHARE_TYPE_USER = 1;
   // Share of type group.
-  SHARE_TYPE_GROUP = 1;
+  SHARE_TYPE_GROUP = 2;
 }
 
+// Defines how the recipient accesses the share.
 message AccessMethod {
+  // REQUIRED.
+  // One of the access method MUST be specified.
   oneof term {
+    // Options for the WebDAV access method.
     WebDAVAccessMethod webdav_options = 1;
+    // Options for the Webapp access method.
     WebappAccessMethod webapp_options = 2;
-    DatatxAccessMethod datatx_options = 3;
+    // Options for the Transfer access method.
+    TransferAccessMethod transfer_options = 3;
+    // Options for a generic transfer method.
+    // Used to implement future access methods.
     cs3.types.v1beta1.Opaque generic_options = 4;
   }
 }
 
+// Defines the options for the WebDAV access method.
 message WebDAVAccessMethod {
+  // REQUIRED.
+  // The permissions for the share.
   storage.provider.v1beta1.ResourcePermissions permissions = 2;
 }
 
+// Defines the options for the Webapp access method.
 message WebappAccessMethod {
+  // REQUIRED.
+  // The view mode for the share.
   cs3.app.provider.v1beta1.ViewMode view_mode = 2;
 }
 
-message DatatxAccessMethod {}
+// Defines the options for the Transfer access method.
+message TransferAccessMethod {}

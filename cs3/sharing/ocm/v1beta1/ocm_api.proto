@@ -113,6 +113,9 @@ message CreateOCMShareResponse {
   // REQUIRED.
   // The created share.
   Share share = 3;
+  // OPTIONAL.
+  // Display name of the recipient of the share.
+  string recipient_display_name = 4;
 }
 
 message UpdateOCMShareRequest {

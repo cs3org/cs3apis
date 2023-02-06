@@ -46,6 +46,7 @@ message OpenInAppURL {
   map<string, string> headers = 4;
 }
 
+// Defines the view modes.
 enum ViewMode {
   VIEW_MODE_INVALID = 0;
   // The resource can be opened but not downloaded.

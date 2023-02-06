@@ -6335,6 +6335,11 @@
                 "id": 3,
                 "name": "share",
                 "type": "Share"
+              },
+              {
+                "id": 4,
+                "name": "recipient_display_name",
+                "type": "string"
               }
             ]
           },
@@ -6784,11 +6789,15 @@
             "name": "ShareType",
             "enum_fields": [
               {
-                "name": "SHARE_TYPE_USER"
+                "name": "SHARE_TYPE_INVALID"
+              },
+              {
+                "name": "SHARE_TYPE_USER",
+                "integer": 1
               },
               {
                 "name": "SHARE_TYPE_GROUP",
-                "integer": 1
+                "integer": 2
               }
             ]
           }
@@ -7016,7 +7025,7 @@
             "fields": [
               {
                 "id": 1,
-                "name": "webdap_options",
+                "name": "webdav_options",
                 "type": "WebDAVProtocol"
               },
               {
@@ -7026,8 +7035,8 @@
               },
               {
                 "id": 3,
-                "name": "datatx_oprions",
-                "type": "DatatxProtocol"
+                "name": "transfer_options",
+                "type": "TransferProtocol"
               },
               {
                 "id": 4,
@@ -7061,13 +7070,13 @@
             "fields": [
               {
                 "id": 1,
-                "name": "uriTemplate",
+                "name": "uri_template",
                 "type": "string"
               }
             ]
           },
           {
-            "name": "DatatxProtocol",
+            "name": "TransferProtocol",
             "fields": [
               {
                 "id": 1,
@@ -7101,8 +7110,8 @@
               },
               {
                 "id": 3,
-                "name": "datatx_options",
-                "type": "DatatxAccessMethod"
+                "name": "transfer_options",
+                "type": "TransferAccessMethod"
               },
               {
                 "id": 4,
@@ -7132,7 +7141,7 @@
             ]
           },
           {
-            "name": "DatatxAccessMethod"
+            "name": "TransferAccessMethod"
           }
         ],
         "imports": [
