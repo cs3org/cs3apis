@@ -23,12 +23,12 @@ steps:
   image: cs3org/cs3apis:latest
   environment:
     SSH_KEY:
-      from_secret: deploy_key
+      from_secret: deploy_gh_key
   commands:
     # See https://github.com/drone/drone/issues/2692
     # write the ssh key to disk
     - mkdir /root/.ssh
-    - echo -n "$SSH_KEY" > /root/.ssh/id_rsa
+    - echo -e "$SSH_KEY" > /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - stat /root/.ssh/id_rsa
 
