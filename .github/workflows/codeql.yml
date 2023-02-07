@@ -9,7 +9,7 @@ on:
 
 jobs:
   analyze:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
@@ -26,10 +26,6 @@ jobs:
         run: |
           make build
           make go
-      - name: Setup Go environment
-        uses: actions/setup-go@v3.3.0
-        with:
-          go-version-file: build/go-cs3apis/go.mod
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
