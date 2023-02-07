@@ -352,32 +352,6 @@
     {
       "protopath": "cs3:/:app:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
-        "enums": [
-          {
-            "name": "OpenInAppRequest.ViewMode",
-            "enum_fields": [
-              {
-                "name": "VIEW_MODE_INVALID"
-              },
-              {
-                "name": "VIEW_MODE_VIEW_ONLY",
-                "integer": 1
-              },
-              {
-                "name": "VIEW_MODE_READ_ONLY",
-                "integer": 2
-              },
-              {
-                "name": "VIEW_MODE_READ_WRITE",
-                "integer": 3
-              },
-              {
-                "name": "VIEW_MODE_PREVIEW",
-                "integer": 4
-              }
-            ]
-          }
-        ],
         "messages": [
           {
             "name": "OpenInAppRequest",
@@ -489,6 +463,32 @@
     {
       "protopath": "cs3:/:app:/:provider:/:v1beta1:/:resources.proto",
       "def": {
+        "enums": [
+          {
+            "name": "ViewMode",
+            "enum_fields": [
+              {
+                "name": "VIEW_MODE_INVALID"
+              },
+              {
+                "name": "VIEW_MODE_VIEW_ONLY",
+                "integer": 1
+              },
+              {
+                "name": "VIEW_MODE_READ_ONLY",
+                "integer": 2
+              },
+              {
+                "name": "VIEW_MODE_READ_WRITE",
+                "integer": 3
+              },
+              {
+                "name": "VIEW_MODE_PREVIEW",
+                "integer": 4
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "OpenInAppURL",
@@ -3469,7 +3469,7 @@
               },
               {
                 "id": 4,
-                "name": "provider_id",
+                "name": "resource_id",
                 "type": "string"
               },
               {
@@ -3479,13 +3479,34 @@
               },
               {
                 "id": 6,
-                "name": "share_with",
+                "name": "sender",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
                 "id": 7,
-                "name": "protocol",
-                "type": "Protocol"
+                "name": "share_with",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 8,
+                "name": "resource_type",
+                "type": "cs3.storage.provider.v1beta1.ResourceType"
+              },
+              {
+                "id": 9,
+                "name": "share_type",
+                "type": "cs3.sharing.ocm.v1beta1.ShareType"
+              },
+              {
+                "id": 10,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 11,
+                "name": "protocols",
+                "type": "cs3.sharing.ocm.v1beta1.Protocol",
+                "is_repeated": true
               }
             ]
           },
@@ -3532,13 +3553,16 @@
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
-            "path": "cs3/ocm/core/v1beta1/resources.proto"
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
           },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
+          },
+          {
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -3560,66 +3584,6 @@
           {
             "name": "java_outer_classname",
             "value": "OcmCoreApiProto"
-          },
-          {
-            "name": "java_package",
-            "value": "com.cs3.ocm.core.v1beta1"
-          },
-          {
-            "name": "objc_class_prefix",
-            "value": "COC"
-          },
-          {
-            "name": "php_namespace",
-            "value": "Cs3\\\\Ocm\\\\Core\\\\V1Beta1"
-          }
-        ]
-      }
-    },
-    {
-      "protopath": "cs3:/:ocm:/:core:/:v1beta1:/:resources.proto",
-      "def": {
-        "messages": [
-          {
-            "name": "Protocol",
-            "fields": [
-              {
-                "id": 1,
-                "name": "name",
-                "type": "string"
-              },
-              {
-                "id": 2,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              }
-            ]
-          }
-        ],
-        "imports": [
-          {
-            "path": "cs3/types/v1beta1/types.proto"
-          }
-        ],
-        "package": {
-          "name": "cs3.ocm.core.v1beta1"
-        },
-        "options": [
-          {
-            "name": "csharp_namespace",
-            "value": "Cs3.Ocm.Core.V1Beta1"
-          },
-          {
-            "name": "go_package",
-            "value": "corev1beta1"
-          },
-          {
-            "name": "java_multiple_files",
-            "value": "true"
-          },
-          {
-            "name": "java_outer_classname",
-            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -6333,13 +6297,24 @@
               },
               {
                 "id": 3,
-                "name": "grant",
-                "type": "ShareGrant"
+                "name": "grantee",
+                "type": "storage.provider.v1beta1.Grantee"
               },
               {
                 "id": 4,
                 "name": "recipient_mesh_provider",
                 "type": "cs3.ocm.provider.v1beta1.ProviderInfo"
+              },
+              {
+                "id": 5,
+                "name": "access_methods",
+                "type": "AccessMethod",
+                "is_repeated": true
+              },
+              {
+                "id": 6,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -6786,22 +6761,6 @@
       "def": {
         "enums": [
           {
-            "name": "Share.ShareType",
-            "enum_fields": [
-              {
-                "name": "SHARE_TYPE_INVALID"
-              },
-              {
-                "name": "SHARE_TYPE_REGULAR",
-                "integer": 1
-              },
-              {
-                "name": "SHARE_TYPE_TRANSFER",
-                "integer": 2
-              }
-            ]
-          },
-          {
             "name": "ShareState",
             "enum_fields": [
               {
@@ -6820,6 +6779,18 @@
                 "integer": 3
               }
             ]
+          },
+          {
+            "name": "ShareType",
+            "enum_fields": [
+              {
+                "name": "SHARE_TYPE_USER"
+              },
+              {
+                "name": "SHARE_TYPE_GROUP",
+                "integer": 1
+              }
+            ]
           }
         ],
         "messages": [
@@ -6833,8 +6804,8 @@
               },
               {
                 "id": 2,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "token",
+                "type": "string"
               },
               {
                 "id": 3,
@@ -6843,8 +6814,8 @@
               },
               {
                 "id": 4,
-                "name": "permissions",
-                "type": "SharePermissions"
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
               },
               {
                 "id": 5,
@@ -6873,8 +6844,24 @@
               },
               {
                 "id": 10,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 11,
                 "name": "share_type",
-                "type": "ShareType"
+                "type": "cs3.sharing.ocm.v1beta1.ShareType"
+              },
+              {
+                "id": 12,
+                "name": "access_methods",
+                "type": "AccessMethod",
+                "is_repeated": true
+              },
+              {
+                "id": 13,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
               }
             ]
           },
@@ -6898,28 +6885,13 @@
             "fields": [
               {
                 "id": 1,
-                "name": "share",
-                "type": "Share"
+                "name": "id",
+                "type": "ShareId"
               },
               {
                 "id": 2,
-                "name": "state",
-                "type": "ShareState"
-              },
-              {
-                "id": 3,
-                "name": "mount_point",
-                "type": "storage.provider.v1beta1.Reference"
-              }
-            ]
-          },
-          {
-            "name": "ShareKey",
-            "fields": [
-              {
-                "id": 2,
-                "name": "owner",
-                "type": "cs3.identity.user.v1beta1.UserId"
+                "name": "name",
+                "type": "string"
               },
               {
                 "id": 3,
@@ -6930,6 +6902,72 @@
                 "id": 4,
                 "name": "grantee",
                 "type": "storage.provider.v1beta1.Grantee"
+              },
+              {
+                "id": 5,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 6,
+                "name": "creator",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 7,
+                "name": "ctime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 8,
+                "name": "mtime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 9,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 10,
+                "name": "share_type",
+                "type": "cs3.sharing.ocm.v1beta1.ShareType"
+              },
+              {
+                "id": 11,
+                "name": "protocols",
+                "type": "Protocol",
+                "is_repeated": true
+              },
+              {
+                "id": 12,
+                "name": "state",
+                "type": "ShareState"
+              },
+              {
+                "id": 13,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ShareKey",
+            "fields": [
+              {
+                "id": 1,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
+              },
+              {
+                "id": 3,
+                "name": "grantee",
+                "type": "storage.provider.v1beta1.Grantee"
               }
             ]
           },
@@ -6937,7 +6975,7 @@
             "name": "ShareId",
             "fields": [
               {
-                "id": 2,
+                "id": 1,
                 "name": "opaque_id",
                 "type": "string"
               }
@@ -6972,6 +7010,129 @@
                 "type": "SharePermissions"
               }
             ]
+          },
+          {
+            "name": "Protocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "webdap_options",
+                "type": "WebDAVProtocol"
+              },
+              {
+                "id": 2,
+                "name": "webapp_options",
+                "type": "WebappProtocol"
+              },
+              {
+                "id": 3,
+                "name": "datatx_oprions",
+                "type": "DatatxProtocol"
+              },
+              {
+                "id": 4,
+                "name": "generic_options",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "WebDAVProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "shared_secret",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "permissions",
+                "type": "cs3.sharing.ocm.v1beta1.SharePermissions"
+              },
+              {
+                "id": 3,
+                "name": "uri",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "WebappProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "uriTemplate",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "DatatxProtocol",
+            "fields": [
+              {
+                "id": 1,
+                "name": "shared_secret",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "source_uri",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "size",
+                "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "AccessMethod",
+            "fields": [
+              {
+                "id": 1,
+                "name": "webdav_options",
+                "type": "WebDAVAccessMethod"
+              },
+              {
+                "id": 2,
+                "name": "webapp_options",
+                "type": "WebappAccessMethod"
+              },
+              {
+                "id": 3,
+                "name": "datatx_options",
+                "type": "DatatxAccessMethod"
+              },
+              {
+                "id": 4,
+                "name": "generic_options",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "WebDAVAccessMethod",
+            "fields": [
+              {
+                "id": 2,
+                "name": "permissions",
+                "type": "storage.provider.v1beta1.ResourcePermissions"
+              }
+            ]
+          },
+          {
+            "name": "WebappAccessMethod",
+            "fields": [
+              {
+                "id": 2,
+                "name": "view_mode",
+                "type": "cs3.app.provider.v1beta1.ViewMode"
+              }
+            ]
+          },
+          {
+            "name": "DatatxAccessMethod"
           }
         ],
         "imports": [
@@ -6983,6 +7144,9 @@
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
+          },
+          {
+            "path": "cs3/app/provider/v1beta1/resources.proto"
           }
         ],
         "package": {
