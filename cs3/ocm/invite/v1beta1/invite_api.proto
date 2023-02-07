@@ -54,10 +54,18 @@ service InviteAPI {
   // Generates a new token for the user with a validity of 24 hours.
   rpc GenerateInviteToken(GenerateInviteTokenRequest) returns (GenerateInviteTokenResponse);
   // Forwards a received invite to the sync'n'share system provider.
+  // MUST return CODE_NOT_FOUND if the token does not exist.
+  // MUST return CODE_INVALID_ARGUMENT if the token expired.
+  // MUST return CODE_ALREADY_EXISTS if the user already accepted an invite.
+  // MUST return CODE_PERMISSION_DENIED if the remote service is not trusted to accept invitations.
   rpc ForwardInvite(ForwardInviteRequest) returns (ForwardInviteResponse);
   // Completes an invitation acceptance.
+  // MUST return CODE_NOT_FOUND if the token does not exist.
+  // MUST return CODE_INVALID_ARGUMENT if the token expired.
+  // MUST return CODE_ALREADY_EXISTS if the user already accepted an invite.
   rpc AcceptInvite(AcceptInviteRequest) returns (AcceptInviteResponse);
   // Retrieves details about a remote user who has accepted an invite to share.
+  // MUST return CODE_NOT_FOUND if the user does not exist.
   rpc GetAcceptedUser(GetAcceptedUserRequest) returns (GetAcceptedUserResponse);
   // Finds users who accepted invite tokens by their attributes.
   rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
@@ -67,6 +75,9 @@ message GenerateInviteTokenRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The description of the token.
+  string description = 2;
 }
 
 message GenerateInviteTokenResponse {
@@ -100,6 +111,15 @@ message ForwardInviteResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The initiator's user id of the workflow.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The initiator's email of the workflow.
+  string email = 4;
+  // REQUIRED.
+  // The initiator's display name of the workflow.
+  string display_name = 5;
 }
 
 message AcceptInviteRequest {
@@ -121,6 +141,15 @@ message AcceptInviteResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The initiator's user id of the workflow.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The initiator's email of the workflow.
+  string email = 4;
+  // REQUIRED.
+  // The initiator's display name of the workflow.
+  string display_name = 5;
 }
 
 message GetAcceptedUserRequest {
