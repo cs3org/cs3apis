@@ -28,7 +28,8 @@ steps:
     # See https://github.com/drone/drone/issues/2692
     # write the ssh key to disk
     - mkdir /root/.ssh
-    - echo -e "$SSH_KEY" > /root/.ssh/id_rsa
+    - echo -n "$SSH_KEY" > /root/.ssh/id_rsa
+    - shasum /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - stat /root/.ssh/id_rsa
 
