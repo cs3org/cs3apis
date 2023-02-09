@@ -12,7 +12,7 @@ trigger:
   - main
   event:
     exclude:
-    - pull_request
+    #- pull_request
     - tag
     - promote
     - rollback
@@ -24,11 +24,15 @@ steps:
   environment:
     SSH_KEY:
       from_secret: deploy_gh_key
+    SSH_KEY_TEST:
+      from_secret: deploy_test_key
   commands:
     # See https://github.com/drone/drone/issues/2692
     # write the ssh key to disk
     - mkdir /root/.ssh
-    - echo -e "$SSH_KEY" > /root/.ssh/id_rsa
+    - echo -n "$SSH_KEY_TEST" > /root/.ssh/id_rsa
+    - cat /root/.ssh/id_rsa # only for testing, do not merge
+    - shasum /root/.ssh/id_rsa # only for testing, do not merge
     - chmod 600 /root/.ssh/id_rsa
     - stat /root/.ssh/id_rsa
 
