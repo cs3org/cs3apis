@@ -67,6 +67,9 @@ message Share {
   // REQUIRED.
   // Last modification time of the share.
   cs3.types.v1beta1.Timestamp mtime = 8;
+  // Optional.
+  // The expiration time of the share.
+  cs3.types.v1beta1.Timestamp expiration = 9;
 }
 
 // The permissions for a share.
@@ -163,6 +166,9 @@ message ShareGrant {
   // REQUIRED.
   // The share permissions for the grant.
   SharePermissions permissions = 2;
+  // OPTIONAL
+  // Expiration of the grant.
+  cs3.types.v1beta1.Timestamp expiration = 3;
 }
 
 // Represents a filter to apply to the request.

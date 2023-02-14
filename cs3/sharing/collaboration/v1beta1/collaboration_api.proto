@@ -111,7 +111,7 @@ message UpdateShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-
+  // Deprecated use the share and update_mask attribute.
   ShareReference ref = 2;
   // REQUIRED.
   message UpdateField {
@@ -124,7 +124,14 @@ message UpdateShareRequest {
     }
   }
   // REQUIRED.
+  // Deprecated use the share and update_mask attribute.
   UpdateField field = 3;
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 4;
+  // REQUIRED.
+  // The share containing the new data
+  Share share = 5;
 }
 
 message UpdateShareResponse {
