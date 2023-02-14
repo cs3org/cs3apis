@@ -566,10 +566,6 @@
                 </li>
               
               
-                <li>
-                  <a href="#cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode"><span class="badge">E</span>OpenInAppRequest.ViewMode</a>
-                </li>
-              
               
               
                 <li>
@@ -596,6 +592,10 @@
                   <a href="#cs3.app.provider.v1beta1.OpenInAppURL.HeadersEntry"><span class="badge">M</span>OpenInAppURL.HeadersEntry</a>
                 </li>
               
+              
+                <li>
+                  <a href="#cs3.app.provider.v1beta1.ViewMode"><span class="badge">E</span>ViewMode</a>
+                </li>
               
               
               
@@ -1013,21 +1013,6 @@
                 <li>
                   <a href="#cs3.ocm.core.v1beta1.OcmCoreAPI"><span class="badge">S</span>OcmCoreAPI</a>
                 </li>
-              
-            </ul>
-          </li>
-        
-          
-          <li>
-            <a href="#cs3%2focm%2fcore%2fv1beta1%2fresources.proto">cs3/ocm/core/v1beta1/resources.proto</a>
-            <ul>
-              
-                <li>
-                  <a href="#cs3.ocm.core.v1beta1.Protocol"><span class="badge">M</span>Protocol</a>
-                </li>
-              
-              
-              
               
             </ul>
           </li>
@@ -1525,6 +1510,14 @@
             <ul>
               
                 <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.AccessMethod"><span class="badge">M</span>AccessMethod</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.Protocol"><span class="badge">M</span>Protocol</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ReceivedShare"><span class="badge">M</span>ReceivedShare</a>
                 </li>
               
@@ -1552,13 +1545,37 @@
                   <a href="#cs3.sharing.ocm.v1beta1.ShareReference"><span class="badge">M</span>ShareReference</a>
                 </li>
               
-              
                 <li>
-                  <a href="#cs3.sharing.ocm.v1beta1.Share.ShareType"><span class="badge">E</span>Share.ShareType</a>
+                  <a href="#cs3.sharing.ocm.v1beta1.TransferAccessMethod"><span class="badge">M</span>TransferAccessMethod</a>
                 </li>
               
                 <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.TransferProtocol"><span class="badge">M</span>TransferProtocol</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.WebDAVAccessMethod"><span class="badge">M</span>WebDAVAccessMethod</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.WebDAVProtocol"><span class="badge">M</span>WebDAVProtocol</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.WebappAccessMethod"><span class="badge">M</span>WebappAccessMethod</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.WebappProtocol"><span class="badge">M</span>WebappProtocol</a>
+                </li>
+              
+              
+                <li>
                   <a href="#cs3.sharing.ocm.v1beta1.ShareState"><span class="badge">E</span>ShareState</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.ShareType"><span class="badge">E</span>ShareType</a>
                 </li>
               
               
@@ -5529,9 +5546,10 @@ The resourceInfo to be opened. The gateway grpc message has a ref instead. </p><
               
                 <tr>
                   <td>view_mode</td>
-                  <td><a href="#cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</a></td>
+                  <td><a href="#cs3.app.provider.v1beta1.ViewMode">ViewMode</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>REQUIRED.
+View mode. </p></td>
                 </tr>
               
                 <tr>
@@ -5599,51 +5617,6 @@ Usually the rendering happens by using HTML iframes or in separate browser tabs.
         
       
 
-      
-        <h3 id="cs3.app.provider.v1beta1.OpenInAppRequest.ViewMode">OpenInAppRequest.ViewMode</h3>
-        <p>REQUIRED.</p><p>View mode.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>VIEW_MODE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_VIEW_ONLY</td>
-                <td>1</td>
-                <td><p>The resource can be opened but not downloaded.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_READ_ONLY</td>
-                <td>2</td>
-                <td><p>The resource can be downloaded.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_READ_WRITE</td>
-                <td>3</td>
-                <td><p>The resource can be downloaded and updated. The underlying application
-MUST be a fully capable editor to support this mode.</p></td>
-              </tr>
-            
-              <tr>
-                <td>VIEW_MODE_PREVIEW</td>
-                <td>4</td>
-                <td><p>The resource can be downloaded and updated, but must be shown in
-preview mode. If the underlying application does not support a preview mode,
-or if in a view-only mode users are not allowed to switch to edit mode,
-then this mode MUST fall back to READ_WRITE.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
 
       
@@ -5791,6 +5764,51 @@ The headers to be added to the request. </p></td>
         
       
 
+      
+        <h3 id="cs3.app.provider.v1beta1.ViewMode">ViewMode</h3>
+        <p>Defines the view modes.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VIEW_MODE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_VIEW_ONLY</td>
+                <td>1</td>
+                <td><p>The resource can be opened but not downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_ONLY</td>
+                <td>2</td>
+                <td><p>The resource can be downloaded.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_READ_WRITE</td>
+                <td>3</td>
+                <td><p>The resource can be downloaded and updated. The underlying application
+MUST be a fully capable editor to support this mode.</p></td>
+              </tr>
+            
+              <tr>
+                <td>VIEW_MODE_PREVIEW</td>
+                <td>4</td>
+                <td><p>The resource can be downloaded and updated, but must be shown in
+preview mode. If the underlying application does not support a preview mode,
+or if in a view-only mode users are not allowed to switch to edit mode,
+then this mode MUST fall back to READ_WRITE.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -8742,7 +8760,7 @@ Name of the resource (file or folder). </p></td>
                 </tr>
               
                 <tr>
-                  <td>provider_id</td>
+                  <td>resource_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>REQUIRED.
@@ -8751,6 +8769,14 @@ Identifier to identify the resource at the provider side. This is unique per pro
               
                 <tr>
                   <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Provider specific identifier of the owner of the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sender</td>
                   <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
                   <td></td>
                   <td><p>REQUIRED.
@@ -8769,11 +8795,35 @@ TODO: this field needs to represent either a user or group in the future, not on
                 </tr>
               
                 <tr>
-                  <td>protocol</td>
-                  <td><a href="#cs3.ocm.core.v1beta1.Protocol">Protocol</a></td>
+                  <td>resource_type</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceType">cs3.storage.provider.v1beta1.ResourceType</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The protocol which is used to establish synchronisation. </p></td>
+Resource type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share_type</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareType">cs3.sharing.ocm.v1beta1.ShareType</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Recipient share type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The expiration time for the ocm share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocols</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.Protocol">cs3.sharing.ocm.v1beta1.Protocol</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED.
+The protocols which are used to establish synchronisation. </p></td>
                 </tr>
               
             </tbody>
@@ -8856,54 +8906,6 @@ Unique ID to identify the share at the consumer side. </p></td>
         </table>
 
         
-    
-      
-      <div class="file-heading">
-        <h2 id="cs3/ocm/core/v1beta1/resources.proto">cs3/ocm/core/v1beta1/resources.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-      
-        <h3 id="cs3.ocm.core.v1beta1.Protocol">Protocol</h3>
-        <p>The protocol which is used to establish synchronisation.</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-The name of the protocol to use. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>opaque</td>
-                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-JSON object with protocol specific options,
-e.g. uri, access_token, password, permissions etc. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-
-      
-
-      
-
-      
     
       
       <div class="file-heading">
@@ -12497,11 +12499,11 @@ The unique identifier for the shared storage resource. </p></td>
                 </tr>
               
                 <tr>
-                  <td>grant</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareGrant">ShareGrant</a></td>
+                  <td>grantee</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Grantee">cs3.storage.provider.v1beta1.Grantee</a></td>
                   <td></td>
                   <td><p>REQUIRED.
-The share grant for the share. </p></td>
+The grantee for the share. </p></td>
                 </tr>
               
                 <tr>
@@ -12510,6 +12512,21 @@ The share grant for the share. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The details of the recipient user&#39;s mesh provider. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>access_methods</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.AccessMethod">AccessMethod</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The expiration time for the ocm share. </p></td>
                 </tr>
               
             </tbody>
@@ -12551,6 +12568,14 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The created share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>recipient_display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Display name of the recipient of the share. </p></td>
                 </tr>
               
             </tbody>
@@ -13342,8 +13367,8 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
       <p></p>
 
       
-        <h3 id="cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</h3>
-        <p>A received share is the share that a grantee will receive.</p><p>It expands the original share by adding state to the share,</p><p>a display name from the perspective of the grantee and a</p><p>resource mount point in case the share will be mounted</p><p>in a storage provider.</p>
+        <h3 id="cs3.sharing.ocm.v1beta1.AccessMethod">AccessMethod</h3>
+        <p>Defines how the recipient accesses the share.</p>
 
         
           <table class="field-table">
@@ -13353,26 +13378,32 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
             <tbody>
               
                 <tr>
-                  <td>share</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.Share">Share</a></td>
+                  <td>webdav_options</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.WebDAVAccessMethod">WebDAVAccessMethod</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>Options for the WebDAV access method. </p></td>
                 </tr>
               
                 <tr>
-                  <td>state</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareState">ShareState</a></td>
+                  <td>webapp_options</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.WebappAccessMethod">WebappAccessMethod</a></td>
                   <td></td>
-                  <td><p>REQUIRED.
-The state of the share. </p></td>
+                  <td><p>Options for the Webapp access method. </p></td>
                 </tr>
               
                 <tr>
-                  <td>mount_point</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.Reference">cs3.storage.provider.v1beta1.Reference</a></td>
+                  <td>transfer_options</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.TransferAccessMethod">TransferAccessMethod</a></td>
                   <td></td>
-                  <td><p>REQUIRED.
-The mount point of the share. </p></td>
+                  <td><p>Options for the Transfer access method. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generic_options</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>Options for a generic transfer method.
+Used to implement future access methods. </p></td>
                 </tr>
               
             </tbody>
@@ -13382,8 +13413,55 @@ The mount point of the share. </p></td>
 
         
       
-        <h3 id="cs3.sharing.ocm.v1beta1.Share">Share</h3>
-        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient (grantee)</p><p>on a specified resource (resource_id). UserShares represents both user and groups.</p>
+        <h3 id="cs3.sharing.ocm.v1beta1.Protocol">Protocol</h3>
+        <p>The protocol which is used to establish synchronisation.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>webdav_options</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.WebDAVProtocol">WebDAVProtocol</a></td>
+                  <td></td>
+                  <td><p>Options for WebDAV protocol. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>webapp_options</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.WebappProtocol">WebappProtocol</a></td>
+                  <td></td>
+                  <td><p>Options for Webapp protocol. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transfer_options</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.TransferProtocol">TransferProtocol</a></td>
+                  <td></td>
+                  <td><p>Options for transfer protocol. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>generic_options</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>Options for a generic protocol.
+Used to implement future protocols
+in the OCM specs. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.ReceivedShare">ReceivedShare</h3>
+        <p>A received share is the share that a grantee will receive.</p>
 
         
           <table class="field-table">
@@ -13401,14 +13479,6 @@ Opaque unique identifier of the share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>resource_id</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
-                  <td></td>
-                  <td><p>REQUIRED.
-Unique identifier of the shared resource. </p></td>
-                </tr>
-              
-                <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -13417,12 +13487,10 @@ Name of the shared resource. </p></td>
                 </tr>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.SharePermissions">SharePermissions</a></td>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
                   <td></td>
-                  <td><p>REQUIRED.
-Permissions for the grantee to use
-the resource. </p></td>
+                  <td><p>REQUIRED. </p></td>
                 </tr>
               
                 <tr>
@@ -13472,10 +13540,166 @@ Last modification time of the share. </p></td>
                 </tr>
               
                 <tr>
-                  <td>share_type</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.Share.ShareType">Share.ShareType</a></td>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
                   <td></td>
-                  <td><p>Specifies the type of the share. </p></td>
+                  <td><p>OPTIONAL.
+The expiration time for the ocm share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share_type</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareType">ShareType</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Recipient share type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>protocols</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.Protocol">Protocol</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareState">ShareState</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The state of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.Share">Share</h3>
+        <p>Shares are relationships between a resource owner</p><p>(usually the authenticated user) who grants permissions to a recipient</p><p>(grantee) on a specified resource (resource_id). UserShares represents both</p><p>user and groups.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareId">ShareId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Opaque unique identifier of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>resource_id</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Unique identifier of the shared resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Name of the shared resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The unlisted token to give access to the ocm share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Grantee">cs3.storage.provider.v1beta1.Grantee</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The receiver of the share, like a user, group ... </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Uniquely identifies the owner of the share
+(the resource owner at the time of creating the share).
+In case the ownership of the underlying resource changes
+the share owner field MAY change to reflect the change of ownsership. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>creator</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Uniquely identifies a principal who initiates the share creation.
+A creator can create shares on behalf of the owner (because of re-sharing,
+because belonging to special groups, ...).
+Creator and owner often result in being the same principal. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ctime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Creation time of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mtime</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Last modification time of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The expiration time for the ocm share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share_type</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.ShareType">ShareType</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Recipient share type. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>access_methods</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.AccessMethod">AccessMethod</a></td>
+                  <td>repeated</td>
+                  <td><p>REQUIRED. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
                 </tr>
               
             </tbody>
@@ -13646,36 +13870,171 @@ make the share unique. </p></td>
 
         
       
+        <h3 id="cs3.sharing.ocm.v1beta1.TransferAccessMethod">TransferAccessMethod</h3>
+        <p>Defines the options for the Transfer access method.</p>
 
+        
+
+        
       
-        <h3 id="cs3.sharing.ocm.v1beta1.Share.ShareType">Share.ShareType</h3>
-        <p>Defines the type of share based on its origin.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>SHARE_TYPE_INVALID</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SHARE_TYPE_REGULAR</td>
-                <td>1</td>
-                <td><p>A regular file or folder share.</p></td>
-              </tr>
-            
-              <tr>
-                <td>SHARE_TYPE_TRANSFER</td>
-                <td>2</td>
-                <td><p>A file or folder transfer.</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
+        <h3 id="cs3.sharing.ocm.v1beta1.TransferProtocol">TransferProtocol</h3>
+        <p>Defines the options for the Transfer protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>shared_secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Secret used to access the source of the data transfer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>source_uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Source URI for the data transfer. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Size in bytes of the source. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.WebDAVAccessMethod">WebDAVAccessMethod</h3>
+        <p>Defines the options for the WebDAV access method.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.ResourcePermissions">cs3.storage.provider.v1beta1.ResourcePermissions</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The permissions for the share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.WebDAVProtocol">WebDAVProtocol</h3>
+        <p>Defines the options for the WebDAV protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>shared_secret</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Secret used to access the resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.SharePermissions">SharePermissions</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Permissions of the shared resource. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+WebDAV URI used to access the resource. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.WebappAccessMethod">WebappAccessMethod</h3>
+        <p>Defines the options for the Webapp access method.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>view_mode</td>
+                  <td><a href="#cs3.app.provider.v1beta1.ViewMode">cs3.app.provider.v1beta1.ViewMode</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The view mode for the share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.WebappProtocol">WebappProtocol</h3>
+        <p>Defines the options for the Webapp protocol.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>uri_template</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Template URI to open the resource with a remote app. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
       
         <h3 id="cs3.sharing.ocm.v1beta1.ShareState">ShareState</h3>
         <p>The state of the share.</p>
@@ -13711,6 +14070,35 @@ by the recipient of the share.</p></td>
                 <td><p>The recipient of the share has rejected the share.
 Do not means the share is removed, the recipient MAY
 change the state to accepted or pending.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.ShareType">ShareType</h3>
+        <p>Defines the type of share based on its recipient.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SHARE_TYPE_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SHARE_TYPE_USER</td>
+                <td>1</td>
+                <td><p>Share of type user.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SHARE_TYPE_GROUP</td>
+                <td>2</td>
+                <td><p>Share of type group.</p></td>
               </tr>
             
           </tbody>
