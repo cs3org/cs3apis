@@ -133,6 +133,9 @@ message ReceivedShare {
   ShareState state = 12;
   // OPTIONAL.
   cs3.types.v1beta1.Opaque opaque = 13;
+  // REQUIRED.
+  // Resource type.
+  cs3.storage.provider.v1beta1.ResourceType resource_type = 14;
 }
 
 // The state of the share.
