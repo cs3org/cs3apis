@@ -197,6 +197,8 @@ message ShareReference {
     // The combination of fields that
     // make the share unique.
     ShareKey key = 2;
+    // The token of the share.
+    string token = 3;
   }
 }
 
