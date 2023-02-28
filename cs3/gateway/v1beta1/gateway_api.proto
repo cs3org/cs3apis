@@ -292,6 +292,9 @@ service GatewayAPI {
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc GetOCMShare(cs3.sharing.ocm.v1beta1.GetOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareResponse);
+  // Gets share information for a single share by its unlisted token.
+  // MUST return CODE_NOT_FOUND if the share does not exist.
+  rpc GetOCMShareByToken(cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse);
   // List the shares the authproviderenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.

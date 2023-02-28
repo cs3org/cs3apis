@@ -1435,6 +1435,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest"><span class="badge">M</span>GetOCMShareByTokenRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse"><span class="badge">M</span>GetOCMShareByTokenResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.sharing.ocm.v1beta1.GetOCMShareRequest"><span class="badge">M</span>GetOCMShareRequest</a>
                 </li>
               
@@ -3020,6 +3028,14 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.GetOCMShareResponse">.cs3.sharing.ocm.v1beta1.GetOCMShareResponse</a></td>
                 <td><p>Gets share information for a single share.
 MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetOCMShareByToken</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest">.cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse">.cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse</a></td>
+                <td><p>Gets share information for a single share by its unlisted token.
+MUST return CODE_NOT_FOUND if the share does not exist.</p></td>
               </tr>
             
               <tr>
@@ -12647,6 +12663,64 @@ Display name of the recipient of the share. </p></td>
 
         
       
+        <h3 id="cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest">GetOCMShareByTokenRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The unlisted token to identify the public share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse">GetOCMShareByTokenResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>share</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.Share">Share</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The share. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.sharing.ocm.v1beta1.GetOCMShareRequest">GetOCMShareRequest</h3>
         <p></p>
 
@@ -12826,10 +12900,11 @@ The list of filters to apply if any. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Clients use this field to specify the maximum number of results to be returned by the server.
-The server may further constrain the maximum number of results returned in a single page.
-If the page_size is 0, the server will decide the number of results to be returned.
-see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+Clients use this field to specify the maximum number of results to be
+returned by the server. The server may further constrain the maximum number
+of results returned in a single page. If the page_size is 0, the server
+will decide the number of results to be returned. see
+https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
                 <tr>
@@ -12931,8 +13006,8 @@ The list of shares. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-This field represents the pagination token to retrieve the next page of results.
-If the value is &#34;&#34;, it means no further results for the request.
+This field represents the pagination token to retrieve the next page of
+results. If the value is &#34;&#34;, it means no further results for the request.
 see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
@@ -12966,10 +13041,11 @@ Opaque information. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Clients use this field to specify the maximum number of results to be returned by the server.
-The server may further constrain the maximum number of results returned in a single page.
-If the page_size is 0, the server will decide the number of results to be returned.
-see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+Clients use this field to specify the maximum number of results to be
+returned by the server. The server may further constrain the maximum number
+of results returned in a single page. If the page_size is 0, the server
+will decide the number of results to be returned. see
+https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
                 <tr>
@@ -13026,8 +13102,8 @@ The list of received shares. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-This field represents the pagination token to retrieve the next page of results.
-If the value is &#34;&#34;, it means no further results for the request.
+This field represents the pagination token to retrieve the next page of
+results. If the value is &#34;&#34;, it means no further results for the request.
 see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
@@ -13240,7 +13316,8 @@ The received share to update. </p></td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
                   <td><p>The update mask applies to the resource. For the `FieldMask` definition,
-see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
+see
+https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
                 </tr>
               
             </tbody>
@@ -13356,9 +13433,9 @@ Opaque information. </p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.CreateOCMShareResponse">CreateOCMShareResponse</a></td>
                 <td><p>Creates a new ocm share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
-MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
-(owner, shared_resource, grantee).
-New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
+MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple
+consisting of (owner, shared_resource, grantee). New shares MUST be created
+in the state SHARE_STATE_PENDING.</p></td>
               </tr>
             
               <tr>
@@ -13375,6 +13452,14 @@ MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.GetOCMShareResponse">GetOCMShareResponse</a></td>
                 <td><p>Gets share information for a single share.
 MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetOCMShareByToken</td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest">GetOCMShareByTokenRequest</a></td>
+                <td><a href="#cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse">GetOCMShareByTokenResponse</a></td>
+                <td><p>Gets share information for a single share by its unlisted token.
+MUST return CODE_NOT_FOUND if the share does not exist.</p></td>
               </tr>
             
               <tr>

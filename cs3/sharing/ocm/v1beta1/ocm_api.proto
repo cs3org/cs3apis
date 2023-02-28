@@ -66,6 +66,9 @@ service OcmAPI {
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc GetOCMShare(GetOCMShareRequest) returns (GetOCMShareResponse);
+  // Gets share information for a single share by its unlisted token.
+  // MUST return CODE_NOT_FOUND if the share does not exist.
+  rpc GetOCMShareByToken(GetOCMShareByTokenRequest) returns (GetOCMShareByTokenResponse);
   // List the shares the authenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
@@ -242,6 +245,21 @@ message GetOCMShareResponse {
   // REQUIRED.
   // The share.
   Share share = 3;
+}
+
+message GetOCMShareByTokenRequest {
+  // REQUIRED.
+  // The unlisted token to identify the public share.
+  string token = 1;
+}
+
+message GetOCMShareByTokenResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // REQUIRED.
+  // The share.
+  Share share = 2;
 }
 
 message ListReceivedOCMSharesRequest {
