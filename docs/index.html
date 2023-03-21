@@ -8854,7 +8854,9 @@ The expiration time for the ocm share. </p></td>
                   <td><a href="#cs3.sharing.ocm.v1beta1.Protocol">cs3.sharing.ocm.v1beta1.Protocol</a></td>
                   <td>repeated</td>
                   <td><p>REQUIRED.
-The protocols which are used to establish synchronisation. </p></td>
+The protocols which are used to establish synchronisation.
+See also cs3/sharing/ocm/v1beta1/resources.proto for how to map
+this to the OCM share payload. </p></td>
                 </tr>
               
             </tbody>
@@ -13417,7 +13419,7 @@ Opaque information. </p></td>
 
       
         <h3 id="cs3.sharing.ocm.v1beta1.OcmAPI">OcmAPI</h3>
-        <p>OCM Share Provider API</p><p>The OCM Share Provider API is meant to manipulate share</p><p>resources from the perspective of the creator or the share and</p><p>from the perspective of the receiver of the share.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>OCM Share Provider API</p><p>The OCM Share Provider API is meant to manipulate share</p><p>resources from the perspective of the creator or the share and</p><p>from the perspective of the receiver of the share.</p><p>The following APIs match the OCM v1.1 spec, including the invitation</p><p>workflow and multi-protocol shares.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -13703,7 +13705,14 @@ Recipient share type. </p></td>
                   <td>protocols</td>
                   <td><a href="#cs3.sharing.ocm.v1beta1.Protocol">Protocol</a></td>
                   <td>repeated</td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+List of protocols offered for this share.
+In the OCM specifications, this corresponds to the `protocol`
+property, to maintain backwards compatibility with OCM v1 where
+only a single protocol was implemented. Furthermore,
+`protocol.name` MAY be set to `multi` and `protocol.options`
+MAY be left empty in the OCM share payload, in order to use
+the `protocol.webdav` and similar properties. </p></td>
                 </tr>
               
                 <tr>
@@ -13829,7 +13838,7 @@ Last modification time of the share. </p></td>
                   <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-The expiration time for the ocm share. </p></td>
+The expiration time for the OCM share. </p></td>
                 </tr>
               
                 <tr>
@@ -13895,7 +13904,7 @@ The share permissions for the grant. </p></td>
         
       
         <h3 id="cs3.sharing.ocm.v1beta1.ShareId">ShareId</h3>
-        <p>A share id identifies uniquely a // share in the share provider namespace.</p><p>A ShareId MUST be unique inside the share provider.</p>
+        <p>A share id identifies uniquely a share in the share provider namespace.</p><p>A ShareId MUST be unique inside the share provider.</p>
 
         
           <table class="field-table">
@@ -13910,8 +13919,9 @@ The share permissions for the grant. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The internal id used by service implementor to
-uniquely identity the share in the internal
-implementation of the service. </p></td>
+uniquely identify the share in the internal
+implementation of the service.
+In the OCM specifications, this corresponds to the `providerId`. </p></td>
                 </tr>
               
             </tbody>

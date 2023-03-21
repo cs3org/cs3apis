@@ -91,6 +91,8 @@ message CreateOCMCoreShareRequest {
   cs3.types.v1beta1.Timestamp expiration = 10;
   // REQUIRED.
   // The protocols which are used to establish synchronisation.
+  // See also cs3/sharing/ocm/v1beta1/resources.proto for how to map
+  // this to the OCM share payload.
   repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 11;
 }
 

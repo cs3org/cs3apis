@@ -72,7 +72,7 @@ message Share {
   // Last modification time of the share.
   cs3.types.v1beta1.Timestamp mtime = 9;
   // OPTIONAL.
-  // The expiration time for the ocm share.
+  // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 10;
   // REQUIRED.
   // Recipient share type.
@@ -127,6 +127,13 @@ message ReceivedShare {
   // Recipient share type.
   cs3.sharing.ocm.v1beta1.ShareType share_type = 10;
   // REQUIRED.
+  // List of protocols offered for this share.
+  // In the OCM specifications, this corresponds to the `protocol`
+  // property, to maintain backwards compatibility with OCM v1 where
+  // only a single protocol was implemented. Furthermore,
+  // `protocol.name` MAY be set to `multi` and `protocol.options`
+  // MAY be left empty in the OCM share payload, in order to use
+  // the `protocol.webdav` and similar properties.
   repeated Protocol protocols = 11;
   // REQUIRED.
   // The state of the share.
@@ -176,13 +183,14 @@ message ShareKey {
   storage.provider.v1beta1.Grantee grantee = 3;
 }
 
-// A share id identifies uniquely a // share in the share provider namespace.
+// A share id identifies uniquely a share in the share provider namespace.
 // A ShareId MUST be unique inside the share provider.
 message ShareId {
   // REQUIRED.
   // The internal id used by service implementor to
-  // uniquely identity the share in the internal
+  // uniquely identify the share in the internal
   // implementation of the service.
+  // In the OCM specifications, this corresponds to the `providerId`.
   string opaque_id = 1;
 }
 
