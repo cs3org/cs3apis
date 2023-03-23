@@ -12900,11 +12900,10 @@ The list of filters to apply if any. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Clients use this field to specify the maximum number of results to be
-returned by the server. The server may further constrain the maximum number
-of results returned in a single page. If the page_size is 0, the server
-will decide the number of results to be returned. see
-https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
                 <tr>
@@ -13006,8 +13005,8 @@ The list of shares. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-This field represents the pagination token to retrieve the next page of
-results. If the value is &#34;&#34;, it means no further results for the request.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
 see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
@@ -13041,11 +13040,10 @@ Opaque information. </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-Clients use this field to specify the maximum number of results to be
-returned by the server. The server may further constrain the maximum number
-of results returned in a single page. If the page_size is 0, the server
-will decide the number of results to be returned. see
-https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
+Clients use this field to specify the maximum number of results to be returned by the server.
+The server may further constrain the maximum number of results returned in a single page.
+If the page_size is 0, the server will decide the number of results to be returned.
+see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
                 <tr>
@@ -13102,8 +13100,8 @@ The list of received shares. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>OPTIONAL.
-This field represents the pagination token to retrieve the next page of
-results. If the value is &#34;&#34;, it means no further results for the request.
+This field represents the pagination token to retrieve the next page of results.
+If the value is &#34;&#34;, it means no further results for the request.
 see https://cloud.google.com/apis/design/design_patterns#list_pagination </p></td>
                 </tr>
               
@@ -13316,8 +13314,7 @@ The received share to update. </p></td>
                   <td><a href="#google.protobuf.FieldMask">google.protobuf.FieldMask</a></td>
                   <td></td>
                   <td><p>The update mask applies to the resource. For the `FieldMask` definition,
-see
-https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
+see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask </p></td>
                 </tr>
               
             </tbody>
@@ -13433,9 +13430,9 @@ Opaque information. </p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.CreateOCMShareResponse">CreateOCMShareResponse</a></td>
                 <td><p>Creates a new ocm share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
-MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple
-consisting of (owner, shared_resource, grantee). New shares MUST be created
-in the state SHARE_STATE_PENDING.</p></td>
+MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
+(owner, shared_resource, grantee).
+New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
               </tr>
             
               <tr>
@@ -14443,6 +14440,13 @@ Opaque information. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quota</td>
+                  <td><a href="#cs3.storage.provider.v1beta1.Quota">Quota</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL. </p></td>
                 </tr>
               
             </tbody>
