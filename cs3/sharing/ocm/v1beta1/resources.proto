@@ -257,6 +257,9 @@ message WebappProtocol {
   // REQUIRED.
   // Template URI to open the resource with a remote app.
   string uri_template = 1;
+  // REQUIRED.
+  // View mode for the remote app.
+  cs3.app.provider.v1beta1.ViewMode view_mode = 2;
 }
 
 // Defines the options for the Transfer protocol.
