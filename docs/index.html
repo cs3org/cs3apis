@@ -11442,6 +11442,23 @@ Indicates a share used for internal usage,
 not exposed by a ListPublicShares. </p></td>
                 </tr>
               
+                <tr>
+                  <td>notify_uploads</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Whether to notify the owner of a share when a file is uploaded to it. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notify_uploads_extra_recipients</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Comma-separated list of extra email addresses to notify when a file is
+uploaded to the share. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -11999,6 +12016,23 @@ Defines the public link display name. </p></td>
 Defines the public link description. </p></td>
                 </tr>
               
+                <tr>
+                  <td>notify_uploads</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Whether to notify the owner of a share when a file is uploaded to it. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notify_uploads_extra_recipients</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Comma-separated list of extra email addresses to notify when a file is
+uploaded to the share. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -12125,6 +12159,18 @@ The updated public share. </p></td>
               <tr>
                 <td>TYPE_DESCRIPTION</td>
                 <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_NOTIFYUPLOADS</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TYPE_NOTIFYUPLOADSEXTRARECIPIENTS</td>
+                <td>7</td>
                 <td><p></p></td>
               </tr>
             
@@ -12383,6 +12429,23 @@ the server will enforce a maximum of 1 quicklink per resource </p></td>
                   <td></td>
                   <td><p>OPTIONAL
 Description of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notify_uploads</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Whether to notify the owner of a share when a file is uploaded to it. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>notify_uploads_extra_recipients</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL
+Comma-separated list of extra email addresses to notify when a file is
+uploaded to the share. </p></td>
                 </tr>
               
             </tbody>
