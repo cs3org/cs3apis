@@ -1,4 +1,4 @@
-// Copyright 2018-2019 CERN
+// Copyright 2018-2023 CERN
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -110,6 +110,13 @@ message PublicShare {
   // OPTIONAL
   // Description of the share.
   string description = 14;
+  // OPTIONAL
+  // Whether to notify the owner of a share when a file is uploaded to it.
+  bool notify_uploads = 15;
+  // OPTIONAL
+  // Comma-separated list of extra email addresses to notify when a file is
+  // uploaded to the share.
+  string notify_uploads_extra_recipients = 16;
 }
 
 // The permissions for a share.

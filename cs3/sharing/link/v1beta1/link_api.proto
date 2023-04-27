@@ -1,4 +1,4 @@
-// Copyright 2018-2019 CERN
+// Copyright 2018-2023 CERN
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -96,6 +96,13 @@ message CreatePublicShareRequest {
   // Indicates a share used for internal usage,
   // not exposed by a ListPublicShares.
   bool internal = 5;
+  // OPTIONAL
+  // Whether to notify the owner of a share when a file is uploaded to it.
+  bool notify_uploads = 6;
+  // OPTIONAL
+  // Comma-separated list of extra email addresses to notify when a file is
+  // uploaded to the share.
+  string notify_uploads_extra_recipients = 7;
 }
 
 message CreatePublicShareResponse {
@@ -131,6 +138,8 @@ message UpdatePublicShareRequest {
       TYPE_EXPIRATION = 3;
       TYPE_DISPLAYNAME = 4;
       TYPE_DESCRIPTION = 5;
+      TYPE_NOTIFYUPLOADS = 6;
+      TYPE_NOTIFYUPLOADSEXTRARECIPIENTS = 7;
     }
     // REQUIRED.
     // Defines the field to update.
@@ -144,6 +153,13 @@ message UpdatePublicShareRequest {
     // OPTIONAL
     // Defines the public link description.
     string description = 6;
+    // OPTIONAL
+    // Whether to notify the owner of a share when a file is uploaded to it.
+    bool notify_uploads = 7;
+    // OPTIONAL
+    // Comma-separated list of extra email addresses to notify when a file is
+    // uploaded to the share.
+    string notify_uploads_extra_recipients = 8;
   }
   Update update = 3;
 }
