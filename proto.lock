@@ -2259,6 +2259,11 @@
                 "out_type": "cs3.sharing.ocm.v1beta1.GetOCMShareResponse"
               },
               {
+                "name": "GetOCMShareByToken",
+                "in_type": "cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest",
+                "out_type": "cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse"
+              },
+              {
                 "name": "ListOCMShares",
                 "in_type": "cs3.sharing.ocm.v1beta1.ListOCMSharesRequest",
                 "out_type": "cs3.sharing.ocm.v1beta1.ListOCMSharesResponse"
@@ -2372,6 +2377,11 @@
                 "name": "GenerateInviteToken",
                 "in_type": "cs3.ocm.invite.v1beta1.GenerateInviteTokenRequest",
                 "out_type": "cs3.ocm.invite.v1beta1.GenerateInviteTokenResponse"
+              },
+              {
+                "name": "ListInviteTokens",
+                "in_type": "cs3.ocm.invite.v1beta1.ListInviteTokensRequest",
+                "out_type": "cs3.ocm.invite.v1beta1.ListInviteTokensResponse"
               },
               {
                 "name": "ForwardInvite",
@@ -3553,16 +3563,16 @@
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
-            "path": "cs3/storage/provider/v1beta1/resources.proto"
-          },
-          {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
-            "path": "cs3/types/v1beta1/types.proto"
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           },
           {
-            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
           }
         ],
         "package": {
@@ -3636,6 +3646,25 @@
                 "id": 3,
                 "name": "invite_token",
                 "type": "InviteToken"
+              }
+            ]
+          },
+          {
+            "name": "ListInviteTokensRequest"
+          },
+          {
+            "name": "ListInviteTokensResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "invite_tokens",
+                "type": "InviteToken",
+                "is_repeated": true
               }
             ]
           },
@@ -3819,6 +3848,11 @@
                 "name": "GenerateInviteToken",
                 "in_type": "GenerateInviteTokenRequest",
                 "out_type": "GenerateInviteTokenResponse"
+              },
+              {
+                "name": "ListInviteTokens",
+                "in_type": "ListInviteTokensRequest",
+                "out_type": "ListInviteTokensResponse"
               },
               {
                 "name": "ForwardInvite",
@@ -4890,6 +4924,16 @@
                 "id": 3,
                 "name": "field",
                 "type": "UpdateField"
+              },
+              {
+                "id": 4,
+                "name": "update_mask",
+                "type": "google.protobuf.FieldMask"
+              },
+              {
+                "id": 5,
+                "name": "share",
+                "type": "Share"
               }
             ],
             "messages": [
@@ -5382,6 +5426,11 @@
                 "id": 8,
                 "name": "mtime",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 9,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -5472,6 +5521,11 @@
                 "id": 2,
                 "name": "permissions",
                 "type": "SharePermissions"
+              },
+              {
+                "id": 3,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -5591,6 +5645,14 @@
               {
                 "name": "TYPE_DESCRIPTION",
                 "integer": 5
+              },
+              {
+                "name": "TYPE_NOTIFYUPLOADS",
+                "integer": 6
+              },
+              {
+                "name": "TYPE_NOTIFYUPLOADSEXTRARECIPIENTS",
+                "integer": 7
               }
             ]
           },
@@ -5643,6 +5705,16 @@
                 "id": 5,
                 "name": "internal",
                 "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "notify_uploads",
+                "type": "bool"
+              },
+              {
+                "id": 7,
+                "name": "notify_uploads_extra_recipients",
+                "type": "string"
               }
             ]
           },
@@ -5707,6 +5779,16 @@
                   {
                     "id": 6,
                     "name": "description",
+                    "type": "string"
+                  },
+                  {
+                    "id": 7,
+                    "name": "notify_uploads",
+                    "type": "bool"
+                  },
+                  {
+                    "id": 8,
+                    "name": "notify_uploads_extra_recipients",
                     "type": "string"
                   }
                 ]
@@ -6108,6 +6190,16 @@
               {
                 "id": 14,
                 "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 15,
+                "name": "notify_uploads",
+                "type": "bool"
+              },
+              {
+                "id": 16,
+                "name": "notify_uploads_extra_recipients",
                 "type": "string"
               }
             ]
@@ -6540,6 +6632,31 @@
             ]
           },
           {
+            "name": "GetOCMShareByTokenRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetOCMShareByTokenResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "share",
+                "type": "Share"
+              }
+            ]
+          },
+          {
             "name": "ListReceivedOCMSharesRequest",
             "fields": [
               {
@@ -6674,6 +6791,11 @@
                 "name": "GetOCMShare",
                 "in_type": "GetOCMShareRequest",
                 "out_type": "GetOCMShareResponse"
+              },
+              {
+                "name": "GetOCMShareByToken",
+                "in_type": "GetOCMShareByTokenRequest",
+                "out_type": "GetOCMShareByTokenResponse"
               },
               {
                 "name": "ListOCMShares",
@@ -6904,8 +7026,8 @@
               },
               {
                 "id": 3,
-                "name": "resource_id",
-                "type": "storage.provider.v1beta1.ResourceId"
+                "name": "remote_share_id",
+                "type": "string"
               },
               {
                 "id": 4,
@@ -6957,6 +7079,11 @@
                 "id": 13,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 14,
+                "name": "resource_type",
+                "type": "cs3.storage.provider.v1beta1.ResourceType"
               }
             ]
           },
@@ -7002,6 +7129,11 @@
                 "id": 2,
                 "name": "key",
                 "type": "ShareKey"
+              },
+              {
+                "id": 3,
+                "name": "token",
+                "type": "string"
               }
             ]
           },
@@ -7072,6 +7204,11 @@
                 "id": 1,
                 "name": "uri_template",
                 "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "view_mode",
+                "type": "cs3.app.provider.v1beta1.ViewMode"
               }
             ]
           },
@@ -7146,6 +7283,9 @@
         ],
         "imports": [
           {
+            "path": "cs3/app/provider/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
           {
@@ -7153,9 +7293,6 @@
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
-          },
-          {
-            "path": "cs3/app/provider/v1beta1/resources.proto"
           }
         ],
         "package": {
@@ -8553,6 +8690,11 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "quota",
+                "type": "Quota"
               }
             ]
           },
@@ -9457,6 +9599,11 @@
                 "id": 3,
                 "name": "creator",
                 "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 4,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
