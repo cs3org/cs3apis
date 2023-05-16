@@ -191,4 +191,11 @@ enum Code {
   //
   // HTTP Mapping: 507 Insufficient Storage
   CODE_INSUFFICIENT_STORAGE = 19;
+  //
+  // The ability to lock a resource is specific to some WebDAV servers.
+  // The HTTP 423 Locked error response code indicates that either
+  // the resources tentatively targeted by is locked, meaning it can't be accessed.
+  //
+  // HTTP Mapping: 423 Locked
+  CODE_LOCKED = 20;
 }

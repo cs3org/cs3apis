@@ -2863,6 +2863,7 @@ MUST return CODE_NOT_FOUND if the resource does not exist.
                 <td><a href="#cs3.sharing.collaboration.v1beta1.CreateShareResponse">.cs3.sharing.collaboration.v1beta1.CreateShareResponse</a></td>
                 <td><p>Creates a new share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
+MUST return CODE_LOCKED if the resource reference already locked.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
 New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
@@ -4079,6 +4080,16 @@ space or because of the exceeding of a quota associated to a
 storage.
 
 HTTP Mapping: 507 Insufficient Storage</p></td>
+              </tr>
+            
+              <tr>
+                <td>CODE_LOCKED</td>
+                <td>20</td>
+                <td><p>The ability to lock a resource is specific to some WebDAV servers.
+The HTTP 423 Locked error response code indicates that either
+the resources tentatively targeted by is locked, meaning it can&#39;t be accessed.
+
+HTTP Mapping: 423 Locked</p></td>
               </tr>
             
           </tbody>
@@ -10836,6 +10847,7 @@ The updated share. </p></td>
                 <td><a href="#cs3.sharing.collaboration.v1beta1.CreateShareResponse">CreateShareResponse</a></td>
                 <td><p>Creates a new share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
+MUST return CODE_LOCKED if the resource reference already locked.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
 New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
@@ -13696,10 +13708,13 @@ Name of the shared resource. </p></td>
                 </tr>
               
                 <tr>
-                  <td>resource_id</td>
-                  <td><a href="#cs3.storage.provider.v1beta1.ResourceId">cs3.storage.provider.v1beta1.ResourceId</a></td>
+                  <td>remote_share_id</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>REQUIRED. </p></td>
+                  <td><p>REQUIRED.
+Identifier to identify the shared resource at the provider side.
+This is unique per provider such that if the same resource is shared twice, this will not be repeated.
+This correspond to the `providerId` in the OCM API specs. </p></td>
                 </tr>
               
                 <tr>
