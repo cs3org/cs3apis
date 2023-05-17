@@ -2830,6 +2830,7 @@ MUST return CODE_NOT_FOUND if the resource does not exist.
                 <td><a href="#cs3.sharing.collaboration.v1beta1.CreateShareResponse">.cs3.sharing.collaboration.v1beta1.CreateShareResponse</a></td>
                 <td><p>Creates a new share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
+MUST return CODE_LOCKED if the resource reference already locked.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
 New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
@@ -4031,6 +4032,16 @@ space or because of the exceeding of a quota associated to a
 storage.
 
 HTTP Mapping: 507 Insufficient Storage</p></td>
+              </tr>
+            
+              <tr>
+                <td>CODE_LOCKED</td>
+                <td>20</td>
+                <td><p>The ability to lock a resource is specific to some WebDAV servers.
+The HTTP 423 Locked error response code indicates that either
+the resources tentatively targeted by is locked, meaning it can&#39;t be accessed.
+
+HTTP Mapping: 423 Locked</p></td>
               </tr>
             
           </tbody>
@@ -10754,6 +10765,7 @@ The updated share. </p></td>
                 <td><a href="#cs3.sharing.collaboration.v1beta1.CreateShareResponse">CreateShareResponse</a></td>
                 <td><p>Creates a new share.
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
+MUST return CODE_LOCKED if the resource reference already locked.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
 New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
