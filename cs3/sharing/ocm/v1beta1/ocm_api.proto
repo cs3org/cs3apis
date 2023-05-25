@@ -42,9 +42,6 @@ import "google/protobuf/field_mask.proto";
 // resources from the perspective of the creator or the share and
 // from the perspective of the receiver of the share.
 //
-// The following APIs match the OCM v1.1 spec, including the invitation
-// workflow and multi-protocol shares.
-//
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 // "OPTIONAL" in this document are to be interpreted as described in
@@ -128,8 +125,6 @@ message UpdateOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-
   // REQUIRED.
   ShareReference ref = 2;
   // REQUIRED.

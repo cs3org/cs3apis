@@ -400,8 +400,18 @@ service GatewayAPI {
   // **************************** OCM CORE ***************************/
   // *****************************************************************/
 
-  // Creates a new ocm share.
+  // Creates a new OCM share. The share SHALL be sent to the remote system
+  // using the OCM API at:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1shares/post
   rpc CreateOCMCoreShare(cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse);
+  // Updates an OCM share. This action SHALL be notified to the remote system
+  // using the OCM API at:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  rpc UpdateOCMCoreShare(cs3.ocm.core.v1beta1.UpdateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.UpdateOCMCoreShareResponse);
+  // Deletes an OCM share. This action SHALL be notified to the remote system
+  // using the OCM API at:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  rpc DeleteOCMCoreShare(cs3.ocm.core.v1beta1.DeleteOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.DeleteOCMCoreShareResponse);
   // *****************************************************************/
   // ************************** FILE TRANSFER ************************/
   // *****************************************************************/
