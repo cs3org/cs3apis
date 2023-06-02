@@ -384,6 +384,8 @@ service GatewayAPI {
   rpc GetAcceptedUser(cs3.ocm.invite.v1beta1.GetAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.GetAcceptedUserResponse);
   // Finds users who accepted invite tokens by their attributes.
   rpc FindAcceptedUsers(cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest) returns (cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse);
+  // Delete a previously accepted remote user, that is unfriend that user.
+  rpc DeleteAcceptedUser(cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
   // *****************************************************************/

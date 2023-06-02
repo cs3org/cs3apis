@@ -1047,6 +1047,14 @@
                 </li>
               
                 <li>
+                  <a href="#cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest"><span class="badge">M</span>DeleteAcceptedUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse"><span class="badge">M</span>DeleteAcceptedUserResponse</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest"><span class="badge">M</span>FindAcceptedUsersRequest</a>
                 </li>
               
@@ -3280,7 +3288,14 @@ When a user has access to multiple storage providers, one of them is the home.
                 <td>FindAcceptedUsers</td>
                 <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest">.cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse">.cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse</a></td>
-                <td><p>Finds users who accepted invite tokens by their attributes.
+                <td><p>Finds users who accepted invite tokens by their attributes.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteAcceptedUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest">.cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse">.cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse</a></td>
+                <td><p>Delete a previously accepted remote user, that is unfriend that user.
 
 *****************************************************************/
 ******************** OCM PROVIDER AUTHORIZER ********************/
@@ -9278,6 +9293,72 @@ The initiator&#39;s display name of the workflow. </p></td>
 
         
       
+        <h3 id="cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest">DeleteAcceptedUserRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remote_user_id</td>
+                  <td><a href="#cs3.identity.user.v1beta1.UserId">cs3.identity.user.v1beta1.UserId</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The id of the user. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse">DeleteAcceptedUserResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cs3.rpc.v1beta1.Status">cs3.rpc.v1beta1.Status</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+The response status. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>opaque</td>
+                  <td><a href="#cs3.types.v1beta1.Opaque">cs3.types.v1beta1.Opaque</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+Opaque information. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest">FindAcceptedUsersRequest</h3>
         <p></p>
 
@@ -9671,7 +9752,7 @@ The list of valid tokens. </p></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.ForwardInviteRequest">ForwardInviteRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.ForwardInviteResponse">ForwardInviteResponse</a></td>
                 <td><p>Forwards a received invite to the remote sync&#39;n&#39;share system provider. The remote
-system SHALL receive an `invite-accepted` call as follows:
+system SHALL get an `invite-accepted` call as follows:
 https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1invite-accepted/post
 MUST return CODE_NOT_FOUND if the token does not exist.
 MUST return CODE_INVALID_ARGUMENT if the token expired.
@@ -9702,6 +9783,14 @@ MUST return CODE_NOT_FOUND if the user does not exist.</p></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest">FindAcceptedUsersRequest</a></td>
                 <td><a href="#cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse">FindAcceptedUsersResponse</a></td>
                 <td><p>Finds users who accepted invite tokens by their attributes.</p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteAcceptedUser</td>
+                <td><a href="#cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest">DeleteAcceptedUserRequest</a></td>
+                <td><a href="#cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse">DeleteAcceptedUserResponse</a></td>
+                <td><p>Delete a previously accepted remote user, that is unfriend that user.
+MUST return CODE_NOT_FOUND if the user does not exist.</p></td>
               </tr>
             
           </tbody>
