@@ -319,4 +319,8 @@ message WebappAccessMethod {
 }
 
 // Defines the options for the Transfer access method.
-message TransferAccessMethod {}
+message TransferAccessMethod {
+  // REQUIRED.
+  // The destination path of the data transfer.
+  storage.provider.v1beta1.Reference destination = 1;
+}
