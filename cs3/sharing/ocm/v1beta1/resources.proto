@@ -308,14 +308,14 @@ message AccessMethod {
 message WebDAVAccessMethod {
   // REQUIRED.
   // The permissions for the share.
-  storage.provider.v1beta1.ResourcePermissions permissions = 2;
+  storage.provider.v1beta1.ResourcePermissions permissions = 1;
 }
 
 // Defines the options for the Webapp access method.
 message WebappAccessMethod {
   // REQUIRED.
   // The view mode for the share.
-  cs3.app.provider.v1beta1.ViewMode view_mode = 2;
+  cs3.app.provider.v1beta1.ViewMode view_mode = 1;
 }
 
 // Defines the options for the Transfer access method.

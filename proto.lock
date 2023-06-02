@@ -2404,6 +2404,11 @@
                 "out_type": "cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse"
               },
               {
+                "name": "DeleteAcceptedUser",
+                "in_type": "cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest",
+                "out_type": "cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse"
+              },
+              {
                 "name": "IsProviderAllowed",
                 "in_type": "cs3.ocm.provider.v1beta1.IsProviderAllowedRequest",
                 "out_type": "cs3.ocm.provider.v1beta1.IsProviderAllowedResponse"
@@ -2422,6 +2427,16 @@
                 "name": "CreateOCMCoreShare",
                 "in_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest",
                 "out_type": "cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse"
+              },
+              {
+                "name": "UpdateOCMCoreShare",
+                "in_type": "cs3.ocm.core.v1beta1.UpdateOCMCoreShareRequest",
+                "out_type": "cs3.ocm.core.v1beta1.UpdateOCMCoreShareResponse"
+              },
+              {
+                "name": "DeleteOCMCoreShare",
+                "in_type": "cs3.ocm.core.v1beta1.DeleteOCMCoreShareRequest",
+                "out_type": "cs3.ocm.core.v1beta1.DeleteOCMCoreShareResponse"
               },
               {
                 "name": "CreateTransfer",
@@ -3544,6 +3559,87 @@
                 "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
+          },
+          {
+            "name": "UpdateOCMCoreShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ocm_share_id",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "share_type",
+                "type": "cs3.sharing.ocm.v1beta1.ShareType"
+              },
+              {
+                "id": 6,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 7,
+                "name": "protocols",
+                "type": "cs3.sharing.ocm.v1beta1.Protocol",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "UpdateOCMCoreShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "DeleteOCMCoreShareRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "id",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "DeleteOCMCoreShareResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -3554,6 +3650,16 @@
                 "name": "CreateOCMCoreShare",
                 "in_type": "CreateOCMCoreShareRequest",
                 "out_type": "CreateOCMCoreShareResponse"
+              },
+              {
+                "name": "UpdateOCMCoreShare",
+                "in_type": "UpdateOCMCoreShareRequest",
+                "out_type": "UpdateOCMCoreShareResponse"
+              },
+              {
+                "name": "DeleteOCMCoreShare",
+                "in_type": "DeleteOCMCoreShareRequest",
+                "out_type": "DeleteOCMCoreShareResponse"
               }
             ]
           }
@@ -3838,6 +3944,36 @@
                 "is_repeated": true
               }
             ]
+          },
+          {
+            "name": "DeleteAcceptedUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "remote_user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteAcceptedUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -3873,6 +4009,11 @@
                 "name": "FindAcceptedUsers",
                 "in_type": "FindAcceptedUsersRequest",
                 "out_type": "FindAcceptedUsersResponse"
+              },
+              {
+                "name": "DeleteAcceptedUser",
+                "in_type": "DeleteAcceptedUserRequest",
+                "out_type": "DeleteAcceptedUserResponse"
               }
             ]
           }
@@ -4754,6 +4895,10 @@
               {
                 "name": "CODE_INSUFFICIENT_STORAGE",
                 "integer": 19
+              },
+              {
+                "name": "CODE_LOCKED",
+                "integer": 20
               }
             ]
           }
@@ -7261,7 +7406,7 @@
             "name": "WebDAVAccessMethod",
             "fields": [
               {
-                "id": 2,
+                "id": 1,
                 "name": "permissions",
                 "type": "storage.provider.v1beta1.ResourcePermissions"
               }
@@ -7271,14 +7416,21 @@
             "name": "WebappAccessMethod",
             "fields": [
               {
-                "id": 2,
+                "id": 1,
                 "name": "view_mode",
                 "type": "cs3.app.provider.v1beta1.ViewMode"
               }
             ]
           },
           {
-            "name": "TransferAccessMethod"
+            "name": "TransferAccessMethod",
+            "fields": [
+              {
+                "id": 1,
+                "name": "destination",
+                "type": "storage.provider.v1beta1.Reference"
+              }
+            ]
           }
         ],
         "imports": [
