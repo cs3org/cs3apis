@@ -131,13 +131,13 @@ message UpdateOCMShareRequest {
   message UpdateField {
     // One of the update fields MUST be specified.
     oneof field {
-      // Update the permissions.
-      SharePermissions permissions = 2;
-      // Update the display name.
-      string display_name = 3;
+      // Update the expiration.
+      cs3.types.v1beta1.Timestamp expiration = 1;
+      // Update access methods.
+      AccessMethod access_methods = 2;
     }
   }
-  UpdateField field = 3;
+  repeated UpdateField field = 3;
 }
 
 message UpdateOCMShareResponse {
