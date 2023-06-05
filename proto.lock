@@ -6596,7 +6596,8 @@
               {
                 "id": 3,
                 "name": "field",
-                "type": "UpdateField"
+                "type": "UpdateField",
+                "is_repeated": true
               }
             ],
             "messages": [
@@ -6604,14 +6605,14 @@
                 "name": "UpdateField",
                 "fields": [
                   {
-                    "id": 2,
-                    "name": "permissions",
-                    "type": "SharePermissions"
+                    "id": 1,
+                    "name": "expiration",
+                    "type": "cs3.types.v1beta1.Timestamp"
                   },
                   {
-                    "id": 3,
-                    "name": "display_name",
-                    "type": "string"
+                    "id": 2,
+                    "name": "access_methods",
+                    "type": "AccessMethod"
                   }
                 ]
               }

@@ -3333,27 +3333,21 @@ MUST return CODE_NOT_FOUND if the sync&#39;n&#39;share system provider does not 
                 <td>CreateOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">.cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">.cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse</a></td>
-                <td><p>Creates a new OCM share. The share SHALL be sent to the remote system
-using the OCM API at:
-https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1shares/post</p></td>
+                <td><p>Creates a new OCM share.</p></td>
               </tr>
             
               <tr>
                 <td>UpdateOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.UpdateOCMCoreShareRequest">.cs3.ocm.core.v1beta1.UpdateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.UpdateOCMCoreShareResponse">.cs3.ocm.core.v1beta1.UpdateOCMCoreShareResponse</a></td>
-                <td><p>Updates an OCM share. This action SHALL be notified to the remote system
-using the OCM API at:
-https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1notifications/post</p></td>
+                <td><p>Updates an OCM share.</p></td>
               </tr>
             
               <tr>
                 <td>DeleteOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.DeleteOCMCoreShareRequest">.cs3.ocm.core.v1beta1.DeleteOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.DeleteOCMCoreShareResponse">.cs3.ocm.core.v1beta1.DeleteOCMCoreShareResponse</a></td>
-                <td><p>Deletes an OCM share. This action SHALL be notified to the remote system
-using the OCM API at:
-https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1notifications/post
+                <td><p>Deletes an OCM share.
 
 *****************************************************************/
 ************************** FILE TRANSFER ************************/
@@ -9149,7 +9143,7 @@ Opaque information. </p></td>
 
       
         <h3 id="cs3.ocm.core.v1beta1.OcmCoreAPI">OcmCoreAPI</h3>
-        <p>OCM Core API</p><p>The OCM Core API is the mapping in GRPC of the OCM core protocol.</p><p>The following APIs match the OCM v1.1 spec including multi-protocol shares.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>OCM Core API</p><p>the OCM Core API is the mapping for the local system of the OCM protocol,</p><p>including multi-protocol shares. Implementations are expected to expose</p><p>the `/ocm` endpoints according to the OCM API, and in response to those</p><p>endpoints implement the following API.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -9160,8 +9154,7 @@ Opaque information. </p></td>
                 <td>CreateOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest">CreateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse">CreateOCMCoreShareResponse</a></td>
-                <td><p>Creates a new OCM share. The share SHALL be sent to the remote system
-using the OCM API at:
+                <td><p>Creates a new OCM share, in response to a call from remote to:
 https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1shares/post</p></td>
               </tr>
             
@@ -9169,8 +9162,7 @@ https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;us
                 <td>UpdateOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.UpdateOCMCoreShareRequest">UpdateOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.UpdateOCMCoreShareResponse">UpdateOCMCoreShareResponse</a></td>
-                <td><p>Updates an OCM share. This action SHALL be notified to the remote system
-using the OCM API at:
+                <td><p>Updates an OCM share, in response to a notification from the remote system to:
 https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1notifications/post</p></td>
               </tr>
             
@@ -9178,8 +9170,7 @@ https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;us
                 <td>DeleteOCMCoreShare</td>
                 <td><a href="#cs3.ocm.core.v1beta1.DeleteOCMCoreShareRequest">DeleteOCMCoreShareRequest</a></td>
                 <td><a href="#cs3.ocm.core.v1beta1.DeleteOCMCoreShareResponse">DeleteOCMCoreShareResponse</a></td>
-                <td><p>Deletes an OCM share. This action SHALL be notified to the remote system
-using the OCM API at:
+                <td><p>Deletes an OCM share, in response to a notification from the remote system to:
 https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1notifications/post</p></td>
               </tr>
             
@@ -13596,7 +13587,7 @@ Opaque information. </p></td>
                 <tr>
                   <td>field</td>
                   <td><a href="#cs3.sharing.ocm.v1beta1.UpdateOCMShareRequest.UpdateField">UpdateOCMShareRequest.UpdateField</a></td>
-                  <td></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -13618,17 +13609,17 @@ Opaque information. </p></td>
             <tbody>
               
                 <tr>
-                  <td>permissions</td>
-                  <td><a href="#cs3.sharing.ocm.v1beta1.SharePermissions">SharePermissions</a></td>
+                  <td>expiration</td>
+                  <td><a href="#cs3.types.v1beta1.Timestamp">cs3.types.v1beta1.Timestamp</a></td>
                   <td></td>
-                  <td><p>Update the permissions. </p></td>
+                  <td><p>Update the expiration. </p></td>
                 </tr>
               
                 <tr>
-                  <td>display_name</td>
-                  <td><a href="#string">string</a></td>
+                  <td>access_methods</td>
+                  <td><a href="#cs3.sharing.ocm.v1beta1.AccessMethod">AccessMethod</a></td>
                   <td></td>
-                  <td><p>Update the display name. </p></td>
+                  <td><p>Update access methods. </p></td>
                 </tr>
               
             </tbody>
@@ -13805,7 +13796,7 @@ Opaque information. </p></td>
 
       
         <h3 id="cs3.sharing.ocm.v1beta1.OcmAPI">OcmAPI</h3>
-        <p>OCM Share Provider API</p><p>The OCM Share Provider API is meant to manipulate share</p><p>resources from the perspective of the creator or the share and</p><p>from the perspective of the receiver of the share.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
+        <p>OCM Share Provider API</p><p>The OCM Share Provider API is meant to manipulate share</p><p>resources from the perspective of the creator or the share and</p><p>from the perspective of the receiver of the share.</p><p>The following APIs match the OCM v1.1 spec including multi-protocol shares.</p><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL</p><p>NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and</p><p>"OPTIONAL" in this document are to be interpreted as described in</p><p>RFC 2119.</p><p>The following are global requirements that apply to all methods:</p><p>Any method MUST return CODE_OK on a succesful operation.</p><p>Any method MAY return NOT_IMPLEMENTED.</p><p>Any method MAY return INTERNAL.</p><p>Any method MAY return UNKNOWN.</p><p>Any method MAY return UNAUTHENTICATED.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -13820,7 +13811,9 @@ Opaque information. </p></td>
 MUST return CODE_NOT_FOUND if the resource reference does not exist.
 MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
 (owner, shared_resource, grantee).
-New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
+New shares MUST be created in the state SHARE_STATE_PENDING, and MUST be sent
+to the remote system using the OCM API at:
+https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1shares/post</p></td>
               </tr>
             
               <tr>
@@ -13828,7 +13821,10 @@ New shares MUST be created in the state SHARE_STATE_PENDING.</p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.RemoveOCMShareRequest">RemoveOCMShareRequest</a></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.RemoveOCMShareResponse">RemoveOCMShareResponse</a></td>
                 <td><p>Removes a share.
-MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
+MUST return CODE_NOT_FOUND if the share reference does not exist.
+This action SHALL be notified to the remote system
+using the OCM API at:
+https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1notifications/post</p></td>
               </tr>
             
               <tr>
@@ -13861,7 +13857,10 @@ shares satisfying the filter MUST be returned.</p></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.UpdateOCMShareRequest">UpdateOCMShareRequest</a></td>
                 <td><a href="#cs3.sharing.ocm.v1beta1.UpdateOCMShareResponse">UpdateOCMShareResponse</a></td>
                 <td><p>Updates a share.
-MUST return CODE_NOT_FOUND if the share reference does not exist.</p></td>
+MUST return CODE_NOT_FOUND if the share reference does not exist.
+This action SHALL be notified to the remote system
+using the OCM API at:
+https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&amp;repo=OCM-API&amp;user=cs3org#/paths/~1notifications/post</p></td>
               </tr>
             
               <tr>
@@ -13900,7 +13899,7 @@ MUST return CODE_NOT_FOUND if the received share reference does not exist.</p></
 
       
         <h3 id="cs3.sharing.ocm.v1beta1.AccessMethod">AccessMethod</h3>
-        <p>Defines how the recipient accesses the share.</p>
+        <p>Defines how the recipient accesses an incoming remote OCM share.</p>
 
         
           <table class="field-table">
@@ -13946,7 +13945,7 @@ Used to implement future access methods. </p></td>
         
       
         <h3 id="cs3.sharing.ocm.v1beta1.Protocol">Protocol</h3>
-        <p>The protocol which is used to establish synchronisation.</p>
+        <p>The protocol which is used to give access to a remote OCM user.</p>
 
         
           <table class="field-table">

@@ -224,7 +224,7 @@ message ShareGrant {
   SharePermissions permissions = 2;
 }
 
-// The protocol which is used to establish synchronisation.
+// The protocol which is used to give access to a remote OCM user.
 message Protocol {
   // REQUIRED.
   // One of the protocols MUST be specified.
@@ -287,7 +287,7 @@ enum ShareType {
   SHARE_TYPE_GROUP = 2;
 }
 
-// Defines how the recipient accesses the share.
+// Defines how the recipient accesses an incoming remote OCM share.
 message AccessMethod {
   // REQUIRED.
   // One of the access method MUST be specified.

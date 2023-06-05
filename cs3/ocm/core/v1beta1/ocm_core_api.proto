@@ -36,9 +36,10 @@ import "cs3/types/v1beta1/types.proto";
 
 // OCM Core API
 //
-// The OCM Core API is the mapping in GRPC of the OCM core protocol.
-//
-// The following APIs match the OCM v1.1 spec including multi-protocol shares.
+// the OCM Core API is the mapping for the local system of the OCM protocol,
+// including multi-protocol shares. Implementations are expected to expose
+// the `/ocm` endpoints according to the OCM API, and in response to those
+// endpoints implement the following API.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -52,16 +53,13 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OcmCoreAPI {
-  // Creates a new OCM share. The share SHALL be sent to the remote system
-  // using the OCM API at:
+  // Creates a new OCM share, in response to a call from remote to:
   // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1shares/post
   rpc CreateOCMCoreShare(CreateOCMCoreShareRequest) returns (CreateOCMCoreShareResponse);
-  // Updates an OCM share. This action SHALL be notified to the remote system
-  // using the OCM API at:
+  // Updates an OCM share, in response to a notification from the remote system to:
   // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc UpdateOCMCoreShare(UpdateOCMCoreShareRequest) returns (UpdateOCMCoreShareResponse);
-  // Deletes an OCM share. This action SHALL be notified to the remote system
-  // using the OCM API at:
+  // Deletes an OCM share, in response to a notification from the remote system to:
   // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc DeleteOCMCoreShare(DeleteOCMCoreShareRequest) returns (DeleteOCMCoreShareResponse);
 }
