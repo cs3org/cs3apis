@@ -224,7 +224,7 @@ message ShareGrant {
   SharePermissions permissions = 2;
 }
 
-// The protocol which is used to establish synchronisation.
+// The protocol which is used to give access to a remote OCM user.
 message Protocol {
   // REQUIRED.
   // One of the protocols MUST be specified.
@@ -287,7 +287,7 @@ enum ShareType {
   SHARE_TYPE_GROUP = 2;
 }
 
-// Defines how the recipient accesses the share.
+// Defines how the recipient accesses an incoming remote OCM share.
 message AccessMethod {
   // REQUIRED.
   // One of the access method MUST be specified.
@@ -308,15 +308,19 @@ message AccessMethod {
 message WebDAVAccessMethod {
   // REQUIRED.
   // The permissions for the share.
-  storage.provider.v1beta1.ResourcePermissions permissions = 2;
+  storage.provider.v1beta1.ResourcePermissions permissions = 1;
 }
 
 // Defines the options for the Webapp access method.
 message WebappAccessMethod {
   // REQUIRED.
   // The view mode for the share.
-  cs3.app.provider.v1beta1.ViewMode view_mode = 2;
+  cs3.app.provider.v1beta1.ViewMode view_mode = 1;
 }
 
 // Defines the options for the Transfer access method.
-message TransferAccessMethod {}
+message TransferAccessMethod {
+  // REQUIRED.
+  // The destination path of the data transfer.
+  storage.provider.v1beta1.Reference destination = 1;
+}
