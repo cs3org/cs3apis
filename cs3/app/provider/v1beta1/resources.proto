@@ -69,8 +69,8 @@ enum ViewMode {
 // Defines the valid targets for an app URL.
 enum Target {
   TARGET_INVALID = 0;
-  // The app URL is to be opened on an iframe
+  // The app URL is to be opened within an iframe
   TARGET_IFRAME = 1;
-  // The app URL is to be opened by redirecting to a new page
+  // The app URL is to be opened on a new blank page
   TARGET_BLANK = 2;
 }
