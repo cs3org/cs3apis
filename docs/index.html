@@ -5881,13 +5881,13 @@ Whether the target for the app URL is an iframe or a new page. </p></td>
               <tr>
                 <td>TARGET_IFRAME</td>
                 <td>1</td>
-                <td><p>The app URL is to be opened on an iframe</p></td>
+                <td><p>The app URL is to be opened within an iframe</p></td>
               </tr>
             
               <tr>
                 <td>TARGET_BLANK</td>
                 <td>2</td>
-                <td><p>The app URL is to be opened by redirecting to a new page</p></td>
+                <td><p>The app URL is to be opened on a new blank page</p></td>
               </tr>
             
           </tbody>
@@ -6562,7 +6562,7 @@ The mimetypes handled by this provider. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The address where the app provider can be reached.
-For example, tcp://localhost:1099. </p></td>
+For example, localhost:1099. </p></td>
                 </tr>
               
                 <tr>
@@ -6604,6 +6604,15 @@ A URI to a static asset which represents the app icon. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Whether the app can be opened only on desktop </p></td>
+                </tr>
+              
+                <tr>
+                  <td>action</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The action to be displayed to the user on the context menu.
+By default this is &#34;Open with&#34;. </p></td>
                 </tr>
               
             </tbody>
