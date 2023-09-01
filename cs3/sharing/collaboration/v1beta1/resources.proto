@@ -70,6 +70,9 @@ message Share {
   // Optional.
   // The expiration time of the share.
   cs3.types.v1beta1.Timestamp expiration = 9;
+  // Optional.
+  // Hide share, default false
+  bool hide = 10;
 }
 
 // The permissions for a share.
