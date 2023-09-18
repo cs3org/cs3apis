@@ -89,6 +89,13 @@ message CreatePublicShareRequest {
   // REQUIRED.
   // The restrictions to apply to the share.
   Grant grant = 3;
+  // OPTIONAL
+  // The description to add to the share.
+  string description = 4;
+  // OPTIONAL
+  // Indicates a share used for internal usage,
+  // not exposed by a ListPublicShares.
+  bool internal = 5;
 }
 
 message CreatePublicShareResponse {
@@ -123,6 +130,7 @@ message UpdatePublicShareRequest {
       TYPE_PASSWORD = 2;
       TYPE_EXPIRATION = 3;
       TYPE_DISPLAYNAME = 4;
+      TYPE_DESCRIPTION = 5;
     }
     // REQUIRED.
     // Defines the field to update.
@@ -133,6 +141,9 @@ message UpdatePublicShareRequest {
     // OPTIONAL
     // Defines the public link display name.
     string display_name = 5;
+    // OPTIONAL
+    // Defines the public link description.
+    string description = 6;
   }
   Update update = 3;
 }
@@ -173,6 +184,18 @@ message ListPublicSharesRequest {
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 3;
+  // OPTIONAL.
+  // Clients use this field to specify the maximum number of results to be returned by the server.
+  // The server may further constrain the maximum number of results returned in a single page.
+  // If the page_size is 0, the server will decide the number of results to be returned.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  int32 page_size = 4;
+  // OPTIONAL.
+  // The client uses this field to request a specific page of the list results.
+  string page_token = 5;
 }
 
 message ListPublicSharesResponse {
@@ -185,6 +208,11 @@ message ListPublicSharesResponse {
   // REQUIRED.
   // The list of shares.
   repeated PublicShare share = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
 }
 
 message RemovePublicShareRequest {
@@ -212,6 +240,9 @@ message GetPublicShareRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   PublicShareReference ref = 2;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 3;
 }
 
 message GetPublicShareResponse {
@@ -224,9 +255,6 @@ message GetPublicShareResponse {
   // REQUIRED.
   // The share.
   PublicShare share = 3;
-  // OPTIONAL.
-  // The share password hash.
-  string password_hash = 4;
 }
 
 message GetPublicShareByTokenRequest {
@@ -237,8 +265,11 @@ message GetPublicShareByTokenRequest {
   // The unlisted token to identify the public share.
   string token = 2;
   // OPTIONAL.
-  // The public link can be password protected.
-  string password = 3;
+  // The public link can require authentication.
+  PublicShareAuthentication authentication = 3;
+  // OPTIONAL.
+  // If a signature should be included in the share.
+  bool sign = 4;
 }
 
 message GetPublicShareByTokenResponse {
@@ -253,5 +284,5 @@ message GetPublicShareByTokenResponse {
   PublicShare share = 3;
   // OPTIONAL.
   // The share password hash.
-  string password_hash = 4;
+  string password_hash = 4 [deprecated = true];
 }

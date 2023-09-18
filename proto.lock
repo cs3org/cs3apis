@@ -1,11 +1,360 @@
 {
   "definitions": [
     {
+      "protopath": "cs3:/:admin:/:group:/:v1beta1:/:group_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CreateGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group",
+                "type": "cs3.identity.group.v1beta1.Group"
+              }
+            ]
+          },
+          {
+            "name": "CreateGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "group",
+                "type": "cs3.identity.group.v1beta1.Group"
+              }
+            ]
+          },
+          {
+            "name": "DeleteGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "AddUserToGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "AddUserToGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RemoveUserFromGroupRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RemoveUserFromGroupResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "GroupAPI",
+            "rpcs": [
+              {
+                "name": "CreateGroup",
+                "in_type": "CreateGroupRequest",
+                "out_type": "CreateGroupResponse"
+              },
+              {
+                "name": "DeleteGroup",
+                "in_type": "DeleteGroupRequest",
+                "out_type": "DeleteGroupResponse"
+              },
+              {
+                "name": "AddUserToGroup",
+                "in_type": "AddUserToGroupRequest",
+                "out_type": "AddUserToGroupResponse"
+              },
+              {
+                "name": "RemoveUserFromGroup",
+                "in_type": "RemoveUserFromGroupRequest",
+                "out_type": "RemoveUserFromGroupResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.admin.group.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Admin.Group.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "groupv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "GroupApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.admin.group.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAG"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Admin\\\\Group\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:admin:/:user:/:v1beta1:/:user_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CreateUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.User"
+              }
+            ]
+          },
+          {
+            "name": "CreateUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.User"
+              }
+            ]
+          },
+          {
+            "name": "DeleteUserRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteUserResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "UserAPI",
+            "rpcs": [
+              {
+                "name": "CreateUser",
+                "in_type": "CreateUserRequest",
+                "out_type": "CreateUserResponse"
+              },
+              {
+                "name": "DeleteUser",
+                "in_type": "DeleteUserRequest",
+                "out_type": "DeleteUserResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.admin.user.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Admin.User.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "userv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "UserApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.admin.user.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAU"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Admin\\\\User\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:app:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
         "enums": [
           {
-            "name": "OpenFileInAppProviderRequest.ViewMode",
+            "name": "OpenInAppRequest.ViewMode",
             "enum_fields": [
               {
                 "name": "VIEW_MODE_INVALID"
@@ -21,13 +370,17 @@
               {
                 "name": "VIEW_MODE_READ_WRITE",
                 "integer": 3
+              },
+              {
+                "name": "VIEW_MODE_PREVIEW",
+                "integer": 4
               }
             ]
           }
         ],
         "messages": [
           {
-            "name": "OpenFileInAppProviderRequest",
+            "name": "OpenInAppRequest",
             "fields": [
               {
                 "id": 1,
@@ -52,7 +405,7 @@
             ]
           },
           {
-            "name": "OpenFileInAppProviderResponse",
+            "name": "OpenInAppResponse",
             "fields": [
               {
                 "id": 1,
@@ -66,8 +419,8 @@
               },
               {
                 "id": 3,
-                "name": "app_provider_url",
-                "type": "string"
+                "name": "app_url",
+                "type": "OpenInAppURL"
               }
             ]
           }
@@ -77,14 +430,17 @@
             "name": "ProviderAPI",
             "rpcs": [
               {
-                "name": "OpenFileInAppProvider",
-                "in_type": "OpenFileInAppProviderRequest",
-                "out_type": "OpenFileInAppProviderResponse"
+                "name": "OpenInApp",
+                "in_type": "OpenInAppRequest",
+                "out_type": "OpenInAppResponse"
               }
             ]
           }
         ],
         "imports": [
+          {
+            "path": "cs3/app/provider/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
@@ -114,6 +470,79 @@
           {
             "name": "java_outer_classname",
             "value": "ProviderApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.app.provider.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAP"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\App\\\\Provider\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:app:/:provider:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "OpenInAppURL",
+            "fields": [
+              {
+                "id": 1,
+                "name": "app_url",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "method",
+                "type": "string"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 3,
+                  "name": "form_parameters",
+                  "type": "string"
+                }
+              },
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 4,
+                  "name": "headers",
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.app.provider.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.App.Provider.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "providerv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -171,6 +600,36 @@
             ]
           },
           {
+            "name": "AddAppProviderRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "AddAppProviderResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
             "name": "ListAppProvidersRequest",
             "fields": [
               {
@@ -200,6 +659,107 @@
                 "is_repeated": true
               }
             ]
+          },
+          {
+            "name": "ListSupportedMimeTypesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListSupportedMimeTypesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "mime_types",
+                "type": "MimeTypeInfo",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "GetDefaultAppProviderForMimeTypeRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_type",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetDefaultAppProviderForMimeTypeResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "SetDefaultAppProviderForMimeTypeRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_type",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "provider",
+                "type": "ProviderInfo"
+              }
+            ]
+          },
+          {
+            "name": "SetDefaultAppProviderForMimeTypeResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -212,9 +772,29 @@
                 "out_type": "GetAppProvidersResponse"
               },
               {
+                "name": "AddAppProvider",
+                "in_type": "AddAppProviderRequest",
+                "out_type": "AddAppProviderResponse"
+              },
+              {
                 "name": "ListAppProviders",
                 "in_type": "ListAppProvidersRequest",
                 "out_type": "ListAppProvidersResponse"
+              },
+              {
+                "name": "ListSupportedMimeTypes",
+                "in_type": "ListSupportedMimeTypesRequest",
+                "out_type": "ListSupportedMimeTypesResponse"
+              },
+              {
+                "name": "GetDefaultAppProviderForMimeType",
+                "in_type": "GetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "GetDefaultAppProviderForMimeTypeResponse"
+              },
+              {
+                "name": "SetDefaultAppProviderForMimeType",
+                "in_type": "SetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "SetDefaultAppProviderForMimeTypeResponse"
               }
             ]
           }
@@ -271,6 +851,24 @@
     {
       "protopath": "cs3:/:app:/:registry:/:v1beta1:/:resources.proto",
       "def": {
+        "enums": [
+          {
+            "name": "ProviderInfo.Capability",
+            "enum_fields": [
+              {
+                "name": "CAPABILITY_INVALID"
+              },
+              {
+                "name": "CAPABILITY_VIEWER",
+                "integer": 1
+              },
+              {
+                "name": "CAPABILITY_EDITOR",
+                "integer": 2
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "ProviderInfo",
@@ -293,7 +891,78 @@
               },
               {
                 "id": 4,
+                "name": "capability",
+                "type": "Capability"
+              },
+              {
+                "id": 5,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 6,
                 "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "desktop_only",
+                "type": "bool"
+              }
+            ]
+          },
+          {
+            "name": "MimeTypeInfo",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "mime_type",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "ext",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "app_providers",
+                "type": "ProviderInfo",
+                "is_repeated": true
+              },
+              {
+                "id": 5,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "allow_creation",
+                "type": "bool"
+              },
+              {
+                "id": 9,
+                "name": "default_application",
                 "type": "string"
               }
             ]
@@ -340,6 +1009,337 @@
       }
     },
     {
+      "protopath": "cs3:/:auth:/:applications:/:v1beta1:/:applications_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "GenerateAppPasswordRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 2,
+                  "name": "token_scope",
+                  "type": "cs3.auth.provider.v1beta1.Scope"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GenerateAppPasswordResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "app_password",
+                "type": "AppPassword"
+              }
+            ]
+          },
+          {
+            "name": "ListAppPasswordsRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "ListAppPasswordsResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "app_passwords",
+                "type": "AppPassword",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
+            "name": "InvalidateAppPasswordRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "password",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "InvalidateAppPasswordResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetAppPasswordRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 3,
+                "name": "password",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "GetAppPasswordResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "app_password",
+                "type": "AppPassword"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "ApplicationsAPI",
+            "rpcs": [
+              {
+                "name": "GenerateAppPassword",
+                "in_type": "GenerateAppPasswordRequest",
+                "out_type": "GenerateAppPasswordResponse"
+              },
+              {
+                "name": "ListAppPasswords",
+                "in_type": "ListAppPasswordsRequest",
+                "out_type": "ListAppPasswordsResponse"
+              },
+              {
+                "name": "InvalidateAppPassword",
+                "in_type": "InvalidateAppPasswordRequest",
+                "out_type": "InvalidateAppPasswordResponse"
+              },
+              {
+                "name": "GetAppPassword",
+                "in_type": "GetAppPasswordRequest",
+                "out_type": "GetAppPasswordResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/auth/applications/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/auth/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.auth.applications.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Auth.Applications.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "applicationsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ApplicationsApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.auth.applications.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAA"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Auth\\\\Applications\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:auth:/:applications:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "AppPassword",
+            "fields": [
+              {
+                "id": 1,
+                "name": "password",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 5,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 6,
+                "name": "ctime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 7,
+                "name": "utime",
+                "type": "cs3.types.v1beta1.Timestamp"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 2,
+                  "name": "token_scope",
+                  "type": "cs3.auth.provider.v1beta1.Scope"
+                }
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/auth/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.auth.applications.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Auth.Applications.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "applicationsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.auth.applications.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAA"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Auth\\\\Applications\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:auth:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
         "messages": [
@@ -376,6 +1376,16 @@
                 "name": "user",
                 "type": "cs3.identity.user.v1beta1.User"
               }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 3,
+                  "name": "token_scope",
+                  "type": "Scope"
+                }
+              }
             ]
           }
         ],
@@ -392,6 +1402,9 @@
           }
         ],
         "imports": [
+          {
+            "path": "cs3/auth/provider/v1beta1/resources.proto"
+          },
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
           },
@@ -438,11 +1451,109 @@
       }
     },
     {
+      "protopath": "cs3:/:auth:/:provider:/:v1beta1:/:resources.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Role",
+            "enum_fields": [
+              {
+                "name": "ROLE_INVALID"
+              },
+              {
+                "name": "ROLE_OWNER",
+                "integer": 1
+              },
+              {
+                "name": "ROLE_LEGACY",
+                "integer": 2
+              },
+              {
+                "name": "ROLE_VIEWER",
+                "integer": 3
+              },
+              {
+                "name": "ROLE_EDITOR",
+                "integer": 4
+              },
+              {
+                "name": "ROLE_FILE_EDITOR",
+                "integer": 5
+              },
+              {
+                "name": "ROLE_COOWNER",
+                "integer": 6
+              },
+              {
+                "name": "ROLE_UPLOADER",
+                "integer": 7
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "Scope",
+            "fields": [
+              {
+                "id": 1,
+                "name": "resource",
+                "type": "cs3.types.v1beta1.OpaqueEntry"
+              },
+              {
+                "id": 2,
+                "name": "role",
+                "type": "Role"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.auth.provider.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Auth.Provider.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "providerv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.auth.provider.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CAP"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Auth\\\\Provider\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:auth:/:registry:/:v1beta1:/:registry_api.proto",
       "def": {
         "messages": [
           {
-            "name": "GetAuthProviderRequest",
+            "name": "GetAuthProvidersRequest",
             "fields": [
               {
                 "id": 1,
@@ -457,7 +1568,7 @@
             ]
           },
           {
-            "name": "GetAuthProviderResponse",
+            "name": "GetAuthProvidersResponse",
             "fields": [
               {
                 "id": 1,
@@ -471,8 +1582,9 @@
               },
               {
                 "id": 3,
-                "name": "provider",
-                "type": "ProviderInfo"
+                "name": "providers",
+                "type": "ProviderInfo",
+                "is_repeated": true
               }
             ]
           },
@@ -513,9 +1625,9 @@
             "name": "RegistryAPI",
             "rpcs": [
               {
-                "name": "GetAuthProvider",
-                "in_type": "GetAuthProviderRequest",
-                "out_type": "GetAuthProviderResponse"
+                "name": "GetAuthProviders",
+                "in_type": "GetAuthProvidersRequest",
+                "out_type": "GetAuthProvidersResponse"
               },
               {
                 "name": "ListAuthProviders",
@@ -646,7 +1758,7 @@
       "def": {
         "enums": [
           {
-            "name": "OpenFileInAppProviderRequest.ViewMode",
+            "name": "OpenInAppRequest.ViewMode",
             "enum_fields": [
               {
                 "name": "VIEW_MODE_INVALID"
@@ -662,6 +1774,10 @@
               {
                 "name": "VIEW_MODE_READ_WRITE",
                 "integer": 3
+              },
+              {
+                "name": "VIEW_MODE_PREVIEW",
+                "integer": 4
               }
             ]
           }
@@ -768,71 +1884,6 @@
             ]
           },
           {
-            "name": "ListRecycleRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
-                "name": "from_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              },
-              {
-                "id": 4,
-                "name": "to_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              }
-            ]
-          },
-          {
-            "name": "ListRecycleStreamRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
-                "name": "from_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              },
-              {
-                "id": 4,
-                "name": "to_ts",
-                "type": "cs3.types.v1beta1.Timestamp"
-              }
-            ]
-          },
-          {
-            "name": "PurgeRecycleRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              }
-            ]
-          },
-          {
             "name": "InitiateFileDownloadResponse",
             "fields": [
               {
@@ -896,7 +1947,7 @@
             ]
           },
           {
-            "name": "OpenFileInAppProviderRequest",
+            "name": "OpenInAppRequest",
             "fields": [
               {
                 "id": 1,
@@ -912,6 +1963,16 @@
                 "id": 3,
                 "name": "view_mode",
                 "type": "ViewMode"
+              },
+              {
+                "id": 4,
+                "name": "app",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           }
@@ -931,9 +1992,34 @@
                 "out_type": "WhoAmIResponse"
               },
               {
+                "name": "GenerateAppPassword",
+                "in_type": "cs3.auth.applications.v1beta1.GenerateAppPasswordRequest",
+                "out_type": "cs3.auth.applications.v1beta1.GenerateAppPasswordResponse"
+              },
+              {
+                "name": "ListAppPasswords",
+                "in_type": "cs3.auth.applications.v1beta1.ListAppPasswordsRequest",
+                "out_type": "cs3.auth.applications.v1beta1.ListAppPasswordsResponse"
+              },
+              {
+                "name": "InvalidateAppPassword",
+                "in_type": "cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest",
+                "out_type": "cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse"
+              },
+              {
+                "name": "GetAppPassword",
+                "in_type": "cs3.auth.applications.v1beta1.GetAppPasswordRequest",
+                "out_type": "cs3.auth.applications.v1beta1.GetAppPasswordResponse"
+              },
+              {
                 "name": "CreateContainer",
                 "in_type": "cs3.storage.provider.v1beta1.CreateContainerRequest",
                 "out_type": "cs3.storage.provider.v1beta1.CreateContainerResponse"
+              },
+              {
+                "name": "TouchFile",
+                "in_type": "cs3.storage.provider.v1beta1.TouchFileRequest",
+                "out_type": "cs3.storage.provider.v1beta1.TouchFileResponse"
               },
               {
                 "name": "Delete",
@@ -978,13 +2064,13 @@
               },
               {
                 "name": "ListRecycleStream",
-                "in_type": "ListRecycleStreamRequest",
+                "in_type": "cs3.storage.provider.v1beta1.ListRecycleStreamRequest",
                 "out_type": "cs3.storage.provider.v1beta1.ListRecycleStreamResponse",
                 "out_streamed": true
               },
               {
                 "name": "ListRecycle",
-                "in_type": "ListRecycleRequest",
+                "in_type": "cs3.storage.provider.v1beta1.ListRecycleRequest",
                 "out_type": "cs3.storage.provider.v1beta1.ListRecycleResponse"
               },
               {
@@ -994,7 +2080,7 @@
               },
               {
                 "name": "PurgeRecycle",
-                "in_type": "PurgeRecycleRequest",
+                "in_type": "cs3.storage.provider.v1beta1.PurgeRecycleRequest",
                 "out_type": "cs3.storage.provider.v1beta1.PurgeRecycleResponse"
               },
               {
@@ -1028,6 +2114,26 @@
                 "out_type": "cs3.storage.provider.v1beta1.UnsetArbitraryMetadataResponse"
               },
               {
+                "name": "SetLock",
+                "in_type": "cs3.storage.provider.v1beta1.SetLockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.SetLockResponse"
+              },
+              {
+                "name": "GetLock",
+                "in_type": "cs3.storage.provider.v1beta1.GetLockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.GetLockResponse"
+              },
+              {
+                "name": "RefreshLock",
+                "in_type": "cs3.storage.provider.v1beta1.RefreshLockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.RefreshLockResponse"
+              },
+              {
+                "name": "Unlock",
+                "in_type": "cs3.storage.provider.v1beta1.UnlockRequest",
+                "out_type": "cs3.storage.provider.v1beta1.UnlockResponse"
+              },
+              {
                 "name": "CreateHome",
                 "in_type": "cs3.storage.provider.v1beta1.CreateHomeRequest",
                 "out_type": "cs3.storage.provider.v1beta1.CreateHomeResponse"
@@ -1053,9 +2159,9 @@
                 "out_type": "cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse"
               },
               {
-                "name": "OpenFileInAppProvider",
-                "in_type": "OpenFileInAppProviderRequest",
-                "out_type": "cs3.app.provider.v1beta1.OpenFileInAppProviderResponse"
+                "name": "OpenInApp",
+                "in_type": "OpenInAppRequest",
+                "out_type": "cs3.app.provider.v1beta1.OpenInAppResponse"
               },
               {
                 "name": "CreateShare",
@@ -1183,9 +2289,29 @@
                 "out_type": "cs3.app.registry.v1beta1.GetAppProvidersResponse"
               },
               {
+                "name": "AddAppProvider",
+                "in_type": "cs3.app.registry.v1beta1.AddAppProviderRequest",
+                "out_type": "cs3.app.registry.v1beta1.AddAppProviderResponse"
+              },
+              {
                 "name": "ListAppProviders",
                 "in_type": "cs3.app.registry.v1beta1.ListAppProvidersRequest",
                 "out_type": "cs3.app.registry.v1beta1.ListAppProvidersResponse"
+              },
+              {
+                "name": "ListSupportedMimeTypes",
+                "in_type": "cs3.app.registry.v1beta1.ListSupportedMimeTypesRequest",
+                "out_type": "cs3.app.registry.v1beta1.ListSupportedMimeTypesResponse"
+              },
+              {
+                "name": "GetDefaultAppProviderForMimeType",
+                "in_type": "cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "cs3.app.registry.v1beta1.GetDefaultAppProviderForMimeTypeResponse"
+              },
+              {
+                "name": "SetDefaultAppProviderForMimeType",
+                "in_type": "cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeRequest",
+                "out_type": "cs3.app.registry.v1beta1.SetDefaultAppProviderForMimeTypeResponse"
               },
               {
                 "name": "GetUser",
@@ -1301,6 +2427,21 @@
                 "name": "CancelTransfer",
                 "in_type": "cs3.tx.v1beta1.CancelTransferRequest",
                 "out_type": "cs3.tx.v1beta1.CancelTransferResponse"
+              },
+              {
+                "name": "ListTransfers",
+                "in_type": "cs3.tx.v1beta1.ListTransfersRequest",
+                "out_type": "cs3.tx.v1beta1.ListTransfersResponse"
+              },
+              {
+                "name": "RetryTransfer",
+                "in_type": "cs3.tx.v1beta1.RetryTransferRequest",
+                "out_type": "cs3.tx.v1beta1.RetryTransferResponse"
+              },
+              {
+                "name": "CheckPermission",
+                "in_type": "cs3.permissions.v1beta1.CheckPermissionRequest",
+                "out_type": "cs3.permissions.v1beta1.CheckPermissionResponse"
               }
             ]
           }
@@ -1311,6 +2452,9 @@
           },
           {
             "path": "cs3/app/registry/v1beta1/registry_api.proto"
+          },
+          {
+            "path": "cs3/auth/applications/v1beta1/applications_api.proto"
           },
           {
             "path": "cs3/auth/registry/v1beta1/registry_api.proto"
@@ -1335,6 +2479,9 @@
           },
           {
             "path": "cs3/ocm/provider/v1beta1/provider_api.proto"
+          },
+          {
+            "path": "cs3/permissions/v1beta1/permissions_api.proto"
           },
           {
             "path": "cs3/preferences/v1beta1/preferences_api.proto"
@@ -1519,6 +2666,11 @@
                 "id": 2,
                 "name": "group_id",
                 "type": "cs3.identity.group.v1beta1.GroupId"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_members",
+                "type": "bool"
               }
             ]
           },
@@ -1559,6 +2711,11 @@
                 "id": 3,
                 "name": "value",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "skip_fetching_members",
+                "type": "bool"
               }
             ]
           },
@@ -1670,6 +2827,11 @@
                 "id": 2,
                 "name": "filter",
                 "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_members",
+                "type": "bool"
               }
             ]
           },
@@ -1888,6 +3050,48 @@
     {
       "protopath": "cs3:/:identity:/:user:/:v1beta1:/:resources.proto",
       "def": {
+        "enums": [
+          {
+            "name": "UserType",
+            "enum_fields": [
+              {
+                "name": "USER_TYPE_INVALID"
+              },
+              {
+                "name": "USER_TYPE_PRIMARY",
+                "integer": 1
+              },
+              {
+                "name": "USER_TYPE_SECONDARY",
+                "integer": 2
+              },
+              {
+                "name": "USER_TYPE_SERVICE",
+                "integer": 3
+              },
+              {
+                "name": "USER_TYPE_APPLICATION",
+                "integer": 4
+              },
+              {
+                "name": "USER_TYPE_GUEST",
+                "integer": 5
+              },
+              {
+                "name": "USER_TYPE_FEDERATED",
+                "integer": 6
+              },
+              {
+                "name": "USER_TYPE_LIGHTWEIGHT",
+                "integer": 7
+              },
+              {
+                "name": "USER_TYPE_SPACE_OWNER",
+                "integer": 8
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "UserId",
@@ -1901,6 +3105,11 @@
                 "id": 2,
                 "name": "opaque_id",
                 "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "type",
+                "type": "UserType"
               }
             ]
           },
@@ -2012,6 +3221,11 @@
                 "id": 2,
                 "name": "user_id",
                 "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_user_groups",
+                "type": "bool"
               }
             ]
           },
@@ -2052,6 +3266,11 @@
                 "id": 3,
                 "name": "value",
                 "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "skip_fetching_user_groups",
+                "type": "bool"
               }
             ]
           },
@@ -2123,6 +3342,11 @@
                 "id": 2,
                 "name": "filter",
                 "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "skip_fetching_user_groups",
+                "type": "bool"
               }
             ]
           },
@@ -2423,6 +3647,11 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "description",
+                "type": "string"
               }
             ]
           },
@@ -2478,6 +3707,21 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 4,
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "display_name",
+                "type": "string"
               }
             ]
           },
@@ -2513,6 +3757,21 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 4,
+                "name": "email",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "display_name",
+                "type": "string"
               }
             ]
           },
@@ -3087,6 +4346,162 @@
       }
     },
     {
+      "protopath": "cs3:/:permissions:/:v1beta1:/:permissions_api.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "CheckPermissionRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "permission",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "subject_ref",
+                "type": "cs3.permissions.v1beta1.SubjectReference"
+              },
+              {
+                "id": 3,
+                "name": "ref",
+                "type": "cs3.storage.provider.v1beta1.Reference"
+              }
+            ]
+          },
+          {
+            "name": "CheckPermissionResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "PermissionsAPI",
+            "rpcs": [
+              {
+                "name": "CheckPermission",
+                "in_type": "CheckPermissionRequest",
+                "out_type": "CheckPermissionResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/permissions/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.permissions.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Permissions.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "permissionsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "PermissionsApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.permissions.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CPX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Permissions\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:permissions:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "SubjectReference",
+            "fields": [
+              {
+                "id": 1,
+                "name": "user_id",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 2,
+                "name": "group_id",
+                "type": "cs3.identity.group.v1beta1.GroupId"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/group/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.permissions.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Permissions.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "permissionsv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.permissions.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CPX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Permissions\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
       "protopath": "cs3:/:preferences:/:v1beta1:/:preferences_api.proto",
       "def": {
         "messages": [
@@ -3096,7 +4511,7 @@
               {
                 "id": 1,
                 "name": "key",
-                "type": "string"
+                "type": "PreferenceKey"
               },
               {
                 "id": 2,
@@ -3121,7 +4536,7 @@
               {
                 "id": 1,
                 "name": "key",
-                "type": "string"
+                "type": "PreferenceKey"
               }
             ]
           },
@@ -3160,6 +4575,9 @@
         ],
         "imports": [
           {
+            "path": "cs3/preferences/v1beta1/resources.proto"
+          },
+          {
             "path": "cs3/rpc/v1beta1/status.proto"
           }
         ],
@@ -3182,6 +4600,61 @@
           {
             "name": "java_outer_classname",
             "value": "PreferencesApiProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.preferences.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CPX"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Preferences\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:preferences:/:v1beta1:/:resources.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "PreferenceKey",
+            "fields": [
+              {
+                "id": 1,
+                "name": "namespace",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "key",
+                "type": "string"
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "cs3.preferences.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Preferences.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "preferencesv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ResourcesProto"
           },
           {
             "name": "java_package",
@@ -3279,6 +4752,10 @@
               {
                 "name": "CODE_REDIRECTION",
                 "integer": 18
+              },
+              {
+                "name": "CODE_INSUFFICIENT_STORAGE",
+                "integer": 19
               }
             ]
           }
@@ -3391,32 +4868,6 @@
     {
       "protopath": "cs3:/:sharing:/:collaboration:/:v1beta1:/:collaboration_api.proto",
       "def": {
-        "enums": [
-          {
-            "name": "Filter.Type",
-            "enum_fields": [
-              {
-                "name": "TYPE_INVALID"
-              },
-              {
-                "name": "TYPE_NO",
-                "integer": 1
-              },
-              {
-                "name": "TYPE_RESOURCE_ID",
-                "integer": 2
-              },
-              {
-                "name": "TYPE_OWNER",
-                "integer": 3
-              },
-              {
-                "name": "TYPE_CREATOR",
-                "integer": 4
-              }
-            ]
-          }
-        ],
         "messages": [
           {
             "name": "CreateShareRequest",
@@ -3507,6 +4958,11 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "Share"
               }
             ]
           },
@@ -3523,33 +4979,16 @@
                 "name": "filters",
                 "type": "Filter",
                 "is_repeated": true
-              }
-            ],
-            "messages": [
+              },
               {
-                "name": "Filter",
-                "fields": [
-                  {
-                    "id": 2,
-                    "name": "type",
-                    "type": "Type"
-                  },
-                  {
-                    "id": 3,
-                    "name": "resource_id",
-                    "type": "storage.provider.v1beta1.ResourceId"
-                  },
-                  {
-                    "id": 4,
-                    "name": "owner",
-                    "type": "cs3.identity.user.v1beta1.UserId"
-                  },
-                  {
-                    "id": 5,
-                    "name": "creator",
-                    "type": "cs3.identity.user.v1beta1.UserId"
-                  }
-                ]
+                "id": 3,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 4,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -3571,6 +5010,11 @@
                 "name": "shares",
                 "type": "Share",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -3646,6 +5090,22 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 5,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -3667,6 +5127,11 @@
                 "name": "shares",
                 "type": "ReceivedShare",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -3680,30 +5145,13 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "ShareReference"
+                "name": "share",
+                "type": "ReceivedShare"
               },
               {
                 "id": 3,
-                "name": "field",
-                "type": "UpdateField"
-              }
-            ],
-            "messages": [
-              {
-                "name": "UpdateField",
-                "fields": [
-                  {
-                    "id": 1,
-                    "name": "display_name",
-                    "type": "string"
-                  },
-                  {
-                    "id": 2,
-                    "name": "state",
-                    "type": "ShareState"
-                  }
-                ]
+                "name": "update_mask",
+                "type": "google.protobuf.FieldMask"
               }
             ]
           },
@@ -3719,6 +5167,11 @@
                 "id": 2,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "share",
+                "type": "ReceivedShare"
               }
             ]
           },
@@ -3807,9 +5260,6 @@
         ],
         "imports": [
           {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
-          {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
@@ -3820,6 +5270,9 @@
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
+          },
+          {
+            "path": "google/protobuf/field_mask.proto"
           }
         ],
         "package": {
@@ -3878,6 +5331,46 @@
               {
                 "name": "SHARE_STATE_REJECTED",
                 "integer": 3
+              }
+            ]
+          },
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_NO",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_RESOURCE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_OWNER",
+                "integer": 3
+              },
+              {
+                "name": "TYPE_CREATOR",
+                "integer": 4
+              },
+              {
+                "name": "TYPE_GRANTEE_TYPE",
+                "integer": 5
+              },
+              {
+                "name": "TYPE_EXCLUDE_DENIALS",
+                "integer": 6
+              },
+              {
+                "name": "TYPE_SPACE_ID",
+                "integer": 7
+              },
+              {
+                "name": "TYPE_STATE",
+                "integer": 8
               }
             ]
           }
@@ -3950,6 +5443,11 @@
                 "id": 2,
                 "name": "state",
                 "type": "ShareState"
+              },
+              {
+                "id": 3,
+                "name": "mount_point",
+                "type": "storage.provider.v1beta1.Reference"
               }
             ]
           },
@@ -4010,6 +5508,46 @@
                 "id": 2,
                 "name": "permissions",
                 "type": "SharePermissions"
+              }
+            ]
+          },
+          {
+            "name": "Filter",
+            "fields": [
+              {
+                "id": 2,
+                "name": "type",
+                "type": "Type"
+              },
+              {
+                "id": 3,
+                "name": "resource_id",
+                "type": "storage.provider.v1beta1.ResourceId"
+              },
+              {
+                "id": 4,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 5,
+                "name": "creator",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 6,
+                "name": "grantee_type",
+                "type": "storage.provider.v1beta1.GranteeType"
+              },
+              {
+                "id": 7,
+                "name": "space_id",
+                "type": "string"
+              },
+              {
+                "id": 8,
+                "name": "state",
+                "type": "ShareState"
               }
             ]
           }
@@ -4085,6 +5623,10 @@
               {
                 "name": "TYPE_DISPLAYNAME",
                 "integer": 4
+              },
+              {
+                "name": "TYPE_DESCRIPTION",
+                "integer": 5
               }
             ]
           },
@@ -4127,6 +5669,16 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "internal",
+                "type": "bool"
               }
             ]
           },
@@ -4187,6 +5739,11 @@
                     "id": 5,
                     "name": "display_name",
                     "type": "string"
+                  },
+                  {
+                    "id": 6,
+                    "name": "description",
+                    "type": "string"
                   }
                 ]
               }
@@ -4225,6 +5782,21 @@
                 "name": "filters",
                 "type": "Filter",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "sign",
+                "type": "bool"
+              },
+              {
+                "id": 4,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 5,
+                "name": "page_token",
+                "type": "string"
               }
             ],
             "messages": [
@@ -4273,6 +5845,11 @@
                 "name": "share",
                 "type": "PublicShare",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -4318,6 +5895,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "PublicShareReference"
+              },
+              {
+                "id": 3,
+                "name": "sign",
+                "type": "bool"
               }
             ]
           },
@@ -4338,11 +5920,6 @@
                 "id": 3,
                 "name": "share",
                 "type": "PublicShare"
-              },
-              {
-                "id": 4,
-                "name": "password_hash",
-                "type": "string"
               }
             ]
           },
@@ -4361,8 +5938,13 @@
               },
               {
                 "id": 3,
-                "name": "password",
-                "type": "string"
+                "name": "authentication",
+                "type": "PublicShareAuthentication"
+              },
+              {
+                "id": 4,
+                "name": "sign",
+                "type": "bool"
               }
             ]
           },
@@ -4387,7 +5969,13 @@
               {
                 "id": 4,
                 "name": "password_hash",
-                "type": "string"
+                "type": "string",
+                "options": [
+                  {
+                    "name": "deprecated",
+                    "value": "true"
+                  }
+                ]
               }
             ]
           }
@@ -4542,6 +6130,21 @@
                 "id": 11,
                 "name": "display_name",
                 "type": "string"
+              },
+              {
+                "id": 12,
+                "name": "signature",
+                "type": "ShareSignature"
+              },
+              {
+                "id": 13,
+                "name": "quicklink",
+                "type": "bool"
+              },
+              {
+                "id": 14,
+                "name": "description",
+                "type": "string"
               }
             ]
           },
@@ -4577,6 +6180,36 @@
                 "id": 2,
                 "name": "token",
                 "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "PublicShareAuthentication",
+            "fields": [
+              {
+                "id": 1,
+                "name": "password",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "signature",
+                "type": "ShareSignature"
+              }
+            ]
+          },
+          {
+            "name": "ShareSignature",
+            "fields": [
+              {
+                "id": 1,
+                "name": "signature",
+                "type": "string"
+              },
+              {
+                "id": 2,
+                "name": "signature_expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -4795,6 +6428,16 @@
                 "name": "filters",
                 "type": "Filter",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 4,
+                "name": "page_token",
+                "type": "string"
               }
             ],
             "messages": [
@@ -4843,6 +6486,11 @@
                 "name": "shares",
                 "type": "Share",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -4918,6 +6566,16 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 3,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -4939,6 +6597,11 @@
                 "name": "shares",
                 "type": "ReceivedShare",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -4952,30 +6615,13 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "ShareReference"
+                "name": "share",
+                "type": "ReceivedShare"
               },
               {
                 "id": 3,
-                "name": "field",
-                "type": "UpdateField"
-              }
-            ],
-            "messages": [
-              {
-                "name": "UpdateField",
-                "fields": [
-                  {
-                    "id": 1,
-                    "name": "display_name",
-                    "type": "string"
-                  },
-                  {
-                    "id": 2,
-                    "name": "state",
-                    "type": "ShareState"
-                  }
-                ]
+                "name": "update_mask",
+                "type": "google.protobuf.FieldMask"
               }
             ]
           },
@@ -5095,6 +6741,9 @@
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
+          },
+          {
+            "path": "google/protobuf/field_mask.proto"
           }
         ],
         "package": {
@@ -5256,6 +6905,11 @@
                 "id": 2,
                 "name": "state",
                 "type": "ShareState"
+              },
+              {
+                "id": 3,
+                "name": "mount_point",
+                "type": "storage.provider.v1beta1.Reference"
               }
             ]
           },
@@ -5391,6 +7045,14 @@
               {
                 "name": "TYPE_SPACE_TYPE",
                 "integer": 4
+              },
+              {
+                "name": "TYPE_PATH",
+                "integer": 5
+              },
+              {
+                "name": "TYPE_USER",
+                "integer": 6
               }
             ]
           }
@@ -5443,11 +7105,56 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
           {
             "name": "AddGrantResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "DenyGrantRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "grantee",
+                "type": "Grantee"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "DenyGrantResponse",
             "fields": [
               {
                 "id": 1,
@@ -5492,6 +7199,36 @@
             ]
           },
           {
+            "name": "TouchFileRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "TouchFileResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
             "name": "DeleteRequest",
             "fields": [
               {
@@ -5503,6 +7240,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -5563,6 +7305,11 @@
                 "id": 1,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "cs3.storage.provider.v1beta1.Reference"
               }
             ]
           },
@@ -5603,6 +7350,26 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "if_not_exist",
+                "type": "bool"
+              },
+              {
+                "id": 4,
+                "name": "if_match",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "if_unmodified_since",
+                "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 5,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -5639,6 +7406,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -5675,6 +7447,16 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 4,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -5696,6 +7478,11 @@
                 "name": "grants",
                 "type": "Grant",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -5717,6 +7504,21 @@
                 "name": "arbitrary_metadata_keys",
                 "type": "string",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "field_mask",
+                "type": "google.protobuf.FieldMask"
+              },
+              {
+                "id": 5,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 6,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -5737,6 +7539,11 @@
                 "id": 3,
                 "name": "info",
                 "type": "ResourceInfo"
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -5758,6 +7565,21 @@
                 "name": "arbitrary_metadata_keys",
                 "type": "string",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "field_mask",
+                "type": "google.protobuf.FieldMask"
+              },
+              {
+                "id": 5,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 6,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -5779,6 +7601,11 @@
                 "name": "infos",
                 "type": "ResourceInfo",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -5794,6 +7621,16 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 4,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -5815,6 +7652,11 @@
                 "name": "versions",
                 "type": "FileVersion",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -5835,6 +7677,26 @@
                 "id": 3,
                 "name": "to_ts",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 4,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 5,
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 7,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -5856,6 +7718,11 @@
                 "name": "recycle_items",
                 "type": "RecycleItem",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -5876,6 +7743,26 @@
                 "id": 3,
                 "name": "to_ts",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 4,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 5,
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 7,
+                "name": "page_token",
+                "type": "string"
               }
             ]
           },
@@ -5896,6 +7783,11 @@
                 "id": 3,
                 "name": "recycle_item",
                 "type": "RecycleItem"
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -5916,6 +7808,11 @@
                 "id": 3,
                 "name": "destination",
                 "type": "Reference"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -5946,6 +7843,11 @@
                 "id": 2,
                 "name": "ref",
                 "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "key",
+                "type": "string"
               }
             ]
           },
@@ -5980,6 +7882,11 @@
               {
                 "id": 3,
                 "name": "key",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
                 "type": "string"
               }
             ]
@@ -6019,7 +7926,12 @@
               },
               {
                 "id": 4,
-                "name": "restore_path",
+                "name": "restore_ref",
+                "type": "Reference"
+              },
+              {
+                "id": 5,
+                "name": "lock_id",
                 "type": "string"
               }
             ]
@@ -6056,6 +7968,11 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -6092,6 +8009,11 @@
                 "name": "arbitrary_metadata_keys",
                 "type": "string",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "field_mask",
+                "type": "google.protobuf.FieldMask"
               }
             ]
           },
@@ -6132,6 +8054,11 @@
                 "id": 3,
                 "name": "grant",
                 "type": "Grant"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -6160,8 +8087,8 @@
               },
               {
                 "id": 2,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 3,
@@ -6195,8 +8122,8 @@
               },
               {
                 "id": 2,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 3,
@@ -6237,6 +8164,11 @@
                 "id": 3,
                 "name": "arbitrary_metadata",
                 "type": "ArbitraryMetadata"
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
@@ -6273,11 +8205,161 @@
                 "name": "arbitrary_metadata_keys",
                 "type": "string",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "lock_id",
+                "type": "string"
               }
             ]
           },
           {
             "name": "UnsetArbitraryMetadataResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "SetLockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "SetLockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "GetLockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              }
+            ]
+          },
+          {
+            "name": "GetLockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "RefreshLockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              },
+              {
+                "id": 4,
+                "name": "existing_lock_id",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "RefreshLockResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "UnlockRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "ref",
+                "type": "Reference"
+              },
+              {
+                "id": 3,
+                "name": "lock",
+                "type": "Lock"
+              }
+            ]
+          },
+          {
+            "name": "UnlockResponse",
             "fields": [
               {
                 "id": 1,
@@ -6379,6 +8461,21 @@
                 "name": "filters",
                 "type": "Filter",
                 "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "field_mask",
+                "type": "google.protobuf.FieldMask"
+              },
+              {
+                "id": 4,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 5,
+                "name": "page_token",
+                "type": "string"
               }
             ],
             "messages": [
@@ -6404,6 +8501,16 @@
                     "id": 4,
                     "name": "space_type",
                     "type": "string"
+                  },
+                  {
+                    "id": 5,
+                    "name": "path",
+                    "type": "string"
+                  },
+                  {
+                    "id": 6,
+                    "name": "user",
+                    "type": "cs3.identity.user.v1beta1.UserId"
                   }
                 ]
               }
@@ -6427,6 +8534,11 @@
                 "name": "storage_spaces",
                 "type": "StorageSpace",
                 "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
               }
             ]
           },
@@ -6511,9 +8623,19 @@
                 "out_type": "CreateContainerResponse"
               },
               {
+                "name": "TouchFile",
+                "in_type": "TouchFileRequest",
+                "out_type": "TouchFileResponse"
+              },
+              {
                 "name": "Delete",
                 "in_type": "DeleteRequest",
                 "out_type": "DeleteResponse"
+              },
+              {
+                "name": "DenyGrant",
+                "in_type": "DenyGrantRequest",
+                "out_type": "DenyGrantResponse"
               },
               {
                 "name": "GetPath",
@@ -6623,6 +8745,26 @@
                 "out_type": "UnsetArbitraryMetadataResponse"
               },
               {
+                "name": "SetLock",
+                "in_type": "SetLockRequest",
+                "out_type": "SetLockResponse"
+              },
+              {
+                "name": "GetLock",
+                "in_type": "GetLockRequest",
+                "out_type": "GetLockResponse"
+              },
+              {
+                "name": "RefreshLock",
+                "in_type": "RefreshLockRequest",
+                "out_type": "RefreshLockResponse"
+              },
+              {
+                "name": "Unlock",
+                "in_type": "UnlockRequest",
+                "out_type": "UnlockResponse"
+              },
+              {
                 "name": "CreateHome",
                 "in_type": "CreateHomeRequest",
                 "out_type": "CreateHomeResponse"
@@ -6667,6 +8809,9 @@
           },
           {
             "path": "cs3/types/v1beta1/types.proto"
+          },
+          {
+            "path": "google/protobuf/field_mask.proto"
           }
         ],
         "package": {
@@ -6708,6 +8853,26 @@
       "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:resources.proto",
       "def": {
         "enums": [
+          {
+            "name": "LockType",
+            "enum_fields": [
+              {
+                "name": "LOCK_TYPE_INVALID"
+              },
+              {
+                "name": "LOCK_TYPE_SHARED",
+                "integer": 1
+              },
+              {
+                "name": "LOCK_TYPE_WRITE",
+                "integer": 2
+              },
+              {
+                "name": "LOCK_TYPE_EXCL",
+                "integer": 3
+              }
+            ]
+          },
           {
             "name": "ResourceType",
             "enum_fields": [
@@ -6850,6 +9015,32 @@
                 "id": 14,
                 "name": "arbitrary_metadata",
                 "type": "ArbitraryMetadata"
+              },
+              {
+                "id": 15,
+                "name": "lock",
+                "type": "Lock"
+              },
+              {
+                "id": 16,
+                "name": "advisory_locks",
+                "type": "Lock",
+                "is_repeated": true
+              },
+              {
+                "id": 17,
+                "name": "parent_id",
+                "type": "ResourceId"
+              },
+              {
+                "id": 18,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 19,
+                "name": "space",
+                "type": "StorageSpace"
               }
             ]
           },
@@ -6873,6 +9064,41 @@
                   "name": "metadata",
                   "type": "string"
                 }
+              }
+            ]
+          },
+          {
+            "name": "Lock",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "lock_id",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "type",
+                "type": "LockType"
+              },
+              {
+                "id": 4,
+                "name": "user",
+                "type": "cs3.identity.user.v1beta1.UserId"
+              },
+              {
+                "id": 5,
+                "name": "app_name",
+                "type": "string"
+              },
+              {
+                "id": 6,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -6911,13 +9137,13 @@
             "fields": [
               {
                 "id": 1,
-                "name": "path",
-                "type": "string"
+                "name": "resource_id",
+                "type": "ResourceId"
               },
               {
                 "id": 2,
-                "name": "id",
-                "type": "ResourceId"
+                "name": "path",
+                "type": "string"
               }
             ]
           },
@@ -6932,6 +9158,11 @@
               {
                 "id": 2,
                 "name": "opaque_id",
+                "type": "string"
+              },
+              {
+                "id": 3,
+                "name": "space_id",
                 "type": "string"
               }
             ]
@@ -7028,6 +9259,11 @@
                 "id": 19,
                 "name": "update_grant",
                 "type": "bool"
+              },
+              {
+                "id": 20,
+                "name": "deny_grant",
+                "type": "bool"
               }
             ]
           },
@@ -7043,6 +9279,11 @@
                 "id": 2,
                 "name": "permissions",
                 "type": "ResourcePermissions"
+              },
+              {
+                "id": 3,
+                "name": "creator",
+                "type": "cs3.identity.user.v1beta1.UserId"
               }
             ]
           },
@@ -7121,8 +9362,8 @@
               },
               {
                 "id": 4,
-                "name": "path",
-                "type": "string"
+                "name": "ref",
+                "type": "Reference"
               },
               {
                 "id": 5,
@@ -7164,6 +9405,11 @@
                 "id": 5,
                 "name": "expose",
                 "type": "bool"
+              },
+              {
+                "id": 6,
+                "name": "expiration",
+                "type": "cs3.types.v1beta1.Timestamp"
               }
             ]
           },
@@ -7234,6 +9480,11 @@
                 "id": 8,
                 "name": "mtime",
                 "type": "cs3.types.v1beta1.Timestamp"
+              },
+              {
+                "id": 9,
+                "name": "root_info",
+                "type": "ResourceInfo"
               }
             ]
           },
@@ -7589,7 +9840,7 @@
       "def": {
         "enums": [
           {
-            "name": "TxInfo.Status",
+            "name": "Status",
             "enum_fields": [
               {
                 "name": "STATUS_INVALID"
@@ -7658,33 +9909,33 @@
               },
               {
                 "id": 2,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
-              },
-              {
-                "id": 3,
                 "name": "status",
                 "type": "Status"
               },
               {
-                "id": 4,
+                "id": 3,
                 "name": "grantee",
                 "type": "cs3.storage.provider.v1beta1.Grantee"
               },
               {
-                "id": 5,
+                "id": 4,
                 "name": "creator",
                 "type": "cs3.identity.user.v1beta1.UserId"
               },
               {
-                "id": 6,
+                "id": 5,
                 "name": "ctime",
                 "type": "cs3.types.v1beta1.Timestamp"
               },
               {
-                "id": 7,
+                "id": 6,
                 "name": "description",
                 "type": "string"
+              },
+              {
+                "id": 7,
+                "name": "share_id",
+                "type": "cs3.sharing.ocm.v1beta1.ShareId"
               }
             ]
           }
@@ -7692,6 +9943,9 @@
         "imports": [
           {
             "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           },
           {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
@@ -7738,22 +9992,49 @@
     {
       "protopath": "cs3:/:tx:/:v1beta1:/:tx_api.proto",
       "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_STATUS",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_SHARE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_TX_ID",
+                "integer": 3
+              }
+            ]
+          }
+        ],
         "messages": [
           {
             "name": "CreateTransferRequest",
             "fields": [
               {
                 "id": 1,
-                "name": "ref",
-                "type": "cs3.storage.provider.v1beta1.Reference"
+                "name": "src_target_uri",
+                "type": "string"
               },
               {
                 "id": 2,
-                "name": "grantee",
-                "type": "cs3.storage.provider.v1beta1.Grantee"
+                "name": "dest_target_uri",
+                "type": "string"
               },
               {
                 "id": 3,
+                "name": "share_id",
+                "type": "cs3.sharing.ocm.v1beta1.ShareId"
+              },
+              {
+                "id": 4,
                 "name": "opaque",
                 "type": "cs3.types.v1beta1.Opaque"
               }
@@ -7848,6 +10129,105 @@
                 "type": "cs3.types.v1beta1.Opaque"
               }
             ]
+          },
+          {
+            "name": "ListTransfersRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 2,
+                    "name": "status",
+                    "type": "Status"
+                  },
+                  {
+                    "id": 3,
+                    "name": "share_id",
+                    "type": "cs3.sharing.ocm.v1beta1.ShareId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "tx_id",
+                    "type": "TxId"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListTransfersResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "transfers",
+                "type": "TxInfo",
+                "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RetryTransferRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "tx_id",
+                "type": "TxId"
+              },
+              {
+                "id": 2,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
+          },
+          {
+            "name": "RetryTransferResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 2,
+                "name": "tx_info",
+                "type": "TxInfo"
+              },
+              {
+                "id": 3,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              }
+            ]
           }
         ],
         "services": [
@@ -7868,6 +10248,16 @@
                 "name": "CancelTransfer",
                 "in_type": "CancelTransferRequest",
                 "out_type": "CancelTransferResponse"
+              },
+              {
+                "name": "ListTransfers",
+                "in_type": "ListTransfersRequest",
+                "out_type": "ListTransfersResponse"
+              },
+              {
+                "name": "RetryTransfer",
+                "in_type": "RetryTransferRequest",
+                "out_type": "RetryTransferResponse"
               }
             ]
           }
@@ -7877,7 +10267,7 @@
             "path": "cs3/rpc/v1beta1/status.proto"
           },
           {
-            "path": "cs3/storage/provider/v1beta1/resources.proto"
+            "path": "cs3/sharing/ocm/v1beta1/resources.proto"
           },
           {
             "path": "cs3/tx/v1beta1/resources.proto"
@@ -8000,6 +10390,57 @@
           {
             "name": "php_namespace",
             "value": "Cs3\\\\Types\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "third_party:/:google:/:protobuf:/:field_mask.proto",
+      "def": {
+        "messages": [
+          {
+            "name": "FieldMask",
+            "fields": [
+              {
+                "id": 1,
+                "name": "paths",
+                "type": "string",
+                "is_repeated": true
+              }
+            ]
+          }
+        ],
+        "package": {
+          "name": "google.protobuf"
+        },
+        "options": [
+          {
+            "name": "cc_enable_arenas",
+            "value": "true"
+          },
+          {
+            "name": "csharp_namespace",
+            "value": "Google.Protobuf.WellKnownTypes"
+          },
+          {
+            "name": "go_package",
+            "value": "google.golang.org/protobuf/types/known/fieldmaskpb"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "FieldMaskProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.google.protobuf"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "GPB"
           }
         ]
       }

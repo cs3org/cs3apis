@@ -58,7 +58,7 @@ var skip = map[string]bool{}
 
 func main() {
 	flag.Parse()
-	err := filepath.Walk(".", func(path string, fi os.FileInfo, err error) error {
+	err := filepath.Walk("cs3", func(path string, fi os.FileInfo, err error) error {
 		if skip[path] {
 			return nil
 		}

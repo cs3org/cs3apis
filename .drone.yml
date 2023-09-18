@@ -8,6 +8,8 @@ platform:
   arch: amd64
 
 trigger:
+  branch:
+  - main
   event:
     exclude:
     - pull_request
@@ -21,12 +23,13 @@ steps:
   image: cs3org/cs3apis:latest
   environment:
     SSH_KEY:
-      from_secret: deploy_key
+      from_secret: deploy_gh_key
   commands:
     # See https://github.com/drone/drone/issues/2692
     # write the ssh key to disk
     - mkdir /root/.ssh
     - echo -n "$SSH_KEY" > /root/.ssh/id_rsa
+    - shasum /root/.ssh/id_rsa
     - chmod 600 /root/.ssh/id_rsa
     - stat /root/.ssh/id_rsa
 
@@ -59,4 +62,3 @@ steps:
   image: cs3org/cs3apis:latest
   commands:
     - cs3apis-build -only-build # compile, build and publish all available languages
-

@@ -64,8 +64,9 @@ message ResourceInfo {
   // For reference types this is NOT the mtime of the target.
   cs3.types.v1beta1.Timestamp mtime = 7;
   // REQUIRED.
-  // The path for the resource.
-  // It MUST start with the slash character (/).
+  // The path for the resource:
+  // MUST start with `/` when the reference had no resource_id, indicating an absolute path.
+  // MUST start with `.` when the reference had a resource_id, indicating a relative path.
   string path = 8;
   // REQUIRED.
   // The set of permissions for the resource effective for the authenticated user.
@@ -76,19 +77,38 @@ message ResourceInfo {
   // Is the accounting recursive?, could it be set to 0 for directories if recursive not supported? use another field?
   // TODO(moscicki): This needs to be defined also for other types (such as a symlink to a directory or file)
   uint64 size = 10;
-  // REQUIRED:
+  // REQUIRED.
   // Identifier of the owner of the resource.
   cs3.identity.user.v1beta1.UserId owner = 11;
-  // REQUIRED if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE
+  // OPTIONAL.
+  // if ResourceType is either RESOURCE_TYPE_SYMLINK or RESOURCE_TYPE_REFERENCE
+  // it MUST be specified.
   string target = 12;
   // OPTIONAL.
   // Additional metadata attached to the resource.
-  // If resource type is RESOURCE_TYPE_REFERENCE it MUST
+  // If ResourceType is RESOURCE_TYPE_REFERENCE it MUST
   // be specified.
   CanonicalMetadata canonical_metadata = 13;
   // OPTIONAL.
   // Arbitrary metadata attached to a resource.
   ArbitraryMetadata arbitrary_metadata = 14;
+  // OPTIONAL.
+  // Exclusive or write lock on this resource that will limit modification of the resource to holders of the lock.
+  // Can be used by WOPI or other apps requiring write or exclusive locks.
+  Lock lock = 15;
+  // OPTIONAL.
+  // Advisory locks on this resource. Can be used for shared locks or other forms of collaborative locks.
+  repeated Lock advisory_locks = 16;
+  // OPTIONAL.
+  // Reference to the container of this resource. If path is relative it MUST be specified, regardless the
+  // access restrictions to the resource: a subsequent Stat() on it MAY return access denied if appropriate.
+  ResourceId parent_id = 17;
+  // OPTIONAL
+  // The name of the resource.
+  string name = 18;
+  // OPTIONAL.
+  // StorageSpace where this resource is located.
+  StorageSpace space = 19;
 }
 
 // CanonicalMetadata contains extra metadata
@@ -112,6 +132,51 @@ message CanonicalMetadata {
 // Arbitrary metadata than can be set to the resource.
 message ArbitraryMetadata {
   map<string, string> metadata = 1;
+}
+
+// The available type of locks for a resource.
+enum LockType {
+  LOCK_TYPE_INVALID = 0;
+  // Shared (advisory) lock: the resource can be read,
+  // written/overwritten or unlocked by everyone who has access.
+  LOCK_TYPE_SHARED = 1;
+  // Write lock: the resource can be read by everyone who has
+  // access, but write, refreshlock and unlock operations
+  // are restricted to the lock holder.
+  LOCK_TYPE_WRITE = 2;
+  // Exclusive lock: only the lock holder can operate on the
+  // resource, anyone else is denied to access it.
+  LOCK_TYPE_EXCL = 3;
+}
+
+// The metadata associated with a lock on a resource.
+// Provided that storage drivers are free to implement the storage
+// of this metadata according to their constraints, a reference
+// implementation is given here. The lock SHOULD be stored
+// as an extended attribute on the referenced filesystem entry.
+// Such extended attribute MUST NOT be exposed via the `Stat` and `SetArbitraryMetadata` APIs.
+// Instead, the `ResourceInfo.Lock` attribute MUST be populated if a lock exists for the given reference.
+message Lock {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The id of the lock, eg. the X-WOPI-Lock id or the WebDAV opaquelocktoken.
+  string lock_id = 2;
+  // REQUIRED.
+  // The type of lock.
+  LockType type = 3;
+  // OPTIONAL.
+  // The userid of a user, which represents either the lock holder, or the user that last created/modified the lock.
+  // When non empty, `RefreshLock` and `Unlock` operations MUST check their request's content against it.
+  cs3.identity.user.v1beta1.UserId user = 4;
+  // OPTIONAL.
+  // An application name if the lock is held by an app.
+  // When non empty, `RefreshLock` and `Unlock` operations MUST check their request's content against it.
+  string app_name = 5;
+  // OPTIONAL.
+  // The time when the lock will expire.
+  cs3.types.v1beta1.Timestamp expiration = 6;
 }
 
 // The available types of resources.
@@ -189,33 +254,40 @@ message ResourceChecksumPriority {
   uint32 priority = 2;
 }
 
-// The mechanism to identify a resource
-// in the storage provider namespace. Note that the path OR the resourceId must be specifed, not both.
+// The mechanism to identify a resource in the CS3 namespace.
+// It can represent path based, id based and combined references:
+// The storage registry uses the storage_id to determine the responsible storage provider.
+// When the storage_id is not available it will use the path.
+// In a URL the different components can be represented in a string using the following layout:
+// <storage_id>!<node_id>:<path>
 message Reference {
-  // REQUIRED.
-  // One of the specifications MUST be specified.
-  oneof spec {
-    // The path to the resource.
-    // MUST start with the slash character (/).
-    string path = 1;
-    // The id for the resource.
-    // MUST NOT start with the slash character (/).
-    ResourceId id = 2;
-  }
+  // OPTIONAL
+  ResourceId resource_id = 1;
+  // OPTIONAL.
+  // When starting with `/` represents an absolute path. In this case the resource_id MUST be empty.
+  // When starting with `.` represents a path relative to the resource_id. The resource_id MUST be given.
+  // When path is empty the resource_id must be set. Used to look up the path for a resource_id.
+  string path = 2;
 }
 
-// A resource id identifies uniquely a
+// A resource id uniquely identifies a
 // resource in the storage provider namespace.
 // A ResourceId MUST be unique in the storage provider.
 message ResourceId {
   // REQUIRED.
-  // The storage id of the storage provider.
+  // The logical id of a storage. Used by the storage
+  // registry to determine the responsible storage provider.
   string storage_id = 1;
   // REQUIRED.
   // The internal id used by service implementor to
   // uniquely identity the resource in the internal
   // implementation of the service.
   string opaque_id = 2;
+  // OPTIONAL.
+  // The internal id used by service implementor to
+  // uniquely identify the storage space.
+  // Used by the storageprovider to locate the correct storage space.
+  string space_id = 3;
 }
 
 // The representation of permissions attached to a resource.
@@ -238,6 +310,7 @@ message ResourcePermissions {
   bool restore_recycle_item = 17;
   bool stat = 18;
   bool update_grant = 19;
+  bool deny_grant = 20;
 }
 
 // A grant grants permissions
@@ -249,6 +322,12 @@ message Grant {
   // REQUIRED.
   // The permissions for the grant.
   ResourcePermissions permissions = 2;
+  // OPTIONAL
+  // The Creator of the grant
+  cs3.identity.user.v1beta1.UserId creator = 3;
+  // OPTIONAL
+  // Expiration of the grant.
+  cs3.types.v1beta1.Timestamp expiration = 4;
 }
 
 // A grantee is the receiver of a grant.
@@ -313,9 +392,8 @@ message RecycleItem {
   // The key to identify the deleted resource.
   string key = 3;
   // REQUIRED.
-  // The original path of the deleted resource.
-  // MUST start with the slash character (/).
-  string path = 4;
+  // The original reference of the deleted resource.
+  Reference ref = 4;
   // OPTIONAL.
   // The size of the deleted resource.
   uint64 size = 5;
@@ -347,6 +425,9 @@ message FileUploadProtocol {
   // REQUIRED.
   // Tells to the gateway if the client should be exposed directly to the upload_endpoint.
   bool expose = 5;
+  // OPTIONAL.
+  // The time at which the upload will expire.
+  cs3.types.v1beta1.Timestamp expiration = 6;
 }
 
 // A file download protocol object stores information about
@@ -378,7 +459,7 @@ message StorageSpace {
   // OPTIONAL.
   cs3.identity.user.v1beta1.User owner = 3;
   // OPTIONAL.
-  // The root resource of the storage space.
+  // The root resource id of the storage space.
   ResourceId root = 4;
   // OPTIONAL.
   string name = 5;
@@ -390,6 +471,9 @@ message StorageSpace {
   // OPTIONAL.
   // Last modification time (mtime) of the root resource of this storage space.
   cs3.types.v1beta1.Timestamp mtime = 8;
+  // OPTIONAL.
+  // Resource info for the storage space root.
+  ResourceInfo root_info = 9;
 }
 
 // The id of a storage space.

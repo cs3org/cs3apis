@@ -28,11 +28,11 @@ option java_package = "com.cs3.sharing.collaboration.v1beta1";
 option objc_class_prefix = "CSC";
 option php_namespace = "Cs3\\Sharing\\Collaboration\\V1Beta1";
 
-import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
+import "google/protobuf/field_mask.proto";
 
 // User Share Provider API
 //
@@ -55,6 +55,7 @@ import "cs3/types/v1beta1/types.proto";
 service CollaborationAPI {
   // Creates a new share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
+  // MUST return CODE_LOCKED if the resource reference already locked.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 4-tuple consisting of
   // (owner, shared_resource, grantee).
   // New shares MUST be created in the state SHARE_STATE_PENDING.
@@ -111,7 +112,7 @@ message UpdateShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-
+  // Deprecated use the share and update_mask attribute.
   ShareReference ref = 2;
   // REQUIRED.
   message UpdateField {
@@ -124,7 +125,14 @@ message UpdateShareRequest {
     }
   }
   // REQUIRED.
+  // Deprecated use the share and update_mask attribute.
   UpdateField field = 3;
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 4;
+  // REQUIRED.
+  // The share containing the new data
+  Share share = 5;
 }
 
 message UpdateShareResponse {
@@ -134,34 +142,27 @@ message UpdateShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The updated share.
+  Share share = 3;
 }
 
 message ListSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // represents a filter to apply to the request.
-  message Filter {
-    // The filter to apply.
-    enum Type {
-      TYPE_INVALID = 0;
-      TYPE_NO = 1;
-      TYPE_RESOURCE_ID = 2;
-      TYPE_OWNER = 3;
-      TYPE_CREATOR = 4;
-    }
-    // REQUIRED.
-    Type type = 2;
-    oneof term {
-      storage.provider.v1beta1.ResourceId resource_id = 3;
-      cs3.identity.user.v1beta1.UserId owner = 4;
-      cs3.identity.user.v1beta1.UserId creator = 5;
-    }
-  }
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
+  // OPTIONAL.
+  // Clients use this field to specify the maximum number of results to be returned by the server.
+  // The server may further constrain the maximum number of results returned in a single page.
+  // If the page_size is 0, the server will decide the number of results to be returned.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  int32 page_size = 3;
+  // OPTIONAL.
+  // The client uses this field to request a specific page of the list results.
+  string page_token = 4;
 }
 
 message ListSharesResponse {
@@ -174,6 +175,11 @@ message ListSharesResponse {
   // REQUIRED.
   // The list of shares.
   repeated Share shares = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
 }
 
 message RemoveShareRequest {
@@ -219,6 +225,18 @@ message ListReceivedSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 3;
+  // OPTIONAL.
+  // Clients use this field to specify the maximum number of results to be returned by the server.
+  // The server may further constrain the maximum number of results returned in a single page.
+  // If the page_size is 0, the server will decide the number of results to be returned.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  int32 page_size = 4;
+  // OPTIONAL.
+  // The client uses this field to request a specific page of the list results.
+  string page_token = 5;
 }
 
 message ListReceivedSharesResponse {
@@ -231,6 +249,11 @@ message ListReceivedSharesResponse {
   // REQUIRED.
   // The list of received shares.
   repeated ReceivedShare shares = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
 }
 
 // TODO(labkode): clean up display_name ? we'll use storage links for that.
@@ -239,19 +262,11 @@ message UpdateReceivedShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  ShareReference ref = 2;
-  // REQUIRED.
-  // The field to update.
-  message UpdateField {
-    // One of the update fields MUST be specified.
-    oneof field {
-      // Update the display name.
-      string display_name = 1;
-      // Update the share state
-      ShareState state = 2;
-    }
-  }
-  UpdateField field = 3;
+  // The received share to update.
+  ReceivedShare share = 2;
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 3;
 }
 
 message UpdateReceivedShareResponse {
@@ -261,6 +276,9 @@ message UpdateReceivedShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The updated share.
+  ReceivedShare share = 3;
 }
 
 message GetReceivedShareRequest {

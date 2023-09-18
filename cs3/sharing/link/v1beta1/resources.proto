@@ -98,6 +98,18 @@ message PublicShare {
   // This field is only useful for informational purposes, like for example,
   // setting the window title in a public share HTML page.
   string display_name = 11;
+  // OPTIONAL.
+  // A time constrained token with which
+  // GetPublicSharebyToken requests can be
+  // authenticated.
+  ShareSignature signature = 12;
+  // OPTIONAL
+  // A bool value indicating if the link is the quicklink
+  // the server will enforce a maximum of 1 quicklink per resource
+  bool quicklink = 13;
+  // OPTIONAL
+  // Description of the share.
+  string description = 14;
 }
 
 // The permissions for a share.
@@ -128,6 +140,28 @@ message PublicShareReference {
     // The token to identify the public share.
     string token = 2;
   }
+}
+
+// The mechanism to authenticate a request to
+// GetPublicShareByToken.
+message PublicShareAuthentication {
+  oneof spec {
+    // The password of the share.
+    string password = 1;
+    // The signature issued by GetPublicShareByToken.
+    ShareSignature signature = 2;
+  }
+}
+
+// A time constrained token which can be used to
+// authenticate link share requests.
+message ShareSignature {
+  // REQUIRED.
+  // The signature value.
+  string signature = 1;
+  // REQUIRED.
+  // The time until the signature becomes invalid.
+  cs3.types.v1beta1.Timestamp signature_expiration = 2;
 }
 
 // Defines the restrictions for the public share.

@@ -67,26 +67,35 @@ message Share {
   // REQUIRED.
   // Last modification time of the share.
   cs3.types.v1beta1.Timestamp mtime = 8;
+  // Optional.
+  // The expiration time of the share.
+  cs3.types.v1beta1.Timestamp expiration = 9;
+  // Optional.
+  // Hide share, default false
+  bool hide = 10;
 }
 
 // The permissions for a share.
 message SharePermissions {
   storage.provider.v1beta1.ResourcePermissions permissions = 1;
-  // TODO(labkode): additional permissions for shares like re-sharing
+  // TODO(labkode): additional permissions for shares like re-sharing and denying
 
 }
 
 // A received share is the share that a grantee will receive.
 // It expands the original share by adding state to the share,
 // a display name from the perspective of the grantee and a
-// resource mount path in case the share will be mounted
-// in a path in a storage provider.
+// resource mount point in case the share will be mounted
+// in a storage provider.
 message ReceivedShare {
   // REQUIRED.
   Share share = 1;
   // REQUIRED.
   // The state of the share.
   ShareState state = 2;
+  // REQUIRED.
+  // The mount point of the share.
+  storage.provider.v1beta1.Reference mount_point = 3;
 }
 
 // The state of the share.
@@ -160,4 +169,33 @@ message ShareGrant {
   // REQUIRED.
   // The share permissions for the grant.
   SharePermissions permissions = 2;
+  // OPTIONAL
+  // Expiration of the grant.
+  cs3.types.v1beta1.Timestamp expiration = 3;
+}
+
+// Represents a filter to apply to the request.
+message Filter {
+  // The filter to apply.
+  enum Type {
+    TYPE_INVALID = 0;
+    TYPE_NO = 1;
+    TYPE_RESOURCE_ID = 2;
+    TYPE_OWNER = 3;
+    TYPE_CREATOR = 4;
+    TYPE_GRANTEE_TYPE = 5;
+    TYPE_EXCLUDE_DENIALS = 6;
+    TYPE_SPACE_ID = 7;
+    TYPE_STATE = 8;
+  }
+  // REQUIRED.
+  Type type = 2;
+  oneof term {
+    storage.provider.v1beta1.ResourceId resource_id = 3;
+    cs3.identity.user.v1beta1.UserId owner = 4;
+    cs3.identity.user.v1beta1.UserId creator = 5;
+    storage.provider.v1beta1.GranteeType grantee_type = 6;
+    string space_id = 7;
+    ShareState state = 8;
+  }
 }

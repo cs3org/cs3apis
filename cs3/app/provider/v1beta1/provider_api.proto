@@ -28,6 +28,7 @@ option java_package = "com.cs3.app.provider.v1beta1";
 option objc_class_prefix = "CAP";
 option php_namespace = "Cs3\\App\\Provider\\V1Beta1";
 
+import "cs3/app/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
@@ -52,12 +53,12 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service ProviderAPI {
-  // Returns the App provider URL
+  // Returns the App URL and all necessary info to open a resource in an online editor.
   // MUST return CODE_NOT_FOUND if the resource does not exist.
-  rpc OpenFileInAppProvider(OpenFileInAppProviderRequest) returns (OpenFileInAppProviderResponse);
+  rpc OpenInApp(OpenInAppRequest) returns (OpenInAppResponse);
 }
 
-message OpenFileInAppProviderRequest {
+message OpenInAppRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -68,12 +69,18 @@ message OpenFileInAppProviderRequest {
   // View mode.
   enum ViewMode {
     VIEW_MODE_INVALID = 0;
-    // The file can be opened but not downloaded.
+    // The resource can be opened but not downloaded.
     VIEW_MODE_VIEW_ONLY = 1;
-    // The file can be downloaded.
+    // The resource can be downloaded.
     VIEW_MODE_READ_ONLY = 2;
-    // The file can be downloaded and updated.
+    // The resource can be downloaded and updated. The underlying application
+    // MUST be a fully capable editor to support this mode.
     VIEW_MODE_READ_WRITE = 3;
+    // The resource can be downloaded and updated, but must be shown in
+    // preview mode. If the underlying application does not support a preview mode,
+    // or if in a view-only mode users are not allowed to switch to edit mode,
+    // then this mode MUST fall back to READ_WRITE.
+    VIEW_MODE_PREVIEW = 4;
   }
   ViewMode view_mode = 3;
   // REQUIRED.
@@ -81,14 +88,14 @@ message OpenFileInAppProviderRequest {
   // the storage provider to read and write.
   // Service implementors MUST make sure that the access token only grants
   // access to the requested resource.
-  // Service implementors should use a ResourceId rather than a filename to grant access, as
+  // Service implementors should use a ResourceId rather than a filepath to grant access, as
   // ResourceIds MUST NOT change when a resource is renamed.
   // The access token MUST be short-lived.
   // TODO(labkode): investigate token derivation techniques.
   string access_token = 4;
 }
 
-message OpenFileInAppProviderResponse {
+message OpenInAppResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -98,5 +105,5 @@ message OpenFileInAppProviderResponse {
   // REQUIRED.
   // The url that user agents will render to clients.
   // Usually the rendering happens by using HTML iframes or in separate browser tabs.
-  string app_provider_url = 3;
+  OpenInAppURL app_url = 3;
 }

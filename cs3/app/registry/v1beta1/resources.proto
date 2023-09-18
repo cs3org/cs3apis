@@ -42,9 +42,61 @@ message ProviderInfo {
   // The address where the app provider can be reached.
   // For example, tcp://localhost:1099.
   string address = 3;
+  // REQUIRED.
+  // The capability of the underlying app.
+  enum Capability {
+    CAPABILITY_INVALID = 0;
+    // The app is a simple viewer.
+    CAPABILITY_VIEWER = 1;
+    // The app is a full editor.
+    CAPABILITY_EDITOR = 2;
+  }
+  Capability capability = 4;
+  // OPTIONAL.
+  // A human-readable name of the underlying app.
+  string name = 5;
   // OPTIONAL.
   // Information to describe the functionalities
-  // offered by the app provider. Meant to be read
+  // offered by the underlying app. Meant to be read
   // by humans.
-  string description = 4;
+  string description = 6;
+  // OPTIONAL.
+  // A URI to a static asset which represents the app icon.
+  string icon = 7;
+  // OPTIONAL.
+  // Whether the app can be opened only on desktop
+  bool desktop_only = 8;
+}
+
+// Represents a mime type and its corresponding file extension.
+message MimeTypeInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The mime type.
+  string mime_type = 2;
+  // REQUIRED.
+  // The file extension mapped to this mime type.
+  string ext = 3;
+  // REQUIRED.
+  // The list of app providers which can open this mime type
+  repeated ProviderInfo app_providers = 4;
+  // OPTIONAL.
+  // The friendly name of this mime type.
+  string name = 5;
+  // OPTIONAL.
+  // Human-readable information to describe the mime type.
+  string description = 6;
+  // OPTIONAL.
+  // A URI to a static asset which represents the mime type icon.
+  string icon = 7;
+  // OPTIONAL.
+  // Whether the mime type is eligible for file creation in the web UI.
+  // Defaults to false, i.e. files with this mime type can be opened
+  // but not directly created from the web UI.
+  bool allow_creation = 8;
+  // OPTIONAL.
+  // name of the default application to open this mime type
+  string default_application = 9;
 }

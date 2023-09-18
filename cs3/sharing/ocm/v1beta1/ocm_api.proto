@@ -34,6 +34,7 @@ import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
+import "google/protobuf/field_mask.proto";
 
 // OCM Share Provider API
 //
@@ -168,6 +169,15 @@ message ListOCMSharesRequest {
   // OPTIONAL.
   // The list of filters to apply if any.
   repeated Filter filters = 2;
+  // OPTIONAL.
+  // Clients use this field to specify the maximum number of results to be returned by the server.
+  // The server may further constrain the maximum number of results returned in a single page.
+  // If the page_size is 0, the server will decide the number of results to be returned.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  int32 page_size = 3;
+  // OPTIONAL.
+  // The client uses this field to request a specific page of the list results.
+  string page_token = 4;
 }
 
 message ListOCMSharesResponse {
@@ -180,6 +190,11 @@ message ListOCMSharesResponse {
   // REQUIRED.
   // The list of shares.
   repeated Share shares = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
 }
 
 message RemoveOCMShareRequest {
@@ -225,6 +240,15 @@ message ListReceivedOCMSharesRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // Clients use this field to specify the maximum number of results to be returned by the server.
+  // The server may further constrain the maximum number of results returned in a single page.
+  // If the page_size is 0, the server will decide the number of results to be returned.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  int32 page_size = 2;
+  // OPTIONAL.
+  // The client uses this field to request a specific page of the list results.
+  string page_token = 3;
 }
 
 message ListReceivedOCMSharesResponse {
@@ -237,6 +261,11 @@ message ListReceivedOCMSharesResponse {
   // REQUIRED.
   // The list of received shares.
   repeated ReceivedShare shares = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
 }
 
 // TODO(labkode): clean up display_name ? we'll use storage links for that.
@@ -245,18 +274,11 @@ message UpdateReceivedOCMShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  ShareReference ref = 2;
-  // REQUIRED.
-  message UpdateField {
-    // One of the update fields MUST be specified.
-    oneof field {
-      // Update the display name.
-      string display_name = 1;
-      // Update the share state
-      ShareState state = 2;
-    }
-  }
-  UpdateField field = 3;
+  // The received share to update.
+  ReceivedShare share = 2;
+  // The update mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask update_mask = 3;
 }
 
 message UpdateReceivedOCMShareResponse {
