@@ -759,7 +759,7 @@ message RestoreRecycleItemRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The reference to which the action should be performed.
+  // The reference to the user's home directory.
   Reference ref = 2;
   // REQUIRED.
   // The key for the recycle item to be restored.
@@ -1052,6 +1052,8 @@ message CreateHomeRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  Quota quota = 2;
 }
 
 message CreateHomeResponse {

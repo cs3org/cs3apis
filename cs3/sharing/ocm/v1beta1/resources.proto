@@ -28,13 +28,15 @@ option java_package = "com.cs3.sharing.ocm.v1beta1";
 option objc_class_prefix = "CSO";
 option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 
+import "cs3/app/provider/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // Shares are relationships between a resource owner
-// (usually the authenticated user) who grants permissions to a recipient (grantee)
-// on a specified resource (resource_id). UserShares represents both user and groups.
+// (usually the authenticated user) who grants permissions to a recipient
+// (grantee) on a specified resource (resource_id). UserShares represents both
+// user and groups.
 message Share {
   // REQUIRED.
   // Opaque unique identifier of the share.
@@ -46,9 +48,8 @@ message Share {
   // Name of the shared resource.
   string name = 3;
   // REQUIRED.
-  // Permissions for the grantee to use
-  // the resource.
-  SharePermissions permissions = 4;
+  // The unlisted token to give access to the ocm share.
+  string token = 4;
   // REQUIRED.
   // The receiver of the share, like a user, group ...
   storage.provider.v1beta1.Grantee grantee = 5;
@@ -70,16 +71,16 @@ message Share {
   // REQUIRED.
   // Last modification time of the share.
   cs3.types.v1beta1.Timestamp mtime = 9;
-  // Defines the type of share based on its origin.
-  enum ShareType {
-    SHARE_TYPE_INVALID = 0;
-    // A regular file or folder share.
-    SHARE_TYPE_REGULAR = 1;
-    // A file or folder transfer.
-    SHARE_TYPE_TRANSFER = 2;
-  }
-  // Specifies the type of the share.
-  ShareType share_type = 10;
+  // OPTIONAL.
+  // The expiration time for the OCM share.
+  cs3.types.v1beta1.Timestamp expiration = 10;
+  // REQUIRED.
+  // Recipient share type.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 11;
+  // REQUIRED.
+  repeated AccessMethod access_methods = 12;
+  // OPTIONAL.
+  cs3.types.v1beta1.Opaque opaque = 13;
 }
 
 // The permissions for a share.
@@ -89,19 +90,62 @@ message SharePermissions {
 }
 
 // A received share is the share that a grantee will receive.
-// It expands the original share by adding state to the share,
-// a display name from the perspective of the grantee and a
-// resource mount point in case the share will be mounted
-// in a storage provider.
 message ReceivedShare {
   // REQUIRED.
-  Share share = 1;
+  // Opaque unique identifier of the share.
+  ShareId id = 1;
+  // REQUIRED.
+  // Name of the shared resource.
+  string name = 2;
+  // REQUIRED.
+  // Identifier to identify the shared resource at the provider side.
+  // This is unique per provider such that if the same resource is shared twice, this will not be repeated.
+  // This correspond to the `providerId` in the OCM API specs.
+  string remote_share_id = 3;
+  // REQUIRED.
+  // The receiver of the share, like a user, group ...
+  storage.provider.v1beta1.Grantee grantee = 4;
+  // REQUIRED.
+  // Uniquely identifies the owner of the share
+  // (the resource owner at the time of creating the share).
+  // In case the ownership of the underlying resource changes
+  // the share owner field MAY change to reflect the change of ownsership.
+  cs3.identity.user.v1beta1.UserId owner = 5;
+  // REQUIRED.
+  // Uniquely identifies a principal who initiates the share creation.
+  // A creator can create shares on behalf of the owner (because of re-sharing,
+  // because belonging to special groups, ...).
+  // Creator and owner often result in being the same principal.
+  cs3.identity.user.v1beta1.UserId creator = 6;
+  // REQUIRED.
+  // Creation time of the share.
+  cs3.types.v1beta1.Timestamp ctime = 7;
+  // REQUIRED.
+  // Last modification time of the share.
+  cs3.types.v1beta1.Timestamp mtime = 8;
+  // OPTIONAL.
+  // The expiration time for the ocm share.
+  cs3.types.v1beta1.Timestamp expiration = 9;
+  // REQUIRED.
+  // Recipient share type.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 10;
+  // REQUIRED.
+  // List of protocols offered for this share.
+  // In the OCM specifications, this corresponds to the `protocol`
+  // property, to maintain backwards compatibility with OCM v1 where
+  // only a single protocol was implemented. Furthermore,
+  // `protocol.name` MAY be set to `multi` and `protocol.options`
+  // MAY be left empty in the OCM share payload, in order to use
+  // the `protocol.webdav` and similar properties.
+  repeated Protocol protocols = 11;
   // REQUIRED.
   // The state of the share.
-  ShareState state = 2;
+  ShareState state = 12;
+  // OPTIONAL.
+  cs3.types.v1beta1.Opaque opaque = 13;
   // REQUIRED.
-  // The mount point of the share.
-  storage.provider.v1beta1.Reference mount_point = 3;
+  // Resource type.
+  cs3.storage.provider.v1beta1.ResourceType resource_type = 14;
 }
 
 // The state of the share.
@@ -135,21 +179,22 @@ enum ShareState {
 // 4) The grantee for the share = Grantee("type" = "user", "" => "Bob")
 message ShareKey {
   // REQUIRED.
-  cs3.identity.user.v1beta1.UserId owner = 2;
+  cs3.identity.user.v1beta1.UserId owner = 1;
   // REQUIRED.
-  storage.provider.v1beta1.ResourceId resource_id = 3;
+  storage.provider.v1beta1.ResourceId resource_id = 2;
   // REQUIRED.
-  storage.provider.v1beta1.Grantee grantee = 4;
+  storage.provider.v1beta1.Grantee grantee = 3;
 }
 
-// A share id identifies uniquely a // share in the share provider namespace.
+// A share id identifies uniquely a share in the share provider namespace.
 // A ShareId MUST be unique inside the share provider.
 message ShareId {
   // REQUIRED.
   // The internal id used by service implementor to
-  // uniquely identity the share in the internal
+  // uniquely identify the share in the internal
   // implementation of the service.
-  string opaque_id = 2;
+  // In the OCM specifications, this corresponds to the `providerId`.
+  string opaque_id = 1;
 }
 
 // The mechanism to identify a share
@@ -163,6 +208,8 @@ message ShareReference {
     // The combination of fields that
     // make the share unique.
     ShareKey key = 2;
+    // The token of the share.
+    string token = 3;
   }
 }
 
@@ -175,4 +222,105 @@ message ShareGrant {
   // REQUIRED.
   // The share permissions for the grant.
   SharePermissions permissions = 2;
+}
+
+// The protocol which is used to give access to a remote OCM user.
+message Protocol {
+  // REQUIRED.
+  // One of the protocols MUST be specified.
+  oneof term {
+    // Options for WebDAV protocol.
+    WebDAVProtocol webdav_options = 1;
+    // Options for Webapp protocol.
+    WebappProtocol webapp_options = 2;
+    // Options for transfer protocol.
+    TransferProtocol transfer_options = 3;
+    // Options for a generic protocol.
+    // Used to implement future protocols
+    // in the OCM specs.
+    cs3.types.v1beta1.Opaque generic_options = 4;
+  }
+}
+
+// Defines the options for the WebDAV protocol.
+message WebDAVProtocol {
+  // REQUIRED.
+  // Secret used to access the resource.
+  string shared_secret = 1;
+  // REQUIRED.
+  // Permissions of the shared resource.
+  cs3.sharing.ocm.v1beta1.SharePermissions permissions = 2;
+  // REQUIRED.
+  // WebDAV URI used to access the resource.
+  string uri = 3;
+}
+
+// Defines the options for the Webapp protocol.
+message WebappProtocol {
+  // REQUIRED.
+  // Template URI to open the resource with a remote app.
+  string uri_template = 1;
+  // REQUIRED.
+  // View mode for the remote app.
+  cs3.app.provider.v1beta1.ViewMode view_mode = 2;
+}
+
+// Defines the options for the Transfer protocol.
+message TransferProtocol {
+  // REQUIRED.
+  // Secret used to access the source of the data transfer.
+  string shared_secret = 1;
+  // REQUIRED.
+  // Source URI for the data transfer.
+  string source_uri = 2;
+  // REQUIRED.
+  // Size in bytes of the source.
+  uint64 size = 3;
+}
+
+// Defines the type of share based on its recipient.
+enum ShareType {
+  SHARE_TYPE_INVALID = 0;
+  // Share of type user.
+  SHARE_TYPE_USER = 1;
+  // Share of type group.
+  SHARE_TYPE_GROUP = 2;
+}
+
+// Defines how the recipient accesses an incoming remote OCM share.
+message AccessMethod {
+  // REQUIRED.
+  // One of the access method MUST be specified.
+  oneof term {
+    // Options for the WebDAV access method.
+    WebDAVAccessMethod webdav_options = 1;
+    // Options for the Webapp access method.
+    WebappAccessMethod webapp_options = 2;
+    // Options for the Transfer access method.
+    TransferAccessMethod transfer_options = 3;
+    // Options for a generic transfer method.
+    // Used to implement future access methods.
+    cs3.types.v1beta1.Opaque generic_options = 4;
+  }
+}
+
+// Defines the options for the WebDAV access method.
+message WebDAVAccessMethod {
+  // REQUIRED.
+  // The permissions for the share.
+  storage.provider.v1beta1.ResourcePermissions permissions = 1;
+}
+
+// Defines the options for the Webapp access method.
+message WebappAccessMethod {
+  // REQUIRED.
+  // The view mode for the share.
+  cs3.app.provider.v1beta1.ViewMode view_mode = 1;
+}
+
+// Defines the options for the Transfer access method.
+message TransferAccessMethod {
+  // REQUIRED.
+  // The destination path of the data transfer.
+  storage.provider.v1beta1.Reference destination = 1;
 }

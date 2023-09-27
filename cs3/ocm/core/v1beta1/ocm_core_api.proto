@@ -29,13 +29,17 @@ option objc_class_prefix = "COC";
 option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
 
 import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/ocm/core/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
 // OCM Core API
 //
-// The OCM Core API is the mapping in GRPC of the OCM core protocol.
+// the OCM Core API is the mapping for the local system of the OCM protocol,
+// including multi-protocol shares. Implementations are expected to expose
+// the `/ocm` endpoints according to the OCM API, and in response to those
+// endpoints implement the following API.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -49,11 +53,17 @@ import "cs3/types/v1beta1/types.proto";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OcmCoreAPI {
-  // Creates a new ocm share.
+  // Creates a new OCM share, in response to a call from remote to:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1shares/post
   rpc CreateOCMCoreShare(CreateOCMCoreShareRequest) returns (CreateOCMCoreShareResponse);
+  // Updates an OCM share, in response to a notification from the remote system to:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  rpc UpdateOCMCoreShare(UpdateOCMCoreShareRequest) returns (UpdateOCMCoreShareResponse);
+  // Deletes an OCM share, in response to a notification from the remote system to:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  rpc DeleteOCMCoreShare(DeleteOCMCoreShareRequest) returns (DeleteOCMCoreShareResponse);
 }
 
-// https://rawgit.com/GEANT/OCM-API/v1/docs.html#null%2Fpaths%2F~1shares%2Fpost
 message CreateOCMCoreShareRequest {
   // OPTIONAL.
   // Opaque information.
@@ -66,19 +76,34 @@ message CreateOCMCoreShareRequest {
   string name = 3;
   // REQUIRED.
   // Identifier to identify the resource at the provider side. This is unique per provider.
-  string provider_id = 4;
+  string resource_id = 4;
+  // REQUIRED.
+  // Provider specific identifier of the owner of the resource.
+  cs3.identity.user.v1beta1.UserId owner = 5;
   // REQUIRED.
   // Provider specific identifier of the user that wants to share the resource.
-  cs3.identity.user.v1beta1.UserId owner = 5;
+  cs3.identity.user.v1beta1.UserId sender = 6;
   // REQUIRED.
   // Consumer specific identifier of the user or group the provider wants to share the resource with.
   // This is known in advance, for example using the OCM invitation flow.
   // Please note that the consumer service endpoint is known in advance as well, so this is no part of the request body.
   // TODO: this field needs to represent either a user or group in the future, not only a user.
-  cs3.identity.user.v1beta1.UserId share_with = 6;
+  cs3.identity.user.v1beta1.UserId share_with = 7;
   // REQUIRED.
-  // The protocol which is used to establish synchronisation.
-  Protocol protocol = 7;
+  // Resource type.
+  cs3.storage.provider.v1beta1.ResourceType resource_type = 8;
+  // REQUIRED.
+  // Recipient share type.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 9;
+  // OPTIONAL.
+  // The expiration time for the OCM share.
+  cs3.types.v1beta1.Timestamp expiration = 10;
+  // REQUIRED.
+  // The protocols which are used to establish synchronisation,
+  // with their access rights.
+  // See also cs3/sharing/ocm/v1beta1/resources.proto for how to map
+  // this to the OCM share payload.
+  repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 11;
 }
 
 message CreateOCMCoreShareResponse {
@@ -93,4 +118,53 @@ message CreateOCMCoreShareResponse {
   string id = 3;
   // REQUIRED.
   cs3.types.v1beta1.Timestamp created = 4;
+}
+
+message UpdateOCMCoreShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Unique ID to identify the share at the consumer side.
+  string ocm_share_id = 2;
+  // OPTIONAL.
+  // Description for the share.
+  string description = 3;
+  // OPTIONAL.
+  // Recipient share type.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 5;
+  // OPTIONAL.
+  // The expiration time for the OCM share.
+  cs3.types.v1beta1.Timestamp expiration = 6;
+  // OPTIONAL.
+  // The protocols which are used to establish synchronisation,
+  // with their access rights.
+  repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 7;
+}
+
+message UpdateOCMCoreShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message DeleteOCMCoreShareRequest {
+  // REQUIRED.
+  // Unique ID to identify the share at the consumer side.
+  string id = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message DeleteOCMCoreShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
 }

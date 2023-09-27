@@ -40,7 +40,7 @@ message ProviderInfo {
   repeated string mime_types = 2;
   // REQUIRED.
   // The address where the app provider can be reached.
-  // For example, tcp://localhost:1099.
+  // For example, localhost:1099.
   string address = 3;
   // REQUIRED.
   // The capability of the underlying app.
@@ -66,6 +66,10 @@ message ProviderInfo {
   // OPTIONAL.
   // Whether the app can be opened only on desktop
   bool desktop_only = 8;
+  // OPTIONAL.
+  // The action to be displayed to the user on the context menu.
+  // By default this is "Open with".
+  string action = 9;
 }
 
 // Represents a mime type and its corresponding file extension.
