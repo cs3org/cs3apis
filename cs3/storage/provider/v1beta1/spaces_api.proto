@@ -23,7 +23,7 @@ package cs3.storage.provider.v1beta1;
 option csharp_namespace = "Cs3.Storage.Provider.V1Beta1";
 option go_package = "providerv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "ProviderApiProto";
+option java_outer_classname = "SpacesApiProto";
 option java_package = "com.cs3.storage.provider.v1beta1";
 option objc_class_prefix = "CSP";
 option php_namespace = "Cs3\\Storage\\Provider\\V1Beta1";
@@ -49,7 +49,6 @@ import "google/protobuf/field_mask.proto";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-
 service SpacesAPI {
   // Creates a storage space.
   rpc CreateStorageSpace(CreateStorageSpaceRequest) returns (CreateStorageSpaceResponse);

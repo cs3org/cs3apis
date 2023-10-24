@@ -487,6 +487,22 @@
                 "integer": 4
               }
             ]
+          },
+          {
+            "name": "Target",
+            "enum_fields": [
+              {
+                "name": "TARGET_INVALID"
+              },
+              {
+                "name": "TARGET_IFRAME",
+                "integer": 1
+              },
+              {
+                "name": "TARGET_BLANK",
+                "integer": 2
+              }
+            ]
           }
         ],
         "messages": [
@@ -502,6 +518,11 @@
                 "id": 2,
                 "name": "method",
                 "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "target",
+                "type": "Target"
               }
             ],
             "maps": [
@@ -913,6 +934,11 @@
                 "id": 8,
                 "name": "desktop_only",
                 "type": "bool"
+              },
+              {
+                "id": 9,
+                "name": "action",
+                "type": "string"
               }
             ]
           },
@@ -2525,6 +2551,9 @@
           },
           {
             "path": "cs3/storage/provider/v1beta1/provider_api.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/spaces_api.proto"
           },
           {
             "path": "cs3/storage/provider/v1beta1/resources.proto"
@@ -5606,6 +5635,11 @@
                 "id": 3,
                 "name": "mount_point",
                 "type": "storage.provider.v1beta1.Reference"
+              },
+              {
+                "id": 4,
+                "name": "hidden",
+                "type": "bool"
               }
             ]
           },
@@ -7486,40 +7520,6 @@
     {
       "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:provider_api.proto",
       "def": {
-        "enums": [
-          {
-            "name": "Filter.Type",
-            "enum_fields": [
-              {
-                "name": "TYPE_INVALID"
-              },
-              {
-                "name": "TYPE_NO",
-                "integer": 1
-              },
-              {
-                "name": "TYPE_ID",
-                "integer": 2
-              },
-              {
-                "name": "TYPE_OWNER",
-                "integer": 3
-              },
-              {
-                "name": "TYPE_SPACE_TYPE",
-                "integer": 4
-              },
-              {
-                "name": "TYPE_PATH",
-                "integer": 5
-              },
-              {
-                "name": "TYPE_USER",
-                "integer": 6
-              }
-            ]
-          }
-        ],
         "messages": [
           {
             "name": "GetHomeRequest",
@@ -8865,215 +8865,6 @@
                 "type": "cs3.types.v1beta1.Opaque"
               }
             ]
-          },
-          {
-            "name": "CreateStorageSpaceRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "owner",
-                "type": "cs3.identity.user.v1beta1.User"
-              },
-              {
-                "id": 3,
-                "name": "type",
-                "type": "string"
-              },
-              {
-                "id": 4,
-                "name": "name",
-                "type": "string"
-              },
-              {
-                "id": 5,
-                "name": "quota",
-                "type": "Quota"
-              }
-            ]
-          },
-          {
-            "name": "CreateStorageSpaceResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 3,
-                "name": "storage_space",
-                "type": "StorageSpace"
-              }
-            ]
-          },
-          {
-            "name": "ListStorageSpacesRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "filters",
-                "type": "Filter",
-                "is_repeated": true
-              },
-              {
-                "id": 3,
-                "name": "field_mask",
-                "type": "google.protobuf.FieldMask"
-              },
-              {
-                "id": 4,
-                "name": "page_size",
-                "type": "int32"
-              },
-              {
-                "id": 5,
-                "name": "page_token",
-                "type": "string"
-              }
-            ],
-            "messages": [
-              {
-                "name": "Filter",
-                "fields": [
-                  {
-                    "id": 1,
-                    "name": "type",
-                    "type": "Type"
-                  },
-                  {
-                    "id": 2,
-                    "name": "id",
-                    "type": "StorageSpaceId"
-                  },
-                  {
-                    "id": 3,
-                    "name": "owner",
-                    "type": "cs3.identity.user.v1beta1.UserId"
-                  },
-                  {
-                    "id": 4,
-                    "name": "space_type",
-                    "type": "string"
-                  },
-                  {
-                    "id": 5,
-                    "name": "path",
-                    "type": "string"
-                  },
-                  {
-                    "id": 6,
-                    "name": "user",
-                    "type": "cs3.identity.user.v1beta1.UserId"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "ListStorageSpacesResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 3,
-                "name": "storage_spaces",
-                "type": "StorageSpace",
-                "is_repeated": true
-              },
-              {
-                "id": 4,
-                "name": "next_page_token",
-                "type": "string"
-              }
-            ]
-          },
-          {
-            "name": "UpdateStorageSpaceRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "storage_space",
-                "type": "StorageSpace"
-              }
-            ]
-          },
-          {
-            "name": "UpdateStorageSpaceResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              },
-              {
-                "id": 3,
-                "name": "storage_space",
-                "type": "StorageSpace"
-              }
-            ]
-          },
-          {
-            "name": "DeleteStorageSpaceRequest",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "id",
-                "type": "StorageSpaceId"
-              }
-            ]
-          },
-          {
-            "name": "DeleteStorageSpaceResponse",
-            "fields": [
-              {
-                "id": 1,
-                "name": "opaque",
-                "type": "cs3.types.v1beta1.Opaque"
-              },
-              {
-                "id": 2,
-                "name": "status",
-                "type": "cs3.rpc.v1beta1.Status"
-              }
-            ]
           }
         ],
         "services": [
@@ -9241,34 +9032,11 @@
                 "name": "GetHome",
                 "in_type": "GetHomeRequest",
                 "out_type": "GetHomeResponse"
-              },
-              {
-                "name": "CreateStorageSpace",
-                "in_type": "CreateStorageSpaceRequest",
-                "out_type": "CreateStorageSpaceResponse"
-              },
-              {
-                "name": "ListStorageSpaces",
-                "in_type": "ListStorageSpacesRequest",
-                "out_type": "ListStorageSpacesResponse"
-              },
-              {
-                "name": "UpdateStorageSpace",
-                "in_type": "UpdateStorageSpaceRequest",
-                "out_type": "UpdateStorageSpaceResponse"
-              },
-              {
-                "name": "DeleteStorageSpace",
-                "in_type": "DeleteStorageSpaceRequest",
-                "out_type": "DeleteStorageSpaceResponse"
               }
             ]
           }
         ],
         "imports": [
-          {
-            "path": "cs3/identity/user/v1beta1/resources.proto"
-          },
           {
             "path": "cs3/rpc/v1beta1/status.proto"
           },
@@ -10022,6 +9790,333 @@
           {
             "name": "java_outer_classname",
             "value": "ResourcesProto"
+          },
+          {
+            "name": "java_package",
+            "value": "com.cs3.storage.provider.v1beta1"
+          },
+          {
+            "name": "objc_class_prefix",
+            "value": "CSP"
+          },
+          {
+            "name": "php_namespace",
+            "value": "Cs3\\\\Storage\\\\Provider\\\\V1Beta1"
+          }
+        ]
+      }
+    },
+    {
+      "protopath": "cs3:/:storage:/:provider:/:v1beta1:/:spaces_api.proto",
+      "def": {
+        "enums": [
+          {
+            "name": "Filter.Type",
+            "enum_fields": [
+              {
+                "name": "TYPE_INVALID"
+              },
+              {
+                "name": "TYPE_NO",
+                "integer": 1
+              },
+              {
+                "name": "TYPE_ID",
+                "integer": 2
+              },
+              {
+                "name": "TYPE_OWNER",
+                "integer": 3
+              },
+              {
+                "name": "TYPE_SPACE_TYPE",
+                "integer": 4
+              },
+              {
+                "name": "TYPE_PATH",
+                "integer": 5
+              },
+              {
+                "name": "TYPE_USER",
+                "integer": 6
+              }
+            ]
+          }
+        ],
+        "messages": [
+          {
+            "name": "CreateStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "owner",
+                "type": "cs3.identity.user.v1beta1.User"
+              },
+              {
+                "id": 3,
+                "name": "type",
+                "type": "string"
+              },
+              {
+                "id": 4,
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "id": 5,
+                "name": "quota",
+                "type": "Quota"
+              }
+            ]
+          },
+          {
+            "name": "CreateStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "ListStorageSpacesRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "filters",
+                "type": "Filter",
+                "is_repeated": true
+              },
+              {
+                "id": 3,
+                "name": "field_mask",
+                "type": "google.protobuf.FieldMask"
+              },
+              {
+                "id": 4,
+                "name": "page_size",
+                "type": "int32"
+              },
+              {
+                "id": 5,
+                "name": "page_token",
+                "type": "string"
+              }
+            ],
+            "messages": [
+              {
+                "name": "Filter",
+                "fields": [
+                  {
+                    "id": 1,
+                    "name": "type",
+                    "type": "Type"
+                  },
+                  {
+                    "id": 2,
+                    "name": "id",
+                    "type": "StorageSpaceId"
+                  },
+                  {
+                    "id": 3,
+                    "name": "owner",
+                    "type": "cs3.identity.user.v1beta1.UserId"
+                  },
+                  {
+                    "id": 4,
+                    "name": "space_type",
+                    "type": "string"
+                  },
+                  {
+                    "id": 5,
+                    "name": "path",
+                    "type": "string"
+                  },
+                  {
+                    "id": 6,
+                    "name": "user",
+                    "type": "cs3.identity.user.v1beta1.UserId"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ListStorageSpacesResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_spaces",
+                "type": "StorageSpace",
+                "is_repeated": true
+              },
+              {
+                "id": 4,
+                "name": "next_page_token",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "UpdateStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "UpdateStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              },
+              {
+                "id": 3,
+                "name": "storage_space",
+                "type": "StorageSpace"
+              }
+            ]
+          },
+          {
+            "name": "DeleteStorageSpaceRequest",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "id",
+                "type": "StorageSpaceId"
+              }
+            ]
+          },
+          {
+            "name": "DeleteStorageSpaceResponse",
+            "fields": [
+              {
+                "id": 1,
+                "name": "opaque",
+                "type": "cs3.types.v1beta1.Opaque"
+              },
+              {
+                "id": 2,
+                "name": "status",
+                "type": "cs3.rpc.v1beta1.Status"
+              }
+            ]
+          }
+        ],
+        "services": [
+          {
+            "name": "SpacesAPI",
+            "rpcs": [
+              {
+                "name": "CreateStorageSpace",
+                "in_type": "CreateStorageSpaceRequest",
+                "out_type": "CreateStorageSpaceResponse"
+              },
+              {
+                "name": "ListStorageSpaces",
+                "in_type": "ListStorageSpacesRequest",
+                "out_type": "ListStorageSpacesResponse"
+              },
+              {
+                "name": "UpdateStorageSpace",
+                "in_type": "UpdateStorageSpaceRequest",
+                "out_type": "UpdateStorageSpaceResponse"
+              },
+              {
+                "name": "DeleteStorageSpace",
+                "in_type": "DeleteStorageSpaceRequest",
+                "out_type": "DeleteStorageSpaceResponse"
+              }
+            ]
+          }
+        ],
+        "imports": [
+          {
+            "path": "cs3/identity/user/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/rpc/v1beta1/status.proto"
+          },
+          {
+            "path": "cs3/storage/provider/v1beta1/resources.proto"
+          },
+          {
+            "path": "cs3/types/v1beta1/types.proto"
+          },
+          {
+            "path": "google/protobuf/field_mask.proto"
+          }
+        ],
+        "package": {
+          "name": "cs3.storage.provider.v1beta1"
+        },
+        "options": [
+          {
+            "name": "csharp_namespace",
+            "value": "Cs3.Storage.Provider.V1Beta1"
+          },
+          {
+            "name": "go_package",
+            "value": "providerv1beta1"
+          },
+          {
+            "name": "java_multiple_files",
+            "value": "true"
+          },
+          {
+            "name": "java_outer_classname",
+            "value": "ProviderApiProto"
           },
           {
             "name": "java_package",
