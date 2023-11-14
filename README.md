@@ -16,7 +16,7 @@ same source commit. This is due to the way the different package managers handle
 
 * Go: https://github.com/cs3org/go-cs3apis
 * Python: https://github.com/cs3org/python-cs3apis
-* Javascript: https://github.com/cs3org/js-cs3apis (to be used from Web applications - frontend)
+* Javascript: https://github.com/cs3org/js-cs3apis (to be used from Web applications - frontend usage only)
 * NodeJS: https://github.com/cs3org/node-cs3apis (to be used from NodeJS applications - backend)
 
 ## Repository packages
