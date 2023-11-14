@@ -20,6 +20,11 @@ syntax = "proto3";
 
 package cs3.tx.v1beta1;
 
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/tx/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
 option csharp_namespace = "Cs3.Tx.V1Beta1";
 option go_package = "txv1beta1";
 option java_multiple_files = true;
@@ -27,11 +32,6 @@ option java_outer_classname = "TxApiProto";
 option java_package = "com.cs3.tx.v1beta1";
 option objc_class_prefix = "CTX";
 option php_namespace = "Cs3\\Tx\\V1Beta1";
-
-import "cs3/rpc/v1beta1/status.proto";
-import "cs3/sharing/ocm/v1beta1/resources.proto";
-import "cs3/tx/v1beta1/resources.proto";
-import "cs3/types/v1beta1/types.proto";
 
 // Tx API
 //

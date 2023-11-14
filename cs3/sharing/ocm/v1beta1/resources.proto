@@ -20,6 +20,11 @@ syntax = "proto3";
 
 package cs3.sharing.ocm.v1beta1;
 
+import "cs3/app/provider/v1beta1/resources.proto";
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
 option csharp_namespace = "Cs3.Sharing.Ocm.V1Beta1";
 option go_package = "ocmv1beta1";
 option java_multiple_files = true;
@@ -27,11 +32,6 @@ option java_outer_classname = "ResourcesProto";
 option java_package = "com.cs3.sharing.ocm.v1beta1";
 option objc_class_prefix = "CSO";
 option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
-
-import "cs3/app/provider/v1beta1/resources.proto";
-import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
-import "cs3/types/v1beta1/types.proto";
 
 // Shares are relationships between a resource owner
 // (usually the authenticated user) who grants permissions to a recipient

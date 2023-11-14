@@ -1,0 +1,13 @@
+version: v1
+deps:
+  - buf.build/protocolbuffers/wellknowntypes:v21.12
+lint:
+  use:
+    - DEFAULT
+  enum_zero_value_suffix: _INVALID
+  service_suffix: API
+build:
+  excludes:
+    - docs
+    - tools
+
