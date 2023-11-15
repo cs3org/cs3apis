@@ -31,4 +31,4 @@ plugins:
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/cs3org/cs3apis/
+    default: github.com/cs3org/cs3apis

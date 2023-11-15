@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/labkode/cs3apis
+name: buf.build/cs3org-buf/cs3apis
 deps:
   - buf.build/protocolbuffers/wellknowntypes:v21.12
 lint:
