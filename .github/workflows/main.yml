@@ -13,6 +13,7 @@ jobs:
     container: cs3org/cs3apis-build:master
     steps:
       - name: setup-ssh
+        uses: cs3org/cs3apis-build:master
         run: |
           mkdir /root/.ssh \j
           echo -n "$SSH_KEY" > /root/.ssh/id_rsa \
@@ -23,4 +24,5 @@ jobs:
           chmod 600 /root/.ssh/known_hosts \
           ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
       - name: build-and-publish
+        uses: cs3org/cs3apis-build:master
         run: cs3apis-build -push-go -push-python -push-js -push-node -git-ssh
