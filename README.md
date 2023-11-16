@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.svg)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://github.com/cs3org/cs3apis/actions/workflows/build-and-publish.yml/badge.svg)]
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Gitter chat](https://badges.gitter.im/cs3org/cs3apis.svg)](https://gitter.im/cs3org/cs3apis) [![Build Status](https://github.com/cs3org/cs3apis/actions/workflows/build-and-publish.yml/badge.svg)](https://github.com/cs3org/cs3apis/actions/workflows/build-and-publish.yml)
 ================
 
 <img width="100px" src="https://raw.githubusercontent.com/cs3org/logos/master/cs3org/cs3org.png"/>
@@ -45,11 +45,6 @@ This repository contains the interface definitions of public
 CS3APIS that support the gRPC protocol.
 You can also use these definitions with open source tools to generate client
 libraries, documentation, and other artifacts.
-
-CS3 APIs follows Google and Uber API design guidelines, specially on error handling and naming convention.
-You can read more about these guidelines at https://cloud.google.com/apis/design/ and https://github.com/uber/prototool/blob/dev/style/README.md.
-
-This repository structure is very similar to https://github.com/googleapis/googleapis.
 
 CS3 APIs use [Protocol Buffers](https://github.com/google/protobuf)
 version 3 (proto3) as their Interface Definition Language (IDL) to
