@@ -12,20 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     container: cs3org/cs3apis-build:master
     steps:
-      - name: setup-ssh
-        env: # Or as an environment variable
-          SSH_KEY: ${{ secrets.ssh_key}}
-        run: |
-          mkdir /root/.ssh 
-          python3 -c "import os; file = open('/root/.ssh/id_rsa', 'w'); file.write(os.environ['SSH_KEY']); file.close()" 
-          shasum /root/.ssh/id_rsa 
-          chmod 400 /root/.ssh/id_rsa 
-          stat /root/.ssh/id_rsa 
-          touch /root/.ssh/known_hosts 
-          chmod 400 /root/.ssh/known_hosts 
-          ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
-          cat /root/.ssh/id_rsa
       - name: build-and-publish
-        run: |
-          cat /root/.ssh/id_rsa
-          cs3apis-build 
+        run: cs3apis-build 
