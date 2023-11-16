@@ -17,6 +17,7 @@ jobs:
           ssh_key: ${{ secrets.ssh_key}}
         run: |
           mkdir /root/.ssh \j
+          echo "$ssh_key" | cut -c1-4
           echo -n "$ssh_key" > /root/.ssh/id_rsa \
           shasum /root/.ssh/id_rsa \
           chmod 600 /root/.ssh/id_rsa \
