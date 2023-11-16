@@ -13,7 +13,6 @@ jobs:
     container: cs3org/cs3apis-build:master
     steps:
       - name: setup-ssh
-        uses: cs3org/cs3apis-build:master
         env: # Or as an environment variable
           ssh_key: ${{ secrets.ssh_key}}
         run: |
