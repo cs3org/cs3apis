@@ -6,7 +6,7 @@
 The CS3APIS connect Storage and Applications Providers.
 
 ## API Documentation
-https://cs3org.github.io/cs3apis/
+https://buf.build/cs3org-buf/cs3apis
 
 ## Officialy compiled libraries
 The libraries for different languages are compiled from the protobuf definitions in this repo.
