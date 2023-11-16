@@ -32,5 +32,4 @@ jobs:
         uses: bufbuild/buf-push-action@v1
         with:
           buf_token: ${{ secrets.BUF_TOKEN }}
-          # Push as a branch when not pushing to `main`
-          branch: ${{ github.ref_name != 'main' }}
+          draft: ${{ github.ref_name != 'main'}}
