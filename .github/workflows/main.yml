@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: setup-ssh
-          env: # Or as an environment variable
+          env: 
             SSH_KEY: ${{ secrets.ssh_key}}
           run: |
             mkdir /root/.ssh
