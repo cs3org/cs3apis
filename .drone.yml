@@ -19,7 +19,7 @@ trigger:
 steps:
 - name: build-and-publish
   pull: always
-  image: cs3org/cs3apis:latest
+  image: cs3org/cs3apis-build:latest
   environment:
     SSH_KEY:
       from_secret: deploy_gh_key
@@ -38,26 +38,3 @@ steps:
     - ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
     - cs3apis-build -push-go -push-python -push-js -push-node -git-ssh # compile, build and publish all available languages
 
----
-kind: pipeline
-type: docker
-name: build-only
-
-platform:
-  os: linux
-  arch: amd64
-
-trigger:
-  event:
-    include:
-    - pull_request
-    - tag
-    - promote
-    - rollback
-
-steps:
-- name: build-only
-  pull: always
-  image: cs3org/cs3apis:latest
-  commands:
-    - cs3apis-build # compile, build and publish all available languages
