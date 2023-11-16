@@ -14,9 +14,11 @@ jobs:
     steps:
       - name: setup-ssh
         uses: cs3org/cs3apis-build:master
+        env: # Or as an environment variable
+          ssh_key: ${{ secrets.ssh_key}}
         run: |
           mkdir /root/.ssh \j
-          echo -n "$SSH_KEY" > /root/.ssh/id_rsa \
+          echo -n "$ssh_key" > /root/.ssh/id_rsa \
           shasum /root/.ssh/id_rsa \
           chmod 600 /root/.ssh/id_rsa \
           stat /root/.ssh/id_rsa \
