@@ -26,3 +26,11 @@ jobs:
           ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
       - name: build-and-publish
         run: cs3apis-build -git-ssh -push-go -push-js -push-node -push-python
+      - name: setup-buf
+        uses: bufbuild/buf-setup-action@v1
+      - name: push-buf
+        uses: bufbuild/buf-push-action@v1
+        with:
+          buf_token: ${{ secrets.BUF_TOKEN }}
+          # Push as a branch when not pushing to `main`
+          branch: ${{ github.ref_name != 'main' }}
