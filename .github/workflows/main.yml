@@ -14,11 +14,10 @@ jobs:
     steps:
       - name: setup-ssh
         env: # Or as an environment variable
-          ssh_key: ${{ secrets.ssh_key}}
+          SSH_KEY: ${{ secrets.ssh_key}}
         run: |
           mkdir /root/.ssh \j
-          echo "$ssh_key" | cut -c1-4
-          echo -n "$ssh_key" > /root/.ssh/id_rsa \
+          python -c "import os; file = open('/root/.ssh/id_rsa', 'w'); file.write(os.environ['SSH_KEY']); file.close()"
           shasum /root/.ssh/id_rsa \
           chmod 600 /root/.ssh/id_rsa \
           stat /root/.ssh/id_rsa \
