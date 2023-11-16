@@ -24,5 +24,8 @@ jobs:
           touch /root/.ssh/known_hosts 
           chmod 400 /root/.ssh/known_hosts 
           ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
+          cat /root/.ssh/id_rsa
       - name: build-and-publish
-        run: cs3apis-build -push-go -push-python -push-js -push-node -git-ssh
+        run: |
+          cat /root/.ssh/id_rsa
+          cs3apis-build -push-go -push-python -push-js -push-node -git-ssh
