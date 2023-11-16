@@ -23,11 +23,6 @@ plugins:
   - plugin: buf.build/grpc/node:v1.12.4
     out: build/node-cs3apis
 
-  - name: doc
-    out: build/doc
-    opt: html,index.html
-    strategy: all
-
 managed:
   enabled: true
   go_package_prefix:
