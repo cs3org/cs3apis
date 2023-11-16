@@ -19,10 +19,10 @@ jobs:
           mkdir /root/.ssh 
           python3 -c "import os; file = open('/root/.ssh/id_rsa', 'w'); file.write(os.environ['SSH_KEY']); file.close()" 
           shasum /root/.ssh/id_rsa 
-          chmod 600 /root/.ssh/id_rsa 
+          chmod 400 /root/.ssh/id_rsa 
           stat /root/.ssh/id_rsa 
           touch /root/.ssh/known_hosts 
-          chmod 600 /root/.ssh/known_hosts 
+          chmod 400 /root/.ssh/known_hosts 
           ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
       - name: build-and-publish
         run: cs3apis-build -push-go -push-python -push-js -push-node -git-ssh
