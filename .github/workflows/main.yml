@@ -1,0 +1,17 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-publish:
+    name: Buid and Publish CS3APIS
+    runs-on: ubuntu-latest
+    steps:
+      - name: build-and-publish
+        with:
+          images: cs3org/cs3apis-build:master
+        run: cs3apis-build -push-go -push-python -push-js -push-node -git-ssh
