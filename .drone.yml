@@ -12,7 +12,6 @@ trigger:
   - main
   event:
     exclude:
-    - pull_request
     - tag
     - promote
     - rollback
