@@ -1,0 +1,186 @@
+// Copyright 2018-2019 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.storage.provider.v1beta1;
+
+option csharp_namespace = "Cs3.Storage.Provider.V1Beta1";
+option go_package = "providerv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "SpacesApiProto";
+option java_package = "com.cs3.storage.provider.v1beta1";
+option objc_class_prefix = "CSP";
+option php_namespace = "Cs3\\Storage\\Provider\\V1Beta1";
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+import "google/protobuf/field_mask.proto";
+
+// Spaces API
+//
+// The Spaces API is meant to manipulate spaces in the service.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service SpacesAPI {
+  // Creates a storage space.
+  rpc CreateStorageSpace(CreateStorageSpaceRequest) returns (CreateStorageSpaceResponse);
+  // Lists storage spaces.
+  rpc ListStorageSpaces(ListStorageSpacesRequest) returns (ListStorageSpacesResponse);
+  // Updates a storage space.
+  rpc UpdateStorageSpace(UpdateStorageSpaceRequest) returns (UpdateStorageSpaceResponse);
+  // Deletes a storage space.
+  rpc DeleteStorageSpace(DeleteStorageSpaceRequest) returns (DeleteStorageSpaceResponse);
+}
+
+
+message CreateStorageSpaceRequest {
+  // OPTIONAL.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  cs3.identity.user.v1beta1.User owner = 2;
+  // OPTIONAL.
+  // Could be 'home', 'share', 'project', 'space'...
+  string type = 3;
+  // OPTIONAL.
+  // User readable name of the storage space.
+  string name = 4;
+  // OPTIONAL.
+  Quota quota = 5;
+}
+
+message CreateStorageSpaceResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+  // REQUIRED.
+  // The created storage space.
+  StorageSpace storage_space = 3;
+}
+
+message ListStorageSpacesRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // Represents a filter to apply to the request.
+  message Filter {
+    // The filter to apply.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_NO = 1;
+      TYPE_ID = 2;
+      TYPE_OWNER = 3;
+      TYPE_SPACE_TYPE = 4;
+      TYPE_PATH = 5;
+      TYPE_USER = 6;
+    }
+    // REQUIRED.
+    Type type = 1;
+    oneof term {
+      StorageSpaceId id = 2;
+      cs3.identity.user.v1beta1.UserId owner = 3;
+      string space_type = 4;
+      string path = 5;
+      cs3.identity.user.v1beta1.UserId user = 6;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 2;
+  // OPTIONAL.
+  // The field mask applies to the resource. For the `FieldMask` definition,
+  // see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+  google.protobuf.FieldMask field_mask = 3;
+  // OPTIONAL.
+  // Clients use this field to specify the maximum number of results to be returned by the server.
+  // The server may further constrain the maximum number of results returned in a single page.
+  // If the page_size is 0, the server will decide the number of results to be returned.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  int32 page_size = 4;
+  // OPTIONAL.
+  // The client uses this field to request a specific page of the list results.
+  string page_token = 5;
+}
+
+message ListStorageSpacesResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+  // REQUIRED.
+  repeated StorageSpace storage_spaces = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
+}
+
+message UpdateStorageSpaceRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  StorageSpace storage_space = 2;
+}
+
+message UpdateStorageSpaceResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+  // REQUIRED.
+  // The updated storage space.
+  StorageSpace storage_space = 3;
+}
+
+message DeleteStorageSpaceRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  StorageSpaceId id = 2;
+}
+
+message DeleteStorageSpaceResponse {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 2;
+}

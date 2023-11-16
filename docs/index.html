@@ -594,6 +594,10 @@
               
               
                 <li>
+                  <a href="#cs3.app.provider.v1beta1.Target"><span class="badge">E</span>Target</a>
+                </li>
+              
+                <li>
                   <a href="#cs3.app.provider.v1beta1.ViewMode"><span class="badge">E</span>ViewMode</a>
                 </li>
               
@@ -5781,6 +5785,14 @@ These are sent only if the method is &#39;POST&#39;. </p></td>
 The headers to be added to the request. </p></td>
                 </tr>
               
+                <tr>
+                  <td>target</td>
+                  <td><a href="#cs3.app.provider.v1beta1.Target">Target</a></td>
+                  <td></td>
+                  <td><p>REQUIRED.
+Whether the target for the app URL is an iframe or a new page. </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -5851,6 +5863,35 @@ The headers to be added to the request. </p></td>
         
       
 
+      
+        <h3 id="cs3.app.provider.v1beta1.Target">Target</h3>
+        <p>Defines the valid targets for an app URL.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>TARGET_INVALID</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TARGET_IFRAME</td>
+                <td>1</td>
+                <td><p>The app URL is to be opened within an iframe</p></td>
+              </tr>
+            
+              <tr>
+                <td>TARGET_BLANK</td>
+                <td>2</td>
+                <td><p>The app URL is to be opened on a new blank page</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="cs3.app.provider.v1beta1.ViewMode">ViewMode</h3>
         <p>Defines the view modes.</p>
@@ -6521,7 +6562,7 @@ The mimetypes handled by this provider. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The address where the app provider can be reached.
-For example, tcp://localhost:1099. </p></td>
+For example, localhost:1099. </p></td>
                 </tr>
               
                 <tr>
@@ -6563,6 +6604,15 @@ A URI to a static asset which represents the app icon. </p></td>
                   <td></td>
                   <td><p>OPTIONAL.
 Whether the app can be opened only on desktop </p></td>
+                </tr>
+              
+                <tr>
+                  <td>action</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>OPTIONAL.
+The action to be displayed to the user on the context menu.
+By default this is &#34;Open with&#34;. </p></td>
                 </tr>
               
             </tbody>
@@ -11322,6 +11372,14 @@ The state of the share. </p></td>
                   <td></td>
                   <td><p>REQUIRED.
 The mount point of the share. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>hidden</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Optional.
+Hide share, default false </p></td>
                 </tr>
               
             </tbody>

@@ -44,6 +44,9 @@ message OpenInAppURL {
   // OPTIONAL.
   // The headers to be added to the request.
   map<string, string> headers = 4;
+  // REQUIRED.
+  // Whether the target for the app URL is an iframe or a new page.
+  Target target = 5;
 }
 
 // Defines the view modes.
@@ -61,4 +64,13 @@ enum ViewMode {
   // or if in a view-only mode users are not allowed to switch to edit mode,
   // then this mode MUST fall back to READ_WRITE.
   VIEW_MODE_PREVIEW = 4;
+}
+
+// Defines the valid targets for an app URL.
+enum Target {
+  TARGET_INVALID = 0;
+  // The app URL is to be opened within an iframe
+  TARGET_IFRAME = 1;
+  // The app URL is to be opened on a new blank page
+  TARGET_BLANK = 2;
 }

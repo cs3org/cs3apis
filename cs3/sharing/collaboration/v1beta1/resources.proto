@@ -92,6 +92,9 @@ message ReceivedShare {
   // REQUIRED.
   // The mount point of the share.
   storage.provider.v1beta1.Reference mount_point = 3;
+  // Optional.
+  // Hide share, default false
+  bool hidden = 4;
 }
 
 // The state of the share.
