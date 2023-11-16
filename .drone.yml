@@ -38,4 +38,3 @@ steps:
     - ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
     - find .
     - cs3apis-build -push-go -push-python -push-js -push-node -git-ssh # compile, build and publish all available languages
-
