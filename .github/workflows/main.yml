@@ -39,4 +39,5 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        run: cs3apis-build
+      - name: build-and-publish
+        run: cs3apis-build 
