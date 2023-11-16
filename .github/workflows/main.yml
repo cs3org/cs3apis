@@ -29,5 +29,5 @@ jobs:
           ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts 2> /dev/null
           cat /root/.ssh/id_rsa
       - name: build-and-publish
-        run: cs3apis-build
+        run: cs3apis-build -git-ssh
 
