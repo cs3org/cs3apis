@@ -1,0 +1,29 @@
+version: v1
+plugins:
+  - plugin: buf.build/protocolbuffers/go:v1.31.0
+    out: build/go-cs3apis
+    opt: paths=source_relative
+
+  - plugin: buf.build/grpc/go:v1.3.0
+    out: build/go-cs3apis
+    opt: paths=source_relative,require_unimplemented_servers=false
+
+  - plugin: buf.build/grpc/web:v1.5.0
+    out: build/js-cs3apis
+    opt: mode=grpcweb
+
+  - plugin: buf.build/protocolbuffers/js:v3.21.2
+    out: build/js-cs3apis
+
+  - plugin: buf.build/grpc/python:v1.59.2
+    out: build/python-cs3apis
+  - plugin: buf.build/protocolbuffers/python:v25.0
+    out: build/python-cs3apis
+
+  - plugin: buf.build/grpc/node:v1.12.4
+    out: build/node-cs3apis
+
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/cs3org/go-cs3apis

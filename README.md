@@ -33,9 +33,9 @@ You need to have Docker installed. The artifacts will be available under the bui
 ```
 $ git clone https://github.com/cs3org/cs3apis
 $ cd cs3apis
-$ make build 
-$ make go # generate go code
+$ make
 ```
+The `build` folder will be generated. It will be owned by `root`.
 
 See the Makefile to find all the available build options.
 

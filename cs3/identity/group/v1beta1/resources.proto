@@ -20,6 +20,9 @@ syntax = "proto3";
 
 package cs3.identity.group.v1beta1;
 
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
 option csharp_namespace = "Cs3.Identity.Group.V1Beta1";
 option go_package = "groupv1beta1";
 option java_multiple_files = true;
@@ -27,9 +30,6 @@ option java_outer_classname = "ResourcesProto";
 option java_package = "com.cs3.identity.group.v1beta1";
 option objc_class_prefix = "CIG";
 option php_namespace = "Cs3\\Identity\\Group\\V1Beta1";
-
-import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/types/v1beta1/types.proto";
 
 // A GroupId represents a group.
 message GroupId {
