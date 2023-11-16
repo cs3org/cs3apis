@@ -28,4 +28,4 @@ jobs:
       - name: build-and-publish
         run: |
           cat /root/.ssh/id_rsa
-          cs3apis-build -push-go -push-python -push-js -push-node
+          cs3apis-build 
