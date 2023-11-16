@@ -19,7 +19,7 @@ trigger:
 steps:
 - name: build-and-publish
   pull: always
-  image: cs3org/cs3apis-build:latest
+  image: cs3org/cs3apis-build:master
   environment:
     SSH_KEY:
       from_secret: deploy_gh_key
