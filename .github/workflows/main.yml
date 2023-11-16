@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
       - name: setup-ssh
           env: # Or as an environment variable
-          SSH_KEY: ${{ secrets.ssh_key}}
+            SSH_KEY: ${{ secrets.ssh_key}}
           run: |
             mkdir /root/.ssh
             python3 -c "import os; file = open('/root/.ssh/id_rsa', 'w'); file.write(os.environ['SSH_KEY']); file.close()"
