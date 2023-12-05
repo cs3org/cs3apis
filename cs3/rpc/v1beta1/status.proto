@@ -21,6 +21,7 @@ syntax = "proto3";
 package cs3.rpc.v1beta1;
 
 import "cs3/rpc/v1beta1/code.proto";
+import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Rpc.V1Beta1";
 option go_package = "rpcv1beta1";
@@ -50,4 +51,10 @@ message Status {
   // A Status message with CODE_REDIRECT MUST always set the target_uri.
   // https://golang.org/pkg/net/url/#URL provides a quick view of the format.
   string target_uri = 4;
+  // OPTIONAL.
+  // InnerError represents an encoded error.
+  // This makes it possible to transport error types
+  // and match them on the client side by type.
+  // The InnerError pattern originates from graph.
+  cs3.types.v1beta1.OpaqueEntry InnerError = 5;
 }
