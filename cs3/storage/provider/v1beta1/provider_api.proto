@@ -75,8 +75,9 @@ service ProviderAPI {
   // Initiates the download of a file using an
   // out-of-band data transfer mechanism.
   rpc InitiateFileDownload(InitiateFileDownloadRequest) returns (InitiateFileDownloadResponse);
-  // Initiates the upload of a file using an
-  // out-of-band data transfer mechanism.
+  // Initiates the upload of a file using an out-of-band
+  // data transfer mechanism. Locking MUST be handled by
+  // the data transfer protocol returned in response.
   rpc InitiateFileUpload(InitiateFileUploadRequest) returns (InitiateFileUploadResponse);
   // Returns the list of grants for the provided reference.
   // MUST return CODE_NOT_FOUND if the reference does not exists.
@@ -369,10 +370,6 @@ message InitiateFileUploadRequest {
     // return CODE_FAILED_PRECONDITION.
     cs3.types.v1beta1.Timestamp if_unmodified_since = 6;
   }
-  // OPTIONAL.
-  // A lock_id: should the reference exist and be locked, the stored
-  // lock_id MUST be equal to the given value.
-  string lock_id = 5;
 }
 
 message InitiateFileUploadResponse {
