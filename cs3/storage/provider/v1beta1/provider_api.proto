@@ -205,7 +205,9 @@ message AddGrantRequest {
   Grant grant = 3;
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // lock_id SHOULD be equal to the given value. However,
+  // storage implementations MAY allow for setting grants
+  // even if the lock does not match.
   string lock_id = 4;
 }
 
@@ -230,7 +232,9 @@ message DenyGrantRequest {
   Grantee grantee = 3;
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // lock_id SHOULD be equal to the given value. However,
+  // storage implementations MAY allow for setting grants
+  // even if the lock does not match.
   string lock_id = 4;
 }
 
@@ -786,7 +790,9 @@ message RemoveGrantRequest {
   Grant grant = 3;
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // lock_id SHOULD be equal to the given value. However,
+  // storage implementations MAY allow for setting grants
+  // even if the lock does not match.
   string lock_id = 4;
 }
 
@@ -840,7 +846,9 @@ message UpdateGrantRequest {
   Grant grant = 3;
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // lock_id SHOULD be equal to the given value. However,
+  // storage implementations MAY allow for setting grants
+  // even if the lock does not match.
   string lock_id = 4;
 }
 
@@ -908,7 +916,9 @@ message SetArbitraryMetadataRequest {
   ArbitraryMetadata arbitrary_metadata = 3;
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // lock_id SHOULD be equal to the given value. However,
+  // storage implementations MAY allow for setting attributes
+  // even if the lock does not match.
   string lock_id = 4;
 }
 
@@ -933,7 +943,9 @@ message UnsetArbitraryMetadataRequest {
   repeated string arbitrary_metadata_keys = 3;
   // OPTIONAL.
   // A lock_id: should the reference be locked, the stored
-  // lock_id MUST be equal to the given value.
+  // lock_id SHOULD be equal to the given value. However,
+  // storage implementations MAY allow for unsetting attributes
+  // even if the lock does not match.
   string lock_id = 4;
 }
 
