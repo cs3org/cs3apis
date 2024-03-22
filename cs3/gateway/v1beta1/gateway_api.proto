@@ -35,6 +35,7 @@ import "cs3/permissions/v1beta1/permissions_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
+import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/sharing/link/v1beta1/link_api.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
@@ -228,15 +229,18 @@ service GatewayAPI {
   // Gets share information for a single share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc GetShare(cs3.sharing.collaboration.v1beta1.GetShareRequest) returns (cs3.sharing.collaboration.v1beta1.GetShareResponse);
-  // List the shares the authproviderenticated principal has created,
+  // List the shares the authenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListShares(cs3.sharing.collaboration.v1beta1.ListSharesRequest) returns (cs3.sharing.collaboration.v1beta1.ListSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateShare(cs3.sharing.collaboration.v1beta1.UpdateShareRequest) returns (cs3.sharing.collaboration.v1beta1.UpdateShareResponse);
-  // List all shares the authproviderenticated principal has received.
+  // List all shares the authenticated principal has received.
   rpc ListReceivedShares(cs3.sharing.collaboration.v1beta1.ListReceivedSharesRequest) returns (cs3.sharing.collaboration.v1beta1.ListReceivedSharesResponse);
+  // List all existing shares the authenticated principal has received,
+  // including their storage resource information.
+  rpc ListExistingReceivedShares(cs3.sharing.collaboration.v1beta1.ListReceivedSharesRequest) returns (ListExistingReceivedSharesResponse);
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateReceivedShare(cs3.sharing.collaboration.v1beta1.UpdateReceivedShareRequest) returns (cs3.sharing.collaboration.v1beta1.UpdateReceivedShareResponse);
@@ -271,7 +275,7 @@ service GatewayAPI {
   // Gets share information for a single share by its unlisted token.
   // MUST return CODE_NOT_FOUND if the share does not exist.
   rpc GetPublicShareByToken(cs3.sharing.link.v1beta1.GetPublicShareByTokenRequest) returns (cs3.sharing.link.v1beta1.GetPublicShareByTokenResponse);
-  // List the shares the authproviderenticated principal has created,
+  // List the shares the authenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListPublicShares(cs3.sharing.link.v1beta1.ListPublicSharesRequest) returns (cs3.sharing.link.v1beta1.ListPublicSharesResponse);
@@ -297,14 +301,14 @@ service GatewayAPI {
   // Gets share information for a single share by its unlisted token.
   // MUST return CODE_NOT_FOUND if the share does not exist.
   rpc GetOCMShareByToken(cs3.sharing.ocm.v1beta1.GetOCMShareByTokenRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareByTokenResponse);
-  // List the shares the authproviderenticated principal has created,
+  // List the shares the authenticated principal has created,
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListOCMShares(cs3.sharing.ocm.v1beta1.ListOCMSharesRequest) returns (cs3.sharing.ocm.v1beta1.ListOCMSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateOCMShare(cs3.sharing.ocm.v1beta1.UpdateOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.UpdateOCMShareResponse);
-  // List all shares the authproviderenticated principal has received.
+  // List all shares the authenticated principal has received.
   rpc ListReceivedOCMShares(cs3.sharing.ocm.v1beta1.ListReceivedOCMSharesRequest) returns (cs3.sharing.ocm.v1beta1.ListReceivedOCMSharesResponse);
   // Update the received share to change the share state or the display name.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
@@ -532,6 +536,26 @@ message ListAuthProvidersResponse {
   // The list of auth types.
   // TODO(labkode): maybe add description?
   repeated string types = 3;
+}
+
+message ListExistingReceivedSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The underlying shares as returned by the collaboration service.
+  repeated cs3.sharing.collaboration.v1beta1.ReceivedShare shares = 3;
+  // REQUIRED.
+  // The corresponding resource information as returned by the storage provider.
+  repeated cs3.storage.provider.v1beta1.ResourceInfo resource_infos = 4;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 5;
 }
 
 message OpenInAppRequest {
