@@ -546,16 +546,13 @@ message ListExistingReceivedSharesResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The underlying shares as returned by the collaboration service.
-  repeated cs3.sharing.collaboration.v1beta1.ReceivedShare shares = 3;
-  // REQUIRED.
-  // The corresponding resource information as returned by the storage provider.
-  repeated cs3.storage.provider.v1beta1.ResourceInfo resource_infos = 4;
+  // The shares encapsulating both the share metadata and the storage metadata.
+  repeated SharedResourceInfo shares = 3;
   // OPTIONAL.
   // This field represents the pagination token to retrieve the next page of results.
   // If the value is "", it means no further results for the request.
   // see https://cloud.google.com/apis/design/design_patterns#list_pagination
-  string next_page_token = 5;
+  string next_page_token = 4;
 }
 
 message OpenInAppRequest {
