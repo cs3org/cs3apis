@@ -488,9 +488,15 @@ message Quota {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // OPTIONAL.
-  // The bytes quota for the user.
+  // The bytes quota for the space.
   uint64 quota_max_bytes = 2;
   // OPTIONAL.
-  // The files quota for the user.
+  // The files quota for the space.
   uint64 quota_max_files = 3;
+  // OPTIONAL.
+  // The remaining bytes for the space.
+  uint64 remaining_bytes = 4;
+  // OPTIONAL.
+  // The remaining files for the space.
+  uint64 remaining_files = 5;
 }
