@@ -183,7 +183,6 @@ enum Code {
   // Redirects the operation to another location.
   // Used in a Status reponse with a reference to the target URI.
   CODE_REDIRECTION = 18;
-  //
   // The operation could not be performed because there is not enough
   // storage available. This can be because of lack of real storage
   // space or because of the exceeding of a quota associated to a
@@ -191,11 +190,16 @@ enum Code {
   //
   // HTTP Mapping: 507 Insufficient Storage
   CODE_INSUFFICIENT_STORAGE = 19;
-  //
   // The ability to lock a resource is specific to some WebDAV servers.
   // The HTTP 423 Locked error response code indicates that either
   // the resources tentatively targeted by is locked, meaning it can't be accessed.
   //
   // HTTP Mapping: 423 Locked
   CODE_LOCKED = 20;
+  // The server returns the response status code to indicate that it has received
+  // the request but is not going to process it because an asynchronous job
+  // that has been started is still being processed and the result can not yet be provided.
+  //
+  // HTTP Mapping: 425 Too Early
+  CODE_TOO_EARLY = 21;
 }
