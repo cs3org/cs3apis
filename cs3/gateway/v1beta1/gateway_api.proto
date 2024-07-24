@@ -108,6 +108,7 @@ service GatewayAPI {
   // then the entire directory is deleted recursively.
   // If a resource specifies a reference or symlink type, only the reference is removed (not the target).
   // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_TOO_EARLY if some are not finished job over resource is still in process.
   rpc Delete(cs3.storage.provider.v1beta1.DeleteRequest) returns (cs3.storage.provider.v1beta1.DeleteResponse);
   // Returns the path reference for
   // the provided resource id reference.
@@ -145,7 +146,8 @@ service GatewayAPI {
   rpc ListRecycle(cs3.storage.provider.v1beta1.ListRecycleRequest) returns (cs3.storage.provider.v1beta1.ListRecycleResponse);
   // Moves a resource from one reference to another.
   // MUST return CODE_NOT_FOUND if any of the references do not exist.
-  // MUST return CODE_FAILED_PRECONDITION if the source reference
+  // MUST return CODE_FAILED_PRECONDITION if the source reference.
+  // MUST return CODE_TOO_EARLY if some are not finished job over resource is still in process.
   // cannot be moved to the destination reference.
   rpc Move(cs3.storage.provider.v1beta1.MoveRequest) returns (cs3.storage.provider.v1beta1.MoveResponse);
   // Permanently removes a recycle item from the recycle.
