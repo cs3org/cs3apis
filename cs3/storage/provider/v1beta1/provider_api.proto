@@ -272,6 +272,11 @@ message TouchFileRequest {
   // REQUIRED.
   // The reference to which the action should be performed.
   Reference ref = 2;
+  // OPTIONAL.
+  // A lock_id: should the reference be locked, the stored
+  // lock_id MUST be equal to the given value. However, implementations
+  // MAY allow touching an existing file even with a mismatching lock.
+  string lock_id = 3;
 }
 
 message TouchFileResponse {
