@@ -235,6 +235,9 @@ service GatewayAPI {
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListShares(cs3.sharing.collaboration.v1beta1.ListSharesRequest) returns (cs3.sharing.collaboration.v1beta1.ListSharesResponse);
+  // List all existing shares the authenticated principal has created,
+  // including their storage resource information.
+  rpc ListExistingShares(cs3.sharing.collaboration.v1beta1.ListSharesRequest) returns (ListExistingSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateShare(cs3.sharing.collaboration.v1beta1.UpdateShareRequest) returns (cs3.sharing.collaboration.v1beta1.UpdateShareResponse);
@@ -281,6 +284,10 @@ service GatewayAPI {
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListPublicShares(cs3.sharing.link.v1beta1.ListPublicSharesRequest) returns (cs3.sharing.link.v1beta1.ListPublicSharesResponse);
+  // List all existing shares the authenticated principal has created,
+  // both as owner and creator, including their storage resource information.
+  // If a filter is specified, only shares satisfying the filter MUST be returned.
+  rpc ListExistingPublicShares(cs3.sharing.link.v1beta1.ListPublicSharesRequest) returns (ListExistingPublicSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdatePublicShare(cs3.sharing.link.v1beta1.UpdatePublicShareRequest) returns (cs3.sharing.link.v1beta1.UpdatePublicShareResponse);
@@ -540,6 +547,23 @@ message ListAuthProvidersResponse {
   repeated string types = 3;
 }
 
+message ListExistingSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The shares encapsulating both the share metadata and the storage metadata.
+  repeated ShareResourceInfo share_infos = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
+}
+
 message ListExistingReceivedSharesResponse {
   // REQUIRED.
   // The response status.
@@ -549,7 +573,24 @@ message ListExistingReceivedSharesResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
   // The shares encapsulating both the share metadata and the storage metadata.
-  repeated SharedResourceInfo shares = 3;
+  repeated ReceivedShareResourceInfo share_infos = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
+}
+
+message ListExistingPublicSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The shares encapsulating both the share metadata and the storage metadata.
+  repeated PublicShareResourceInfo share_infos = 3;
   // OPTIONAL.
   // This field represents the pagination token to retrieve the next page of results.
   // If the value is "", it means no further results for the request.

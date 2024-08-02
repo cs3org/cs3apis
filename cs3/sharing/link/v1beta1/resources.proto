@@ -32,19 +32,6 @@ option java_package = "com.cs3.sharing.link.v1beta1";
 option objc_class_prefix = "CSL";
 option php_namespace = "Cs3\\Sharing\\Link\\V1Beta1";
 
-//
-//message PublicShare {
-//  string id = 1;
-//  string token = 2;
-//  string filename = 3;
-//  FileType file_type = 4;
-//  uint64 expiration = 5;
-//  bool password_protected = 6;
-//  Permission permission = 7;
-//  string display_name = 8;
-//  string owner = 9;
-//}
-//
 
 // Public share are relationships between a resource owner
 // (usually the authenticated user) who grants permissions to a recipient (grantee)

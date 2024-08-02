@@ -22,6 +22,7 @@ package cs3.gateway.v1beta1;
 
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
+import "cs3/sharing/link/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Gateway.V1Beta1";
@@ -77,15 +78,43 @@ message FileDownloadProtocol {
   string token = 4;
 }
 
-// A shared resource includes the sharing information
-// and the storage-related information about a resource.
-message SharedResourceInfo {
+// ShareResourceInfo includes the sharing information
+// and the storage-related information about a share resource.
+message ShareResourceInfo {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The underlying share as returned by the collaboration service.
-  cs3.sharing.collaboration.v1beta1.ReceivedShare share = 2;
+  cs3.sharing.collaboration.v1beta1.Share share = 2;
+  // REQUIRED.
+  // The corresponding resource information as returned by the storage provider.
+  cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
+}
+
+// ReceivedShareResourceInfo includes the sharing information
+// and the storage-related information about a received share resource.
+message ReceivedShareResourceInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The underlying share as returned by the collaboration service.
+  cs3.sharing.collaboration.v1beta1.ReceivedShare received_share = 2;
+  // REQUIRED.
+  // The corresponding resource information as returned by the storage provider.
+  cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
+}
+
+// PublicShareResourceInfo includes the sharing information
+// and the storage-related information about a public share resource.
+message PublicShareResourceInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The underlying share as returned by the collaboration service.
+  cs3.sharing.link.v1beta1.PublicShare public_share = 2;
   // REQUIRED.
   // The corresponding resource information as returned by the storage provider.
   cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
