@@ -35,8 +35,7 @@ jobs:
           go install github.com/vektra/mockery/v2@v2.40.0 # Later versions are incompatible with Go 1.21
           mockery
           git add .
-          git commit -m 'Generated mock interfaces for https://github.com/cern-eos/grpc-proto/tree/${{ github.sha }}'
-          git push origin main
+          git commit -m 'Generated mock interfaces for https://github.com/cern-eos/grpc-proto/tree/${{ github.sha }}' && git push origin main || echo "Nothing to commit"
       - name: setup-buf
         uses: bufbuild/buf-setup-action@v1
       - name: push-buf
