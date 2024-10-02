@@ -81,19 +81,19 @@ message ProviderInfo {
   // REQUIRED.
   // The full name of the provider.
   string full_name = 2;
-  // REQUIRED.
+  // OPTIONAL.
   // A description of the provider.
   string description = 3;
-  // REQUIRED.
+  // OPTIONAL.
   // The organization to which the provider belongs.
   string organization = 4;
   // REQUIRED.
   // The domain of the sync'n'share provider.
   string domain = 5;
-  // REQUIRED.
+  // OPTIONAL.
   // The homepage of the provider.
   string homepage = 6;
-  // REQUIRED.
+  // OPTIONAL.
   // The email at which the provider can be reached.
   string email = 7;
   // REQUIRED.
