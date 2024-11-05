@@ -70,9 +70,9 @@ message ProviderInfo {
   // The action to be displayed to the user on the context menu.
   // By default this is "Open with".
   string action = 9;
-  // OPTIONAL.
-  // Specifies the kind of app provider.
-  // A product property that could be used to handle product-specific differences.
+  // REQUIRED.
+  // The product name of the underlying app, to be used to handle
+  // product-specific differences.
   // For example: Collabora, OnlyOffice, Microsoft365 or MicrosoftOfficeOnline
   string product_name = 10;
 }
