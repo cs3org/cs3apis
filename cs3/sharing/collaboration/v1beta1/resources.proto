@@ -67,9 +67,12 @@ message Share {
   // REQUIRED.
   // Last modification time of the share.
   cs3.types.v1beta1.Timestamp mtime = 8;
-  // Optional.
+  // OPTIONAL.
   // The expiration time of the share.
   cs3.types.v1beta1.Timestamp expiration = 9;
+  // OPTIONAL.
+  // A user-defined description for the share.
+  string description = 10;
 }
 
 // The permissions for a share.
@@ -92,9 +95,13 @@ message ReceivedShare {
   // REQUIRED.
   // The mount point of the share.
   storage.provider.v1beta1.Reference mount_point = 3;
-  // Optional.
-  // Hide share, default false
+  // OPTIONAL.
+  // Flag to hide the share, defaults to false.
   bool hidden = 4;
+  // OPTIONAL.
+  // An alternate identifier to allow a recipient to rename the share.
+  // If missing, use the original folder name.
+  string alias = 5;
 }
 
 // The state of the share.
