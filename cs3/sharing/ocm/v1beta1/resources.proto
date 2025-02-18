@@ -33,10 +33,9 @@ option java_package = "com.cs3.sharing.ocm.v1beta1";
 option objc_class_prefix = "CSO";
 option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 
-// Shares are relationships between a resource owner
-// (usually the authenticated user) who grants permissions to a recipient
-// (grantee) on a specified resource (resource_id). UserShares represents both
-// user and groups.
+// OCM Shares are shares created by a local owner (usually the authenticated user),
+// who grants permissions to a remote recipient (grantee) on a specified (local) resource (resource_id).
+// UserShares represents both user and groups.
 message Share {
   // REQUIRED.
   // Opaque unique identifier of the share.
@@ -78,9 +77,13 @@ message Share {
   // Recipient share type.
   cs3.sharing.ocm.v1beta1.ShareType share_type = 11;
   // REQUIRED.
+  // Access methods represent how remote users would access the local resource.
   repeated AccessMethod access_methods = 12;
   // OPTIONAL.
-  cs3.types.v1beta1.Opaque opaque = 13;
+  // A nonce to be exchanged for a (potentially short-lived) bearer token.
+  string code = 13;
+  // OPTIONAL.
+  cs3.types.v1beta1.Opaque opaque = 14;
 }
 
 // The permissions for a share.
@@ -89,7 +92,7 @@ message SharePermissions {
   bool reshare = 2;
 }
 
-// A received share is the share that a grantee will receive.
+// A received share represents a share offered by a remote user to a local grantee.
 message ReceivedShare {
   // REQUIRED.
   // Opaque unique identifier of the share.
@@ -146,6 +149,9 @@ message ReceivedShare {
   // REQUIRED.
   // Resource type.
   cs3.storage.provider.v1beta1.ResourceType resource_type = 14;
+  // OPTIONAL.
+  // A nonce to be exchanged for a (potentially short-lived) bearer token.
+  string code = 15;
 }
 
 // The state of the share.
@@ -251,18 +257,24 @@ message WebDAVProtocol {
   // Permissions of the shared resource.
   cs3.sharing.ocm.v1beta1.SharePermissions permissions = 2;
   // REQUIRED.
-  // WebDAV URI used to access the resource.
+  // Path-only URI used to access the resource.
   string uri = 3;
+  // OPTIONAL.
+  // The requirements for the share.
+  repeated string requirements = 4;
 }
 
 // Defines the options for the Webapp protocol.
 message WebappProtocol {
   // REQUIRED.
-  // Template URI to open the resource with a remote app.
-  string uri_template = 1;
+  // Path-only URI to open the resource with a remote app.
+  string uri = 1;
   // REQUIRED.
   // View mode for the remote app.
   cs3.app.provider.v1beta1.ViewMode view_mode = 2;
+  // OPTIONAL.
+  // Secret used to access the resource.
+  string shared_secret = 3;
 }
 
 // Defines the options for the Transfer protocol.
@@ -309,6 +321,9 @@ message WebDAVAccessMethod {
   // REQUIRED.
   // The permissions for the share.
   storage.provider.v1beta1.ResourcePermissions permissions = 1;
+  // OPTIONAL.
+  // The requirements for the share.
+  repeated string requirements = 2;
 }
 
 // Defines the options for the Webapp access method.
