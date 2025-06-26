@@ -32,7 +32,7 @@ jobs:
           cd build/go-cs3apis
           git config user.email "cs3org-bot@hugo.labkode.com"
           git config user.name "cs3org-bot"
-          go install github.com/vektra/mockery/v2@v2.40.0 # Later versions are incompatible with Go 1.21
+          go install github.com/vektra/mockery/v2@v2.40.2 # Later versions are incompatible with Go 1.21
           mockery
           git add .
           git commit -m 'Generated mock interfaces for https://github.com/cern-eos/grpc-proto/tree/${{ github.sha }}' && git push origin main || echo "Nothing to commit"
