@@ -1,4 +1,4 @@
-// Copyright 2018-2019 CERN
+// Copyright 2018-2025 CERN
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -122,6 +122,8 @@ message UpdateShareRequest {
       SharePermissions permissions = 2;
       // Update the display name.
       string display_name = 3;
+      // Update the expiration time.
+      cs3.types.v1beta1.Timestamp expiration = 4;
     }
   }
   // REQUIRED.
