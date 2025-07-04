@@ -476,6 +476,8 @@ message StorageSpace {
   // OPTIONAL.
   // HasTrashedItems indicates if the storage space has trashed items.
   bool has_trashed_items = 10;
+  // OPTIONAL.
+  string description = 11;
 }
 
 // The id of a storage space.
