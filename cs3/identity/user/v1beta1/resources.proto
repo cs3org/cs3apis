@@ -42,6 +42,10 @@ message UserId {
   // REQUIRED.
   // The type of user.
   UserType type = 3;
+  // OPTIONAL.
+  // The tenant id of the user, if applicable.
+  // This is used to identify users in multi-tenant systems.
+  string tenant_id = 4;
 }
 
 // Represents a user of the system.
