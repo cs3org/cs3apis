@@ -163,6 +163,10 @@ message UpdateStorageSpaceRequest {
       string alias = 2;
       // Update IDs of "special" files, such as readme or thumbnail, directly stored in the space.
       SpaceMetadata metadata = 3;
+      // Update the space quota.
+      Quota quota = 4;
+      // Update the space name.
+      string name = 5;
     }
   }
   // REQUIRED.
@@ -196,4 +200,15 @@ message DeleteStorageSpaceResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 2;
+}
+
+message SpaceMetadata {
+  // Type of metadata entry
+  enum Type {
+    TYPE_README = 0;
+    TYPE_THUMBNAIL = 1;
+  }
+  Type type = 1;
+  // ID of the entry, usually the inode of the file that contains the actual metadata.
+  string id = 2;
 }

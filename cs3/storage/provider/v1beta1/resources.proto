@@ -480,8 +480,11 @@ message StorageSpace {
   // Description of the space.
   string description = 11;
   // OPTIONAL.
-  // SpaceMetadata contains additional metadata about the space stored externally, such as subtitle, thumbnail, etc.
-  SpaceMetadata metadata = 12;
+  // An opaque ID of an optional thumbnail file of the space (usually the inode)
+  string thumbnail_id = 13;
+  // OPTIONAL.
+  // An opaque ID of an optional readme file of the space (usually the inode)
+  string readme_id = 14;
 }
 
 // The id of a storage space.
@@ -510,14 +513,3 @@ message Quota {
   uint64 remaining_files = 5;
 }
 
-
-message SpaceMetadata {
-  // Type of metadata entry
-  enum Type {
-    TYPE_README = 0;
-    TYPE_THUMBNAIL = 1;
-  }
-  Type type = 1;
-  // ID of the entry, usually the inode of the file that contains the actual metadata.
-  string id = 2;
-}
