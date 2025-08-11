@@ -476,6 +476,12 @@ message StorageSpace {
   // OPTIONAL.
   // HasTrashedItems indicates if the storage space has trashed items.
   bool has_trashed_items = 10;
+  // OPTIONAL.
+  // Description of the space.
+  string description = 11;
+  // OPTIONAL.
+  // SpaceMetadata contains additional metadata about the space stored externally, such as subtitle, thumbnail, etc.
+  SpaceMetadata metadata = 12;
 }
 
 // The id of a storage space.
@@ -502,4 +508,16 @@ message Quota {
   // OPTIONAL.
   // The remaining files for the space.
   uint64 remaining_files = 5;
+}
+
+
+message SpaceMetadata {
+  // Type of metadata entry
+  enum Type {
+    TYPE_README = 0;
+    TYPE_THUMBNAIL = 1;
+  }
+  Type type = 1;
+  // ID of the entry, usually the inode of the file that contains the actual metadata.
+  string id = 2;
 }
