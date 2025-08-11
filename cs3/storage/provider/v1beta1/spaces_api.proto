@@ -60,6 +60,16 @@ service SpacesAPI {
   rpc DeleteStorageSpace(DeleteStorageSpaceRequest) returns (DeleteStorageSpaceResponse);
 }
 
+message SpaceMetadata {
+  // Type of metadata entry
+  enum Type {
+    TYPE_README = 0;
+    TYPE_THUMBNAIL = 1;
+  }
+  Type type = 1;
+  // ID of the entry, usually the inode of the file that contains the actual metadata.
+  string id = 2;
+}    
 
 message CreateStorageSpaceRequest {
   // OPTIONAL.
@@ -154,6 +164,20 @@ message UpdateStorageSpaceRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   StorageSpace storage_space = 2;
+   // REQUIRED.
+  message UpdateField {
+    // One of the update fields MUST be specified.
+    oneof field {
+      // Update the space description.
+      string description = 1;
+      // Update the space alias.
+      string alias = 2;
+      // Set IDs of "special" files, such as readme or thumbnail.
+      SpaceMetadata metadata = 3;
+    }
+  }
+  // REQUIRED.
+  UpdateField field = 3;
 }
 
 message UpdateStorageSpaceResponse {

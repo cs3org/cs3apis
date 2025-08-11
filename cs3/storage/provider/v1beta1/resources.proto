@@ -22,6 +22,7 @@ package cs3.storage.provider.v1beta1;
 
 import "cs3/identity/group/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/spaces.proto";
 import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Storage.Provider.V1Beta1";
@@ -476,6 +477,12 @@ message StorageSpace {
   // OPTIONAL.
   // HasTrashedItems indicates if the storage space has trashed items.
   bool has_trashed_items = 10;
+  // OPTIONAL.
+  // Description of the space.
+  string description = 11;
+  // OPTIONAL.
+  // SpaceMetadata contains metadata about the space, such as subtitle, thumbnail, etc.
+  SpaceMetadata metadata = 12;
 }
 
 // The id of a storage space.
