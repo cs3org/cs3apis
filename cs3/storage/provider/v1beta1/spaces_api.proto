@@ -197,3 +197,14 @@ message DeleteStorageSpaceResponse {
   // The response status.
   cs3.rpc.v1beta1.Status status = 2;
 }
+
+message SpaceMetadata {
+  // Type of metadata entry
+  enum Type {
+    TYPE_README = 0;
+    TYPE_THUMBNAIL = 1;
+  }
+  Type type = 1;
+  // ID of the entry, usually the inode of the file that contains the actual metadata.
+  string id = 2;
+}
