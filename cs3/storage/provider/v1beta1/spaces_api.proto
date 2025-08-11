@@ -172,7 +172,7 @@ message UpdateStorageSpaceRequest {
       string description = 1;
       // Update the space alias.
       string alias = 2;
-      // Set IDs of "special" files, such as readme or thumbnail.
+      // Update IDs of "special" files, such as readme or thumbnail, directly stored in the space.
       SpaceMetadata metadata = 3;
     }
   }

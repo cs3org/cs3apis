@@ -481,7 +481,7 @@ message StorageSpace {
   // Description of the space.
   string description = 11;
   // OPTIONAL.
-  // SpaceMetadata contains metadata about the space, such as subtitle, thumbnail, etc.
+  // SpaceMetadata contains additional metadata about the space stored externally, such as subtitle, thumbnail, etc.
   SpaceMetadata metadata = 12;
 }
 
