@@ -22,7 +22,6 @@ package cs3.storage.provider.v1beta1;
 
 import "cs3/identity/group/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
-import "cs3/storage/provider/v1beta1/spaces_api.proto";
 import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Storage.Provider.V1Beta1";
@@ -509,4 +508,16 @@ message Quota {
   // OPTIONAL.
   // The remaining files for the space.
   uint64 remaining_files = 5;
+}
+
+
+message SpaceMetadata {
+  // Type of metadata entry
+  enum Type {
+    TYPE_README = 0;
+    TYPE_THUMBNAIL = 1;
+  }
+  Type type = 1;
+  // ID of the entry, usually the inode of the file that contains the actual metadata.
+  string id = 2;
 }
