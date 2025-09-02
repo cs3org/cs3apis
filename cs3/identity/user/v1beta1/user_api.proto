@@ -138,9 +138,12 @@ message FindUsersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED. TODO(labkode): create proper filters for most common searches.
-  // The filter to apply.
-  string filter = 2;
+  // REQUIRED. 
+  // The search query to apply.
+  string query = 4;
+  // OPTIONAL.
+  // Optional filters on users, such as filtering for a specific UserType.
+  repeated Filter filter = 5;
   // OPTIONAL.
   // Whether to skip fetching user groups along with the user object.
   bool skip_fetching_user_groups = 3;
@@ -156,4 +159,18 @@ message FindUsersResponse {
   // REQUIRED.
   // The users matching the specified filter.
   repeated User users = 3;
+}
+
+// Represents a filter to apply to the request.
+message Filter {
+  // The filter to apply.
+  enum Type {
+    TYPE_INVALID = 0;
+    TYPE_USERTYPE = 1;
+  }
+  // REQUIRED.
+  Type type = 1;
+  oneof term {
+    UserType usertype = 2;
+  }
 }
