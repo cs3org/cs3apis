@@ -18,7 +18,7 @@
 
 syntax = "proto3";
 
-package cs3.ocm.core.v1beta1;
+package cs3.ocm.incoming.v1beta1;
 
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
@@ -26,21 +26,22 @@ import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
-option csharp_namespace = "Cs3.Ocm.Core.V1Beta1";
-option go_package = "corev1beta1";
+option csharp_namespace = "Cs3.Ocm.Incoming.V1Beta1";
+option go_package = "incomingv1beta1";
 option java_multiple_files = true;
-option java_outer_classname = "OcmCoreApiProto";
-option java_package = "com.cs3.ocm.core.v1beta1";
-option objc_class_prefix = "COC";
-option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
+option java_outer_classname = "OcmIncomingApiProto";
+option java_package = "com.cs3.ocm.incoming.v1beta1";
+option objc_class_prefix = "COI";
+option php_namespace = "Cs3\\Ocm\\Incoming\\V1Beta1";
 
-// OCM Core API (deprecated and to be removed, use cs3/ocm/incoming/v1beta1/incoming_api.proto instead)
+// OCM Incoming API
 //
-// This API is the mapping for the local system of the Open Cloud Mesh
-// (OCM) sharing protocol. Implementations are expected to expose the `/ocm`
-// endpoints according to the OCM API, and in response to those endpoints call the
-// following API. Support for multi-protocol shares is included, if the remote
-// sender supplies a multi-protocol share.
+// The OCM Incoming API is used to persist in the local system the incoming remote
+// shares that are sent via the Open Cloud Mesh (OCM) sharing protocol.
+// Implementations are expected to expose the `/ocm` endpoints according to the
+// OCM API, and in response to those endpoints call the following API.
+// Support for multi-protocol shares is included, if the remote sender supplies
+// a multi-protocol share.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -53,17 +54,19 @@ option php_namespace = "Cs3\\Ocm\\Core\\V1Beta1";
 // Any method MAY return INTERNAL.
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
-service OcmCoreAPI {
-  // Deprecated. Creates a new OCM share, in response to a call from the remote system
-  rpc CreateOCMCoreShare(CreateOCMCoreShareRequest) returns (CreateOCMCoreShareResponse);
-  // Deprecated. Updates an OCM share, in response to a notification from the remote system
-  rpc UpdateOCMCoreShare(UpdateOCMCoreShareRequest) returns (UpdateOCMCoreShareResponse);
-  // Deprecated. Deletes an OCM share, in response to a notification from the remote system
-  rpc DeleteOCMCoreShare(DeleteOCMCoreShareRequest) returns (DeleteOCMCoreShareResponse);
+service OcmIncomingAPI {
+  // Creates a new OCM share in response to a call from remote to `/ocm/shares`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1shares/post
+  rpc CreateIncomingOCMShare(CreateIncomingOCMShareRequest) returns (CreateIncomingOCMShareResponse);
+  // Updates an OCM share in response to a notification from remote to `/ocm/notifications`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  rpc UpdateIncomingOCMShare(UpdateIncomingOCMShareRequest) returns (UpdateIncomingOCMShareResponse);
+  // Deletes an OCM share in response to a notification from remote to `/ocm/notifications`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  rpc DeleteIncomingOCMShare(DeleteIncomingOCMShareRequest) returns (DeleteIncomingOCMShareResponse);
 }
 
-
-message CreateOCMCoreShareRequest {
+message CreateIncomingOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -108,7 +111,7 @@ message CreateOCMCoreShareRequest {
   string code = 12;
 }
 
-message CreateOCMCoreShareResponse {
+message CreateIncomingOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -122,7 +125,7 @@ message CreateOCMCoreShareResponse {
   cs3.types.v1beta1.Timestamp created = 4;
 }
 
-message UpdateOCMCoreShareRequest {
+message UpdateIncomingOCMShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -144,7 +147,7 @@ message UpdateOCMCoreShareRequest {
   repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 7;
 }
 
-message UpdateOCMCoreShareResponse {
+message UpdateIncomingOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -153,7 +156,7 @@ message UpdateOCMCoreShareResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message DeleteOCMCoreShareRequest {
+message DeleteIncomingOCMShareRequest {
   // REQUIRED.
   // Unique ID to identify the share at the consumer side.
   string id = 1;
@@ -162,7 +165,7 @@ message DeleteOCMCoreShareRequest {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message DeleteOCMCoreShareResponse {
+message DeleteIncomingOCMShareResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
