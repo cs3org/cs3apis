@@ -40,16 +40,45 @@ message GroupId {
   // the unique identifier for the group in the scope of
   // the identity provider.
   string opaque_id = 2;
+  // OPTIONAL.
+  // The type of group.
+  GroupType type = 3;
 }
 
-// Represents a group of the system.
+// Represents a group known by the system.
 message Group {
+  // REQUIRED.
+  // The unique identifier of this group.
   GroupId id = 1;
+  // REQUIRED.
+  // A human-friendly unique identifier of this group.
   string group_name = 2;
+  // OPTIONAL.
+  // The group id of this group in the Unix world.
   int64 gid_number = 3;
+  // OPTIONAL.
+  // The e-mail address of this group if available.
   string mail = 4;
+  // OPTIONAL.
+  // Whether the e-mail address was verified by the IDP.
   bool mail_verified = 5;
+  // OPTIONAL.
+  // A human-friendly display name for this group, e.g. "Foo Group"
   string display_name = 6;
+  // OPTIONAL.
+  // The list of users that are members of this group.
   repeated cs3.identity.user.v1beta1.UserId members = 7;
+  // OPTIONAL.
+  // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 8;
+}
+
+// The type of group.
+enum GroupType {
+  // The group is invalid.
+  GROUP_TYPE_INVALID = 0;
+  // A regular group.
+  GROUP_TYPE_REGULAR = 1;
+  // A federated group provided by external IDPs.
+  GROUP_TYPE_FEDERATED = 2;
 }
