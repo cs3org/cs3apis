@@ -1,4 +1,4 @@
-// Copyright 2018-2019 CERN
+// Copyright 2018-2025 CERN
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -485,6 +485,15 @@ message StorageSpace {
   // OPTIONAL.
   // An opaque ID of an optional readme file of the space (usually the inode)
   string readme_id = 14;
+  // OPTIONAL.
+  // A group containing users with read privileges this storage spaces
+  cs3.identity.group.v1beta1.Group readers = 15;
+  // OPTIONAL.
+  // A group containing users with write privileges on this storage spaces
+  cs3.identity.group.v1beta1.Group writers = 16;
+  // OPTIONAL.
+  // A group containing users with administration privileges on this storage spaces
+  cs3.identity.group.v1beta1.Group admins = 17;
 }
 
 // The id of a storage space.
