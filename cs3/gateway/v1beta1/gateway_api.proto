@@ -29,6 +29,7 @@ import "cs3/identity/group/v1beta1/group_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
+import "cs3/ocm/incoming/v1beta1/ocm_incoming_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
 import "cs3/permissions/v1beta1/permissions_api.proto";
@@ -413,14 +414,21 @@ service GatewayAPI {
   // Get the information of all the providers registered in the mesh.
   rpc ListAllProviders(cs3.ocm.provider.v1beta1.ListAllProvidersRequest) returns (cs3.ocm.provider.v1beta1.ListAllProvidersResponse);
   // *****************************************************************/
-  // **************************** OCM CORE ***************************/
+  // **************************** OCM INCOMING ***********************/
   // *****************************************************************/
 
-  // Creates a new OCM share.
+  // Creates a new incoming OCM share.
+  rpc CreateOCMIncomingShare(cs3.ocm.incoming.v1beta1.CreateOCMIncomingShareRequest) returns (cs3.ocm.incoming.v1beta1.CreateOCMIncomingShareResponse);
+  // Updates an incoming OCM share.
+  rpc UpdateOCMIncomingShare(cs3.ocm.incoming.v1beta1.UpdateOCMIncomingShareRequest) returns (cs3.ocm.incoming.v1beta1.UpdateOCMIncomingShareResponse);
+  // Deletes an incoming OCM share.
+  rpc DeleteOCMIncomingShare(cs3.ocm.incoming.v1beta1.DeleteOCMIncomingShareRequest) returns (cs3.ocm.incoming.v1beta1.DeleteOCMIncomingShareResponse);
+
+  // Deprecated. Creates a new OCM share.
   rpc CreateOCMCoreShare(cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse);
-  // Updates an OCM share.
+  // Deprecated. Updates an OCM share.
   rpc UpdateOCMCoreShare(cs3.ocm.core.v1beta1.UpdateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.UpdateOCMCoreShareResponse);
-  // Deletes an OCM share.
+  // Deprecated. Deletes an OCM share.
   rpc DeleteOCMCoreShare(cs3.ocm.core.v1beta1.DeleteOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.DeleteOCMCoreShareResponse);
   // *****************************************************************/
   // ************************** FILE TRANSFER ************************/
