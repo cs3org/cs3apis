@@ -60,7 +60,8 @@ service GroupAPI {
   rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
   // Tells if the group has certain member.
   rpc HasMember(HasMemberRequest) returns (HasMemberResponse);
-  // Finds groups whose names match the specified filter.
+  // Finds groups whose names match the specified filters.
+  // MAY return CODE_RESOURCE_EXHAUSTED if the filters return too many responses.
   rpc FindGroups(FindGroupsRequest) returns (FindGroupsResponse);
 }
 
@@ -165,8 +166,8 @@ message FindGroupsRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The filter to apply.
-  string filter = 2;
+  // The filters to apply.
+  repeated Filter filter = 2;
   // OPTIONAL.
   // Whether to skip fetching members along with the group object.
   bool skip_fetching_members = 3;
@@ -182,4 +183,23 @@ message FindGroupsResponse {
   // REQUIRED.
   // The groups matching the specified filter.
   repeated Group groups = 3;
+}
+
+
+// Represents a filter to apply to the request.
+message Filter {
+  // The filter to apply.
+  enum Type {
+    TYPE_INVALID = 0;
+    // extract all groups of a given GroupType
+    TYPE_GROUPTYPE = 1;
+    // extract all groups matching the given query
+    TYPE_QUERY = 2;
+  }
+  // REQUIRED.
+  Type type = 1;
+  oneof term {
+    GroupType grouptype = 2;
+    string query = 3;
+  }
 }
