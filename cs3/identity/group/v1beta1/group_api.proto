@@ -167,7 +167,7 @@ message FindGroupsRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The filters to apply.
-  repeated Filter filter = 2;
+  repeated Filter filters = 2;
   // OPTIONAL.
   // Whether to skip fetching members along with the group object.
   bool skip_fetching_members = 3;

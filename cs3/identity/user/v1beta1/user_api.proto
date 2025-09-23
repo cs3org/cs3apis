@@ -140,7 +140,7 @@ message FindUsersRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The filters to apply.
-  repeated Filter filter = 2;
+  repeated Filter filters = 2;
   // OPTIONAL.
   // Whether to skip fetching user groups along with the user object.
   bool skip_fetching_user_groups = 3;
