@@ -57,8 +57,8 @@ service UserAPI {
   rpc GetUserByClaim(GetUserByClaimRequest) returns (GetUserByClaimResponse);
   // Gets the groups of a user.
   rpc GetUserGroups(GetUserGroupsRequest) returns (GetUserGroupsResponse);
-  // Finds users by any attribute of the user.
-  // TODO(labkode): to define the filters that make more sense.
+  // Finds users that match the specified filters.
+  // MAY return CODE_RESOURCE_EXHAUSTED if the filters return too many responses.
   rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
 }
 
@@ -138,12 +138,9 @@ message FindUsersRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED. 
-  // The search query to apply.
-  string query = 4;
-  // OPTIONAL.
-  // Optional filters on users, such as filtering for a specific UserType.
-  repeated Filter filter = 5;
+  // REQUIRED.
+  // The filters to apply.
+  repeated Filter filters = 2;
   // OPTIONAL.
   // Whether to skip fetching user groups along with the user object.
   bool skip_fetching_user_groups = 3;
@@ -166,11 +163,15 @@ message Filter {
   // The filter to apply.
   enum Type {
     TYPE_INVALID = 0;
+    // extract all users of a given UserType
     TYPE_USERTYPE = 1;
+    // extract all users matching the given query
+    TYPE_QUERY = 2;
   }
   // REQUIRED.
   Type type = 1;
   oneof term {
     UserType usertype = 2;
+    string query = 3;
   }
 }
