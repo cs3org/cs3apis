@@ -314,6 +314,9 @@ service GatewayAPI {
   // both as owner and creator. If a filter is specified, only
   // shares satisfying the filter MUST be returned.
   rpc ListOCMShares(cs3.sharing.ocm.v1beta1.ListOCMSharesRequest) returns (cs3.sharing.ocm.v1beta1.ListOCMSharesResponse);
+  // List all existing shares the authenticated principal has created,
+  // including their storage resource information.
+  rpc ListExistingOCMShares(cs3.sharing.ocm.v1beta1.ListOCMSharesRequest) returns (ListExistingOCMSharesResponse);
   // Updates a share.
   // MUST return CODE_NOT_FOUND if the share reference does not exist.
   rpc UpdateOCMShare(cs3.sharing.ocm.v1beta1.UpdateOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.UpdateOCMShareResponse);
@@ -591,6 +594,24 @@ message ListExistingPublicSharesResponse {
   // REQUIRED.
   // The shares encapsulating both the share metadata and the storage metadata.
   repeated PublicShareResourceInfo share_infos = 3;
+  // OPTIONAL.
+  // This field represents the pagination token to retrieve the next page of results.
+  // If the value is "", it means no further results for the request.
+  // see https://cloud.google.com/apis/design/design_patterns#list_pagination
+  string next_page_token = 4;
+}
+
+
+message ListExistingOCMSharesResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The shares encapsulating both the share metadata and the storage metadata.
+  repeated OCMShareResourceInfo share_infos = 3;
   // OPTIONAL.
   // This field represents the pagination token to retrieve the next page of results.
   // If the value is "", it means no further results for the request.

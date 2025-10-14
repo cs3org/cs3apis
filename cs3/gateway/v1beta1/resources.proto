@@ -22,6 +22,7 @@ package cs3.gateway.v1beta1;
 
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/sharing/link/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -115,6 +116,20 @@ message PublicShareResourceInfo {
   // REQUIRED.
   // The underlying share as returned by the collaboration service.
   cs3.sharing.link.v1beta1.PublicShare public_share = 2;
+  // REQUIRED.
+  // The corresponding resource information as returned by the storage provider.
+  cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
+}
+
+// OCMShareResourceInfo includes the sharing information
+// and the storage-related information about an OCM share resource.
+message OCMShareResourceInfo {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The underlying share as returned by the collaboration service.
+  cs3.sharing.ocm.v1beta1.Share ocm_share = 2;
   // REQUIRED.
   // The corresponding resource information as returned by the storage provider.
   cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
