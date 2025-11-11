@@ -159,10 +159,10 @@ enum ShareState {
   // The share is no longer valid, for example, the share expired.
   SHARE_STATE_INVALID = 0;
   // New shares MUST be created in the SHARE_STATE_PENDING state.
-  // This state means the share is pending to be accepted or rejected
+  // This state means the share is pending to be accepted, processed or rejected
   // by the recipient of the share.
   SHARE_STATE_PENDING = 1;
-  // The recipient of the share has accepted the share.
+  // The recipient of the share has accepted the share or processed the share.
   SHARE_STATE_ACCEPTED = 2;
   // The recipient of the share has rejected the share.
   // Do not means the share is removed, the recipient MAY
@@ -245,6 +245,8 @@ message Protocol {
     // Used to implement future protocols
     // in the OCM specs.
     cs3.types.v1beta1.Opaque generic_options = 4;
+    // Options for embedded protocol.
+    EmbeddedProtocol embedded_options = 5;
   }
 }
 
@@ -288,6 +290,13 @@ message TransferProtocol {
   // REQUIRED.
   // Size in bytes of the source.
   uint64 size = 3;
+}
+
+// Defines the options for the Embedded protocol.
+message EmbeddedProtocol {
+  // REQUIRED.
+  // The embedded payload.
+  string payload = 1;
 }
 
 // Defines the type of share based on its recipient.
