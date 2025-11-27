@@ -313,9 +313,6 @@ enum ShareType {
   SHARE_TYPE_INVALID = 0;
   // The file type represents a type
   // that holds arbitrary data.
-  // Service implementors usually map this type
-  // to files (local filesystem) or objects
-  // (Amazon S3).
   SHARE_TYPE_FILE = 1;
   // The container type represents a type
   // that can contain other resources.
