@@ -283,6 +283,26 @@ message ListReceivedOCMSharesRequest {
   // OPTIONAL.
   // The client uses this field to request a specific page of the list results.
   string page_token = 3;
+  message Filter {
+    // REQUIRED.
+    // The filter to apply.
+    enum Type {
+      TYPE_INVALID = 0;
+      TYPE_OWNER = 1;
+      TYPE_CREATOR = 2;
+      TYPE_SHARE_TYPE = 3;
+    }
+    // REQUIRED.
+    Type type = 1;
+    oneof term {
+      cs3.identity.user.v1beta1.UserId owner = 2;
+      cs3.identity.user.v1beta1.UserId creator = 3;
+      cs3.sharing.ocm.v1beta1.ShareType share_type = 4;
+    }
+  }
+  // OPTIONAL.
+  // The list of filters to apply if any.
+  repeated Filter filters = 4;
 }
 
 message ListReceivedOCMSharesResponse {
