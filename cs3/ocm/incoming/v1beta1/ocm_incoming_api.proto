@@ -91,10 +91,10 @@ message CreateOCMIncomingShareRequest {
   // TODO: this field needs to represent either a user or group in the future, not only a user.
   cs3.identity.user.v1beta1.UserId share_with = 7;
   // REQUIRED.
-  // Share type.
+  // Shared resource type.
   cs3.sharing.ocm.v1beta1.ShareType share_type = 8;
   // REQUIRED.
-  // Recipient share type.
+  // Recipient type, e.g. user or group.
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 9;
   // OPTIONAL.
   // The expiration time for the OCM share.
@@ -135,7 +135,7 @@ message UpdateOCMIncomingShareRequest {
   // Description for the share.
   string description = 3;
   // OPTIONAL.
-  // Recipient share type.
+  // Recipient type.
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
   // OPTIONAL.
   // The expiration time for the OCM share.
