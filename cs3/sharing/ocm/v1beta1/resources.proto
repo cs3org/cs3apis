@@ -75,7 +75,7 @@ message Share {
   cs3.types.v1beta1.Timestamp expiration = 10;
   // REQUIRED.
   // Recipient share type.
-  cs3.sharing.ocm.v1beta1.ShareType share_type = 11;
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 11;
   // REQUIRED.
   // Access methods represent how remote users would access the local resource.
   repeated AccessMethod access_methods = 12;
@@ -131,7 +131,7 @@ message ReceivedShare {
   cs3.types.v1beta1.Timestamp expiration = 9;
   // REQUIRED.
   // Recipient share type.
-  cs3.sharing.ocm.v1beta1.ShareType share_type = 10;
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 10;
   // REQUIRED.
   // List of protocols offered for this share.
   // In the OCM specifications, this corresponds to the `protocol`
@@ -147,8 +147,8 @@ message ReceivedShare {
   // OPTIONAL.
   cs3.types.v1beta1.Opaque opaque = 13;
   // REQUIRED.
-  // Resource type.
-  cs3.storage.provider.v1beta1.ResourceType resource_type = 14;
+  // Share type.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 14;
   // OPTIONAL.
   // A nonce to be exchanged for a (potentially short-lived) bearer token.
   string code = 15;
@@ -300,14 +300,35 @@ message EmbeddedProtocol {
 }
 
 // Defines the type of share based on its recipient.
-enum ShareType {
-  SHARE_TYPE_INVALID = 0;
+enum RecipientType {
+  RECIPIENT_TYPE_INVALID = 0;
   // Share of type user.
-  SHARE_TYPE_USER = 1;
+  RECIPIENT_TYPE_USER = 1;
   // Share of type group.
-  SHARE_TYPE_GROUP = 2;
+  RECIPIENT_TYPE_GROUP = 2;
 }
 
+// The available types of resources.
+enum ShareType {
+  SHARE_TYPE_INVALID = 0;
+  // The file type represents a type
+  // that holds arbitrary data.
+  // Service implementors usually map this type
+  // to files (local filesystem) or objects
+  // (Amazon S3).
+  SHARE_TYPE_FILE = 1;
+  // The container type represents a type
+  // that can contain another types.
+  // Service implementors usually map this type
+  // to folders (local filesystem) or buckets
+  // (Amazon S3).
+  SHARE_TYPE_CONTAINER = 2;
+  // The embedded type represents resources that are
+  // embedded inside the embedded protocol payload and
+  // there is no remote resource to access, for example
+  // a json structure containing metadata.
+  SHARE_TYPE_EMBEDDED = 3;
+}
 // Defines how the recipient accesses an incoming remote OCM share.
 message AccessMethod {
   // REQUIRED.

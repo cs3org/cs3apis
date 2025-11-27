@@ -23,7 +23,6 @@ package cs3.ocm.incoming.v1beta1;
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Ocm.Incoming.V1Beta1";
@@ -92,11 +91,11 @@ message CreateOCMIncomingShareRequest {
   // TODO: this field needs to represent either a user or group in the future, not only a user.
   cs3.identity.user.v1beta1.UserId share_with = 7;
   // REQUIRED.
-  // Resource type.
-  cs3.storage.provider.v1beta1.ResourceType resource_type = 8;
+  // Share type.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 8;
   // REQUIRED.
   // Recipient share type.
-  cs3.sharing.ocm.v1beta1.ShareType share_type = 9;
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 9;
   // OPTIONAL.
   // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 10;
@@ -137,7 +136,7 @@ message UpdateOCMIncomingShareRequest {
   string description = 3;
   // OPTIONAL.
   // Recipient share type.
-  cs3.sharing.ocm.v1beta1.ShareType share_type = 5;
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
   // OPTIONAL.
   // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 6;
