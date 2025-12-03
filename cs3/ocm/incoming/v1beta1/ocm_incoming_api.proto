@@ -92,7 +92,7 @@ message CreateOCMIncomingShareRequest {
   cs3.identity.user.v1beta1.UserId share_with = 7;
   // REQUIRED.
   // Shared resource type.
-  cs3.sharing.ocm.v1beta1.ShareType share_type = 8;
+  cs3.sharing.ocm.v1beta1.ShareType shared_resource_type = 8;
   // REQUIRED.
   // Recipient type, e.g. user or group.
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 9;

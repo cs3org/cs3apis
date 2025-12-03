@@ -297,7 +297,7 @@ message ListReceivedOCMSharesRequest {
     oneof term {
       cs3.identity.user.v1beta1.UserId owner = 2;
       cs3.identity.user.v1beta1.UserId creator = 3;
-      cs3.sharing.ocm.v1beta1.ShareType share_type = 4;
+      cs3.sharing.ocm.v1beta1.ShareType shared_resource_type = 4;
     }
   }
   // OPTIONAL.
