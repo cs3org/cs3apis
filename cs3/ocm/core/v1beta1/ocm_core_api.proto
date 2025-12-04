@@ -93,7 +93,7 @@ message CreateOCMCoreShareRequest {
   cs3.storage.provider.v1beta1.ResourceType resource_type = 8;
   // REQUIRED.
   // Recipient share type.
-  cs3.sharing.ocm.v1beta1.ShareType shared_resource_type = 9;
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 9;
   // OPTIONAL.
   // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 10;
@@ -134,7 +134,7 @@ message UpdateOCMCoreShareRequest {
   string description = 3;
   // OPTIONAL.
   // Recipient share type.
-  cs3.sharing.ocm.v1beta1.ShareType shared_resource_type = 5;
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 5;
   // OPTIONAL.
   // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 6;

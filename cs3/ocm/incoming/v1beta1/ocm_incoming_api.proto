@@ -23,6 +23,7 @@ package cs3.ocm.incoming.v1beta1;
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Ocm.Incoming.V1Beta1";
@@ -91,11 +92,13 @@ message CreateOCMIncomingShareRequest {
   // TODO: this field needs to represent either a user or group in the future, not only a user.
   cs3.identity.user.v1beta1.UserId share_with = 7;
   // REQUIRED.
-  // Shared resource type.
-  cs3.sharing.ocm.v1beta1.ShareType shared_resource_type = 8;
+  // Resource type.
+  // Deprecated: a resource might not always be a storage resource, use shared_resource_type instead.
+  cs3.storage.provider.v1beta1.ResourceType resource_type = 8 [deprecated = true];
   // REQUIRED.
-  // Recipient type, e.g. user or group.
-  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 9;
+  // Recipient share type.
+  // Deprecated: use recipient_type instead.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 9 [deprecated = true];
   // OPTIONAL.
   // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 10;
@@ -108,6 +111,12 @@ message CreateOCMIncomingShareRequest {
   // OPTIONAL.
   // A nonce to be exchanged for a (potentially short-lived) bearer token.
   string code = 12;
+  // REQUIRED.
+  // Shared resource type.
+  cs3.sharing.ocm.v1beta1.SharedResourceType shared_resource_type = 13;
+  // REQUIRED.
+  // Recipient type, e.g. user or group.
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 14;
 }
 
 message CreateOCMIncomingShareResponse {
@@ -135,8 +144,9 @@ message UpdateOCMIncomingShareRequest {
   // Description for the share.
   string description = 3;
   // OPTIONAL.
-  // Recipient type.
-  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
+  // Recipient share type.
+  // Deprecated: use recipient_type instead.
+  cs3.sharing.ocm.v1beta1.ShareType share_type = 5 [deprecated = true];
   // OPTIONAL.
   // The expiration time for the OCM share.
   cs3.types.v1beta1.Timestamp expiration = 6;
@@ -144,6 +154,9 @@ message UpdateOCMIncomingShareRequest {
   // The protocols which are used to establish synchronisation,
   // with their access rights.
   repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 7;
+  // OPTIONAL.
+  // Recipient type.
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 8;
 }
 
 message UpdateOCMIncomingShareResponse {
