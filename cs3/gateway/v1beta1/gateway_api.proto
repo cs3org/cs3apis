@@ -651,6 +651,8 @@ message OpenInAppRequest {
     // or if in a view-only mode users are not allowed to switch to edit mode,
     // then this mode MUST fall back to READ_WRITE.
     VIEW_MODE_PREVIEW = 4;
+    // The resource can be viewed in embedded mode. Editing is disabled.
+    VIEW_MODE_EMBEDDED = 5;
   }
   ViewMode view_mode = 3;
   // OPTIONAL.
