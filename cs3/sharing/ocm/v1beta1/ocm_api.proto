@@ -44,7 +44,7 @@ option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 // Implementations are expected to call remote `/ocm` endpoints
 // in response to the payloads received via this API.
 //
-// The APIs match the OCM v1.2 spec including multi-protocol shares.
+// The APIs match the OCM v1.2+ spec including multi-protocol shares.
 //
 // The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 // NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -110,6 +110,7 @@ message CreateOCMShareRequest {
   // The details of the recipient user's mesh provider.
   cs3.ocm.provider.v1beta1.ProviderInfo recipient_mesh_provider = 4;
   // REQUIRED.
+  // The protocols used to access the resource from remote.
   repeated AccessMethod access_methods = 5;
   // OPTIONAL.
   // The expiration time for the ocm share.

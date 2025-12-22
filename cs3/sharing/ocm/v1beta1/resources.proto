@@ -81,8 +81,8 @@ message Share {
   // Access methods represent how remote users would access the local resource.
   repeated AccessMethod access_methods = 12;
   // OPTIONAL.
-  // A nonce to be exchanged for a (potentially short-lived) bearer token.
-  string code = 13;
+  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM.
+  string code = 13 [deprecated = true];
   // OPTIONAL.
   cs3.types.v1beta1.Opaque opaque = 14;
   // REQUIRED.
@@ -156,8 +156,8 @@ message ReceivedShare {
   // Deprecated: a resource might not always be a storage resource, use shared_resource_type instead.
   cs3.storage.provider.v1beta1.ResourceType resource_type = 14 [deprecated = true];
   // OPTIONAL.
-  // A nonce to be exchanged for a (potentially short-lived) bearer token.
-  string code = 15;
+  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM.
+  string code = 15 [deprecated = true];
   // REQUIRED.
   // Recipient type, e.g. user or group.
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 16;
@@ -242,7 +242,7 @@ message ShareGrant {
   SharePermissions permissions = 2;
 }
 
-// The protocol which is used to give access to a remote OCM user.
+// The protocol which is used to get access to a remote OCM resource.
 message Protocol {
   // REQUIRED.
   // One of the protocols MUST be specified.
@@ -251,8 +251,6 @@ message Protocol {
     WebDAVProtocol webdav_options = 1;
     // Options for Webapp protocol.
     WebappProtocol webapp_options = 2;
-    // Options for transfer protocol.
-    TransferProtocol transfer_options = 3;
     // Options for a generic protocol.
     // Used to implement future protocols
     // in the OCM specs.
@@ -276,6 +274,9 @@ message WebDAVProtocol {
   // OPTIONAL.
   // The requirements for the share.
   repeated string requirements = 4;
+  // OPTIONAL.
+  // Access types for the share, e.g. remote or data transfer. Defaults to remote.
+  repeated cs3.sharing.ocm.v1beta1.AccessType access_types = 5;
 }
 
 // Defines the options for the Webapp protocol.
@@ -289,19 +290,6 @@ message WebappProtocol {
   // OPTIONAL.
   // Secret used to access the resource.
   string shared_secret = 3;
-}
-
-// Defines the options for the Transfer protocol.
-message TransferProtocol {
-  // REQUIRED.
-  // Secret used to access the source of the data transfer.
-  string shared_secret = 1;
-  // REQUIRED.
-  // Source URI for the data transfer.
-  string source_uri = 2;
-  // REQUIRED.
-  // Size in bytes of the source.
-  uint64 size = 3;
 }
 
 // Defines the options for the Embedded protocol.
@@ -320,7 +308,6 @@ enum ShareType {
   // Share of type group.
   SHARE_TYPE_GROUP = 2;
 }
-
 
 // Defines the types of recipient for an OCM share.
 enum RecipientType {
@@ -346,7 +333,17 @@ enum SharedResourceType {
   // See also the `embedded` protocol.
   SHARE_RESOURCE_TYPE_EMBEDDED = 3;
 }
-// Defines how the recipient accesses an incoming remote OCM share.
+
+// The available access types for an OCM resource.
+enum AccessType {
+  ACCESS_TYPE_INVALID = 0;
+  // The resource is to be accessed remotely or interactively.
+  ACCESS_TYPE_REMOTE = 1;
+  // The resource is to be transferred to the recipient.
+  ACCESS_TYPE_DATATX = 2;
+}
+
+// Defines how the remote OCM recipient accesses a local resource.
 message AccessMethod {
   // REQUIRED.
   // One of the access method MUST be specified.
@@ -355,9 +352,7 @@ message AccessMethod {
     WebDAVAccessMethod webdav_options = 1;
     // Options for the Webapp access method.
     WebappAccessMethod webapp_options = 2;
-    // Options for the Transfer access method.
-    TransferAccessMethod transfer_options = 3;
-    // Options for a generic transfer method.
+    // Options for a generic access method.
     // Used to implement future access methods.
     cs3.types.v1beta1.Opaque generic_options = 4;
   }
@@ -371,6 +366,9 @@ message WebDAVAccessMethod {
   // OPTIONAL.
   // The requirements for the share.
   repeated string requirements = 2;
+  // OPTIONAL.
+  // Access types for the share, e.g. remote or data transfer. Defaults to remote.
+  repeated cs3.sharing.ocm.v1beta1.AccessType access_types = 3;
 }
 
 // Defines the options for the Webapp access method.
@@ -378,11 +376,4 @@ message WebappAccessMethod {
   // REQUIRED.
   // The view mode for the share.
   cs3.app.provider.v1beta1.ViewMode view_mode = 1;
-}
-
-// Defines the options for the Transfer access method.
-message TransferAccessMethod {
-  // REQUIRED.
-  // The destination path of the data transfer.
-  storage.provider.v1beta1.Reference destination = 1;
 }
