@@ -81,7 +81,7 @@ message Share {
   // Access methods represent how remote users would access the local resource.
   repeated AccessMethod access_methods = 12;
   // OPTIONAL.
-  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM.
+  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM 1.3.
   string code = 13 [deprecated = true];
   // OPTIONAL.
   cs3.types.v1beta1.Opaque opaque = 14;
@@ -156,7 +156,7 @@ message ReceivedShare {
   // Deprecated: a resource might not always be a storage resource, use shared_resource_type instead.
   cs3.storage.provider.v1beta1.ResourceType resource_type = 14 [deprecated = true];
   // OPTIONAL.
-  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM.
+  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM 1.3.
   string code = 15 [deprecated = true];
   // REQUIRED.
   // Recipient type, e.g. user or group.

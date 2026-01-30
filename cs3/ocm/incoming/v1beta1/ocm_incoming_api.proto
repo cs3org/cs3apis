@@ -109,7 +109,7 @@ message CreateOCMIncomingShareRequest {
   // this to the OCM share payload.
   repeated cs3.sharing.ocm.v1beta1.Protocol protocols = 11;
   // OPTIONAL.
-  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM.
+  // A nonce to be exchanged for a (potentially short-lived) bearer token. Deprecated in OCM 1.3.
   string code = 12 [deprecated = true];
   // REQUIRED.
   // Shared resource type.
