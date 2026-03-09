@@ -208,6 +208,10 @@ service GatewayAPI {
   rpc UpdateStorageSpace(cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse);
   // Deletes a storage space.
   rpc DeleteStorageSpace(cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse);
+  // Adds a resource as a favorite for a user.
+  rpc AddFavorite(cs3.storage.provider.v1beta1.AddFavoriteRequest) returns (cs3.storage.provider.v1beta1.AddFavoriteResponse);
+  // Removes a resource from favorites for a user.
+  rpc RemoveFavorite(cs3.storage.provider.v1beta1.RemoveFavoriteRequest) returns (cs3.storage.provider.v1beta1.RemoveFavoriteResponse);
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/

@@ -176,6 +176,10 @@ service ProviderAPI {
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
   // Gets the home path for the user.
   rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
+  // Marks a resource as favorite for a user.
+  rpc AddFavorite(AddFavoriteRequest) returns (AddFavoriteResponse);
+  // Unmarks a resource as favorite for a user.
+  rpc RemoveFavorite(RemoveFavoriteRequest) returns (RemoveFavoriteResponse);
 }
 
 message GetHomeRequest {
@@ -1066,6 +1070,48 @@ message CreateHomeRequest {
 }
 
 message CreateHomeResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message AddFavoriteRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The user marking the resource as favorite.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+}
+
+message AddFavoriteResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message RemoveFavoriteRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  Reference ref = 2;
+  // REQUIRED.
+  // The user un-marking the resource as favorite.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+}
+
+message RemoveFavoriteResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
