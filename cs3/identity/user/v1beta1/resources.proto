@@ -30,6 +30,20 @@ option java_package = "com.cs3.identity.user.v1beta1";
 option objc_class_prefix = "CIU";
 option php_namespace = "Cs3\\Identity\\User\\V1Beta1";
 
+// ExternalIdentity represents an external identifier of a user.
+// This can be populated when multiple identities collapse onto
+// the same user, for example when signing in with e-mail or with
+// an SSO using an account with the same e-mail.
+message ExternalIdentity {
+  // REQUIRED.
+  // The identity provider for the user.
+  string idp = 1;
+  // REQUIRED.
+  // the unique identifier for the user in the scope of
+  // the identity provider.
+  string opaque_id = 2;
+}
+
 // A UserId represents a unique identifier of a user.
 message UserId {
   // REQUIRED.
@@ -46,6 +60,10 @@ message UserId {
   // The tenant id of the user, if applicable.
   // This is used to identify users in multi-tenant systems.
   string tenant_id = 4;
+  // OPTIONAL.
+  // External identities of the user, if applicable.
+  // This is used to track identities of the same user on multiple systems.
+  repeated ExternalIdentity external_identities = 5;
 }
 
 // Represents a user of the system.
