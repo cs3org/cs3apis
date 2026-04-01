@@ -193,6 +193,7 @@ message Filter {
     TYPE_EXCLUDE_DENIALS = 6;
     TYPE_SPACE_ID = 7;
     TYPE_STATE = 8;
+    TYPE_GRANTEE = 9;
   }
   // REQUIRED.
   Type type = 2;
@@ -203,5 +204,6 @@ message Filter {
     storage.provider.v1beta1.GranteeType grantee_type = 6;
     string space_id = 7;
     ShareState state = 8;
+    storage.provider.v1beta1.Grantee grantee = 9;
   }
 }
