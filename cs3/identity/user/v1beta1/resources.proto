@@ -126,14 +126,12 @@ enum UserType {
 
 // The status of a user.
 enum UserStatus {
-  // The user status is invalid.
-  USER_STATUS_INVALID = 0;
   // The user is active and allowed to log in.
-  USER_STATUS_ACTIVE = 1;
+  USER_STATUS_ACTIVE = 0;
   // The user can log in but its validity is about to expire.
   // The actual grace period the user is granted depends on its tenant's policy.
-  USER_STATUS_EXPIRING = 2;
+  USER_STATUS_EXPIRING = 1;
   // The user is valid but it has been blocked from login in its tenant.
-  USER_STATUS_BLOCKED = 3;
+  USER_STATUS_BLOCKED = 2;
 }
 
