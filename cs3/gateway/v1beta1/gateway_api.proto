@@ -28,6 +28,7 @@ import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/group/v1beta1/group_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
+import "cs3/identity/tenant/v1beta1/tenant_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
 import "cs3/ocm/incoming/v1beta1/ocm_incoming_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
@@ -363,6 +364,16 @@ service GatewayAPI {
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
+  
+  // *****************************************************************/
+  // ************************ TENANT PROVIDER **************************/
+  // *****************************************************************/
+
+  // Gets the information about a tenant by the tenant id.
+  rpc GetTenant(cs3.identity.tenant.v1beta1.GetTenantRequest) returns (cs3.identity.tenant.v1beta1.GetTenantResponse);
+  // Gets the information about a tenant based on a specified claim.
+  rpc GetTenantByClaim(cs3.identity.tenant.v1beta1.GetTenantByClaimRequest) returns (cs3.identity.tenant.v1beta1.GetTenantByClaimResponse);
+  // Gets the groups of a user.
   // *****************************************************************/
   // ************************ GROUP PROVIDER **************************/
   // *****************************************************************/
