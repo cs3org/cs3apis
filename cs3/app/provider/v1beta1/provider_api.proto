@@ -91,4 +91,7 @@ message OpenInAppResponse {
   // The url that user agents will render to clients.
   // Usually the rendering happens by using HTML iframes or in separate browser tabs.
   OpenInAppURL app_url = 3;
+  // OPTIONAL.
+  // A reason in case the requested view_mode was overridden due to e.g. external locks.
+  string forced_view_mode_reason = 4;
 }
