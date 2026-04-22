@@ -194,6 +194,10 @@ message Filter {
     TYPE_SPACE_ID = 7;
     TYPE_STATE = 8;
     TYPE_GRANTEE = 9;
+    // Filter shares by whether the shared resource is a space root.
+    // When the term `space_root` is true, only shares on space roots are returned.
+    // When false, shares on space roots are excluded.
+    TYPE_SPACE_ROOT = 10;
   }
   // REQUIRED.
   Type type = 2;
@@ -205,5 +209,7 @@ message Filter {
     string space_id = 7;
     ShareState state = 8;
     storage.provider.v1beta1.Grantee grantee = 9;
+    // Used with TYPE_SPACE_ROOT.
+    bool space_root = 10;
   }
 }
