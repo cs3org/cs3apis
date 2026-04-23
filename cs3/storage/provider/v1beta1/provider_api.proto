@@ -176,10 +176,10 @@ service ProviderAPI {
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
   // Gets the home path for the user.
   rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
-  // Marks a resource as favorite for a user.
-  rpc AddFavorite(AddFavoriteRequest) returns (AddFavoriteResponse);
-  // Unmarks a resource as favorite for a user.
-  rpc RemoveFavorite(RemoveFavoriteRequest) returns (RemoveFavoriteResponse);
+  // Attach a label to a resource for a user.
+  rpc AddLabel(AddLabelRequest) returns (AddLabelResponse);
+  // Removes a label from a resource for a user.
+  rpc RemoveLabel(RemoveLabelRequest) returns (RemoveLabelResponse);
 }
 
 message GetHomeRequest {
@@ -1078,7 +1078,7 @@ message CreateHomeResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message AddFavoriteRequest {
+message AddLabelRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -1086,11 +1086,14 @@ message AddFavoriteRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // REQUIRED.
-  // The user marking the resource as favorite.
+  // The user attaching the label to the resource.
   cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The label to be attached to the resource.
+  string label = 4;
 }
 
-message AddFavoriteResponse {
+message AddLabelResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
@@ -1099,7 +1102,7 @@ message AddFavoriteResponse {
   cs3.types.v1beta1.Opaque opaque = 2;
 }
 
-message RemoveFavoriteRequest {
+message RemoveLabelRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
@@ -1107,11 +1110,14 @@ message RemoveFavoriteRequest {
   // The reference to which the action should be performed.
   Reference ref = 2;
   // REQUIRED.
-  // The user un-marking the resource as favorite.
+  // The user removing the label from the resource.
   cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The label to be removed from the resource.
+  string label = 4;
 }
 
-message RemoveFavoriteResponse {
+message RemoveLabelResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
