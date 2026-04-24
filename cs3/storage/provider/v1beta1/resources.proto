@@ -342,6 +342,8 @@ message Grantee {
     cs3.identity.user.v1beta1.UserId user_id = 3;
     // The group id.
     cs3.identity.group.v1beta1.GroupId group_id = 4;
+    // The mail address of the individual.
+    string mail = 6;
   }
   // OPTIONAL.
   // Opaque information such as UID or GID.
@@ -355,6 +357,8 @@ enum GranteeType {
   GRANTEE_TYPE_USER = 1;
   // This type represents a group of individuals.
   GRANTEE_TYPE_GROUP = 2;
+  // This type represents an individual identified by a mail address.
+  GRANTEE_TYPE_MAIL = 3;
 }
 
 // The information for a file version.
