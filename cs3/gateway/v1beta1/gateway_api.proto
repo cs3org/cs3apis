@@ -35,6 +35,7 @@ import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
 import "cs3/permissions/v1beta1/permissions_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
+import "cs3/labels/v1beta1/label_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
@@ -209,10 +210,6 @@ service GatewayAPI {
   rpc UpdateStorageSpace(cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse);
   // Deletes a storage space.
   rpc DeleteStorageSpace(cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse);
-  // Attach a label to a resource for a user.
-  rpc AddLabel(cs3.storage.provider.v1beta1.AddLabelRequest) returns (cs3.storage.provider.v1beta1.AddLabelResponse);
-  // Removes a label from a resource for a user.
-  rpc RemoveLabel(cs3.storage.provider.v1beta1.RemoveLabelRequest) returns (cs3.storage.provider.v1beta1.RemoveLabelResponse);
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
@@ -267,6 +264,20 @@ service GatewayAPI {
   // Returns the value associated with the
   // requested key.
   rpc GetKey(cs3.preferences.v1beta1.GetKeyRequest) returns (cs3.preferences.v1beta1.GetKeyResponse);
+
+  // *****************************************************************/
+  // *************************** LABELS ******************************/
+  // *****************************************************************/
+  
+  // Attach a label to a resource for a user.
+  rpc AddLabel(cs3.labels.v1beta1.AddLabelRequest) returns (cs3.labels.v1beta1.AddLabelResponse);
+  // Removes a label from a resource for a user.
+  rpc RemoveLabel(cs3.labels.v1beta1.RemoveLabelRequest) returns (cs3.labels.v1beta1.RemoveLabelResponse);
+  // List the unique labels that a user has attached to resources
+  rpc ListLabels(cs3.labels.v1beta1.ListLabelsRequest) returns (cs3.labels.v1beta1.ListLabelsResponse);
+  // List the resources which have a given label attached for a given user
+  rpc ListResourcesForLabel(cs3.labels.v1beta1.ListResourcesForLabelRequest) returns (cs3.labels.v1beta1.ListResourcesForLabelResponse);
+
   // *****************************************************************/
   // ************************ PUBLIC SHARE ***************************/
   // *****************************************************************/

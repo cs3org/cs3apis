@@ -1,0 +1,158 @@
+// Copyright 2018-2026 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.labels.v1beta1;
+
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+
+option csharp_namespace = "Cs3.Labels.V1Beta1";
+option go_package = "labelsv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "LabelsApiProto";
+option java_package = "com.cs3.labels.v1beta1";
+option objc_class_prefix = "CPX";
+option php_namespace = "Cs3\\Labels\\V1Beta1";
+
+// Labels API.
+//
+// The Labels API is responsible for:
+// * Attaching and removing labels to/from resources
+// * Listing all resources attached to a given label
+// * Listing all unique labels for a given user
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// The following are global requirements that apply to all methods:
+// Any method MUST return CODE_OK on a succesful operation.
+// Any method MAY return NOT_IMPLEMENTED.
+// Any method MAY return INTERNAL.
+// Any method MAY return UNKNOWN.
+// Any method MAY return UNAUTHENTICATED.
+service LabelsAPI {
+  // Attach a label to a resource for a user.
+  rpc AddLabel(cs3.labels.v1beta1.AddLabelRequest) returns (cs3.labels.v1beta1.AddLabelResponse);
+  // Removes a label from a resource for a user.
+  rpc RemoveLabel(cs3.labels.v1beta1.RemoveLabelRequest) returns (cs3.labels.v1beta1.RemoveLabelResponse);
+  // List the unique labels that a user has attached to resources
+  rpc ListLabels(cs3.labels.v1beta1.ListLabelsRequest) returns (cs3.labels.v1beta1.ListLabelsResponse);
+  // List the resources which have a given label attached for a given user
+  rpc ListResourcesForLabel(cs3.labels.v1beta1.ListResourcesForLabelRequest) returns (cs3.labels.v1beta1.ListResourcesForLabelResponse);
+}
+
+
+message AddLabelRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // REQUIRED.
+  // The user attaching the label to the resource.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The label to be attached to the resource.
+  string label = 4;
+}
+
+message AddLabelResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message RemoveLabelRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to which the action should be performed.
+  cs3.storage.provider.v1beta1.Reference ref = 2;
+  // REQUIRED.
+  // The user removing the label from the resource.
+  cs3.identity.user.v1beta1.UserId user_id = 3;
+  // REQUIRED.
+  // The label to be removed from the resource.
+  string label = 4;
+}
+
+message RemoveLabelResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message ListLabelsRequest {
+    // OPTIONAL.
+    // Opaque information.
+    cs3.types.v1beta1.Opaque opaque = 1;
+    // REQUIRED.
+    // The user for which the unique labels are requested
+    cs3.identity.user.v1beta1.UserId user_id = 2;
+}
+
+message ListLabelsResponse {
+    // REQUIRED.
+    // The response status.
+    cs3.rpc.v1beta1.Status status = 1;
+    // OPTIONAL.
+    // Opaque information.
+    cs3.types.v1beta1.Opaque opaque = 2;
+    // REQUIRED.
+    // The user's unique labels.
+    repeated string labels = 3;
+}
+
+message ListResourcesForLabelRequest {
+    // OPTIONAL.
+    // Opaque information.
+    cs3.types.v1beta1.Opaque opaque = 1;
+    // REQUIRED.
+    // The user for which the unique labels are requested
+    cs3.identity.user.v1beta1.UserId user_id = 2;
+    // REQUIRED.
+    // The queried label
+    string labels = 3;
+}
+
+message ListResourcesForLabelResponse {
+    // REQUIRED.
+    // The response status.
+    cs3.rpc.v1beta1.Status status = 1;
+    // OPTIONAL.
+    // Opaque information.
+    cs3.types.v1beta1.Opaque opaque = 2;
+    // REQUIRED.
+    // The references which have this label attached for the user.
+    repeated cs3.storage.provider.v1beta1.Reference ref = 3;
+
+}

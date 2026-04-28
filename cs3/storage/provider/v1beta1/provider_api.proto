@@ -176,10 +176,6 @@ service ProviderAPI {
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
   // Gets the home path for the user.
   rpc GetHome(GetHomeRequest) returns (GetHomeResponse);
-  // Attach a label to a resource for a user.
-  rpc AddLabel(AddLabelRequest) returns (AddLabelResponse);
-  // Removes a label from a resource for a user.
-  rpc RemoveLabel(RemoveLabelRequest) returns (RemoveLabelResponse);
 }
 
 message GetHomeRequest {
@@ -1070,54 +1066,6 @@ message CreateHomeRequest {
 }
 
 message CreateHomeResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-}
-
-message AddLabelRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-  // REQUIRED.
-  // The user attaching the label to the resource.
-  cs3.identity.user.v1beta1.UserId user_id = 3;
-  // REQUIRED.
-  // The label to be attached to the resource.
-  string label = 4;
-}
-
-message AddLabelResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-}
-
-message RemoveLabelRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The reference to which the action should be performed.
-  Reference ref = 2;
-  // REQUIRED.
-  // The user removing the label from the resource.
-  cs3.identity.user.v1beta1.UserId user_id = 3;
-  // REQUIRED.
-  // The label to be removed from the resource.
-  string label = 4;
-}
-
-message RemoveLabelResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
