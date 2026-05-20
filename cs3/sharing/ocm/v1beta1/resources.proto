@@ -164,6 +164,10 @@ message ReceivedShare {
   // REQUIRED.
   // Shared resource type.
   cs3.sharing.ocm.v1beta1.SharedResourceType shared_resource_type = 17;
+  // OPTIONAL.
+  // Destination path of the share, in case the shared resource type is EMBEDDED
+  // or the access type is DATATX.
+  string destination = 18;
 }
 
 // The state of the share.
