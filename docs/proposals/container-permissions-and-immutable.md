@@ -10,23 +10,20 @@ Draft
 
 ## Summary
 
-This proposal adds three new fields to the CS3 storage provider API:
+This proposal adds:
 
-1. **`delete_container`** (ResourcePermissions field 21) — granular delete permission for containers/directories
-2. **`move_container`** (ResourcePermissions field 22) — granular move/rename permission for containers/directories
-3. **`immutable`** (ResourceInfo field 20) — flag to mark a resource as frozen/immutable
+1. **`delete_container`** + **`move_container`** — two new permission fields in `ResourcePermissions` to distinguish file and container operations
+2. **`immutable`** — a persistent attribute on `ResourceInfo` plus `SetImmutable`/`UnsetImmutable` RPCs to freeze resources
 
 ## Motivation
 
 ### Problem 1: No distinction between file and container operations
 
-The current `ResourcePermissions` message uses a single `delete` flag for both files and containers, and a single `move` flag for both. This makes it impossible to configure a role that allows users to delete files but not directories, or to rename files but not directories.
-
-This is a common requirement in Document Management Systems (DMS), records management, and compliance scenarios where directory structures must be protected while allowing normal file operations within them.
+The current `ResourcePermissions` uses a single `delete` flag for both files and containers, and a single `move` flag for both. This makes it impossible to configure a role that allows file deletion but protects directory structures.
 
 **Real-world example: File plans (Aktenplan)**
 
-In German public administration and corporate environments, a rigid hierarchical directory structure (Aktenplan) must be maintained. Users should be able to add and edit documents within the structure, but must not be able to delete or rename the directories that form the structure.
+In German public administration, a rigid hierarchical directory structure (Aktenplan) must be maintained. Users work with documents freely, but must not alter the directory structure.
 
 ```
 /01 Administration          <- protected (no delete/rename)
@@ -34,17 +31,13 @@ In German public administration and corporate environments, a rigid hierarchical
     /01.01.01 Recruiting    <- protected
       /Applications/        <- user can create, edit, delete files here
         resume.pdf
-        cover_letter.pdf
 ```
 
 ### Problem 2: No immutability concept
 
-There is no way to mark a resource as immutable/frozen in the CS3 API. Locks exist but serve a different purpose (temporary collaborative editing locks with expiration). Immutability is a permanent (until explicitly removed) state that:
+Locks are temporary (expiration-based) and designed for collaborative editing. What is missing is a **persistent attribute** on a resource — stored as xattr, returned via `Stat()`, set/unset via dedicated RPCs — that prevents structural changes.
 
-- Prevents modification, deletion, moving, and renaming of the resource
-- For containers: also prevents creation of new children
-- Is typically set by administrators or space managers
-- Supports DMS features like retention, legal hold, and archive states
+This is fundamentally different from a transient processing status (cf. #190). Immutable is a deliberate administrative decision, not a system state.
 
 ## Specification
 
@@ -54,65 +47,65 @@ There is no way to mark a resource as immutable/frozen in the CS3 API. Locks exi
 message ResourcePermissions {
   // ... existing fields 1-20 ...
 
-  // When set, controls whether containers (directories) can be deleted,
-  // independent of the delete permission which then only applies to files.
   bool delete_container = 21;
-
-  // When set, controls whether containers (directories) can be
-  // moved or renamed, independent of the move permission which
-  // then only applies to files.
   bool move_container = 22;
 }
 ```
 
+- `delete_container`: controls whether containers can be deleted, independent of `delete` (which then applies to files only)
+- `move_container`: controls whether containers can be moved/renamed, independent of `move`
+
 ### Backward compatibility
 
-When `delete_container` and `move_container` are not explicitly set (default `false` in protobuf), implementations SHOULD fall back to the existing `delete` and `move` permissions for containers. This means:
+When not explicitly set, implementations SHOULD fall back to `delete`/`move` for containers. Existing clients work unchanged.
 
-- Existing clients that don't know about the new fields continue to work unchanged
-- Existing roles that set `delete=true` will still allow container deletion (via fallback)
-- Only when `delete_container` is explicitly managed does the separation take effect
-
-**Recommended implementation logic:**
-
-```
-canDeleteContainer = perm.delete_container OR (perm.delete AND NOT explicitly_managing_container_perms)
-```
-
-### New field in ResourceInfo
+### Immutable attribute on ResourceInfo
 
 ```protobuf
 message ResourceInfo {
   // ... existing fields 1-19 ...
 
-  // When true, the resource is immutable (frozen).
   bool immutable = 20;
 }
 ```
 
-### Immutable semantics
+This is a **persistent attribute** (stored as xattr on the filesystem), not a transient status. It is returned by `Stat()` and set/cleared via dedicated RPCs.
 
-For **files:**
-- Cannot be modified (upload/overwrite denied)
-- Cannot be deleted or moved/renamed
+Semantics:
+- **Files**: cannot be modified, deleted, moved or renamed
+- **Containers**: additionally prevents creation of new children; existing non-immutable children can still be modified
 
-For **containers:**
-- Cannot be deleted or moved/renamed
-- No new children can be created within
-- Existing non-immutable children can still be modified
-- Existing immutable children follow their own immutable rules
+### RPCs
 
-### Setting immutable
+```protobuf
+rpc SetImmutable(SetImmutableRequest) returns (SetImmutableResponse);
+rpc UnsetImmutable(UnsetImmutableRequest) returns (UnsetImmutableResponse);
+```
 
-The `immutable` flag can be set via:
-- `SetArbitraryMetadata` with reserved key `cs3:immutable`
-- Or a dedicated RPC (future extension)
+Only users with management permissions (space owner, space manager, administrator) may call these RPCs.
 
-Only users with management permissions (space owner, space manager, administrator) should be able to set or clear the immutable flag.
+The pattern follows `SetLock`/`Unlock` — a `Reference` identifies the target resource.
+
+### Distinction: attribute vs. action
+
+| | Attribute (`immutable`) | Action (`SetImmutable` / `UnsetImmutable`) |
+|---|---|---|
+| What | Boolean on the resource, persisted as xattr | RPC to change the attribute |
+| When read | Returned in `ResourceInfo` via `Stat()` | — |
+| Who sets | Manager / Admin via RPC | — |
+| Expiration | None (permanent until explicitly unset) | — |
+
+### Distinction from Locks (#190 Status)
+
+| | Lock | Immutable | Status (#190) |
+|---|---|---|---|
+| Purpose | Collaborative editing | Structure/content protection | Processing state |
+| Duration | Temporary (with expiration) | Permanent (until admin unsets) | Transient |
+| Storage | Lock file / xattr | xattr | Opaque / xattr |
+| Set by | Any user with write access | Manager / Admin only | System / App |
+| Scope | Prevents concurrent writes | Prevents all modifications | Informational |
 
 ## ACL representation
-
-For storage backends using ACL strings (e.g., EOS-style):
 
 ```
 +dc  = delete_container allowed
@@ -123,15 +116,15 @@ For storage backends using ACL strings (e.g., EOS-style):
 
 ## Use cases
 
-1. **File plan (Aktenplan) protection**: Rigid directory structure with free file operations below
-2. **Retention / Legal hold**: Mark resources as immutable during retention periods
-3. **Archive directories**: Freeze completed project folders while keeping them accessible
-4. **Collaborative workspaces**: Allow file operations while preventing accidental directory deletion
-5. **Compliance**: Meet regulatory requirements for records management
+1. **File plan (Aktenplan) protection**: rigid directory structure, free file operations below
+2. **Retention / Legal hold**: freeze resources during retention periods
+3. **Archive directories**: freeze completed project folders
+4. **Collaborative workspaces**: prevent accidental directory deletion
+5. **Compliance**: regulatory requirements for records management
 
 ## Impact
 
-- **Proto changes**: 3 new fields (backward compatible, additive only)
-- **Storage drivers**: Need to implement container-type checks in delete/move handlers
-- **Gateway**: Needs to pass through new permission fields
-- **Clients**: Can gradually adopt new fields; existing behavior unchanged
+- **Proto changes**: 2 new fields in ResourcePermissions, 1 new field in ResourceInfo, 2 new RPCs (all additive, backward compatible)
+- **Storage drivers**: container-type checks in delete/move handlers; xattr for immutable
+- **Gateway**: pass through new fields and RPCs
+- **Clients**: gradual adoption; existing behavior unchanged

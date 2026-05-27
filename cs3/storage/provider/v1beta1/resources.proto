@@ -110,13 +110,15 @@ message ResourceInfo {
   // StorageSpace where this resource is located.
   StorageSpace space = 19;
   // OPTIONAL.
-  // When true, the resource is immutable (frozen). An immutable resource
-  // cannot be modified, deleted, moved or renamed. For containers, immutability
-  // additionally prevents creation of new children (files or sub-containers),
-  // but existing children that are not themselves immutable can still be modified.
-  // Only space managers or administrators can set or clear this flag.
-  // Typical use case: protecting a file plan (Aktenplan) directory structure
-  // or implementing retention/legal hold at the resource level.
+  // Indicates whether the resource is immutable (frozen).
+  // An immutable resource cannot be deleted, moved or renamed.
+  // For containers, immutability additionally prevents creation
+  // of new children, but existing non-immutable children can
+  // still be modified.
+  // This is a persistent attribute (stored as xattr), not a
+  // transient status. Use SetImmutable/UnsetImmutable RPCs
+  // to change it. Only space managers or administrators
+  // should be allowed to set or clear this attribute.
   bool immutable = 20;
 }
 
