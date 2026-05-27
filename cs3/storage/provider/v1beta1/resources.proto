@@ -109,6 +109,15 @@ message ResourceInfo {
   // OPTIONAL.
   // StorageSpace where this resource is located.
   StorageSpace space = 19;
+  // OPTIONAL.
+  // When true, the resource is immutable (frozen). An immutable resource
+  // cannot be modified, deleted, moved or renamed. For containers, immutability
+  // additionally prevents creation of new children (files or sub-containers),
+  // but existing children that are not themselves immutable can still be modified.
+  // Only space managers or administrators can set or clear this flag.
+  // Typical use case: protecting a file plan (Aktenplan) directory structure
+  // or implementing retention/legal hold at the resource level.
+  bool immutable = 20;
 }
 
 // CanonicalMetadata contains extra metadata
@@ -293,6 +302,9 @@ message ResourceId {
 message ResourcePermissions {
   bool add_grant = 1;
   bool create_container = 2;
+  // delete applies to files. For containers, see delete_container.
+  // When delete_container is not explicitly set, implementations
+  // SHOULD fall back to the value of delete for backward compatibility.
   bool delete = 3;
   bool get_path = 5;
   bool get_quota = 6;
@@ -302,6 +314,9 @@ message ResourcePermissions {
   bool list_container = 10;
   bool list_file_versions = 11;
   bool list_recycle = 12;
+  // move applies to files. For containers, see move_container.
+  // When move_container is not explicitly set, implementations
+  // SHOULD fall back to the value of move for backward compatibility.
   bool move = 13;
   bool remove_grant = 14;
   bool purge_recycle = 15;
@@ -310,6 +325,18 @@ message ResourcePermissions {
   bool stat = 18;
   bool update_grant = 19;
   bool deny_grant = 20;
+  // OPTIONAL.
+  // When set, controls whether containers (directories) can be deleted,
+  // independent of the delete permission which then only applies to files.
+  // This allows protecting directory structures while still permitting
+  // file deletion. Typical use case: file plan (Aktenplan) protection.
+  bool delete_container = 21;
+  // OPTIONAL.
+  // When set, controls whether containers (directories) can be
+  // moved or renamed, independent of the move permission which
+  // then only applies to files. This allows protecting directory
+  // structures while still permitting file operations.
+  bool move_container = 22;
 }
 
 // A grant grants permissions
