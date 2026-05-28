@@ -181,9 +181,12 @@ enum ShareState {
   // The recipient of the share has accepted the share or processed the share.
   SHARE_STATE_ACCEPTED = 2;
   // The recipient of the share has rejected the share.
-  // Do not means the share is removed, the recipient MAY
+  // Does not mean the share is removed, the recipient MAY
   // change the state to accepted or pending.
   SHARE_STATE_REJECTED = 3;
+  // The recipient of the share is transferring a copy of the resource:
+  // this MAY apply to shares with DATATX access type or to embedded shares
+  SHARE_STATE_TRANSFERRING = 4;
 }
 
 // Uniquely identifies a share in the share provider.
