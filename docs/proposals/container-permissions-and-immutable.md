@@ -49,11 +49,15 @@ message ResourcePermissions {
 
   bool delete_container = 21;
   bool move_container = 22;
+  bool set_immutable_file = 23;
+  bool set_immutable_container = 24;
 }
 ```
 
 - `delete_container`: controls whether containers can be deleted, independent of `delete` (which then applies to files only)
 - `move_container`: controls whether containers can be moved/renamed, independent of `move`
+- `set_immutable_file`: controls whether the user may freeze files (irreversible)
+- `set_immutable_container`: controls whether the user may protect/unprotect containers (reversible)
 
 ### Backward compatibility
 

@@ -354,6 +354,18 @@ message ResourcePermissions {
   // then only applies to files. This allows protecting directory
   // structures while still permitting file operations.
   bool move_container = 22;
+  // OPTIONAL.
+  // Controls whether the user may freeze files (set immutable on files).
+  // Freezing a file is irreversible — once set, the file cannot be
+  // modified, deleted, moved or renamed, and the attribute cannot be
+  // removed. This permission should be granted carefully.
+  bool set_immutable_file = 23;
+  // OPTIONAL.
+  // Controls whether the user may protect or unprotect containers
+  // (set/unset immutable on containers). Protecting a container
+  // prevents adding, removing or modifying its direct entries.
+  // Unlike files, container protection is reversible.
+  bool set_immutable_container = 24;
 }
 
 // A grant grants permissions
