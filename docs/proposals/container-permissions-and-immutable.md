@@ -71,9 +71,11 @@ message ResourceInfo {
 
 This is a **persistent attribute** (stored as xattr on the filesystem), not a transient status. It is returned by `Stat()` and set/cleared via dedicated RPCs.
 
-Semantics:
-- **Files**: cannot be modified, deleted, moved or renamed
-- **Containers**: additionally prevents creation of new children; existing non-immutable children can still be modified
+Semantics — see also [immutable-overview.md](immutable-overview.md):
+
+- **File (freeze)**: the file is final. It cannot be modified (content is fixed), deleted, moved or renamed. Once set on a file, the immutable attribute MUST NOT be removed.
+- **Container (protect)**: no entries can be added, removed or modified. The container itself cannot be deleted, moved or renamed. This does NOT propagate: unprotected children can still be modified. The attribute can be removed by space managers or administrators.
+- **Self vs. parent**: an object is considered immutable if its own attribute is set OR its parent container's attribute is set. Deletion, modification or renaming is governed by the parent; adding or removing entries inside a container by the container itself.
 
 ### RPCs
 

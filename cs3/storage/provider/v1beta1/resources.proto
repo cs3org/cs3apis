@@ -110,15 +110,30 @@ message ResourceInfo {
   // StorageSpace where this resource is located.
   StorageSpace space = 19;
   // OPTIONAL.
-  // Indicates whether the resource is immutable (frozen).
-  // An immutable resource cannot be deleted, moved or renamed.
-  // For containers, immutability additionally prevents creation
-  // of new children, but existing non-immutable children can
-  // still be modified.
+  // Indicates whether the resource is immutable.
+  // Its effect depends on the resource type:
+  //
+  // On a file (freeze): the file is final. It cannot be modified
+  // (content is fixed), deleted, moved or renamed. Once set on a
+  // file, the immutable attribute MUST NOT be removed.
+  //
+  // On a container (protect): no entries can be added, removed or
+  // modified. The container itself cannot be deleted, moved or
+  // renamed. This does NOT propagate to the entries: a protected
+  // container can contain unprotected children in which entries
+  // can still be added, removed or modified. The immutable
+  // attribute on a container can be removed by space managers or
+  // administrators.
+  //
+  // An object is considered immutable if its own attribute is set
+  // (self) OR its parent container's attribute is set (parent).
+  // Deletion, modification or renaming of an object is governed
+  // by the parent; adding or removing entries inside a container
+  // by the container itself.
+  //
   // This is a persistent attribute (stored as xattr), not a
-  // transient status. Use SetImmutable/UnsetImmutable RPCs
-  // to change it. Only space managers or administrators
-  // should be allowed to set or clear this attribute.
+  // transient status. Use SetImmutable/UnsetImmutable RPCs to
+  // change it.
   bool immutable = 20;
 }
 
