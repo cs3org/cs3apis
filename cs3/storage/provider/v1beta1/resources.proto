@@ -109,6 +109,9 @@ message ResourceInfo {
   // OPTIONAL.
   // StorageSpace where this resource is located.
   StorageSpace space = 19;
+  // OPTIONAL
+  // Status of the resource
+  Status string = 20;
 }
 
 // CanonicalMetadata contains extra metadata
