@@ -109,6 +109,32 @@ message ResourceInfo {
   // OPTIONAL.
   // StorageSpace where this resource is located.
   StorageSpace space = 19;
+  // OPTIONAL.
+  // Indicates whether the resource is immutable.
+  // Its effect depends on the resource type:
+  //
+  // On a file (freeze): the file is final. It cannot be modified
+  // (content is fixed), deleted, moved or renamed. Once set on a
+  // file, the immutable attribute MUST NOT be removed.
+  //
+  // On a container (protect): no entries can be added, removed or
+  // modified. The container itself cannot be deleted, moved or
+  // renamed. This does NOT propagate to the entries: a protected
+  // container can contain unprotected children in which entries
+  // can still be added, removed or modified. The immutable
+  // attribute on a container can be removed by space managers or
+  // administrators.
+  //
+  // An object is considered immutable if its own attribute is set
+  // (self) OR its parent container's attribute is set (parent).
+  // Deletion, modification or renaming of an object is governed
+  // by the parent; adding or removing entries inside a container
+  // by the container itself.
+  //
+  // This is a persistent attribute (stored as xattr), not a
+  // transient status. Use SetImmutable/UnsetImmutable RPCs to
+  // change it.
+  bool immutable = 20;
 }
 
 // CanonicalMetadata contains extra metadata
@@ -293,6 +319,9 @@ message ResourceId {
 message ResourcePermissions {
   bool add_grant = 1;
   bool create_container = 2;
+  // delete applies to files. For containers, see delete_container.
+  // When delete_container is not explicitly set, implementations
+  // SHOULD fall back to the value of delete for backward compatibility.
   bool delete = 3;
   bool get_path = 5;
   bool get_quota = 6;
@@ -302,6 +331,9 @@ message ResourcePermissions {
   bool list_container = 10;
   bool list_file_versions = 11;
   bool list_recycle = 12;
+  // move applies to files. For containers, see move_container.
+  // When move_container is not explicitly set, implementations
+  // SHOULD fall back to the value of move for backward compatibility.
   bool move = 13;
   bool remove_grant = 14;
   bool purge_recycle = 15;
@@ -310,6 +342,30 @@ message ResourcePermissions {
   bool stat = 18;
   bool update_grant = 19;
   bool deny_grant = 20;
+  // OPTIONAL.
+  // When set, controls whether containers (directories) can be deleted,
+  // independent of the delete permission which then only applies to files.
+  // This allows protecting directory structures while still permitting
+  // file deletion. Typical use case: file plan (Aktenplan) protection.
+  bool delete_container = 21;
+  // OPTIONAL.
+  // When set, controls whether containers (directories) can be
+  // moved or renamed, independent of the move permission which
+  // then only applies to files. This allows protecting directory
+  // structures while still permitting file operations.
+  bool move_container = 22;
+  // OPTIONAL.
+  // Controls whether the user may freeze files (set immutable on files).
+  // Freezing a file is irreversible — once set, the file cannot be
+  // modified, deleted, moved or renamed, and the attribute cannot be
+  // removed. This permission should be granted carefully.
+  bool set_immutable_file = 23;
+  // OPTIONAL.
+  // Controls whether the user may protect or unprotect containers
+  // (set/unset immutable on containers). Protecting a container
+  // prevents adding, removing or modifying its direct entries.
+  // Unlike files, container protection is reversible.
+  bool set_immutable_container = 24;
 }
 
 // A grant grants permissions

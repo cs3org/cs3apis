@@ -172,6 +172,16 @@ service ProviderAPI {
   // or if the caller does not hold the lock.
   // The caller MUST have write permissions on the resource.
   rpc Unlock(UnlockRequest) returns (UnlockResponse);
+  // Sets the immutable (frozen) attribute on a resource.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // The caller MUST have management permissions on the resource
+  // (space owner, space manager, or administrator).
+  rpc SetImmutable(SetImmutableRequest) returns (SetImmutableResponse);
+  // Removes the immutable (frozen) attribute from a resource.
+  // MUST return CODE_NOT_FOUND if the reference does not exist.
+  // MUST return CODE_FAILED_PRECONDITION if the resource is not immutable.
+  // The caller MUST have management permissions on the resource.
+  rpc UnsetImmutable(UnsetImmutableRequest) returns (UnsetImmutableResponse);
   // Creates the home directory for a user.
   rpc CreateHome(CreateHomeRequest) returns (CreateHomeResponse);
   // Gets the home path for the user.
@@ -1049,6 +1059,42 @@ message UnlockRequest {
 }
 
 message UnlockResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message SetImmutableRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to the resource to freeze.
+  Reference ref = 2;
+}
+
+message SetImmutableResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message UnsetImmutableRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The reference to the resource to unfreeze.
+  Reference ref = 2;
+}
+
+message UnsetImmutableResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
