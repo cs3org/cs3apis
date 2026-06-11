@@ -168,6 +168,9 @@ message ReceivedShare {
   // Destination path of the share, in case the shared resource type is EMBEDDED
   // or the access type is DATATX.
   string destination = 18;
+  // OPTIONAL.
+  // Flag to hide the share, defaults to false.
+  bool hidden = 19;
 }
 
 // The state of the share.
