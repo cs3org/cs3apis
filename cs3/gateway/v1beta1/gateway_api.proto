@@ -210,6 +210,13 @@ service GatewayAPI {
   rpc UpdateStorageSpace(cs3.storage.provider.v1beta1.UpdateStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.UpdateStorageSpaceResponse);
   // Deletes a storage space.
   rpc DeleteStorageSpace(cs3.storage.provider.v1beta1.DeleteStorageSpaceRequest) returns (cs3.storage.provider.v1beta1.DeleteStorageSpaceResponse);
+  // Set the immutable attribute on a resource.
+  // Files become frozen (irreversible), containers become protected (reversible).
+  // See cs3org/cs3apis#272 for the specification.
+  rpc SetImmutable(cs3.storage.provider.v1beta1.SetImmutableRequest) returns (cs3.storage.provider.v1beta1.SetImmutableResponse);
+  // Remove the immutable attribute from a resource.
+  // Only applicable to containers (protected). Frozen files cannot be unfrozen.
+  rpc UnsetImmutable(cs3.storage.provider.v1beta1.UnsetImmutableRequest) returns (cs3.storage.provider.v1beta1.UnsetImmutableResponse);
   // *****************************************************************/
   // ************************ APP PROVIDER ********************/
   // *****************************************************************/
