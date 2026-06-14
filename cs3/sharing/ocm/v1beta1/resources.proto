@@ -90,7 +90,8 @@ message Share {
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 15;
 }
 
-// The permissions for a share.
+// The permissions for an OCM share.
+// Deprecated: reshare is redundant with grant permissions.
 message SharePermissions {
   storage.provider.v1beta1.ResourcePermissions permissions = 1;
   bool reshare = 2;
@@ -241,17 +242,6 @@ message ShareReference {
   }
 }
 
-// A share grant specifies the share permissions
-// for a grantee.
-message ShareGrant {
-  // REQUIRED.
-  // The grantee of the grant.
-  storage.provider.v1beta1.Grantee grantee = 1;
-  // REQUIRED.
-  // The share permissions for the grant.
-  SharePermissions permissions = 2;
-}
-
 // The protocol which is used to get access to a remote OCM resource.
 message Protocol {
   // REQUIRED.
@@ -276,9 +266,8 @@ message WebDAVProtocol {
   // REQUIRED.
   // Secret used to access the resource.
   string shared_secret = 1;
-  // REQUIRED.
-  // Permissions of the shared resource.
-  cs3.sharing.ocm.v1beta1.SharePermissions permissions = 2;
+  // Permissions of the shared resource. Deprecated: use share_permissions instead.
+  cs3.sharing.ocm.v1beta1.SharePermissions permissions = 2 [deprecated = true];
   // REQUIRED.
   // URI used to access the resource.
   string uri = 3;
@@ -288,6 +277,9 @@ message WebDAVProtocol {
   // OPTIONAL.
   // Access types for the share, e.g. remote or data transfer. Defaults to remote.
   repeated cs3.sharing.ocm.v1beta1.AccessType access_types = 5;
+  // REQUIRED.
+  // Permissions of the shared resource.
+  storage.provider.v1beta1.ResourcePermissions share_permissions = 6;
 }
 
 // Defines the options for the Webapp protocol, mapping
