@@ -90,7 +90,8 @@ message Share {
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 15;
 }
 
-// The permissions for a share.
+// The permissions for an OCM share.
+// Deprecated: reshare is redundant with grant permissions.
 message SharePermissions {
   storage.provider.v1beta1.ResourcePermissions permissions = 1;
   bool reshare = 2;
@@ -168,6 +169,9 @@ message ReceivedShare {
   // Destination path of the share, in case the shared resource type is EMBEDDED
   // or the access type is DATATX.
   string destination = 18;
+  // OPTIONAL.
+  // Flag to hide the share, defaults to false.
+  bool hidden = 19;
 }
 
 // The state of the share.
@@ -238,17 +242,6 @@ message ShareReference {
   }
 }
 
-// A share grant specifies the share permissions
-// for a grantee.
-message ShareGrant {
-  // REQUIRED.
-  // The grantee of the grant.
-  storage.provider.v1beta1.Grantee grantee = 1;
-  // REQUIRED.
-  // The share permissions for the grant.
-  SharePermissions permissions = 2;
-}
-
 // The protocol which is used to get access to a remote OCM resource.
 message Protocol {
   // REQUIRED.
@@ -267,16 +260,16 @@ message Protocol {
   }
 }
 
-// Defines the options for the WebDAV protocol.
+// Defines the options for the WebDAV protocol, mapping
+// to the `webdav` protocol in the OCM specifications.
 message WebDAVProtocol {
   // REQUIRED.
   // Secret used to access the resource.
   string shared_secret = 1;
+  // Permissions of the shared resource. Deprecated: use share_permissions instead.
+  cs3.sharing.ocm.v1beta1.SharePermissions permissions = 2 [deprecated = true];
   // REQUIRED.
-  // Permissions of the shared resource.
-  cs3.sharing.ocm.v1beta1.SharePermissions permissions = 2;
-  // REQUIRED.
-  // Path-only URI used to access the resource.
+  // URI used to access the resource.
   string uri = 3;
   // OPTIONAL.
   // The requirements for the share.
@@ -284,19 +277,40 @@ message WebDAVProtocol {
   // OPTIONAL.
   // Access types for the share, e.g. remote or data transfer. Defaults to remote.
   repeated cs3.sharing.ocm.v1beta1.AccessType access_types = 5;
+  // REQUIRED.
+  // Permissions of the shared resource.
+  storage.provider.v1beta1.ResourcePermissions share_permissions = 6;
 }
 
-// Defines the options for the Webapp protocol.
+// Defines the options for the Webapp protocol, mapping
+// to the `webapp` protocol in the OCM specifications.
 message WebappProtocol {
   // REQUIRED.
-  // Path-only URI to open the resource with a remote app.
-  string uri = 1;
-  // REQUIRED.
-  // View mode for the remote app.
-  cs3.app.provider.v1beta1.ViewMode view_mode = 2;
-  // OPTIONAL.
   // Secret used to access the resource.
-  string shared_secret = 3;
+  string shared_secret = 1;
+  // REQUIRED.
+  // Permissions of the shared resource.
+  storage.provider.v1beta1.ResourcePermissions share_permissions = 2;
+  // REQUIRED.
+  // URI to open the resource with the remote app.
+  string uri = 3;
+  // REQUIRED.
+  // The requirements for the share.
+  repeated string requirements = 4;
+  // REQUIRED.
+  // The targets that can be used to display the remote app.
+  repeated string targets = 5;
+  // OPTIONAL.
+  // A descriptive name of the remote app in the user interface.
+  string app_name = 6;
+  // OPTIONAL.
+  // A hint in the form of a media (MIME) type of the icon
+  // representing the remote app in the user interface.
+  string app_icon_hint = 7;
+  // OPTIONAL.
+  // An array of media (MIME) types that the remote application
+  // can handle.
+  repeated string media_types = 8;
 }
 
 // Defines the options for the Embedded protocol.
@@ -350,7 +364,8 @@ enum AccessType {
   ACCESS_TYPE_DATATX = 2;
 }
 
-// Defines how the remote OCM recipient accesses a local resource.
+// Defines how a remote OCM recipient accesses a local resource when
+// serving a share. This is a subset of the OCM protocol specifications.
 message AccessMethod {
   // REQUIRED.
   // One of the access method MUST be specified.
@@ -365,7 +380,8 @@ message AccessMethod {
   }
 }
 
-// Defines the options for the WebDAV access method.
+// Defines the options for the WebDAV access method, representing
+// how a remote user accesses a local resource via the `webdav` OCM protocol.
 message WebDAVAccessMethod {
   // REQUIRED.
   // The permissions for the share.
@@ -378,9 +394,16 @@ message WebDAVAccessMethod {
   repeated cs3.sharing.ocm.v1beta1.AccessType access_types = 3;
 }
 
-// Defines the options for the Webapp access method.
+// Defines the options for the Webapp access method, representing
+// how a remote user accesses a local app via the `webapp` OCM protocol.
 message WebappAccessMethod {
   // REQUIRED.
-  // The view mode for the share.
-  cs3.app.provider.v1beta1.ViewMode view_mode = 1;
+  // The permissions for the share.
+  storage.provider.v1beta1.ResourcePermissions permissions = 1;
+  // REQUIRED.
+  // The requirements for the share.
+  repeated string requirements = 2;
+  // OPTIONAL.
+  // A descriptive name of the app in the remote user interface.
+  string app_name = 3;
 }
