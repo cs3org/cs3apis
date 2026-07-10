@@ -81,6 +81,15 @@ service GatewayAPI {
   // WhoAmI returns the information for a user.
   rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse);
   // *****************************************************************/
+  // **************************** EVENTS *****************************/
+  // *****************************************************************/
+
+  // Sends an event for asynchronous processing.
+  // The gateway MUST derive the sender and submitting user from the
+  // authenticated request context and SHOULD rate-limit this call per submitting
+  // user.
+  rpc PublishEvent(PublishEventRequest) returns (PublishEventResponse);
+  // *****************************************************************/
   // ********************** APPLICATIONS AUTH ************************/
   // *****************************************************************/
 
@@ -525,6 +534,28 @@ message WhoAmIResponse {
   // REQUIRED.
   // The user information.
   cs3.identity.user.v1beta1.User user = 3;
+}
+
+message PublishEventRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The event to process. The gateway derives the sender and submitting
+  // user from the authenticated request context; callers MUST NOT supply them.
+  Event event = 2;
+}
+
+message PublishEventResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // OPTIONAL.
+  // Server-assigned event id, if the implementation returns one.
+  string event_id = 3;
 }
 
 message GetQuotaRequest {
