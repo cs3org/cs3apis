@@ -134,3 +134,14 @@ message OCMShareResourceInfo {
   // The corresponding resource information as returned by the storage provider.
   cs3.storage.provider.v1beta1.ResourceInfo resource_info = 3;
 }
+
+// Event describes an event submitted through the gateway for
+// asynchronous processing.
+message Event {
+  // REQUIRED.
+  // The event type, for example "upload" or "share-creation".
+  string type = 1;
+  // OPTIONAL.
+  // Event-specific payload used by event rules and handlers.
+  cs3.types.v1beta1.Opaque data = 2;
+}
