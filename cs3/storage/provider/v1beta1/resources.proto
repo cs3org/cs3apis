@@ -202,6 +202,10 @@ message Lock {
   // OPTIONAL.
   // The time when the lock will expire.
   cs3.types.v1beta1.Timestamp expiration = 6;
+  // OPTIONAL.
+  // The time when the lock was taken. It MUST NOT change when the lock is
+  // refreshed, so that clients can display for how long a resource has been locked.
+  cs3.types.v1beta1.Timestamp creation_time = 7;
 }
 
 // The available types of resources.
