@@ -545,9 +545,33 @@ message StorageSpace {
   // OPTIONAL.
   // An opaque ID of an optional readme file of the space (usually the inode)
   string readme_id = 14;
-  // OPTIONAL.
+
+  // DEPRECATED.
   // The set of permissions for the storage space effective for the authenticated user.
-  ResourcePermissions permission_set = 15;
+  // ResourcePermissions permission_set = 15;
+  
+  // OPTIONAL.
+  // A set of roles that members of the space can have,
+  // each role being assigned to a set of grantees and
+  // yielding a set of permissions.
+  repeated SpaceRole roles = 16;
+}
+
+message SpaceRole {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+
+  // REQUIRED.
+  string RoleName = 2;
+
+  // REQUIRED
+  // The permissions having this role grants
+  ResourcePermissions permission_set = 3;
+
+  // REQUIRED
+  // The recipients to whom this role applies
+  repeated Grantee recipients = 4;
 }
 
 // The id of a storage space.
