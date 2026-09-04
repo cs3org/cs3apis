@@ -94,4 +94,7 @@ message OpenInAppResponse {
   // OPTIONAL.
   // A reason in case the requested view_mode was overridden due to e.g. external locks.
   string forced_view_mode_reason = 4;
+  // OPTIONAL.
+  // An alternate app name to be given as hint, should the resource be found to have been locked by it.
+  string app_for_edit = 5;
 }
