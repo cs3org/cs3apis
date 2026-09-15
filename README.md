@@ -3,12 +3,12 @@
 
 <img width="100px" src="https://raw.githubusercontent.com/cs3org/logos/master/cs3org/cs3org.png"/>
 
-The CS3APIS connect Storage and Applications Providers.
+The CS3APIs connect Storage and Applications Providers.
 
 ## API Documentation
 https://buf.build/cs3org-buf/cs3apis
 
-## Officialy compiled libraries
+## Officially compiled libraries
 The libraries for different languages are compiled from the protobuf definitions in this repo.
 When a commit to master is made the CI takes care to create a new version of the library in the following languages.
 Please note that the versioning used in the libraries below differs from language to language, however they point to the 
