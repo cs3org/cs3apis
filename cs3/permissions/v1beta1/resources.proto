@@ -38,3 +38,46 @@ message SubjectReference {
     cs3.identity.group.v1beta1.GroupId group_id = 2;
   }
 }
+
+// Role is a named set of permissions. It only says what is allowed: who holds
+// it and where it applies are up to whoever uses it.
+message Role {
+  // REQUIRED.
+  // The unique name of the role, used to refer to it.
+  string name = 1;
+  // OPTIONAL.
+  // The name to show to users.
+  string display_name = 2;
+  // OPTIONAL.
+  // The description to show to users.
+  string description = 3;
+  // REQUIRED.
+  // The permissions of the role, in the format <area>:<action>, lowercase.
+  // "*" means everything the implementation allows, including permissions
+  // added in the future. An implementation can add names in an area of its
+  // own. A name it does not know grants nothing.
+  //
+  // The standard names are:
+  //   files:list         Stat, ListContainer, GetPath, GetQuota,
+  //                      ListStorageSpaces, GetLock.
+  //   files:read         InitiateFileDownload.
+  //   files:write        InitiateFileUpload, TouchFile, CreateContainer,
+  //                      SetArbitraryMetadata, UnsetArbitraryMetadata,
+  //                      SetLock, RefreshLock, Unlock.
+  //   files:move         Move.
+  //   files:delete       Delete (to the recycle bin).
+  //   versions:list      ListFileVersions.
+  //   versions:restore   RestoreFileVersion.
+  //   trash:list         ListRecycle.
+  //   trash:restore      RestoreRecycleItem.
+  //   trash:purge        PurgeRecycle.
+  //   shares:list        List and get shares, received shares and public links.
+  //   shares:manage      Create, update and remove shares and public links,
+  //                      and accept or reject received shares.
+  //   directory:search   FindUsers, FindGroups, GetMembers.
+  //   labels:read        ListLabels, ListResourcesForLabel.
+  //   labels:write       AddLabel, RemoveLabel.
+  //   apps:open          OpenInApp, GetAppProviders and the app registry lookups.
+  //   preferences:write  SetKey on user preferences.
+  repeated string permissions = 4;
+}

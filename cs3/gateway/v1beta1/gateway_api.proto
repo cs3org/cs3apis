@@ -495,6 +495,8 @@ service GatewayAPI {
 
   // CheckPermission checks if a user or group has a certain permission.
   rpc CheckPermission(cs3.permissions.v1beta1.CheckPermissionRequest) returns (cs3.permissions.v1beta1.CheckPermissionResponse);
+  // ListRoles lists the roles, optionally only the ones offered for a given use.
+  rpc ListRoles(cs3.permissions.v1beta1.ListRolesRequest) returns (cs3.permissions.v1beta1.ListRolesResponse);
 }
 
 // CAUTION:
