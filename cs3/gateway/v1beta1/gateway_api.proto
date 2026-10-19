@@ -468,6 +468,8 @@ service GatewayAPI {
   rpc UpdateOCMIncomingShare(cs3.ocm.incoming.v1beta1.UpdateOCMIncomingShareRequest) returns (cs3.ocm.incoming.v1beta1.UpdateOCMIncomingShareResponse);
   // Deletes an incoming OCM share.
   rpc DeleteOCMIncomingShare(cs3.ocm.incoming.v1beta1.DeleteOCMIncomingShareRequest) returns (cs3.ocm.incoming.v1beta1.DeleteOCMIncomingShareResponse);
+  // Withdraws the received shares of a grant named by a SHARE_UNSHARED notification.
+  rpc WithdrawOCMIncomingShare(cs3.ocm.incoming.v1beta1.WithdrawOCMIncomingShareRequest) returns (cs3.ocm.incoming.v1beta1.WithdrawOCMIncomingShareResponse);
 
   // Deprecated. Creates a new OCM share.
   rpc CreateOCMCoreShare(cs3.ocm.core.v1beta1.CreateOCMCoreShareRequest) returns (cs3.ocm.core.v1beta1.CreateOCMCoreShareResponse);

@@ -64,6 +64,14 @@ service OcmIncomingAPI {
   // Deletes an OCM share in response to a notification from remote to `/ocm/notifications`. See:
   // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc DeleteOCMIncomingShare(DeleteOCMIncomingShareRequest) returns (DeleteOCMIncomingShareResponse);
+  // Withdraws the received shares of a grant in response to a SHARE_UNSHARED
+  // notification from remote to `/ocm/notifications`. The grant is named by
+  // its sending provider and the identifier that provider assigned to it.
+  // MUST return CODE_OK with changed=false if no grant matches or the grant
+  // is already withdrawn.
+  // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
+  // MUST return CODE_INVALID_ARGUMENT if a field has an invalid value.
+  rpc WithdrawOCMIncomingShare(WithdrawOCMIncomingShareRequest) returns (WithdrawOCMIncomingShareResponse);
 }
 
 message CreateOCMIncomingShareRequest {
@@ -184,4 +192,44 @@ message DeleteOCMIncomingShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message WithdrawOCMIncomingShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // OPTIONAL.
+  // Domain of the provider that created the grant, as sent in the
+  // notification. If empty, the grant is only bound by a unique match of
+  // remote_share_id and legacy_shared_secret.
+  string sender_domain = 2;
+  // REQUIRED.
+  // Identifier assigned to the grant by the provider that created it.
+  string remote_share_id = 3;
+  // REQUIRED.
+  // Type of the shared resource. The grant must have this type.
+  cs3.sharing.ocm.v1beta1.SharedResourceType shared_resource_type = 4;
+  // OPTIONAL.
+  // Recipient type. If RECIPIENT_TYPE_INVALID, the recipient type is not checked.
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
+  // OPTIONAL.
+  // Shared secret sent with a legacy notification without sender_domain.
+  // It is not proof of the sender identity and MUST NOT be logged.
+  string legacy_shared_secret = 6;
+  // OPTIONAL.
+  // Address of the HTTP client that sent the notification, used by the
+  // provider policy.
+  string sender_ip = 7;
+}
+
+message WithdrawOCMIncomingShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // True if this call withdrew the grant.
+  bool changed = 3;
 }
