@@ -446,6 +446,10 @@ service GatewayAPI {
   rpc FindAcceptedUsers(cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest) returns (cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse);
   // Delete a previously accepted remote user, that is unfriend that user.
   rpc DeleteAcceptedUser(cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse);
+  // Removes the contact named by a CONTACT_REMOVED notification.
+  rpc RemoveOCMContact(cs3.ocm.invite.v1beta1.RemoveOCMContactRequest) returns (cs3.ocm.invite.v1beta1.RemoveOCMContactResponse);
+  // Reports whether single contacts can be removed with RemoveOCMContact.
+  rpc GetOCMContactRemovalSupport(cs3.ocm.invite.v1beta1.GetOCMContactRemovalSupportRequest) returns (cs3.ocm.invite.v1beta1.GetOCMContactRemovalSupportResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
   // *****************************************************************/

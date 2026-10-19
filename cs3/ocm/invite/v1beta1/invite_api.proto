@@ -78,6 +78,17 @@ service InviteAPI {
   // Delete a previously accepted remote user, that is unfriend that user.
   // MUST return CODE_NOT_FOUND if the user does not exist.
   rpc DeleteAcceptedUser(DeleteAcceptedUserRequest) returns (DeleteAcceptedUserResponse);
+  // Removes the contact between a remote actor and a local counterpart in
+  // response to a CONTACT_REMOVED notification from remote to
+  // `/ocm/notifications`. Only this exact pair is removed, and no
+  // notification is sent back.
+  // MUST return CODE_OK with changed=false if the pair is not a contact.
+  // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
+  // MUST return CODE_INVALID_ARGUMENT if the identities do not match the
+  // sender domain or the local provider.
+  rpc RemoveOCMContact(RemoveOCMContactRequest) returns (RemoveOCMContactResponse);
+  // Reports whether this service can remove single contacts with RemoveOCMContact.
+  rpc GetOCMContactRemovalSupport(GetOCMContactRemovalSupportRequest) returns (GetOCMContactRemovalSupportResponse);
 }
 
 message GenerateInviteTokenRequest {
@@ -230,4 +241,53 @@ message DeleteAcceptedUserResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message RemoveOCMContactRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // The remote user who removed the contact. Its idp is the sender domain.
+  cs3.identity.user.v1beta1.UserId actor = 2;
+  // REQUIRED.
+  // The local user whose contact with the actor is removed.
+  cs3.identity.user.v1beta1.UserId counterpart = 3;
+  // REQUIRED.
+  // Domain of the provider that sent the notification.
+  string sender_domain = 4;
+  // OPTIONAL.
+  // Address of the HTTP client that sent the notification, used by the
+  // provider policy.
+  string sender_ip = 5;
+}
+
+message RemoveOCMContactResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // True if this call removed the contact.
+  bool changed = 3;
+}
+
+message GetOCMContactRemovalSupportRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message GetOCMContactRemovalSupportResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // True if RemoveOCMContact is supported.
+  bool supported = 3;
 }
