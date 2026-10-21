@@ -198,10 +198,9 @@ message WithdrawOCMIncomingShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // OPTIONAL.
+  // REQUIRED.
   // Domain of the provider that created the grant, as sent in the
-  // notification. If empty, the grant is only bound by a unique match of
-  // remote_share_id and legacy_shared_secret.
+  // notification: a DNS FQDN without a port or a trailing dot.
   string sender_domain = 2;
   // REQUIRED.
   // Identifier assigned to the grant by the provider that created it.
@@ -212,10 +211,8 @@ message WithdrawOCMIncomingShareRequest {
   // OPTIONAL.
   // Recipient type. If RECIPIENT_TYPE_INVALID, the recipient type is not checked.
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
-  // OPTIONAL.
-  // Shared secret sent with a legacy notification without sender_domain.
-  // It is not proof of the sender identity and MUST NOT be logged.
-  string legacy_shared_secret = 6;
+  reserved 6;
+  reserved "legacy_shared_secret";
   // OPTIONAL.
   // Address of the HTTP client that sent the notification, used by the
   // provider policy.
