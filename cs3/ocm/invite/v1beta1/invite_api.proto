@@ -248,13 +248,15 @@ message RemoveOCMContactRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The remote user who removed the contact. Its idp is the sender domain.
+  // The remote user who removed the contact. Its idp is the sender domain,
+  // compared as a whole host without regard to case.
   cs3.identity.user.v1beta1.UserId actor = 2;
   // REQUIRED.
   // The local user whose contact with the actor is removed.
   cs3.identity.user.v1beta1.UserId counterpart = 3;
   // REQUIRED.
-  // Domain of the provider that sent the notification.
+  // Domain of the provider that sent the notification: a DNS FQDN without
+  // a port or a trailing dot.
   string sender_domain = 4;
   // OPTIONAL.
   // Address of the HTTP client that sent the notification, used by the
