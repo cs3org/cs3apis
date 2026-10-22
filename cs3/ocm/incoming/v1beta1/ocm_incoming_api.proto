@@ -199,8 +199,9 @@ message WithdrawOCMIncomingShareRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // Domain of the provider that created the grant, as sent in the
-  // notification: a DNS FQDN without a port or a trailing dot.
+  // Host of the provider that created the grant, as sent in the
+  // notification: the server part of an OCM address, host[:port],
+  // with its complete port. It is compared after lowercasing only.
   string sender_domain = 2;
   // REQUIRED.
   // Identifier assigned to the grant by the provider that created it.
