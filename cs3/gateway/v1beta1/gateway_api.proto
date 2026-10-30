@@ -26,24 +26,25 @@ import "cs3/auth/applications/v1beta1/applications_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/group/v1beta1/group_api.proto";
+import "cs3/identity/tenant/v1beta1/tenant_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
-import "cs3/identity/tenant/v1beta1/tenant_api.proto";
+import "cs3/labels/v1beta1/label_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
 import "cs3/ocm/incoming/v1beta1/ocm_incoming_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
 import "cs3/permissions/v1beta1/permissions_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
-import "cs3/labels/v1beta1/label_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/sharing/link/v1beta1/link_api.proto";
+import "cs3/sharing/ocm/v1beta1/contact_grants.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
-import "cs3/storage/provider/v1beta1/spaces_api.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/spaces_api.proto";
 import "cs3/tx/v1beta1/tx_api.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -73,6 +74,16 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service GatewayAPI {
+  // Trusted local exact-pair grant revocation; no federation delivery.
+  rpc RevokeOCMContactShares(cs3.sharing.ocm.v1beta1.RevokeOCMContactSharesRequest) returns (cs3.sharing.ocm.v1beta1.RevokeOCMContactSharesResponse);
+  // Completes local cleanup for a captured removal epoch.
+  rpc CompleteOCMContactRemoval(cs3.sharing.ocm.v1beta1.CompleteOCMContactRemovalRequest) returns (cs3.sharing.ocm.v1beta1.CompleteOCMContactRemovalResponse);
+  // Reopens only through a newly authorized invitation.
+  rpc ReopenOCMContactShares(cs3.sharing.ocm.v1beta1.ReopenOCMContactSharesRequest) returns (cs3.sharing.ocm.v1beta1.ReopenOCMContactSharesResponse);
+  // Checks live outgoing grant authority for a service-authenticated caller.
+  rpc CheckOCMGrantAccess(cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessRequest) returns (cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessResponse);
+  // Reports complete configured local grant enforcement.
+  rpc GetOCMContactGrantSupport(cs3.sharing.ocm.v1beta1.GetOCMContactGrantSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMContactGrantSupportResponse);
   // *****************************************************************/
   // ************************ AUTH ******** **************************/
   // *****************************************************************/
@@ -284,7 +295,7 @@ service GatewayAPI {
   // *****************************************************************/
   // *************************** LABELS ******************************/
   // *****************************************************************/
-  
+
   // Attach a label to a resource for a user.
   rpc AddLabel(cs3.labels.v1beta1.AddLabelRequest) returns (cs3.labels.v1beta1.AddLabelResponse);
   // Removes a label from a resource for a user.
@@ -391,7 +402,7 @@ service GatewayAPI {
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
-  
+
   // *****************************************************************/
   // ************************ TENANT PROVIDER **************************/
   // *****************************************************************/
@@ -672,7 +683,6 @@ message ListExistingPublicSharesResponse {
   // see https://cloud.google.com/apis/design/design_patterns#list_pagination
   string next_page_token = 4;
 }
-
 
 message ListExistingOCMSharesResponse {
   // REQUIRED.

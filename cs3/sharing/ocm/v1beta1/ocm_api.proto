@@ -23,6 +23,7 @@ package cs3.sharing.ocm.v1beta1;
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/contact_grants.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
@@ -58,6 +59,17 @@ option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OcmAPI {
+  // Durably denies grants for one canonical contact pair at this server.
+  // Requires a trusted local coordinator; it performs no federation delivery.
+  rpc RevokeOCMContactShares(RevokeOCMContactSharesRequest) returns (RevokeOCMContactSharesResponse);
+  // Completes exact local cleanup without changing grant denial.
+  rpc CompleteOCMContactRemoval(CompleteOCMContactRemovalRequest) returns (CompleteOCMContactRemovalResponse);
+  // Authorizes a fresh invitation at a new local epoch, never old grant IDs.
+  rpc ReopenOCMContactShares(ReopenOCMContactSharesRequest) returns (ReopenOCMContactSharesResponse);
+  // Requires authenticated service authority and returns no credentials.
+  rpc CheckOCMGrantAccess(CheckOCMGrantAccessRequest) returns (CheckOCMGrantAccessResponse);
+  // Reports complete configured grant enforcement, not contact storage alone.
+  rpc GetOCMContactGrantSupport(GetOCMContactGrantSupportRequest) returns (GetOCMContactGrantSupportResponse);
   // Creates a new OCM share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 3-tuple consisting of
