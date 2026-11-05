@@ -59,7 +59,7 @@ service ApplicationsAPI {
   rpc ListAppPasswords(ListAppPasswordsRequest) returns (ListAppPasswordsResponse);
   // InvalidateAppPassword invalidates a generated password.
   rpc InvalidateAppPassword(InvalidateAppPasswordRequest) returns (InvalidateAppPasswordResponse);
-  // GetAppPassword retrieves the password information by the combination of username and password.
+  // GetAppPassword retrieves an app password by its secret, optionally together with its owner.
   rpc GetAppPassword(GetAppPasswordRequest) returns (GetAppPasswordResponse);
 }
 
@@ -68,15 +68,24 @@ message GenerateAppPasswordRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // OPTIONAL.
+  // Deprecated: use client and grants.
   // The scope of the token to be issued.
-  // This would be a list of resources with corresponding role-based access scope.
-  map<string, cs3.auth.provider.v1beta1.Scope> token_scope = 2;
+  map<string, cs3.auth.provider.v1beta1.Scope> token_scope = 2 [deprecated = true];
   // OPTIONAL.
   // A label to be associated with the password.
   string label = 3;
   // OPTIONAL.
-  // The time when the token will expire.
+  // The time when the token will expire. The implementation may enforce
+  // limits, or require it for some kinds of client.
   cs3.types.v1beta1.Timestamp expiration = 4;
+  // OPTIONAL.
+  // The kind of client the app password is for. If not set, the app
+  // password can be used by any client.
+  string client = 5;
+  // OPTIONAL.
+  // What the app password can do, and where. If empty, the app password
+  // has no restrictions and can do whatever its owner can.
+  repeated AppPasswordGrant grants = 6;
 }
 
 message GenerateAppPasswordResponse {
@@ -105,7 +114,7 @@ message ListAppPasswordsResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // The generated access password.
+  // The app passwords of the user, without the secret.
   repeated AppPassword app_passwords = 3;
 }
 
@@ -113,9 +122,13 @@ message InvalidateAppPasswordRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The password which has to be invalidated.
+  // OPTIONAL.
+  // The secret of the app password to invalidate.
   string password = 2;
+  // OPTIONAL.
+  // The id of the app password to invalidate.
+  // Exactly one of password and id MUST be set.
+  string id = 3;
 }
 
 message InvalidateAppPasswordResponse {
@@ -131,8 +144,9 @@ message GetAppPasswordRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
-  // The user who created the app password.
+  // OPTIONAL.
+  // The owner of the app password. If not set, the password alone is used
+  // to find it, and the owner is returned in AppPassword.user.
   cs3.identity.user.v1beta1.UserId user = 2;
   // REQUIRED.
   // The password which has to be retrieved.
