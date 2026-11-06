@@ -298,19 +298,28 @@ message WebappProtocol {
   // The requirements for the share.
   repeated string requirements = 4;
   // REQUIRED.
-  // The targets that can be used to display the remote app.
+  // The HTML targets that can be used to display the remote app.
   repeated string targets = 5;
-  // OPTIONAL.
-  // A descriptive name of the remote app in the user interface.
-  string app_name = 6;
+  // REQUIRED.
+  // The web applications available to open the shared resource or
+  // the files within it. The list MUST contain at least one
+  // element, and MUST NOT contain duplicate names. The first
+  // entry matching a media type is to be considered the default.
+  repeated WebappApp apps = 6;
   // OPTIONAL.
   // A hint in the form of a media (MIME) type of the icon
-  // representing the remote app in the user interface.
+  // representing one of the remote apps in the user interface.
   string app_icon_hint = 7;
-  // OPTIONAL.
-  // An array of media (MIME) types that the remote application
-  // can handle.
-  repeated string media_types = 8;
+}
+
+// Defines a web application available in a Webapp protocol.
+message WebappApp {
+  // REQUIRED.
+  // A descriptive name of the app in the user interface.
+  string name = 1;
+  // REQUIRED.
+  // The media (MIME) types that the app can handle.
+  repeated string media_types = 2;
 }
 
 // Defines the options for the Embedded protocol.
@@ -403,7 +412,10 @@ message WebappAccessMethod {
   // REQUIRED.
   // The requirements for the share.
   repeated string requirements = 2;
-  // OPTIONAL.
-  // A descriptive name of the app in the remote user interface.
-  string app_name = 3;
+  // REQUIRED.
+  // The app names offered via this share, shown in the remote
+  // user interface. The corresponding media types are the ones
+  // configured in the local system for the offered apps, therefore
+  // they don't need to be recorded.
+  repeated string app_names = 3;
 }
