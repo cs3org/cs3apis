@@ -74,16 +74,14 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service GatewayAPI {
-  // Trusted local exact-pair grant revocation; no federation delivery.
-  rpc RevokeOCMContactShares(cs3.sharing.ocm.v1beta1.RevokeOCMContactSharesRequest) returns (cs3.sharing.ocm.v1beta1.RevokeOCMContactSharesResponse);
-  // Completes local cleanup for a captured removal epoch.
-  rpc CompleteOCMContactRemoval(cs3.sharing.ocm.v1beta1.CompleteOCMContactRemovalRequest) returns (cs3.sharing.ocm.v1beta1.CompleteOCMContactRemovalResponse);
-  // Reopens only through a newly authorized invitation.
-  rpc ReopenOCMContactShares(cs3.sharing.ocm.v1beta1.ReopenOCMContactSharesRequest) returns (cs3.sharing.ocm.v1beta1.ReopenOCMContactSharesResponse);
+  // Withdraws the authenticated user's outgoing grants to one remote user.
+  rpc RemoveOCMSharesForRecipient(cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientRequest) returns (cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientResponse);
+  // Rejects the authenticated user's received shares from one remote user.
+  rpc RejectReceivedOCMSharesFromSender(cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderRequest) returns (cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderResponse);
   // Checks live outgoing grant authority for a service-authenticated caller.
   rpc CheckOCMGrantAccess(cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessRequest) returns (cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessResponse);
-  // Reports complete configured local grant enforcement.
-  rpc GetOCMContactGrantSupport(cs3.sharing.ocm.v1beta1.GetOCMContactGrantSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMContactGrantSupportResponse);
+  // Reports whether each directional bulk share action is supported.
+  rpc GetOCMShareActionsSupport(cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportResponse);
   // *****************************************************************/
   // ************************ AUTH ******** **************************/
   // *****************************************************************/

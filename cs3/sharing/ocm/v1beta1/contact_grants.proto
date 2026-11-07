@@ -22,6 +22,7 @@ package cs3.sharing.ocm.v1beta1;
 
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
+import "cs3/types/v1beta1/types.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 
@@ -33,72 +34,76 @@ option java_package = "com.cs3.sharing.ocm.v1beta1";
 option objc_class_prefix = "CSO";
 option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 
-// Both Idp fields are complete canonical OCM provider hosts. They are not
-// aliases for an internal local identity-provider ID. Opaque IDs stay exact.
-message OCMContactPair {
-  // REQUIRED. Local OCM identity.
-  cs3.identity.user.v1beta1.UserId local_user = 1;
-  // REQUIRED. Remote OCM identity.
-  cs3.identity.user.v1beta1.UserId remote_user = 2;
+// Withdraws every currently committed outgoing OCM share grant that the
+// authenticated local user created for exactly this remote user. The local
+// user is derived from the authenticated context; the request names only the
+// remote user. Grants created later are separate shares, not a revival.
+message RemoveOCMSharesForRecipientRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Exact remote recipient identity of the grants to withdraw. Its idp is
+  // the complete canonical host[:port] of the remote provider, opaque IDs
+  // stay byte-exact.
+  cs3.identity.user.v1beta1.UserId remote_user_id = 2;
 }
 
-message RevokeOCMContactSharesRequest {
-  // REQUIRED. Validated, authorized and provider-bound by the coordinator.
-  OCMContactPair pair = 1;
-  // OPTIONAL. Directory-confirmed internal identity. When absent, the backend
-  // MUST reconcile authoritative stored bindings or fail safely; never guess.
-  cs3.identity.user.v1beta1.UserId local_identity = 2;
-  // REQUIRED. Stable local operation key; not a federation event identifier.
-  string operation_id = 3;
-}
-
-// Returned only for an acknowledged durable security commit or authoritative
-// absence. Unknown commits MUST return a non-OK status without a receipt.
-message OCMContactRevocationReceipt {
-  OCMContactPair pair = 1;
-  // Exact authoritative internal mapping, if any.
-  cs3.identity.user.v1beta1.UserId local_identity = 2;
-  string operation_id = 3;
-  uint64 epoch = 4;
-  uint64 outgoing_denied = 5;
-  uint64 projections_denied = 6;
-  // True only for this acknowledged newly installed removal operation.
-  bool new_operation = 7;
-  bool contact_cleanup_pending = 8;
-  // No grants, projections, contacts or pending cleanup under the complete
-  // fresh-write binding invariant; directory absence alone is insufficient.
-  bool authoritative_absence = 9;
-}
-
-message RevokeOCMContactSharesResponse {
+message RemoveOCMSharesForRecipientResponse {
+  // REQUIRED.
+  // CODE_OK only for an acknowledged committed selection or no-op; a commit
+  // that cannot be established returns CODE_UNKNOWN with changed absent.
   cs3.rpc.v1beta1.Status status = 1;
-  OCMContactRevocationReceipt receipt = 2;
+  // OPTIONAL.
+  // Present only for an acknowledged commit or no-op: the number of grants
+  // whose state actually changed, zero for a successful no-op.
+  optional uint64 changed = 2;
 }
 
-message CompleteOCMContactRemovalRequest {
-  OCMContactPair pair = 1;
-  string operation_id = 2;
-  uint64 epoch = 3;
+// Sets the authenticated local user's currently committed received OCM share
+// projections from exactly this remote grantor to REJECTED. The provider's
+// own grants are untouched; an explicit later acceptance may reverse it while
+// the provider's grant remains active.
+message RejectReceivedOCMSharesFromSenderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Exact remote creator identity of the received shares to reject. Its idp
+  // is the complete canonical host[:port] of the remote provider, opaque IDs
+  // stay byte-exact.
+  cs3.identity.user.v1beta1.UserId remote_user_id = 2;
 }
 
-message CompleteOCMContactRemovalResponse {
+message RejectReceivedOCMSharesFromSenderResponse {
+  // REQUIRED.
+  // CODE_OK only for an acknowledged committed selection or no-op; a commit
+  // that cannot be established returns CODE_UNKNOWN with changed absent.
   cs3.rpc.v1beta1.Status status = 1;
-  // False for a stale epoch; never completes a later operation.
-  bool completed = 2;
+  // OPTIONAL.
+  // Present only for an acknowledged commit or no-op: the number of received
+  // share projections whose state actually changed, zero for a no-op.
+  optional uint64 changed = 2;
 }
 
-message ReopenOCMContactSharesRequest {
-  OCMContactPair pair = 1;
-  // REQUIRED. Confirmed local identity, separate from the OCM provider host.
-  cs3.identity.user.v1beta1.UserId local_identity = 2;
-  // REQUIRED. Idempotent locally derived acceptance key, never a raw token.
-  // An already consumed key MUST NOT reopen a subsequently revoked pair.
-  string acceptance_key = 3;
+message GetOCMShareActionsSupportRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
 }
 
-message ReopenOCMContactSharesResponse {
+message GetOCMShareActionsSupportResponse {
+  // REQUIRED.
   cs3.rpc.v1beta1.Status status = 1;
-  uint64 epoch = 2;
+  // REQUIRED.
+  // True only when the configured share repository actually supports the
+  // transactional outgoing withdrawal for the authenticated user. A false
+  // answer leaves ordinary per-share operations untouched.
+  bool withdraw_outgoing = 2;
+  // REQUIRED.
+  // True only when the configured share repository actually supports the
+  // transactional incoming rejection for the authenticated user.
+  bool decline_incoming = 3;
 }
 
 message CheckOCMGrantAccessRequest {
@@ -114,13 +119,4 @@ message CheckOCMGrantAccessResponse {
   cs3.rpc.v1beta1.Status status = 1;
   // Current restrictions; MUST contain no Token or shared credentials.
   Share share = 2;
-}
-
-message GetOCMContactGrantSupportRequest {}
-
-message GetOCMContactGrantSupportResponse {
-  cs3.rpc.v1beta1.Status status = 1;
-  // True only for durable pair/projection state and every configured access
-  // path participating in current grant authorization and writer fencing.
-  bool supported = 2;
 }

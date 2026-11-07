@@ -59,17 +59,17 @@ option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OcmAPI {
-  // Durably denies grants for one canonical contact pair at this server.
-  // Requires a trusted local coordinator; it performs no federation delivery.
-  rpc RevokeOCMContactShares(RevokeOCMContactSharesRequest) returns (RevokeOCMContactSharesResponse);
-  // Completes exact local cleanup without changing grant denial.
-  rpc CompleteOCMContactRemoval(CompleteOCMContactRemovalRequest) returns (CompleteOCMContactRemovalResponse);
-  // Authorizes a fresh invitation at a new local epoch, never old grant IDs.
-  rpc ReopenOCMContactShares(ReopenOCMContactSharesRequest) returns (ReopenOCMContactSharesResponse);
+  // Withdraws the authenticated user's outgoing grants to one remote user.
+  // Protected local-user operation; the remote grant-scoped caller is denied.
+  rpc RemoveOCMSharesForRecipient(RemoveOCMSharesForRecipientRequest) returns (RemoveOCMSharesForRecipientResponse);
+  // Rejects the authenticated user's received shares from one remote user.
+  // Protected local-user operation; the remote grant-scoped caller is denied.
+  rpc RejectReceivedOCMSharesFromSender(RejectReceivedOCMSharesFromSenderRequest) returns (RejectReceivedOCMSharesFromSenderResponse);
   // Requires authenticated service authority and returns no credentials.
   rpc CheckOCMGrantAccess(CheckOCMGrantAccessRequest) returns (CheckOCMGrantAccessResponse);
-  // Reports complete configured grant enforcement, not contact storage alone.
-  rpc GetOCMContactGrantSupport(GetOCMContactGrantSupportRequest) returns (GetOCMContactGrantSupportResponse);
+  // Reports whether the configured repository actually supports each
+  // directional bulk share action; it mutates nothing.
+  rpc GetOCMShareActionsSupport(GetOCMShareActionsSupportRequest) returns (GetOCMShareActionsSupportResponse);
   // Creates a new OCM share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 3-tuple consisting of
