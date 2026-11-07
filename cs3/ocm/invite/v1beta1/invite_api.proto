@@ -232,15 +232,71 @@ message DeleteAcceptedUserRequest {
   // REQUIRED.
   // The id of the user.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
+  // OPTIONAL.
+  // Withdraw the authenticated user's outgoing OCM shares with the remote
+  // user. Defaults to false: without either option the operation only
+  // unlinks the contact and keeps existing shares in both directions.
+  bool withdraw_outgoing = 3;
+  // OPTIONAL.
+  // Reject the authenticated user's received OCM shares from the remote
+  // user. Defaults to false.
+  bool decline_incoming = 4;
 }
 
 message DeleteAcceptedUserResponse {
   // REQUIRED.
-  // The response status.
+  // The response status. It is CODE_OK only if every requested action
+  // completed; a non-OK status can still carry an authoritative partial
+  // result.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // OPTIONAL.
+  // Per-action outcomes of the requested operation, present whenever the
+  // outcome is known, including for recognized partial completion.
+  ContactRemovalResult result = 3;
+}
+
+message ContactRemovalResult {
+  // REQUIRED.
+  // Outcome of unlinking the contact itself.
+  ContactActionResult contact = 1;
+  // REQUIRED.
+  // Outcome of the optional withdrawal of outgoing shares.
+  ContactActionResult outgoing = 2;
+  // REQUIRED.
+  // Outcome of the optional rejection of incoming shares.
+  ContactActionResult incoming = 3;
+}
+
+message ContactActionResult {
+  // REQUIRED.
+  // The outcome of one action. CONTACT_ACTION_OUTCOME_INVALID is never a
+  // valid completed value.
+  ContactActionOutcome outcome = 1;
+  // OPTIONAL.
+  // Present only with CONTACT_ACTION_OUTCOME_SUCCEEDED: zero or one for
+  // the contact action, the number of changed grants or received share
+  // projections for a share action. Never fabricated for unknown outcomes.
+  optional uint64 changed = 2;
+}
+
+enum ContactActionOutcome {
+  // Not a valid completed value.
+  CONTACT_ACTION_OUTCOME_INVALID = 0;
+  // The action was not requested.
+  CONTACT_ACTION_OUTCOME_NOT_REQUESTED = 1;
+  // The action was requested but not attempted because an earlier
+  // requested action did not complete successfully.
+  CONTACT_ACTION_OUTCOME_NOT_ATTEMPTED = 2;
+  // The action completed successfully.
+  CONTACT_ACTION_OUTCOME_SUCCEEDED = 3;
+  // The action was attempted and failed without a committed effect.
+  CONTACT_ACTION_OUTCOME_FAILED = 4;
+  // The outcome cannot be confirmed, for example after an ambiguous
+  // commit or a lost reply.
+  CONTACT_ACTION_OUTCOME_UNKNOWN = 5;
 }
 
 message RemoveOCMContactRequest {
