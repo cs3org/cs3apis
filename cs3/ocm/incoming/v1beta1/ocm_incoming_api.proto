@@ -71,6 +71,10 @@ service OcmIncomingAPI {
   // is already withdrawn.
   // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
   // MUST return CODE_INVALID_ARGUMENT if a field has an invalid value.
+  // Only an authenticated internal service calls this operation, after the
+  // SHARE_UNSHARED notification passed signature verification and provider
+  // policy at the HTTP boundary; it is not an anonymous client claim, and
+  // no shared secret proves the caller.
   rpc WithdrawOCMIncomingShare(WithdrawOCMIncomingShareRequest) returns (WithdrawOCMIncomingShareResponse);
 }
 
