@@ -9,3 +9,6 @@ clean:
 	rm -rf build/
 all: gen clean
 
+docs:
+	buf generate --template '{"version":"v1","plugins":[{"plugin":"doc","out":"docs","opt":"docs/html.tmpl,index.html","strategy":"all"}]}'
+.PHONY: docs
