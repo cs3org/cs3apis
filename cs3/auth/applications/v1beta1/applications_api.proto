@@ -61,6 +61,8 @@ service ApplicationsAPI {
   rpc InvalidateAppPassword(InvalidateAppPasswordRequest) returns (InvalidateAppPasswordResponse);
   // GetAppPassword retrieves an app password by its secret, optionally together with its owner.
   rpc GetAppPassword(GetAppPasswordRequest) returns (GetAppPasswordResponse);
+  // ListAppPasswordPresets lists the presets that clients can offer to users.
+  rpc ListAppPasswordPresets(ListAppPasswordPresetsRequest) returns (ListAppPasswordPresetsResponse);
 }
 
 message GenerateAppPasswordRequest {
@@ -68,7 +70,7 @@ message GenerateAppPasswordRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // OPTIONAL.
-  // Deprecated: use client and grants.
+  // Deprecated: use client and scope.
   // The scope of the token to be issued.
   map<string, cs3.auth.provider.v1beta1.Scope> token_scope = 2 [deprecated = true];
   // OPTIONAL.
@@ -83,9 +85,9 @@ message GenerateAppPasswordRequest {
   // password can be used by any client.
   string client = 5;
   // OPTIONAL.
-  // What the app password can do, and where. If empty, the app password
+  // What the app password can do, and where. If not set, the app password
   // has no restrictions and can do whatever its owner can.
-  repeated AppPasswordGrant grants = 6;
+  AppPasswordScope scope = 6;
 }
 
 message GenerateAppPasswordResponse {
@@ -163,4 +165,22 @@ message GetAppPasswordResponse {
   // REQUIRED.
   // The generated access password.
   AppPassword app_password = 3;
+}
+
+message ListAppPasswordPresetsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+message ListAppPasswordPresetsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // The presets.
+  repeated AppPasswordPreset presets = 3;
 }

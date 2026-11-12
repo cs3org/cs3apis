@@ -103,6 +103,8 @@ service GatewayAPI {
   rpc InvalidateAppPassword(cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest) returns (cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse);
   // GetAppPassword retrieves the password information by the combination of username and password.
   rpc GetAppPassword(cs3.auth.applications.v1beta1.GetAppPasswordRequest) returns (cs3.auth.applications.v1beta1.GetAppPasswordResponse);
+  // ListAppPasswordPresets lists the presets that clients can offer to users.
+  rpc ListAppPasswordPresets(cs3.auth.applications.v1beta1.ListAppPasswordPresetsRequest) returns (cs3.auth.applications.v1beta1.ListAppPasswordPresetsResponse);
   // *****************************************************************/
   // ************************ STORAGE PROVIDER ***********************/
   // *****************************************************************/
@@ -495,8 +497,6 @@ service GatewayAPI {
 
   // CheckPermission checks if a user or group has a certain permission.
   rpc CheckPermission(cs3.permissions.v1beta1.CheckPermissionRequest) returns (cs3.permissions.v1beta1.CheckPermissionResponse);
-  // ListRoles lists the roles, optionally only the ones offered for a given use.
-  rpc ListRoles(cs3.permissions.v1beta1.ListRolesRequest) returns (cs3.permissions.v1beta1.ListRolesResponse);
 }
 
 // CAUTION:

@@ -23,7 +23,6 @@ package cs3.permissions.v1beta1;
 import "cs3/permissions/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
-import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Permissions.V1Beta1";
 option go_package = "permissionsv1beta1";
@@ -42,7 +41,7 @@ service PermissionsAPI {
 // CheckPermissionsRequest is used to check if a user has a certain permission.
 message CheckPermissionRequest {
   //REQUIRED.
-  // The permission to check. It SHOULD use the format of Role.permissions.
+  // The permission to check.
   string permission = 1;
   // REQUIRED.
   // The subject holding the permission.
@@ -57,43 +56,4 @@ message CheckPermissionResponse {
   // REQUIRED.
   // The response status.
   cs3.rpc.v1beta1.Status status = 1;
-}
-
-// ListRolesRequest is used to list the roles.
-message ListRolesRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-  // Represents a filter to apply to the request.
-  message Filter {
-    // The filter to apply.
-    enum Type {
-      TYPE_INVALID = 0;
-      TYPE_NO = 1;
-      TYPE_APPLIES_TO = 2;
-    }
-    // REQUIRED.
-    Type type = 1;
-    oneof term {
-      // Only the roles offered for this use (e.g. app-password). The values
-      // are up to the implementation.
-      string applies_to = 2;
-    }
-  }
-  // OPTIONAL.
-  // The list of filters to apply if any.
-  repeated Filter filters = 2;
-}
-
-// ListRolesResponse returns the roles.
-message ListRolesResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // The roles.
-  repeated cs3.permissions.v1beta1.Role roles = 3;
 }
