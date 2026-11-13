@@ -104,6 +104,10 @@ message PublicShare {
   // Comma-separated list of extra email addresses to notify when a file is
   // uploaded to the share.
   string notify_uploads_extra_recipients = 16;
+  // OPTIONAL
+  // The address where the public share can be opened,
+  // for example in a web browser. Set by the provider.
+  string url = 17;
 }
 
 // The permissions for a share.
