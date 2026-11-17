@@ -103,6 +103,8 @@ service GatewayAPI {
   rpc InvalidateAppPassword(cs3.auth.applications.v1beta1.InvalidateAppPasswordRequest) returns (cs3.auth.applications.v1beta1.InvalidateAppPasswordResponse);
   // GetAppPassword retrieves the password information by the combination of username and password.
   rpc GetAppPassword(cs3.auth.applications.v1beta1.GetAppPasswordRequest) returns (cs3.auth.applications.v1beta1.GetAppPasswordResponse);
+  // ListAppPasswordPresets lists the presets that clients can offer to users.
+  rpc ListAppPasswordPresets(cs3.auth.applications.v1beta1.ListAppPasswordPresetsRequest) returns (cs3.auth.applications.v1beta1.ListAppPasswordPresetsResponse);
   // *****************************************************************/
   // ************************ STORAGE PROVIDER ***********************/
   // *****************************************************************/
