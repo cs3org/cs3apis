@@ -78,9 +78,9 @@ service GatewayAPI {
   rpc RemoveOCMSharesForRecipient(cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientRequest) returns (cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientResponse);
   // Rejects the authenticated user's received shares from one remote user.
   rpc RejectReceivedOCMSharesFromSender(cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderRequest) returns (cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderResponse);
-  // Checks live outgoing grant authority for a service-authenticated caller.
+  // Reads an exact active outgoing grant for a service-authenticated caller.
   rpc CheckOCMGrantAccess(cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessRequest) returns (cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessResponse);
-  // Reports whether each directional bulk share action is supported.
+  // Checks support for each directed action for the authenticated local user.
   rpc GetOCMShareActionsSupport(cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportResponse);
   // *****************************************************************/
   // ************************ AUTH ******** **************************/

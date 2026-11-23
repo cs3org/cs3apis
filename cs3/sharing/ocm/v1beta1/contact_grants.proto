@@ -22,9 +22,9 @@ package cs3.sharing.ocm.v1beta1;
 
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
-import "cs3/types/v1beta1/types.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
 
 option csharp_namespace = "Cs3.Sharing.Ocm.V1Beta1";
 option go_package = "ocmv1beta1";
@@ -51,8 +51,8 @@ message RemoveOCMSharesForRecipientRequest {
 
 message RemoveOCMSharesForRecipientResponse {
   // REQUIRED.
-  // CODE_OK only for an acknowledged committed selection or no-op; a commit
-  // that cannot be established returns CODE_UNKNOWN with changed absent.
+  // CODE_OK requires a confirmed commit or no-op. An uncertain outcome
+  // returns CODE_UNKNOWN with changed absent.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Present only for an acknowledged commit or no-op: the number of grants
@@ -77,8 +77,8 @@ message RejectReceivedOCMSharesFromSenderRequest {
 
 message RejectReceivedOCMSharesFromSenderResponse {
   // REQUIRED.
-  // CODE_OK only for an acknowledged committed selection or no-op; a commit
-  // that cannot be established returns CODE_UNKNOWN with changed absent.
+  // CODE_OK requires a confirmed commit or no-op. An uncertain outcome
+  // returns CODE_UNKNOWN with changed absent.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Present only for an acknowledged commit or no-op: the number of received
@@ -94,6 +94,7 @@ message GetOCMShareActionsSupportRequest {
 
 message GetOCMShareActionsSupportResponse {
   // REQUIRED.
+  // Support flags are valid only with CODE_OK.
   cs3.rpc.v1beta1.Status status = 1;
   // REQUIRED.
   // True only when the configured share repository actually supports the
@@ -109,14 +110,48 @@ message GetOCMShareActionsSupportResponse {
 message CheckOCMGrantAccessRequest {
   // REQUIRED. Immutable outgoing grant identity from authenticated authority.
   ShareId share_id = 1;
-  // REQUIRED. Exact signed user recipient binding.
+  // REQUIRED. Exact user recipient from authenticated grant authority,
+  // including the complete provider host and port and byte-exact opaque ID.
   cs3.identity.user.v1beta1.UserId grantee = 2;
-  // REQUIRED. Resource against which this authority was minted.
+  // REQUIRED. Resource against which this authority was minted. Match
+  // storage ID, opaque resource ID and space ID, including an empty space ID.
   cs3.storage.provider.v1beta1.ResourceId resource_id = 3;
 }
 
 message CheckOCMGrantAccessResponse {
+  reserved 2;
+  reserved "share";
+  // REQUIRED.
+  // CODE_OK requires a current, active grant matching the request. An absent,
+  // expired, inactive or mismatched grant returns non-OK with grant absent.
+  // An indeterminate read also returns non-OK with grant absent.
+  // Status diagnostics must omit credentials.
   cs3.rpc.v1beta1.Status status = 1;
-  // Current restrictions; MUST contain no Token or shared credentials.
-  Share share = 2;
+  // REQUIRED on CODE_OK.
+  OCMGrantAccess grant = 3;
+}
+
+// The current binding and restrictions of an active outgoing user grant.
+message OCMGrantAccess {
+  // REQUIRED.
+  ShareId share_id = 1;
+  // REQUIRED.
+  cs3.identity.user.v1beta1.UserId grantee = 2;
+  // REQUIRED.
+  cs3.storage.provider.v1beta1.ResourceId resource_id = 3;
+  // REQUIRED. Creator identity used for grant-scoped user lookup.
+  cs3.identity.user.v1beta1.UserId creator = 4;
+  // OPTIONAL. The current grant expiry, if any.
+  cs3.types.v1beta1.Timestamp expiration = 5;
+  // Current permission sets in grant order. Omit unsupported access methods.
+  // A present empty permission set grants no permissions for that method.
+  repeated OCMGrantAccessMethod access_methods = 6;
+}
+
+message OCMGrantAccessMethod {
+  // REQUIRED.
+  oneof protocol {
+    cs3.storage.provider.v1beta1.ResourcePermissions webdav_permissions = 1;
+    cs3.storage.provider.v1beta1.ResourcePermissions webapp_permissions = 2;
+  }
 }
