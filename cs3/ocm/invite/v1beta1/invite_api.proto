@@ -75,20 +75,26 @@ service InviteAPI {
   rpc GetAcceptedUser(GetAcceptedUserRequest) returns (GetAcceptedUserResponse);
   // Finds users who accepted invite tokens by their attributes.
   rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
-  // Delete a previously accepted remote user, that is unfriend that user.
+  // Unlinks a previously accepted remote user from the authenticated local
+  // user. Share actions are independently opt-in.
   // MUST return CODE_NOT_FOUND if the user does not exist.
   rpc DeleteAcceptedUser(DeleteAcceptedUserRequest) returns (DeleteAcceptedUserResponse);
-  // Removes the contact between a remote actor and a local counterpart in
-  // response to a CONTACT_REMOVED notification from remote to
-  // `/ocm/notifications`. Only this exact pair is removed, and no
-  // notification is sent back.
-  // MUST return CODE_OK with changed=false if the pair is not a contact.
+  // Removes only the exact contact pair named by a CONTACT_REMOVED notice
+  // received at `/ocm/notifications`.
+  // Only an authenticated internal service may call this operation, after
+  // verifying the HTTP signature and applying provider policy at the HTTP
+  // boundary. The receiving service MUST check that the verified sender
+  // provider is authoritative for the remote actor and independently resolve
+  // the exact counterpart to a local user using trusted local identity state.
+  // This operation leaves shares in both directions intact and emits no
+  // CONTACT_REMOVED notification in return.
+  // MUST return CODE_OK with changed=false and no effect if the authorized
+  // pair is confirmed absent.
   // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
-  // MUST return CODE_INVALID_ARGUMENT if the identities do not match the
-  // sender domain or the local provider.
+  // MUST return CODE_INVALID_ARGUMENT if the actor or counterpart identity is
+  // invalid or does not match its respective provider.
+  // MUST return an error status if the removal fails or its outcome is uncertain.
   rpc RemoveOCMContact(RemoveOCMContactRequest) returns (RemoveOCMContactResponse);
-  // Reports whether this service can remove single contacts with RemoveOCMContact.
-  rpc GetOCMContactRemovalSupport(GetOCMContactRemovalSupportRequest) returns (GetOCMContactRemovalSupportResponse);
 }
 
 message GenerateInviteTokenRequest {
@@ -230,7 +236,7 @@ message DeleteAcceptedUserRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The id of the user.
+  // The exact accepted remote user ID. The local user comes from authentication.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
   // OPTIONAL.
   // Withdraw the authenticated user's outgoing OCM shares with the remote
@@ -301,23 +307,23 @@ enum ContactActionOutcome {
 
 message RemoveOCMContactRequest {
   // OPTIONAL.
-  // Opaque information.
+  // Opaque information. It carries no identity or authorization.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The remote user who removed the contact. Its idp is the sender domain,
-  // compared as a whole host[:port] after lowercasing only.
+  // The exact remote actor from the verified notification. Its idp MUST match
+  // sender_domain as a whole host[:port] after lowercasing only.
   cs3.identity.user.v1beta1.UserId actor = 2;
   // REQUIRED.
-  // The local user whose contact with the actor is removed. Its idp is the
-  // complete host[:port] of the local provider.
+  // The exact local user named by the notification's targetUserId. The receiving
+  // service MUST validate the complete local provider host[:port] and resolve
+  // the identity, including its opaque ID and user type, in trusted local state.
   cs3.identity.user.v1beta1.UserId counterpart = 3;
   // REQUIRED.
-  // Host of the provider that sent the notification: the server part of
-  // an OCM address, host[:port], with its complete port.
+  // The verified sender provider from the HTTP verification and policy context.
+  // It is the complete host[:port], including any port.
   string sender_domain = 4;
   // OPTIONAL.
-  // Address of the HTTP client that sent the notification, used by the
-  // provider policy.
+  // Address of the HTTP client from the trusted HTTP context, for provider policy.
   string sender_ip = 5;
 }
 
@@ -329,24 +335,7 @@ message RemoveOCMContactResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // True if this call removed the contact.
+  // On CODE_OK, true if this call removed the exact pair and false if the pair
+  // was confirmed absent.
   bool changed = 3;
-}
-
-message GetOCMContactRemovalSupportRequest {
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 1;
-}
-
-message GetOCMContactRemovalSupportResponse {
-  // REQUIRED.
-  // The response status.
-  cs3.rpc.v1beta1.Status status = 1;
-  // OPTIONAL.
-  // Opaque information.
-  cs3.types.v1beta1.Opaque opaque = 2;
-  // REQUIRED.
-  // True if RemoveOCMContact is supported.
-  bool supported = 3;
 }
