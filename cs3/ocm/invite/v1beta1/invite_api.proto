@@ -77,7 +77,19 @@ service InviteAPI {
   rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
   // Unlinks a previously accepted remote user from the authenticated local
   // user. Share actions are independently opt-in.
-  // MUST return CODE_NOT_FOUND if the user does not exist.
+  // Authentication, caller-scope and invalid-request rejections can return a
+  // status without a result. Later replies carry the typed result.
+  // If the initial exact-pair lookup confirms the pair absent, the contact
+  // result is SUCCEEDED with changed=0. Without selected share actions this
+  // MUST return CODE_OK. With selected share actions it MUST return a non-OK
+  // status and mark them NOT_ATTEMPTED. If the pair is removed concurrently
+  // after that lookup, the reply can still be CODE_OK with contact changed=0.
+  // If a later preflight check stops the request, such as for an unsupported
+  // share action, it MUST return a non-OK status before any action starts and
+  // mark every requested action NOT_ATTEMPTED.
+  // Older servers can unlink the contact while ignoring both share options.
+  // Upgrade all InviteAPI backends behind the gateway before routing requests
+  // that rely on this contract.
   rpc DeleteAcceptedUser(DeleteAcceptedUserRequest) returns (DeleteAcceptedUserResponse);
   // Removes only the exact contact pair named by a CONTACT_REMOVED notice
   // received at `/ocm/notifications`.
@@ -237,6 +249,9 @@ message DeleteAcceptedUserRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
   // The exact accepted remote user ID. The local user comes from authentication.
+  // An empty idp selects the caller's stored providerless contact by exact
+  // opaque ID. Both share options MUST be false. This local unlink sends no
+  // peer notification.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
   // OPTIONAL.
   // Withdraw the authenticated user's outgoing OCM shares with the remote
@@ -259,8 +274,8 @@ message DeleteAcceptedUserResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // OPTIONAL.
-  // Per-action outcomes of the requested operation, present whenever the
-  // outcome is known, including for recognized partial completion.
+  // Per-action outcomes. Required after initial validation, including when
+  // an action is UNKNOWN.
   ContactRemovalResult result = 3;
 }
 
@@ -282,9 +297,9 @@ message ContactActionResult {
   // valid completed value.
   ContactActionOutcome outcome = 1;
   // OPTIONAL.
-  // Present only with CONTACT_ACTION_OUTCOME_SUCCEEDED: zero or one for
-  // the contact action, the number of changed grants or received share
-  // projections for a share action. Never fabricated for unknown outcomes.
+  // Present exactly when the action is SUCCEEDED. Zero or one for the contact
+  // action, or the number of changed grants or received share projections for
+  // a share action.
   optional uint64 changed = 2;
 }
 
@@ -293,15 +308,16 @@ enum ContactActionOutcome {
   CONTACT_ACTION_OUTCOME_INVALID = 0;
   // The action was not requested.
   CONTACT_ACTION_OUTCOME_NOT_REQUESTED = 1;
-  // The action was requested but not attempted because an earlier
-  // requested action did not complete successfully.
+  // The action was requested but not attempted because a preflight check
+  // stopped the request, the initial exact-pair lookup confirmed the pair
+  // absent, or an earlier requested action did not complete successfully.
   CONTACT_ACTION_OUTCOME_NOT_ATTEMPTED = 2;
   // The action completed successfully.
   CONTACT_ACTION_OUTCOME_SUCCEEDED = 3;
   // The action was attempted and failed without a committed effect.
   CONTACT_ACTION_OUTCOME_FAILED = 4;
   // The outcome cannot be confirmed, for example after an ambiguous
-  // commit or a lost reply.
+  // commit or a lost reply. The changed field MUST be absent.
   CONTACT_ACTION_OUTCOME_UNKNOWN = 5;
 }
 
