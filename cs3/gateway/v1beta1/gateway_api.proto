@@ -26,16 +26,16 @@ import "cs3/auth/applications/v1beta1/applications_api.proto";
 import "cs3/auth/registry/v1beta1/registry_api.proto";
 import "cs3/gateway/v1beta1/resources.proto";
 import "cs3/identity/group/v1beta1/group_api.proto";
-import "cs3/identity/tenant/v1beta1/tenant_api.proto";
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/identity/user/v1beta1/user_api.proto";
-import "cs3/labels/v1beta1/label_api.proto";
+import "cs3/identity/tenant/v1beta1/tenant_api.proto";
 import "cs3/ocm/core/v1beta1/ocm_core_api.proto";
 import "cs3/ocm/incoming/v1beta1/ocm_incoming_api.proto";
 import "cs3/ocm/invite/v1beta1/invite_api.proto";
 import "cs3/ocm/provider/v1beta1/provider_api.proto";
 import "cs3/permissions/v1beta1/permissions_api.proto";
 import "cs3/preferences/v1beta1/preferences_api.proto";
+import "cs3/labels/v1beta1/label_api.proto";
 import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
@@ -43,8 +43,8 @@ import "cs3/sharing/link/v1beta1/link_api.proto";
 import "cs3/sharing/ocm/v1beta1/contact_grants.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
-import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/spaces_api.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/tx/v1beta1/tx_api.proto";
 import "cs3/types/v1beta1/types.proto";
 
@@ -74,14 +74,6 @@ option php_namespace = "Cs3\\Gateway\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service GatewayAPI {
-  // Withdraws the authenticated user's outgoing grants to one remote user.
-  rpc RemoveOCMSharesForRecipient(cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientRequest) returns (cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientResponse);
-  // Rejects the authenticated user's received shares from one remote user.
-  rpc RejectReceivedOCMSharesFromSender(cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderRequest) returns (cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderResponse);
-  // Reads an exact active outgoing grant for a service-authenticated caller.
-  rpc CheckOCMGrantAccess(cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessRequest) returns (cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessResponse);
-  // Checks support for each directed action for the authenticated local user.
-  rpc GetOCMShareActionsSupport(cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportResponse);
   // *****************************************************************/
   // ************************ AUTH ******** **************************/
   // *****************************************************************/
@@ -293,7 +285,7 @@ service GatewayAPI {
   // *****************************************************************/
   // *************************** LABELS ******************************/
   // *****************************************************************/
-
+  
   // Attach a label to a resource for a user.
   rpc AddLabel(cs3.labels.v1beta1.AddLabelRequest) returns (cs3.labels.v1beta1.AddLabelResponse);
   // Removes a label from a resource for a user.
@@ -370,6 +362,18 @@ service GatewayAPI {
   // Get the information for the given received share reference.
   // MUST return CODE_NOT_FOUND if the received share reference does not exist.
   rpc GetReceivedOCMShare(cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse);
+  // Withdraws the authenticated user's outgoing grants to one remote user.
+  // Requires an authenticated local user.
+  rpc RemoveOCMSharesForRecipient(cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientRequest) returns (cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientResponse);
+  // Rejects the authenticated user's received shares from one remote user.
+  // Requires an authenticated local user.
+  rpc RejectReceivedOCMSharesFromSender(cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderRequest) returns (cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderResponse);
+  // Reads the binding and restrictions of an active outgoing grant.
+  // Requires authenticated service authority for the exact requested grant.
+  rpc CheckOCMGrantAccess(cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessRequest) returns (cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessResponse);
+  // Reports the configured share repository's support for each directed
+  // action for the authenticated local caller.
+  rpc GetOCMShareActionsSupport(cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportResponse);
   // *****************************************************************/
   // ************************ APP REGISTRY ****************************/
   // *****************************************************************/
@@ -400,7 +404,7 @@ service GatewayAPI {
   // Finds users by any attribute of the user.
   // TODO(labkode): to define the filters that make more sense.
   rpc FindUsers(cs3.identity.user.v1beta1.FindUsersRequest) returns (cs3.identity.user.v1beta1.FindUsersResponse);
-
+  
   // *****************************************************************/
   // ************************ TENANT PROVIDER **************************/
   // *****************************************************************/
@@ -681,6 +685,7 @@ message ListExistingPublicSharesResponse {
   // see https://cloud.google.com/apis/design/design_patterns#list_pagination
   string next_page_token = 4;
 }
+
 
 message ListExistingOCMSharesResponse {
   // REQUIRED.

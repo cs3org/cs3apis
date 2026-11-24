@@ -110,8 +110,9 @@ message GetOCMShareActionsSupportResponse {
 message CheckOCMGrantAccessRequest {
   // REQUIRED. Immutable outgoing grant identity from authenticated authority.
   ShareId share_id = 1;
-  // REQUIRED. Exact user recipient from authenticated grant authority,
-  // including the complete provider host and port and byte-exact opaque ID.
+  // REQUIRED. User identity from authenticated grant authority. Match the
+  // stored user grantee by complete canonical provider host[:port] and
+  // byte-exact opaque ID.
   cs3.identity.user.v1beta1.UserId grantee = 2;
   // REQUIRED. Resource against which this authority was minted. Match
   // storage ID, opaque resource ID and space ID, including an empty space ID.
