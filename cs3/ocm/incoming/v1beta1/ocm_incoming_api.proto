@@ -67,6 +67,8 @@ service OcmIncomingAPI {
   // Withdraws the active received shares of a grant in response to a SHARE_UNSHARED
   // notification from remote to `/ocm/notifications`. The grant is named by
   // its sending provider and the identifier that provider assigned to it.
+  // Active shares have no expiry or expire after selection. This includes
+  // pending shares that otherwise match.
   // MUST return CODE_OK with changed=false and no other effect if no active
   // grant matches.
   // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
@@ -83,11 +85,14 @@ service OcmIncomingAPI {
   // The grant is selected as in WithdrawOCMIncomingShare. Each set permission
   // field replaces the snapshot for its protocol. The caller resolves the
   // notification to the applicable protocol before calling this operation.
-  // MUST return CODE_OK with changed=false and no other effect if no active
-  // grant matches, or if the stored permissions already equal the request.
   // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
   // MUST return CODE_INVALID_ARGUMENT if a field has an invalid value or no
   // permission field is set.
+  // MAY return CODE_UNIMPLEMENTED and change nothing if the service cannot
+  // apply a set snapshot to the grant kind, even before looking up the grant.
+  // For a snapshot the service can apply:
+  // MUST return CODE_OK with changed=false and no other effect if no active
+  // grant matches, or if the stored permissions already equal the request.
   // MUST return CODE_FAILED_PRECONDITION and change nothing if a set field names
   // a protocol that the grant does not carry.
   // MUST NOT return CODE_OK unless the outcome is known. A failed or uncertain
