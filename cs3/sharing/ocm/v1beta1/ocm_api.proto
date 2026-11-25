@@ -59,17 +59,18 @@ option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OcmAPI {
-  // Withdraws the authenticated user's outgoing grants to one remote user.
-  // Requires an authenticated local user.
+  // Withdraws the committed outgoing grants the authenticated local user
+  // created for the exact remote recipient. Later grants are separate.
   rpc RemoveOCMSharesForRecipient(RemoveOCMSharesForRecipientRequest) returns (RemoveOCMSharesForRecipientResponse);
-  // Rejects the authenticated user's received shares from one remote user.
-  // Requires an authenticated local user.
+  // Sets the authenticated local user's committed received shares from the
+  // exact sender to REJECTED. The user may explicitly accept again while
+  // the sender's grant stays active.
   rpc RejectReceivedOCMSharesFromSender(RejectReceivedOCMSharesFromSenderRequest) returns (RejectReceivedOCMSharesFromSenderResponse);
-  // Reads the binding and restrictions of an active outgoing grant.
-  // Requires authenticated service authority for the exact requested grant.
+  // Reads an active outgoing grant's binding and restrictions.
+  // Requires authenticated service authority for that exact grant.
   rpc CheckOCMGrantAccess(CheckOCMGrantAccessRequest) returns (CheckOCMGrantAccessResponse);
-  // Reports the configured share repository's support for each directed
-  // action for the authenticated local caller.
+  // Reports transactional share actions supported by the configured
+  // repository for the authenticated local caller.
   rpc GetOCMShareActionsSupport(GetOCMShareActionsSupportRequest) returns (GetOCMShareActionsSupportResponse);
   // Creates a new OCM share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.

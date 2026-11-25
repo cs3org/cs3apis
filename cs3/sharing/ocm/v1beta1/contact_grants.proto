@@ -34,55 +34,44 @@ option java_package = "com.cs3.sharing.ocm.v1beta1";
 option objc_class_prefix = "CSO";
 option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 
-// Withdraws every currently committed outgoing OCM share grant that the
-// authenticated local user created for exactly this remote user. The local
-// user is derived from the authenticated context; the request names only the
-// remote user. Grants created later are separate shares, not a revival.
 message RemoveOCMSharesForRecipientRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // Exact remote recipient identity of the grants to withdraw. Its idp is
-  // the complete canonical host[:port] of the remote provider, opaque IDs
-  // stay byte-exact.
+  // Exact remote recipient with complete canonical host[:port] and a
+  // byte-exact opaque ID.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
 }
 
 message RemoveOCMSharesForRecipientResponse {
   // REQUIRED.
   // CODE_OK requires a confirmed commit or no-op. An uncertain outcome
-  // returns CODE_UNKNOWN with changed absent.
+  // returns CODE_UNKNOWN.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
-  // Present only for an acknowledged commit or no-op: the number of grants
-  // whose state actually changed, zero for a successful no-op.
+  // Present only on CODE_OK. Number of changed grants, zero for a no-op.
   optional uint64 changed = 2;
 }
 
-// Sets the authenticated local user's currently committed received OCM share
-// projections from exactly this remote grantor to REJECTED. The provider's
-// own grants are untouched; an explicit later acceptance may reverse it while
-// the provider's grant remains active.
 message RejectReceivedOCMSharesFromSenderRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // Exact remote creator identity of the received shares to reject. Its idp
-  // is the complete canonical host[:port] of the remote provider, opaque IDs
-  // stay byte-exact.
+  // Exact remote creator with complete canonical host[:port] and a
+  // byte-exact opaque ID.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
 }
 
 message RejectReceivedOCMSharesFromSenderResponse {
   // REQUIRED.
   // CODE_OK requires a confirmed commit or no-op. An uncertain outcome
-  // returns CODE_UNKNOWN with changed absent.
+  // returns CODE_UNKNOWN.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
-  // Present only for an acknowledged commit or no-op: the number of received
-  // share projections whose state actually changed, zero for a no-op.
+  // Present only on CODE_OK. Number of changed received share projections,
+  // zero for a no-op.
   optional uint64 changed = 2;
 }
 
@@ -92,30 +81,27 @@ message GetOCMShareActionsSupportRequest {
   cs3.types.v1beta1.Opaque opaque = 1;
 }
 
+// Capability flags cover batch actions. Per-share operations are independent.
 message GetOCMShareActionsSupportResponse {
   // REQUIRED.
   // Support flags are valid only with CODE_OK.
   cs3.rpc.v1beta1.Status status = 1;
   // REQUIRED.
-  // True only when the configured share repository actually supports the
-  // transactional outgoing withdrawal for the authenticated user. A false
-  // answer leaves ordinary per-share operations untouched.
+  // Supports transactional outgoing withdrawal.
   bool withdraw_outgoing = 2;
   // REQUIRED.
-  // True only when the configured share repository actually supports the
-  // transactional incoming rejection for the authenticated user.
+  // Supports transactional incoming rejection.
   bool decline_incoming = 3;
 }
 
 message CheckOCMGrantAccessRequest {
   // REQUIRED. Immutable outgoing grant identity from authenticated authority.
   ShareId share_id = 1;
-  // REQUIRED. User identity from authenticated grant authority. Match the
-  // stored user grantee by complete canonical provider host[:port] and
-  // byte-exact opaque ID.
+  // REQUIRED. Match the authority's user grantee by complete canonical
+  // host[:port] and byte-exact opaque ID.
   cs3.identity.user.v1beta1.UserId grantee = 2;
-  // REQUIRED. Resource against which this authority was minted. Match
-  // storage ID, opaque resource ID and space ID, including an empty space ID.
+  // REQUIRED. Match the bound storage, opaque resource and space IDs,
+  // including an empty space ID.
   cs3.storage.provider.v1beta1.ResourceId resource_id = 3;
 }
 
@@ -123,10 +109,8 @@ message CheckOCMGrantAccessResponse {
   reserved 2;
   reserved "share";
   // REQUIRED.
-  // CODE_OK requires a current, active grant matching the request. An absent,
-  // expired, inactive or mismatched grant returns non-OK with grant absent.
-  // An indeterminate read also returns non-OK with grant absent.
-  // Status diagnostics must omit credentials.
+  // CODE_OK requires an exact active grant. Other outcomes omit grant.
+  // Diagnostics must omit credentials.
   cs3.rpc.v1beta1.Status status = 1;
   // REQUIRED on CODE_OK.
   OCMGrantAccess grant = 3;
