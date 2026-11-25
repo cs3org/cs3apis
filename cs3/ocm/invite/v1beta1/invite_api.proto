@@ -75,37 +75,23 @@ service InviteAPI {
   rpc GetAcceptedUser(GetAcceptedUserRequest) returns (GetAcceptedUserResponse);
   // Finds users who accepted invite tokens by their attributes.
   rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
-  // Unlinks a previously accepted remote user from the authenticated local
-  // user. Share actions are independently opt-in.
-  // Authentication, caller-scope and invalid-request rejections can return a
-  // status without a result. Later replies carry the typed result.
-  // If the initial exact-pair lookup confirms the pair absent, the contact
-  // result is SUCCEEDED with changed=0. Without selected share actions this
-  // MUST return CODE_OK. With selected share actions it MUST return a non-OK
-  // status and mark them NOT_ATTEMPTED. If the pair is removed concurrently
-  // after that lookup, the reply can still be CODE_OK with contact changed=0.
-  // If a later preflight check stops the request, such as for an unsupported
-  // share action, it MUST return a non-OK status before any action starts and
-  // mark every requested action NOT_ATTEMPTED.
-  // Older servers can unlink the contact while ignoring both share options.
-  // Upgrade all InviteAPI backends behind the gateway before routing requests
-  // that rely on this contract.
+  // Unlinks the caller's exact contact, with opt-in share actions.
+  // If the initial lookup confirms absence, report contact SUCCEEDED with
+  // changed=0. Return CODE_OK for unlink alone. With share options, return
+  // non-OK and mark those actions NOT_ATTEMPTED.
+  // A concurrent unlink after lookup may return CODE_OK with contact changed=0.
+  // Failed preflight returns non-OK with all requested actions NOT_ATTEMPTED.
+  // Use share options only after upgrading every InviteAPI backend. Older
+  // backends may unlink while ignoring the options.
   rpc DeleteAcceptedUser(DeleteAcceptedUserRequest) returns (DeleteAcceptedUserResponse);
-  // Removes only the exact contact pair named by a CONTACT_REMOVED notice
-  // received at `/ocm/notifications`.
-  // Only an authenticated internal service may call this operation, after
-  // verifying the HTTP signature and applying provider policy at the HTTP
-  // boundary. The receiving service MUST check that the verified sender
-  // provider is authoritative for the remote actor and independently resolve
-  // the exact counterpart to a local user using trusted local identity state.
-  // This operation leaves shares in both directions intact and emits no
-  // CONTACT_REMOVED notification in return.
-  // MUST return CODE_OK with changed=false and no effect if the authorized
-  // pair is confirmed absent.
-  // MUST return CODE_PERMISSION_DENIED if the provider policy denies the origin.
-  // MUST return CODE_INVALID_ARGUMENT if the actor or counterpart identity is
-  // invalid or does not match its respective provider.
-  // MUST return an error status if the removal fails or its outcome is uncertain.
+  // Applies CONTACT_REMOVED to one exact pair. See OCM Recipient Removal.
+  // https://github.com/cs3org/OCM-API/blob/26b2ff35334bdd488856191a6f9aa1e9b22bef85/IETF-OCM.md#recipient-removal
+  // Only authenticated internal callers may call after HTTP signature
+  // verification and provider policy checks.
+  // Preserve shares and emit no CONTACT_REMOVED notice in return.
+  // Confirmed absence returns CODE_OK with changed=false. Denied origins
+  // return CODE_PERMISSION_DENIED and invalid identities return
+  // CODE_INVALID_ARGUMENT. Failed or uncertain removal returns an error.
   rpc RemoveOCMContact(RemoveOCMContactRequest) returns (RemoveOCMContactResponse);
 }
 
@@ -248,58 +234,51 @@ message DeleteAcceptedUserRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The exact accepted remote user ID. The local user comes from authentication.
-  // An empty idp selects the caller's stored providerless contact by exact
-  // opaque ID. Both share options MUST be false. This local unlink sends no
-  // peer notification.
+  // Exact accepted remote user. Empty idp selects a providerless contact by
+  // exact opaque ID and requires both share options off. This unlink sends
+  // no peer notice.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
   // OPTIONAL.
-  // Withdraw the authenticated user's outgoing OCM shares with the remote
-  // user. Defaults to false: without either option the operation only
-  // unlinks the contact and keeps existing shares in both directions.
+  // Withdraw outgoing shares to this user. Both options default to false,
+  // which keeps existing shares on unlink.
   bool withdraw_outgoing = 3;
   // OPTIONAL.
-  // Reject the authenticated user's received OCM shares from the remote
-  // user. Defaults to false.
+  // Decline received shares from this user.
   bool decline_incoming = 4;
 }
 
 message DeleteAcceptedUserResponse {
   // REQUIRED.
-  // The response status. It is CODE_OK only if every requested action
-  // completed; a non-OK status can still carry an authoritative partial
-  // result.
+  // CODE_OK requires every requested action to complete. Non-OK can carry
+  // confirmed partial results.
   cs3.rpc.v1beta1.Status status = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // OPTIONAL.
-  // Per-action outcomes. Required after initial validation, including when
-  // an action is UNKNOWN.
+  // Per-action outcomes, including UNKNOWN. May be absent only on
+  // authentication, caller-scope or invalid-request rejections before lookup.
   ContactRemovalResult result = 3;
 }
 
 message ContactRemovalResult {
   // REQUIRED.
-  // Outcome of unlinking the contact itself.
+  // Contact unlink outcome.
   ContactActionResult contact = 1;
   // REQUIRED.
-  // Outcome of the optional withdrawal of outgoing shares.
+  // Outgoing withdrawal outcome.
   ContactActionResult outgoing = 2;
   // REQUIRED.
-  // Outcome of the optional rejection of incoming shares.
+  // Incoming decline outcome.
   ContactActionResult incoming = 3;
 }
 
 message ContactActionResult {
   // REQUIRED.
-  // The outcome of one action. CONTACT_ACTION_OUTCOME_INVALID is never a
-  // valid completed value.
   ContactActionOutcome outcome = 1;
   // OPTIONAL.
-  // Present exactly when the action is SUCCEEDED. Zero or one for the contact
-  // action, or the number of changed grants or received share projections for
-  // a share action.
+  // Present exactly on SUCCEEDED. Zero or one for unlink, otherwise the
+  // count of changed grants or received share projections.
   optional uint64 changed = 2;
 }
 
@@ -308,16 +287,14 @@ enum ContactActionOutcome {
   CONTACT_ACTION_OUTCOME_INVALID = 0;
   // The action was not requested.
   CONTACT_ACTION_OUTCOME_NOT_REQUESTED = 1;
-  // The action was requested but not attempted because a preflight check
-  // stopped the request, the initial exact-pair lookup confirmed the pair
-  // absent, or an earlier requested action did not complete successfully.
+  // Requested action skipped after a failed preflight, an absent pair at
+  // initial lookup or an unsuccessful prior action.
   CONTACT_ACTION_OUTCOME_NOT_ATTEMPTED = 2;
   // The action completed successfully.
   CONTACT_ACTION_OUTCOME_SUCCEEDED = 3;
   // The action was attempted and failed without a committed effect.
   CONTACT_ACTION_OUTCOME_FAILED = 4;
-  // The outcome cannot be confirmed, for example after an ambiguous
-  // commit or a lost reply. The changed field MUST be absent.
+  // Outcome unconfirmed. The changed field must be absent.
   CONTACT_ACTION_OUTCOME_UNKNOWN = 5;
 }
 
@@ -326,20 +303,18 @@ message RemoveOCMContactRequest {
   // Opaque information. It carries no identity or authorization.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The exact remote actor from the verified notification. Its idp MUST match
-  // sender_domain as a whole host[:port] after lowercasing only.
+  // Exact verified actor. Its idp must match the complete sender_domain
+  // host[:port] after lowercasing only.
   cs3.identity.user.v1beta1.UserId actor = 2;
   // REQUIRED.
-  // The exact local user named by the notification's targetUserId. The receiving
-  // service MUST validate the complete local provider host[:port] and resolve
-  // the identity, including its opaque ID and user type, in trusted local state.
+  // Exact local identity resolved from targetUserId in trusted local state.
+  // Validate the complete local host[:port], opaque ID and user type.
   cs3.identity.user.v1beta1.UserId counterpart = 3;
   // REQUIRED.
-  // The verified sender provider from the HTTP verification and policy context.
-  // It is the complete host[:port], including any port.
+  // Verified sender's complete host[:port] from the HTTP context.
   string sender_domain = 4;
   // OPTIONAL.
-  // Address of the HTTP client from the trusted HTTP context, for provider policy.
+  // Client IP from trusted HTTP context for provider policy.
   string sender_ip = 5;
 }
 
@@ -351,7 +326,6 @@ message RemoveOCMContactResponse {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
   // REQUIRED.
-  // On CODE_OK, true if this call removed the exact pair and false if the pair
-  // was confirmed absent.
+  // On CODE_OK, true if removed and false if confirmed absent.
   bool changed = 3;
 }

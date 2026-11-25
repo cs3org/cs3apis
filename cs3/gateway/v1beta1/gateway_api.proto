@@ -444,12 +444,9 @@ service GatewayAPI {
   rpc GetAcceptedUser(cs3.ocm.invite.v1beta1.GetAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.GetAcceptedUserResponse);
   // Finds users who accepted invite tokens by their attributes.
   rpc FindAcceptedUsers(cs3.ocm.invite.v1beta1.FindAcceptedUsersRequest) returns (cs3.ocm.invite.v1beta1.FindAcceptedUsersResponse);
-  // Unlinks a previously accepted remote user from the authenticated local
-  // user. Share actions are independently opt-in.
+  // See InviteAPI.DeleteAcceptedUser.
   rpc DeleteAcceptedUser(cs3.ocm.invite.v1beta1.DeleteAcceptedUserRequest) returns (cs3.ocm.invite.v1beta1.DeleteAcceptedUserResponse);
-  // Routes a verified CONTACT_REMOVED notice from an authenticated internal
-  // caller. The exact-pair and provider-policy requirements of
-  // InviteAPI.RemoveOCMContact apply.
+  // See InviteAPI.RemoveOCMContact.
   rpc RemoveOCMContact(cs3.ocm.invite.v1beta1.RemoveOCMContactRequest) returns (cs3.ocm.invite.v1beta1.RemoveOCMContactResponse);
   // *****************************************************************/
   // ******************** OCM PROVIDER AUTHORIZER ********************/
