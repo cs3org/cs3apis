@@ -1,0 +1,142 @@
+// Copyright 2018-2026 CERN
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// In applying this license, CERN does not waive the privileges and immunities
+// granted to it by virtue of its status as an Intergovernmental Organization
+// or submit itself to any jurisdiction.
+
+syntax = "proto3";
+
+package cs3.sharing.ocm.v1beta1;
+
+import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/resources.proto";
+import "cs3/storage/provider/v1beta1/resources.proto";
+import "cs3/types/v1beta1/types.proto";
+
+option csharp_namespace = "Cs3.Sharing.Ocm.V1Beta1";
+option go_package = "ocmv1beta1";
+option java_multiple_files = true;
+option java_outer_classname = "ContactGrantsProto";
+option java_package = "com.cs3.sharing.ocm.v1beta1";
+option objc_class_prefix = "CSO";
+option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
+
+message RemoveOCMSharesForRecipientRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Exact remote recipient with complete canonical host[:port] and a
+  // byte-exact opaque ID.
+  cs3.identity.user.v1beta1.UserId remote_user_id = 2;
+}
+
+message RemoveOCMSharesForRecipientResponse {
+  // REQUIRED.
+  // CODE_OK requires a confirmed commit or no-op. An uncertain outcome
+  // returns CODE_UNKNOWN.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Present only on CODE_OK. Number of changed grants, zero for a no-op.
+  optional uint64 changed = 2;
+}
+
+message RejectReceivedOCMSharesFromSenderRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Exact remote creator with complete canonical host[:port] and a
+  // byte-exact opaque ID.
+  cs3.identity.user.v1beta1.UserId remote_user_id = 2;
+}
+
+message RejectReceivedOCMSharesFromSenderResponse {
+  // REQUIRED.
+  // CODE_OK requires a confirmed commit or no-op. An uncertain outcome
+  // returns CODE_UNKNOWN.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Present only on CODE_OK. Number of changed received share projections,
+  // zero for a no-op.
+  optional uint64 changed = 2;
+}
+
+message GetOCMShareActionsSupportRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+}
+
+// Capability flags cover batch actions. Per-share operations are independent.
+message GetOCMShareActionsSupportResponse {
+  // REQUIRED.
+  // Support flags are valid only with CODE_OK.
+  cs3.rpc.v1beta1.Status status = 1;
+  // REQUIRED.
+  // Supports transactional outgoing withdrawal.
+  bool withdraw_outgoing = 2;
+  // REQUIRED.
+  // Supports transactional incoming rejection.
+  bool decline_incoming = 3;
+}
+
+message CheckOCMGrantAccessRequest {
+  // REQUIRED. Immutable outgoing grant identity from authenticated authority.
+  ShareId share_id = 1;
+  // REQUIRED. Match the authority's user grantee by complete canonical
+  // host[:port] and byte-exact opaque ID.
+  cs3.identity.user.v1beta1.UserId grantee = 2;
+  // REQUIRED. Match the bound storage, opaque resource and space IDs,
+  // including an empty space ID.
+  cs3.storage.provider.v1beta1.ResourceId resource_id = 3;
+}
+
+message CheckOCMGrantAccessResponse {
+  reserved 2;
+  reserved "share";
+  // REQUIRED.
+  // CODE_OK requires an exact active grant. Other outcomes omit grant.
+  // Diagnostics must omit credentials.
+  cs3.rpc.v1beta1.Status status = 1;
+  // REQUIRED on CODE_OK.
+  OCMGrantAccess grant = 3;
+}
+
+// The current binding and restrictions of an active outgoing user grant.
+message OCMGrantAccess {
+  // REQUIRED.
+  ShareId share_id = 1;
+  // REQUIRED.
+  cs3.identity.user.v1beta1.UserId grantee = 2;
+  // REQUIRED.
+  cs3.storage.provider.v1beta1.ResourceId resource_id = 3;
+  // REQUIRED. Creator identity used for grant-scoped user lookup.
+  cs3.identity.user.v1beta1.UserId creator = 4;
+  // OPTIONAL. The current grant expiry, if any.
+  cs3.types.v1beta1.Timestamp expiration = 5;
+  // Current permission sets in grant order. Omit unsupported access methods.
+  // A present empty permission set grants no permissions for that method.
+  repeated OCMGrantAccessMethod access_methods = 6;
+}
+
+message OCMGrantAccessMethod {
+  // REQUIRED.
+  oneof protocol {
+    cs3.storage.provider.v1beta1.ResourcePermissions webdav_permissions = 1;
+    cs3.storage.provider.v1beta1.ResourcePermissions webapp_permissions = 2;
+  }
+}

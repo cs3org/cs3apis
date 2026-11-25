@@ -40,6 +40,7 @@ import "cs3/rpc/v1beta1/status.proto";
 import "cs3/sharing/collaboration/v1beta1/collaboration_api.proto";
 import "cs3/sharing/collaboration/v1beta1/resources.proto";
 import "cs3/sharing/link/v1beta1/link_api.proto";
+import "cs3/sharing/ocm/v1beta1/contact_grants.proto";
 import "cs3/sharing/ocm/v1beta1/ocm_api.proto";
 import "cs3/storage/provider/v1beta1/provider_api.proto";
 import "cs3/storage/provider/v1beta1/spaces_api.proto";
@@ -361,6 +362,14 @@ service GatewayAPI {
   // Get the information for the given received share reference.
   // MUST return CODE_NOT_FOUND if the received share reference does not exist.
   rpc GetReceivedOCMShare(cs3.sharing.ocm.v1beta1.GetReceivedOCMShareRequest) returns (cs3.sharing.ocm.v1beta1.GetReceivedOCMShareResponse);
+  // See OcmAPI.RemoveOCMSharesForRecipient.
+  rpc RemoveOCMSharesForRecipient(cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientRequest) returns (cs3.sharing.ocm.v1beta1.RemoveOCMSharesForRecipientResponse);
+  // See OcmAPI.RejectReceivedOCMSharesFromSender.
+  rpc RejectReceivedOCMSharesFromSender(cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderRequest) returns (cs3.sharing.ocm.v1beta1.RejectReceivedOCMSharesFromSenderResponse);
+  // See OcmAPI.CheckOCMGrantAccess.
+  rpc CheckOCMGrantAccess(cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessRequest) returns (cs3.sharing.ocm.v1beta1.CheckOCMGrantAccessResponse);
+  // See OcmAPI.GetOCMShareActionsSupport.
+  rpc GetOCMShareActionsSupport(cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportRequest) returns (cs3.sharing.ocm.v1beta1.GetOCMShareActionsSupportResponse);
   // *****************************************************************/
   // ************************ APP REGISTRY ****************************/
   // *****************************************************************/

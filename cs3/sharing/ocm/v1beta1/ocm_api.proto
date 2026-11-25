@@ -23,6 +23,7 @@ package cs3.sharing.ocm.v1beta1;
 import "cs3/identity/user/v1beta1/resources.proto";
 import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
+import "cs3/sharing/ocm/v1beta1/contact_grants.proto";
 import "cs3/sharing/ocm/v1beta1/resources.proto";
 import "cs3/storage/provider/v1beta1/resources.proto";
 import "cs3/types/v1beta1/types.proto";
@@ -58,6 +59,19 @@ option php_namespace = "Cs3\\Sharing\\Ocm\\V1Beta1";
 // Any method MAY return UNKNOWN.
 // Any method MAY return UNAUTHENTICATED.
 service OcmAPI {
+  // Withdraws the committed outgoing grants the authenticated local user
+  // created for the exact remote recipient. Later grants are separate.
+  rpc RemoveOCMSharesForRecipient(RemoveOCMSharesForRecipientRequest) returns (RemoveOCMSharesForRecipientResponse);
+  // Sets the authenticated local user's committed received shares from the
+  // exact sender to REJECTED. The user may explicitly accept again while
+  // the sender's grant stays active.
+  rpc RejectReceivedOCMSharesFromSender(RejectReceivedOCMSharesFromSenderRequest) returns (RejectReceivedOCMSharesFromSenderResponse);
+  // Reads an active outgoing grant's binding and restrictions.
+  // Requires authenticated service authority for that exact grant.
+  rpc CheckOCMGrantAccess(CheckOCMGrantAccessRequest) returns (CheckOCMGrantAccessResponse);
+  // Reports transactional share actions supported by the configured
+  // repository for the authenticated local caller.
+  rpc GetOCMShareActionsSupport(GetOCMShareActionsSupportRequest) returns (GetOCMShareActionsSupportResponse);
   // Creates a new OCM share.
   // MUST return CODE_NOT_FOUND if the resource reference does not exist.
   // MUST return CODE_ALREADY_EXISTS if the share already exists for the 3-tuple consisting of
