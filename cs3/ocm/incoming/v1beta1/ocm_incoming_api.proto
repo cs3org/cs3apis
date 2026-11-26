@@ -64,6 +64,16 @@ service OcmIncomingAPI {
   // Deletes an OCM share in response to a notification from remote to `/ocm/notifications`. See:
   // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc DeleteOCMIncomingShare(DeleteOCMIncomingShareRequest) returns (DeleteOCMIncomingShareResponse);
+  // Handles `SHARE_UNSHARED` at `/ocm/notifications`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=26b2ff35334bdd488856191a6f9aa1e9b22bef85&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  // Authenticated internal callers only, after signature and provider checks.
+  // No active match is a successful no-op.
+  rpc WithdrawOCMIncomingShare(WithdrawOCMIncomingShareRequest) returns (WithdrawOCMIncomingShareResponse);
+  // Handles `SHARE_CHANGE_PERMISSION` at `/ocm/notifications`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=26b2ff35334bdd488856191a6f9aa1e9b22bef85&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  // Uses WithdrawOCMIncomingShare's caller and grant rules.
+  // Supply at least one snapshot for a protocol the matched grant carries.
+  rpc ChangeOCMIncomingSharePermissions(ChangeOCMIncomingSharePermissionsRequest) returns (ChangeOCMIncomingSharePermissionsResponse);
 }
 
 message CreateOCMIncomingShareRequest {
@@ -184,4 +194,79 @@ message DeleteOCMIncomingShareResponse {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+}
+
+message WithdrawOCMIncomingShareRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Grant provider's complete host[:port], compared after lowercasing only.
+  string sender_domain = 2;
+  // REQUIRED.
+  // Provider-assigned grant ID.
+  string remote_share_id = 3;
+  // REQUIRED.
+  // Resource type to match on the grant.
+  cs3.sharing.ocm.v1beta1.SharedResourceType shared_resource_type = 4;
+  // OPTIONAL.
+  // Match the recipient type unless it is RECIPIENT_TYPE_INVALID.
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
+  reserved 6;
+  reserved "legacy_shared_secret";
+  // OPTIONAL.
+  // Notification sender's IP address for provider policy.
+  string sender_ip = 7;
+}
+
+message WithdrawOCMIncomingShareResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // True if this call withdrew at least one received share.
+  bool changed = 3;
+}
+
+message ChangeOCMIncomingSharePermissionsRequest {
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 1;
+  // REQUIRED.
+  // Grant provider's complete host[:port], compared after lowercasing only.
+  string sender_domain = 2;
+  // REQUIRED.
+  // Provider-assigned grant ID.
+  string remote_share_id = 3;
+  // REQUIRED.
+  // Resource type to match on the grant.
+  cs3.sharing.ocm.v1beta1.SharedResourceType shared_resource_type = 4;
+  // OPTIONAL.
+  // Match the recipient type unless it is RECIPIENT_TYPE_INVALID.
+  cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 5;
+  // OPTIONAL.
+  // Notification sender's IP address for provider policy.
+  string sender_ip = 6;
+  // OPTIONAL.
+  // WebDAV snapshot, including reshare. Omit to leave it unchanged.
+  // An empty message clears permissions and reshare.
+  cs3.sharing.ocm.v1beta1.SharePermissions webdav_permissions = 7;
+  // OPTIONAL.
+  // Webapp snapshot. Omit to leave it unchanged. An empty message clears it.
+  cs3.storage.provider.v1beta1.ResourcePermissions webapp_permissions = 8;
+}
+
+message ChangeOCMIncomingSharePermissionsResponse {
+  // REQUIRED.
+  // The response status.
+  cs3.rpc.v1beta1.Status status = 1;
+  // OPTIONAL.
+  // Opaque information.
+  cs3.types.v1beta1.Opaque opaque = 2;
+  // REQUIRED.
+  // True if this call changed the permissions of at least one received share.
+  bool changed = 3;
 }
