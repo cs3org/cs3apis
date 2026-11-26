@@ -84,15 +84,10 @@ service InviteAPI {
   // Use share options only after upgrading every InviteAPI backend. Older
   // backends may unlink while ignoring the options.
   rpc DeleteAcceptedUser(DeleteAcceptedUserRequest) returns (DeleteAcceptedUserResponse);
-  // Applies `CONTACT_REMOVED` from `/ocm/notifications` to one exact
-  // contact pair. See:
+  // Handles `CONTACT_REMOVED` at `/ocm/notifications`. See:
   // https://cs3org.github.io/OCM-API/docs.html?branch=26b2ff35334bdd488856191a6f9aa1e9b22bef85&repo=OCM-API&user=cs3org#/paths/~1notifications/post
-  // Only authenticated internal callers may call after HTTP signature
-  // verification and provider policy checks.
-  // Preserve shares and emit no CONTACT_REMOVED notice in return.
-  // Confirmed absence returns CODE_OK with changed=false. Denied origins
-  // return CODE_PERMISSION_DENIED and invalid identities return
-  // CODE_INVALID_ARGUMENT. Failed or uncertain removal returns an error.
+  // Authenticated internal callers only, after signature and provider checks.
+  // Unlinks the exact pair, preserves shares, and sends no notice in return.
   rpc RemoveOCMContact(RemoveOCMContactRequest) returns (RemoveOCMContactResponse);
 }
 
