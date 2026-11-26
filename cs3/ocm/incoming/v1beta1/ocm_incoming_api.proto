@@ -64,8 +64,9 @@ service OcmIncomingAPI {
   // Deletes an OCM share in response to a notification from remote to `/ocm/notifications`. See:
   // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc DeleteOCMIncomingShare(DeleteOCMIncomingShareRequest) returns (DeleteOCMIncomingShareResponse);
-  // Applies SHARE_UNSHARED using OCM Share Identity.
-  // https://github.com/cs3org/OCM-API/blob/26b2ff35334bdd488856191a6f9aa1e9b22bef85/IETF-OCM.md#share-identity
+  // Withdraws an incoming share on `SHARE_UNSHARED` sent to
+  // `/ocm/notifications`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=26b2ff35334bdd488856191a6f9aa1e9b22bef85&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   // Shares with no expiry or an expiry after selection are active, including
   // pending shares. Only authenticated internal callers may call after
   // HTTP signature verification and provider policy checks.
@@ -73,8 +74,10 @@ service OcmIncomingAPI {
   // CODE_INVALID_ARGUMENT. A confirmed no-match returns CODE_OK with
   // changed=false. Failed or uncertain commits return an error.
   rpc WithdrawOCMIncomingShare(WithdrawOCMIncomingShareRequest) returns (WithdrawOCMIncomingShareResponse);
-  // Replaces the supplied snapshots for SHARE_CHANGE_PERMISSION using
-  // WithdrawOCMIncomingShare's selection, caller and commit rules.
+  // Replaces permission snapshots on `SHARE_CHANGE_PERMISSION` sent to
+  // `/ocm/notifications`. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=26b2ff35334bdd488856191a6f9aa1e9b22bef85&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  // Uses WithdrawOCMIncomingShare's selection, caller and commit rules.
   // The caller maps the notice to the applicable protocol.
   // Invalid input or no supplied snapshot returns CODE_INVALID_ARGUMENT.
   // Unsupported snapshots MAY return CODE_UNIMPLEMENTED before lookup.
