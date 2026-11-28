@@ -56,14 +56,43 @@ option php_namespace = "Cs3\\Ocm\\Incoming\\V1Beta1";
 // Any method MAY return UNAUTHENTICATED.
 service OcmIncomingAPI {
   // Creates a new OCM share in response to a call from remote to `/ocm/shares`. See:
-  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1shares/post
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.5.1&repo=OCM-API&user=cs3org#/paths/~1shares/post
   rpc CreateOCMIncomingShare(CreateOCMIncomingShareRequest) returns (CreateOCMIncomingShareResponse);
-  // Updates an OCM share in response to a notification from remote to `/ocm/notifications`. See:
-  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  // Updates an OCM share in response to a share-related notification from remote to
+  // `/ocm/notifications`, namely SHARE_ACCEPTED, SHARE_DECLINED, SHARE_CHANGE_PERMISSION,
+  // REQUEST_RESHARE and REQUEST_SHARE. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.5.1&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc UpdateOCMIncomingShare(UpdateOCMIncomingShareRequest) returns (UpdateOCMIncomingShareResponse);
-  // Deletes an OCM share in response to a notification from remote to `/ocm/notifications`. See:
-  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1notifications/post
+  // Deletes an OCM share in response to a share-related notification from remote to
+  // `/ocm/notifications`, namely SHARE_UNSHARED, or a SHARE_DECLINED notification
+  // declining a pending, collection-scoped share request. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.5.1&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   rpc DeleteOCMIncomingShare(DeleteOCMIncomingShareRequest) returns (DeleteOCMIncomingShareResponse);
+}
+
+// The type of OCM notification sent to `/ocm/notifications`, as per the
+// notification types defined in the OCM Internet-Draft. This enum is meant
+// to be extended as support for further notification types is added, and is
+// defined here, centrally, for reuse across the different CS3 APIs that act
+// upon such notifications (e.g. the Invite API). SHARE_UNSHARED is not
+// listed here, as it always results in a plain DeleteOCMIncomingShare call
+// with no further payload.
+enum NotificationType {
+  NOTIFICATION_TYPE_INVALID = 0;
+  // The recipient accepted the share.
+  NOTIFICATION_TYPE_SHARE_ACCEPTED = 1;
+  // The recipient declined the share, or a collection-scoped share request.
+  NOTIFICATION_TYPE_SHARE_DECLINED = 2;
+  // The provider changed the permissions granted on the share.
+  NOTIFICATION_TYPE_SHARE_CHANGE_PERMISSION = 3;
+  // The recipient requests to reshare the resource with a third party.
+  NOTIFICATION_TYPE_REQUEST_RESHARE = 4;
+  // The recipient requests shares from a Collection.
+  NOTIFICATION_TYPE_REQUEST_SHARE = 5;
+  // The remote user left its own sync'n'share system entirely.
+  NOTIFICATION_TYPE_USER_REMOVED = 6;
+  // The remote user removed a local user from its list of trusted contacts.
+  NOTIFICATION_TYPE_CONTACT_REMOVED = 7;
 }
 
 message CreateOCMIncomingShareRequest {
@@ -137,7 +166,9 @@ message UpdateOCMIncomingShareRequest {
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
-  // REQUIRED.
+  // REQUIRED, unless notification_type is NOTIFICATION_TYPE_REQUEST_SHARE: in
+  // that case no incoming share exists yet, and collection_id MUST be set
+  // instead to identify the Collection being requested.
   // Unique ID to identify the share at the consumer side.
   string ocm_share_id = 2;
   // OPTIONAL.
@@ -157,6 +188,41 @@ message UpdateOCMIncomingShareRequest {
   // OPTIONAL.
   // Recipient type.
   cs3.sharing.ocm.v1beta1.RecipientType recipient_type = 8;
+  // OPTIONAL.
+  // Set when this update is triggered by an OCM notification, to identify
+  // which one and determine which of the fields below apply.
+  NotificationType notification_type = 9;
+  // OPTIONAL.
+  // A human-readable message accompanying the notification.
+  string message = 10;
+  // OPTIONAL.
+  // New state of the received share. REQUIRED when notification_type is
+  // NOTIFICATION_TYPE_SHARE_ACCEPTED or NOTIFICATION_TYPE_SHARE_DECLINED
+  // for an existing share.
+  cs3.sharing.ocm.v1beta1.ShareState state = 11;
+  // OPTIONAL.
+  // New permissions granted on the share. REQUIRED when notification_type
+  // is NOTIFICATION_TYPE_SHARE_CHANGE_PERMISSION or
+  // NOTIFICATION_TYPE_REQUEST_RESHARE.
+  cs3.storage.provider.v1beta1.ResourcePermissions permissions = 12;
+  // OPTIONAL.
+  // Identifies the party the recipient wants to reshare the resource with.
+  // REQUIRED when notification_type is NOTIFICATION_TYPE_REQUEST_RESHARE.
+  cs3.identity.user.v1beta1.UserId reshare_with = 13;
+  // OPTIONAL.
+  // Identifier of the Collection being requested. REQUIRED when
+  // notification_type is NOTIFICATION_TYPE_REQUEST_SHARE, in which case
+  // ocm_share_id MUST be empty, owner identifies the owner of the
+  // Collection, and permissions carries the requested permissions.
+  string collection_id = 14;
+  // OPTIONAL.
+  // Owner of the Collection being requested. REQUIRED together with
+  // collection_id.
+  cs3.identity.user.v1beta1.UserId collection_owner = 15;
+  // OPTIONAL.
+  // Party requesting shares from the Collection. REQUIRED together with
+  // collection_id.
+  cs3.identity.user.v1beta1.UserId collection_share_with = 16;
 }
 
 message UpdateOCMIncomingShareResponse {
@@ -169,12 +235,34 @@ message UpdateOCMIncomingShareResponse {
 }
 
 message DeleteOCMIncomingShareRequest {
-  // REQUIRED.
+  // REQUIRED, unless notification_type is NOTIFICATION_TYPE_SHARE_DECLINED
+  // for a collection-scoped share request: in that case no incoming share
+  // was ever created, and collection_id MUST be set instead.
   // Unique ID to identify the share at the consumer side.
   string id = 1;
   // OPTIONAL.
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 2;
+  // OPTIONAL.
+  // Set when this deletion is triggered by an OCM notification declining a
+  // pending, collection-scoped share request rather than removing an
+  // existing share (e.g. NOTIFICATION_TYPE_SHARE_UNSHARED does not need to
+  // be set here, as it is the only notification type resulting in a plain
+  // deletion by id).
+  NotificationType notification_type = 3;
+  // OPTIONAL.
+  // A human-readable message accompanying the notification.
+  string message = 4;
+  // OPTIONAL.
+  // Identifier of the Collection whose pending share request is being
+  // declined. REQUIRED when notification_type is
+  // NOTIFICATION_TYPE_SHARE_DECLINED and the request being declined was
+  // collection-scoped; in that case id MUST be empty.
+  string collection_id = 5;
+  // OPTIONAL.
+  // Party whose request to share the Collection is being declined.
+  // REQUIRED together with collection_id.
+  cs3.identity.user.v1beta1.UserId collection_share_with = 6;
 }
 
 message DeleteOCMIncomingShareResponse {

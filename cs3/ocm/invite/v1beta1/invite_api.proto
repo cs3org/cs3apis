@@ -21,6 +21,7 @@ syntax = "proto3";
 package cs3.ocm.invite.v1beta1;
 
 import "cs3/identity/user/v1beta1/resources.proto";
+import "cs3/ocm/incoming/v1beta1/ocm_incoming_api.proto";
 import "cs3/ocm/invite/v1beta1/resources.proto";
 import "cs3/ocm/provider/v1beta1/resources.proto";
 import "cs3/rpc/v1beta1/status.proto";
@@ -59,7 +60,7 @@ service InviteAPI {
   rpc ListInviteTokens(ListInviteTokensRequest) returns (ListInviteTokensResponse);
   // Forwards a received invite to the remote sync'n'share system provider. The remote
   // system SHALL get an `invite-accepted` call as follows:
-  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.2.0&repo=OCM-API&user=cs3org#/paths/~1invite-accepted/post
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.5.1&repo=OCM-API&user=cs3org#/paths/~1invite-accepted/post
   // MUST return CODE_NOT_FOUND if the token does not exist.
   // MUST return CODE_INVALID_ARGUMENT if the token expired.
   // MUST return CODE_ALREADY_EXISTS if the user already accepted an invite.
@@ -76,6 +77,9 @@ service InviteAPI {
   // Finds users who accepted invite tokens by their attributes.
   rpc FindAcceptedUsers(FindAcceptedUsersRequest) returns (FindAcceptedUsersResponse);
   // Delete a previously accepted remote user, that is unfriend that user.
+  // This MAY be called in response to a user-related notification from remote to
+  // `/ocm/notifications`, namely USER_REMOVED or CONTACT_REMOVED. See:
+  // https://cs3org.github.io/OCM-API/docs.html?branch=v1.5.1&repo=OCM-API&user=cs3org#/paths/~1notifications/post
   // MUST return CODE_NOT_FOUND if the user does not exist.
   rpc DeleteAcceptedUser(DeleteAcceptedUserRequest) returns (DeleteAcceptedUserResponse);
 }
@@ -219,8 +223,24 @@ message DeleteAcceptedUserRequest {
   // Opaque information.
   cs3.types.v1beta1.Opaque opaque = 1;
   // REQUIRED.
-  // The id of the user.
+  // The id of the remote user to unfriend. For
+  // NOTIFICATION_TYPE_USER_REMOVED, this is the user who left its own
+  // system. For NOTIFICATION_TYPE_CONTACT_REMOVED, this is the remote user
+  // who removed the local user identified by local_user_id from its
+  // contacts.
   cs3.identity.user.v1beta1.UserId remote_user_id = 2;
+  // OPTIONAL.
+  // Set when this deletion is triggered by a user-related OCM notification,
+  // namely NOTIFICATION_TYPE_USER_REMOVED or
+  // NOTIFICATION_TYPE_CONTACT_REMOVED.
+  cs3.ocm.incoming.v1beta1.NotificationType notification_type = 3;
+  // OPTIONAL.
+  // A human-readable message accompanying the notification.
+  string message = 4;
+  // OPTIONAL.
+  // The local user whose relationship with remote_user_id is being dropped.
+  // REQUIRED when notification_type is NOTIFICATION_TYPE_CONTACT_REMOVED.
+  cs3.identity.user.v1beta1.UserId local_user_id = 5;
 }
 
 message DeleteAcceptedUserResponse {
